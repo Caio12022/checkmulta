@@ -2,6 +2,7 @@ import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
+import { MercadoPagoConfig, Payment } from "mercadopago";
 
 let aiClient: GoogleGenAI | null = null;
 function getAIClient() {
@@ -14,6 +15,12 @@ function getAIClient() {
   return aiClient;
 }
 
+// Inicializa o Mercado Pago usando o Token que guardamos no Render
+const mpClient = new MercadoPagoConfig({
+  accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN || "",
+});
+const paymentClient = new Payment(mpClient);
+
 async function startServer() {
   const app = express();
   const PORT = parseInt(process.env.PORT || "3000", 10);
@@ -21,6 +28,48 @@ async function startServer() {
   // Increase limit for base64 image uploads
   app.use(express.json({ limit: "50mb" }));
 
+  // ==========================================
+  // ROTA NOVA: GERAR PIX DE TESTE (R$ 1,00)
+  // ==========================================
+  app.post("/api/create-payment", async (req, res) => {
+    try {
+      if (!process.env.MERCADO_PAGO_ACCESS_TOKEN) {
+        return res.status(500).json({ error: "MERCADO_PAGO_ACCESS_TOKEN não configurado no Render." });
+      }
+
+      const { email } = req.body;
+
+      // Monta a cobrança do Pix
+      const paymentData = {
+        body: {
+          transaction_amount: 1.00, // Valor temporário de teste: R$ 1,00
+          description: "Criação de Recurso - CheckMulta",
+          payment_method_id: "pix",
+          payer: {
+            email: email || "cliente@checkmulta.com.br", // E-mail padrão caso o front não envie
+          },
+        },
+      };
+
+      // Envia o pedido para o banco do Mercado Pago
+      const response = await paymentClient.create(paymentData);
+
+      // Devolve para o site o código Copia e Cola e a imagem do QR Code
+      res.json({
+        id: response.id,
+        status: response.status,
+        qr_code: response.point_of_interaction?.transaction_data?.qr_code,
+        qr_code_base64: response.point_of_interaction?.transaction_data?.qr_code_base64,
+      });
+    } catch (err: any) {
+      console.error("Erro ao criar pagamento no Mercado Pago:", err);
+      res.status(500).json({ error: err.message || "Erro interno ao gerar o Pix." });
+    }
+  });
+
+  // ==========================================
+  // ROTA: ANALISAR MULTA (GEMINI)
+  // ==========================================
   app.post("/api/analyze-ticket", async (req, res) => {
     try {
       const { imageBase64, mimeType } = req.body;
@@ -120,6 +169,9 @@ REGRA DE OURO: Pare a resposta nos dados extraídos.`;
     }
   });
 
+  // ==========================================
+  // ROTA: GERAR DEFESA (PETIÇÃO)
+  // ==========================================
   app.post("/api/generate-defense", async (req, res) => {
     try {
       const { extractedData } = req.body;
@@ -134,7 +186,7 @@ NÃO analise a viabilidade. NÃO recuse. NÃO invente interpretações. Apenas p
 Se um dado não constar no resumo, mantenha o colchete intacto (ex: [HORA]). NUNCA copie textos como "[NÃO DETECTADO]".
 
 --- RESUMO DA MULTA ---
-\${extractedData}
+${extractedData}
 
 GABARITO DA PETIÇÃO DE DEFESA:
 ILUSTRÍSSIMA AUTORIDADE DE TRÂNSITO - [ÓRGÃO AUTUADOR]
@@ -155,7 +207,7 @@ Considerando que o procedimento não atendeu aos critérios estabelecidos pela l
 2. DOS PEDIDOS
 Ante o exposto, requer:
 a) O acolhimento da presente Defesa Prévia para que seja determinado o cancelamento e o arquivamento do Auto de Infração nº [AIT];
-b) Requer-se, sob pena de cerceamento de defesa, que a Autoridade de Trânsito anexe aos autos a cópia integral de laudos, imagens e relatórios pertinentes à infração.
+b) Requer-se, sob pena de cerceamento de defense, que a Autoridade de Trânsito anexe aos autos a cópia integral de laudos, imagens e relatórios pertinentes à infração.
 
 Nestes termos, pede deferimento.
 [CIDADE], 08 de junho de 2026.
