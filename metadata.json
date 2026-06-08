@@ -1,0 +1,8 @@
+{
+  "name": "Remix: CheckMulta",
+  "description": "Preciso que você reescreva todo o código React anterior do CheckMulta e converta exclusivamente para HTML, CSS e JavaScript puro (Vanilla JS).\n\nSiga estas regras rigorosamente:\n\nColoque todo o código estruturado em um único arquivo index.html (com o CSS e o JS embutidos, ou me dê os arquivos separados de forma simples).\n\nUse o CDN do Tailwind CSS (\u003cscript src\u003d\"https://cdn.tailwindcss.com\"\u003e\u003c/script\u003e) no cabeçalho para manter o mesmo design profissional e as cores exatas.\n\nSubstitua os ícones do lucide-react por uma biblioteca via CDN (como FontAwesome, Phosphor Icons ou Heroicons em formato SVG).\n\nMantenha toda a lógica do JavaScript funcionando: o upload da imagem, a troca dos textos de carregamento e o modal simulando o pagamento via Pix.\n\nO objetivo absoluto é que eu possa salvar esse arquivo em uma pasta local e fazer o deploy manual arrastando para o Netlify, sem a necessidade de usar Node.js, Webpack ou qualquer processo de build.\"",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
