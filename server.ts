@@ -81,7 +81,7 @@ async function startServer() {
   });
 
   // ==========================================
-  // ROTA: ANALISAR MULTA (PROMPT SECRETO COMERCIAL)
+  // ROTA: ANALISAR MULTA (MOTOR ECONÔMICO - FLASH LITE)
   // ==========================================
   app.post("/api/analyze-ticket", async (req, res) => {
     try {
@@ -93,11 +93,6 @@ async function startServer() {
 
       const ai = getAIClient();
       
-      const today = new Date();
-      const pd = String(today.getDate()).padStart(2, '0');
-      const pm = String(today.getMonth() + 1).padStart(2, '0');
-      const pY = today.getFullYear();
-      
       const prompt = `DIRETRIZES OBRIGATÓRIAS DE INTEGRAÇÃO COM SISTEMA (UI/UX)
 Você está se comunicando com um front-end. Siga estas regras com precisão cirúrgica:
 
@@ -105,7 +100,7 @@ Você está se comunicando com um front-end. Siga estas regras com precisão cir
 - Imagem não é um documento de trânsito: "documento_invalido"
 - Imagem muito borrada/ilegível: "imagem_ilegivel"
 - Conteúdo impróprio: "erro_seguranca"
-- Aviso de DEFERIMENTO prévio: "Boas notícias! Analisamos o seu documento e ele é um aviso oficial de DEFERIMENTO..."
+- Aviso de DEFERIMENTO prévim: "Boas notícias! Analisamos o seu documento e ele é um aviso oficial de DEFERIMENTO..."
 
 2. AUDITORIA LÓGICA DE TRÂNSITO (REGRAS DE PARETO):
 Você atua como um auditor técnico. Sua decisão baseia-se 100% na verificação da imagem contra estas regras:
@@ -169,6 +164,10 @@ REGRA DE OURO: Pare a resposta na linha da viabilidade. Não dê instruções de
     }
   });
 
+  // ==========================================
+  // ROTA: ENTRADA DO MOTOR PREMIUM (GEMINI 2.5 PRO)
+  // Ativada apenas após a confirmação do Pix real
+  // ==========================================
   app.post("/api/generate-defense", async (req, res) => {
     try {
       const { extractedData } = req.body;
@@ -178,45 +177,56 @@ REGRA DE OURO: Pare a resposta na linha da viabilidade. Não dê instruções de
       }
       
       const ai = getAIClient();
-      const prompt = `Você é um mero assistente de formatação jurídica. Sua ÚNICA tarefa é preencher o gabarito abaixo com os dados fornecidos em "RESUMO DA MULTA".
-NÃO analise a viabilidade. NÃO recuse. NÃO invente interpretações. Apenas pegue a brecha descrita no resumo e preencha a petição. 
-Se um dado não constar no resumo, mantenha o colchete intacto (ex: [HORA]). NUNCA copie textos como "[NÃO DETECTADO]".
+      
+      // Prompt com foco em fundamentação jurídica pesada para o modelo Pro executar
+      const prompt = `Você é um especialista em Direito Administrativo e Legislação de Trânsito Rodoviário. Sua tarefa é pegar o resumo técnico fornecido e redigir uma Petição de Defesa Prévia impecável, utilizando vocabulário jurídico formal, denso e robusto.
 
---- RESUMO DA MULTA ---
+Analise os fatos descritos, identifique a falha material indicada no resumo e aplique a fundamentação legal correta (Constituição Federal, Código de Trânsito Brasileiro - CTB e Resoluções do CONTRAN correspondentes).
+
+Substitua todos os dados variáveis por colchetes explícitos em letras maiúsculas quando os dados não constarem no resumo (ex: [NOME DO CONDUTOR], [RG], [CPF]). Se o dado constar no resumo, preencha-o diretamente.
+
+--- RESUMO DA MULTA FORNECIDO ---
 ${extractedData}
 
-GABARITO DA PETIÇÃO DE DEFESA:
-ILUSTRÍSSIMA AUTORIDADE DE TRÂNSITO - [ÓRGÃO AUTUADOR]
+ESTRUTURA DA PETIÇÃO DE DEFESA (ENTREGUE EXATAMENTE NESTE PADRÃO):
 
-[NOME DO CONDUTOR], brasileiro(a), [ESTADO CIVIL], [PROFISSÃO], portador do RG nº [RG] e inscrito no CPF sob o nº [CPF], residente e domiciliado em [ENDEREÇO COMPLETO], proprietário/condutor do veículo de placa [PLACA], RENAVAM [RENAVAM], vem, tempestivamente, à presença de Vossa Senhoria, com fulcro no art. 281, inciso I, do Código de Trânsito Brasileiro (CTB), apresentar
+ILUSTRÍSSIMA AUTORIDADE DE TRÂNSITO COGNITANTE DO [ÓRGÃO AUTUADOR]
 
-DEFESA PRÉVIA
+[NOME DO CONDUTOR], brasileiro(a), [ESTADO CIVIL], [PROFISSÃO], portador da cédula de identidade RG nº [RG] e devidamente inscrito no CPF/MF sob o nº [CPF], residente e domiciliado na [ENDEREÇO COMPLETO], na qualidade de proprietário/condutor do veículo marca/modelo [VEÍCULO], de placa [PLACA] e RENAVAM [RENAVAM], vem, tempestivamente, perante esta Ilustre JARI, com fulcro na Lei nº 9.503/97 (CTB) e Resoluções vigentes do CONTRAN, apresentar
 
-em face do Auto de Infração de Trânsito nº [AIT], lavrado em [DATA], pelos fatos e fundamentos a seguir expostos:
+DEFESA PRÉVIA DE AUTUAÇÃO DE TRÂNSITO
 
-1. DOS FATOS E DO DIREITO
-O requerente foi autuado em [DATA], às [HORA], no local [LOCAL], por suposta infração descrita como: [INFRAÇÃO].
+em face do Auto de Infração de Trânsito (AIT) nº [AIT], lavrado pela suposta infração capitulada no Artigo [ARTIGO DO CTB] do diploma legal de trânsito, aduzindo, para tanto, as razões fáticas e de direito que abaixo passam a ser articuladas:
 
-Ocorre que a autuação é manifestamente nula. Conforme análise técnica da notificação, a falha consiste em: [COPIE AQUI A EXPLICAÇÃO DA BRECHA QUE ESTÁ NO RESUMO DA MULTA ACIMA].
+1. DOS FATOS
+No dia [DATA], às [HORA], no local delimitado como [LOCAL], o veículo de propriedade do Requerente foi objeto de autuação por supostamente [DESCREVA A INFRAÇÃO DE FORMA FORMAL COM BASE NO RESUMO]. Contudo, em estrita análise formal do presente instrumento administrativo, resta evidente a existência de vício insanável que macula sua validade jurídica, conforme restará demonstrado.
 
-Considerando que o procedimento não atendeu aos critérios estabelecidos pela legislação vigente, a prova obtida carece de eficácia e presunção de veracidade. Nos termos do Artigo 281, inciso I, do CTB, a autoridade de trânsito é obrigada a arquivar o auto de infração quando este for considerado inconsistente ou irregular.
+2. DO DIREITO E DA FUNDAMENTAÇÃO JURÍDICA
+O ato administrativo de autuação de trânsito possui natureza vinculada, exigindo, para sua perfeita eficácia e validade, o estrito cumprimento de todos os requisitos de forma preconizados pelo ordenamento jurídico, em especial o Artigo 280 do Código de Trânsito Brasileiro e os manuais técnicos de fiscalização editados pelo SENATRAN.
 
-2. DOS PEDIDOS
-Ante o exposto, requer:
-a) O acolhimento da presente Defesa Prevía para que seja determinado o cancelamento e o arquivamento do Auto de Infração nº [AIT];
-b) Requer-se, sob pena de cerceamento de defesa, que a Autoridade de Trânsito anexe aos autos a cópia integral de laudos, imagens e relatórios pertinentes à infração.
+No caso sub examine, verifica-se flagrante nulidade material devido à seguinte irregularidade:
+[Aqui, você como Gemini Pro deve expandir o diagnóstico simples do resumo. Redija um texto de 2 parágrafos altamente técnicos e aprofundados explicando por que a falta detectada viola os princípios da motivação, da legalidade e da tipicidade estrita do ato administrativo. Cite resoluções pertinentes do CONTRAN se aplicável àquela infração e demonstre que a omissão ou erro do agente/equipamento retira a presunção de legitimidade e veracidade do AIT].
 
-Nestes termos, pede deferimento.
-[CIDADE], 08 de junho de 2026.
+O Artigo 281, parágrafo único, inciso I do CTB é taxativo ao determinar que o auto de infração "será arquivado e seu registro julgado insubsistente se considerado inconsistente ou irregular". Diante da patente desconformidade formal apontada, a anulação do feito é medida de direito que se impõe.
+
+3. DOS PEDIDOS e REQUERIMENTOS
+Ante todo o exposto, pugna o Requerente a esta Ilustre Autoridade Administrativa:
+a) O recebimento e processamento da presente manifestação defensiva, porquanto preenchidos os requisitos de tempestividade e legitimidade;
+b) No mérito, o acolhimento integral das razões expendidas, determinando-se o ARQUIVAMENTO definitivo do Auto de Infração de Trânsito nº [AIT] e a consequente insubsistência de seus efeitos civis e administrativos;
+c) Caso ocorra atraso no julgamento monocrático, a concessão de efeito suspensivo nos termos do Artigo 285, §3º do CTB, obstou-se a aplicação de quaisquer penalidades ou restrições prontuárias até decisão final.
+
+Nestes termos, roga por deferimento.
+[CIDADE], 09 de junho de 2026.
 
 __________________________________________
 [NOME DO CONDUTOR]
-[CPF]`;
+Requerente`;
 
+      // CHAMADA OFICIAL DO SEGUNDO MOTOR - GEMINI 2.5 PRO
       const response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
+        model: "gemini-2.5-pro",
         contents: [{ role: "user", parts: [{ text: prompt }] }],
-        config: { temperature: 0.0 }
+        config: { temperature: 0.1 } // Temperatura baixa para evitar alucinações jurídicas
       });
 
       const resultText = response.text || "";
