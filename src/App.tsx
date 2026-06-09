@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useRef, useEffect } from "react";
-import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown } from "lucide-react";
+import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 const formatDocumentText = (text: string) => {
@@ -66,12 +66,14 @@ export default function App() {
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
 
   // Estados dinâmicos para o Mercado Pago Real
+  const [paymentId, setPaymentId] = useState<number | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
   const [isPixCopied, setIsPixCopied] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // Animação de carregamento
   useEffect(() => {
     let interval: any;
     if (isAnalyzing || isGeneratingDefense) {
@@ -83,6 +85,43 @@ export default function App() {
     }
     return () => clearInterval(interval);
   }, [isAnalyzing, isGeneratingDefense]);
+
+  // RADAR DE PAGAMENTO DO MERCADO PAGO
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+
+    const checkPaymentStatus = async () => {
+      if (!paymentId || !isPixModalOpen) return;
+      try {
+        const res = await fetch(`/api/check-payment/${paymentId}`);
+        const data = await res.json();
+        
+        // Se o banco aprovou o dinheiro real
+        if (data.status === "approved") {
+          clearInterval(intervalId); // Para o radar
+          setIsPixModalOpen(false); // Fecha a tela do Pix
+          setIsCheckoutLoading(true);
+          
+          setTimeout(() => {
+            setIsCheckoutLoading(false);
+            setIsPaid(true); // Destrava a segurança
+            generateDefense(); // Gera a petição juridica
+          }, 1000);
+        }
+      } catch (err) {
+        console.error("Erro no radar do PIX", err);
+      }
+    };
+
+    // Fica checando a cada 3 segundos enquanto a tela de pagamento estiver aberta
+    if (isPixModalOpen && paymentId) {
+      intervalId = setInterval(checkPaymentStatus, 3000);
+    }
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [isPixModalOpen, paymentId]);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -120,6 +159,7 @@ export default function App() {
     setHasAnalyzed(false);
     setQrCode(null);
     setQrCodeBase64(null);
+    setPaymentId(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -157,24 +197,14 @@ export default function App() {
     try {
       const response = await fetch("/api/analyze-ticket", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          imageBase64: base64Data,
-          mimeType
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ imageBase64: base64Data, mimeType }),
       });
       
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(typeof data.error === 'string' ? data.error : JSON.stringify(data.error));
-      }
-
-      if (data.error) {
-        throw new Error(data.error);
-      }
+      if (!response.ok) throw new Error(typeof data.error === 'string' ? data.error : JSON.stringify(data.error));
+      if (data.error) throw new Error(data.error);
 
       let finalResult = data.result;
       let expDate: string | null = null;
@@ -187,9 +217,7 @@ export default function App() {
 
       setExpiredDate(expDate);
       setResult(finalResult);
-      if (finalResult) {
-        setHasAnalyzed(true);
-      }
+      if (finalResult) setHasAnalyzed(true);
       setIsResultModalOpen(true);
     } catch (err: any) {
       console.error("Erro na Análise (Log da Verdade):", err);
@@ -204,7 +232,6 @@ export default function App() {
     }
   };
 
-  // DISPARO DINÂMICO PARA O MERCADO PAGO REAL
   const handleCheckout = async () => {
     if (!result) return;
     setIsCheckoutLoading(true);
@@ -212,17 +239,14 @@ export default function App() {
     try {
       const response = await fetch("/api/create-payment", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: "comprador@checkmulta.com.br"
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: "comprador@checkmulta.com.br" }),
       });
 
       const data = await response.json();
 
       if (response.ok && data.qr_code) {
+        setPaymentId(data.id); // Salva o ID para o radar monitorar
         setQrCode(data.qr_code);
         setQrCodeBase64(data.qr_code_base64);
         setIsPixModalOpen(true);
@@ -237,16 +261,6 @@ export default function App() {
     }
   };
 
-  const simulateApprovedPayment = () => {
-    setIsPixModalOpen(false);
-    setIsCheckoutLoading(true);
-    setTimeout(() => {
-      setIsCheckoutLoading(false);
-      setIsPaid(true);
-      generateDefense();
-    }, 1500);
-  };
-
   const generateDefense = async (overrideResult?: string) => {
     const dataToUse = overrideResult || result;
     if (!dataToUse) return;
@@ -258,18 +272,13 @@ export default function App() {
     try {
       const response = await fetch("/api/generate-defense", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ extractedData: dataToUse }),
       });
 
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(typeof data.error === 'string' ? data.error : JSON.stringify(data.error));
-      }
-
+      if (!response.ok) throw new Error(typeof data.error === 'string' ? data.error : JSON.stringify(data.error));
       if (data.error) throw new Error(data.error);
 
       setDefenseResult(data.result);
@@ -338,7 +347,7 @@ export default function App() {
             Cancele Multas Injustas com Inteligência Artificial
           </h1>
           <p className="text-slate-800 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-            Nosso system audita sua notificação de trânsito em segundos, cruza os dados com o CTB e o Manual de Fiscalização, e identifica falhas legais para anular a infração.
+            Nosso sistema audita sua notificação de trânsito em segundos, cruza os dados com o CTB e o Manual de Fiscalização, e identifica falhas legais para anular a infração.
           </p>
           
           <div className="bg-emerald-50 rounded-2xl p-6 md:p-8 max-w-2xl mx-auto flex flex-col items-center shadow-sm border border-emerald-100">
@@ -968,7 +977,6 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsPixModalOpen(false)}
               className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
             />
             <motion.div
@@ -993,10 +1001,9 @@ export default function App() {
 
                 <div>
                   <h3 className="text-2xl font-bold text-slate-800">Pagamento via Pix</h3>
-                  <p className="text-slate-500 mt-2 font-medium">Escaneie o QR Code ou utilize o Pix Copia e Cola para continuar.</p>
+                  <p className="text-slate-500 mt-2 font-medium">Escaneie o QR Code ou utilize o botão Copia e Cola abaixo.</p>
                 </div>
 
-                {/* CONTAINER DO QR CODE DINÂMICO DO MERCADO PAGO */}
                 <div className="flex justify-center py-4">
                   <div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300 overflow-hidden">
                     {qrCodeBase64 ? (
@@ -1011,34 +1018,41 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* CAMPO DE COPIA E COLA REAL */}
                 <div className="space-y-3">
                   <p className="text-sm font-bold text-slate-700 text-left">Pix Copia e Cola:</p>
                   <div className="flex items-center space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
                     <p className="text-sm text-slate-500 font-mono truncate flex-1 text-left">
                       {qrCode || "Gerando código Pix..."}
                     </p>
-                    <button 
-                      onClick={handleCopyPix}
-                      className="text-emerald-600 hover:bg-emerald-50 p-2 rounded-lg transition-colors border border-emerald-200 flex-shrink-0"
-                    >
-                      {isPixCopied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
-                    </button>
                   </div>
+                  
+                  <button 
+                    onClick={handleCopyPix}
+                    className="w-full flex items-center justify-center gap-2 py-3 bg-emerald-50 text-emerald-700 rounded-xl font-bold hover:bg-emerald-100 transition-colors border border-emerald-200"
+                  >
+                    {isPixCopied ? (
+                      <>
+                        <Check className="w-5 h-5" />
+                        Código Copiado!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-5 h-5" />
+                        Copiar Código Pix
+                      </>
+                    )}
+                  </button>
                 </div>
 
-                <button
-                  onClick={simulateApprovedPayment}
-                  className="w-full mt-4 py-3 bg-slate-800 text-white rounded-xl font-bold hover:bg-slate-900 transition-colors shadow-md"
-                >
-                  Simular Pagamento Aprovado
-                </button>
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-sm text-slate-500 font-medium">
+                  <RefreshCcw className="w-4 h-4 animate-spin" />
+                  Aguardando pagamento...
+                </div>
               </div>
             </motion.div>
           </div>
         )}
       </AnimatePresence>
-
     </div>
   );
 }
