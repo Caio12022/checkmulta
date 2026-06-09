@@ -57,7 +57,7 @@ export default function App() {
   const [defenseResult, setDefenseResult] = useState<string | null>(null);
   const [defenseError, setDefenseError] = useState<string | null>(null);
 
-  const [isPaid, setIsPaid] = useState(false);
+  const [isPaid, opacitySetIsPaid] = useState(false);
   const [activeModal, setActiveModal] = useState<"termos" | "privacidade" | "aviso" | null>(null);
   const [isCopied, setIsCopied] = useState(false);
 
@@ -99,7 +99,7 @@ export default function App() {
         if (data.status === "approved") {
           clearInterval(intervalId);
           setIsPixModalOpen(false);
-          setIsPaid(true);
+          opacitySetIsPaid(true);
         }
       } catch (err) {
         console.error("Erro no radar do PIX", err);
@@ -154,7 +154,7 @@ export default function App() {
     setDefenseResult(null);
     setError(null);
     setDefenseError(null);
-    setIsPaid(false);
+    opacitySetIsPaid(false);
     setHasAnalyzed(false);
     setQrCode(null);
     setQrCodeBase64(null);
@@ -171,7 +171,7 @@ export default function App() {
     setResult(null);
     setDefenseResult(null);
     setDefenseError(null);
-    setIsPaid(false);
+    opacitySetIsPaid(false);
     setIsResultModalOpen(false);
 
     const reader = new FileReader();
@@ -190,7 +190,7 @@ export default function App() {
     setResult(null);
     setDefenseResult(null);
     setDefenseError(null);
-    setIsPaid(false);
+    opacitySetIsPaid(false);
     setIsResultModalOpen(true);
 
     try {
@@ -257,6 +257,39 @@ export default function App() {
       alert("Não foi possível conectar ao servidor de pagamento.");
     } finally {
       setIsCheckoutLoading(false);
+    }
+  };
+
+  const generateDefense = async (overrideResult?: string) => {
+    const dataToUse = overrideResult || result;
+    if (!dataToUse) return;
+    
+    setIsGeneratingDefense(true);
+    setDefenseError(null);
+    setDefenseResult(null);
+
+    try {
+      const response = await fetch("/api/generate-defense", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ extractedData: dataToUse }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(typeof data.error === 'string' ? data.error : JSON.stringify(data.error));
+      if (data.error) throw new Error(data.error);
+
+      setDefenseResult(data.result);
+    } catch (err: any) {
+      console.error("Erro na Defesa:", err);
+      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted") || err.message.includes("quota"))) {
+        setDefenseError("SERVER_BUSY");
+      } else {
+        setDefenseError(err.message || "Ocorreu um erro ao comunicar com o servidor.");
+      }
+    } finally {
+      setIsGeneratingDefense(false);
     }
   };
 
@@ -527,110 +560,9 @@ export default function App() {
                           <p className="text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-100 inline-block px-5 py-2.5 rounded-full shadow-sm">Tudo pronto. Você só precisa emitir o documento, copiar o texto e colar no portal de recursos do órgão.</p>
                         </div>
                         
-                        {/* NOVO DESIGN DO BOTÃO - VERDE MAIS ESCURO E SOMBRA LG */}
                         <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center p-5 bg-emerald-700 text-white rounded-2xl hover:bg-emerald-800 transition-colors shadow-lg disabled:opacity-75 disabled:cursor-not-allowed border-b-4 border-emerald-900/60">
                           <div className="flex flex-row items-center justify-center gap-3 text-lg font-black tracking-tight w-full">
                             {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6 flex-shrink-0" />}
                             <span className="text-center leading-tight">Emitir Recurso de Anulação Pronto</span>
                           </div>
-                          <span className="text-xs font-bold opacity-95 mt-2 bg-white/10 px-3 py-1 rounded-full">Liberar documento de cancelamento • R$ 19,90</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* TELA DE LOADING DA GERAÇÃO DA DEFESA REAL */}
-                {isGeneratingDefense && (
-                  <div className="flex flex-col items-center justify-center p-12 space-y-5 max-w-md mx-auto">
-                    <div className="w-full h-1.5 bg-green-100/80 rounded-full overflow-hidden relative">
-                      <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-emerald-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
-                    </div>
-                    <p className="font-black text-slate-800 text-center text-xl animate-pulse">Gerando sua petição oficial formatada...</p>
-                    <p className="text-sm text-slate-500 font-medium text-center">Nossa inteligência está fundamentando as teses de anulação no documento.</p>
-                  </div>
-                )}
-
-                {defenseError && (
-                  <div className="flex items-center space-x-3 text-red-800 p-4 bg-red-50 rounded-xl">
-                    <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                    <p className="text-sm font-medium">{defenseError}</p>
-                  </div>
-                )}
-
-                {defenseResult && (
-                  <div className="flex flex-col space-y-6">
-                    <div className="flex items-center justify-center space-x-3 border-b border-slate-200 pb-4">
-                      <Scale className="w-6 h-6 text-slate-800" />
-                      <h2 className="text-xl font-bold text-slate-800 text-center">Sua Defesa Jurídica Pronta</h2>
-                    </div>
-                    
-                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-r-md">
-                      <p className="text-sm text-yellow-800 font-medium"><strong>Atenção:</strong> Revise o documento abaixo. Substitua todos os campos destacados em vermelho pelas suas informações reais antes de protocolar.</p>
-                    </div>
-
-                    <div className="text-slate-800 p-4 sm:p-6 mx-auto bg-slate-50 rounded-xl overflow-y-auto font-serif border border-slate-200 w-full">
-                      <div className="whitespace-pre-wrap text-left text-[15px] md:text-base leading-relaxed font-medium">{formatDocumentText(defenseResult)}</div>
-                    </div>
-
-                    <div className="bg-amber-50 border border-amber-300 rounded-xl p-4 text-center max-w-xl mx-auto shadow-sm">
-                      <p className="text-xs text-amber-900 leading-relaxed font-semibold">⚠️ <strong>Aviso Importante de Sessão:</strong> Ao fechar esta janela ou atualizar a página, os dados serão perdidos. Baixe o arquivo ou copie o texto antes de sair.</p>
-                    </div>
-
-                    <div className="flex flex-col items-center gap-4 pt-2">
-                      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full">
-                        <button onClick={handleCopy} className="flex items-center justify-center space-x-2 px-8 py-4 bg-white text-slate-800 border-2 border-slate-200 rounded-xl hover:bg-slate-50 transition-colors font-bold text-lg w-full sm:w-auto shadow-sm">
-                          {isCopied ? (<><Check className="w-5 h-5 text-emerald-600" /><span className="text-emerald-600">Copiado!</span></>) : (<><Copy className="w-5 h-5 text-slate-600" /><span>Copiar Petição</span></>)}
-                        </button>
-                        <button onClick={handleDownload} className="flex items-center justify-center space-x-2 px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors shadow-md font-bold text-lg w-full sm:w-auto">
-                          <Download className="w-5 h-5" /><span>Baixar Documento (txt)</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
-      <AnimatePresence>
-        {isPixModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" />
-            <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="relative w-11/12 max-w-sm max-h-[85vh] overflow-y-auto bg-white rounded-2xl shadow-2xl p-6">
-              <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-5 h-5" /></button>
-              <div className="text-center space-y-6">
-                
-                {/* CONTAINER FLEXÍVEL PARA SUPORTAR LOGOS HORIZONTAIS DE ALTA RESOLUÇÃO SENSIVELMENTE */}
-                <div className="flex justify-center items-center h-10 md:h-12 my-2 w-full">
-                  <img src="/mercado-pago-logo.png" alt="Mercado Pago" className="h-full w-auto object-contain" />
-                </div>
-
-                <div>
-                  <h3 className="text-2xl font-bold text-slate-800">Pagamento via Pix</h3>
-                  <p className="text-slate-500 mt-2 font-medium">Escaneie o QR Code ou utilize o botão Copia e Cola abaixo.</p>
-                </div>
-                <div className="flex justify-center py-4">
-                  <div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300 overflow-hidden">
-                    {qrCodeBase64 ? <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" className="w-full h-full p-2 object-contain" /> : <QrCode className="w-24 h-24 text-slate-300 animate-pulse" />}
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <p className="text-sm font-bold text-slate-700 text-left">Pix Copia e Cola:</p>
-                  <div className="flex items-center space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200"><p className="text-sm text-slate-500 font-mono truncate flex-1 text-left">{qrCode || "Gerando Pix..."}</p></div>
-                  <button onClick={handleCopyPix} className="w-full flex items-center justify-center gap-2 py-3 bg-emerald-50 text-emerald-700 rounded-xl font-bold hover:bg-emerald-100 transition-colors border border-emerald-200">
-                    {isPixCopied ? (<><Check className="w-5 h-5" />Código Copiado!</>) : (<><Copy className="w-5 h-5" />Copiar Código Pix</>)}
-                  </button>
-                </div>
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-sm text-slate-500 font-medium"><RefreshCcw className="w-4 h-4 animate-spin" />Aguardando pagamento automático...</div>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
+                          <span className="text
