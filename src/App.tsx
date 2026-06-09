@@ -26,7 +26,7 @@ const formatDocumentText = (text: string) => {
     }
     if (part.trim().toUpperCase().startsWith('- STATUS DA ANÁLISE:')) {
       return (
-        <strong key={index} className="text-emerald-800 font-bold">
+        <strong key={index} className="text-emerald-800 font-bold block mb-2 text-lg">
           {part}
         </strong>
       );
@@ -65,7 +65,7 @@ export default function App() {
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
 
-  // Estados dinâmicos para o Mercado Pago Real
+  // Estados para o Mercado Pago
   const [paymentId, setPaymentId] = useState<number | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
@@ -73,7 +73,6 @@ export default function App() {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Animação de carregamento
   useEffect(() => {
     let interval: any;
     if (isAnalyzing || isGeneratingDefense) {
@@ -86,7 +85,7 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isAnalyzing, isGeneratingDefense]);
 
-  // RADAR DE PAGAMENTO DO MERCADO PAGO
+  // RADAR DE VERIFICAÇÃO DO PIX REAL
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
 
@@ -96,16 +95,15 @@ export default function App() {
         const res = await fetch(`/api/check-payment/${paymentId}`);
         const data = await res.json();
         
-        // Se o banco aprovou o dinheiro real
         if (data.status === "approved") {
-          clearInterval(intervalId); // Para o radar
-          setIsPixModalOpen(false); // Fecha a tela do Pix
+          clearInterval(intervalId);
+          setIsPixModalOpen(false);
           setIsCheckoutLoading(true);
           
           setTimeout(() => {
             setIsCheckoutLoading(false);
-            setIsPaid(true); // Destrava a segurança
-            generateDefense(); // Gera a petição juridica
+            setIsPaid(true);
+            generateDefense();
           }, 1000);
         }
       } catch (err) {
@@ -113,7 +111,6 @@ export default function App() {
       }
     };
 
-    // Fica checando a cada 3 segundos enquanto a tela de pagamento estiver aberta
     if (isPixModalOpen && paymentId) {
       intervalId = setInterval(checkPaymentStatus, 3000);
     }
@@ -246,7 +243,7 @@ export default function App() {
       const data = await response.json();
 
       if (response.ok && data.qr_code) {
-        setPaymentId(data.id); // Salva o ID para o radar monitorar
+        setPaymentId(data.id);
         setQrCode(data.qr_code);
         setQrCodeBase64(data.qr_code_base64);
         setIsPixModalOpen(true);
@@ -561,9 +558,7 @@ export default function App() {
 
       <AnimatePresence>
         {activeModal && (
-          <div 
-            className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md"
-          >
+          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
             <motion.div 
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -603,10 +598,7 @@ export default function App() {
                 )}
               </div>
               
-              <button
-                onClick={() => setActiveModal(null)}
-                className="mt-8 w-full py-3 bg-slate-100 text-slate-700 rounded-xl font-semibold hover:bg-slate-200 transition-colors"
-              >
+              <button onClick={() => setActiveModal(null)} className="mt-8 w-full py-3 bg-slate-100 text-slate-700 rounded-xl font-semibold hover:bg-slate-200 transition-colors">
                 Entendi e concordo
               </button>
             </motion.div>
@@ -616,9 +608,7 @@ export default function App() {
 
       <AnimatePresence>
         {isResultModalOpen && (
-          <div 
-            className="fixed inset-0 z-[45] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md"
-          >
+          <div className="fixed inset-0 z-[45] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
             <motion.div 
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -645,14 +635,7 @@ export default function App() {
                       />
                     </div>
                     <AnimatePresence mode="wait">
-                      <motion.p
-                        key={loaderIndex}
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -5 }}
-                        transition={{ duration: 0.3 }}
-                        className="font-medium text-slate-700 text-center text-lg"
-                      >
+                      <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="font-medium text-slate-700 text-center text-lg">
                         {LOADER_MESSAGES[loaderIndex]}
                       </motion.p>
                     </AnimatePresence>
@@ -663,9 +646,7 @@ export default function App() {
                   <div>
                     {error === "SERVER_BUSY" ? (
                       <div className="flex items-start space-x-4 text-left">
-                        <div className="flex-shrink-0 mt-1">
-                          <span className="text-2xl">⚠️</span>
-                        </div>
+                        <div className="flex-shrink-0 mt-1"><span className="text-2xl">⚠️</span></div>
                         <div>
                           <h2 className="text-xl font-bold text-orange-900 mb-2">Servidor Ocupado</h2>
                           <p className="text-orange-800 font-medium leading-relaxed">
@@ -689,9 +670,7 @@ export default function App() {
                         <AlertCircle className="w-8 h-8 text-orange-600 flex-shrink-0 mt-1" />
                         <div>
                           <h2 className="text-xl font-bold text-slate-800 mb-2">🚫 Envio Bloqueado</h2>
-                          <div className="text-slate-600 font-medium leading-relaxed space-y-4">
-                            <p>A imagem enviada viola nossas políticas de uso e segurança. A análise foi cancelada.</p>
-                          </div>
+                          <p className="text-slate-600 font-medium">A imagem enviada viola nossas políticas de uso e segurança.</p>
                         </div>
                       </div>
                     ) : result.toLowerCase().includes("documento_invalido") ? (
@@ -699,9 +678,7 @@ export default function App() {
                         <AlertCircle className="w-8 h-8 text-slate-500 flex-shrink-0 mt-1" />
                         <div>
                           <h2 className="text-xl font-bold text-slate-800 mb-2">📷 Documento Não Reconhecido</h2>
-                          <div className="text-slate-600 font-medium leading-relaxed space-y-4">
-                            <p>A imagem enviada não parece ser um auto de infração ou notificação de trânsito válida. Por favor, envie o documento correto.</p>
-                          </div>
+                          <p className="text-slate-600 font-medium">A imagem enviada não parece ser uma notificação de trânsito válida.</p>
                         </div>
                       </div>
                     ) : result.toLowerCase().includes("imagem_ilegivel") ? (
@@ -709,70 +686,17 @@ export default function App() {
                         <AlertCircle className="w-8 h-8 text-orange-600 flex-shrink-0 mt-1" />
                         <div>
                           <h2 className="text-xl font-bold text-slate-800 mb-2">🔍 Imagem Ilegível ou Incompleta</h2>
-                          <div className="text-slate-600 font-medium leading-relaxed space-y-4">
-                            <p>Não conseguimos ler os dados essenciais com segurança. Por favor, tire uma nova foto do documento em um ambiente bem iluminado, sem cortes ou reflexos.</p>
-                          </div>
+                          <p className="text-slate-600 font-medium">Não conseguimos ler os dados essenciais com segurança. Envie uma foto mais nítida.</p>
                         </div>
                       </div>
-                    ) : result.toLowerCase().includes("aviso de segurança") ? (
-                      <div className="flex items-start space-x-4">
-                        <AlertCircle className="w-8 h-8 text-orange-600 flex-shrink-0 mt-1" />
-                        <div>
-                          <h2 className="text-xl font-bold text-slate-800 mb-2">Tente Novamente</h2>
-                          <div className="text-slate-600 font-medium leading-relaxed space-y-4">
-                            <p>A imagem enviada está com baixa resolução ou ilegível. Para garantir a precisão absoluta do seu recurso e evitar erros no número da placa ou do AIT, por favor, exclua esta foto e faça o upload de uma imagem mais nítida ou do PDF original.</p>
-                          </div>
-                        </div>
-                      </div>
-                    ) : result.toLowerCase().includes("prazo expirado") ? (
-                      <div className="flex items-start space-x-4">
-                        <AlertCircle className="w-8 h-8 text-orange-600 flex-shrink-0 mt-1" />
-                        <div>
-                          <h2 className="text-xl font-bold text-slate-800 mb-2">❌ Prazo Expirado</h2>
-                          <div className="text-slate-600 font-medium leading-relaxed space-y-4">
-                            <p>
-                              Esta infração já ultrapassou o prazo legal para apresentação de defesa prévia.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ) : result.toLowerCase().includes("rejeição_tipo_a") ? (
+                    ) : result.toLowerCase().includes("rejeição_tipo_a") || result.toLowerCase().includes("rejeição_tipo_b") ? (
                       <div className="flex items-start space-x-4">
                         <AlertCircle className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
                         <div>
-                          <h2 className="text-xl font-bold text-slate-800 mb-2">Análise Concluída: Sua infração não possui viabilidade para recurso</h2>
+                          <h2 className="text-xl font-bold text-slate-800 mb-2">Análise Concluída: Sem viabilidade automática</h2>
                           <div className="text-slate-600 font-medium leading-relaxed space-y-4">
-                            <p>
-                              Identificamos a sua autuação referente a {result.split('|')[1]?.trim() || "uma infração específica"}, mas esse tipo de multa não faz parte do nosso escopo atual de atuação. Portanto, não é necessário prosseguir adiante. Fique tranquilo, essa análise preliminar foi totalmente gratuita para você.
-                            </p>
-                            <p>
-                              <strong>O que fazer agora?</strong> Recomendamos que consulte um advogado especialista para análise humana, ou aproveite o desconto de 20% a 40% pagando a autuação pelo aplicativo oficial (SNE).
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ) : result.toLowerCase().includes("rejeição_tipo_b") ? (
-                      <div className="flex items-start space-x-4">
-                        <AlertCircle className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
-                        <div>
-                          <h2 className="text-xl font-bold text-slate-800 mb-2">Análise Concluída: Sua infração não possui viabilidade para recurso</h2>
-                          <div className="text-slate-600 font-medium leading-relaxed space-y-4">
-                            <p>
-                              Auditoramos a sua notificação referente a {result.split('|')[1]?.trim() || "uma infração específica"} e, infelizmente, não encontramos falhas no preenchimento do agente ou no equipamento. Portanto, não é necessário prosseguir adiante. Fique tranquilo, essa análise preliminar foi totalmente gratuita para você.
-                            </p>
-                            <p>
-                              <strong>O que fazer agora?</strong> Recomendamos que consulte um advogado especialista para análise humana, ou aproveite o desconto de 20% a 40% pagando a autuação pelo aplicativo oficial (SNE).
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ) : result.toLowerCase().includes("boas notícias") ? (
-                      <div className="flex items-start space-x-4">
-                        <CheckCircle2 className="w-8 h-8 text-emerald-600 flex-shrink-0 mt-1" />
-                        <div>
-                          <h2 className="text-xl font-bold text-slate-800 mb-2">🎉 Multa Cancelada!</h2>
-                          <div className="text-slate-600 font-medium leading-relaxed space-y-4">
-                            <p>{result}</p>
+                            <p>Auditoramos seu documento e não encontramos falhas formais evidentes passíveis de nulidade por robô.</p>
+                            <p>Recomendamos o pagamento com desconto pelo aplicativo oficial do SNE ou a consulta a um especialista.</p>
                           </div>
                         </div>
                       </div>
@@ -783,23 +707,19 @@ export default function App() {
                           <div>
                             <h2 className="text-xl font-bold text-slate-800 mb-2">✅ Viabilidade Confirmada!</h2>
                             <p className="text-slate-900 font-medium leading-relaxed">
-                              Encontramos tese jurídica válida para solicitar a nulidade.
+                              Encontramos falhas materiais de preenchimento que justificam o cancelamento.
                             </p>
                             <div className="mt-3 flex flex-col items-start">
                               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-bold rounded-full">
                                 <ShieldCheck className="w-4 h-4 text-emerald-600" />
                                 Força da Tese: ALTA
                               </div>
-                              <p className="text-[11px] text-slate-500 mt-2">
-                                *Baseado em falhas materiais ou formais identificadas no auto de infração.
-                              </p>
                               
                               {expiredDate && (
                                 <div className="mt-4 inline-flex items-start gap-2 bg-slate-100 border-l-4 border-amber-400 text-slate-700 px-4 py-3 rounded-r-lg">
                                   <AlertCircle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
-                                  <div className="text-sm font-medium leading-snug">
-                                    <strong className="text-slate-800 block mb-0.5">⚠️ Atenção: Prazo para recurso encerrado em {expiredDate}</strong>
-                                    A análise foi concluída com base no mérito, mas o órgão pode indeferir automaticamente por intempestividade.
+                                  <div className="text-sm font-medium">
+                                    <strong className="text-slate-800 block mb-0.5">⚠️ Atenção: Prazo encerrado em {expiredDate}</strong>
                                   </div>
                                 </div>
                               )}
@@ -807,37 +727,41 @@ export default function App() {
                           </div>
                         </div>
                         
-                        <div className="pl-4 text-slate-600 text-sm font-medium whitespace-pre-wrap leading-relaxed border-l-2 border-slate-200">
-                          <strong className="text-slate-800">Resumo do Auto:</strong>
-                          <br/>
+                        {/* CONTAINER DOS DADOS EXTRAÍDOS (AGORA NO TOPO POR SUA SUGESTÃO) */}
+                        <div className="pl-4 text-slate-600 text-sm font-medium whitespace-pre-wrap leading-relaxed border-l-2 border-slate-200 bg-slate-50/50 p-4 rounded-r-xl">
                           {formatDocumentText(result)}
                         </div>
 
-                        <div className="pt-6">
-                          <div className="flex flex-col space-y-4">
-                            <p className="text-center text-slate-900 font-medium">
-                              Tese validada! Deseja liberar sua defesa completa e formatada? Após a geração, basta copiar o texto, colar no portal do órgão de trânsito e protocolar.
-                            </p>
+                        {/* BLOCO PERSUASIVO PREMIUM DE FECHAMENTO */}
+                        <div className="pt-4 border-t border-slate-100">
+                          <div className="flex flex-col space-y-5">
+                            <div className="text-center space-y-3">
+                              <h4 className="text-base font-black text-slate-900 flex items-center justify-center gap-2">
+                                <span>🚨</span> Irregularidade Confirmada pelo Sistema
+                              </h4>
+                              <p className="text-sm text-slate-700 leading-relaxed max-w-xl mx-auto font-medium">
+                                Cruzamos os dados do seu auto com o Manual Brasileiro de Fiscalização de Trânsito e estruturamos o documento de contestação completo. O pedido de arquivamento está fundamentado nas resoluções vigentes para solicitar a anulação da cobrança e proteger sua CNH contra a pontuação.
+                              </p>
+                              <p className="text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-100 inline-block px-4 py-1.5 rounded-full shadow-sm">
+                                Tudo pronto. Você só precisa emitir o documento, copiar o texto e colar no portal de recursos do órgão.
+                              </p>
+                            </div>
                             
+                            {/* BOTÃO PREMIUM AJUSTADO */}
                             <button
                               onClick={handleCheckout}
                               disabled={isCheckoutLoading}
-                              className="w-full flex flex-col items-center justify-center py-3 px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed"
+                              className="w-full flex flex-col items-center justify-center py-4 px-4 bg-emerald-600 text-white rounded-2xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed"
                             >
-                              <div className="flex flex-row items-center justify-center gap-2 text-base font-bold whitespace-nowrap">
-                                {isCheckoutLoading ? (
-                                  <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" />
-                                ) : (
-                                  <Scale className="w-6 h-6 flex-shrink-0" />
-                                )}
-                                <span>{isCheckoutLoading ? "Gerando Defesa..." : "Gerar Defesa Completa"}</span>
+                              <div className="flex flex-row items-center justify-center gap-2 text-lg font-black tracking-tight whitespace-nowrap">
+                                {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin" /> : <Scale className="w-6 h-6" />}
+                                <span>{isCheckoutLoading ? "Processando Emissão..." : "Emitir Recurso de Anulação Pronto"}</span>
                               </div>
-                              <span className="text-xs font-medium opacity-90 mt-1">Taxa única de R$ 19,90</span>
+                              <span className="text-xs font-bold opacity-90 mt-1">Liberar documento de cancelamento • R$ 19,90</span>
                             </button>
                             
-                            <div className="mt-4 text-xs text-slate-500 text-center leading-relaxed">
-                              <span className="text-red-500 font-bold">* </span>
-                              <strong className="text-slate-700">Aviso Legal:</strong> Este documento é um modelo referencial gerado automaticamente de forma algorítmica e não constitui tese jurídica garantida. Nós não somos um escritório de advocacia e este sistema não substitui a consulta a um advogado especialista. É plenamente possível que o recurso seja indeferido, sendo o julgamento de total responsabilidade do órgão de trânsito competente.
+                            <div className="mt-2 text-[11px] text-slate-400 text-center leading-relaxed max-w-2xl mx-auto">
+                              <strong className="text-slate-500">Aviso Legal:</strong> Este sistema atua como organizador algorítmico de teses referenciais com base no CTB. Não somos um escritório de advocacia. O resultado do julgamento administrativo é de total soberania da junta de trânsito competente.
                             </div>
                           </div>
                         </div>
@@ -849,118 +773,41 @@ export default function App() {
                 {isGeneratingDefense && (
                   <div className="flex flex-col items-center justify-center p-4 space-y-5 max-w-md mx-auto">
                     <div className="w-full h-1.5 bg-green-100/80 rounded-full overflow-hidden relative">
-                      <motion.div
-                        className="absolute top-0 left-0 h-full w-1/2 bg-emerald-600 rounded-full"
-                        animate={{ x: ["-100%", "200%"] }}
-                        transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-                      />
+                      <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-emerald-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
                     </div>
-                    <AnimatePresence mode="wait">
-                      <motion.p
-                        key={loaderIndex}
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -5 }}
-                        transition={{ duration: 0.3 }}
-                        className="font-medium text-slate-700 text-center text-lg"
-                      >
-                        {LOADER_MESSAGES[loaderIndex]}
-                      </motion.p>
-                    </AnimatePresence>
-                  </div>
-                )}
-
-                {defenseError && (
-                  <div>
-                    {defenseError === "SERVER_BUSY" ? (
-                      <div className="flex items-start space-x-4 text-left">
-                        <div className="flex-shrink-0 mt-1">
-                          <span className="text-2xl">⚠️</span>
-                        </div>
-                        <div>
-                          <h2 className="text-xl font-bold text-orange-900 mb-2">Servidor Ocupado</h2>
-                          <p className="text-orange-800 font-medium leading-relaxed">
-                            Nossos servidores estão processando um alto volume de auditorias neste momento. Por favor, aguarde alguns segundos e tente novamente.
-                          </p>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="flex items-center space-x-3 text-red-800 p-4 bg-red-50 rounded-xl">
-                        <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                        <p className="text-sm font-medium">{defenseError}</p>
-                      </div>
-                    )}
+                    <p className="font-medium text-slate-700 text-center text-lg animate-pulse">Gerando sua petição oficial formatada...</p>
                   </div>
                 )}
 
                 {defenseResult && (
                   <div className="flex flex-col space-y-6">
-                    {defenseResult.includes('Análise Concluída') ? (
-                      <div className="flex items-start space-x-4">
-                        <AlertCircle className="w-8 h-8 text-red-600 flex-shrink-0 mt-1" />
-                        <div>
-                          <h2 className="text-xl font-bold text-slate-800 mb-2">Análise Concluída</h2>
-                          <div className="text-slate-600 font-medium leading-relaxed space-y-4">
-                            <p>
-                              {defenseResult.replace('Análise Concluída:', '').trim()}
-                            </p>
-                            <p>
-                              Esta avaliação garante que apenas casos com alta probabilidade de sucesso avancem, economizando seu tempo.
-                            </p>
-                          </div>
-                        </div>
+                    <div className="flex items-center justify-center space-x-3 border-b border-slate-200 pb-4">
+                      <Scale className="w-6 h-6 text-slate-800" />
+                      <h2 className="text-xl font-bold text-slate-800 text-center">Sua Defesa Jurídica Pronta</h2>
+                    </div>
+                    
+                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-r-md">
+                      <p className="text-sm text-yellow-800 font-medium">
+                        <strong>Atenção:</strong> Revise o documento abaixo. Substitua todos os campos destacados em vermelho pelas suas informações reais (como nome, RG, CPF e dados legíveis do veículo) antes de assinar e protocolar.
+                      </p>
+                    </div>
+
+                    <div className="text-slate-800 p-4 sm:p-6 mx-auto bg-slate-50 rounded-xl overflow-y-auto font-serif border border-slate-200 w-full">
+                      <div className="whitespace-pre-wrap text-left text-[15px] md:text-base leading-relaxed font-medium">
+                        {formatDocumentText(defenseResult)}
                       </div>
-                    ) : (
-                      <>
-                        <div className="flex items-center justify-center space-x-3 border-b border-slate-200 pb-4">
-                          <Scale className="w-6 h-6 text-slate-800" />
-                          <h2 className="text-xl font-bold text-slate-800 text-center">Sua Defesa Jurídica Pronta</h2>
-                        </div>
-                        
-                        <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 mt-2 mb-4 rounded-r-md">
-                          <p className="text-sm text-yellow-800">
-                            <strong>Atenção:</strong> Revise o documento abaixo. É obrigatório substituir todos os campos destacados em <span className="text-red-600 font-bold">vermelho</span> pelas suas informações reais (como nome, RG, CPF e dados legíveis do veículo) antes de assinar e protocolar o recurso.
-                          </p>
-                        </div>
+                    </div>
 
-                        <div className="text-slate-800 p-4 sm:p-6 mx-auto bg-slate-50 rounded-xl overflow-y-auto font-serif border border-slate-200 w-full">
-                          <div className="whitespace-pre-wrap text-left text-[15px] md:text-base leading-relaxed font-medium">
-                            {formatDocumentText(defenseResult)}
-                          </div>
-                        </div>
-
-                        <div className="flex flex-col items-center gap-4 pt-4">
-                          <p className="text-xs text-center text-slate-500 max-w-sm">
-                            Basta copiar o texto abaixo e colar no portal de recursos do seu órgão de trânsito.
-                          </p>
-                          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full">
-                            <button
-                              onClick={handleCopy}
-                              className="flex items-center justify-center space-x-2 px-8 py-4 bg-white text-slate-800 border-2 border-slate-200 rounded-xl hover:bg-slate-50 transition-colors font-bold text-lg w-full sm:w-auto shadow-sm"
-                            >
-                              {isCopied ? (
-                                <>
-                                  <Check className="w-5 h-5 text-emerald-600" />
-                                  <span className="text-emerald-600">Copiado!</span>
-                                </>
-                              ) : (
-                                <>
-                                  <Copy className="w-5 h-5 text-slate-600" />
-                                  <span>Copiar Petição</span>
-                                </>
-                              )}
-                            </button>
-                            <button
-                              onClick={handleDownload}
-                              className="flex items-center justify-center space-x-2 px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors shadow-md font-bold text-lg w-full sm:w-auto"
-                            >
-                              <Download className="w-5 h-5" />
-                              <span>Baixar Documento (txt)</span>
-                            </button>
-                          </div>
-                        </div>
-                      </>
-                    )}
+                    <div className="flex flex-col items-center gap-4 pt-4">
+                      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full">
+                        <button onClick={handleCopy} className="flex items-center justify-center space-x-2 px-8 py-4 bg-white text-slate-800 border-2 border-slate-200 rounded-xl hover:bg-slate-50 transition-colors font-bold text-lg w-full sm:w-auto shadow-sm">
+                          {isCopied ? (<><Check className="w-5 h-5 text-emerald-600" /><span className="text-emerald-600">Copiado!</span></>) : (<><Copy className="w-5 h-5 text-slate-600" /><span>Copiar Petição</span></>)}
+                        </button>
+                        <button onClick={handleDownload} className="flex items-center justify-center space-x-2 px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors shadow-md font-bold text-lg w-full sm:w-auto">
+                          <Download className="w-5 h-5" /><span>Baixar Documento (txt)</span>
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 )}
 
@@ -973,22 +820,9 @@ export default function App() {
       <AnimatePresence>
         {isPixModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-11/12 max-w-sm max-h-[85vh] overflow-y-auto bg-white rounded-2xl shadow-2xl p-6"
-            >
-              <button
-                onClick={() => setIsPixModalOpen(false)}
-                className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
-              >
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" />
+            <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="relative w-11/12 max-w-sm max-h-[85vh] overflow-y-auto bg-white rounded-2xl shadow-2xl p-6">
+              <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors">
                 <X className="w-5 h-5" />
               </button>
 
@@ -1007,11 +841,7 @@ export default function App() {
                 <div className="flex justify-center py-4">
                   <div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300 overflow-hidden">
                     {qrCodeBase64 ? (
-                      <img 
-                        src={`data:image/png;base64,${qrCodeBase64}`} 
-                        alt="QR Code Real do Mercado Pago" 
-                        className="w-full h-full p-2 object-contain"
-                      />
+                      <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code Real" className="w-full h-full p-2 object-contain" />
                     ) : (
                       <QrCode className="w-24 h-24 text-slate-300 animate-pulse" />
                     )}
@@ -1021,32 +851,16 @@ export default function App() {
                 <div className="space-y-3">
                   <p className="text-sm font-bold text-slate-700 text-left">Pix Copia e Cola:</p>
                   <div className="flex items-center space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
-                    <p className="text-sm text-slate-500 font-mono truncate flex-1 text-left">
-                      {qrCode || "Gerando código Pix..."}
-                    </p>
+                    <p className="text-sm text-slate-500 font-mono truncate flex-1 text-left">{qrCode || "Gerando Pix..."}</p>
                   </div>
                   
-                  <button 
-                    onClick={handleCopyPix}
-                    className="w-full flex items-center justify-center gap-2 py-3 bg-emerald-50 text-emerald-700 rounded-xl font-bold hover:bg-emerald-100 transition-colors border border-emerald-200"
-                  >
-                    {isPixCopied ? (
-                      <>
-                        <Check className="w-5 h-5" />
-                        Código Copiado!
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-5 h-5" />
-                        Copiar Código Pix
-                      </>
-                    )}
+                  <button onClick={handleCopyPix} className="w-full flex items-center justify-center gap-2 py-3 bg-emerald-50 text-emerald-700 rounded-xl font-bold hover:bg-emerald-100 transition-colors border border-emerald-200">
+                    {isPixCopied ? (<><Check className="w-5 h-5" />Código Copiado!</>) : (<><Copy className="w-5 h-5" />Copiar Código Pix</>)}
                   </button>
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-sm text-slate-500 font-medium">
-                  <RefreshCcw className="w-4 h-4 animate-spin" />
-                  Aguardando pagamento...
+                  <RefreshCcw className="w-4 h-4 animate-spin" />Aguardando pagamento automático...
                 </div>
               </div>
             </motion.div>
