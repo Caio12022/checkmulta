@@ -589,7 +589,7 @@ export default function App() {
                 {activeModal === "termos" && (
                   <p>
                     O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial para formulação de teses administrativas. Não nos responsabilizamos por prazos excedidos, inserção de dados incorretos pelo usuário ou resultado das decisões julgadas pelas juntas de recursos JARI ou instâncias superiores.
-                  </p>
+                    </p>
                 )}
                 {activeModal === "privacidade" && (
                   <p>
@@ -732,35 +732,39 @@ export default function App() {
                           {formatDocumentText(result)}
                         </div>
 
-                        {/* BLOCO PERSUASIVO PREMIUM DE FECHAMENTO */}
-                        <div className="pt-4 border-t border-slate-100">
-                          <div className="flex flex-col space-y-5">
-                            <div className="text-center space-y-3">
-                              <h4 className="text-base font-black text-slate-900 flex items-center justify-center gap-2">
-                                <span>🚨</span> Irregularidade Confirmada pelo Sistema
+                        {/* BLOCO PERSUASIVO PREMIUM DE FECHAMENTO (COM MELHOR RESPIRO VISUAL) */}
+                        <div className="pt-8 mt-6 border-t border-slate-100">
+                          <div className="flex flex-col space-y-6">
+                            <div className="text-center space-y-4">
+                              <h4 className="text-lg md:text-base font-black text-slate-900 flex items-center justify-center gap-2.5">
+                                <span className="translate-y-[-1px]">🚨</span> Irregularidade Confirmada pelo Sistema
                               </h4>
-                              <p className="text-sm text-slate-700 leading-relaxed max-w-xl mx-auto font-medium">
+                              <p className="text-sm text-slate-700 leading-relaxed max-w-xl mx-auto font-medium px-2">
                                 Cruzamos os dados do seu auto com o Manual Brasileiro de Fiscalização de Trânsito e estruturamos o documento de contestação completo. O pedido de arquivamento está fundamentado nas resoluções vigentes para solicitar a anulação da cobrança e proteger sua CNH contra a pontuação.
                               </p>
-                              <p className="text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-100 inline-block px-4 py-1.5 rounded-full shadow-sm">
+                              <p className="text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-100 inline-block px-5 py-2.5 rounded-full shadow-sm">
                                 Tudo pronto. Você só precisa emitir o documento, copiar o texto e colar no portal de recursos do órgão.
                               </p>
                             </div>
                             
-                            {/* BOTÃO PREMIUM AJUSTADO */}
+                            {/* BOTÃO PREMIUM AJUSTADO (REDESIGN COMPLETO PARA MOBILE) */}
                             <button
                               onClick={handleCheckout}
                               disabled={isCheckoutLoading}
-                              className="w-full flex flex-col items-center justify-center py-4 px-4 bg-emerald-600 text-white rounded-2xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed"
+                              className="w-full flex flex-col items-center justify-center p-5 bg-emerald-600 text-white rounded-2xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed border-b-4 border-emerald-800/60"
                             >
-                              <div className="flex flex-row items-center justify-center gap-2 text-lg font-black tracking-tight whitespace-nowrap">
-                                {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin" /> : <Scale className="w-6 h-6" />}
-                                <span>{isCheckoutLoading ? "Processando Emissão..." : "Emitir Recurso de Anulação Pronto"}</span>
+                              <div className="flex flex-row items-center justify-center gap-3 text-lg font-black tracking-tight w-full">
+                                {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6 flex-shrink-0" />}
+                                <span className="text-center leading-tight break-words">
+                                  {isCheckoutLoading ? "Processando Emissão..." : "Emitir Recurso de Anulação Pronto"}
+                                </span>
                               </div>
-                              <span className="text-xs font-bold opacity-90 mt-1">Liberar documento de cancelamento • R$ 19,90</span>
+                              <span className="text-xs font-bold opacity-95 mt-2 bg-white/10 px-3 py-1 rounded-full">
+                                Liberar documento de cancelamento • R$ 19,90
+                              </span>
                             </button>
                             
-                            <div className="mt-2 text-[11px] text-slate-400 text-center leading-relaxed max-w-2xl mx-auto">
+                            <div className="mt-2 text-[11px] text-slate-400 text-center leading-relaxed max-w-2xl mx-auto px-4">
                               <strong className="text-slate-500">Aviso Legal:</strong> Este sistema atua como organizador algorítmico de teses referenciais com base no CTB. Não somos um escritório de advocacia. O resultado do julgamento administrativo é de total soberania da junta de trânsito competente.
                             </div>
                           </div>
