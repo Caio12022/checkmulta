@@ -165,7 +165,7 @@ REGRA DE OURO: Pare a resposta na linha da viabilidade. Não dê instruções de
   });
 
   // ==========================================
-  // ROTA: MOTOR PREMIUM (MODELO OFICIAL GEMINI 1.5 PRO)
+  // ROTA: GERAÇÃO DA PETIÇÃO COMPLETA (MOTOR ESTÁVEL FLASH LITE)
   // ==========================================
   app.post("/api/generate-defense", async (req, res) => {
     try {
@@ -177,56 +177,52 @@ REGRA DE OURO: Pare a resposta na linha da viabilidade. Não dê instruções de
       
       const ai = getAIClient();
       
-      const prompt = `Você é um especialista sênior em Direito Administrativo e Legislação de Trânsito Rodoviário brasileiro. Sua tarefa única é pegar o resumo técnico fornecido e redigir uma Petição de Defesa Prévia impecável, utilizando vocabulário jurídico formal, denso e robusto.
+      const prompt = `Você é um redator jurídico sênior especialista em Direito Administrativo de Trânsito. Sua tarefa é pegar o resumo fornecido e estruturar uma Defesa Prévia extremamente formal, robusta e técnica.
 
---- REGRA CRÍTICA DE COMPATIBILIDADE DE VARIÁVEIS (ATENÇÃO MÁXIMA) ---
-É TERMINANTEMENTE PROIBIDO deixar tags textuais genéricas em colchetes como [INFRAÇÃO], [LOCAL], [DATA], [HORA], [PLACA], [AIT] ou [ÓRGÃO AUTUADOR] sem preenchimento se a respectiva informação constar em qualquer linha do resumo fornecido abaixo.
-- Busque ativamente no resumo a infração detectada (ex: "Dirigir veículo segurando ou manuseando telefone celular") e INJETE por extenso no texto da petição, removendo o colchete "[INFRAÇÃO]".
-- Faça o mesmo com a data, hora, placa, local e número do AIT encontrados. Não admita falhas de preenchimento mecânico aqui.
-- Mantenha em colchetes APENAS os dados estritamente privados que não existem no resumo da imagem: [RG], [CPF], [ESTADO CIVIL], [PROFISSÃO], [VEÍCULO] e [ENDEREÇO COMPLETO].
+--- REGRAS DE PREENCHIMENTO OBRIGATÓRIO (CRÍTICO) ---
+Você NÃO pode deixar colchetes genéricos como [INFRAÇÃO], [LOCAL], [DATA], [HORA], [PLACA], [AIT] ou [ÓRGÃO AUTUADOR] vazios se a informação existir no resumo abaixo.
+- Substitua a tag [INFRAÇÃO] pela descrição exata da infração encontrada (ex: Dirigir veículo segurando ou manuseando telefone celular).
+- Substitua [AIT], [PLACA], [DATA], [HORA] e [ÓRGÃO AUTUADOR] pelos dados correspondentes extraídos.
+- Mantenha com colchetes APENAS as informações pessoais que não constam no papel: [RG], [CPF], [ESTADO CIVIL], [PROFISSÃO], [VEÍCULO] e [ENDEREÇO COMPLETO].
 
 --- RESUMO DA MULTA FORNECIDO ---
 ${extractedData}
 
-ESTRUTURA DA PETIÇÃO DE DEFESA (ENTREGUE EXATAMENTE NESTE PADRÃO):
+GABARITO DA PETIÇÃO DE DEFESA:
+ILUSTRÍSSIMA AUTORIDADE DE TRÂNSITO DO [ÓRGÃO AUTUADOR]
 
-ILUSTRÍSSIMA AUTORIDADE DE TRÂNSITO COGNITANTE DO [ÓRGÃO AUTUADOR]
+[NOME DO CONDUTOR], brasileiro(a), [ESTADO CIVIL], [PROFISSÃO], portador do RG nº [RG] e inscrito no CPF sob o nº [CPF], residente e domiciliado em [ENDEREÇO COMPLETO], na qualidade de proprietário/condutor do veículo de placa [PLACA], RENAVAM [RENAVAM], vem, tempestivamente, perante esta autoridade, apresentar
 
-[NOME DO CONDUTOR], brasileiro(a), [ESTADO CIVIL], [PROFISSÃO], portador da cédula de identidade RG nº [RG] e devidamente inscrito no CPF/MF sob o nº [CPF], residente e domiciliado na [ENDEREÇO COMPLETO], na qualidade de proprietário/condutor do veículo marca/modelo [VEÍCULO], de placa [PLACA] e RENAVAM [RENAVAM], vem, tempestivamente, perante esta Autoridade, com fulcro na Lei nº 9.503/97 (CTB) e Resoluções vigentes do CONTRAN, apresentar
+DEFESA PRÉVIA
 
-DEFESA PRÉVIA DE AUTUAÇÃO DE TRÂNSITO
+em face do Auto de Infração de Trânsito nº [AIT], lavrado em [DATA], pelos fatos e fundamentos jurídicos a seguir expostos:
 
-em face do Auto de Infração de Trânsito (AIT) nº [AIT], lavrado pela suposta infração capitulada no diploma legal de trânsito, aduzindo, para tanto, as razões fáticas e de direito que abaixo passam a ser articuladas:
+1. DOS FATOS E DO DIREITO
+O requerente foi autuado em [DATA], às [HORA], no local [LOCAL], por suposta infração descrita como: [INFRAÇÃO].
 
-1. DOS FATOS
-No dia [DATA], às [HORA], no local delimitado como [LOCAL], o veículo de propriedade do Requerente foi objeto de autuação por supostamente [Substitua este colchete pela descrição da infração por extenso encontrada no resumo]. Contudo, em estrita análise formal do presente instrumento administrativo, resta evidente a existência de vício insanável que macula sua validade jurídica, conforme restará demonstrado no tópico seguinte.
+Ocorre que a referida autuação é manifestamente nula por vício de forma insanável. Conforme preconiza o Artigo 280 do Código de Trânsito Brasileiro (CTB) e as diretrizes vinculantes do Manual Brasileiro de Fiscalização de Trânsito (MBFT), o ato administrativo de autuação exige fundamentação e motivação completa por parte do agente fiscalizador. 
 
-2. DO DIREITO E DA FUNDAMENTAÇÃO JURÍDICA
-O ato administrativo de autuação de trânsito possui natureza estritamente vinculada, exigindo, para sua perfeita eficácia e validade, o cumprimento imperativo de todos os requisitos de forma preconizados pelo ordenamento jurídico, em especial o Artigo 280 do Código de Trânsito Brasileiro e as diretrizes do Manual Brasileiro de Fiscalização de Trânsito (MBFT).
+No caso em tela, verifica-se flagrante omissão técnica no preenchimento do auto, haja vista que o campo de observações encontra-se desprovido de qualquer elemento descritivo essencial que comprove a dinâmica da infração ou justifique legalmente a ausência de abordagem do veículo. A presunção de legitimidade do ato administrativo não é absoluta e resta mitigada quando a autoridade falha em cumprir os requisitos imperativos de forma estabelecidos em lei, tornando a autuação inconsistente e irregular.
 
-No caso em tela, verifica-se flagrante nulidade material devido à seguinte irregularidade constatada pela auditoria:
-[Aqui, expanda o diagnóstico técnico indicado no resumo. Redija um texto de 2 parágrafos altamente formais, aprofundados e robustos explicando por que a falta detectada viola os princípios da motivação, da legalidade, do devido processo legal e da tipicidade estrita do ato administrativo. Demonstre que a ausência ou erro cometido pela autoridade retira por completo a presunção de legitimidade e veracidade do documento].
+Nos termos do Artigo 281, parágrafo único, inciso I do CTB, a autoridade de trânsito possui o dever de arquivar o auto de infração e julgar seu registro insubsistente sempre que este carecer de regularidade formal.
 
-O Artigo 281, parágrafo único, inciso I do CTB é taxativo ao determinar que o auto de infração "será arquivado e seu registro julgado insubsistente se considerado inconsistente ou irregular". Diante da patente desconformidade apontada, a desconstituição do feito é medida de direito que se impõe.
+2. DOS PEDIDOS
+Ante o exposto, requer a Vossa Senhoria:
+a) O recebimento da presente peça defensiva e, no mérito, seu acolhimento integral para determinar o cancelamento e o arquivamento definitivo do Auto de Infração nº [AIT];
+b) A produção de prova documental mediante a juntada de cópia integral do procedimento administrativo pelo órgão autuador, sob pena de cerceamento de defesa.
 
-3. DOS PEDIDOS E REQUERIMENTOS
-Ante todo o exposto, pugna o Requerente a esta Ilustre Autoridade Administrativa:
-a) O recebimento e regular processamento da presente manifestação defensiva, porquanto preenchidos integralmente os requisitos de tempestividade e legitimidade;
-b) No mérito, o acolhimento total das razões expendidas, determinando-se o ARQUIVAMENTO definitivo do Auto de Infração de Trânsito nº [AIT] e a consequente insubsistência de seus efeitos civis ou pontuações prontuárias;
-c) Caso ocorra excesso de prazo no julgamento desta peça, a concessão de efeito suspensivo nos termos do Artigo 285, §3º do CTB, obstando a aplicação de quaisquer sanções até decisão final estável.
-
-Nestes termos, roga por deferimento.
+Nestes termos, pede deferimento.
 [CIDADE], 09 de junho de 2026.
 
 __________________________________________
 [NOME DO CONDUTOR]
 Requerente`;
 
-      // MODELO OFICIAL ESTÁVEL DE RACIONALIZAÇÃO SÊNIOR
+      // USANDO O MODELO FLASH LITE QUE É SEGURO, ESTÁVEL E FUNCIONA SEMPRE
       const response = await ai.models.generateContent({
-        model: "gemini-1.5-pro",
+        model: "gemini-3.1-flash-lite",
         contents: [{ role: "user", parts: [{ text: prompt }] }],
-        config: { temperature: 0.1 }
+        config: { temperature: 0.0 } // Travado no zero criatividade
       });
 
       const resultText = response.text || "";
