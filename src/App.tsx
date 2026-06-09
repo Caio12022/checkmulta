@@ -260,39 +260,6 @@ export default function App() {
     }
   };
 
-  const generateDefense = async (overrideResult?: string) => {
-    const dataToUse = overrideResult || result;
-    if (!dataToUse) return;
-    
-    setIsGeneratingDefense(true);
-    setDefenseError(null);
-    setDefenseResult(null);
-
-    try {
-      const response = await fetch("/api/generate-defense", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ extractedData: dataToUse }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) throw new Error(typeof data.error === 'string' ? data.error : JSON.stringify(data.error));
-      if (data.error) throw new Error(data.error);
-
-      setDefenseResult(data.result);
-    } catch (err: any) {
-      console.error("Erro na Defesa:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted") || err.message.includes("quota"))) {
-        setDefenseError("SERVER_BUSY");
-      } else {
-        setDefenseError(err.message || "Ocorreu um erro ao comunicar com o servidor.");
-      }
-    } finally {
-      setIsGeneratingDefense(false);
-    }
-  };
-
   const handleCopy = async () => {
     if (!defenseResult) return;
     try {
@@ -579,12 +546,11 @@ export default function App() {
                     <div className="w-full h-1.5 bg-green-100/80 rounded-full overflow-hidden relative">
                       <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-emerald-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
                     </div>
-                    <p className="font-black text-slate-800 text-center text-xl animate-pulse">Acionando Motor Jurídico Avançado...</p>
-                    <p className="text-sm text-slate-500 font-medium text-center">Nossa inteligência está redigindo e fundamentando as teses de anulação no documento.</p>
+                    <p className="font-black text-slate-800 text-center text-xl animate-pulse">Gerando sua petição oficial formatada...</p>
+                    <p className="text-sm text-slate-500 font-medium text-center">Nossa inteligência está fundamentando as teses de anulação no documento.</p>
                   </div>
                 )}
 
-                {/* BANNER DE ERRO CASO A IA FALHE */}
                 {defenseError && (
                   <div className="flex items-center space-x-3 text-red-800 p-4 bg-red-50 rounded-xl">
                     <AlertCircle className="w-5 h-5 flex-shrink-0" />
@@ -592,7 +558,6 @@ export default function App() {
                   </div>
                 )}
 
-                {/* EXIBIÇÃO DA PETIÇÃO OFICIAL DA IA PRO */}
                 {defenseResult && (
                   <div className="flex flex-col space-y-6">
                     <div className="flex items-center justify-center space-x-3 border-b border-slate-200 pb-4">
@@ -639,11 +604,9 @@ export default function App() {
               <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-5 h-5" /></button>
               <div className="text-center space-y-6">
                 
-                {/* CONTAINER DO LOGO DO MERCADO PAGO INTEGRADO E PROPORCIONAL */}
-                <div className="flex justify-center">
-                  <div className="w-16 h-16 flex items-center justify-center overflow-hidden">
-                    <img src="/mercado-pago-logo.png" alt="Mercado Pago" className="w-full h-full object-contain" />
-                  </div>
+                {/* CONTAINER FLEXÍVEL PARA SUPORTAR LOGOS HORIZONTAIS DE ALTA RESOLUÇÃO SENSIVELMENTE */}
+                <div className="flex justify-center items-center h-10 md:h-12 my-2 w-full">
+                  <img src="/mercado-pago-logo.png" alt="Mercado Pago" className="h-full w-auto object-contain" />
                 </div>
 
                 <div>
