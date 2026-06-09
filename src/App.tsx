@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useRef, useEffect } from "react";
-import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw } from "lucide-react";
+import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, Shield } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 const formatDocumentText = (text: string) => {
@@ -65,6 +65,7 @@ export default function App() {
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
+  const [logoError, setLogoError] = useState(false);
 
   // Estados para o Mercado Pago
   const [paymentId, setPaymentId] = useState<number | null>(null);
@@ -115,7 +116,7 @@ export default function App() {
     };
   }, [isPixModalOpen, paymentId]);
 
-  // GATILHO REATIVO SEGURO - GERA A PETIÇÃO ASSIM QUE MUDAR PARA PAGO
+  // GATILHO REATIVO SEGURO
   useEffect(() => {
     if (isPaid && result && !defenseResult && !isGeneratingDefense) {
       generateDefense();
@@ -636,9 +637,22 @@ export default function App() {
               <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-5 h-5" /></button>
               <div className="text-center space-y-6">
                 
-                {/* CONTAINER AMPLIADO - LOGO GUIADO POR LARGURA IMPONENTE E ALTA RESOLUÇÃO */}
+                {/* BLINDAGEM DE IMAGEM CONTRA ÍCONES QUEBRADOS */}
                 <div className="flex justify-center items-center h-16 md:h-20 my-2 w-full overflow-hidden">
-                  <img src="/mercado-pago-logo.png" alt="Mercado Pago" className="w-44 md:w-52 h-auto object-contain" />
+                  {!logoError ? (
+                    <img 
+                      src="/mercado-pago-logo.png" 
+                      alt="Mercado Pago" 
+                      className="w-44 md:w-52 h-auto object-contain" 
+                      onError={() => setLogoError(true)} // Se a foto sumir ou falhar, ativa o plano B
+                    />
+                  ) : (
+                    // PLANO B: Em vez de mostrar um quadrado quebrado horrível, mostra um selo de segurança limpo
+                    <div className="flex items-center gap-2 bg-blue-50 text-blue-700 px-5 py-2.5 rounded-2xl font-bold border border-blue-200 shadow-sm text-sm">
+                      <Shield className="w-5 h-5 text-blue-600" />
+                      <span>Mercado Pago Transação Segura</span>
+                    </div>
+                  )}
                 </div>
 
                 <div>
