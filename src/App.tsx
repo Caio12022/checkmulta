@@ -4,24 +4,32 @@
  */
 
 import React, { useState, useRef, useEffect } from "react";
-import {
-  UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2,
-  Scale, QrCode, X, FileText, MessageSquare, Menu, ArrowDown
-} from "lucide-react";
+import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, MessageSquare, ClipboardList, Menu, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 const formatDocumentText = (text: string) => {
   if (!text) return text;
+  
   let cleanText = text.replace(/\*\*(.*?)\*\*/g, '$1');
   cleanText = cleanText.replace(/\*(.*?)\*/g, '$1');
   cleanText = cleanText.replace(/`/g, '$1');
+
   const parts = cleanText.split(/(\[[^[\]]*\]|- STATUS DA ANÁLISE:.*?(?=\n|$))/gi);
+
   return parts.map((part, index) => {
     if (part.startsWith('[') && part.endsWith(']')) {
-      return <span key={index} className="text-red-600 bg-red-50 px-1 rounded font-semibold">{part}</span>;
+      return (
+        <span key={index} className="text-red-500 bg-red-50 px-1 rounded-sm font-semibold">
+          {part}
+        </span>
+      );
     }
     if (part.trim().toUpperCase().startsWith('- STATUS DA ANÁLISE:')) {
-      return <strong key={index} className="text-emerald-700 font-bold block mb-2">{part}</strong>;
+      return (
+        <strong key={index} className="text-emerald-800 font-bold block mb-2 text-lg">
+          {part}
+        </strong>
+      );
     }
     return <span key={index}>{part}</span>;
   });
@@ -34,49 +42,110 @@ const LOADER_MESSAGES = [
   "Buscando jurisprudência no MBFT..."
 ];
 
-/* ── small reusable badge ── */
-const StepLabel = ({ text }: { text: string }) => (
-  <span className="text-[10px] font-bold tracking-widest uppercase text-slate-400 select-none">
-    {text}
-  </span>
-);
-
 export default function App() {
-  const [imageFile, setImageFile]     = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl]   = useState<string | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [loaderIndex, setLoaderIndex] = useState(0);
-  const [result, setResult]           = useState<string | null>(null);
-  const [error, setError]             = useState<string | null>(null);
+  const [result, setResult] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  
+  const [expiredDate, setExpiredDate] = useState<string | null>(null);
 
   const [isGeneratingDefense, setIsGeneratingDefense] = useState(false);
-  const [defenseResult, setDefenseResult]             = useState<string | null>(null);
-  const [defenseError, setDefenseError]               = useState<string | null>(null);
+  const [defenseResult, setDefenseResult] = useState<string | null>(null);
+  const [defenseError, setDefenseError] = useState<string | null>(null);
 
-  const [isPaid, setIsPaid]                       = useState(false);
-  const [activeModal, setActiveModal]             = useState<"termos" | "privacidade" | "aviso" | "suporte" | null>(null);
-  const [isMobileMenuOpen, setIsMobileMenuOpen]   = useState(false);
-  const [hasAnalyzed, setHasAnalyzed]             = useState(false);
+  const [isPaid, setIsPaid] = useState(false);
+  const [activeModal, setActiveModal] = useState<"termos" | "privacidade" | "aviso" | "suporte" | null>(null);
+  const [isCopied, setIsCopied] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const [hasAnalyzed, setHasAnalyzed] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
-  const [isPixModalOpen, setIsPixModalOpen]       = useState(false);
+  const [isPixModalOpen, setIsPixModalOpen] = useState(false);
+
+  // Estados para o Mercado Pago
+  const [paymentId, setPaymentId] = useState<number | null>(null);
+  const [qrCode, setQrCode] = useState<string | null>(null);
+  const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
+  const [isPixCopied, setIsPixCopied] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // ========================================================
+  // MEMÓRIA ANTI-RECARREGAMENTO (Se o cliente pagar e sair)
+  // ========================================================
+  useEffect(() => {
+    const savedResult = localStorage.getItem('checkmulta_saved_result');
+    const savedPaidStatus = localStorage.getItem('checkmulta_paid_status');
+
+    if (savedResult && savedPaidStatus === 'true' && !defenseResult && !isGeneratingDefense) {
+      setResult(savedResult);
+      setIsPaid(true);
+      setIsResultModalOpen(true);
+      generateDefense(savedResult);
+    }
+  }, []);
 
   useEffect(() => {
     let interval: any;
     if (isAnalyzing || isGeneratingDefense) {
-      interval = setInterval(() => setLoaderIndex(p => (p + 1) % LOADER_MESSAGES.length), 2500);
-    } else { setLoaderIndex(0); }
+      interval = setInterval(() => {
+        setLoaderIndex((prev) => (prev + 1) % LOADER_MESSAGES.length);
+      }, 2500);
+    } else {
+      setLoaderIndex(0);
+    }
     return () => clearInterval(interval);
   }, [isAnalyzing, isGeneratingDefense]);
+
+  // RADAR DE VERIFICAÇÃO DO PIX REAL NO MERCADO PAGO
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+
+    const checkPaymentStatus = async () => {
+      if (!paymentId || !isPixModalOpen) return;
+      try {
+        const res = await fetch(`/api/check-payment/${paymentId}`);
+        const data = await res.json();
+        
+        if (data.status === "approved") {
+          clearInterval(intervalId);
+          setIsPixModalOpen(false);
+          setIsPaid(true);
+          localStorage.setItem('checkmulta_paid_status', 'true'); // Salva na memória que pagou
+        }
+      } catch (err) {
+        console.error("Erro no radar do PIX", err);
+      }
+    };
+
+    if (isPixModalOpen && paymentId) {
+      intervalId = setInterval(checkPaymentStatus, 3000);
+    }
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [isPixModalOpen, paymentId]);
+
+  useEffect(() => {
+    if (isPaid && result && !defenseResult && !isGeneratingDefense) {
+      generateDefense();
+    }
+  }, [isPaid, result]);
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
     if (!file.type.startsWith("image/") && file.type !== "application/pdf") {
-      setError("Selecione uma imagem ou PDF válido."); return;
+      setError("Por favor, selecione um arquivo de imagem ou PDF válido.");
+      return;
     }
+
     processFile(file);
     e.target.value = '';
   };
@@ -84,471 +153,669 @@ export default function App() {
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     const file = e.dataTransfer.files?.[0];
-    if (file && (file.type.startsWith("image/") || file.type === "application/pdf")) processFile(file);
+    if (file && (file.type.startsWith("image/") || file.type === "application/pdf")) {
+      processFile(file);
+    }
   };
 
   const clearImage = (e?: React.MouseEvent) => {
-    e?.stopPropagation(); e?.preventDefault();
-    setImageFile(null); setPreviewUrl(null); setResult(null);
-    setDefenseResult(null); setError(null); setDefenseError(null);
-    setIsPaid(false); setHasAnalyzed(false);
-    if (fileInputRef.current) fileInputRef.current.value = "";
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+    setImageFile(null);
+    setPreviewUrl(null);
+    setResult(null);
+    setDefenseResult(null);
+    setError(null);
+    setDefenseError(null);
+    setIsPaid(false);
+    setHasAnalyzed(false);
+    setQrCode(null);
+    setQrCodeBase64(null);
+    setPaymentId(null);
+    
+    // Limpa a memória
+    localStorage.removeItem('checkmulta_saved_result');
+    localStorage.removeItem('checkmulta_paid_status');
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   };
 
   const processFile = (file: File) => {
-    setImageFile(file); setPreviewUrl(null); setError(null);
-    setResult(null); setDefenseResult(null); setDefenseError(null);
-    setIsPaid(false); setIsResultModalOpen(false);
+    setImageFile(file);
+    setPreviewUrl(null);
+    setError(null);
+    setResult(null);
+    setDefenseResult(null);
+    setDefenseError(null);
+    setIsPaid(false);
+    setIsResultModalOpen(false);
+
     const reader = new FileReader();
     reader.onload = () => {
-      const s = reader.result as string;
-      setPreviewUrl(s);
-      analyzeTicket(s.split(",")[1], file.type);
+      const resultStr = reader.result as string;
+      setPreviewUrl(resultStr);
+      const base64Data = resultStr.split(",")[1];
+      analyzeTicket(base64Data, file.type);
     };
     reader.readAsDataURL(file);
   };
 
   const analyzeTicket = async (base64Data: string, mimeType: string) => {
-    setIsAnalyzing(true); setError(null); setResult(null);
-    setDefenseResult(null); setDefenseError(null); setIsPaid(false); setIsResultModalOpen(true);
+    setIsAnalyzing(true);
+    setError(null);
+    setResult(null);
+    setDefenseResult(null);
+    setDefenseError(null);
+    setIsPaid(false);
+    setIsResultModalOpen(true);
+
     try {
       const response = await fetch("/api/analyze-ticket", {
-        method: "POST", headers: { "Content-Type": "application/json" },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ imageBase64: base64Data, mimeType }),
       });
+      
       const data = await response.json();
+
       if (!response.ok) throw new Error(typeof data.error === 'string' ? data.error : JSON.stringify(data.error));
       if (data.error) throw new Error(data.error);
-      const finalResult = data.result || "";
-      const lower = finalResult.toLowerCase();
-      if (lower.includes("documento_invalido"))         setError("DOC_INVALIDO");
-      else if (lower.includes("imagem_ilegivel"))       setError("IMG_ILEGIVEL");
-      else if (lower.includes("rejeicao_complexa"))     setError("REJEICAO_COMPLEXA");
-      else if (lower.includes("rejeicao_sem_irregularidades")) setError("REJEICAO_SEM_ERROS");
-      else { setResult(finalResult); setHasAnalyzed(true); }
+
+      let finalResult = data.result || "";
+      const lowerResult = finalResult.toLowerCase();
+
+      // TRAVAS DE SEGURANÇA VISUAIS
+      if (lowerResult.includes("documento_invalido") || lowerResult.includes("documento_inválido") || lowerResult.includes("erro_documento")) {
+        throw new Error("A imagem enviada não é uma notificação de trânsito válida. Por favor, envie uma foto do seu auto de infração.");
+      }
+      if (lowerResult.includes("imagem_ilegivel") || lowerResult.includes("imagem_ilegível") || lowerResult.includes("erro_imagem")) {
+        throw new Error("A imagem está muito borrada ou cortada. Por favor, envie uma foto nítida do documento.");
+      }
+      if (lowerResult.includes("rejeicao_prazo_expirado")) {
+        throw new Error("Análise Concluída: Não encontramos viabilidade legal para recurso nesta notificação ou o prazo de defesa já está vencido.");
+      }
+      if (lowerResult.includes("rejeição") || lowerResult.includes("rejeicao")) {
+        throw new Error("Análise Concluída: Não encontramos viabilidade legal para recurso nesta notificação.");
+      }
+      if (lowerResult.includes("erro_seguranca") || lowerResult.includes("erro_segurança")) {
+        throw new Error("A imagem foi bloqueada por nossas diretrizes de segurança. Envie o documento original.");
+      }
+
+      let expDate: string | null = null;
+      const prazoMatch = finalResult.match(/⚠️ Atenção: Prazo para recurso encerrado em ([^\n]+)/);
+      if (prazoMatch) {
+         expDate = prazoMatch[1].trim();
+         finalResult = finalResult.replace(prazoMatch[0], "").trim();
+      }
+
+      setExpiredDate(expDate);
+      setResult(finalResult);
+      if (finalResult) {
+        setHasAnalyzed(true);
+        localStorage.setItem('checkmulta_saved_result', finalResult); // Salva na memória
+      }
       setIsResultModalOpen(true);
     } catch (err: any) {
-      setError("ERRO_INTERNO"); setIsResultModalOpen(true);
-    } finally { setIsAnalyzing(false); }
+      console.error("Erro na Análise:", err);
+      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+        setError("Nossos servidores estão processando um alto volume de auditorias neste momento. Por favor, aguarde alguns segundos e tente enviar sua notificação novamente.");
+      } else {
+        setError(err.message || "Ocorreu um erro ao comunicar com o servidor.");
+      }
+      setIsResultModalOpen(true);
+    } finally {
+      setIsAnalyzing(false);
+    }
   };
 
-  const handleCheckout = () => { if (result) setIsPixModalOpen(true); };
+  const handleCheckout = async () => {
+    if (!result) return;
+    setIsCheckoutLoading(true);
+    
+    try {
+      const response = await fetch("/api/create-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: "comprador@checkmulta.com.br" }),
+      });
 
-  const generateDefense = async (override?: string) => {
-    const data = override || result; if (!data) return;
-    setIsGeneratingDefense(true); setDefenseError(null); setDefenseResult(null);
+      const data = await response.json();
+
+      if (response.ok && data.qr_code) {
+        setPaymentId(data.id);
+        setQrCode(data.qr_code);
+        setQrCodeBase64(data.qr_code_base64);
+        setIsPixModalOpen(true);
+      } else {
+        alert("Erro ao inicializar gateway de pagamento. Verifique o Token no Render.");
+      }
+    } catch (err) {
+      console.error("Erro ao chamar API de Pagamento:", err);
+      alert("Não foi possível conectar ao servidor de pagamento.");
+    } finally {
+      setIsCheckoutLoading(false);
+    }
+  };
+
+  // BOTÃO DE BYPASS PARA TESTES DE SISTEMA E MEMÓRIA
+  const simulateApprovedPayment = () => {
+    setIsPixModalOpen(false);
+    setIsCheckoutLoading(true);
+    setTimeout(() => {
+      setIsCheckoutLoading(false);
+      setIsPaid(true);
+      localStorage.setItem('checkmulta_paid_status', 'true');
+      generateDefense();
+    }, 1500);
+  };
+
+  const generateDefense = async (overrideResult?: string) => {
+    const dataToUse = overrideResult || result;
+    if (!dataToUse) return;
+    
+    setIsGeneratingDefense(true);
+    setDefenseError(null);
+    setDefenseResult(null);
+
+    // SISTEMA ANTI-INFINITO (Corta o sistema em 45 segundos se travar)
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 45000);
+
     try {
       const response = await fetch("/api/generate-defense", {
-        method: "POST", headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ extractedData: data }),
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ extractedData: dataToUse }),
+        signal: controller.signal
       });
-      const res = await response.json();
-      if (!response.ok) throw new Error(typeof res.error === 'string' ? res.error : JSON.stringify(res.error));
-      if (res.error) throw new Error(res.error);
-      setDefenseResult(res.result);
-    } catch { setDefenseError("Ocorreu um erro ao comunicar com o servidor."); }
-    finally { setIsGeneratingDefense(false); }
+
+      clearTimeout(timeoutId);
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(typeof data.error === 'string' ? data.error : JSON.stringify(data.error));
+      if (data.error) throw new Error(data.error);
+
+      setDefenseResult(data.result);
+      localStorage.removeItem('checkmulta_saved_result'); // Limpa a memória após sucesso
+      localStorage.removeItem('checkmulta_paid_status');
+    } catch (err: any) {
+      clearTimeout(timeoutId);
+      console.error("Erro na Defesa:", err);
+      
+      if (err.name === 'AbortError') {
+        setDefenseError("TIMEOUT");
+      } else if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+        setDefenseError("SERVER_BUSY");
+      } else {
+        setDefenseError("FALHA_GERACAO");
+      }
+    } finally {
+      setIsGeneratingDefense(false);
+    }
   };
 
-  const isExpiredFine = result?.toLowerCase().includes("(vencida)");
+  const handleCopy = async () => {
+    if (!defenseResult) return;
+    try {
+      await navigator.clipboard.writeText(defenseResult);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy text: ", err);
+    }
+  };
+  
+  const handleCopyPix = async () => {
+    if (!qrCode) return;
+    try {
+      await navigator.clipboard.writeText(qrCode);
+      setIsPixCopied(true);
+      setTimeout(() => setIsPixCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy PIX: ", err);
+    }
+  };
 
-  /* ─────────────────────────────── RENDER ─────────────────────────────── */
+  const handleDownload = () => {
+    if (!defenseResult) return;
+    const blob = new Blob([defenseResult], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'defesa-transito.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
-    <div className="min-h-screen bg-white flex flex-col font-sans text-slate-900 selection:bg-blue-100">
-
-      {/* ══ HEADER ══ */}
-      <header className="sticky top-0 z-50 bg-white border-b border-slate-100 px-5 md:px-10 h-14 flex items-center justify-between">
-        <div className="w-36 md:w-44 flex items-center">
-          <img src="/checkmulta-logo.png" alt="CheckMulta" className="w-full h-auto object-contain" />
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center text-gray-900 font-sans selection:bg-blue-100 selection:text-blue-900 w-full scroll-smooth">
+      
+      {/* HEADER RESPONSIVO COM MENU HAMBÚRGUER */}
+      <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-40 overflow-visible">
+        <div className="flex items-center h-full w-[180px] md:w-[240px]">
+          <img src="/checkmulta-logo.png" alt="CheckMulta Logo" className="w-full h-auto object-contain scale-[1.3] md:scale-[1.5] origin-left translate-y-1" />
         </div>
-
-        {/* desktop nav */}
-        <nav className="hidden md:flex items-center gap-7 text-sm text-slate-500 font-medium">
-          <a href="#inicio" className="hover:text-slate-900 transition-colors">Início</a>
-          <a href="#como-funciona" className="hover:text-slate-900 transition-colors">Como Funciona</a>
-          <a href="#seguranca" className="hover:text-slate-900 transition-colors">Segurança</a>
-          <button
-            onClick={() => setActiveModal("suporte")}
-            className="px-4 py-1.5 rounded-full text-sm font-semibold border border-slate-200 text-slate-700 hover:border-slate-400 hover:text-slate-900 transition-all"
-          >
+        
+        {/* Navegação Desktop */}
+        <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-600 items-center">
+          <a href="#inicio" className="hover:text-blue-600 transition-colors">Início</a>
+          <a href="#como-funciona" className="hover:text-blue-600 transition-colors">Como Funciona</a>
+          <a href="#seguranca" className="hover:text-blue-600 transition-colors">Segurança</a>
+          <button onClick={() => setActiveModal("suporte")} className="hover:text-blue-600 transition-colors font-bold flex items-center gap-1 text-blue-600">
             Suporte
           </button>
         </nav>
 
-        {/* mobile hamburger */}
-        <button
-          onClick={() => setIsMobileMenuOpen(v => !v)}
-          className="md:hidden p-2 text-slate-500 hover:text-slate-900 transition-colors"
+        {/* Botão Hambúrguer Mobile */}
+        <button 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+          className="flex md:hidden p-2 text-slate-600 hover:text-blue-600 transition-colors rounded-lg hover:bg-slate-50"
+          aria-label="Menu"
         >
-          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
 
+        {/* Gaveta do Menu Mobile Dropdown */}
         <AnimatePresence>
           {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }}
-              className="absolute top-14 left-0 w-full bg-white border-b border-slate-100 flex flex-col px-5 py-3 gap-1 md:hidden"
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="absolute top-16 left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col p-4 space-y-3 md:hidden z-50"
             >
-              {["#inicio","#como-funciona","#seguranca"].map((href, i) => (
-                <a key={i} href={href} onClick={() => setIsMobileMenuOpen(false)}
-                  className="py-2.5 text-sm font-medium text-slate-600 hover:text-slate-900 border-b border-slate-50 last:border-0">
-                  {["Início","Como Funciona","Segurança"][i]}
-                </a>
-              ))}
-              <button
-                onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
-                className="mt-1 py-2.5 text-sm font-semibold text-blue-600 text-left"
-              >Suporte</button>
+              <a href="#inicio" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Início</a>
+              <a href="#como-funciona" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Como Funciona</a>
+              <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Segurança</a>
+              <button 
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setActiveModal("suporte");
+                }} 
+                className="px-3 py-3 text-left bg-blue-50 text-blue-700 font-bold rounded-xl transition-colors flex items-center justify-between"
+              >
+                <span>Central de Suporte</span>
+                <MessageSquare className="w-4 h-4" />
+              </button>
             </motion.div>
           )}
         </AnimatePresence>
       </header>
 
-      {/* ══ MAIN CONTENT ══ */}
-      <main id="inicio" className="flex-1 flex flex-col items-center px-4 pt-14 pb-20">
-
-        {/* — headline block — */}
-        <div className="w-full max-w-lg text-center mb-10">
-          <p className="text-[11px] font-bold tracking-[0.18em] uppercase text-slate-400 mb-4">
-            Auditoria por Inteligência Artificial
-          </p>
-          <h1 className="text-3xl md:text-4xl font-black tracking-tight leading-tight text-slate-900 mb-4">
-            Cancele multas injustas em minutos
+      <div className="w-full max-w-3xl flex-1 px-4 py-8 md:py-12">
+        
+        <section id="inicio" className="mb-10 text-center pt-4">
+          <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-6 leading-tight">
+            Cancele Multas Injustas com Inteligência Artificial
           </h1>
-          <p className="text-slate-500 text-base leading-relaxed">
-            Envie a notificação. Nosso sistema cruza os dados com o CTB e o Manual de Fiscalização e identifica falhas legais automaticamente.
+          <p className="text-slate-800 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
+            Nosso sistema audita sua notificação de trânsito em segundos, cruza os dados com o CTB e o Manual de Fiscalização, e identifica falhas legais para anular a infração.
           </p>
-        </div>
-
-        {/* — main card — */}
-        <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white shadow-sm overflow-hidden">
-
-          {/* card header strip */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50">
-            <StepLabel text="Envio do documento" />
-            <span className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-wide uppercase text-emerald-600">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
-              Gratuito
-            </span>
+          
+          <div className="bg-emerald-50 rounded-2xl p-6 md:p-8 max-w-2xl mx-auto flex flex-col items-center shadow-sm border border-emerald-100">
+            <p className="text-emerald-800 font-bold text-lg md:text-xl text-center leading-snug">
+              Auditoria inteligente: o que o olho humano perde, nosso sistema encontra. Analise sua multa grátis.
+            </p>
+            <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} className="mt-5">
+              <ArrowDown className="w-8 h-8 text-emerald-700" />
+            </motion.div>
           </div>
+        </section>
 
-          {/* upload zone */}
-          <div className="px-6 py-7">
-            <div
-              className={`relative rounded-xl transition-all duration-200 cursor-pointer group
-                ${previewUrl
-                  ? "border border-slate-200 bg-slate-50 p-5"
-                  : "border-2 border-dashed border-slate-200 hover:border-blue-400 hover:bg-blue-50/30 p-10"
-                }`}
-              onDragOver={e => e.preventDefault()}
-              onDrop={handleDrop}
-            >
-              <input
-                type="file" ref={fileInputRef} onChange={handleFileSelect}
-                accept="image/*,application/pdf"
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed"
-                disabled={isAnalyzing || isPaid}
-              />
-              <AnimatePresence mode="wait">
-                {previewUrl ? (
-                  <motion.div key="preview" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                    className="flex items-center gap-4">
-                    {imageFile?.type === "application/pdf"
-                      ? <div className="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
-                          <FileText className="w-6 h-6 text-blue-500" />
-                        </div>
-                      : <img src={previewUrl} alt="Preview" className="w-12 h-12 rounded-lg object-cover flex-shrink-0 border border-slate-200" />
-                    }
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-semibold text-slate-800 truncate">{imageFile?.name}</p>
-                      <p className="text-xs text-slate-400 mt-0.5">Documento carregado</p>
-                    </div>
-                    {!isAnalyzing && hasAnalyzed && (
-                      <button
-                        onClick={clearImage} type="button"
-                        className="relative z-10 flex-shrink-0 text-xs font-semibold text-slate-500 hover:text-slate-800 underline underline-offset-2 transition-colors"
-                      >Nova multa</button>
+        <main className="space-y-6">
+          <div className={`relative group rounded-3xl p-8 sm:p-12 transition-all duration-200 ease-in-out text-center ${previewUrl ? "bg-transparent" : "border-2 border-dashed border-gray-300 hover:border-blue-400 hover:bg-white bg-white shadow-sm"}`}>
+            <input type="file" ref={fileInputRef} onChange={handleFileSelect} accept="image/*,application/pdf" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed" disabled={isAnalyzing || isPaid} id="upload-input" />
+            
+            <AnimatePresence mode="wait">
+              {previewUrl ? (
+                <motion.div key="preview" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="space-y-4">
+                  <div className="relative mx-auto rounded-2xl overflow-hidden max-w-xs flex justify-center">
+                    {imageFile?.type === "application/pdf" ? (
+                      <div className="w-32 h-32 bg-slate-50 flex items-center justify-center rounded-xl border border-slate-200">
+                        <FileText className="w-16 h-16 text-blue-600" />
+                      </div>
+                    ) : (
+                      <img src={previewUrl} alt="Preview da multa" className="w-full h-auto object-cover max-h-48" />
                     )}
-                  </motion.div>
-                ) : (
-                  <motion.div key="empty" initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                    className="flex flex-col items-center gap-4 pointer-events-none select-none text-center">
-                    <div className="w-12 h-12 rounded-xl bg-slate-100 group-hover:bg-blue-100 flex items-center justify-center transition-colors">
-                      <UploadCloud className="w-5 h-5 text-slate-400 group-hover:text-blue-500 transition-colors" />
+                  </div>
+                  <p className="text-sm font-medium text-slate-600">{imageFile?.name}</p>
+                  {!isAnalyzing && !hasAnalyzed && (
+                    <button onClick={clearImage} className="relative z-10 text-sm font-medium text-slate-500 hover:text-red-500 underline decoration-slate-300 hover:decoration-red-300 underline-offset-4 transition-colors" type="button">
+                      Excluir ou subir nova foto
+                    </button>
+                  )}
+                  {!isAnalyzing && hasAnalyzed && (
+                    <div className="relative z-10 flex flex-row items-center justify-center gap-3 mt-4 w-full">
+                      <button onClick={() => {
+                        if (imageFile) {
+                          if (result || error) {
+                            setIsResultModalOpen(true);
+                          } else {
+                            const reader = new FileReader();
+                            reader.onload = () => {
+                              const resultStr = reader.result as string;
+                              const base64Data = resultStr.split(",")[1];
+                              analyzeTicket(base64Data, imageFile.type);
+                            };
+                            reader.readAsDataURL(imageFile);
+                          }
+                        }
+                      }} className="px-5 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors whitespace-nowrap" type="button">
+                        Ver Resultado Novamente
+                      </button>
+                      <button onClick={clearImage} className="px-5 py-2 rounded-lg text-sm font-medium text-white bg-slate-800 hover:bg-slate-700 transition-colors shadow-sm whitespace-nowrap" type="button">
+                        Nova Multa
+                      </button>
                     </div>
-                    <div>
-                      <p className="text-sm font-semibold text-slate-700">
-                        <span className="text-blue-600">Clique para enviar</span> ou arraste aqui
-                      </p>
-                      <p className="text-xs text-slate-400 mt-1">Imagem ou PDF da notificação de infração</p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                  )}
+                </motion.div>
+              ) : (
+                <motion.div key="upload" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col items-center justify-center space-y-4 pointer-events-none">
+                  <div className="w-16 h-16 bg-blue-100/50 text-blue-700 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                    <UploadCloud className="w-8 h-8" />
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-lg font-medium text-slate-800">Envie a imagem ou PDF da notificação</p>
+                    <p className="text-slate-500 text-sm"><span className="font-semibold text-blue-600">Clique</span> ou arraste o arquivo aqui</p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </main>
+      </div>
+
+      <section id="como-funciona" className="w-full bg-slate-100/50 border-t border-slate-200 py-16 px-4 flex justify-center">
+        <div className="max-w-5xl w-full">
+          <h2 className="text-3xl font-bold text-center text-slate-800 mb-12 tracking-tight">Como funciona a nossa auditoria?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><UploadCloud className="w-8 h-8" /></div>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">1. Envie a Notificação</h3>
+              <p className="text-slate-600 font-medium leading-relaxed">Tire uma foto ou envie o PDF do seu auto de infração em nossa plataforma segura.</p>
+            </div>
+            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><Search className="w-8 h-8" /></div>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">2. Auditoria Imediata</h3>
+              <p className="text-slate-600 font-medium leading-relaxed">Nossa IA analisa cada detalhe em busca de erros do agente autuador.</p>
+            </div>
+            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><FileText className="w-8 h-8" /></div>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">3. Defesa Pronta</h3>
+              <p className="text-slate-600 font-medium leading-relaxed">Se encontrarmos viabilidade, geramos a petição baseada na lei pronta para protocolo.</p>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* card footer with trust signals */}
-          <div className="px-6 py-4 border-t border-slate-100 bg-slate-50 flex flex-wrap items-center gap-x-5 gap-y-2">
-            {[
-              { icon: <ShieldCheck className="w-3.5 h-3.5" />, label: "Sem cadastro" },
-              { icon: <CheckCircle2 className="w-3.5 h-3.5" />, label: "Dados não armazenados" },
-              { icon: <Scale className="w-3.5 h-3.5" />, label: "Baseado no CTB" },
-            ].map((item, i) => (
-              <span key={i} className="inline-flex items-center gap-1.5 text-[11px] font-medium text-slate-400">
-                {item.icon}{item.label}
-              </span>
-            ))}
+      <section id="seguranca" className="w-full bg-white border-t border-slate-200 py-16 px-4 flex justify-center">
+        <div className="max-w-5xl w-full">
+          <h2 className="text-3xl font-bold text-center text-slate-800 mb-12 tracking-tight">Seus Dados 100% Seguros</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6"><Lock className="w-8 h-8" /></div>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">Zero Armazenamento</h3>
+              <p className="text-slate-600 font-medium leading-relaxed">Não guardamos a foto do seu documento. A imagem é processada na memória do servidor e imediatamente deletada.</p>
+            </div>
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><UserX className="w-8 h-8" /></div>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">Sem Cadastro</h3>
+              <p className="text-slate-600 font-medium leading-relaxed">Você não precisa criar conta, colocar e-mail ou senha para auditar a sua multa. É direto ao ponto.</p>
+            </div>
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-6"><Route className="w-8 h-8" /></div>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">Total Transparência</h3>
+              <p className="text-slate-600 font-medium leading-relaxed">Atuamos como uma ferramenta tecnológica baseada no CTB. Nós criamos a tese, mas a decisão final é sempre do órgão julgador.</p>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* — subtle scroll cue — */}
-        <motion.div
-          animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 2.4, ease: "easeInOut" }}
-          className="mt-10"
-        >
-          <ArrowDown className="w-4 h-4 text-slate-300" />
-        </motion.div>
-      </main>
-
-      {/* ══ FOOTER ══ */}
-      <footer className="border-t border-slate-100 bg-white px-6 py-8 text-center">
-        <div className="flex justify-center mb-5">
-          <img src="/checkmulta-logo.png" alt="CheckMulta" className="h-7 w-auto object-contain opacity-40" />
+      <footer className="w-full text-center px-6 py-6 border-t border-gray-200 bg-gray-100 mt-auto">
+        <div className="flex flex-col items-center justify-center mb-6">
+          <img src="/checkmulta-logo.png" alt="CheckMulta Logo" className="h-[48px] md:h-[64px] w-auto object-contain opacity-90" />
         </div>
-        <p className="text-xs text-slate-400 max-w-md mx-auto leading-relaxed">
-          Sistema de organização tecnológica baseado no CTB e MBFT. A decisão final é do órgão julgador.
-          Nenhum dado pessoal é armazenado.
+        <p className="text-xs text-slate-500 max-w-3xl mx-auto leading-relaxed">
+          🛡️ <strong className="font-semibold text-slate-600">Transparência e Privacidade:</strong> Nosso sistema atua como organizador tecnológico com base no Manual Brasileiro de Fiscalização de Trânsito. A decisão final é do órgão julgador. Não exigimos cadastro e não armazenamos a sua petição ou dados do veículo. Tudo é apagado após o download.
         </p>
-        <div className="flex justify-center gap-6 mt-4">
-          {(["termos","privacidade","aviso"] as const).map(key => (
-            <button key={key} onClick={() => setActiveModal(key)}
-              className="text-xs text-slate-400 hover:text-slate-600 transition-colors capitalize">
-              {key === "termos" ? "Termos de Uso" : key === "privacidade" ? "Privacidade" : "Aviso Jurídico"}
-            </button>
-          ))}
+        <div className="flex justify-center space-x-6 mt-4 text-xs font-medium text-slate-400">
+          <button onClick={() => setActiveModal("termos")} className="hover:text-slate-600 hover:underline transition-colors">Termos de Uso</button>
+          <button onClick={() => setActiveModal("privacidade")} className="hover:text-slate-600 hover:underline transition-colors">Privacidade</button>
+          <button onClick={() => setActiveModal("aviso")} className="hover:text-slate-600 hover:underline transition-colors">Aviso Jurídico</button>
+          <button onClick={() => setActiveModal("suporte")} className="hover:text-slate-600 hover:underline font-bold text-blue-600 transition-colors">Suporte</button>
         </div>
       </footer>
 
-      {/* ══ MODAL GENÉRICO (termos / privacidade / aviso / suporte) ══ */}
+      {/* MODAL DO ECOSSISTEMA DE DOCUMENTOS E SUPORTE COM SCROLL CORRIGIDO */}
       <AnimatePresence>
         {activeModal && (
-          <div className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm"
-            onClick={() => setActiveModal(null)}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 20 }}
-              className="bg-white w-full max-w-md rounded-2xl shadow-xl overflow-hidden"
-              onClick={e => e.stopPropagation()}
-            >
-              <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
-                <h3 className="text-base font-bold text-slate-800">
-                  {activeModal === "termos"      ? "Termos de Uso"
-                  : activeModal === "privacidade" ? "Privacidade"
-                  : activeModal === "aviso"       ? "Aviso Jurídico"
-                  : "💬 Suporte"}
-                </h3>
-                <button onClick={() => setActiveModal(null)} className="p-1.5 rounded-lg hover:bg-slate-100 transition-colors text-slate-400">
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-              <div className="px-6 py-5 text-sm text-slate-600 leading-relaxed">
-                {activeModal === "suporte" ? (
-                  <div className="space-y-4">
-                    <p className="text-sm text-slate-500">Fale com nosso time técnico:</p>
-                    <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 hover:border-emerald-300 hover:bg-emerald-50 transition-all group">
-                      <div className="w-9 h-9 rounded-lg bg-emerald-50 group-hover:bg-emerald-100 flex items-center justify-center flex-shrink-0 transition-colors">
-                        <MessageSquare className="w-4 h-4 text-emerald-600" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-slate-800">WhatsApp</p>
-                        <p className="text-xs text-slate-400">Fale direto com um analista</p>
-                      </div>
-                    </a>
-                  </div>
-                ) : (
-                  <p>Processamento transitório para elaboração da petição...</p>
-                )}
-              </div>
-              {activeModal !== "suporte" && (
-                <div className="px-6 pb-5">
-                  <button onClick={() => setActiveModal(null)}
-                    className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold transition-colors">
-                    Entendi
-                  </button>
+          <div className="fixed inset-0 z-[60] overflow-y-auto bg-slate-900/60 backdrop-blur-md">
+            <div className="min-h-full flex items-center justify-center p-4 sm:p-6">
+              <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="bg-white/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-lg flex flex-col relative" onClick={(e) => e.stopPropagation()}>
+                <button onClick={() => setActiveModal(null)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10" aria-label="Fechar"><X className="w-6 h-6" /></button>
+                
+                <div className="mb-4 pr-8">
+                  {activeModal === "aviso" && <h3 className="text-xl font-bold text-slate-800">Aviso Jurídico</h3>}
+                  {activeModal === "termos" && <h3 className="text-xl font-bold text-slate-800">Termos de Uso</h3>}
+                  {activeModal === "privacidade" && <h3 className="text-xl font-bold text-slate-800">Políticas de Privacidade</h3>}
+                  {activeModal === "suporte" && <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2"><span>💬</span> Central de Suporte</h3>}
                 </div>
-              )}
-            </motion.div>
+                
+                <div className="text-sm text-slate-600 leading-relaxed space-y-3">
+                  {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente de forma algorítmica...</p>}
+                  {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial...</p>}
+                  {activeModal === "privacidade" && <p>Sua privacidade é absoluta. Não possuímos banco de dados...</p>}
+                  
+                  {activeModal === "suporte" && (
+                    <div className="space-y-5 pt-2">
+                      <p className="text-sm text-slate-600 font-medium">Selecione o canal de atendimento abaixo para falar com o nosso time técnico:</p>
+                      <div className="flex flex-col gap-3">
+                        <a href="https://wa.me/5500000000000?text=Olá!%20Preciso%20de%20ajuda%20com%20o%20CheckMulta." target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 w-full p-4 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl text-emerald-900 transition-colors text-left">
+                          <MessageSquare className="w-6 h-6 text-emerald-600 flex-shrink-0" />
+                          <div><strong className="block text-sm font-bold">Atendimento via WhatsApp</strong><span className="text-xs text-emerald-700 font-medium">Fale direto com um analista</span></div>
+                        </a>
+                        <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 w-full p-4 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-xl text-blue-900 transition-colors text-left">
+                          <ClipboardList className="w-6 h-6 text-blue-600 flex-shrink-0" />
+                          <div><strong className="block text-sm font-bold">Abrir Chamado Técnico</strong><span className="text-xs text-blue-700 font-medium">Reembolsos ou falhas</span></div>
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                {activeModal !== "suporte" && (
+                  <button onClick={() => setActiveModal(null)} className="mt-8 w-full py-3 bg-slate-100 text-slate-700 rounded-xl font-semibold hover:bg-slate-200 transition-colors">Entendi e concordo</button>
+                )}
+              </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>
 
-      {/* ══ MODAL RESULTADO ══ */}
+      {/* MODAL DE RESULTADO / DEFESA (COM O SCROLL CORRIGIDO ANTI-CORTE) */}
       <AnimatePresence>
         {isResultModalOpen && (
-          <div className="fixed inset-0 z-[45] flex items-end sm:items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm"
-            onClick={() => setIsResultModalOpen(false)}>
-            <motion.div
-              initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 24 }}
-              className="bg-white w-full max-w-xl rounded-2xl shadow-xl overflow-hidden max-h-[90vh] flex flex-col"
-              onClick={e => e.stopPropagation()}
-            >
-              {/* modal header */}
-              <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 flex-shrink-0">
-                <StepLabel text="Resultado da análise" />
-                <button onClick={() => setIsResultModalOpen(false)}
-                  className="p-1.5 rounded-lg hover:bg-slate-100 transition-colors text-slate-400">
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-
-              {/* modal body */}
-              <div className="overflow-y-auto flex-1 px-6 py-6 space-y-6">
-
-                {/* loading */}
-                {isAnalyzing && (
-                  <div className="flex flex-col items-center gap-5 py-6">
-                    <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
-                      <motion.div className="h-full w-1/2 bg-blue-500 rounded-full"
-                        animate={{ x: ["-100%", "200%"] }}
-                        transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+          <div className="fixed inset-0 z-[45] overflow-y-auto bg-slate-900/60 backdrop-blur-md">
+            <div className="min-h-full flex items-center justify-center p-4 sm:p-6 py-12">
+              <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="max-w-3xl w-full flex flex-col relative bg-white/95 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-10" onClick={(e) => e.stopPropagation()}>
+                <button onClick={() => setIsResultModalOpen(false)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10" aria-label="Fechar"><X className="w-6 h-6" /></button>
+                
+                <div className="w-full mt-4 space-y-6">
+                  
+                  {isAnalyzing && (
+                    <div className="flex flex-col items-center justify-center p-4 space-y-5 max-w-md mx-auto">
+                      <div className="w-full h-1.5 bg-blue-100/80 rounded-full overflow-hidden relative">
+                        <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-blue-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                      </div>
+                      <AnimatePresence mode="wait">
+                        <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="font-medium text-slate-700 text-center text-lg">{LOADER_MESSAGES[loaderIndex]}</motion.p>
+                      </AnimatePresence>
                     </div>
-                    <AnimatePresence mode="wait">
-                      <motion.p key={loaderIndex}
-                        initial={{ opacity: 0, y: 4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -4 }}
-                        className="text-sm font-medium text-slate-600 text-center">
-                        {LOADER_MESSAGES[loaderIndex]}
-                      </motion.p>
-                    </AnimatePresence>
-                  </div>
-                )}
+                  )}
 
-                {/* error states */}
-                {error && (
-                  <div className="flex flex-col items-center text-center gap-4 py-4">
-                    <div className="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center">
-                      <AlertCircle className="w-5 h-5 text-slate-400" />
-                    </div>
-                    <div>
-                      <p className="text-base font-bold text-slate-800 mb-1">Análise concluída</p>
-                      <p className="text-sm text-slate-500 leading-relaxed max-w-sm">
-                        {error === "DOC_INVALIDO"       && "A imagem enviada não é um auto de infração ou notificação válida."}
-                        {error === "IMG_ILEGIVEL"        && "A imagem está muito borrada ou cortada para leitura."}
-                        {error === "REJEICAO_COMPLEXA"   && "Infração de alta complexidade (ex: bafômetro) fora do nosso escopo automático. Recomendamos consultar um especialista."}
-                        {error === "REJEICAO_SEM_ERROS"  && "Auditamos o preenchimento e não encontramos falhas técnicas que garantam viabilidade para cancelamento automático."}
-                      </p>
-                    </div>
-                    {(error === "DOC_INVALIDO" || error === "IMG_ILEGIVEL" || error === "REJEICAO_COMPLEXA") && (
-                      <button onClick={() => setIsResultModalOpen(false)}
-                        className="px-5 py-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-semibold transition-colors">
-                        Voltar
-                      </button>
-                    )}
-                  </div>
-                )}
-
-                {/* success */}
-                {result && !isPaid && !isAnalyzing && !error && (
-                  <div className="space-y-5">
-                    {/* status row */}
-                    <div className="flex items-start gap-3">
-                      <div className="w-9 h-9 rounded-lg bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <CheckCircle2 className="w-4.5 h-4.5 text-emerald-600 w-5 h-5" />
+                  {error && (
+                    <div className="flex flex-col items-center text-center space-y-4 p-8 bg-red-50 border border-red-200 rounded-2xl">
+                      <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
+                        <AlertCircle className="w-8 h-8" />
                       </div>
                       <div>
-                        <p className="text-base font-bold text-slate-900">Viabilidade confirmada</p>
-                        <p className="text-sm text-slate-500 mt-0.5 leading-relaxed">
-                          Identificamos falhas técnicas de preenchimento que justificam a nulidade da infração.
-                        </p>
-                        <div className="flex flex-wrap gap-2 mt-3">
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-100">
-                            <ShieldCheck className="w-3 h-3" /> Força da Tese: ALTA
-                          </span>
-                          {isExpiredFine && (
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-700 border border-amber-100">
-                              <AlertCircle className="w-3 h-3" /> Prazo de defesa vencido
-                            </span>
-                          )}
+                        <h3 className="text-xl font-bold text-red-800 mb-2">Análise Bloqueada</h3>
+                        <p className="text-red-700 font-medium leading-relaxed">{error}</p>
+                      </div>
+                      <button onClick={() => setIsResultModalOpen(false)} className="mt-4 px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-colors">
+                        Entendi, voltar
+                      </button>
+                    </div>
+                  )}
+
+                  {result && !isPaid && !isAnalyzing && !error && (
+                    <div className="space-y-6">
+                      <div className="flex items-start space-x-4">
+                        <CheckCircle2 className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
+                        <div>
+                          <h2 className="text-xl font-bold text-slate-800 mb-2">✅ Viabilidade Confirmada!</h2>
+                          <p className="text-slate-900 font-medium leading-relaxed">Encontramos tese jurídica válida para solicitar a nulidade.</p>
+                          <div className="mt-3 flex flex-col items-start">
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-bold rounded-full">
+                              <ShieldCheck className="w-4 h-4 text-emerald-600" />Força da Tese: ALTA
+                            </div>
+                            <p className="text-[11px] text-slate-500 mt-2">*Baseado em falhas materiais ou formais identificadas no auto de infração.</p>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="pl-4 text-slate-600 text-sm font-medium whitespace-pre-wrap leading-relaxed border-l-2 border-slate-200">
+                        <strong className="text-slate-800">Resumo do Auto:</strong><br/>{formatDocumentText(result)}
+                      </div>
+
+                      <div className="pt-6">
+                        <div className="flex flex-col space-y-4">
+                          <p className="text-center text-slate-900 font-medium">Tese validada! Deseja liberar sua defesa completa e formatada?</p>
+                          <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-3 px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
+                            <div className="flex flex-row items-center justify-center gap-2 text-base font-bold whitespace-nowrap">
+                              {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6 flex-shrink-0" />}
+                              <span>{isCheckoutLoading ? "Gerando Defesa..." : "Gerar Defesa Completa"}</span>
+                            </div>
+                            <span className="text-xs font-medium opacity-90 mt-1">Taxa única de R$ 19,90</span>
+                          </button>
                         </div>
                       </div>
                     </div>
+                  )}
 
-                    {/* result text */}
-                    <div className="rounded-xl border border-slate-100 bg-slate-50 p-4 text-sm text-slate-700 font-medium whitespace-pre-wrap leading-relaxed">
-                      {formatDocumentText(result)}
+                  {isGeneratingDefense && (
+                    <div className="flex flex-col items-center justify-center p-8 space-y-5 max-w-md mx-auto">
+                      <div className="w-full h-1.5 bg-green-100/80 rounded-full overflow-hidden relative">
+                        <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-emerald-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                      </div>
+                      <AnimatePresence mode="wait">
+                        <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="font-medium text-slate-700 text-center text-lg">{LOADER_MESSAGES[loaderIndex]}</motion.p>
+                      </AnimatePresence>
+                      <p className="text-xs text-slate-400 font-medium text-center mt-4">Seu pagamento está seguro. Por favor, aguarde e não feche esta janela.</p>
                     </div>
+                  )}
 
-                    {/* CTA or expired message */}
-                    <div className="pt-1">
-                      {!isExpiredFine ? (
-                        <div className="space-y-3">
-                          <p className="text-xs text-slate-400 text-center leading-relaxed">
-                            Cruzamos os dados com o Manual de Fiscalização e estruturamos a tese de defesa completa.
-                          </p>
-                          <button onClick={handleCheckout} disabled={isCheckoutLoading}
-                            className="w-full flex flex-col items-center justify-center py-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition-colors shadow-sm disabled:opacity-60 disabled:cursor-not-allowed gap-1">
-                            <span className="flex items-center gap-2 text-base font-black">
-                              {isCheckoutLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Scale className="w-4 h-4" />}
-                              Emitir Defesa de Anulação Pronta
-                            </span>
-                            <span className="text-xs font-semibold opacity-70">Liberação imediata · Taxa única R$ 19,90</span>
+                  {/* BLOCO DE ERRO DE GERAÇÃO (O FIM DA TELA INFINITA) */}
+                  {defenseError && (
+                    <div className="flex flex-col items-center text-center space-y-4 p-8 bg-red-50 border border-red-200 rounded-2xl">
+                      <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
+                        <AlertCircle className="w-8 h-8" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-red-800 mb-2">Falha na Geração da Defesa</h3>
+                        <p className="text-red-700 font-medium leading-relaxed">
+                          Ocorreu uma instabilidade na hora de escrever o documento, mas <strong>o seu pagamento está seguro.</strong> Clique abaixo para falar com nossa equipe técnica e receber seu arquivo imediatamente.
+                        </p>
+                      </div>
+                      <a href="https://wa.me/5500000000000?text=Olá!%20Eu%20paguei%20pelo%20recurso%20agora%20mesmo,%20mas%20a%20tela%20deu%20erro%20na%20hora%20de%20carregar%20a%20petição.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-colors flex items-center gap-2">
+                        <MessageSquare className="w-5 h-5" /> Contatar Suporte no WhatsApp
+                      </a>
+                    </div>
+                  )}
+
+                  {defenseResult && (
+                    <div className="flex flex-col space-y-6">
+                      <div className="flex items-center justify-center space-x-3 border-b border-slate-200 pb-4">
+                        <Scale className="w-6 h-6 text-slate-800" />
+                        <h2 className="text-xl font-bold text-slate-800 text-center">Sua Defesa Jurídica Pronta</h2>
+                      </div>
+                      
+                      <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 mt-2 mb-4 rounded-r-md">
+                        <p className="text-sm text-yellow-800">
+                          <strong>Atenção:</strong> Revise o documento abaixo. É obrigatório substituir todos os campos destacados em <span className="text-red-600 font-bold">vermelho</span> pelas suas informações reais.
+                        </p>
+                      </div>
+
+                      <div className="text-slate-800 p-4 sm:p-6 mx-auto bg-slate-50 rounded-xl font-serif border border-slate-200 w-full">
+                        <div className="whitespace-pre-wrap text-left text-[15px] md:text-base leading-relaxed font-medium">
+                          {formatDocumentText(defenseResult)}
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col items-center gap-4 pt-4">
+                        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full">
+                          <button onClick={handleCopy} className="flex items-center justify-center space-x-2 px-8 py-4 bg-white text-slate-800 border-2 border-slate-200 rounded-xl hover:bg-slate-50 transition-colors font-bold text-lg w-full sm:w-auto shadow-sm">
+                            {isCopied ? (<><Check className="w-5 h-5 text-emerald-600" /><span className="text-emerald-600">Copiado!</span></>) : (<><Copy className="w-5 h-5 text-slate-600" /><span>Copiar Petição</span></>)}
+                          </button>
+                          <button onClick={handleDownload} className="flex items-center justify-center space-x-2 px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors shadow-md font-bold text-lg w-full sm:w-auto">
+                            <Download className="w-5 h-5" /><span>Baixar txt</span>
                           </button>
                         </div>
-                      ) : (
-                        <div className="text-center space-y-2">
-                          <p className="text-sm text-slate-500 leading-relaxed">
-                            Validamos a irregularidade, porém o prazo legal para defesa prévia já venceu. Não é possível prosseguir no momento.
-                          </p>
-                          <button onClick={() => setIsResultModalOpen(false)}
-                            className="text-xs text-slate-400 hover:text-slate-600 underline underline-offset-2 transition-colors">
-                            Voltar
-                          </button>
-                        </div>
-                      )}
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
-            </motion.div>
+                  )}
+
+                </div>
+              </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>
 
-      {/* ══ MODAL PIX ══ */}
       <AnimatePresence>
         {isPixModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm"
-            onClick={() => setIsPixModalOpen(false)}>
-            <motion.div
-              initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 24 }}
-              className="bg-white w-full max-w-sm rounded-2xl shadow-xl overflow-hidden"
-              onClick={e => e.stopPropagation()}
-            >
-              <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
-                <h3 className="text-base font-bold text-slate-800">Pagamento via Pix</h3>
-                <button onClick={() => setIsPixModalOpen(false)}
-                  className="p-1.5 rounded-lg hover:bg-slate-100 transition-colors text-slate-400">
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-              <div className="px-6 py-6 flex flex-col items-center gap-5">
-                <div className="w-44 h-44 rounded-xl border-2 border-dashed border-slate-200 bg-slate-50 flex items-center justify-center">
-                  <QrCode className="w-20 h-20 text-slate-200 animate-pulse" />
+          <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm">
+             <div className="min-h-full flex items-center justify-center p-4">
+              <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="relative w-11/12 max-w-sm bg-white rounded-2xl shadow-2xl p-6">
+                <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-5 h-5" /></button>
+                <div className="text-center space-y-6">
+                  <div className="flex justify-center"><div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center"><QrCode className="w-8 h-8" /></div></div>
+                  <div><h3 className="text-2xl font-bold text-slate-800">Pagamento via Pix</h3></div>
+                  <div className="flex justify-center py-4"><div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300">
+                    {qrCodeBase64 ? <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" className="w-full h-full p-2 object-contain" /> : <QrCode className="w-24 h-24 text-slate-300 animate-pulse" />}
+                  </div></div>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                      <p className="text-sm text-slate-500 font-mono truncate flex-1 text-left">{qrCode || "Gerando Pix..."}</p>
+                      <button onClick={handleCopyPix} className="text-emerald-600 hover:bg-emerald-50 p-2 rounded-lg transition-colors border border-emerald-200">
+                        {isPixCopied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                      </button>
+                    </div>
+                  </div>
+                  
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-sm text-slate-500 font-medium">
+                    <RefreshCcw className="w-4 h-4 animate-spin" />
+                    Aguardando pagamento no banco...
+                  </div>
+
+                  {/* BOTÃO DE TESTE (PULAR PAGAMENTO) */}
+                  <div className="mt-6 pt-2 text-center">
+                    <button onClick={simulateApprovedPayment} className="text-[11px] text-slate-400 hover:text-slate-600 underline flex items-center justify-center mx-auto gap-1 transition-colors">
+                      <span>Pular p/ Teste</span> <ArrowRight className="w-3 h-3" />
+                    </button>
+                  </div>
+
                 </div>
-                <button
-                  onClick={() => {
-                    setIsPixModalOpen(false); setIsCheckoutLoading(true);
-                    setTimeout(() => { setIsCheckoutLoading(false); setIsPaid(true); generateDefense(); }, 1500);
-                  }}
-                  className="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-colors"
-                >
-                  Simular Pagamento Aprovado (Teste)
-                </button>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>
+
     </div>
   );
 }
