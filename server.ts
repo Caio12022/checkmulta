@@ -27,29 +27,23 @@ async function startServer() {
   app.use(express.json({ limit: "50mb" }));
 
   // ==========================================
-  // ROTA: GERAR PIX DE TESTE (R$ 1,00)
+  // ROTA: GERAR PIX
   // ==========================================
   app.post("/api/create-payment", async (req, res) => {
     try {
       if (!process.env.MERCADO_PAGO_ACCESS_TOKEN) {
-        return res.status(500).json({ error: "MERCADO_PAGO_ACCESS_TOKEN não configurado no Render." });
+        return res.status(500).json({ error: "MERCADO_PAGO_ACCESS_TOKEN não configurado." });
       }
-
       const { email } = req.body;
-
       const paymentData = {
         body: {
-          transaction_amount: 1.00,
+          transaction_amount: 1.00, // VALOR DE TESTE MANTIDO
           description: "Criação de Recurso - CheckMulta",
           payment_method_id: "pix",
-          payer: {
-            email: email || "cliente@checkmulta.com.br",
-          },
+          payer: { email: email || "cliente@checkmulta.com.br" },
         },
       };
-
       const response = await paymentClient.create(paymentData);
-
       res.json({
         id: response.id,
         status: response.status,
@@ -57,21 +51,15 @@ async function startServer() {
         qr_code_base64: response.point_of_interaction?.transaction_data?.qr_code_base64,
       });
     } catch (err: any) {
-      console.error("Erro ao criar pagamento no Mercado Pago:", err);
+      console.error("Erro ao criar pagamento:", err);
       res.status(500).json({ error: err.message || "Erro interno ao gerar o Pix." });
     }
   });
 
-  // ==========================================
-  // ROTA: RADAR DE PAGAMENTO (VERIFICA SE PAGOU)
-  // ==========================================
   app.get("/api/check-payment/:id", async (req, res) => {
     try {
       const paymentId = Number(req.params.id);
-      if (!paymentId) {
-        return res.status(400).json({ error: "ID inválido" });
-      }
-      
+      if (!paymentId) return res.status(400).json({ error: "ID inválido" });
       const payment = await paymentClient.get({ id: paymentId });
       res.json({ status: payment.status });
     } catch (err: any) {
@@ -81,50 +69,40 @@ async function startServer() {
   });
 
   // ==========================================
-  // ROTA: ANALISAR MULTA (MOTOR ECONÔMICO - FLASH LITE)
+  // ROTA: ANALISAR MULTA (PROMPT BLINDADO - 2026)
   // ==========================================
   app.post("/api/analyze-ticket", async (req, res) => {
     try {
       const { imageBase64, mimeType = "image/jpeg" } = req.body;
-
-      if (!imageBase64) {
-        return res.status(400).json({ error: "Dados da imagem ausentes (imageBase64)." });
-      }
+      if (!imageBase64) return res.status(400).json({ error: "Dados da imagem ausentes." });
 
       const ai = getAIClient();
       
-      const prompt = `DIRETRIZES OBRIGATÓRIAS DE INTEGRAÇÃO COM SISTEMA (UI/UX)
-Você está se comunicando com um front-end. Siga estas regras com precisão cirúrgica:
+      const prompt = `Você é um auditor técnico especialista na análise formal de autos de infração de trânsito brasileiros. 
+INFORMAÇÃO DE SISTEMA CRÍTICA: O ANO ATUAL É 2026.
 
-1. GATILHOS DE ERRO E BLOQUEIO (RESPONDER APENAS A STRING ABAIXO NESSES CASOS):
-- Imagem não é um documento de trânsito: "documento_invalido"
-- Imagem muito borrada/ilegível: "imagem_ilegivel"
-- Conteúdo impróprio: "erro_seguranca"
-- Aviso de DEFERIMENTO prévio: "Boas notícias! Analisamos o seu documento e ele é um aviso oficial de DEFERIMENTO..."
+-------------------------------------------------------------------------------------------------------
+REGRA DE OURO 1: VALIDAÇÃO DO DOCUMENTO E DA IMAGEM
+- Se a imagem NÃO for um documento de trânsito oficial brasileiro (ex: foto de retrovisor, paisagem, pessoas, tela preta), PARE TUDO e retorne APENAS a exata string: documento_invalido
+- Se a imagem for um documento, mas estiver impossível de ler (borrada/cortada), retorne APENAS: imagem_ilegivel
 
-2. AUDITORIA LÓGICA DE TRÂNSITO (REGRAS DE PARETO):
-Você atua como um auditor técnico. Sua decisão baseia-se 100% na verificação da imagem contra estas regras:
+REGRA DE OURO 2: VALIDAÇÃO DE PRAZO (PRESCRIÇÃO/DECADÊNCIA) - A MAIS IMPORTANTE
+Sua primeira leitura de dados no documento DEVE ser a "Data da Infração" ou o "Prazo para Defesa/Identificação". 
+Como estamos no ano de 2026, QUALQUER multa lavrada em anos anteriores (ex: 2008, 2010, 2022, 2023, 2024, 2025) ESTÁ PRESCRITA, VENCIDA E INVÁLIDA.
+- Se a multa for de anos anteriores ou o prazo impresso já passou, VOCÊ É OBRIGADO A PARAR IMEDIATAMENTE e retornar APENAS a exata string: rejeicao_prazo_expirado
+-------------------------------------------------------------------------------------------------------
+
+Se a imagem passou perfeitamente pelas DUAS Regras de Ouro acima (é um documento legível E é recente do ano vigente), faça a auditoria lógica:
 
 [EXCEÇÃO DE ALTA COMPLEXIDADE]
-- LEI SECA/BAFÔMETRO (Art 165/165-A): Responda APENAS "rejeição_tipo_a | Lei Seca"
+- LEI SECA/BAFÔMETRO (Art 165/165-A): Responda APENAS: rejeicao_tipo_a
 
-[REGRAS DE VIABILIDADE - SE ACHAR UMA DESSAS, A MULTA TEM BRECHA]
-0. PRAZO DECADENCIAL: Data de Expedição da Notificação excedeu 30 dias da Data da Infração.
-1. VELOCIDADE: INMETRO da imagem vencido (mais de 12 meses da data da infração).
-2. ESTACIONAMENTO PROIBIDO: Observações vazias ou genéricas ("estacionado irregularmente") sem especificar a placa R-6a.
-3. SINAL VERMELHO: Autuação de madrugada (22h-05h) onde o agente cita área de risco nas observações.
-4. CELULAR OU CINTO: Autuação sem abordagem SEM que o agente justifique nas observações o motivo de não ter parado o veículo.
-5. CONVERSÃO PROIBIDA: Observação vazia ou genérica (ex: "fluxo intenso") sem descrever a placa ou pintura de proibição (Art. 280, §2º CTB).
-6. RODÍZIO (SP): Isenção anotada na foto ou erro de leitura ótica evidente.
-7. PELÍCULA/PNEU: Autuação "em movimento" anotada, sem abordagem para medição física obrigatória.
+[REGRAS DE VIABILIDADE - BRECHAS FORMAIS]
+Verifique erros do agente como: Inmetro vencido há mais de 12 meses da data da infração, observações vazias em estacionamento proibido, falta de abordagem justificada, etc.
+- Se a multa for legalmente imaculada e NÃO tiver nenhuma brecha formal, retorne APENAS: rejeicao_tipo_b
 
-3. ESTRUTURA DA RESPOSTA (GATILHO COMERCIAL DE ALTA CONVERSÃO):
-ATENÇÃO: A SUA RESPOSTA DEVE SER ÚNICA.
-
--> CENÁRIO REJEIÇÃO: Se a multa NÃO se encaixar em NENHUMA das regras de viabilidade acima:
-Você DEVE ABORTAR e responder EXATAMENTE E APENAS: "rejeição_tipo_b | [Nome da Infração]". 
-
--> CENÁRIO SUCESSO (GATILHO DE VENDA BLINDADO): Se a multa tiver uma brecha, responda EXATAMENTE neste formato (DADOS EXTRAÍDOS OBRIGATORIAMENTE EM PRIMEIRO LUGAR):
+[CENÁRIO SUCESSO - APENAS SE ACHOU BRECHA EM MULTA DENTRO DO PRAZO]
+Responda EXATAMENTE neste formato:
 
 - STATUS DA ANÁLISE: Sucesso - Brecha Encontrada
 
@@ -139,11 +117,9 @@ Local exato: [Extrair]
 Nome: [Extrair]
 
 DIAGNÓSTICO TÉCNICO DA IRREGULARIDADE:
-[Explique aqui o erro de forma extremamente formal, técnica e jurídica, citando os artigos do CTB aplicáveis, mas NUNCA diga de forma simples ou mastigada o que o usuário deve escrever ou qual foi o texto que o agente esqueceu. Use termos como: "Constatada desconformidade formal insanável na lavratura do ato administrativo por inobservância de requisitos imperativos de fundamentação previstos no Artigo 280 do CTB e diretrizes obrigatórias do Manual Brasileiro de Fiscalização de Trânsito, gerando nulidade absoluta do procedimento por vício de forma."]
+[Explique o erro técnico e legal do agente baseando-se no Art 280 do CTB em linguagem rebuscada e formal. Ex: "Constatada desconformidade formal insanável..."]
 
-- VIABILIDADE DO RECURSO: Alta. O descumprimento das formalidades obrigatórias retira a presunção de legitimidade da autuação, tornando o arquivamento do auto impositivo nos termos da legislação vigente.
-
-REGRA DE OURO: Pare a resposta na linha da viabilidade. Não dê instruções de correção.`;
+- VIABILIDADE DO RECURSO: Alta. O descumprimento das formalidades obrigatórias retira a presunção de legitimidade da autuação.`;
 
       const response = await ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
@@ -157,7 +133,7 @@ REGRA DE OURO: Pare a resposta na linha da viabilidade. Não dê instruções de
       res.json({ result: resultText.trim() });
     } catch (err: any) {
       console.error("API Error in analyze-ticket:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted") || err.message.includes("quota"))) {
+      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -165,25 +141,19 @@ REGRA DE OURO: Pare a resposta na linha da viabilidade. Não dê instruções de
   });
 
   // ==========================================
-  // ROTA: GERAÇÃO DA PETIÇÃO COMPLETA (MOTOR ESTÁVEL FLASH LITE)
+  // ROTA: GERAÇÃO DA PETIÇÃO COMPLETA
   // ==========================================
   app.post("/api/generate-defense", async (req, res) => {
     try {
       const { extractedData } = req.body;
-      
-      if (!extractedData) {
-        return res.status(400).json({ error: "extractedData ausente." });
-      }
+      if (!extractedData) return res.status(400).json({ error: "extractedData ausente." });
       
       const ai = getAIClient();
       
       const prompt = `Você é um redator jurídico sênior especialista em Direito Administrativo de Trânsito. Sua tarefa é pegar o resumo fornecido e estruturar uma Defesa Prévia extremamente formal, robusta e técnica.
 
---- REGRAS DE PREENCHIMENTO OBRIGATÓRIO (CRÍTICO) ---
-Você NÃO pode deixar colchetes genéricos como [INFRAÇÃO], [LOCAL], [DATA], [HORA], [PLACA], [AIT] ou [ÓRGÃO AUTUADOR] vazios se a informação existir no resumo abaixo.
-- Substitua a tag [INFRAÇÃO] pela descrição exata da infração encontrada (ex: Dirigir veículo segurando ou manuseando telefone celular).
-- Substitua [AIT], [PLACA], [DATA], [HORA] e [ÓRGÃO AUTUADOR] pelos dados correspondentes extraídos.
-- Mantenha com colchetes APENAS as informações pessoais que não constam no papel: [RG], [CPF], [ESTADO CIVIL], [PROFISSÃO], [VEÍCULO] e [ENDEREÇO COMPLETO].
+--- REGRAS DE PREENCHIMENTO OBRIGATÓRIO ---
+Substitua os colchetes com os dados do resumo. Mantenha em colchetes APENAS os dados pessoais que não vieram na imagem: [RG], [CPF], [ESTADO CIVIL], [PROFISSÃO], [VEÍCULO], [ENDEREÇO COMPLETO].
 
 --- RESUMO DA MULTA FORNECIDO ---
 ${extractedData}
@@ -218,18 +188,17 @@ __________________________________________
 [NOME DO CONDUTOR]
 Requerente`;
 
-      // USANDO O MODELO FLASH LITE QUE É SEGURO, ESTÁVEL E FUNCIONA SEMPRE
       const response = await ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
         contents: [{ role: "user", parts: [{ text: prompt }] }],
-        config: { temperature: 0.0 } // Travado no zero criatividade
+        config: { temperature: 0.0 }
       });
 
       const resultText = response.text || "";
       res.json({ result: resultText.trim() });
     } catch (err: any) {
       console.error("API Error in generate-defense:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted") || err.message.includes("quota"))) {
+      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
