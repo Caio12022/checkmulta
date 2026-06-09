@@ -63,7 +63,7 @@ async function startServer() {
   });
 
   // ==========================================
-  // ROTA NOVA: RADAR DE PAGAMENTO (VERIFICA SE PAGOU)
+  // ROTA: RADAR DE PAGAMENTO (VERIFICA SE PAGOU)
   // ==========================================
   app.get("/api/check-payment/:id", async (req, res) => {
     try {
@@ -80,6 +80,9 @@ async function startServer() {
     }
   });
 
+  // ==========================================
+  // ROTA: ANALISAR MULTA (PROMPT SECRETO COMERCIAL)
+  // ==========================================
   app.post("/api/analyze-ticket", async (req, res) => {
     try {
       const { imageBase64, mimeType } = req.body;
@@ -120,20 +123,17 @@ Você atua como um auditor técnico. Sua decisão baseia-se 100% na verificaçã
 6. RODÍZIO (SP): Isenção anotada na foto ou erro de leitura ótica evidente.
 7. PELÍCULA/PNEU: Autuação "em movimento" anotada, sem abordagem para medição física obrigatória.
 
-3. ESTRUTURA DA RESPOSTA (GATILHO COMERCIAL):
-ATENÇÃO EXTRA: A SUA RESPOSTA DEVE SER ÚNICA.
+3. ESTRUTURA DA RESPOSTA (GATILHO COMERCIAL DE ALTA CONVERSÃO):
+ATENÇÃO: A SUA RESPOSTA DEVE SER ÚNICA.
 
--> CENÁRIO REJEIÇÃO: Se a multa NÃO se encaixar em NENHUMA das regras de viabilidade acima (estiver preenchida perfeitamente):
+-> CENÁRIO REJEIÇÃO: Se a multa NÃO se encaixar em NENHUMA das regras de viabilidade acima:
 Você DEVE ABORTAR e responder EXATAMENTE E APENAS: "rejeição_tipo_b | [Nome da Infração]". 
 
--> CENÁRIO SUCESSO: Se a multa tiver PELO MENOS UMA brecha das regras acima, responda EXATAMENTE neste formato (sem gerar petição aqui):
+-> CENÁRIO SUCESSO (GATILHO DE VENDA BLINDADO): Se a multa tiver uma brecha, responda EXATAMENTE neste formato (DADOS EXTRAÍDOS OBRIGATORIAMENTE EM PRIMEIRO LUGAR):
 
 - STATUS DA ANÁLISE: Sucesso - Brecha Encontrada
-- INFRAÇÃO DETECTADA: [Nome e código da infração]
-- A BRECHA LEGAL ENCONTRADA: [Explique de forma direta e técnica qual foi a falha baseada nas regras de Pareto. Ex: "O agente falhou ao deixar o campo de observações vazio sem justificar a falta de abordagem..."]
-- VIABILIDADE DO RECURSO: Alta. Com base no Código de Trânsito Brasileiro e nas Resoluções do CONTRAN, esta falha formal torna o Auto de Infração inconsistente e irregular, sendo passível de nulidade se a tese correta for protocolada.
 
-DADOS EXTRAÍDOS OBRIGATÓRIOS:
+DADOS EXTRAÍDOS DO SEU AUTO:
 Número do AIT: [Extrair ou deixar colchete se não tiver]
 Placa: [Extrair]
 Renavam: [Extrair]
@@ -143,18 +143,17 @@ Local exato: [Extrair]
 Órgão Autuador: [Extrair]
 Nome: [Extrair]
 
-REGRA DE OURO: Pare a resposta nos dados extraídos.`;
+DIAGNÓSTICO TÉCNICO DA IRREGULARIDADE:
+[Explique aqui o erro de forma extremamente formal, técnica e jurídica, citando os artigos do CTB aplicáveis, mas NUNCA diga de forma simples ou mastigada o que o usuário deve escrever ou qual foi o texto que o agente esqueceu. Use termos como: "Constatada desconformidade formal insanável na lavratura do ato administrativo por inobservância de requisitos imperativos de fundamentação previstos no Artigo 280 do CTB e diretrizes obrigatórias do Manual Brasileiro de Fiscalização de Trânsito, gerando nulidade absoluta do procedimento por vício de forma."]
+
+- VIABILIDADE DO RECURSO: Alta. O descumprimento das formalidades obrigatórias retira a presunção de legitimidade da autuação, tornando o arquivamento do auto impositivo nos termos da legislação vigente.
+
+REGRA DE OURO: Pare a resposta na linha da viabilidade. Não dê instruções de correção.`;
 
       const response = await ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
         contents: [
-          {
-            role: "user",
-            parts: [
-              { inlineData: { data: imageBase64, mimeType: mimeType } },
-              { text: prompt }
-            ]
-          }
+          { role: "user", parts: [{ inlineData: { data: imageBase64, mimeType: mimeType } }, { text: prompt }] }
         ],
         config: { temperature: 0.0 }
       });
@@ -204,7 +203,7 @@ Considerando que o procedimento não atendeu aos critérios estabelecidos pela l
 
 2. DOS PEDIDOS
 Ante o exposto, requer:
-a) O acolhimento da presente Defesa Prévia para que seja determinado o cancelamento e o arquivamento do Auto de Infração nº [AIT];
+a) O acolhimento da presente Defesa Prevía para que seja determinado o cancelamento e o arquivamento do Auto de Infração nº [AIT];
 b) Requer-se, sob pena de cerceamento de defesa, que a Autoridade de Trânsito anexe aos autos a cópia integral de laudos, imagens e relatórios pertinentes à infração.
 
 Nestes termos, pede deferimento.
