@@ -4,16 +4,15 @@
  */
 
 import React, { useState, useRef, useEffect } from "react";
-import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, HelpCircle, MessageSquare, ClipboardList } from "lucide-react";
+import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, HelpCircle, MessageSquare, ClipboardList, Menu } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 const formatDocumentText = (text: string) => {
   if (!text) return text;
   
-  let cleanText = text.replace(/\*\*(.*?)\*\/g, '$1');
-  cleanText = cleanText.replace(/\*\*(.*?)\*\*/g, '$1');
+  let cleanText = text.replace(/\*\*(.*?)\*\*/g, '$1');
   cleanText = cleanText.replace(/\*(.*?)\*/g, '$1');
-  cleanText = cleanText.replace(/`(.*?)`/g, '$1');
+  cleanText = cleanText.replace(/`/g, '$1');
 
   const parts = cleanText.split(/(\[[^[\]]*\]|- STATUS DA ANÁLISE:.*?(?=\n|$))/gi);
 
@@ -60,6 +59,7 @@ export default function App() {
   const [isPaid, setIsPaid] = useState(false);
   const [activeModal, setActiveModal] = useState<"termos" | "privacidade" | "aviso" | "suporte" | null>(null);
   const [isCopied, setIsCopied] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const [hasAnalyzed, setHasAnalyzed] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
@@ -327,16 +327,55 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center text-gray-900 font-sans selection:bg-blue-100 selection:text-blue-900 w-full scroll-smooth">
-      <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-10 overflow-hidden">
+      
+      {/* HEADER RESPONSIVO COM MENU HAMBÚRGUER */}
+      <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-50 overflow-visible">
         <div className="flex items-center h-full w-[180px] md:w-[240px]">
           <img src="/checkmulta-logo.png" alt="CheckMulta Logo" className="w-full h-auto object-contain scale-[1.3] md:scale-[1.5] origin-left translate-y-1" />
         </div>
+        
+        {/* Navegação Desktop */}
         <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
           <a href="#inicio" className="hover:text-blue-600 transition-colors">Início</a>
           <a href="#como-funciona" className="hover:text-blue-600 transition-colors">Como Funciona</a>
           <a href="#seguranca" className="hover:text-blue-600 transition-colors">Segurança</a>
           <button onClick={() => setActiveModal("suporte")} className="hover:text-blue-600 transition-colors font-bold flex items-center gap-1">Suporte</button>
         </nav>
+
+        {/* Botão Hambúrguer Mobile */}
+        <button 
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+          className="flex md:hidden p-2 text-slate-600 hover:text-blue-600 transition-colors rounded-lg hover:bg-slate-50"
+          aria-label="Menu"
+        >
+          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+
+        {/* Gaveta do Menu Mobile Dropdown */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="absolute top-16 left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col p-4 space-y-3 md:hidden z-50"
+            >
+              <a href="#inicio" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Início</a>
+              <a href="#como-funciona" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Como Funciona</a>
+              <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Segurança</a>
+              <button 
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setActiveModal("suporte");
+                }} 
+                className="px-3 py-3 text-left bg-blue-50 text-blue-700 font-bold rounded-xl transition-colors flex items-center justify-between"
+              >
+                <span>Central de Suporte</span>
+                <MessageSquare className="w-4 h-4" />
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       <div className="w-full max-w-3xl flex-1 px-4 py-8 md:py-12">
@@ -477,7 +516,7 @@ export default function App() {
         </p>
         <div className="flex justify-center space-x-6 mt-4 text-xs font-medium text-slate-400">
           <button onClick={() => setActiveModal("termos")} className="hover:text-slate-600 hover:underline transition-colors">Termos de Uso</button>
-          <button onClick={() => setActiveModal("privacidade")} className="hover:text-slate-600 hover:underline transition-colors">Privacidade</button>
+          <button onClick={() => setActiveModal("privacidade")} className="hover:text-slate-600 hover:underline transition-colors">Privacy</button>
           <button onClick={() => setActiveModal("aviso")} className="hover:text-slate-600 hover:underline transition-colors">Aviso Jurídico</button>
           <button onClick={() => setActiveModal("suporte")} className="hover:text-slate-600 hover:underline font-bold text-blue-600 transition-colors">Central de Suporte</button>
         </div>
@@ -502,7 +541,6 @@ export default function App() {
                 {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial...</p>}
                 {activeModal === "privacidade" && <p>Sua privacidade é absoluta. Não possuímos banco de dados...</p>}
                 
-                {/* INTERFACE DO MODAL DE SUPORTE SOLICITADO */}
                 {activeModal === "suporte" && (
                   <div className="space-y-5 pt-2">
                     <p className="text-sm text-slate-600 font-medium">
@@ -510,7 +548,6 @@ export default function App() {
                     </p>
                     
                     <div className="flex flex-col gap-3">
-                      {/* BOTÃO DO WHATSAPP COM TEXTO DE TRIAGEM JÁ CONFIGURADO */}
                       <a 
                         href="https://wa.me/5500000000000?text=Olá!%20Estou%20no%20site%20CheckMulta%20e%20preciso%20de%20suporte.%20Motivo:%20[Dúvida%20/%20Problema%20com%20Aplicativo%20/%20Solicitação%20de%20Estorno]" 
                         target="_blank" 
@@ -524,7 +561,6 @@ export default function App() {
                         </div>
                       </a>
 
-                      {/* CANAL SECUNDÁRIO CASO VOCÊ QUEIRA LINKAR UM GOOGLE FORMS NO FUTURO */}
                       <a 
                         href="https://forms.google.com" 
                         target="_blank" 
