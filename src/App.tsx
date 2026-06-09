@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useRef, useEffect } from "react";
-import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, MessageSquare, ClipboardList, Menu } from "lucide-react";
+import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, MessageSquare, ClipboardList, Menu, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 const formatDocumentText = (text: string) => {
@@ -101,7 +101,7 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isAnalyzing, isGeneratingDefense]);
 
-  // RADAR DE VERIFICAÇÃO DO PIX REAL
+  // RADAR DE VERIFICAÇÃO DO PIX REAL NO MERCADO PAGO
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
 
@@ -235,8 +235,11 @@ export default function App() {
       if (lowerResult.includes("imagem_ilegivel") || lowerResult.includes("imagem_ilegível") || lowerResult.includes("erro_imagem")) {
         throw new Error("A imagem está muito borrada ou cortada. Por favor, envie uma foto nítida do documento.");
       }
-      if (lowerResult.includes("rejeição") || lowerResult.includes("rejeicao")) {
+      if (lowerResult.includes("rejeicao_prazo_expirado")) {
         throw new Error("Análise Concluída: Não encontramos viabilidade legal para recurso nesta notificação ou o prazo de defesa já está vencido.");
+      }
+      if (lowerResult.includes("rejeição") || lowerResult.includes("rejeicao")) {
+        throw new Error("Análise Concluída: Não encontramos viabilidade legal para recurso nesta notificação.");
       }
       if (lowerResult.includes("erro_seguranca") || lowerResult.includes("erro_segurança")) {
         throw new Error("A imagem foi bloqueada por nossas diretrizes de segurança. Envie o documento original.");
@@ -298,6 +301,18 @@ export default function App() {
     }
   };
 
+  // BOTÃO DE BYPASS PARA TESTES DE SISTEMA E MEMÓRIA
+  const simulateApprovedPayment = () => {
+    setIsPixModalOpen(false);
+    setIsCheckoutLoading(true);
+    setTimeout(() => {
+      setIsCheckoutLoading(false);
+      setIsPaid(true);
+      localStorage.setItem('checkmulta_paid_status', 'true');
+      generateDefense();
+    }, 1500);
+  };
+
   const generateDefense = async (overrideResult?: string) => {
     const dataToUse = overrideResult || result;
     if (!dataToUse) return;
@@ -353,6 +368,17 @@ export default function App() {
       console.error("Failed to copy text: ", err);
     }
   };
+  
+  const handleCopyPix = async () => {
+    if (!qrCode) return;
+    try {
+      await navigator.clipboard.writeText(qrCode);
+      setIsPixCopied(true);
+      setTimeout(() => setIsPixCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy PIX: ", err);
+    }
+  };
 
   const handleDownload = () => {
     if (!defenseResult) return;
@@ -369,7 +395,7 @@ export default function App() {
     <div className="min-h-screen bg-gray-50 flex flex-col items-center text-gray-900 font-sans selection:bg-blue-100 selection:text-blue-900 w-full scroll-smooth">
       
       {/* HEADER RESPONSIVO COM MENU HAMBÚRGUER */}
-      <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-50 overflow-visible">
+      <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-40 overflow-visible">
         <div className="flex items-center h-full w-[180px] md:w-[240px]">
           <img src="/checkmulta-logo.png" alt="CheckMulta Logo" className="w-full h-auto object-contain scale-[1.3] md:scale-[1.5] origin-left translate-y-1" />
         </div>
@@ -564,210 +590,228 @@ export default function App() {
         </div>
       </footer>
 
-      {/* MODAL DO ECOSSISTEMA DE DOCUMENTOS E SUPORTE */}
+      {/* MODAL DO ECOSSISTEMA DE DOCUMENTOS E SUPORTE COM SCROLL CORRIGIDO */}
       <AnimatePresence>
         {activeModal && (
-          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
-            <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="bg-white/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-lg flex flex-col relative" onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setActiveModal(null)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10" aria-label="Fechar"><X className="w-6 h-6" /></button>
-              
-              <div className="mb-4 pr-8">
-                {activeModal === "aviso" && <h3 className="text-xl font-bold text-slate-800">Aviso Jurídico</h3>}
-                {activeModal === "termos" && <h3 className="text-xl font-bold text-slate-800">Termos de Uso</h3>}
-                {activeModal === "privacidade" && <h3 className="text-xl font-bold text-slate-800">Políticas de Privacidade</h3>}
-                {activeModal === "suporte" && <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2"><span>💬</span> Central de Suporte</h3>}
-              </div>
-              
-              <div className="text-sm text-slate-600 leading-relaxed space-y-3">
-                {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente de forma algorítmica...</p>}
-                {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial...</p>}
-                {activeModal === "privacidade" && <p>Sua privacidade é absoluta. Não possuímos banco de dados...</p>}
+          <div className="fixed inset-0 z-[60] overflow-y-auto bg-slate-900/60 backdrop-blur-md">
+            <div className="min-h-full flex items-center justify-center p-4 sm:p-6">
+              <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="bg-white/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-lg flex flex-col relative" onClick={(e) => e.stopPropagation()}>
+                <button onClick={() => setActiveModal(null)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10" aria-label="Fechar"><X className="w-6 h-6" /></button>
                 
-                {activeModal === "suporte" && (
-                  <div className="space-y-5 pt-2">
-                    <p className="text-sm text-slate-600 font-medium">Selecione o canal de atendimento abaixo para falar com o nosso time técnico:</p>
-                    <div className="flex flex-col gap-3">
-                      <a href="https://wa.me/5500000000000?text=Olá!%20Preciso%20de%20ajuda%20com%20o%20CheckMulta." target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 w-full p-4 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl text-emerald-900 transition-colors text-left">
-                        <MessageSquare className="w-6 h-6 text-emerald-600 flex-shrink-0" />
-                        <div><strong className="block text-sm font-bold">Atendimento via WhatsApp</strong><span className="text-xs text-emerald-700 font-medium">Fale direto com um analista</span></div>
-                      </a>
-                      <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 w-full p-4 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-xl text-blue-900 transition-colors text-left">
-                        <ClipboardList className="w-6 h-6 text-blue-600 flex-shrink-0" />
-                        <div><strong className="block text-sm font-bold">Abrir Chamado Técnico</strong><span className="text-xs text-blue-700 font-medium">Reembolsos ou falhas</span></div>
-                      </a>
+                <div className="mb-4 pr-8">
+                  {activeModal === "aviso" && <h3 className="text-xl font-bold text-slate-800">Aviso Jurídico</h3>}
+                  {activeModal === "termos" && <h3 className="text-xl font-bold text-slate-800">Termos de Uso</h3>}
+                  {activeModal === "privacidade" && <h3 className="text-xl font-bold text-slate-800">Políticas de Privacidade</h3>}
+                  {activeModal === "suporte" && <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2"><span>💬</span> Central de Suporte</h3>}
+                </div>
+                
+                <div className="text-sm text-slate-600 leading-relaxed space-y-3">
+                  {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente de forma algorítmica...</p>}
+                  {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial...</p>}
+                  {activeModal === "privacidade" && <p>Sua privacidade é absoluta. Não possuímos banco de dados...</p>}
+                  
+                  {activeModal === "suporte" && (
+                    <div className="space-y-5 pt-2">
+                      <p className="text-sm text-slate-600 font-medium">Selecione o canal de atendimento abaixo para falar com o nosso time técnico:</p>
+                      <div className="flex flex-col gap-3">
+                        <a href="https://wa.me/5500000000000?text=Olá!%20Preciso%20de%20ajuda%20com%20o%20CheckMulta." target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 w-full p-4 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl text-emerald-900 transition-colors text-left">
+                          <MessageSquare className="w-6 h-6 text-emerald-600 flex-shrink-0" />
+                          <div><strong className="block text-sm font-bold">Atendimento via WhatsApp</strong><span className="text-xs text-emerald-700 font-medium">Fale direto com um analista</span></div>
+                        </a>
+                        <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 w-full p-4 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-xl text-blue-900 transition-colors text-left">
+                          <ClipboardList className="w-6 h-6 text-blue-600 flex-shrink-0" />
+                          <div><strong className="block text-sm font-bold">Abrir Chamado Técnico</strong><span className="text-xs text-blue-700 font-medium">Reembolsos ou falhas</span></div>
+                        </a>
+                      </div>
                     </div>
-                  </div>
+                  )}
+                </div>
+                
+                {activeModal !== "suporte" && (
+                  <button onClick={() => setActiveModal(null)} className="mt-8 w-full py-3 bg-slate-100 text-slate-700 rounded-xl font-semibold hover:bg-slate-200 transition-colors">Entendi e concordo</button>
                 )}
-              </div>
-              
-              {activeModal !== "suporte" && (
-                <button onClick={() => setActiveModal(null)} className="mt-8 w-full py-3 bg-slate-100 text-slate-700 rounded-xl font-semibold hover:bg-slate-200 transition-colors">Entendi e concordo</button>
-              )}
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>
 
+      {/* MODAL DE RESULTADO / DEFESA (COM O SCROLL CORRIGIDO ANTI-CORTE) */}
       <AnimatePresence>
         {isResultModalOpen && (
-          <div className="fixed inset-0 z-[45] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
-            
-            {/* RESOLUÇÃO DO 'X': A CAIXA AGORA TEM ALTURA MÁXIMA E O SCROLL É INTERNO */}
-            <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="max-w-3xl w-full flex flex-col relative bg-white/95 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-10 max-h-[95vh] overflow-hidden" onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setIsResultModalOpen(false)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10" aria-label="Fechar"><X className="w-6 h-6" /></button>
-              
-              <div className="w-full overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 mt-4 space-y-6 pr-2">
+          <div className="fixed inset-0 z-[45] overflow-y-auto bg-slate-900/60 backdrop-blur-md">
+            <div className="min-h-full flex items-center justify-center p-4 sm:p-6 py-12">
+              <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="max-w-3xl w-full flex flex-col relative bg-white/95 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-10" onClick={(e) => e.stopPropagation()}>
+                <button onClick={() => setIsResultModalOpen(false)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10" aria-label="Fechar"><X className="w-6 h-6" /></button>
                 
-                {isAnalyzing && (
-                  <div className="flex flex-col items-center justify-center p-4 space-y-5 max-w-md mx-auto">
-                    <div className="w-full h-1.5 bg-blue-100/80 rounded-full overflow-hidden relative">
-                      <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-blue-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                <div className="w-full mt-4 space-y-6">
+                  
+                  {isAnalyzing && (
+                    <div className="flex flex-col items-center justify-center p-4 space-y-5 max-w-md mx-auto">
+                      <div className="w-full h-1.5 bg-blue-100/80 rounded-full overflow-hidden relative">
+                        <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-blue-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                      </div>
+                      <AnimatePresence mode="wait">
+                        <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="font-medium text-slate-700 text-center text-lg">{LOADER_MESSAGES[loaderIndex]}</motion.p>
+                      </AnimatePresence>
                     </div>
-                    <AnimatePresence mode="wait">
-                      <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="font-medium text-slate-700 text-center text-lg">{LOADER_MESSAGES[loaderIndex]}</motion.p>
-                    </AnimatePresence>
-                  </div>
-                )}
+                  )}
 
-                {error && (
-                  <div className="flex flex-col items-center text-center space-y-4 p-8 bg-red-50 border border-red-200 rounded-2xl">
-                    <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
-                      <AlertCircle className="w-8 h-8" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-red-800 mb-2">Análise Bloqueada</h3>
-                      <p className="text-red-700 font-medium leading-relaxed">{error}</p>
-                    </div>
-                    <button onClick={() => setIsResultModalOpen(false)} className="mt-4 px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-colors">
-                      Entendi, voltar
-                    </button>
-                  </div>
-                )}
-
-                {result && !isPaid && !isAnalyzing && !error && (
-                  <div className="space-y-6">
-                    <div className="flex items-start space-x-4">
-                      <CheckCircle2 className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
+                  {error && (
+                    <div className="flex flex-col items-center text-center space-y-4 p-8 bg-red-50 border border-red-200 rounded-2xl">
+                      <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
+                        <AlertCircle className="w-8 h-8" />
+                      </div>
                       <div>
-                        <h2 className="text-xl font-bold text-slate-800 mb-2">✅ Viabilidade Confirmada!</h2>
-                        <p className="text-slate-900 font-medium leading-relaxed">Encontramos tese jurídica válida para solicitar a nulidade.</p>
-                        <div className="mt-3 flex flex-col items-start">
-                          <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-bold rounded-full">
-                            <ShieldCheck className="w-4 h-4 text-emerald-600" />Força da Tese: ALTA
+                        <h3 className="text-xl font-bold text-red-800 mb-2">Análise Bloqueada</h3>
+                        <p className="text-red-700 font-medium leading-relaxed">{error}</p>
+                      </div>
+                      <button onClick={() => setIsResultModalOpen(false)} className="mt-4 px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-colors">
+                        Entendi, voltar
+                      </button>
+                    </div>
+                  )}
+
+                  {result && !isPaid && !isAnalyzing && !error && (
+                    <div className="space-y-6">
+                      <div className="flex items-start space-x-4">
+                        <CheckCircle2 className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
+                        <div>
+                          <h2 className="text-xl font-bold text-slate-800 mb-2">✅ Viabilidade Confirmada!</h2>
+                          <p className="text-slate-900 font-medium leading-relaxed">Encontramos tese jurídica válida para solicitar a nulidade.</p>
+                          <div className="mt-3 flex flex-col items-start">
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-bold rounded-full">
+                              <ShieldCheck className="w-4 h-4 text-emerald-600" />Força da Tese: ALTA
+                            </div>
+                            <p className="text-[11px] text-slate-500 mt-2">*Baseado em falhas materiais ou formais identificadas no auto de infração.</p>
                           </div>
-                          <p className="text-[11px] text-slate-500 mt-2">*Baseado em falhas materiais ou formais identificadas no auto de infração.</p>
+                        </div>
+                      </div>
+                      
+                      <div className="pl-4 text-slate-600 text-sm font-medium whitespace-pre-wrap leading-relaxed border-l-2 border-slate-200">
+                        <strong className="text-slate-800">Resumo do Auto:</strong><br/>{formatDocumentText(result)}
+                      </div>
+
+                      <div className="pt-6">
+                        <div className="flex flex-col space-y-4">
+                          <p className="text-center text-slate-900 font-medium">Tese validada! Deseja liberar sua defesa completa e formatada?</p>
+                          <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-3 px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
+                            <div className="flex flex-row items-center justify-center gap-2 text-base font-bold whitespace-nowrap">
+                              {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6 flex-shrink-0" />}
+                              <span>{isCheckoutLoading ? "Gerando Defesa..." : "Gerar Defesa Completa"}</span>
+                            </div>
+                            <span className="text-xs font-medium opacity-90 mt-1">Taxa única de R$ 19,90</span>
+                          </button>
                         </div>
                       </div>
                     </div>
-                    
-                    <div className="pl-4 text-slate-600 text-sm font-medium whitespace-pre-wrap leading-relaxed border-l-2 border-slate-200">
-                      <strong className="text-slate-800">Resumo do Auto:</strong><br/>{formatDocumentText(result)}
-                    </div>
+                  )}
 
-                    <div className="pt-6">
-                      <div className="flex flex-col space-y-4">
-                        <p className="text-center text-slate-900 font-medium">Tese validada! Deseja liberar sua defesa completa e formatada?</p>
-                        <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-3 px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
-                          <div className="flex flex-row items-center justify-center gap-2 text-base font-bold whitespace-nowrap">
-                            {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6 flex-shrink-0" />}
-                            <span>{isCheckoutLoading ? "Gerando Defesa..." : "Gerar Defesa Completa"}</span>
-                          </div>
-                          <span className="text-xs font-medium opacity-90 mt-1">Taxa única de R$ 19,90</span>
-                        </button>
+                  {isGeneratingDefense && (
+                    <div className="flex flex-col items-center justify-center p-8 space-y-5 max-w-md mx-auto">
+                      <div className="w-full h-1.5 bg-green-100/80 rounded-full overflow-hidden relative">
+                        <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-emerald-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                      </div>
+                      <AnimatePresence mode="wait">
+                        <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="font-medium text-slate-700 text-center text-lg">{LOADER_MESSAGES[loaderIndex]}</motion.p>
+                      </AnimatePresence>
+                      <p className="text-xs text-slate-400 font-medium text-center mt-4">Seu pagamento está seguro. Por favor, aguarde e não feche esta janela.</p>
+                    </div>
+                  )}
+
+                  {/* BLOCO DE ERRO DE GERAÇÃO (O FIM DA TELA INFINITA) */}
+                  {defenseError && (
+                    <div className="flex flex-col items-center text-center space-y-4 p-8 bg-red-50 border border-red-200 rounded-2xl">
+                      <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
+                        <AlertCircle className="w-8 h-8" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-red-800 mb-2">Falha na Geração da Defesa</h3>
+                        <p className="text-red-700 font-medium leading-relaxed">
+                          Ocorreu uma instabilidade na hora de escrever o documento, mas <strong>o seu pagamento está seguro.</strong> Clique abaixo para falar com nossa equipe técnica e receber seu arquivo imediatamente.
+                        </p>
+                      </div>
+                      <a href="https://wa.me/5500000000000?text=Olá!%20Eu%20paguei%20pelo%20recurso%20agora%20mesmo,%20mas%20a%20tela%20deu%20erro%20na%20hora%20de%20carregar%20a%20petição.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-colors flex items-center gap-2">
+                        <MessageSquare className="w-5 h-5" /> Contatar Suporte no WhatsApp
+                      </a>
+                    </div>
+                  )}
+
+                  {defenseResult && (
+                    <div className="flex flex-col space-y-6">
+                      <div className="flex items-center justify-center space-x-3 border-b border-slate-200 pb-4">
+                        <Scale className="w-6 h-6 text-slate-800" />
+                        <h2 className="text-xl font-bold text-slate-800 text-center">Sua Defesa Jurídica Pronta</h2>
+                      </div>
+                      
+                      <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 mt-2 mb-4 rounded-r-md">
+                        <p className="text-sm text-yellow-800">
+                          <strong>Atenção:</strong> Revise o documento abaixo. É obrigatório substituir todos os campos destacados em <span className="text-red-600 font-bold">vermelho</span> pelas suas informações reais.
+                        </p>
+                      </div>
+
+                      <div className="text-slate-800 p-4 sm:p-6 mx-auto bg-slate-50 rounded-xl font-serif border border-slate-200 w-full">
+                        <div className="whitespace-pre-wrap text-left text-[15px] md:text-base leading-relaxed font-medium">
+                          {formatDocumentText(defenseResult)}
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col items-center gap-4 pt-4">
+                        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full">
+                          <button onClick={handleCopy} className="flex items-center justify-center space-x-2 px-8 py-4 bg-white text-slate-800 border-2 border-slate-200 rounded-xl hover:bg-slate-50 transition-colors font-bold text-lg w-full sm:w-auto shadow-sm">
+                            {isCopied ? (<><Check className="w-5 h-5 text-emerald-600" /><span className="text-emerald-600">Copiado!</span></>) : (<><Copy className="w-5 h-5 text-slate-600" /><span>Copiar Petição</span></>)}
+                          </button>
+                          <button onClick={handleDownload} className="flex items-center justify-center space-x-2 px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors shadow-md font-bold text-lg w-full sm:w-auto">
+                            <Download className="w-5 h-5" /><span>Baixar txt</span>
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
 
-                {isGeneratingDefense && (
-                  <div className="flex flex-col items-center justify-center p-8 space-y-5 max-w-md mx-auto">
-                    <div className="w-full h-1.5 bg-green-100/80 rounded-full overflow-hidden relative">
-                      <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-emerald-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
-                    </div>
-                    <AnimatePresence mode="wait">
-                      <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="font-medium text-slate-700 text-center text-lg">{LOADER_MESSAGES[loaderIndex]}</motion.p>
-                    </AnimatePresence>
-                    <p className="text-xs text-slate-400 font-medium text-center mt-4">Seu pagamento está seguro. Por favor, aguarde e não feche esta janela.</p>
-                  </div>
-                )}
-
-                {/* BLOCO DE ERRO DE GERAÇÃO (O FIM DA TELA INFINITA) */}
-                {defenseError && (
-                  <div className="flex flex-col items-center text-center space-y-4 p-8 bg-red-50 border border-red-200 rounded-2xl">
-                    <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
-                      <AlertCircle className="w-8 h-8" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-red-800 mb-2">Falha na Geração da Defesa</h3>
-                      <p className="text-red-700 font-medium leading-relaxed">
-                        Ocorreu uma instabilidade na hora de escrever o documento, mas <strong>o seu pagamento está seguro.</strong> Clique abaixo para falar com nossa equipe técnica e receber seu arquivo imediatamente.
-                      </p>
-                    </div>
-                    <a href="https://wa.me/5500000000000?text=Olá!%20Eu%20paguei%20pelo%20recurso%20agora%20mesmo,%20mas%20a%20tela%20deu%20erro%20na%20hora%20de%20carregar%20a%20petição.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-colors flex items-center gap-2">
-                      <MessageSquare className="w-5 h-5" /> Contatar Suporte no WhatsApp
-                    </a>
-                  </div>
-                )}
-
-                {defenseResult && (
-                  <div className="flex flex-col space-y-6">
-                    <div className="flex items-center justify-center space-x-3 border-b border-slate-200 pb-4">
-                      <Scale className="w-6 h-6 text-slate-800" />
-                      <h2 className="text-xl font-bold text-slate-800 text-center">Sua Defesa Jurídica Pronta</h2>
-                    </div>
-                    
-                    <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 mt-2 mb-4 rounded-r-md">
-                      <p className="text-sm text-yellow-800">
-                        <strong>Atenção:</strong> Revise o documento abaixo. É obrigatório substituir todos os campos destacados em <span className="text-red-600 font-bold">vermelho</span> pelas suas informações reais.
-                      </p>
-                    </div>
-
-                    <div className="text-slate-800 p-4 sm:p-6 mx-auto bg-slate-50 rounded-xl font-serif border border-slate-200 w-full">
-                      <div className="whitespace-pre-wrap text-left text-[15px] md:text-base leading-relaxed font-medium">
-                        {formatDocumentText(defenseResult)}
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col items-center gap-4 pt-4">
-                      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full">
-                        <button onClick={handleCopy} className="flex items-center justify-center space-x-2 px-8 py-4 bg-white text-slate-800 border-2 border-slate-200 rounded-xl hover:bg-slate-50 transition-colors font-bold text-lg w-full sm:w-auto shadow-sm">
-                          {isCopied ? (<><Check className="w-5 h-5 text-emerald-600" /><span className="text-emerald-600">Copiado!</span></>) : (<><Copy className="w-5 h-5 text-slate-600" /><span>Copiar Petição</span></>)}
-                        </button>
-                        <button onClick={handleDownload} className="flex items-center justify-center space-x-2 px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors shadow-md font-bold text-lg w-full sm:w-auto">
-                          <Download className="w-5 h-5" /><span>Baixar txt</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-              </div>
-            </motion.div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>
 
       <AnimatePresence>
         {isPixModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setIsPixModalOpen(false)} className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" />
-            <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="relative w-11/12 max-w-sm max-h-[85vh] overflow-y-auto bg-white rounded-2xl shadow-2xl p-6">
-              <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-5 h-5" /></button>
-              <div className="text-center space-y-6">
-                <div className="flex justify-center"><div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center"><QrCode className="w-8 h-8" /></div></div>
-                <div><h3 className="text-2xl font-bold text-slate-800">Pagamento via Pix</h3></div>
-                <div className="flex justify-center py-4"><div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300"><QrCode className="w-24 h-24 text-slate-300" /></div></div>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
-                    <p className="text-sm text-slate-500 font-mono truncate flex-1">00020126420014br.gov...</p>
-                    <button className="text-emerald-600 hover:bg-emerald-50 p-2 rounded-lg transition-colors border border-emerald-200"><Copy className="w-4 h-4" /></button>
+          <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm">
+             <div className="min-h-full flex items-center justify-center p-4">
+              <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="relative w-11/12 max-w-sm bg-white rounded-2xl shadow-2xl p-6">
+                <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-5 h-5" /></button>
+                <div className="text-center space-y-6">
+                  <div className="flex justify-center"><div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center"><QrCode className="w-8 h-8" /></div></div>
+                  <div><h3 className="text-2xl font-bold text-slate-800">Pagamento via Pix</h3></div>
+                  <div className="flex justify-center py-4"><div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300">
+                    {qrCodeBase64 ? <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" className="w-full h-full p-2 object-contain" /> : <QrCode className="w-24 h-24 text-slate-300 animate-pulse" />}
+                  </div></div>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                      <p className="text-sm text-slate-500 font-mono truncate flex-1 text-left">{qrCode || "Gerando Pix..."}</p>
+                      <button onClick={handleCopyPix} className="text-emerald-600 hover:bg-emerald-50 p-2 rounded-lg transition-colors border border-emerald-200">
+                        {isPixCopied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                      </button>
+                    </div>
                   </div>
+                  
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-sm text-slate-500 font-medium">
+                    <RefreshCcw className="w-4 h-4 animate-spin" />
+                    Aguardando pagamento no banco...
+                  </div>
+
+                  {/* BOTÃO DE TESTE (PULAR PAGAMENTO) */}
+                  <div className="mt-6 pt-2 text-center">
+                    <button onClick={simulateApprovedPayment} className="text-[11px] text-slate-400 hover:text-slate-600 underline flex items-center justify-center mx-auto gap-1 transition-colors">
+                      <span>Pular p/ Teste</span> <ArrowRight className="w-3 h-3" />
+                    </button>
+                  </div>
+
                 </div>
-                <button onClick={() => { setIsPixModalOpen(false); setIsCheckoutLoading(true); setTimeout(() => { setIsCheckoutLoading(false); setIsPaid(true); localStorage.setItem('checkmulta_paid_status', 'true'); generateDefense(); }, 1500); }} className="w-full mt-4 py-3 bg-slate-800 text-white rounded-xl font-bold hover:bg-slate-900 transition-colors shadow-md">
-                  Simular Pagamento Aprovado
-                </button>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         )}
       </AnimatePresence>
