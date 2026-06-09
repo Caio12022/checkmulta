@@ -204,9 +204,29 @@ export default function App() {
       if (!response.ok) throw new Error(typeof data.error === 'string' ? data.error : JSON.stringify(data.error));
       if (data.error) throw new Error(data.error);
 
-      let finalResult = data.result;
-      let expDate: string | null = null;
+      let finalResult = data.result || "";
+      const lowerResult = finalResult.toLowerCase();
+
+      // ==========================================
+      // BLOQUEIO DE SEGURANÇA (O CORAÇÃO DO AJUSTE)
+      // ==========================================
+      if (lowerResult.includes("documento_invalido") || lowerResult.includes("documento_inválido")) {
+        throw new Error("A imagem enviada não é uma notificação de trânsito válida (ex: foto de peça, paisagem ou documento incorreto). Por favor, envie a foto do seu Auto de Infração.");
+      }
+      if (lowerResult.includes("imagem_ilegivel") || lowerResult.includes("imagem_ilegível")) {
+        throw new Error("A imagem está muito borrada, escura ou cortada. Não foi possível ler os dados. Tire uma nova foto bem iluminada e tente novamente.");
+      }
+      if (lowerResult.includes("erro_seguranca") || lowerResult.includes("erro_segurança")) {
+        throw new Error("O sistema bloqueou o envio por questões de segurança no conteúdo da imagem.");
+      }
+      if (lowerResult.includes("rejeição_tipo_a") || lowerResult.includes("rejeicao_tipo_a") || lowerResult.includes("lei seca")) {
+        throw new Error("Identificamos que se trata de uma infração de alta complexidade (Ex: Lei Seca/Bafômetro). Devido à gravidade, recomendamos procurar um advogado especializado. Não geramos recursos automáticos para este caso.");
+      }
+      if (lowerResult.includes("rejeição_tipo_b") || lowerResult.includes("rejeicao_tipo_b")) {
+        throw new Error("Infelizmente, nossa auditoria não encontrou falhas formais na autuação baseadas no Artigo 280 do CTB. O preenchimento do agente parece correto, reduzindo drasticamente as chances de deferimento.");
+      }
       
+      let expDate: string | null = null;
       const prazoMatch = finalResult.match(/⚠️ Atenção: Prazo para recurso encerrado em ([^\n]+)/);
       if (prazoMatch) {
          expDate = prazoMatch[1].trim();
@@ -218,10 +238,11 @@ export default function App() {
       if (finalResult) setHasAnalyzed(true);
       setIsResultModalOpen(true);
     } catch (err: any) {
-      console.error("Erro na Análise (Log da Verdade):", err);
+      console.error("Erro na Análise:", err);
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted") || err.message.includes("quota"))) {
-        setError("SERVER_BUSY");
+        setError("Nossos servidores estão lotados no momento. Por favor, aguarde 1 minuto e tente novamente.");
       } else {
+        // Exibe o erro de forma limpa e em vermelho para o usuário
         setError(err.message || "Ocorreu um erro ao comunicar com o servidor.");
       }
       setIsResultModalOpen(true);
@@ -281,9 +302,9 @@ export default function App() {
 
       setDefenseResult(data.result);
     } catch (err: any) {
-      console.error("Erro na Defesa (Log da Verdade):", err);
+      console.error("Erro na Defesa:", err);
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted") || err.message.includes("quota"))) {
-        setDefenseError("SERVER_BUSY");
+        setDefenseError("Servidor ocupado. Tente novamente em instantes.");
       } else {
         setDefenseError(err.message || "Ocorreu um erro ao comunicar com o servidor.");
       }
@@ -424,7 +445,7 @@ export default function App() {
                     <div className="relative z-10 flex flex-row items-center justify-center gap-3 mt-4 w-full">
                       <button onClick={() => {
                         if (imageFile) {
-                          if (result) {
+                          if (result || error) {
                             setIsResultModalOpen(true);
                           } else {
                             const reader = new FileReader();
@@ -437,7 +458,7 @@ export default function App() {
                           }
                         }
                       }} className="px-5 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors whitespace-nowrap" type="button">
-                        Reanalisar
+                        Ver Resultado Novamente
                       </button>
                       <button onClick={clearImage} className="px-5 py-2 rounded-lg text-sm font-medium text-white bg-slate-800 hover:bg-slate-700 transition-colors shadow-sm whitespace-nowrap" type="button">
                         Nova Multa
@@ -516,7 +537,7 @@ export default function App() {
         </p>
         <div className="flex justify-center space-x-6 mt-4 text-xs font-medium text-slate-400">
           <button onClick={() => setActiveModal("termos")} className="hover:text-slate-600 hover:underline transition-colors">Termos de Uso</button>
-          <button onClick={() => setActiveModal("privacidade")} className="hover:text-slate-600 hover:underline transition-colors">Privacy</button>
+          <button onClick={() => setActiveModal("privacidade")} className="hover:text-slate-600 hover:underline transition-colors">Privacidade</button>
           <button onClick={() => setActiveModal("aviso")} className="hover:text-slate-600 hover:underline transition-colors">Aviso Jurídico</button>
           <button onClick={() => setActiveModal("suporte")} className="hover:text-slate-600 hover:underline font-bold text-blue-600 transition-colors">Central de Suporte</button>
         </div>
@@ -605,14 +626,24 @@ export default function App() {
                   </div>
                 )}
 
+                {/* CAIXA VERMELHA DE ERRO CORRIGIDA */}
                 {error && (
-                  <div className="flex items-center space-x-3 text-red-800 p-4 bg-red-50 rounded-xl">
-                    <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                    <p className="text-sm font-medium">{error}</p>
+                  <div className="flex flex-col items-center text-center space-y-4 p-8 bg-red-50 border border-red-200 rounded-2xl">
+                    <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
+                      <AlertCircle className="w-8 h-8" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-red-800 mb-2">Análise Bloqueada</h3>
+                      <p className="text-red-700 font-medium leading-relaxed">{error}</p>
+                    </div>
+                    <button onClick={() => setIsResultModalOpen(false)} className="mt-4 px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-colors">
+                      Entendi, enviar nova foto
+                    </button>
                   </div>
                 )}
 
-                {result && !isPaid && !isAnalyzing && (
+                {/* CAIXA VERDE SÓ APARECE SE NÃO TIVER ERRO */}
+                {result && !error && !isPaid && !isAnalyzing && (
                   <div className="space-y-6">
                     <div className="flex items-start space-x-4">
                       <CheckCircle2 className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
