@@ -727,12 +727,10 @@ export default function App() {
                           </div>
                         </div>
                         
-                        {/* CONTAINER DOS DADOS EXTRAÍDOS (AGORA NO TOPO POR SUA SUGESTÃO) */}
                         <div className="pl-4 text-slate-600 text-sm font-medium whitespace-pre-wrap leading-relaxed border-l-2 border-slate-200 bg-slate-50/50 p-4 rounded-r-xl">
                           {formatDocumentText(result)}
                         </div>
 
-                        {/* BLOCO PERSUASIVO PREMIUM DE FECHAMENTO (COM MELHOR RESPIRO VISUAL) */}
                         <div className="pt-8 mt-6 border-t border-slate-100">
                           <div className="flex flex-col space-y-6">
                             <div className="text-center space-y-4">
@@ -747,7 +745,6 @@ export default function App() {
                               </p>
                             </div>
                             
-                            {/* BOTÃO PREMIUM AJUSTADO (REDESIGN COMPLETO PARA MOBILE) */}
                             <button
                               onClick={handleCheckout}
                               disabled={isCheckoutLoading}
@@ -802,7 +799,14 @@ export default function App() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col items-center gap-4 pt-4">
+                    {/* TARJETA DE AVISO SOLICITADA PARA RETENÇÃO E SEGURANÇA JURÍDICA */}
+                    <div className="bg-amber-50 border border-amber-300 rounded-xl p-4 text-center max-w-xl mx-auto shadow-sm">
+                      <p className="text-xs text-amber-900 leading-relaxed font-semibold">
+                        ⚠️ <strong className="text-amber-950">Aviso Importante de Sessão:</strong> Ao fechar esta janela ou atualizar a página, os dados desta análise serão perdidos permanentemente e será necessário realizar uma nova consulta. Cuidado para não atualizar e certifique-se de copiar o texto ou baixar o documento antes de sair.
+                      </p>
+                    </div>
+
+                    <div className="flex flex-col items-center gap-4 pt-2">
                       <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full">
                         <button onClick={handleCopy} className="flex items-center justify-center space-x-2 px-8 py-4 bg-white text-slate-800 border-2 border-slate-200 rounded-xl hover:bg-slate-50 transition-colors font-bold text-lg w-full sm:w-auto shadow-sm">
                           {isCopied ? (<><Check className="w-5 h-5 text-emerald-600" /><span className="text-emerald-600">Copiado!</span></>) : (<><Copy className="w-5 h-5 text-slate-600" /><span>Copiar Petição</span></>)}
