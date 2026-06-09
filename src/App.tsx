@@ -66,9 +66,6 @@ export default function App() {
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
 
-  // NOVO ESTADO: Controla se o usuário quer ver o resumo da multa vencida
-  const [showExpiredSummary, setShowExpiredSummary] = useState(false);
-
   const [paymentId, setPaymentId] = useState<number | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
@@ -76,6 +73,7 @@ export default function App() {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // MEMÓRIA ANTI-RECARREGAMENTO
   useEffect(() => {
     const savedResult = localStorage.getItem('checkmulta_saved_result');
     const savedPaidStatus = localStorage.getItem('checkmulta_paid_status');
@@ -167,7 +165,6 @@ export default function App() {
     setDefenseError(null);
     setIsPaid(false);
     setHasAnalyzed(false);
-    setShowExpiredSummary(false); // Reseta a visão do resumo
     setQrCode(null);
     setQrCodeBase64(null);
     setPaymentId(null);
@@ -186,7 +183,6 @@ export default function App() {
     setDefenseResult(null);
     setDefenseError(null);
     setIsPaid(false);
-    setShowExpiredSummary(false);
     setIsResultModalOpen(false);
 
     const reader = new FileReader();
@@ -206,7 +202,6 @@ export default function App() {
     setDefenseResult(null);
     setDefenseError(null);
     setIsPaid(false);
-    setShowExpiredSummary(false);
     setIsResultModalOpen(true);
 
     try {
@@ -221,26 +216,29 @@ export default function App() {
       if (data.error) throw new Error(data.error);
 
       let finalResult = data.result || "";
-      const lowerResult = finalResult.toLowerCase();
+      
+      // DEVOLVIDO A LÓGICA DE EXTRAÇÃO DE DATA EXATA DO SEU AI STUDIO
+      let expDate: string | null = null;
+      const prazoMatch = finalResult.match(/⚠️ Atenção: Prazo para recurso encerrado em ([^\n]+)/);
+      if (prazoMatch) {
+         expDate = prazoMatch[1].trim();
+         finalResult = finalResult.replace(prazoMatch[0], "").trim();
+      }
 
-      // TRAVAS DE SEGURANÇA SUAVES (RESPOSTAS TÉCNICAS DO BACKEND)
-      if (lowerResult.includes("documento_invalido")) {
-        setError("DOC_INVALIDO");
-      } else if (lowerResult.includes("imagem_ilegivel")) {
-        setError("IMG_ILEGIVEL");
-      } else if (lowerResult.includes("rejeicao_complexa")) {
-        setError("REJEICAO_COMPLEXA");
-      } else if (lowerResult.includes("rejeicao_sem_irregularidades")) {
-        setError("REJEICAO_SEM_ERROS");
-      } else {
-        // SUCESSO OU SUCESSO VENCIDA (2008) -> A lógida do render cuida do visual
-        setResult(finalResult);
+      setExpiredDate(expDate);
+      setResult(finalResult);
+      if (finalResult) {
         setHasAnalyzed(true);
+        localStorage.setItem('checkmulta_saved_result', finalResult);
       }
       setIsResultModalOpen(true);
     } catch (err: any) {
       console.error("Erro na Análise:", err);
-      setError("ERRO_INTERNO");
+      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+        setError("SERVER_BUSY");
+      } else {
+        setError(err.message || "Ocorreu um erro ao comunicar com o servidor.");
+      }
       setIsResultModalOpen(true);
     } finally {
       setIsAnalyzing(false);
@@ -249,7 +247,31 @@ export default function App() {
 
   const handleCheckout = async () => {
     if (!result) return;
-    setIsPixModalOpen(true);
+    setIsCheckoutLoading(true);
+    
+    try {
+      const response = await fetch("/api/create-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: "comprador@checkmulta.com.br" }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.qr_code) {
+        setPaymentId(data.id);
+        setQrCode(data.qr_code);
+        setQrCodeBase64(data.qr_code_base64);
+        setIsPixModalOpen(true);
+      } else {
+        alert("Erro ao inicializar gateway de pagamento. Verifique o Token no Render.");
+      }
+    } catch (err) {
+      console.error("Erro ao chamar API de Pagamento:", err);
+      alert("Não foi possível conectar ao servidor de pagamento.");
+    } finally {
+      setIsCheckoutLoading(false);
+    }
   };
 
   const simulateApprovedPayment = () => {
@@ -334,8 +356,6 @@ export default function App() {
     URL.revokeObjectURL(url);
   };
 
-  const isExpiredFine = result?.toLowerCase().includes("(vencida)");
-
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center text-gray-900 font-sans selection:bg-blue-100 selection:text-blue-900 w-full scroll-smooth">
       
@@ -343,18 +363,15 @@ export default function App() {
         <div className="flex items-center h-full w-[180px] md:w-[240px]">
           <img src="/checkmulta-logo.png" alt="CheckMulta Logo" className="w-full h-auto object-contain scale-[1.3] md:scale-[1.5] origin-left translate-y-1" />
         </div>
-        
         <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-600 items-center">
           <a href="#inicio" className="hover:text-blue-600 transition-colors">Início</a>
           <a href="#como-funciona" className="hover:text-blue-600 transition-colors">Como Funciona</a>
           <a href="#seguranca" className="hover:text-blue-600 transition-colors">Segurança</a>
           <button onClick={() => setActiveModal("suporte")} className="hover:text-blue-600 transition-colors font-bold flex items-center gap-1 text-blue-600">Suporte</button>
         </nav>
-
         <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="flex md:hidden p-2 text-slate-600 hover:text-blue-600 transition-colors rounded-lg hover:bg-slate-50">
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
-
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} className="absolute top-16 left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col p-4 space-y-3 md:hidden z-50">
@@ -454,7 +471,7 @@ export default function App() {
       <AnimatePresence>
         {isResultModalOpen && (
           <div className="fixed inset-0 z-[45] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md" onClick={() => setIsResultModalOpen(false)}>
-            <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col relative bg-white rounded-2xl shadow-lg p-6 sm:p-10" onClick={(e) => e.stopPropagation()}>
+            <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="max-w-3xl w-full max-h-[90vh] overflow-hidden flex flex-col relative bg-white rounded-2xl shadow-lg p-6 sm:p-10" onClick={(e) => e.stopPropagation()}>
               <button onClick={() => setIsResultModalOpen(false)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10"><X className="w-6 h-6" /></button>
               
               <div className="w-full overflow-y-auto mt-4 space-y-6 pr-2 scrollbar-thin scrollbar-thumb-slate-200 scrollbar-track-transparent">
@@ -466,51 +483,63 @@ export default function App() {
                   </div>
                 )}
 
-                {/* ERROS E BLOQUEIOS COMPLEXOS (BAFÔMETRO, FOTO RUIM, ETC) */}
-                {error && (
-                  <div className="flex flex-col items-center text-center space-y-5 p-4 mx-auto max-w-md my-4">
-                    <div className="w-16 h-16 bg-slate-100 text-slate-500 rounded-full flex items-center justify-center">
-                      <AlertCircle className="w-8 h-8" />
-                    </div>
-                    <div className="space-y-2">
-                      <h3 className="text-xl font-bold text-slate-800">Análise Concluída</h3>
-                      <p className="text-slate-700 text-sm font-medium leading-relaxed">
-                        {error === "DOC_INVALIDO" && "A imagem enviada não é um auto de infração ou notificação válida."}
-                        {error === "IMG_ILEGIVEL" && "A imagem enviada está muito borrada ou cortada para leitura."}
-                        {error === "REJEICAO_COMPLEXA" && "Identificamos que se trata de uma infração de alta complexidade (como bafômetro/DUI), que não faz parte do nosso escopo de atuação automática. Recomendamos consultar um especialista."}
-                        {error === "REJEICAO_SEM_ERROS" && "Auditamos o preenchimento do auto e não encontramos falhas técnicas que garantam viabilidade para o cancelamento automático."}
-                      </p>
-                    </div>
-                    {(error === "DOC_INVALIDO" || error === "IMG_ILEGIVEL" || error === "REJEICAO_COMPLEXA" || error === "REJEICAO_SEM_ERROS") && (
-                       <button onClick={() => setIsResultModalOpen(false)} className="mt-4 px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors shadow-sm">Entendi e Voltar</button>
-                    )}
+                {/* BLOCO DE ERRO DE SERVIDOR */}
+                {error && error === "SERVER_BUSY" && (
+                  <div className="flex flex-col items-center text-center space-y-4 p-4 mx-auto max-w-md">
+                    <AlertCircle className="w-10 h-10 text-orange-500" />
+                    <h2 className="text-xl font-bold text-slate-800">Servidor Ocupado</h2>
+                    <p className="text-slate-600 font-medium leading-relaxed">Nossos servidores estão processando um alto volume de auditorias neste momento. Aguarde alguns segundos e tente enviar novamente.</p>
+                    <button onClick={() => setIsResultModalOpen(false)} className="mt-4 px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors">Voltar</button>
                   </div>
                 )}
 
-                {/* LÓGICA DE EXIBIÇÃO: SUCESSO X VENCIDA */}
-                {result && !isPaid && !isAnalyzing && !error && (
-                  <>
-                    {/* SE FOR VENCIDA E O USUÁRIO AINDA NÃO CLICOU NO LINK */}
-                    {isExpiredFine && !showExpiredSummary ? (
-                      <div className="flex flex-col items-center text-center space-y-5 p-4 mx-auto max-w-md my-4">
-                        <div className="w-16 h-16 bg-slate-100 text-slate-500 rounded-full flex items-center justify-center">
-                          <AlertCircle className="w-8 h-8" />
-                        </div>
-                        <div className="space-y-3">
-                          <h3 className="text-xl font-bold text-slate-800">Prazo de Defesa Vencido</h3>
-                          <p className="text-slate-700 text-sm font-medium leading-relaxed">
-                            A nossa auditoria preliminar foi concluída. Identificamos que o prazo legal para recorrer desta infração já expirou. Devido a isso, a emissão do recurso final não está disponível.
-                          </p>
-                        </div>
-                        <button 
-                          onClick={() => setShowExpiredSummary(true)} 
-                          className="text-sm font-bold text-blue-600 hover:text-blue-800 underline underline-offset-4 transition-colors pt-2"
-                        >
-                          Gostaria de ver o resumo técnico da análise mesmo assim?
-                        </button>
+                {/* AS TRAVAS ORIGINAIS RESTAURADAS - LAYOUT CLEAN */}
+                {result && !isPaid && !isAnalyzing && (
+                  <div>
+                    {result.toLowerCase().includes("erro_seguranca") ? (
+                      <div className="flex flex-col items-center text-center space-y-4 p-4 mx-auto max-w-md">
+                        <AlertCircle className="w-10 h-10 text-orange-500" />
+                        <h2 className="text-xl font-bold text-slate-800">Envio Bloqueado</h2>
+                        <p className="text-slate-600 font-medium leading-relaxed">A imagem enviada viola nossas políticas de uso e segurança. A análise foi cancelada.</p>
+                        <button onClick={() => setIsResultModalOpen(false)} className="mt-4 px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors">Entendi e Voltar</button>
+                      </div>
+                    ) : result.toLowerCase().includes("documento_invalido") ? (
+                      <div className="flex flex-col items-center text-center space-y-4 p-4 mx-auto max-w-md">
+                        <AlertCircle className="w-10 h-10 text-slate-400" />
+                        <h2 className="text-xl font-bold text-slate-800">Análise Concluída</h2>
+                        <p className="text-slate-600 font-medium leading-relaxed">A imagem enviada não parece ser um auto de infração ou notificação de trânsito válida.</p>
+                        <button onClick={() => setIsResultModalOpen(false)} className="mt-4 px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors">Entendi e Voltar</button>
+                      </div>
+                    ) : result.toLowerCase().includes("imagem_ilegivel") ? (
+                      <div className="flex flex-col items-center text-center space-y-4 p-4 mx-auto max-w-md">
+                        <AlertCircle className="w-10 h-10 text-orange-500" />
+                        <h2 className="text-xl font-bold text-slate-800">Análise Concluída</h2>
+                        <p className="text-slate-600 font-medium leading-relaxed">Não conseguimos ler os dados essenciais com segurança. Por favor, tire uma nova foto bem iluminada.</p>
+                        <button onClick={() => setIsResultModalOpen(false)} className="mt-4 px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors">Entendi e Voltar</button>
+                      </div>
+                    ) : result.toLowerCase().includes("prazo expirado") ? (
+                      <div className="flex flex-col items-center text-center space-y-4 p-4 mx-auto max-w-md">
+                        <AlertCircle className="w-10 h-10 text-slate-500" />
+                        <h2 className="text-xl font-bold text-slate-800">Análise Concluída</h2>
+                        <p className="text-slate-600 font-medium leading-relaxed">Não encontramos viabilidade legal para recurso nesta notificação ou o prazo de defesa já está vencido.</p>
+                        <button onClick={() => setIsResultModalOpen(false)} className="mt-4 px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors">Entendi e Voltar</button>
+                      </div>
+                    ) : result.toLowerCase().includes("rejeição_tipo_a") ? (
+                      <div className="flex flex-col items-center text-center space-y-4 p-4 mx-auto max-w-md">
+                        <AlertCircle className="w-10 h-10 text-slate-500" />
+                        <h2 className="text-xl font-bold text-slate-800">Análise Concluída</h2>
+                        <p className="text-slate-600 font-medium leading-relaxed">Identificamos a sua autuação referente a uma infração de alta complexidade (Ex: Lei Seca/Bafômetro), que não faz parte do nosso escopo automático. Recomendamos consultar um advogado especialista.</p>
+                        <button onClick={() => setIsResultModalOpen(false)} className="mt-4 px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors">Entendi e Voltar</button>
+                      </div>
+                    ) : result.toLowerCase().includes("rejeição_tipo_b") ? (
+                      <div className="flex flex-col items-center text-center space-y-4 p-4 mx-auto max-w-md">
+                        <AlertCircle className="w-10 h-10 text-slate-500" />
+                        <h2 className="text-xl font-bold text-slate-800">Análise Concluída</h2>
+                        <p className="text-slate-600 font-medium leading-relaxed">Auditoramos a sua notificação e não encontramos falhas no preenchimento do agente ou no equipamento que garantam viabilidade para o recurso.</p>
+                        <button onClick={() => setIsResultModalOpen(false)} className="mt-4 px-6 py-2.5 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors">Entendi e Voltar</button>
                       </div>
                     ) : (
-                      /* RESUMO MOSTRADO (Tanto para sucesso normal quanto para vencidas liberadas pelo clique) */
+                      // BLOCO DE SUCESSO VALIDADO
                       <div className="space-y-6">
                         <div className="flex items-start space-x-4">
                           <CheckCircle2 className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
@@ -521,11 +550,6 @@ export default function App() {
                               <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-bold rounded-full">
                                 <ShieldCheck className="w-4 h-4 text-emerald-600" />Força da Tese: ALTA
                               </div>
-                              {isExpiredFine && (
-                                <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-slate-100 border border-slate-200 text-slate-700 text-sm font-bold rounded-full">
-                                  <AlertCircle className="w-4 h-4 text-slate-500" />⚠️ Prazo de defesa já venceu
-                                </div>
-                              )}
                             </div>
                           </div>
                         </div>
@@ -535,28 +559,20 @@ export default function App() {
                         </div>
 
                         <div className="pt-8 border-t border-slate-100">
-                          {/* BOTÃO DE PAGAMENTO (Só aparece se NÃO for vencida) */}
-                          {!isExpiredFine ? (
-                            <div className="flex flex-col space-y-6 items-center text-center">
-                              <p className="text-slate-900 font-medium leading-relaxed max-w-xl">Cruzamos os dados com o Manual de Fiscalização e estruturamos a tese de defesa completa...</p>
-                              <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
-                                <div className="flex flex-row items-center gap-3 text-lg font-black tracking-tight">{isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6" />}<span>Emitir Defesa de Anulação Pronta</span></div>
-                                <span className="text-xs font-semibold opacity-95 mt-1 bg-white/10 px-3 py-1 rounded-full">Liberação imediata • Taxa única R$ 19,90</span>
-                              </button>
-                            </div>
-                          ) : (
-                            // BOTÃO DE SAÍDA (Se a multa estiver vencida)
-                            <div className="flex flex-col space-y-3 items-center text-center">
-                               <button onClick={() => setIsResultModalOpen(false)} className="px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl transition-colors shadow-sm">Fechar Resumo</button>
-                            </div>
-                          )}
+                          <div className="flex flex-col space-y-6 items-center text-center">
+                            <p className="text-slate-900 font-medium leading-relaxed max-w-xl">Cruzamos os dados com o Manual de Fiscalização e estruturamos a tese de defesa completa...</p>
+                            <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
+                              <div className="flex flex-row items-center gap-3 text-lg font-black tracking-tight">{isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6" />}<span>Emitir Defesa de Anulação Pronta</span></div>
+                              <span className="text-xs font-semibold opacity-95 mt-1 bg-white/10 px-3 py-1 rounded-full">Liberação imediata • Taxa única R$ 19,90</span>
+                            </button>
+                          </div>
                         </div>
                       </div>
                     )}
-                  </>
+                  </div>
                 )}
 
-                {/* TELAS DE CARREGAMENTO E SUCESSO DA PETIÇÃO */}
+                {/* GERAÇÃO DA DEFESA FINAL */}
                 {isGeneratingDefense && (
                   <div className="flex flex-col items-center justify-center p-8 space-y-5 max-w-md mx-auto">
                     <div className="w-full h-1.5 bg-green-100/80 rounded-full overflow-hidden relative"><motion.div className="absolute top-0 left-0 h-full w-1/2 bg-emerald-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} /></div>
@@ -567,18 +583,10 @@ export default function App() {
 
                 {defenseError && (
                   <div className="flex flex-col items-center text-center space-y-4 p-4 mx-auto max-w-md my-6">
-                    <div className="w-16 h-16 bg-slate-100 text-slate-500 rounded-full flex items-center justify-center">
-                      <AlertCircle className="w-8 h-8" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-slate-800 mb-2">Falha na Geração da Defesa</h3>
-                      <p className="text-slate-700 text-sm font-medium leading-relaxed">
-                        Ocorreu uma instabilidade na hora de escrever o documento, mas <strong>o seu pagamento está seguro.</strong> Clique abaixo para falar com nossa equipe técnica.
-                      </p>
-                    </div>
-                    <a href="https://wa.me/5500000000000?text=Olá!%20Paguei%20pelo%20recurso%20agora,%20mas%20deu%20erro%20na%20hora%20de%20gerar.%20Pode%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-colors flex items-center gap-2">
-                      <MessageSquare className="w-5 h-5" /> Contatar Suporte no WhatsApp
-                    </a>
+                    <AlertCircle className="w-10 h-10 text-red-500" />
+                    <h3 className="text-xl font-bold text-slate-800">Falha na Geração</h3>
+                    <p className="text-slate-700 text-sm font-medium leading-relaxed">Ocorreu uma instabilidade na hora de escrever o documento, mas <strong>o seu pagamento está seguro.</strong> Clique abaixo para falar com nossa equipe técnica.</p>
+                    <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer" className="mt-4 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-colors flex items-center gap-2"><MessageSquare className="w-5 h-5" /> Suporte no WhatsApp</a>
                   </div>
                 )}
 
