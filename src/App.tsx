@@ -65,6 +65,11 @@ export default function App() {
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
 
+  // Estados dinâmicos para o Mercado Pago Real
+  const [qrCode, setQrCode] = useState<string | null>(null);
+  const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
+  const [isPixCopied, setIsPixCopied] = useState(false);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -113,6 +118,8 @@ export default function App() {
     setDefenseError(null);
     setIsPaid(false);
     setHasAnalyzed(false);
+    setQrCode(null);
+    setQrCodeBase64(null);
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
@@ -162,7 +169,6 @@ export default function App() {
       const data = await response.json();
 
       if (!response.ok) {
-        // Se a resposta tem 'data.error', checamos se é um erro cru do gemini ou nossa própria string.
         throw new Error(typeof data.error === 'string' ? data.error : JSON.stringify(data.error));
       }
 
@@ -187,7 +193,6 @@ export default function App() {
       setIsResultModalOpen(true);
     } catch (err: any) {
       console.error("Erro na Análise (Log da Verdade):", err);
-      // Aqui determinamos se disparamos o SERVER_BUSY ou um erro genérico
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted") || err.message.includes("quota"))) {
         setError("SERVER_BUSY");
       } else {
@@ -199,9 +204,37 @@ export default function App() {
     }
   };
 
+  // DISPARO DINÂMICO PARA O MERCADO PAGO REAL
   const handleCheckout = async () => {
     if (!result) return;
-    setIsPixModalOpen(true);
+    setIsCheckoutLoading(true);
+    
+    try {
+      const response = await fetch("/api/create-payment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: "comprador@checkmulta.com.br"
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.qr_code) {
+        setQrCode(data.qr_code);
+        setQrCodeBase64(data.qr_code_base64);
+        setIsPixModalOpen(true);
+      } else {
+        alert("Erro ao inicializar gateway de pagamento. Verifique o Token no Render.");
+      }
+    } catch (err) {
+      console.error("Erro ao chamar API de Pagamento:", err);
+      alert("Não foi possível conectar ao servidor de pagamento.");
+    } finally {
+      setIsCheckoutLoading(false);
+    }
   };
 
   const simulateApprovedPayment = () => {
@@ -218,7 +251,6 @@ export default function App() {
     const dataToUse = overrideResult || result;
     if (!dataToUse) return;
     
-    // Limpeza rigorosa do estado antes da nova requisição
     setIsGeneratingDefense(true);
     setDefenseError(null);
     setDefenseResult(null);
@@ -264,6 +296,17 @@ export default function App() {
     }
   };
 
+  const handleCopyPix = async () => {
+    if (!qrCode) return;
+    try {
+      await navigator.clipboard.writeText(qrCode);
+      setIsPixCopied(true);
+      setTimeout(() => setIsPixCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy PIX: ", err);
+    }
+  };
+
   const handleDownload = () => {
     if (!defenseResult) return;
     const blob = new Blob([defenseResult], { type: 'text/plain' });
@@ -295,7 +338,7 @@ export default function App() {
             Cancele Multas Injustas com Inteligência Artificial
           </h1>
           <p className="text-slate-800 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-            Nosso sistema audita sua notificação de trânsito em segundos, cruza os dados com o CTB e o Manual de Fiscalização, e identifica falhas legais para anular a infração.
+            Nosso system audita sua notificação de trânsito em segundos, cruza os dados com o CTB e o Manual de Fiscalização, e identifica falhas legais para anular a infração.
           </p>
           
           <div className="bg-emerald-50 rounded-2xl p-6 md:p-8 max-w-2xl mx-auto flex flex-col items-center shadow-sm border border-emerald-100">
@@ -451,7 +494,7 @@ export default function App() {
               </div>
               <h3 className="text-xl font-bold text-slate-800 mb-3">3. Defesa Pronta</h3>
               <p className="text-slate-600 font-medium leading-relaxed">
-                Se encontrarmos viabilidade, geramos a petição baseada na lei pronta para protocolo.
+                Se encontramos viabilidade, geramos a petição baseada na lei pronta para protocolo.
               </p>
             </div>
           </div>
@@ -561,8 +604,6 @@ export default function App() {
           </div>
         )}
       </AnimatePresence>
-
-
 
       <AnimatePresence>
         {isResultModalOpen && (
@@ -955,18 +996,33 @@ export default function App() {
                   <p className="text-slate-500 mt-2 font-medium">Escaneie o QR Code ou utilize o Pix Copia e Cola para continuar.</p>
                 </div>
 
+                {/* CONTAINER DO QR CODE DINÂMICO DO MERCADO PAGO */}
                 <div className="flex justify-center py-4">
-                  <div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300">
-                    <QrCode className="w-24 h-24 text-slate-300" />
+                  <div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300 overflow-hidden">
+                    {qrCodeBase64 ? (
+                      <img 
+                        src={`data:image/png;base64,${qrCodeBase64}`} 
+                        alt="QR Code Real do Mercado Pago" 
+                        className="w-full h-full p-2 object-contain"
+                      />
+                    ) : (
+                      <QrCode className="w-24 h-24 text-slate-300 animate-pulse" />
+                    )}
                   </div>
                 </div>
 
+                {/* CAMPO DE COPIA E COLA REAL */}
                 <div className="space-y-3">
                   <p className="text-sm font-bold text-slate-700 text-left">Pix Copia e Cola:</p>
                   <div className="flex items-center space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
-                    <p className="text-sm text-slate-500 font-mono truncate flex-1">00020126420014br.gov.bcb.pix...</p>
-                    <button className="text-emerald-600 hover:bg-emerald-50 p-2 rounded-lg transition-colors border border-emerald-200">
-                      <Copy className="w-4 h-4" />
+                    <p className="text-sm text-slate-500 font-mono truncate flex-1 text-left">
+                      {qrCode || "Gerando código Pix..."}
+                    </p>
+                    <button 
+                      onClick={handleCopyPix}
+                      className="text-emerald-600 hover:bg-emerald-50 p-2 rounded-lg transition-colors border border-emerald-200 flex-shrink-0"
+                    >
+                      {isPixCopied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
                     </button>
                   </div>
                 </div>
