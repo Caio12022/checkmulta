@@ -10,8 +10,7 @@ import { motion, AnimatePresence } from "motion/react";
 const formatDocumentText = (text: string) => {
   if (!text) return text;
   
-  let cleanText = text.replace(/\*\frac{}{}\*\*/g, '$1');
-  cleanText = cleanText.replace(/\*\*(.*?)\*\*/g, '$1');
+  let cleanText = text.replace(/\*\*(.*?)\*\*/g, '$1');
   cleanText = cleanText.replace(/\*(.*?)\*/g, '$1');
   cleanText = cleanText.replace(/`(.*?)`/g, '$1');
 
@@ -86,7 +85,7 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isAnalyzing, isGeneratingDefense]);
 
-  // RADAR DE VERIFICAÇÃO DO PIX REAL (BLINDADO)
+  // RADAR DE VERIFICAÇÃO DO PIX REAL
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
 
@@ -99,7 +98,7 @@ export default function App() {
         if (data.status === "approved") {
           clearInterval(intervalId);
           setIsPixModalOpen(false);
-          setIsPaid(true); // Engata o pagamento imediatamente na memória ativa
+          setIsPaid(true);
         }
       } catch (err) {
         console.error("Erro no radar do PIX", err);
@@ -219,7 +218,7 @@ export default function App() {
       if (finalResult) setHasAnalyzed(true);
       setIsResultModalOpen(true);
     } catch (err: any) {
-      console.error("Erro na Análise (Log da Verdade):", err);
+      console.error("Erro na Análise:", err);
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted") || err.message.includes("quota"))) {
         setError("SERVER_BUSY");
       } else {
@@ -282,7 +281,7 @@ export default function App() {
 
       setDefenseResult(data.result);
     } catch (err: any) {
-      console.error("Erro na Defesa (Log da Verdade):", err);
+      console.error("Erro na Defesa:", err);
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted") || err.message.includes("quota"))) {
         setDefenseError("SERVER_BUSY");
       } else {
@@ -351,7 +350,7 @@ export default function App() {
           
           <div className="bg-emerald-50 rounded-2xl p-6 md:p-8 max-w-2xl mx-auto flex flex-col items-center shadow-sm border border-emerald-100">
             <p className="text-emerald-800 font-bold text-lg md:text-xl text-center leading-snug">
-              Auditoria inteligente: o que o olho humano perde, nosso system encontra. Analise sua multa grátis.
+              Auditoria inteligente: o que o olho humano perde, nosso sistema encontra. Analise sua multa grátis.
             </p>
             <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} className="mt-5">
               <ArrowDown className="w-8 h-8 text-emerald-700" />
@@ -477,7 +476,7 @@ export default function App() {
         </p>
         <div className="flex justify-center space-x-6 mt-4 text-xs font-medium text-slate-400">
           <button onClick={() => setActiveModal("termos")} className="hover:text-slate-600 hover:underline transition-colors">Termos de Uso</button>
-          <button onClick={() => setActiveModal("privacidade")} className="hover:text-slate-600 hover:underline transition-colors">Privacidade</button>
+          <button onClick={() => setActiveModal("privacidade")} className="hover:text-slate-600 hover:underline transition-colors">Privacy</button>
           <button onClick={() => setActiveModal("aviso")} className="hover:text-slate-600 hover:underline transition-colors">Aviso Jurídico</button>
         </div>
       </footer>
@@ -532,7 +531,6 @@ export default function App() {
                   </div>
                 )}
 
-                {/* RELATÓRIO DO RESUMO GRATUITO */}
                 {result && !isPaid && !isAnalyzing && (
                   <div className="space-y-6">
                     <div className="flex items-start space-x-4">
@@ -560,7 +558,7 @@ export default function App() {
                           <p className="text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-100 inline-block px-5 py-2.5 rounded-full shadow-sm">Tudo pronto. Você só precisa emitir o documento, copiar o texto e colar no portal de recursos do órgão.</p>
                         </div>
                         
-                        <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center p-5 bg-emerald-600 text-white rounded-2xl hover:bg-emerald-700 transition-colors shadow-md border-b-4 border-emerald-800/60">
+                        <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center p-5 bg-emerald-600 text-white rounded-2xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed border-b-4 border-emerald-800/60">
                           <div className="flex flex-row items-center justify-center gap-3 text-lg font-black tracking-tight w-full">
                             {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6 flex-shrink-0" />}
                             <span className="text-center leading-tight">Emitir Recurso de Anulação Pronto</span>
@@ -572,18 +570,16 @@ export default function App() {
                   </div>
                 )}
 
-                {/* TELA DE LOADING DA GERAÇÃO DA DEFESA REAL */}
                 {isGeneratingDefense && (
                   <div className="flex flex-col items-center justify-center p-12 space-y-5 max-w-md mx-auto">
                     <div className="w-full h-1.5 bg-green-100/80 rounded-full overflow-hidden relative">
                       <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-emerald-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
                     </div>
-                    <p className="font-black text-slate-800 text-center text-xl animate-pulse">Acionando Motor Jurídico Avançado...</p>
-                    <p className="text-sm text-slate-500 font-medium text-center">A IA Sênior está redigindo e fundamentando as teses de anulação da sua petição.</p>
+                    <p className="font-black text-slate-800 text-center text-xl animate-pulse">Gerando sua petição oficial formatada...</p>
+                    <p className="text-sm text-slate-500 font-medium text-center">Nossa inteligência está fundamentando as teses de anulação no documento.</p>
                   </div>
                 )}
 
-                {/* BANNER DE ERRO CASO A IA FALHE */}
                 {defenseError && (
                   <div className="flex items-center space-x-3 text-red-800 p-4 bg-red-50 rounded-xl">
                     <AlertCircle className="w-5 h-5 flex-shrink-0" />
@@ -591,7 +587,6 @@ export default function App() {
                   </div>
                 )}
 
-                {/* EXIBIÇÃO DA PETIÇÃO OFICIAL DA IA PRO */}
                 {defenseResult && (
                   <div className="flex flex-col space-y-6">
                     <div className="flex items-center justify-center space-x-3 border-b border-slate-200 pb-4">
@@ -637,7 +632,14 @@ export default function App() {
             <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="relative w-11/12 max-w-sm max-h-[85vh] overflow-y-auto bg-white rounded-2xl shadow-2xl p-6">
               <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-5 h-5" /></button>
               <div className="text-center space-y-6">
-                <div className="flex justify-center"><div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center"><QrCode className="w-8 h-8" /></div></div>
+                
+                {/* CONTAINER DO LOGO DO MERCADO PAGO INTEGRADO E PROPORCIONAL */}
+                <div className="flex justify-center">
+                  <div className="w-16 h-16 flex items-center justify-center overflow-hidden">
+                    <img src="/mercado-pago-logo.png" alt="Mercado Pago" className="w-full h-full object-contain" />
+                  </div>
+                </div>
+
                 <div>
                   <h3 className="text-2xl font-bold text-slate-800">Pagamento via Pix</h3>
                   <p className="text-slate-500 mt-2 font-medium">Escaneie o QR Code ou utilize o botão Copia e Cola abaixo.</p>
