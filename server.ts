@@ -15,7 +15,6 @@ function getAIClient() {
   return aiClient;
 }
 
-// Inicializa o Mercado Pago usando o Token que guardamos no Render
 const mpClient = new MercadoPagoConfig({
   accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN || "",
 });
@@ -25,11 +24,10 @@ async function startServer() {
   const app = express();
   const PORT = parseInt(process.env.PORT || "3000", 10);
 
-  // Increase limit for base64 image uploads
   app.use(express.json({ limit: "50mb" }));
 
   // ==========================================
-  // ROTA NOVA: GERAR PIX DE TESTE (R$ 1,00)
+  // ROTA: GERAR PIX DE TESTE (R$ 1,00)
   // ==========================================
   app.post("/api/create-payment", async (req, res) => {
     try {
@@ -39,22 +37,19 @@ async function startServer() {
 
       const { email } = req.body;
 
-      // Monta a cobrança do Pix
       const paymentData = {
         body: {
-          transaction_amount: 1.00, // Valor temporário de teste: R$ 1,00
+          transaction_amount: 1.00,
           description: "Criação de Recurso - CheckMulta",
           payment_method_id: "pix",
           payer: {
-            email: email || "cliente@checkmulta.com.br", // E-mail padrão caso o front não envie
+            email: email || "cliente@checkmulta.com.br",
           },
         },
       };
 
-      // Envia o pedido para o banco do Mercado Pago
       const response = await paymentClient.create(paymentData);
 
-      // Devolve para o site o código Copia e Cola e a imagem do QR Code
       res.json({
         id: response.id,
         status: response.status,
@@ -68,8 +63,23 @@ async function startServer() {
   });
 
   // ==========================================
-  // ROTA: ANALISAR MULTA (GEMINI)
+  // ROTA NOVA: RADAR DE PAGAMENTO (VERIFICA SE PAGOU)
   // ==========================================
+  app.get("/api/check-payment/:id", async (req, res) => {
+    try {
+      const paymentId = Number(req.params.id);
+      if (!paymentId) {
+        return res.status(400).json({ error: "ID inválido" });
+      }
+      
+      const payment = await paymentClient.get({ id: paymentId });
+      res.json({ status: payment.status });
+    } catch (err: any) {
+      console.error("Erro ao checar pagamento:", err);
+      res.status(500).json({ error: "Erro interno ao verificar Pix" });
+    }
+  });
+
   app.post("/api/analyze-ticket", async (req, res) => {
     try {
       const { imageBase64, mimeType } = req.body;
@@ -141,21 +151,12 @@ REGRA DE OURO: Pare a resposta nos dados extraídos.`;
           {
             role: "user",
             parts: [
-              {
-                inlineData: {
-                  data: imageBase64,
-                  mimeType: mimeType
-                }
-              },
-              {
-                text: prompt
-              }
+              { inlineData: { data: imageBase64, mimeType: mimeType } },
+              { text: prompt }
             ]
           }
         ],
-        config: {
-          temperature: 0.0
-        }
+        config: { temperature: 0.0 }
       });
 
       const resultText = response.text || "";
@@ -169,9 +170,6 @@ REGRA DE OURO: Pare a resposta nos dados extraídos.`;
     }
   });
 
-  // ==========================================
-  // ROTA: GERAR DEFESA (PETIÇÃO)
-  // ==========================================
   app.post("/api/generate-defense", async (req, res) => {
     try {
       const { extractedData } = req.body;
@@ -207,7 +205,7 @@ Considerando que o procedimento não atendeu aos critérios estabelecidos pela l
 2. DOS PEDIDOS
 Ante o exposto, requer:
 a) O acolhimento da presente Defesa Prévia para que seja determinado o cancelamento e o arquivamento do Auto de Infração nº [AIT];
-b) Requer-se, sob pena de cerceamento de defense, que a Autoridade de Trânsito anexe aos autos a cópia integral de laudos, imagens e relatórios pertinentes à infração.
+b) Requer-se, sob pena de cerceamento de defesa, que a Autoridade de Trânsito anexe aos autos a cópia integral de laudos, imagens e relatórios pertinentes à infração.
 
 Nestes termos, pede deferimento.
 [CIDADE], 08 de junho de 2026.
@@ -218,15 +216,8 @@ __________________________________________
 
       const response = await ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
-        contents: [
-          {
-            role: "user",
-            parts: [{ text: prompt }]
-          }
-        ],
-        config: {
-          temperature: 0.0
-        }
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+        config: { temperature: 0.0 }
       });
 
       const resultText = response.text || "";
@@ -240,7 +231,6 @@ __________________________________________
     }
   });
 
-  // Vite middleware for development
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },
@@ -248,10 +238,8 @@ __________________________________________
     });
     app.use(vite.middlewares);
   } else {
-    // In production (after build), serve static files from dist
     const distPath = path.join(process.cwd(), "dist");
     app.use(express.static(distPath));
-    // Support client-side routing
     app.get("*", (req, res) => {
       res.sendFile(path.join(distPath, "index.html"));
     });
