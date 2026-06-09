@@ -4,13 +4,13 @@
  */
 
 import React, { useState, useRef, useEffect } from "react";
-import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, Shield } from "lucide-react";
+import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, HelpCircle, MessageSquare, ClipboardList } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 const formatDocumentText = (text: string) => {
   if (!text) return text;
   
-  let cleanText = text.replace(/\*\frac{}{}\*\*/g, '$1');
+  let cleanText = text.replace(/\*\*(.*?)\*\/g, '$1');
   cleanText = cleanText.replace(/\*\*(.*?)\*\*/g, '$1');
   cleanText = cleanText.replace(/\*(.*?)\*/g, '$1');
   cleanText = cleanText.replace(/`(.*?)`/g, '$1');
@@ -57,15 +57,14 @@ export default function App() {
   const [defenseResult, setDefenseResult] = useState<string | null>(null);
   const [defenseError, setDefenseError] = useState<string | null>(null);
 
-  const [isPaid, opacitySetIsPaid] = useState(false);
-  const [activeModal, setActiveModal] = useState<"termos" | "privacidade" | "aviso" | null>(null);
+  const [isPaid, setIsPaid] = useState(false);
+  const [activeModal, setActiveModal] = useState<"termos" | "privacidade" | "aviso" | "suporte" | null>(null);
   const [isCopied, setIsCopied] = useState(false);
 
   const [hasAnalyzed, setHasAnalyzed] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
-  const [logoError, setLogoError] = useState(false);
 
   // Estados para o Mercado Pago
   const [paymentId, setPaymentId] = useState<number | null>(null);
@@ -100,7 +99,7 @@ export default function App() {
         if (data.status === "approved") {
           clearInterval(intervalId);
           setIsPixModalOpen(false);
-          opacitySetIsPaid(true);
+          setIsPaid(true);
         }
       } catch (err) {
         console.error("Erro no radar do PIX", err);
@@ -116,7 +115,6 @@ export default function App() {
     };
   }, [isPixModalOpen, paymentId]);
 
-  // GATILHO REATIVO SEGURO
   useEffect(() => {
     if (isPaid && result && !defenseResult && !isGeneratingDefense) {
       generateDefense();
@@ -155,7 +153,7 @@ export default function App() {
     setDefenseResult(null);
     setError(null);
     setDefenseError(null);
-    opacitySetIsPaid(false);
+    setIsPaid(false);
     setHasAnalyzed(false);
     setQrCode(null);
     setQrCodeBase64(null);
@@ -172,7 +170,7 @@ export default function App() {
     setResult(null);
     setDefenseResult(null);
     setDefenseError(null);
-    opacitySetIsPaid(false);
+    setIsPaid(false);
     setIsResultModalOpen(false);
 
     const reader = new FileReader();
@@ -191,7 +189,7 @@ export default function App() {
     setResult(null);
     setDefenseResult(null);
     setDefenseError(null);
-    opacitySetIsPaid(false);
+    setIsPaid(false);
     setIsResultModalOpen(true);
 
     try {
@@ -220,7 +218,7 @@ export default function App() {
       if (finalResult) setHasAnalyzed(true);
       setIsResultModalOpen(true);
     } catch (err: any) {
-      console.error("Erro na Análise:", err);
+      console.error("Erro na Análise (Log da Verdade):", err);
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted") || err.message.includes("quota"))) {
         setError("SERVER_BUSY");
       } else {
@@ -283,7 +281,7 @@ export default function App() {
 
       setDefenseResult(data.result);
     } catch (err: any) {
-      console.error("Erro na Defesa:", err);
+      console.error("Erro na Defesa (Log da Verdade):", err);
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted") || err.message.includes("quota"))) {
         setDefenseError("SERVER_BUSY");
       } else {
@@ -337,6 +335,7 @@ export default function App() {
           <a href="#inicio" className="hover:text-blue-600 transition-colors">Início</a>
           <a href="#como-funciona" className="hover:text-blue-600 transition-colors">Como Funciona</a>
           <a href="#seguranca" className="hover:text-blue-600 transition-colors">Segurança</a>
+          <button onClick={() => setActiveModal("suporte")} className="hover:text-blue-600 transition-colors font-bold flex items-center gap-1">Suporte</button>
         </nav>
       </header>
 
@@ -352,7 +351,7 @@ export default function App() {
           
           <div className="bg-emerald-50 rounded-2xl p-6 md:p-8 max-w-2xl mx-auto flex flex-col items-center shadow-sm border border-emerald-100">
             <p className="text-emerald-800 font-bold text-lg md:text-xl text-center leading-snug">
-              Auditoria inteligente: o que o olho humano perde, nosso system encontra. Analise sua multa grátis.
+              Auditoria inteligente: o que o olho humano perde, nosso sistema encontra. Analise sua multa grátis.
             </p>
             <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} className="mt-5">
               <ArrowDown className="w-8 h-8 text-emerald-700" />
@@ -478,29 +477,75 @@ export default function App() {
         </p>
         <div className="flex justify-center space-x-6 mt-4 text-xs font-medium text-slate-400">
           <button onClick={() => setActiveModal("termos")} className="hover:text-slate-600 hover:underline transition-colors">Termos de Uso</button>
-          <button onClick={() => setActiveModal("privacidade")} className="hover:text-slate-600 hover:underline transition-colors">Privacy</button>
+          <button onClick={() => setActiveModal("privacidade")} className="hover:text-slate-600 hover:underline transition-colors">Privacidade</button>
           <button onClick={() => setActiveModal("aviso")} className="hover:text-slate-600 hover:underline transition-colors">Aviso Jurídico</button>
+          <button onClick={() => setActiveModal("suporte")} className="hover:text-slate-600 hover:underline font-bold text-blue-600 transition-colors">Central de Suporte</button>
         </div>
       </footer>
 
+      {/* MODAL DO ECOSSISTEMA DE DOCUMENTOS E SUPORTE */}
       <AnimatePresence>
         {activeModal && (
           <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
-            <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="bg-white/95 backdrop-blur-md rounded-2xl p-8 max-w-md w-full shadow-lg flex flex-col relative" onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setActiveModal(null)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10" aria-label="Fechar">
-                <X className="w-6 h-6" />
-              </button>
+            <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="bg-white/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-lg flex flex-col relative" onClick={(e) => e.stopPropagation()}>
+              <button onClick={() => setActiveModal(null)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10" aria-label="Fechar"><X className="w-6 h-6" /></button>
+              
               <div className="mb-4 pr-8">
                 {activeModal === "aviso" && <h3 className="text-xl font-bold text-slate-800">Aviso Jurídico</h3>}
                 {activeModal === "termos" && <h3 className="text-xl font-bold text-slate-800">Termos de Uso</h3>}
                 {activeModal === "privacidade" && <h3 className="text-xl font-bold text-slate-800">Políticas de Privacidade</h3>}
+                {activeModal === "suporte" && <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2"><span>💬</span> Central de Suporte</h3>}
               </div>
+              
               <div className="text-sm text-slate-600 leading-relaxed space-y-3">
-                {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente de forma algorítmica e não constitui tese jurídica garantida...</p>}
+                {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente de forma algorítmica...</p>}
                 {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial...</p>}
                 {activeModal === "privacidade" && <p>Sua privacidade é absoluta. Não possuímos banco de dados...</p>}
+                
+                {/* INTERFACE DO MODAL DE SUPORTE SOLICITADO */}
+                {activeModal === "suporte" && (
+                  <div className="space-y-5 pt-2">
+                    <p className="text-sm text-slate-600 font-medium">
+                      Teve alguma dúvida ou problema com o aplicativo? Selecione o canal de atendimento abaixo para falar com o nosso time técnico imediatamente:
+                    </p>
+                    
+                    <div className="flex flex-col gap-3">
+                      {/* BOTÃO DO WHATSAPP COM TEXTO DE TRIAGEM JÁ CONFIGURADO */}
+                      <a 
+                        href="https://wa.me/5500000000000?text=Olá!%20Estou%20no%20site%20CheckMulta%20e%20preciso%20de%20suporte.%20Motivo:%20[Dúvida%20/%20Problema%20com%20Aplicativo%20/%20Solicitação%20de%20Estorno]" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 w-full p-4 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl text-emerald-900 transition-colors text-left"
+                      >
+                        <MessageSquare className="w-6 h-6 text-emerald-600 flex-shrink-0" />
+                        <div>
+                          <strong className="block text-sm font-bold">Atendimento via WhatsApp</strong>
+                          <span className="text-xs text-emerald-700 font-medium">Fale direto com um analista via chat</span>
+                        </div>
+                      </a>
+
+                      {/* CANAL SECUNDÁRIO CASO VOCÊ QUEIRA LINKAR UM GOOGLE FORMS NO FUTURO */}
+                      <a 
+                        href="https://forms.google.com" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 w-full p-4 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-xl text-blue-900 transition-colors text-left"
+                      >
+                        <ClipboardList className="w-6 h-6 text-blue-600 flex-shrink-0" />
+                        <div>
+                          <strong className="block text-sm font-bold">Abrir Chamado Técnico (Formulário)</strong>
+                          <span className="text-xs text-blue-700 font-medium">Para solicitações de reembolso ou bugs</span>
+                        </div>
+                      </a>
+                    </div>
+                    <p className="text-[11px] text-slate-400 text-center font-medium pt-2">Nosso tempo médio de resposta é de até 15 minutos em horário comercial.</p>
+                  </div>
+                )}
               </div>
-              <button onClick={() => setActiveModal(null)} className="mt-8 w-full py-3 bg-slate-100 text-slate-700 rounded-xl font-semibold hover:bg-slate-200 transition-colors">Entendi e concordo</button>
+              
+              {activeModal !== "suporte" && (
+                <button onClick={() => setActiveModal(null)} className="mt-8 w-full py-3 bg-slate-100 text-slate-700 rounded-xl font-semibold hover:bg-slate-200 transition-colors">Entendi e concordo</button>
+              )}
             </motion.div>
           </div>
         )}
@@ -510,9 +555,7 @@ export default function App() {
         {isResultModalOpen && (
           <div className="fixed inset-0 z-[45] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
             <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="max-w-3xl w-full flex flex-col relative bg-white/95 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-10" onClick={(e) => e.stopPropagation()}>
-              <button onClick={() => setIsResultModalOpen(false)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10" aria-label="Fechar">
-                <X className="w-6 h-6" />
-              </button>
+              <button onClick={() => setIsResultModalOpen(false)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10" aria-label="Fechar"><X className="w-6 h-6" /></button>
               <div className="w-full overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 max-h-[80vh] mt-4 space-y-6">
                 
                 {isAnalyzing && (
@@ -533,7 +576,6 @@ export default function App() {
                   </div>
                 )}
 
-                {/* RELATÓRIO DO RESUMO GRATUITO */}
                 {result && !isPaid && !isAnalyzing && (
                   <div className="space-y-6">
                     <div className="flex items-start space-x-4">
@@ -561,7 +603,7 @@ export default function App() {
                           <p className="text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-100 inline-block px-5 py-2.5 rounded-full shadow-sm">Tudo pronto. Você só precisa emitir o documento, copiar o texto e colar no portal de recursos do órgão.</p>
                         </div>
                         
-                        <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center p-5 bg-emerald-700 text-white rounded-2xl hover:bg-emerald-800 transition-colors shadow-lg disabled:opacity-75 disabled:cursor-not-allowed border-b-4 border-emerald-900/60">
+                        <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center p-5 bg-emerald-600 text-white rounded-2xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed border-b-4 border-emerald-800/60">
                           <div className="flex flex-row items-center justify-center gap-3 text-lg font-black tracking-tight w-full">
                             {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6 flex-shrink-0" />}
                             <span className="text-center leading-tight">Emitir Recurso de Anulação Pronto</span>
@@ -573,14 +615,13 @@ export default function App() {
                   </div>
                 )}
 
-                {/* TELA DE LOADING DA GERAÇÃO DA DEFESA REAL */}
                 {isGeneratingDefense && (
                   <div className="flex flex-col items-center justify-center p-12 space-y-5 max-w-md mx-auto">
                     <div className="w-full h-1.5 bg-green-100/80 rounded-full overflow-hidden relative">
                       <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-emerald-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
                     </div>
-                    <p className="font-black text-slate-800 text-center text-xl animate-pulse">Gerando sua petição oficial formatada...</p>
-                    <p className="text-sm text-slate-500 font-medium text-center">Nossa inteligência está fundamentando as teses de anulação no documento.</p>
+                    <p className="font-black text-slate-800 text-center text-xl animate-pulse">Acionando Motor Jurídico Avançado...</p>
+                    <p className="text-sm text-slate-500 font-medium text-center">A IA está redigindo e fundamentando as teses de anulação da sua petição.</p>
                   </div>
                 )}
 
@@ -636,25 +677,7 @@ export default function App() {
             <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="relative w-11/12 max-w-sm max-h-[85vh] overflow-y-auto bg-white rounded-2xl shadow-2xl p-6">
               <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-5 h-5" /></button>
               <div className="text-center space-y-6">
-                
-                {/* BLINDAGEM DE IMAGEM CONTRA ÍCONES QUEBRADOS */}
-                <div className="flex justify-center items-center h-16 md:h-20 my-2 w-full overflow-hidden">
-                  {!logoError ? (
-                    <img 
-                      src="/mercado-pago-logo.png" 
-                      alt="Mercado Pago" 
-                      className="w-44 md:w-52 h-auto object-contain" 
-                      onError={() => setLogoError(true)} // Se a foto sumir ou falhar, ativa o plano B
-                    />
-                  ) : (
-                    // PLANO B: Em vez de mostrar um quadrado quebrado horrível, mostra um selo de segurança limpo
-                    <div className="flex items-center gap-2 bg-blue-50 text-blue-700 px-5 py-2.5 rounded-2xl font-bold border border-blue-200 shadow-sm text-sm">
-                      <Shield className="w-5 h-5 text-blue-600" />
-                      <span>Mercado Pago Transação Segura</span>
-                    </div>
-                  )}
-                </div>
-
+                <div className="flex justify-center"><div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center"><QrCode className="w-8 h-8" /></div></div>
                 <div>
                   <h3 className="text-2xl font-bold text-slate-800">Pagamento via Pix</h3>
                   <p className="text-slate-500 mt-2 font-medium">Escaneie o QR Code ou utilize o botão Copia e Cola abaixo.</p>
