@@ -85,10 +85,10 @@ async function startServer() {
   // ==========================================
   app.post("/api/analyze-ticket", async (req, res) => {
     try {
-      const { imageBase64, mimeType } = req.body;
+      const { imageBase64, mimeType = "image/jpeg" } = req.body;
 
-      if (!imageBase64 || !mimeType) {
-        return res.status(400).json({ error: "Dados da imagem ausentes (imageBase64 e mimeType)." });
+      if (!imageBase64) {
+        return res.status(400).json({ error: "Dados da imagem ausentes (imageBase64)." });
       }
 
       const ai = getAIClient();
@@ -100,7 +100,7 @@ Você está se comunicando com um front-end. Siga estas regras com precisão cir
 - Imagem não é um documento de trânsito: "documento_invalido"
 - Imagem muito borrada/ilegível: "imagem_ilegivel"
 - Conteúdo impróprio: "erro_seguranca"
-- Aviso de DEFERIMENTO prévim: "Boas notícias! Analisamos o seu documento e ele é um aviso oficial de DEFERIMENTO..."
+- Aviso de DEFERIMENTO prévio: "Boas notícias! Analisamos o seu documento e ele é um aviso oficial de DEFERIMENTO..."
 
 2. AUDITORIA LÓGICA DE TRÂNSITO (REGRAS DE PARETO):
 Você atua como um auditor técnico. Sua decisão baseia-se 100% na verificação da imagem contra estas regras:
@@ -121,7 +121,7 @@ Você atua como um auditor técnico. Sua decisão baseia-se 100% na verificaçã
 3. ESTRUTURA DA RESPOSTA (GATILHO COMERCIAL DE ALTA CONVERSÃO):
 ATENÇÃO: A SUA RESPOSTA DEVE SER ÚNICA.
 
--> CENÁRIO REJEIÇÃO: Se a multa NÃO se encaixar em NENHUMA das regras de viabilidade acima:
+-> CENÁRIO REJEIÇÃO: Se a multa NÃO se encaixar in NENHUMA das regras de viabilidade acima:
 Você DEVE ABORTAR e responder EXATAMENTE E APENAS: "rejeição_tipo_b | [Nome da Infração]". 
 
 -> CENÁRIO SUCESSO (GATILHO DE VENDA BLINDADO): Se a multa tiver uma brecha, responda EXATAMENTE neste formato (DADOS EXTRAÍDOS OBRIGATORIAMENTE EM PRIMEIRO LUGAR):
@@ -165,8 +165,7 @@ REGRA DE OURO: Pare a resposta na linha da viabilidade. Não dê instruções de
   });
 
   // ==========================================
-  // ROTA: ENTRADA DO MOTOR PREMIUM (GEMINI 2.5 PRO)
-  // Ativada apenas após a confirmação do Pix real
+  // ROTA: MOTOR PREMIUM (GEMINI 2.5 PRO CORRIGIDO)
   // ==========================================
   app.post("/api/generate-defense", async (req, res) => {
     try {
@@ -178,12 +177,13 @@ REGRA DE OURO: Pare a resposta na linha da viabilidade. Não dê instruções de
       
       const ai = getAIClient();
       
-      // Prompt com foco em fundamentação jurídica pesada para o modelo Pro executar
-      const prompt = `Você é um especialista em Direito Administrativo e Legislação de Trânsito Rodoviário. Sua tarefa é pegar o resumo técnico fornecido e redigir uma Petição de Defesa Prévia impecável, utilizando vocabulário jurídico formal, denso e robusto.
+      const prompt = `Você é um especialista experiente em Direito Administrativo e Legislação de Trânsito Rodoviário brasileiro. Sua tarefa única é pegar o resumo técnico fornecido e redigir uma Petição de Defesa Prévia impecável, utilizando vocabulário jurídico formal, denso e robusto.
 
-Analise os fatos descritos, identifique a falha material indicada no resumo e aplique a fundamentação legal correta (Constituição Federal, Código de Trânsito Brasileiro - CTB e Resoluções do CONTRAN correspondentes).
-
-Substitua todos os dados variáveis por colchetes explícitos em letras maiúsculas quando os dados não constarem no resumo (ex: [NOME DO CONDUTOR], [RG], [CPF]). Se o dado constar no resumo, preencha-o diretamente.
+--- REGRA CRÍTICA DE COMPATIBILIDADE DE VARIÁVEIS (LEIA COM ATENÇÃO MÁXIMA) ---
+É TERMINANTEMENTE PROIBIDO deixar tags textuais em colchetes como [INFRAÇÃO], [LOCAL], [DATA], [HORA], [PLACA], [AIT] ou [ÓRGÃO AUTUADOR] sem preenchimento se a respectiva informação constar em qualquer linha do resumo fornecido abaixo. 
+- Localize o nome da infração no resumo (ex: "Dirigir veículo segurando ou manuseando telefone celular") e INJETE textualmente onde pede a infração. Remova o colchete escrito "[INFRAÇÃO]".
+- Localize a data, hora, placa e AIT e faça a injeção idêntica.
+- Você SÓ deve manter os colchetes para dados privados que NÃO existem no resumo, sendo exclusivamente: [RG], [CPF], [ESTADO CIVIL], [PROFISSÃO], [VEÍCULO] e [ENDEREÇO COMPLETO].
 
 --- RESUMO DA MULTA FORNECIDO ---
 ${extractedData}
@@ -192,28 +192,28 @@ ESTRUTURA DA PETIÇÃO DE DEFESA (ENTREGUE EXATAMENTE NESTE PADRÃO):
 
 ILUSTRÍSSIMA AUTORIDADE DE TRÂNSITO COGNITANTE DO [ÓRGÃO AUTUADOR]
 
-[NOME DO CONDUTOR], brasileiro(a), [ESTADO CIVIL], [PROFISSÃO], portador da cédula de identidade RG nº [RG] e devidamente inscrito no CPF/MF sob o nº [CPF], residente e domiciliado na [ENDEREÇO COMPLETO], na qualidade de proprietário/condutor do veículo marca/modelo [VEÍCULO], de placa [PLACA] e RENAVAM [RENAVAM], vem, tempestivamente, perante esta Ilustre JARI, com fulcro na Lei nº 9.503/97 (CTB) e Resoluções vigentes do CONTRAN, apresentar
+[NOME DO CONDUTOR], brasileiro(a), [ESTADO CIVIL], [PROFISSÃO], portador da cédula de identidade RG nº [RG] e devidamente inscrito no CPF/MF sob o nº [CPF], residente e domiciliado na [ENDEREÇO COMPLETO], na qualidade de proprietário/condutor do veículo marca/modelo [VEÍCULO], de placa [PLACA] e RENAVAM [RENAVAM], vem, tempestivamente, perante esta Autoridade, com fulcro na Lei nº 9.503/97 (CTB) e Resoluções vigentes do CONTRAN, apresentar
 
 DEFESA PRÉVIA DE AUTUAÇÃO DE TRÂNSITO
 
-em face do Auto de Infração de Trânsito (AIT) nº [AIT], lavrado pela suposta infração capitulada no Artigo [ARTIGO DO CTB] do diploma legal de trânsito, aduzindo, para tanto, as razões fáticas e de direito que abaixo passam a ser articuladas:
+em face do Auto de Infração de Trânsito (AIT) nº [AIT], lavrado pela suposta infração capitulada no diploma legal de trânsito, aduzindo, para tanto, as razões fáticas e de direito que abaixo passam a ser articuladas:
 
 1. DOS FATOS
-No dia [DATA], às [HORA], no local delimitado como [LOCAL], o veículo de propriedade do Requerente foi objeto de autuação por supostamente [DESCREVA A INFRAÇÃO DE FORMA FORMAL COM BASE NO RESUMO]. Contudo, em estrita análise formal do presente instrumento administrativo, resta evidente a existência de vício insanável que macula sua validade jurídica, conforme restará demonstrado.
+No dia [DATA], às [HORA], no local delimitado como [LOCAL], o veículo de propriedade do Requerente foi objeto de autuação por supostamente [Substitua este colchete pela descrição da infração por extenso ex: dirigir veículo segurando ou manuseando telefone celular]. Contudo, em estrita análise formal do presente instrumento administrativo, resta evidente a existência de vício insanável que macula sua validade jurídica, conforme restará demonstrado no tópico seguinte.
 
 2. DO DIREITO E DA FUNDAMENTAÇÃO JURÍDICA
-O ato administrativo de autuação de trânsito possui natureza vinculada, exigindo, para sua perfeita eficácia e validade, o estrito cumprimento de todos os requisitos de forma preconizados pelo ordenamento jurídico, em especial o Artigo 280 do Código de Trânsito Brasileiro e os manuais técnicos de fiscalização editados pelo SENATRAN.
+O ato administrativo de autuação de trânsito possui natureza estritamente vinculada, exigindo, para sua perfeita eficácia e validade, o cumprimento imperativo de todos os requisitos de forma preconizados pelo ordenamento jurídico, em especial o Artigo 280 do Código de Trânsito Brasileiro e as diretrizes do Manual Brasileiro de Fiscalização de Trânsito (MBFT).
 
-No caso sub examine, verifica-se flagrante nulidade material devido à seguinte irregularidade:
-[Aqui, você como Gemini Pro deve expandir o diagnóstico simples do resumo. Redija um texto de 2 parágrafos altamente técnicos e aprofundados explicando por que a falta detectada viola os princípios da motivação, da legalidade e da tipicidade estrita do ato administrativo. Cite resoluções pertinentes do CONTRAN se aplicável àquela infração e demonstre que a omissão ou erro do agente/equipamento retira a presunção de legitimidade e veracidade do AIT].
+No caso em tela, verifica-se flagrante nulidade material devido à seguinte irregularidade constatada pela auditoria:
+[Aqui, você como especialista deve expandir o diagnóstico técnico indicado no resumo. Redija um texto de 2 parágrafos altamente formais, aprofundados e robustos explicando por que a falta detectada viola os princípios da motivação, da legalidade, do devido processo legal e da tipicidade estrita do ato administrativo. Demonstre que a ausência ou erro cometido pela autoridade retira por completo a presunção de legitimidade e veracidade do documento].
 
-O Artigo 281, parágrafo único, inciso I do CTB é taxativo ao determinar que o auto de infração "será arquivado e seu registro julgado insubsistente se considerado inconsistente ou irregular". Diante da patente desconformidade formal apontada, a anulação do feito é medida de direito que se impõe.
+O Artigo 281, parágrafo único, inciso I do CTB é taxativo ao determinar que o auto de infração "será arquivado e seu registro julgado insubsistente se considerado inconsistente ou irregular". Diante da patente desconformidade apontada, a desconstituição do feito é medida de direito que se impõe.
 
-3. DOS PEDIDOS e REQUERIMENTOS
+3. DOS PEDIDOS E REQUERIMENTOS
 Ante todo o exposto, pugna o Requerente a esta Ilustre Autoridade Administrativa:
-a) O recebimento e processamento da presente manifestação defensiva, porquanto preenchidos os requisitos de tempestividade e legitimidade;
-b) No mérito, o acolhimento integral das razões expendidas, determinando-se o ARQUIVAMENTO definitivo do Auto de Infração de Trânsito nº [AIT] e a consequente insubsistência de seus efeitos civis e administrativos;
-c) Caso ocorra atraso no julgamento monocrático, a concessão de efeito suspensivo nos termos do Artigo 285, §3º do CTB, obstou-se a aplicação de quaisquer penalidades ou restrições prontuárias até decisão final.
+a) O recebimento e regular processamento da presente manifestação defensiva, porquanto preenchidos integralmente os requisitos de tempestividade e legitimidade;
+b) No mérito, o acolhimento total das razões expendidas, determinando-se o ARQUIVAMENTO definitivo do Auto de Infração de Trânsito nº [AIT] e a consequente insubsistência de seus efeitos civis ou pontuações prontuárias;
+c) Caso ocorra excesso de prazo no julgamento desta peça, a concessão de efeito suspensivo nos termos do Artigo 285, §3º do CTB, obstando a aplicação de quaisquer sanções até decisão final estável.
 
 Nestes termos, roga por deferimento.
 [CIDADE], 09 de junho de 2026.
@@ -222,11 +222,10 @@ __________________________________________
 [NOME DO CONDUTOR]
 Requerente`;
 
-      // CHAMADA OFICIAL DO SEGUNDO MOTOR - GEMINI 2.5 PRO
       const response = await ai.models.generateContent({
         model: "gemini-2.5-pro",
         contents: [{ role: "user", parts: [{ text: prompt }] }],
-        config: { temperature: 0.1 } // Temperatura baixa para evitar alucinações jurídicas
+        config: { temperature: 0.1 }
       });
 
       const resultText = response.text || "";
