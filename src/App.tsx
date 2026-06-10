@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from "motion/react";
 
 const formatDocumentText = (text: string) => {
   if (!text) return text;
-  
+
   let cleanText = text.replace(/\*\*(.*?)\*\*/g, '$1');
   cleanText = cleanText.replace(/\*(.*?)\*/g, '$1');
   cleanText = cleanText.replace(/`/g, '$1');
@@ -49,7 +49,7 @@ export default function App() {
   const [loaderIndex, setLoaderIndex] = useState(0);
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  
+
   const [expiredDate, setExpiredDate] = useState<string | null>(null);
 
   const [isGeneratingDefense, setIsGeneratingDefense] = useState(false);
@@ -101,18 +101,22 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isAnalyzing, isGeneratingDefense]);
 
-  // RADAR DE VERIFICAÇÃO DO PIX REAL NO MERCADO PAGO
+  // ========================================================
+  // RADAR DE VERIFICAÇÃO DO PIX REAL NO MERCADO PAGO COM TIMEOUT
+  // ========================================================
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
+    let timeoutId: NodeJS.Timeout;
 
     const checkPaymentStatus = async () => {
       if (!paymentId || !isPixModalOpen) return;
       try {
         const res = await fetch(`/api/check-payment/${paymentId}`);
         const data = await res.json();
-        
+
         if (data.status === "approved") {
           clearInterval(intervalId);
+          clearTimeout(timeoutId);
           setIsPixModalOpen(false);
           setIsPaid(true);
           localStorage.setItem('checkmulta_paid_status', 'true'); // Salva na memória que pagou
@@ -123,11 +127,19 @@ export default function App() {
     };
 
     if (isPixModalOpen && paymentId) {
+      // Bate no servidor a cada 3 segundos
       intervalId = setInterval(checkPaymentStatus, 3000);
+
+      // Trava de segurança: Desliga o radar após 10 minutos (600.000 ms)
+      timeoutId = setTimeout(() => {
+        clearInterval(intervalId);
+        console.log("Radar do PIX desativado por tempo limite (10 min).");
+      }, 600000);
     }
 
     return () => {
       if (intervalId) clearInterval(intervalId);
+      if (timeoutId) clearTimeout(timeoutId);
     };
   }, [isPixModalOpen, paymentId]);
 
@@ -174,7 +186,7 @@ export default function App() {
     setQrCode(null);
     setQrCodeBase64(null);
     setPaymentId(null);
-    
+
     // Limpa a memória
     localStorage.removeItem('checkmulta_saved_result');
     localStorage.removeItem('checkmulta_paid_status');
@@ -219,7 +231,7 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ imageBase64: base64Data, mimeType }),
       });
-      
+
       const data = await response.json();
 
       if (!response.ok) throw new Error(typeof data.error === 'string' ? data.error : JSON.stringify(data.error));
@@ -275,7 +287,7 @@ export default function App() {
   const handleCheckout = async () => {
     if (!result) return;
     setIsCheckoutLoading(true);
-    
+
     try {
       const response = await fetch("/api/create-payment", {
         method: "POST",
@@ -316,7 +328,7 @@ export default function App() {
   const generateDefense = async (overrideResult?: string) => {
     const dataToUse = overrideResult || result;
     if (!dataToUse) return;
-    
+
     setIsGeneratingDefense(true);
     setDefenseError(null);
     setDefenseResult(null);
@@ -345,7 +357,7 @@ export default function App() {
     } catch (err: any) {
       clearTimeout(timeoutId);
       console.error("Erro na Defesa:", err);
-      
+
       if (err.name === 'AbortError') {
         setDefenseError("TIMEOUT");
       } else if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
@@ -368,7 +380,7 @@ export default function App() {
       console.error("Failed to copy text: ", err);
     }
   };
-  
+
   const handleCopyPix = async () => {
     if (!qrCode) return;
     try {
@@ -393,13 +405,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center text-gray-900 font-sans selection:bg-blue-100 selection:text-blue-900 w-full scroll-smooth">
-      
+
       {/* HEADER RESPONSIVO COM MENU HAMBÚRGUER */}
       <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-40 overflow-visible">
         <div className="flex items-center h-full w-[180px] md:w-[240px]">
           <img src="/checkmulta-logo.png" alt="CheckMulta Logo" className="w-full h-auto object-contain scale-[1.3] md:scale-[1.5] origin-left translate-y-1" />
         </div>
-        
+
         {/* Navegação Desktop */}
         <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-600 items-center">
           <a href="#inicio" className="hover:text-blue-600 transition-colors">Início</a>
@@ -447,7 +459,7 @@ export default function App() {
       </header>
 
       <div className="w-full max-w-3xl flex-1 px-4 py-8 md:py-12">
-        
+
         <section id="inicio" className="mb-10 text-center pt-4">
           <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-6 leading-tight">
             Cancele Multas Injustas com Inteligência Artificial
@@ -455,7 +467,7 @@ export default function App() {
           <p className="text-slate-800 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
             Nosso sistema audita sua notificação de trânsito em segundos, cruza os dados com o CTB e o Manual de Fiscalização, e identifica falhas legais para anular a infração.
           </p>
-          
+
           <div className="bg-emerald-50 rounded-2xl p-6 md:p-8 max-w-2xl mx-auto flex flex-col items-center shadow-sm border border-emerald-100">
             <p className="text-emerald-800 font-bold text-lg md:text-xl text-center leading-snug">
               Auditoria inteligente: o que o olho humano perde, nosso sistema encontra. Analise sua multa grátis.
@@ -469,7 +481,7 @@ export default function App() {
         <main className="space-y-6">
           <div className={`relative group rounded-3xl p-8 sm:p-12 transition-all duration-200 ease-in-out text-center ${previewUrl ? "bg-transparent" : "border-2 border-dashed border-gray-300 hover:border-blue-400 hover:bg-white bg-white shadow-sm"}`}>
             <input type="file" ref={fileInputRef} onChange={handleFileSelect} accept="image/*,application/pdf" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed" disabled={isAnalyzing || isPaid} id="upload-input" />
-            
+
             <AnimatePresence mode="wait">
               {previewUrl ? (
                 <motion.div key="preview" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="space-y-4">
@@ -597,19 +609,19 @@ export default function App() {
             <div className="min-h-full flex items-center justify-center p-4 sm:p-6">
               <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="bg-white/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-lg flex flex-col relative" onClick={(e) => e.stopPropagation()}>
                 <button onClick={() => setActiveModal(null)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10" aria-label="Fechar"><X className="w-6 h-6" /></button>
-                
+
                 <div className="mb-4 pr-8">
                   {activeModal === "aviso" && <h3 className="text-xl font-bold text-slate-800">Aviso Jurídico</h3>}
                   {activeModal === "termos" && <h3 className="text-xl font-bold text-slate-800">Termos de Uso</h3>}
                   {activeModal === "privacidade" && <h3 className="text-xl font-bold text-slate-800">Políticas de Privacidade</h3>}
                   {activeModal === "suporte" && <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2"><span>💬</span> Central de Suporte</h3>}
                 </div>
-                
+
                 <div className="text-sm text-slate-600 leading-relaxed space-y-3">
                   {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente de forma algorítmica...</p>}
                   {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial...</p>}
                   {activeModal === "privacidade" && <p>Sua privacidade é absoluta. Não possuímos banco de dados...</p>}
-                  
+
                   {activeModal === "suporte" && (
                     <div className="space-y-5 pt-2">
                       <p className="text-sm text-slate-600 font-medium">Selecione o canal de atendimento abaixo para falar com o nosso time técnico:</p>
@@ -626,7 +638,7 @@ export default function App() {
                     </div>
                   )}
                 </div>
-                
+
                 {activeModal !== "suporte" && (
                   <button onClick={() => setActiveModal(null)} className="mt-8 w-full py-3 bg-slate-100 text-slate-700 rounded-xl font-semibold hover:bg-slate-200 transition-colors">Entendi e concordo</button>
                 )}
@@ -643,9 +655,9 @@ export default function App() {
             <div className="min-h-full flex items-center justify-center p-4 sm:p-6 py-12">
               <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="max-w-3xl w-full flex flex-col relative bg-white/95 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-10" onClick={(e) => e.stopPropagation()}>
                 <button onClick={() => setIsResultModalOpen(false)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10" aria-label="Fechar"><X className="w-6 h-6" /></button>
-                
+
                 <div className="w-full mt-4 space-y-6">
-                  
+
                   {isAnalyzing && (
                     <div className="flex flex-col items-center justify-center p-4 space-y-5 max-w-md mx-auto">
                       <div className="w-full h-1.5 bg-blue-100/80 rounded-full overflow-hidden relative">
@@ -687,7 +699,7 @@ export default function App() {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="pl-4 text-slate-600 text-sm font-medium whitespace-pre-wrap leading-relaxed border-l-2 border-slate-200">
                         <strong className="text-slate-800">Resumo do Auto:</strong><br/>{formatDocumentText(result)}
                       </div>
@@ -743,7 +755,7 @@ export default function App() {
                         <Scale className="w-6 h-6 text-slate-800" />
                         <h2 className="text-xl font-bold text-slate-800 text-center">Sua Defesa Jurídica Pronta</h2>
                       </div>
-                      
+
                       <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3 mt-2 mb-4 rounded-r-md">
                         <p className="text-sm text-yellow-800">
                           <strong>Atenção:</strong> Revise o documento abaixo. É obrigatório substituir todos os campos destacados em <span className="text-red-600 font-bold">vermelho</span> pelas suas informações reais.
@@ -796,7 +808,7 @@ export default function App() {
                       </button>
                     </div>
                   </div>
-                  
+
                   <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-sm text-slate-500 font-medium">
                     <RefreshCcw className="w-4 h-4 animate-spin" />
                     Aguardando pagamento no banco...
