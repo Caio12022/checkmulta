@@ -256,12 +256,20 @@ export default function App() {
       
       // LÓGICA DO PRAZO VENCIDO (Permite Bypass)
       if (lowerResult.includes("rejeicao_prazo_expirado")) {
-        setExpiredBypassData(finalResult); 
+        // Limpa a tag feia para não aparecer no resumo visual
+        let cleanBypassText = finalResult.replace(/rejeicao_prazo_expirado/gi, "").trim();
+        
+        // Se a IA do backend não mandou a análise e só mandou a tag, exibe um aviso claro.
+        if (cleanBypassText.length < 10) {
+          cleanBypassText = "Análise processada. (Atenção Dev: A IA do backend retornou apenas a tag de vencimento. Ajuste o prompt do backend para gerar a análise da infração mesmo quando estiver vencida).";
+        }
+
+        setExpiredBypassData(cleanBypassText); 
         throw new Error("Análise Concluída: O prazo de defesa desta notificação já está vencido.");
       }
       
-      // LÓGICA DO CASO INVIÁVEL (Regra 80/20 - Bloqueia definitivo)
-      if (lowerResult.includes("rejeição") || lowerResult.includes("rejeicao")) {
+      // LÓGICA DO CASO INVIÁVEL (Regra 80/20 - Bloqueia definitivo sem bypass)
+      else if (lowerResult.includes("rejeição") || lowerResult.includes("rejeicao")) {
         throw new Error("Análise Concluída: Não encontramos viabilidade legal para recurso nesta notificação.");
       }
       
