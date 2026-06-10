@@ -77,7 +77,7 @@ async function startServer() {
       if (!imageBase64) return res.status(400).json({ error: "Dados da imagem ausentes." });
 
       const ai = getAIClient();
-      
+
       const prompt = `Você é um auditor técnico especialista na análise formal de autos de infração de trânsito brasileiros. 
 INFORMAÇÃO DE SISTEMA CRÍTICA: O ANO ATUAL É 2026.
 
@@ -86,22 +86,14 @@ REGRA DE OURO 1: VALIDAÇÃO DO DOCUMENTO E DA IMAGEM
 - Se a imagem NÃO for um documento de trânsito oficial brasileiro (ex: foto de retrovisor, paisagem, pessoas, tela preta), PARE TUDO e retorne APENAS a exata string: documento_invalido
 - Se a imagem for um documento, mas estiver impossível de ler (borrada/cortada), retorne APENAS: imagem_ilegivel
 
-REGRA DE OURO 2: VALIDAÇÃO DE PRAZO (PRESCRIÇÃO/DECADÊNCIA) - A MAIS IMPORTANTE
-Sua primeira leitura de dados no documento DEVE ser a "Data da Infração" ou o "Prazo para Defesa/Identificação". 
-Como estamos no ano de 2026, QUALQUER multa lavrada em anos anteriores (ex: 2008, 2010, 2022, 2023, 2024, 2025) ESTÁ PRESCRITA, VENCIDA E INVÁLIDA.
-- Se a multa for de anos anteriores ou o prazo impresso já passou, VOCÊ É OBRIGADO A PARAR IMEDIATAMENTE e retornar APENAS a exata string: rejeicao_prazo_expirado
--------------------------------------------------------------------------------------------------------
-
-Se a imagem passou perfeitamente pelas DUAS Regras de Ouro acima (é um documento legível E é recente do ano vigente), faça a auditoria lógica:
-
-[EXCEÇÃO DE ALTA COMPLEXIDADE]
+REGRA DE OURO 2: CASOS INVIÁVEIS (LEI SECA / SEM BRECHAS)
 - LEI SECA/BAFÔMETRO (Art 165/165-A): Responda APENAS: rejeicao_tipo_a
+- Verifique erros do agente (Inmetro vencido, observações vazias, falta de abordagem justificada, etc). Se a multa for legalmente imaculada e NÃO tiver nenhuma brecha formal, retorne APENAS: rejeicao_tipo_b
 
-[REGRAS DE VIABILIDADE - BRECHAS FORMAIS]
-Verifique erros do agente como: Inmetro vencido há mais de 12 meses da data da infração, observações vazias em estacionamento proibido, falta de abordagem justificada, etc.
-- Se a multa for legalmente imaculada e NÃO tiver nenhuma brecha formal, retorne APENAS: rejeicao_tipo_b
+REGRA DE OURO 3: AUDITORIA LÓGICA E PRAZO (VENCIDO OU NÃO)
+Se o documento for legível e tiver uma brecha formal, você DEVE gerar o relatório de análise completo abaixo. 
+ATENÇÃO: Você deve gerar o relatório completo MESMO SE O PRAZO ESTIVER VENCIDO (multas de 2025 para trás ou prazo impresso já ultrapassado).
 
-[CENÁRIO SUCESSO - APENAS SE ACHOU BRECHA EM MULTA DENTRO DO PRAZO]
 Responda EXATAMENTE neste formato:
 
 - STATUS DA ANÁLISE: Sucesso - Brecha Encontrada
@@ -119,7 +111,10 @@ Nome: [Extrair]
 DIAGNÓSTICO TÉCNICO DA IRREGULARIDADE:
 [Explique o erro técnico e legal do agente baseando-se no Art 280 do CTB em linguagem rebuscada e formal. Ex: "Constatada desconformidade formal insanável..."]
 
-- VIABILIDADE DO RECURSO: Alta. O descumprimento das formalidades obrigatórias retira a presunção de legitimidade da autuação.`;
+- VIABILIDADE DO RECURSO: Alta. O descumprimento das formalidades obrigatórias retira a presunção de legitimidade da autuação.
+
+[IMPORTANTE - MARCADOR DE VENCIMENTO]:
+Após escrever TODO o relatório acima, avalie a Data da Infração ou o Prazo para Defesa. Se a multa for de anos anteriores a 2026 (ex: 2024, 2025) ou o prazo já tiver passado, pule uma linha no final do seu texto e escreva OBRIGATORIAMENTE a exata string "rejeicao_prazo_expirado" isolada. Se o prazo estiver rigorosamente em dia, não escreva esta string.`;
 
       const response = await ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
@@ -147,9 +142,9 @@ DIAGNÓSTICO TÉCNICO DA IRREGULARIDADE:
     try {
       const { extractedData } = req.body;
       if (!extractedData) return res.status(400).json({ error: "extractedData ausente." });
-      
+
       const ai = getAIClient();
-      
+
       const prompt = `Você é um redator jurídico sênior especialista em Direito Administrativo de Trânsito. Sua tarefa é pegar o resumo fornecido e estruturar uma Defesa Prévia extremamente formal, robusta e técnica.
 
 --- REGRAS DE PREENCHIMENTO OBRIGATÓRIO ---
