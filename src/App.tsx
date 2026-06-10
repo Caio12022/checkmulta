@@ -617,10 +617,26 @@ export default function App() {
                   {activeModal === "suporte" && <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2"><span>💬</span> Central de Suporte</h3>}
                 </div>
 
-                <div className="text-sm text-slate-600 leading-relaxed space-y-3">
-                  {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente de forma algorítmica...</p>}
-                  {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial...</p>}
-                  {activeModal === "privacidade" && <p>Sua privacidade é absoluta. Não possuímos banco de dados...</p>}
+                {/* Área de texto com scroll interno para telemóveis */}
+                <div className="text-sm text-slate-600 leading-relaxed space-y-3 max-h-[50vh] overflow-y-auto pr-2">
+                  
+                  {activeModal === "aviso" && (
+                    <div className="space-y-4">
+                      <p>Este documento é um modelo referencial gerado automaticamente de forma algorítmica e não constitui tese jurídica garantida. Nós não somos um escritório de advocacia e este sistema não substitui a consulta a um advogado especialista. É plenamente possível que o recurso seja indeferido, sendo o julgamento de total responsabilidade do órgão de trânsito competente.</p>
+                    </div>
+                  )}
+                  
+                  {activeModal === "termos" && (
+                    <div className="space-y-4">
+                      <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial para formulação de teses administrativas. Não nos responsabilizamos por prazos excedidos, inserção de dados incorretos pelo usuário ou resultado das decisões julgadas pelas juntas de recursos JARI ou instâncias superiores.</p>
+                    </div>
+                  )}
+                  
+                  {activeModal === "privacidade" && (
+                    <div className="space-y-4">
+                      <p>Sua privacidade é absoluta. Não possuímos banco de dados, nem realizamos registros ou retenções em log da fotografia do seu auto de infração, dados pessoais ou da petição gerada. O processamento é de estrito caráter transitório (em memória) para elaboração do documento, que é imediatamente apagado após o fechamento da página ou download.</p>
+                    </div>
+                  )}
 
                   {activeModal === "suporte" && (
                     <div className="space-y-5 pt-2">
