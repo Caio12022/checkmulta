@@ -759,9 +759,11 @@ export default function App() {
                           <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-3 px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
                             <div className="flex flex-row items-center justify-center gap-2 text-base font-bold whitespace-nowrap">
                               {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6 flex-shrink-0" />}
-                              <span>{isCheckoutLoading ? "Gerando Defesa..." : "Gerar Defesa Completa"}</span>
+                              {/* Texto do botão alterado */}
+                              <span>{isCheckoutLoading ? "Gerando Modelo..." : "Modelo Pronto para Recurso"}</span>
                             </div>
-                            <span className="text-xs font-medium opacity-90 mt-1">Taxa única de R$ 19,90</span>
+                            {/* Tamanho da fonte e peso aumentados */}
+                            <span className="text-sm font-medium opacity-95 mt-1">Taxa única de R$ 19,90</span>
                           </button>
                         </div>
                       </div>
