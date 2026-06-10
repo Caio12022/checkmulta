@@ -101,12 +101,9 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isAnalyzing, isGeneratingDefense]);
 
-  // ========================================================
-  // RADAR DE VERIFICAÇÃO DO PIX REAL NO MERCADO PAGO COM TIMEOUT
-  // ========================================================
+  // RADAR DE VERIFICAÇÃO DO PIX REAL NO MERCADO PAGO
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
-    let timeoutId: NodeJS.Timeout;
 
     const checkPaymentStatus = async () => {
       if (!paymentId || !isPixModalOpen) return;
@@ -116,7 +113,6 @@ export default function App() {
 
         if (data.status === "approved") {
           clearInterval(intervalId);
-          clearTimeout(timeoutId);
           setIsPixModalOpen(false);
           setIsPaid(true);
           localStorage.setItem('checkmulta_paid_status', 'true'); // Salva na memória que pagou
@@ -127,19 +123,11 @@ export default function App() {
     };
 
     if (isPixModalOpen && paymentId) {
-      // Bate no servidor a cada 3 segundos
       intervalId = setInterval(checkPaymentStatus, 3000);
-
-      // Trava de segurança: Desliga o radar após 10 minutos (600.000 ms)
-      timeoutId = setTimeout(() => {
-        clearInterval(intervalId);
-        console.log("Radar do PIX desativado por tempo limite (10 min).");
-      }, 600000);
     }
 
     return () => {
       if (intervalId) clearInterval(intervalId);
-      if (timeoutId) clearTimeout(timeoutId);
     };
   }, [isPixModalOpen, paymentId]);
 
@@ -617,26 +605,10 @@ export default function App() {
                   {activeModal === "suporte" && <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2"><span>💬</span> Central de Suporte</h3>}
                 </div>
 
-                {/* Área de texto com scroll interno para telemóveis */}
-                <div className="text-sm text-slate-600 leading-relaxed space-y-3 max-h-[50vh] overflow-y-auto pr-2">
-                  
-                  {activeModal === "aviso" && (
-                    <div className="space-y-4">
-                      <p>Este documento é um modelo referencial gerado automaticamente de forma algorítmica e não constitui tese jurídica garantida. Nós não somos um escritório de advocacia e este sistema não substitui a consulta a um advogado especialista. É plenamente possível que o recurso seja indeferido, sendo o julgamento de total responsabilidade do órgão de trânsito competente.</p>
-                    </div>
-                  )}
-                  
-                  {activeModal === "termos" && (
-                    <div className="space-y-4">
-                      <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial para formulação de teses administrativas. Não nos responsabilizamos por prazos excedidos, inserção de dados incorretos pelo usuário ou resultado das decisões julgadas pelas juntas de recursos JARI ou instâncias superiores.</p>
-                    </div>
-                  )}
-                  
-                  {activeModal === "privacidade" && (
-                    <div className="space-y-4">
-                      <p>Sua privacidade é absoluta. Não possuímos banco de dados, nem realizamos registros ou retenções em log da fotografia do seu auto de infração, dados pessoais ou da petição gerada. O processamento é de estrito caráter transitório (em memória) para elaboração do documento, que é imediatamente apagado após o fechamento da página ou download.</p>
-                    </div>
-                  )}
+                <div className="text-sm text-slate-600 leading-relaxed space-y-3">
+                  {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente de forma algorítmica...</p>}
+                  {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial...</p>}
+                  {activeModal === "privacidade" && <p>Sua privacidade é absoluta. Não possuímos banco de dados...</p>}
 
                   {activeModal === "suporte" && (
                     <div className="space-y-5 pt-2">
@@ -664,13 +636,18 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* MODAL DE RESULTADO / DEFESA (COM O SCROLL CORRIGIDO ANTI-CORTE) */}
+      {/* MODAL DE RESULTADO / DEFESA (COM O SCROLL CORRIGIDO ANTI-CORTE E ERRO AJUSTADO) */}
       <AnimatePresence>
         {isResultModalOpen && (
           <div className="fixed inset-0 z-[45] overflow-y-auto bg-slate-900/60 backdrop-blur-md">
             <div className="min-h-full flex items-center justify-center p-4 sm:p-6 py-12">
-              <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} className="max-w-3xl w-full flex flex-col relative bg-white/95 backdrop-blur-md rounded-2xl shadow-lg p-6 sm:p-10" onClick={(e) => e.stopPropagation()}>
-                <button onClick={() => setIsResultModalOpen(false)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10" aria-label="Fechar"><X className="w-6 h-6" /></button>
+              <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} 
+                // Interface condicional: se erro, fica todo vermelho. Senão, fica branco.
+                className={`max-w-3xl w-full flex flex-col relative rounded-2xl shadow-lg ${error ? "bg-red-50/95 border border-red-200 p-8" : "bg-white/95 backdrop-blur-md p-6 sm:p-10"}`} 
+                onClick={(e) => e.stopPropagation()}>
+                
+                {/* Botão de fechar do Modal (X) condicionalmente ajustado */}
+                <button onClick={() => setIsResultModalOpen(false)} className={`absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full transition-colors z-10 ${error ? "hover:bg-red-100" : "hover:bg-slate-100"}`} aria-label="Fechar"><X className="w-6 h-6" /></button>
 
                 <div className="w-full mt-4 space-y-6">
 
@@ -685,18 +662,20 @@ export default function App() {
                     </div>
                   )}
 
+                  {/* BLOCO DE ERRO AJUSTADO: Todo o modal se torna vermelho */}
                   {error && (
-                    <div className="flex flex-col items-center text-center space-y-4 p-8 bg-red-50 border border-red-200 rounded-2xl">
+                    <div className="flex flex-col items-center text-center space-y-4">
+                      {/* Ícone de erro */}
                       <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
                         <AlertCircle className="w-8 h-8" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-red-800 mb-2">Análise Bloqueada</h3>
+                        {/* Título alterado: "Análise Bloqueada" para "Análise Indisponível" */}
+                        <h3 className="text-xl font-bold text-red-800 mb-2">Análise Indisponível</h3>
+                        {/* Mensagem de erro */}
                         <p className="text-red-700 font-medium leading-relaxed">{error}</p>
                       </div>
-                      <button onClick={() => setIsResultModalOpen(false)} className="mt-4 px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-colors">
-                        Entendi, voltar
-                      </button>
+                      {/* Botão "Entendi, voltar" removido */}
                     </div>
                   )}
 
