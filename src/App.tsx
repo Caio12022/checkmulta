@@ -128,6 +128,7 @@ export default function App() {
           // --- BLOCO DE CONVERSÃO OTIMIZADO PARA GA4/GOOGLE ADS ---
           if (typeof window !== 'undefined' && window.gtag) {
             window.gtag('event', 'purchase', {
+              send_to: 'AW-3277250868',
               transaction_id: paymentId.toString(),
               value: 19.90,
               currency: 'BRL',
