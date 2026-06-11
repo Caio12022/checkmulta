@@ -484,13 +484,15 @@ export default function App() {
           <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-6 leading-tight">
             Descubra Gratuitamente se Sua Multa Ainda Pode Ser Recorrida
           </h1>
+          {/* Parágrafo atualizado com IA e Dados */}
           <p className="text-slate-800 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-            Envie sua notificação gratuitamente e descubra se ainda existe prazo para recorrer, se há fundamentos para contestação e se vale a pena apresentar defesa.
+            Nossa Inteligência Artificial cruza os dados da sua notificação com a lei de trânsito em segundos. Descubra gratuitamente se o prazo é válido, se há erros do agente e se vale a pena recorrer.
           </p>
 
           <div className="bg-emerald-50 rounded-2xl p-6 md:p-8 max-w-2xl mx-auto flex flex-col items-center shadow-sm border border-emerald-100">
+            {/* Box Verde atualizado com IA */}
             <p className="text-emerald-800 font-bold text-lg md:text-xl text-center leading-snug">
-              Antes de pagar sua multa, verifique gratuitamente se ainda existe possibilidade de recurso.
+              Auditoria imediata: O que o olho humano não vê, nossa IA encontra. Verifique agora se a sua multa possui falhas ocultas que permitem o cancelamento.
             </p>
             <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} className="mt-5">
               <ArrowDown className="w-8 h-8 text-emerald-700" />
@@ -550,9 +552,10 @@ export default function App() {
                   <div className="w-16 h-16 bg-blue-100/50 text-blue-700 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                     <UploadCloud className="w-8 h-8" />
                   </div>
+                  {/* Textos de Upload atualizados para corrigir erro de concordância e colocar IA */}
                   <div className="space-y-1">
-                    <p className="text-lg font-medium text-slate-800">Envie sua notificação para análise gratuita</p>
-                    <p className="text-slate-500 text-sm"><span className="font-semibold text-blue-600">Descubra em menos de 1 minuto se ainda é possível recorrer.</span> ou arraste o arquivo aqui</p>
+                    <p className="text-lg font-medium text-slate-800">Envie a foto da notificação para a nossa IA</p>
+                    <p className="text-slate-500 text-sm"><span className="font-semibold text-blue-600">Clique aqui</span> ou arraste o arquivo. O diagnóstico sai em menos de 1 minuto.</p>
                   </div>
                 </motion.div>
               )}
@@ -602,6 +605,42 @@ export default function App() {
               <div className="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-6"><Route className="w-8 h-8" /></div>
               <h3 className="text-xl font-bold text-slate-800 mb-3">Total Transparência</h3>
               <p className="text-slate-600 font-medium leading-relaxed">Atuamos como uma ferramenta tecnológica baseada no CTB. Nós criamos a tese, mas a decisão final é sempre do órgão julgador.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO DE FAQ PARA INSERIR OS H2 DE SEO ESTRATEGICAMENTE */}
+      <section id="faq-seo" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
+        <div className="max-w-4xl w-full space-y-12">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-slate-800 tracking-tight">Dúvidas Frequentes sobre Recursos de Multas</h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+              <h2 className="text-lg font-bold text-slate-800 mb-2">Como saber se ainda dá tempo de recorrer da multa?</h2>
+              <p className="text-slate-600 text-sm leading-relaxed">Nossa inteligência artificial analisa a data da infração e os prazos legais da sua notificação para confirmar se você ainda está dentro do período válido para apresentar sua defesa prévia ou recurso.</p>
+            </div>
+            
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+              <h2 className="text-lg font-bold text-slate-800 mb-2">Quais multas podem ser contestadas?</h2>
+              <p className="text-slate-600 text-sm leading-relaxed">Praticamente qualquer infração pode ser contestada se houver erros formais na autuação. Nosso foco é identificar falhas do agente de trânsito baseadas no Manual Brasileiro de Fiscalização (MBFT).</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+              <h2 className="text-lg font-bold text-slate-800 mb-2">Como funciona a análise da CheckMulta?</h2>
+              <p className="text-slate-600 text-sm leading-relaxed">Você envia a foto do seu documento, nosso sistema cruza os dados com a legislação vigente em segundos e aponta se há viabilidade legal para solicitar a anulação da penalidade.</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+              <h2 className="text-lg font-bold text-slate-800 mb-2">O que contém o relatório de contestação?</h2>
+              <p className="text-slate-600 text-sm leading-relaxed">O modelo de recurso gerado entrega uma defesa estruturada e fundamentada em leis, pronta para você preencher com seus dados pessoais e protocolar no órgão autuador.</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 md:col-span-2 hover:shadow-md transition-shadow">
+              <h2 className="text-lg font-bold text-slate-800 mb-2">Vale a pena recorrer de uma multa?</h2>
+              <p className="text-slate-600 text-sm leading-relaxed">Sim! Recorrer é um direito garantido por lei. Além de evitar pontos na CNH e a cobrança financeira, a defesa obriga o órgão a provar que a autuação foi feita de forma impecável, o que muitas vezes não ocorre devido a erros de preenchimento.</p>
             </div>
           </div>
         </div>
@@ -692,7 +731,6 @@ export default function App() {
                     </div>
                   )}
 
-                  {/* BLOCO DE ERRO AJUSTADO */}
                   {error && (
                     <div className="flex flex-col items-center text-center space-y-4">
                       <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
@@ -703,14 +741,13 @@ export default function App() {
                         <p className="text-red-700 font-medium leading-relaxed">{error}</p>
                       </div>
                       
-                      {/* LÓGICA DO BYPASS DE PRAZO VENCIDO APARECE AQUI */}
                       {expiredBypassData && (
                         <button
                           onClick={() => {
                             setError(null);
                             setResult(expiredBypassData);
                             setHasAnalyzed(true);
-                            setIsExpiredBypassActive(true); // Ativa o rastreador
+                            setIsExpiredBypassActive(true); 
                             localStorage.setItem('checkmulta_saved_result', expiredBypassData);
                           }}
                           className="mt-4 px-4 py-2 text-sm text-red-700 bg-red-100 hover:bg-red-200 font-bold rounded-lg transition-colors underline decoration-red-300 underline-offset-4"
@@ -724,7 +761,6 @@ export default function App() {
                   {result && !isPaid && !isAnalyzing && !error && (
                     <div className="space-y-6">
 
-                      {/* AVISO DE MULTA VENCIDA (SÓ APARECE PELO BYPASS) */}
                       {isExpiredBypassActive && (
                         <div className="bg-red-50 border border-red-200 p-4 rounded-xl flex items-start gap-3">
                           <AlertCircle className="w-6 h-6 text-red-600 flex-shrink-0" />
@@ -759,10 +795,8 @@ export default function App() {
                           <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-3 px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
                             <div className="flex flex-row items-center justify-center gap-2 text-base font-bold whitespace-nowrap">
                               {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6 flex-shrink-0" />}
-                              {/* Texto do botão alterado */}
-                              <span>{isCheckoutLoading ? "Gerando Modelo..." : "Liberar Relatório Completo"}</span>
+                              <span>{isCheckoutLoading ? "Gerando Modelo..." : "Modelo Pronto para Recurso"}</span>
                             </div>
-                            {/* Tamanho da fonte e peso aumentados */}
                             <span className="text-sm font-medium opacity-95 mt-1">Taxa única de R$ 19,90</span>
                           </button>
                         </div>
@@ -782,7 +816,6 @@ export default function App() {
                     </div>
                   )}
 
-                  {/* BLOCO DE ERRO DE GERAÇÃO (O FIM DA TELA INFINITA) */}
                   {defenseError && (
                     <div className="flex flex-col items-center text-center space-y-4 p-8 bg-red-50 border border-red-200 rounded-2xl">
                       <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
@@ -791,7 +824,7 @@ export default function App() {
                       <div>
                         <h3 className="text-xl font-bold text-red-800 mb-2">Falha na Geração da Defesa</h3>
                         <p className="text-red-700 font-medium leading-relaxed">
-                          Ocorreu uma instabilidade na hora de escrever o documento, mas <strong>o seu pagamento está seguro.</strong> Descubra em menos de 1 minuto se ainda é possível recorrer. abaixo para falar com nossa equipe técnica e receber seu arquivo imediatamente.
+                          Ocorreu uma instabilidade na hora de escrever o documento, mas <strong>o seu pagamento está seguro.</strong> Clique abaixo para falar com nossa equipe técnica e receber seu arquivo imediatamente.
                         </p>
                       </div>
                       <a href="https://wa.me/5500000000000?text=Olá!%20Eu%20paguei%20pelo%20recurso%20agora%20mesmo,%20mas%20a%20tela%20deu%20erro%20na%20hora%20de%20carregar%20a%20petição.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-colors flex items-center gap-2">
@@ -848,37 +881,4 @@ export default function App() {
                 <div className="text-center space-y-6">
                   <div className="flex justify-center"><div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center"><QrCode className="w-8 h-8" /></div></div>
                   <div><h3 className="text-2xl font-bold text-slate-800">Pagamento via Pix</h3></div>
-                  <div className="flex justify-center py-4"><div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300">
-                    {qrCodeBase64 ? <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" className="w-full h-full p-2 object-contain" /> : <QrCode className="w-24 h-24 text-slate-300 animate-pulse" />}
-                  </div></div>
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
-                      <p className="text-sm text-slate-500 font-mono truncate flex-1 text-left">{qrCode || "Gerando Pix..."}</p>
-                      <button onClick={handleCopyPix} className="text-emerald-600 hover:bg-emerald-50 p-2 rounded-lg transition-colors border border-emerald-200">
-                        {isPixCopied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-sm text-slate-500 font-medium">
-                    <RefreshCcw className="w-4 h-4 animate-spin" />
-                    Aguardando pagamento no banco...
-                  </div>
-
-                  {/* BOTÃO DE TESTE (PULAR PAGAMENTO) */}
-                  <div className="mt-6 pt-2 text-center">
-                    <button onClick={simulateApprovedPayment} className="text-[11px] text-slate-400 hover:text-slate-600 underline flex items-center justify-center mx-auto gap-1 transition-colors">
-                      <span>Pular p/ Teste</span> <ArrowRight className="w-3 h-3" />
-                    </button>
-                  </div>
-
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        )}
-      </AnimatePresence>
-
-    </div>
-  );
-}
+                  <div className="flex justify-center py-4"><div
