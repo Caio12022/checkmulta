@@ -37,7 +37,7 @@ async function startServer() {
       const { email } = req.body;
       const paymentData = {
         body: {
-          transaction_amount: 1.00, // VALOR DE TESTE MANTIDO
+          transaction_amount: 19.90, // VALOR OFICIAL DE PRODUÇÃO ATUALIZADO
           description: "Criação de Recurso - CheckMulta",
           payment_method_id: "pix",
           payer: { email: email || "cliente@checkmulta.com.br" },
