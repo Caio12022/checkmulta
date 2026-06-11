@@ -881,4 +881,37 @@ export default function App() {
                 <div className="text-center space-y-6">
                   <div className="flex justify-center"><div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center"><QrCode className="w-8 h-8" /></div></div>
                   <div><h3 className="text-2xl font-bold text-slate-800">Pagamento via Pix</h3></div>
-                  <div className="flex justify-center py-4"><div
+                  <div className="flex justify-center py-4"><div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300">
+                    {qrCodeBase64 ? <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" className="w-full h-full p-2 object-contain" /> : <QrCode className="w-24 h-24 text-slate-300 animate-pulse" />}
+                  </div></div>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                      <p className="text-sm text-slate-500 font-mono truncate flex-1 text-left">{qrCode || "Gerando Pix..."}</p>
+                      <button onClick={handleCopyPix} className="text-emerald-600 hover:bg-emerald-50 p-2 rounded-lg transition-colors border border-emerald-200">
+                        {isPixCopied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-sm text-slate-500 font-medium">
+                    <RefreshCcw className="w-4 h-4 animate-spin" />
+                    Aguardando pagamento no banco...
+                  </div>
+
+                  {/* BOTÃO DE TESTE (PULAR PAGAMENTO) */}
+                  <div className="mt-6 pt-2 text-center">
+                    <button onClick={simulateApprovedPayment} className="text-[11px] text-slate-400 hover:text-slate-600 underline flex items-center justify-center mx-auto gap-1 transition-colors">
+                      <span>Pular p/ Teste</span> <ArrowRight className="w-3 h-3" />
+                    </button>
+                  </div>
+
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+    </div>
+  );
+}
