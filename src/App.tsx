@@ -7,6 +7,13 @@ import React, { useState, useRef, useEffect } from "react";
 import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, MessageSquare, ClipboardList, Menu, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
+}
+
 const formatDocumentText = (text: string) => {
   if (!text) return text;
 
@@ -53,10 +60,7 @@ export default function App() {
   const [expiredDate, setExpiredDate] = useState<string | null>(null);
   const [expiredBypassData, setExpiredBypassData] = useState<string | null>(null);
   
-  // ESTADO NOVO: Rastreador para saber se o usuário forçou a entrada vencida
   const [isExpiredBypassActive, setIsExpiredBypassActive] = useState(false);
-  
-  // ESTADO NOVO: Contador de cliques secretos para testes
   const [secretClickCount, setSecretClickCount] = useState(0);
 
   const [isGeneratingDefense, setIsGeneratingDefense] = useState(false);
@@ -73,7 +77,6 @@ export default function App() {
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
 
-  // Estados para o Mercado Pago
   const [paymentId, setPaymentId] = useState<number | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
@@ -81,9 +84,6 @@ export default function App() {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // ========================================================
-  // MEMÓRIA ANTI-RECARREGAMENTO (Se o cliente pagar e sair)
-  // ========================================================
   useEffect(() => {
     const savedResult = localStorage.getItem('checkmulta_saved_result');
     const savedPaidStatus = localStorage.getItem('checkmulta_paid_status');
@@ -108,7 +108,6 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isAnalyzing, isGeneratingDefense]);
 
-  // RADAR DE VERIFICAÇÃO DO PIX REAL NO MERCADO PAGO
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
     let timeoutId: NodeJS.Timeout;
@@ -124,7 +123,25 @@ export default function App() {
           clearTimeout(timeoutId);
           setIsPixModalOpen(false);
           setIsPaid(true);
-          localStorage.setItem('checkmulta_paid_status', 'true'); // Salva na memória que pagou
+          localStorage.setItem('checkmulta_paid_status', 'true'); 
+
+          // --- BLOCO DE CONVERSÃO EXCLUSIVA GOOGLE ADS/GA4 ---
+          if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'purchase', {
+                transaction_id: paymentId.toString(),
+                value: 19.90,
+                currency: 'BRL',
+                items: [{ item_name: 'Defesa de Multa - IA', price: 19.90, quantity: 1 }]
+            });
+
+            window.gtag('event', 'conversion', {
+                'send_to': 'AW-COLOQUE_SEU_ID_AQUI/COLOQUE_O_LABEL_AQUI',
+                'value': 19.90,
+                'currency': 'BRL',
+                'transaction_id': paymentId.toString()
+            });
+          }
+          // --------------------------------------------------
         }
       } catch (err) {
         console.error("Erro no radar do PIX", err);
@@ -185,7 +202,7 @@ export default function App() {
     setError(null);
     setDefenseError(null);
     setExpiredBypassData(null);
-    setIsExpiredBypassActive(false); // Reseta o rastreador
+    setIsExpiredBypassActive(false);
     setIsPaid(false);
     setHasAnalyzed(false);
     setQrCode(null);
@@ -193,7 +210,6 @@ export default function App() {
     setPaymentId(null);
     setSecretClickCount(0);
 
-    // Limpa a memória
     localStorage.removeItem('checkmulta_saved_result');
     localStorage.removeItem('checkmulta_paid_status');
 
@@ -203,6 +219,10 @@ export default function App() {
   };
 
   const processFile = (file: File) => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'file_upload', { file_type: file.type });
+    }
+
     setImageFile(file);
     setPreviewUrl(null);
     setError(null);
@@ -210,7 +230,7 @@ export default function App() {
     setDefenseResult(null);
     setDefenseError(null);
     setExpiredBypassData(null);
-    setIsExpiredBypassActive(false); // Reseta o rastreador
+    setIsExpiredBypassActive(false);
     setIsPaid(false);
     setIsResultModalOpen(false);
 
@@ -231,7 +251,7 @@ export default function App() {
     setDefenseResult(null);
     setDefenseError(null);
     setExpiredBypassData(null);
-    setIsExpiredBypassActive(false); // Reseta o rastreador
+    setIsExpiredBypassActive(false);
     setIsPaid(false);
     setIsResultModalOpen(true);
 
@@ -250,7 +270,6 @@ export default function App() {
       let finalResult = data.result || "";
       const lowerResult = finalResult.toLowerCase();
 
-      // TRAVAS DE SEGURANÇA VISUAIS
       if (lowerResult.includes("documento_invalido") || lowerResult.includes("documento_inválido") || lowerResult.includes("erro_documento")) {
         throw new Error("A imagem enviada não é uma notificação de trânsito válida. Por favor, envie uma foto do seu auto de infração.");
       }
@@ -258,21 +277,15 @@ export default function App() {
         throw new Error("A imagem está muito borrada ou cortada. Por favor, envie uma foto nítida do documento.");
       }
       
-      // LÓGICA DO PRAZO VENCIDO (Permite Bypass)
       if (lowerResult.includes("rejeicao_prazo_expirado")) {
-        // Limpa a tag feia para não aparecer no resumo visual
         let cleanBypassText = finalResult.replace(/rejeicao_prazo_expirado/gi, "").trim();
-        
-        // Se a IA do backend não mandou a análise e só mandou a tag, exibe um aviso claro.
         if (cleanBypassText.length < 10) {
           cleanBypassText = "Análise processada. (Atenção Dev: A IA do backend retornou apenas a tag de vencimento. Ajuste o prompt do backend para gerar a análise da infração mesmo quando estiver vencida).";
         }
-
         setExpiredBypassData(cleanBypassText); 
         throw new Error("Análise Concluída: O prazo de defesa desta notificação já está vencido.");
       }
       
-      // LÓGICA DO CASO INVIÁVEL (Regra 80/20 - Bloqueia definitivo sem bypass)
       else if (lowerResult.includes("rejeição") || lowerResult.includes("rejeicao")) {
         throw new Error("Análise Concluída: Não encontramos viabilidade legal para recurso nesta notificação.");
       }
@@ -292,11 +305,16 @@ export default function App() {
       setResult(finalResult);
       if (finalResult) {
         setHasAnalyzed(true);
-        localStorage.setItem('checkmulta_saved_result', finalResult); // Salva na memória
+        localStorage.setItem('checkmulta_saved_result', finalResult);
       }
       setIsResultModalOpen(true);
     } catch (err: any) {
       console.error("Erro na Análise:", err);
+      
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'ia_rejection', { error_message: err.message });
+      }
+
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
         setError("Nossos servidores estão processando um alto volume de auditorias neste momento. Por favor, aguarde alguns segundos e tente enviar sua notificação novamente.");
       } else {
@@ -322,6 +340,10 @@ export default function App() {
       const data = await response.json();
 
       if (response.ok && data.qr_code) {
+        if (typeof window !== 'undefined' && window.gtag) {
+          window.gtag('event', 'begin_checkout', { value: 19.90, currency: 'BRL' });
+        }
+
         setPaymentId(data.id);
         setQrCode(data.qr_code);
         setQrCodeBase64(data.qr_code_base64);
@@ -337,7 +359,6 @@ export default function App() {
     }
   };
 
-  // BOTÃO DE BYPASS PARA TESTES DE SISTEMA E MEMÓRIA
   const simulateApprovedPayment = () => {
     setIsPixModalOpen(false);
     setIsCheckoutLoading(true);
@@ -357,7 +378,6 @@ export default function App() {
     setDefenseError(null);
     setDefenseResult(null);
 
-    // SISTEMA ANTI-INFINITO (Corta o sistema em 45 segundos se travar)
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 45000);
 
@@ -376,7 +396,7 @@ export default function App() {
       if (data.error) throw new Error(data.error);
 
       setDefenseResult(data.result);
-      localStorage.removeItem('checkmulta_saved_result'); // Limpa a memória após sucesso
+      localStorage.removeItem('checkmulta_saved_result');
       localStorage.removeItem('checkmulta_paid_status');
     } catch (err: any) {
       clearTimeout(timeoutId);
@@ -430,13 +450,11 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center text-gray-900 font-sans selection:bg-blue-100 selection:text-blue-900 w-full scroll-smooth">
 
-      {/* HEADER RESPONSIVO COM MENU HAMBÚRGUER */}
       <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-40 overflow-visible">
         <div className="flex items-center h-full w-[180px] md:w-[240px]">
           <img src="/checkmulta-logo.png" alt="CheckMulta Logo" className="w-full h-auto object-contain scale-[1.3] md:scale-[1.5] origin-left translate-y-1" />
         </div>
 
-        {/* Navegação Desktop */}
         <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-600 items-center">
           <a href="#inicio" className="hover:text-blue-600 transition-colors">Início</a>
           <a href="#como-funciona" className="hover:text-blue-600 transition-colors">Como Funciona</a>
@@ -446,7 +464,6 @@ export default function App() {
           </button>
         </nav>
 
-        {/* Botão Hambúrguer Mobile */}
         <button 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
           className="flex md:hidden p-2 text-slate-600 hover:text-blue-600 transition-colors rounded-lg hover:bg-slate-50"
@@ -455,7 +472,6 @@ export default function App() {
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
 
-        {/* Gaveta do Menu Mobile Dropdown */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div 
@@ -488,13 +504,11 @@ export default function App() {
           <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-6 leading-tight">
             Descubra Gratuitamente se Sua Multa Ainda Pode Ser Recorrida
           </h1>
-          {/* Parágrafo atualizado com IA e Dados */}
           <p className="text-slate-800 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
             Nossa Inteligência Artificial cruza os dados da sua notificação com a lei de trânsito em segundos. Descubra gratuitamente se o prazo é válido, se há erros do agente e se vale a pena recorrer.
           </p>
 
           <div className="bg-emerald-50 rounded-2xl p-6 md:p-8 max-w-2xl mx-auto flex flex-col items-center shadow-sm border border-emerald-100">
-            {/* Box Verde atualizado com IA */}
             <p className="text-emerald-800 font-bold text-lg md:text-xl text-center leading-snug">
               Auditoria imediata: O que o olho humano não vê, nossa IA encontra. Verifique agora se a sua multa possui falhas ocultas que permitem o cancelamento.
             </p>
@@ -556,7 +570,6 @@ export default function App() {
                   <div className="w-16 h-16 bg-blue-100/50 text-blue-700 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                     <UploadCloud className="w-8 h-8" />
                   </div>
-                  {/* Textos de Upload atualizados para corrigir erro de concordância e colocar IA */}
                   <div className="space-y-1">
                     <p className="text-lg font-medium text-slate-800">Envie a foto da notificação para a nossa IA</p>
                     <p className="text-slate-500 text-sm"><span className="font-semibold text-blue-600">Clique aqui</span> ou arraste o arquivo. O diagnóstico sai em menos de 1 minuto.</p>
@@ -614,7 +627,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* SEÇÃO DE FAQ PARA INSERIR OS H2 DE SEO ESTRATEGICAMENTE */}
       <section id="faq-seo" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-4xl w-full space-y-12">
           <div className="text-center">
@@ -665,7 +677,6 @@ export default function App() {
         </div>
       </footer>
 
-      {/* MODAL DO ECOSSISTEMA DE DOCUMENTOS E SUPORTE COM SCROLL CORRIGIDO */}
       <AnimatePresence>
         {activeModal && (
           <div className="fixed inset-0 z-[60] overflow-y-auto bg-slate-900/60 backdrop-blur-md">
@@ -711,7 +722,6 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* MODAL DE RESULTADO / DEFESA (COM O SCROLL CORRIGIDO ANTI-CORTE E ERRO AJUSTADO) */}
       <AnimatePresence>
         {isResultModalOpen && (
           <div className="fixed inset-0 z-[45] overflow-y-auto bg-slate-900/60 backdrop-blur-md">
@@ -884,7 +894,6 @@ export default function App() {
                 <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-5 h-5" /></button>
                 <div className="text-center space-y-6">
                   
-                  {/* MUDANÇA: Novo container retangular, maior e com enquadramento para o logo do Mercado Pago */}
                   <div className="flex justify-center">
                     <div 
                       className="w-full p-6 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center cursor-pointer"
@@ -898,7 +907,6 @@ export default function App() {
                         });
                       }}
                     >
-                      {/* Logo agora controlado pela altura para enquadramento perfeito no retângulo */}
                       <img src="/mercadopago.png" alt="Mercado Pago" className="h-16 w-auto object-contain" />
                     </div>
                   </div>
