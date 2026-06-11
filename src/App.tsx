@@ -55,6 +55,9 @@ export default function App() {
   
   // ESTADO NOVO: Rastreador para saber se o usuário forçou a entrada vencida
   const [isExpiredBypassActive, setIsExpiredBypassActive] = useState(false);
+  
+  // ESTADO NOVO: Contador de cliques secretos para testes
+  const [secretClickCount, setSecretClickCount] = useState(0);
 
   const [isGeneratingDefense, setIsGeneratingDefense] = useState(false);
   const [defenseResult, setDefenseResult] = useState<string | null>(null);
@@ -188,6 +191,7 @@ export default function App() {
     setQrCode(null);
     setQrCodeBase64(null);
     setPaymentId(null);
+    setSecretClickCount(0);
 
     // Limpa a memória
     localStorage.removeItem('checkmulta_saved_result');
@@ -484,13 +488,11 @@ export default function App() {
           <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-6 leading-tight">
             Descubra Gratuitamente se Sua Multa Ainda Pode Ser Recorrida
           </h1>
-          {/* Parágrafo atualizado com IA e Dados */}
           <p className="text-slate-800 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
             Nossa Inteligência Artificial cruza os dados da sua notificação com a lei de trânsito em segundos. Descubra gratuitamente se o prazo é válido, se há erros do agente e se vale a pena recorrer.
           </p>
 
           <div className="bg-emerald-50 rounded-2xl p-6 md:p-8 max-w-2xl mx-auto flex flex-col items-center shadow-sm border border-emerald-100">
-            {/* Box Verde atualizado com IA */}
             <p className="text-emerald-800 font-bold text-lg md:text-xl text-center leading-snug">
               Auditoria imediata: O que o olho humano não vê, nossa IA encontra. Verifique agora se a sua multa possui falhas ocultas que permitem o cancelamento.
             </p>
@@ -552,7 +554,6 @@ export default function App() {
                   <div className="w-16 h-16 bg-blue-100/50 text-blue-700 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                     <UploadCloud className="w-8 h-8" />
                   </div>
-                  {/* Textos de Upload atualizados para corrigir erro de concordância e colocar IA */}
                   <div className="space-y-1">
                     <p className="text-lg font-medium text-slate-800">Envie a foto da notificação para a nossa IA</p>
                     <p className="text-slate-500 text-sm"><span className="font-semibold text-blue-600">Clique aqui</span> ou arraste o arquivo. O diagnóstico sai em menos de 1 minuto.</p>
@@ -610,7 +611,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* SEÇÃO DE FAQ PARA INSERIR OS H2 DE SEO ESTRATEGICAMENTE */}
       <section id="faq-seo" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-4xl w-full space-y-12">
           <div className="text-center">
@@ -879,7 +879,26 @@ export default function App() {
               <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="relative w-11/12 max-w-sm bg-white rounded-2xl shadow-2xl p-6">
                 <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-5 h-5" /></button>
                 <div className="text-center space-y-6">
-                  <div className="flex justify-center"><div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center"><QrCode className="w-8 h-8" /></div></div>
+                  
+                  {/* ÍCONE DO MERCADO PAGO COM O GATILHO SECRETO DE TESTE */}
+                  <div className="flex justify-center">
+                    <div 
+                      className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center cursor-pointer"
+                      onClick={() => {
+                        setSecretClickCount(prev => {
+                          if (prev + 1 >= 5) {
+                            simulateApprovedPayment();
+                            return 0;
+                          }
+                          return prev + 1;
+                        });
+                      }}
+                    >
+                      {/* Altere o src abaixo para o nome exato da imagem que está na sua pasta (ex: mercadopago.png) */}
+                      <img src="/mercadopago.png" alt="Mercado Pago" className="w-10 h-10 object-contain" />
+                    </div>
+                  </div>
+
                   <div><h3 className="text-2xl font-bold text-slate-800">Pagamento via Pix</h3></div>
                   <div className="flex justify-center py-4"><div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300">
                     {qrCodeBase64 ? <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" className="w-full h-full p-2 object-contain" /> : <QrCode className="w-24 h-24 text-slate-300 animate-pulse" />}
@@ -898,12 +917,7 @@ export default function App() {
                     Aguardando pagamento no banco...
                   </div>
 
-                  {/* BOTÃO DE TESTE (PULAR PAGAMENTO) */}
-                  <div className="mt-6 pt-2 text-center">
-                    <button onClick={simulateApprovedPayment} className="text-[11px] text-slate-400 hover:text-slate-600 underline flex items-center justify-center mx-auto gap-1 transition-colors">
-                      <span>Pular p/ Teste</span> <ArrowRight className="w-3 h-3" />
-                    </button>
-                  </div>
+                  {/* O botão "Pular p/ Teste" foi removido completamente */}
 
                 </div>
               </motion.div>
