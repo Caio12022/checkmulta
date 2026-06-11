@@ -603,12 +603,12 @@ export default function App() {
             <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
               <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><UserX className="w-8 h-8" /></div>
               <h3 className="text-xl font-bold text-slate-800 mb-3">Sem Cadastro</h3>
-              <p className="text-slate-600 font-medium leather-relaxed">Você não precisa criar conta, colocar e-mail ou senha para auditar a sua multa. É direto ao ponto.</p>
+              <p className="text-slate-600 font-medium leading-relaxed">Você não precisa criar conta, colocar e-mail ou senha para auditar a sua multa. É direto ao ponto.</p>
             </div>
             <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
               <div className="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-6"><Route className="w-8 h-8" /></div>
               <h3 className="text-xl font-bold text-slate-800 mb-3">Total Transparência</h3>
-              <p className="text-slate-600 font-medium leather-relaxed">Atuamos como uma ferramenta tecnológica baseada no CTB. Nós criamos a tese, mas a decisão final é sempre do órgão julgador.</p>
+              <p className="text-slate-600 font-medium leading-relaxed">Atuamos como uma ferramenta tecnológica baseada no CTB. Nós criamos a tese, mas a decisão final é sempre do órgão julgador.</p>
             </div>
           </div>
         </div>
@@ -624,27 +624,27 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
               <h2 className="text-lg font-bold text-slate-800 mb-2">Como saber se ainda dá tempo de recorrer da multa?</h2>
-              <p className="text-slate-600 text-sm leather-relaxed">Nossa inteligência artificial analisa a data da infração e os prazos legais da sua notificação para confirmar se você ainda está dentro do período válido para apresentar sua defesa prévia ou recurso.</p>
+              <p className="text-slate-600 text-sm leading-relaxed">Nossa inteligência artificial analisa a data da infração e os prazos legais da sua notificação para confirmar se você ainda está dentro do período válido para apresentar sua defesa prévia ou recurso.</p>
             </div>
             
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
               <h2 className="text-lg font-bold text-slate-800 mb-2">Quais multas podem ser contestadas?</h2>
-              <p className="text-slate-600 text-sm leather-relaxed">Praticamente qualquer infração pode ser contestada se houver erros formais na autuação. Nosso foco é identificar falhas do agente de trânsito baseadas no Manual Brasileiro de Fiscalização (MBFT).</p>
+              <p className="text-slate-600 text-sm leading-relaxed">Praticamente qualquer infração pode ser contestada se houver erros formais na autuação. Nosso foco é identificar falhas do agente de trânsito baseadas no Manual Brasileiro de Fiscalização (MBFT).</p>
             </div>
 
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
               <h2 className="text-lg font-bold text-slate-800 mb-2">Como funciona a análise da CheckMulta?</h2>
-              <p className="text-slate-600 text-sm leather-relaxed">Você envia a foto do seu documento, nosso sistema cruza os dados com a legislação vigente em segundos e aponta se há viabilidade legal para solicitar a anulação da penalidade.</p>
+              <p className="text-slate-600 text-sm leading-relaxed">Você envia a foto do seu documento, nosso sistema cruza os dados com a legislação vigente em segundos e aponta se há viabilidade legal para solicitar a anulação da penalidade.</p>
             </div>
 
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
               <h2 className="text-lg font-bold text-slate-800 mb-2">O que contém o relatório de contestação?</h2>
-              <p className="text-slate-600 text-sm leather-relaxed">O modelo de recurso gerado entrega uma defesa estruturada e fundamentada em leis, pronta para você preencher com seus dados pessoais e protocolar no órgão autuador.</p>
+              <p className="text-slate-600 text-sm leading-relaxed">O modelo de recurso gerado entrega uma defesa estruturada e fundamentada em leis, pronta para você preencher com seus dados pessoais e protocolar no órgão autuador.</p>
             </div>
 
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 md:col-span-2 hover:shadow-md transition-shadow">
               <h2 className="text-lg font-bold text-slate-800 mb-2">Vale a pena recorrer de uma multa?</h2>
-              <p className="text-slate-600 text-sm leather-relaxed">Sim! Recorrer é um direito garantido por lei. Além de evitar pontos na CNH e a cobrança financeira, a defesa obriga o órgão a provar que a autuação foi feita de forma impecável, o que muitas vezes não ocorre devido a erros de preenchimento.</p>
+              <p className="text-slate-600 text-sm leading-relaxed">Sim! Recorrer é um direito garantido por lei. Além de evitar pontos na CNH e a cobrança financeira, a defesa obriga o órgão a provar que a autuação foi feita de forma impecável, o que muitas vezes não ocorre devido a erros de preenchimento.</p>
             </div>
           </div>
         </div>
@@ -680,16 +680,16 @@ export default function App() {
                   {activeModal === "suporte" && <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2"><span>💬</span> Central de Suporte</h3>}
                 </div>
 
-                <div className="text-sm text-slate-600 leather-relaxed space-y-3">
+                <div className="text-sm text-slate-600 leading-relaxed space-y-3">
                   {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente de forma algorítmica e não constitui tese jurídica garantida. Nós não somos um escritório de advocacia e este sistema não substitui a consulta a um advogado especialista. É plenamente possível que o recurso seja indeferido, sendo o julgamento de total responsabilidade do órgão de trânsito competente.</p>}
                   {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial para formulação de teses administrativas. Não nos responsabilizamos por prazos excedidos, inserção de dados incorretos pelo usuário ou resultado das decisões julgadas pelas juntas de recursos JARI ou instâncias superiores.</p>}
-                  {activeModal === "privacidade" && <p>Sua privacidade é absoluta. No possuímos banco de dados, nem realizamos registros ou retenções em log da fotografia do seu auto de infração, dados pessoais ou da petição gerada. O processamento é de estrito caráter transitório (em memória) para elaboração do documento, que é imediatamente apagado após o fechamento da página ou download.</p>}
+                  {activeModal === "privacidade" && <p>Sua privacidade é absoluta. Não possuímos banco de dados, nem realizamos registros ou retenções em log da fotografia do seu auto de infração, dados pessoais ou da petição gerada. O processamento é de estrito caráter transitório (em memória) para elaboração do documento, que é imediatamente apagado após o fechamento da página ou download.</p>}
 
                   {activeModal === "suporte" && (
                     <div className="space-y-5 pt-2">
                       <p className="text-sm text-slate-600 font-medium">Selecione o canal de atendimento abaixo para falar com o nosso time técnico:</p>
                       <div className="flex flex-col gap-3">
-                        <a href="https://wa.me/5500000000000?text=Olá!%20Preciso%20de%20ajuda%20com%20o%20CheckMulta." target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 w-full p-4 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl text-emerald-900 transition-colors text-left">
+                        <a href="https://wa.me/5513996485501?text=Olá!%20Preciso%20de%20ajuda%20com%20o%20CheckMulta." target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 w-full p-4 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl text-emerald-900 transition-colors text-left">
                           <MessageSquare className="w-6 h-6 text-emerald-600 flex-shrink-0" />
                           <div><strong className="block text-sm font-bold">Atendimento via WhatsApp</strong><span className="text-xs text-emerald-700 font-medium">Fale direto com um analista</span></div>
                         </a>
@@ -742,7 +742,7 @@ export default function App() {
                       </div>
                       <div>
                         <h3 className="text-xl font-bold text-red-800 mb-2">Análise Indisponível</h3>
-                        <p className="text-red-700 font-medium leather-relaxed">{error}</p>
+                        <p className="text-red-700 font-medium leading-relaxed">{error}</p>
                       </div>
                       
                       {expiredBypassData && (
@@ -779,7 +779,7 @@ export default function App() {
                         <CheckCircle2 className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
                         <div>
                           <h2 className="text-xl font-bold text-slate-800 mb-2">✅ Sua Multa Apresenta Possibilidade de Recurso</h2>
-                          <p className="text-slate-900 font-medium leather-relaxed">Encontramos tese jurídica válida para solicitar a nulidade.</p>
+                          <p className="text-slate-900 font-medium leading-relaxed">Encontramos tese jurídica válida para solicitar a nulidade.</p>
                           <div className="mt-3 flex flex-col items-start">
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-bold rounded-full">
                               <ShieldCheck className="w-4 h-4 text-emerald-600" />Força da Tese: ALTA
@@ -789,7 +789,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      <div className="pl-4 text-slate-600 text-sm font-medium whitespace-pre-wrap leather-relaxed border-l-2 border-slate-200">
+                      <div className="pl-4 text-slate-600 text-sm font-medium whitespace-pre-wrap leading-relaxed border-l-2 border-slate-200">
                         <strong className="text-slate-800">Resumo do Auto:</strong><br/>{formatDocumentText(result)}
                       </div>
 
@@ -827,11 +827,11 @@ export default function App() {
                       </div>
                       <div>
                         <h3 className="text-xl font-bold text-red-800 mb-2">Falha na Geração da Defesa</h3>
-                        <p className="text-red-700 font-medium leather-relaxed">
+                        <p className="text-red-700 font-medium leading-relaxed">
                           Ocorreu uma instabilidade na hora de escrever o documento, mas <strong>o seu pagamento está seguro.</strong> Clique abaixo para falar com nossa equipe técnica e receber seu arquivo imediatamente.
                         </p>
                       </div>
-                      <a href="https://wa.me/5500000000000?text=Olá!%20Eu%20paguei%20pelo%20recurso%20agora%20mesmo,%20mas%20a%20tela%20deu%20erro%20na%20hora%20de%20carregar%20a%20petição.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-colors flex items-center gap-2">
+                      <a href="https://wa.me/5513996485501?text=Olá!%20Eu%20paguei%20pelo%20recurso%20agora%20mesmo,%20mas%20a%20tela%20deu%20erro%20na%20hora%20de%20carregar%20a%20petição.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-colors flex items-center gap-2">
                         <MessageSquare className="w-5 h-5" /> Contatar Suporte no WhatsApp
                       </a>
                     </div>
@@ -851,7 +851,7 @@ export default function App() {
                       </div>
 
                       <div className="text-slate-800 p-4 sm:p-6 mx-auto bg-slate-50 rounded-xl font-serif border border-slate-200 w-full">
-                        <div className="whitespace-pre-wrap text-left text-[15px] md:text-base leather-relaxed font-medium">
+                        <div className="whitespace-pre-wrap text-left text-[15px] md:text-base leading-relaxed font-medium">
                           {formatDocumentText(defenseResult)}
                         </div>
                       </div>
@@ -920,8 +920,6 @@ export default function App() {
                     <RefreshCcw className="w-4 h-4 animate-spin" />
                     Aguardando pagamento no banco...
                   </div>
-
-                  {/* O botão "Pular p/ Teste" foi removido completamente */}
 
                 </div>
               </motion.div>
