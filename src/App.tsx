@@ -482,15 +482,15 @@ export default function App() {
 
         <section id="inicio" className="mb-10 text-center pt-4">
           <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-6 leading-tight">
-            Cancele Multas Injustas com Inteligência Artificial
+            Descubra Gratuitamente se Sua Multa Ainda Pode Ser Recorrida
           </h1>
           <p className="text-slate-800 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-            Nosso sistema audita sua notificação de trânsito em segundos, cruza os dados com o CTB e o Manual de Fiscalização, e identifica falhas legais para anular a infração.
+            Envie sua notificação gratuitamente e descubra se ainda existe prazo para recorrer, se há fundamentos para contestação e se vale a pena apresentar defesa.
           </p>
 
           <div className="bg-emerald-50 rounded-2xl p-6 md:p-8 max-w-2xl mx-auto flex flex-col items-center shadow-sm border border-emerald-100">
             <p className="text-emerald-800 font-bold text-lg md:text-xl text-center leading-snug">
-              Auditoria inteligente: o que o olho humano perde, nosso sistema encontra. Analise sua multa grátis.
+              Antes de pagar sua multa, verifique gratuitamente se ainda existe possibilidade de recurso.
             </p>
             <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} className="mt-5">
               <ArrowDown className="w-8 h-8 text-emerald-700" />
@@ -551,8 +551,8 @@ export default function App() {
                     <UploadCloud className="w-8 h-8" />
                   </div>
                   <div className="space-y-1">
-                    <p className="text-lg font-medium text-slate-800">Envie a imagem ou PDF da notificação</p>
-                    <p className="text-slate-500 text-sm"><span className="font-semibold text-blue-600">Clique</span> ou arraste o arquivo aqui</p>
+                    <p className="text-lg font-medium text-slate-800">Envie sua notificação para análise gratuita</p>
+                    <p className="text-slate-500 text-sm"><span className="font-semibold text-blue-600">Descubra em menos de 1 minuto se ainda é possível recorrer.</span> ou arraste o arquivo aqui</p>
                   </div>
                 </motion.div>
               )}
@@ -563,21 +563,21 @@ export default function App() {
 
       <section id="como-funciona" className="w-full bg-slate-100/50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-5xl w-full">
-          <h2 className="text-3xl font-bold text-center text-slate-800 mb-12 tracking-tight">Como funciona a nossa auditoria?</h2>
+          <h2 className="text-3xl font-bold text-center text-slate-800 mb-12 tracking-tight">Como funciona a análise da sua multa?</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
               <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><UploadCloud className="w-8 h-8" /></div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">1. Envie a Notificação</h3>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">1. Envie Sua Multa</h3>
               <p className="text-slate-600 font-medium leading-relaxed">Tire uma foto ou envie o PDF do seu auto de infração em nossa plataforma segura.</p>
             </div>
             <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
               <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><Search className="w-8 h-8" /></div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">2. Auditoria Imediata</h3>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">2. Verificação de Prazo e Viabilidade</h3>
               <p className="text-slate-600 font-medium leading-relaxed">Nossa IA analisa cada detalhe em busca de erros do agente autuador.</p>
             </div>
             <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
               <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><FileText className="w-8 h-8" /></div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">3. Defesa Pronta</h3>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">3. Relatório de Contestação</h3>
               <p className="text-slate-600 font-medium leading-relaxed">Se encontrarmos viabilidade, geramos a petição baseada na lei pronta para protocolo.</p>
             </div>
           </div>
@@ -738,7 +738,7 @@ export default function App() {
                       <div className="flex items-start space-x-4">
                         <CheckCircle2 className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
                         <div>
-                          <h2 className="text-xl font-bold text-slate-800 mb-2">✅ Viabilidade Confirmada!</h2>
+                          <h2 className="text-xl font-bold text-slate-800 mb-2">✅ Sua Multa Apresenta Possibilidade de Recurso</h2>
                           <p className="text-slate-900 font-medium leading-relaxed">Encontramos tese jurídica válida para solicitar a nulidade.</p>
                           <div className="mt-3 flex flex-col items-start">
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-bold rounded-full">
@@ -760,7 +760,7 @@ export default function App() {
                             <div className="flex flex-row items-center justify-center gap-2 text-base font-bold whitespace-nowrap">
                               {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6 flex-shrink-0" />}
                               {/* Texto do botão alterado */}
-                              <span>{isCheckoutLoading ? "Gerando Modelo..." : "Modelo Pronto para Recurso"}</span>
+                              <span>{isCheckoutLoading ? "Gerando Modelo..." : "Liberar Relatório Completo"}</span>
                             </div>
                             {/* Tamanho da fonte e peso aumentados */}
                             <span className="text-sm font-medium opacity-95 mt-1">Taxa única de R$ 19,90</span>
@@ -791,7 +791,7 @@ export default function App() {
                       <div>
                         <h3 className="text-xl font-bold text-red-800 mb-2">Falha na Geração da Defesa</h3>
                         <p className="text-red-700 font-medium leading-relaxed">
-                          Ocorreu uma instabilidade na hora de escrever o documento, mas <strong>o seu pagamento está seguro.</strong> Clique abaixo para falar com nossa equipe técnica e receber seu arquivo imediatamente.
+                          Ocorreu uma instabilidade na hora de escrever o documento, mas <strong>o seu pagamento está seguro.</strong> Descubra em menos de 1 minuto se ainda é possível recorrer. abaixo para falar com nossa equipe técnica e receber seu arquivo imediatamente.
                         </p>
                       </div>
                       <a href="https://wa.me/5500000000000?text=Olá!%20Eu%20paguei%20pelo%20recurso%20agora%20mesmo,%20mas%20a%20tela%20deu%20erro%20na%20hora%20de%20carregar%20a%20petição.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-colors flex items-center gap-2">
