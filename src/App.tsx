@@ -900,6 +900,16 @@ export default function App() {
                         {isPixCopied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                       </button>
                     </div>
+                    
+                    {/* INÍCIO DO ESCUDO DE TRANSPARÊNCIA */}
+                    <div className="bg-blue-50/80 border border-blue-100 rounded-xl p-3 mt-2 flex items-start gap-2.5 text-left">
+                      <Lock className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                      <p className="text-[11px] leading-tight text-blue-800">
+                        <strong>Pagamento Seguro:</strong> Para sua segurança e rastreabilidade, o recebedor no seu banco aparecerá em nome de <strong>João Antônio de Brito</strong> (Responsável Legal da CheckMulta).
+                      </p>
+                    </div>
+                    {/* FIM DO ESCUDO DE TRANSPARÊNCIA */}
+                    
                   </div>
                   <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-sm text-slate-500 font-medium">
                     <RefreshCcw className="w-4 h-4 animate-spin" />
