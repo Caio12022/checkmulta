@@ -66,6 +66,7 @@ export default function App() {
   const [isGeneratingDefense, setIsGeneratingDefense] = useState(false);
   const [defenseResult, setDefenseResult] = useState<string | null>(null);
   const [defenseError, setDefenseError] = useState<string | null>(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const [isPaid, setIsPaid] = useState(false);
   const [activeModal, setActiveModal] = useState<"termos" | "privacidade" | "aviso" | "suporte" | null>(null);
@@ -204,6 +205,7 @@ export default function App() {
     setQrCodeBase64(null);
     setPaymentId(null);
     setSecretClickCount(0);
+    setShowSuccessMessage(false);
 
     localStorage.removeItem('checkmulta_saved_result');
     localStorage.removeItem('checkmulta_paid_status');
@@ -228,6 +230,7 @@ export default function App() {
     setIsExpiredBypassActive(false);
     setIsPaid(false);
     setIsResultModalOpen(false);
+    setShowSuccessMessage(false);
 
     const reader = new FileReader();
     reader.onload = () => {
@@ -249,8 +252,9 @@ export default function App() {
     setIsExpiredBypassActive(false);
     setIsPaid(false);
     setIsResultModalOpen(true);
+    setShowSuccessMessage(false);
 
-    let isBusinessError = false; // Controle de tracking para não duplicar no catch
+    let isBusinessError = false; 
 
     try {
       const response = await fetch("/api/analyze-ticket", {
@@ -313,7 +317,6 @@ export default function App() {
       setResult(finalResult);
       
       if (finalResult) {
-        // MULTA VALIDADA COM SUCESSO - ENVIA EVENTO
         if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'ia_analise_viavel');
         setHasAnalyzed(true);
         localStorage.setItem('checkmulta_saved_result', finalResult);
@@ -323,7 +326,6 @@ export default function App() {
     } catch (err: any) {
       console.error("Erro na Análise:", err);
       
-      // Tracking exclusivo para falhas sistêmicas (não-negócio)
       if (!isBusinessError && typeof window !== 'undefined' && window.gtag) {
         window.gtag('event', 'ia_erro_sistema', { error_message: err.message });
       }
@@ -409,6 +411,7 @@ export default function App() {
       if (data.error) throw new Error(data.error);
 
       setDefenseResult(data.result);
+      setShowSuccessMessage(true); // O gatilho para a tela de agradecimento intermediária
       localStorage.removeItem('checkmulta_saved_result');
       localStorage.removeItem('checkmulta_paid_status');
     } catch (err: any) {
@@ -728,13 +731,22 @@ export default function App() {
                 <button onClick={() => setIsResultModalOpen(false)} className={`absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full transition-colors z-10 ${error ? "hover:bg-red-100" : "hover:bg-slate-100"}`} aria-label="Fechar"><X className="w-6 h-6" /></button>
                 <div className="w-full mt-4 space-y-6">
                   {isAnalyzing && (
-                    <div className="flex flex-col items-center justify-center p-4 space-y-5 max-w-md mx-auto">
-                      <div className="w-full h-1.5 bg-blue-100/80 rounded-full overflow-hidden relative">
+                    <div className="flex flex-col items-center justify-center p-6 space-y-6 max-w-md mx-auto">
+                      <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-2 shadow-inner">
+                        <Search className="w-10 h-10 animate-pulse" />
+                      </div>
+                      <h3 className="text-xl font-black text-slate-800 text-center">Processando Documento</h3>
+                      <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
                         <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-blue-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
                       </div>
-                      <AnimatePresence mode="wait">
-                        <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="font-medium text-slate-700 text-center text-lg">{LOADER_MESSAGES[loaderIndex]}</motion.p>
-                      </AnimatePresence>
+                      <div className="min-h-[60px] flex items-center justify-center">
+                        <AnimatePresence mode="wait">
+                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="font-bold text-blue-700 text-center text-lg">{LOADER_MESSAGES[loaderIndex]}</motion.p>
+                        </AnimatePresence>
+                      </div>
+                      <p className="text-sm text-slate-500 font-medium text-center bg-slate-50 p-3 rounded-lg border border-slate-200">
+                        A inteligência artificial está extraindo os dados em alta resolução. <strong>Isso pode levar cerca de 1 minuto.</strong> Não feche a página.
+                      </p>
                     </div>
                   )}
                   {error && (
@@ -791,8 +803,11 @@ export default function App() {
                         <strong className="text-slate-800">Resumo do Auto:</strong><br/>{formatDocumentText(result)}
                       </div>
                       <div className="pt-6">
-                        <div className="flex flex-col space-y-4">
-                          <p className="text-center text-slate-900 font-medium">Tese validada! Deseja liberar sua defesa completa e formatada?</p>
+                        <div className="flex flex-col space-y-5 bg-emerald-50/50 p-6 rounded-2xl border border-emerald-100">
+                          <p className="text-center text-emerald-900 text-xl md:text-2xl font-black px-2 leading-tight">
+                            Tese Validada com Sucesso! <br className="md:hidden" />
+                            <span className="text-emerald-700 text-lg md:text-xl font-bold mt-1 block">Deseja liberar sua defesa completa e formatada?</span>
+                          </p>
                           <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-3 px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
                             <div className="flex flex-row items-center justify-center gap-2 text-base font-bold whitespace-nowrap">
                               {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6 flex-shrink-0" />}
@@ -805,14 +820,27 @@ export default function App() {
                     </div>
                   )}
                   {isGeneratingDefense && (
-                    <div className="flex flex-col items-center justify-center p-8 space-y-5 max-w-md mx-auto">
-                      <div className="w-full h-1.5 bg-green-100/80 rounded-full overflow-hidden relative">
+                    <div className="flex flex-col items-center justify-center p-8 space-y-6 max-w-md mx-auto">
+                      <div className="w-20 h-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-2 shadow-inner">
+                        <FileText className="w-10 h-10 animate-bounce" />
+                      </div>
+                      <h3 className="text-xl font-black text-slate-800 text-center">Redigindo Defesa</h3>
+                      <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
                         <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-emerald-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
                       </div>
-                      <AnimatePresence mode="wait">
-                        <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="font-medium text-slate-700 text-center text-lg">{LOADER_MESSAGES[loaderIndex]}</motion.p>
-                      </AnimatePresence>
-                      <p className="text-xs text-slate-400 font-medium text-center mt-4">Seu pagamento está seguro. Por favor, aguarde e não feche esta janela.</p>
+                      <div className="min-h-[60px] flex items-center justify-center">
+                        <AnimatePresence mode="wait">
+                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="font-bold text-emerald-700 text-center text-lg">{LOADER_MESSAGES[loaderIndex]}</motion.p>
+                        </AnimatePresence>
+                      </div>
+                      <div className="bg-emerald-50 border border-emerald-200 p-4 rounded-xl w-full mt-4">
+                        <p className="text-base md:text-lg text-emerald-800 font-black text-center flex items-center justify-center gap-2">
+                          <ShieldCheck className="w-5 h-5" /> Seu pagamento está seguro!
+                        </p>
+                        <p className="text-sm text-emerald-600 font-medium text-center mt-1">
+                          Por favor, aguarde e não feche esta janela.
+                        </p>
+                      </div>
                     </div>
                   )}
                   {defenseError && (
@@ -831,7 +859,39 @@ export default function App() {
                       </a>
                     </div>
                   )}
-                  {defenseResult && (
+                  
+                  {defenseResult && showSuccessMessage && (
+                    <div className="flex flex-col items-center text-center space-y-6 p-6 sm:p-10 max-w-md mx-auto">
+                      <div className="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-2">
+                        <CheckCircle2 className="w-14 h-14" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-black text-slate-800 mb-3">Obrigado pela preferência!</h3>
+                        <p className="text-slate-600 text-lg font-medium leading-relaxed">
+                          Seu documento jurídico foi gerado com sucesso pela nossa inteligência artificial e já está pronto.
+                        </p>
+                        <p className="text-slate-500 mt-2 font-medium">
+                          Na próxima tela, basta copiar o texto ou baixar o arquivo.
+                        </p>
+                      </div>
+                      <div className="w-full flex flex-col items-center gap-4 mt-6">
+                        <button 
+                          onClick={() => setShowSuccessMessage(false)} 
+                          className="w-full py-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors font-bold text-lg shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                        >
+                          OK, Ver Minha Petição <Check className="w-5 h-5" />
+                        </button>
+                        <button 
+                          onClick={() => setActiveModal("suporte")} 
+                          className="text-sm text-slate-400 hover:text-blue-600 transition-colors font-medium flex items-center gap-1"
+                        >
+                          Precisa de ajuda? Fale com o suporte.
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {defenseResult && !showSuccessMessage && (
                     <div className="flex flex-col space-y-6">
                       <div className="flex items-center justify-center space-x-3 border-b border-slate-200 pb-4">
                         <Scale className="w-6 h-6 text-slate-800" />
