@@ -250,6 +250,8 @@ export default function App() {
     setIsPaid(false);
     setIsResultModalOpen(true);
 
+    let isBusinessError = false; // Controle de tracking para não duplicar no catch
+
     try {
       const response = await fetch("/api/analyze-ticket", {
         method: "POST",
@@ -266,13 +268,20 @@ export default function App() {
       const lowerResult = finalResult.toLowerCase();
 
       if (lowerResult.includes("documento_invalido") || lowerResult.includes("documento_inválido") || lowerResult.includes("erro_documento")) {
+        isBusinessError = true;
+        if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'ia_analise_erro', { tipo: 'documento_invalido' });
         throw new Error("A imagem enviada não é uma notificação de trânsito válida. Por favor, envie uma foto do seu auto de infração.");
       }
+      
       if (lowerResult.includes("imagem_ilegivel") || lowerResult.includes("imagem_ilegível") || lowerResult.includes("erro_imagem")) {
+        isBusinessError = true;
+        if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'ia_analise_erro', { tipo: 'imagem_ilegivel' });
         throw new Error("A imagem está muito borrada ou cortada. Por favor, envie uma foto nítida do documento.");
       }
       
       if (lowerResult.includes("rejeicao_prazo_expirado")) {
+        isBusinessError = true;
+        if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'ia_analise_inviavel', { motivo: 'prazo_expirado' });
         let cleanBypassText = finalResult.replace(/rejeicao_prazo_expirado/gi, "").trim();
         if (cleanBypassText.length < 10) {
           cleanBypassText = "Análise processada. (Atenção Dev: A IA do backend retornou apenas a tag de vencimento. Ajuste o prompt do backend para gerar a análise da infração mesmo quando estiver vencida).";
@@ -282,10 +291,14 @@ export default function App() {
       }
       
       else if (lowerResult.includes("rejeição") || lowerResult.includes("rejeicao")) {
+        isBusinessError = true;
+        if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'ia_analise_inviavel', { motivo: 'sem_viabilidade_legal' });
         throw new Error("Análise Concluída: Não encontramos viabilidade legal para recurso nesta notificação.");
       }
       
       if (lowerResult.includes("erro_seguranca") || lowerResult.includes("erro_segurança")) {
+        isBusinessError = true;
+        if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'ia_analise_erro', { tipo: 'bloqueio_seguranca' });
         throw new Error("A imagem foi bloqueada por nossas diretrizes de segurança. Envie o documento original.");
       }
 
@@ -298,16 +311,21 @@ export default function App() {
 
       setExpiredDate(expDate);
       setResult(finalResult);
+      
       if (finalResult) {
+        // MULTA VALIDADA COM SUCESSO - ENVIA EVENTO
+        if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'ia_analise_viavel');
         setHasAnalyzed(true);
         localStorage.setItem('checkmulta_saved_result', finalResult);
       }
+      
       setIsResultModalOpen(true);
     } catch (err: any) {
       console.error("Erro na Análise:", err);
       
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', 'ia_rejection', { error_message: err.message });
+      // Tracking exclusivo para falhas sistêmicas (não-negócio)
+      if (!isBusinessError && typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'ia_erro_sistema', { error_message: err.message });
       }
 
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
@@ -413,6 +431,7 @@ export default function App() {
     if (!defenseResult) return;
     try {
       await navigator.clipboard.writeText(defenseResult);
+      if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'defesa_copiada');
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
     } catch (err) {
@@ -433,6 +452,7 @@ export default function App() {
 
   const handleDownload = () => {
     if (!defenseResult) return;
+    if (typeof window !== 'undefined' && window.gtag) window.gtag('event', 'defesa_baixada');
     const blob = new Blob([defenseResult], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
