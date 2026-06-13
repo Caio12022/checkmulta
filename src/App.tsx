@@ -411,7 +411,7 @@ export default function App() {
       if (data.error) throw new Error(data.error);
 
       setDefenseResult(data.result);
-      setShowSuccessMessage(true); // O gatilho para a tela de agradecimento intermediária
+      setShowSuccessMessage(true); 
       localStorage.removeItem('checkmulta_saved_result');
       localStorage.removeItem('checkmulta_paid_status');
     } catch (err: any) {
@@ -803,17 +803,17 @@ export default function App() {
                         <strong className="text-slate-800">Resumo do Auto:</strong><br/>{formatDocumentText(result)}
                       </div>
                       <div className="pt-6">
-                        <div className="flex flex-col space-y-5 bg-emerald-50/50 p-6 rounded-2xl border border-emerald-100">
-                          <p className="text-center text-emerald-900 text-xl md:text-2xl font-black px-2 leading-tight">
+                        <div className="flex flex-col space-y-4 sm:space-y-5 bg-emerald-50/50 p-4 sm:p-6 w-full rounded-2xl border border-emerald-100">
+                          <p className="text-center text-emerald-900 text-lg sm:text-xl md:text-2xl font-black px-1 sm:px-2 leading-tight">
                             Tese Validada com Sucesso! <br className="md:hidden" />
-                            <span className="text-emerald-700 text-lg md:text-xl font-bold mt-1 block">Deseja liberar sua defesa completa e formatada?</span>
+                            <span className="text-emerald-700 text-[15px] sm:text-lg md:text-xl font-bold mt-1 sm:mt-2 block">Deseja liberar sua defesa completa e formatada?</span>
                           </p>
-                          <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-3 px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
-                            <div className="flex flex-row items-center justify-center gap-2 text-base font-bold whitespace-nowrap">
-                              {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6 flex-shrink-0" />}
+                          <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-3 sm:py-4 px-2 sm:px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
+                            <div className="flex flex-row items-center justify-center gap-2 text-[15px] sm:text-base font-bold text-center leading-tight">
+                              {isCheckoutLoading ? <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 animate-spin flex-shrink-0" /> : <Scale className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />}
                               <span>{isCheckoutLoading ? "Gerando Modelo..." : "Modelo Pronto para Recurso"}</span>
                             </div>
-                            <span className="text-sm font-medium opacity-95 mt-1">Taxa única de R$ 19,90</span>
+                            <span className="text-xs sm:text-sm font-medium opacity-95 mt-1">Taxa única de R$ 19,90</span>
                           </button>
                         </div>
                       </div>
@@ -861,7 +861,7 @@ export default function App() {
                   )}
                   
                   {defenseResult && showSuccessMessage && (
-                    <div className="flex flex-col items-center text-center space-y-6 p-6 sm:p-10 max-w-md mx-auto">
+                    <div className="flex flex-col items-center text-center space-y-5 sm:space-y-6 p-4 sm:p-10 w-full max-w-md mx-auto">
                       <div className="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-2">
                         <CheckCircle2 className="w-14 h-14" />
                       </div>
@@ -874,10 +874,10 @@ export default function App() {
                           Na próxima tela, basta copiar o texto ou baixar o arquivo.
                         </p>
                       </div>
-                      <div className="w-full flex flex-col items-center gap-4 mt-6">
+                      <div className="w-full flex flex-col items-center gap-3 sm:gap-4 mt-4 sm:mt-6">
                         <button 
                           onClick={() => setShowSuccessMessage(false)} 
-                          className="w-full py-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors font-bold text-lg shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                          className="w-full py-3.5 sm:py-4 px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors font-bold text-base sm:text-lg shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                         >
                           OK, Ver Minha Petição <Check className="w-5 h-5" />
                         </button>
