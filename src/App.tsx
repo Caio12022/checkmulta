@@ -75,8 +75,11 @@ export default function App() {
 
   const [hasAnalyzed, setHasAnalyzed] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
-  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
+  const [pixStep, setPixStep] = useState<"whatsapp" | "qrcode">("whatsapp");
+  const [whatsapp, setWhatsapp] = useState("");
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
 
   const [paymentId, setPaymentId] = useState<number | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
@@ -114,7 +117,7 @@ export default function App() {
     let timeoutId: NodeJS.Timeout;
 
     const checkPaymentStatus = async () => {
-      if (!paymentId || !isPixModalOpen) return;
+      if (!paymentId || !isPixModalOpen || pixStep !== "qrcode") return;
       try {
         const res = await fetch(`/api/check-payment/${paymentId}`);
         const data = await res.json();
@@ -126,7 +129,6 @@ export default function App() {
           setIsPaid(true);
           localStorage.setItem('checkmulta_paid_status', 'true'); 
 
-          // --- BLOCO DE CONVERSÃO OTIMIZADO PARA GA4/GOOGLE ADS ---
           if (typeof window !== 'undefined' && window.gtag) {
             window.gtag('event', 'purchase', {
               send_to: 'AW-3277250868',
@@ -135,16 +137,14 @@ export default function App() {
               currency: 'BRL',
               items: [{ item_id: 'defesa_ia', item_name: 'Defesa de Multa - IA', price: 19.90, quantity: 1 }]
             });
-            console.log("Evento de purchase disparado para GA4/Google Ads");
           }
-          // ---------------------------------------------------------
         }
       } catch (err) {
         console.error("Erro no radar do PIX", err);
       }
     };
 
-    if (isPixModalOpen && paymentId) {
+    if (isPixModalOpen && paymentId && pixStep === "qrcode") {
       intervalId = setInterval(checkPaymentStatus, 3000);
 
       timeoutId = setTimeout(() => {
@@ -157,7 +157,7 @@ export default function App() {
       if (intervalId) clearInterval(intervalId);
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [isPixModalOpen, paymentId]);
+  }, [isPixModalOpen, paymentId, pixStep]);
 
   useEffect(() => {
     if (isPaid && result && !defenseResult && !isGeneratingDefense) {
@@ -206,6 +206,7 @@ export default function App() {
     setPaymentId(null);
     setSecretClickCount(0);
     setShowSuccessMessage(false);
+    setWhatsapp("");
 
     localStorage.removeItem('checkmulta_saved_result');
     localStorage.removeItem('checkmulta_paid_status');
@@ -341,15 +342,36 @@ export default function App() {
     }
   };
 
+  const handleWhatsappChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value.replace(/\D/g, "");
+    if (value.length > 11) value = value.slice(0, 11);
+    let masked = value;
+    if (value.length > 2) masked = `(${value.slice(0, 2)}) ${value.slice(2)}`;
+    if (value.length > 7) masked = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
+    setWhatsapp(masked);
+  };
+
+  const openWhatsappModal = () => {
+    setPixStep("whatsapp");
+    setWhatsapp("");
+    setIsPixModalOpen(true);
+  };
+
   const handleCheckout = async () => {
-    if (!result) return;
+    const pureNumber = whatsapp.replace(/\D/g, "");
+    if (pureNumber.length < 10) return;
+    
     setIsCheckoutLoading(true);
 
     try {
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'whatsapp_informado');
+      }
+
       const response = await fetch("/api/create-payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: "comprador@checkmulta.com.br" }),
+        body: JSON.stringify({ email: "comprador@checkmulta.com.br", whatsapp: pureNumber }),
       });
 
       const data = await response.json();
@@ -362,7 +384,7 @@ export default function App() {
         setPaymentId(data.id);
         setQrCode(data.qr_code);
         setQrCodeBase64(data.qr_code_base64);
-        setIsPixModalOpen(true);
+        setPixStep("qrcode");
       } else {
         alert("Erro ao inicializar gateway de pagamento. Verifique o Token no Render.");
       }
@@ -808,10 +830,10 @@ export default function App() {
                             Tese Validada com Sucesso! <br className="md:hidden" />
                             <span className="text-emerald-700 text-[15px] sm:text-lg md:text-xl font-bold mt-1 sm:mt-2 block">Deseja liberar sua defesa completa e formatada?</span>
                           </p>
-                          <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-3 sm:py-4 px-2 sm:px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
+                          <button onClick={openWhatsappModal} className="w-full flex flex-col items-center justify-center py-3 sm:py-4 px-2 sm:px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md">
                             <div className="flex flex-row items-center justify-center gap-2 text-[15px] sm:text-base font-bold text-center leading-tight">
-                              {isCheckoutLoading ? <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 animate-spin flex-shrink-0" /> : <Scale className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />}
-                              <span>{isCheckoutLoading ? "Gerando Modelo..." : "Modelo Pronto para Recurso"}</span>
+                              <Scale className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+                              <span>Modelo Pronto para Recurso</span>
                             </div>
                             <span className="text-xs sm:text-sm font-medium opacity-95 mt-1">Taxa única de R$ 19,90</span>
                           </button>
@@ -931,51 +953,84 @@ export default function App() {
              <div className="min-h-full flex items-center justify-center p-4">
               <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="relative w-11/12 max-w-sm bg-white rounded-2xl shadow-2xl p-6">
                 <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-5 h-5" /></button>
-                <div className="text-center space-y-6">
-                  
-                  <div className="flex justify-center">
-                    <div 
-                      className="w-full p-6 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center cursor-pointer"
-                      onClick={() => {
-                        setSecretClickCount(prev => {
-                          if (prev + 1 >= 5) {
-                            simulateApprovedPayment();
-                            return 0;
-                          }
-                          return prev + 1;
-                        });
-                      }}
-                    >
-                      <img src="/mercadopago.png" alt="Mercado Pago" className="h-16 w-auto object-contain" />
+                
+                {pixStep === "whatsapp" ? (
+                  <div className="text-center space-y-6 pt-2">
+                    <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                      <FileText className="w-8 h-8" />
                     </div>
-                  </div>
-                  <div><h3 className="text-2xl font-bold text-slate-800">Pagamento via Pix</h3></div>
-                  <div className="flex justify-center py-4"><div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300">
-                    {qrCodeBase64 ? <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" className="w-full h-full p-2 object-contain" /> : <QrCode className="w-24 h-24 text-slate-300 animate-pulse" />}
-                  </div></div>
-                  <div className="space-y-3">
-                    <div className="flex items-center space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
-                      <p className="text-sm text-slate-500 font-mono truncate flex-1 text-left">{qrCode || "Gerando Pix..."}</p>
-                      <button onClick={handleCopyPix} className="text-emerald-600 hover:bg-emerald-50 p-2 rounded-lg transition-colors border border-emerald-200">
-                        {isPixCopied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                    <h3 className="text-2xl font-black text-slate-800">Sua Petição Está Pronta!</h3>
+                    <p className="text-sm text-slate-600 font-medium">
+                      Para garantir que você não perca sua defesa caso a página feche, informe seu WhatsApp. Enviaremos a sua cópia de segurança em tempo real.
+                    </p>
+                    <div className="space-y-4">
+                      <div className="text-left">
+                        <label className="block text-xs font-bold text-slate-700 mb-1 ml-1">Seu WhatsApp (com DDD)</label>
+                        <input
+                          type="tel"
+                          value={whatsapp}
+                          onChange={handleWhatsappChange}
+                          placeholder="(11) 99999-9999"
+                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all text-slate-800 font-bold text-lg text-center tracking-wide"
+                        />
+                      </div>
+                      <button
+                        onClick={handleCheckout}
+                        disabled={whatsapp.replace(/\D/g, "").length < 10 || isCheckoutLoading}
+                        className="w-full py-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors font-bold text-lg shadow-md disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      >
+                        {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin" /> : <Lock className="w-5 h-5" />}
+                        {isCheckoutLoading ? "Gerando PIX..." : "Liberar Meu Documento"}
                       </button>
-                    </div>
-                    
-                    {/* INÍCIO DO ESCUDO DE TRANSPARÊNCIA */}
-                    <div className="bg-blue-50/80 border border-blue-100 rounded-xl p-3 mt-2 flex items-start gap-2.5 text-left">
-                      <Lock className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
-                      <p className="text-[11px] leading-tight text-blue-800">
-                        <strong>Pagamento Seguro:</strong> Para sua segurança e rastreabilidade, o recebedor no seu banco aparecerá em nome de <strong>João Antônio de Brito</strong> (Responsável Legal da CheckMulta).
+                      <p className="text-[11px] text-slate-400 font-medium flex items-center justify-center gap-1 mt-2">
+                        <ShieldCheck className="w-3 h-3" /> Prometemos não enviar spam.
                       </p>
                     </div>
-                    {/* FIM DO ESCUDO DE TRANSPARÊNCIA */}
-                    
                   </div>
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-sm text-slate-500 font-medium">
-                    <RefreshCcw className="w-4 h-4 animate-spin" />
-                    Aguardando pagamento no banco...
+                ) : (
+                  <div className="text-center space-y-6">
+                    <div className="flex justify-center">
+                      <div 
+                        className="w-full p-6 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center cursor-pointer"
+                        onClick={() => {
+                          setSecretClickCount(prev => {
+                            if (prev + 1 >= 5) {
+                              simulateApprovedPayment();
+                              return 0;
+                            }
+                            return prev + 1;
+                          });
+                        }}
+                      >
+                        <img src="/mercadopago.png" alt="Mercado Pago" className="h-16 w-auto object-contain" />
+                      </div>
+                    </div>
+                    <div><h3 className="text-2xl font-bold text-slate-800">Pagamento via Pix</h3></div>
+                    <div className="flex justify-center py-4"><div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300">
+                      {qrCodeBase64 ? <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" className="w-full h-full p-2 object-contain" /> : <QrCode className="w-24 h-24 text-slate-300 animate-pulse" />}
+                    </div></div>
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                        <p className="text-sm text-slate-500 font-mono truncate flex-1 text-left">{qrCode || "Gerando Pix..."}</p>
+                        <button onClick={handleCopyPix} className="text-emerald-600 hover:bg-emerald-50 p-2 rounded-lg transition-colors border border-emerald-200">
+                          {isPixCopied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                        </button>
+                      </div>
+                      
+                      <div className="bg-blue-50/80 border border-blue-100 rounded-xl p-3 mt-2 flex items-start gap-2.5 text-left">
+                        <Lock className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                        <p className="text-[11px] leading-tight text-blue-800">
+                          <strong>Pagamento Seguro:</strong> Para sua segurança e rastreabilidade, o recebedor no seu banco aparecerá em nome de <strong>João Antônio de Brito</strong> (Responsável Legal da CheckMulta).
+                        </p>
+                      </div>
+                      
+                    </div>
+                    <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-sm text-slate-500 font-medium">
+                      <RefreshCcw className="w-4 h-4 animate-spin" />
+                      Aguardando pagamento no banco...
+                    </div>
                   </div>
-                </div>
+                )}
               </motion.div>
             </div>
           </div>
