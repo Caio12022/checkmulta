@@ -58,6 +58,15 @@ const VIOLATION_TYPES = [
   { id: 'outras', name: 'Outras Infrações', icon: PlusCircle },
 ];
 
+// NOVO: Textos para o carrossel dinâmico
+const SOCIAL_PROOF_MESSAGES = [
+  { icon: <Zap className="w-4 h-4 text-amber-500" />, text: "Mais de 340 auditorias realizadas só nesta semana." },
+  { icon: <CheckCircle2 className="w-4 h-4 text-emerald-500" />, text: "Há 2 min: Defesa de Radar (SP) gerada com sucesso." },
+  { icon: <ShieldCheck className="w-4 h-4 text-blue-500" />, text: "Há 15 min: Falha legal identificada em autuação (RJ)." },
+  { icon: <CheckCircle2 className="w-4 h-4 text-emerald-500" />, text: "Há 42 min: Modelo de recurso liberado. Economia: R$ 293,47." },
+  { icon: <FileText className="w-4 h-4 text-slate-500" />, text: "Há 1 hora: Tese de defesa para Lei Seca estruturada." }
+];
+
 export default function App() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -86,9 +95,11 @@ export default function App() {
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [showFomoBanner, setShowFomoBanner] = useState(false);
   
-  // Novos estados para a triagem inteligente
   const [selectedViolation, setSelectedViolation] = useState<string | null>(null);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+
+  // NOVO: Controle do carrossel
+  const [proofIndex, setProofIndex] = useState(0);
 
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
@@ -124,6 +135,14 @@ export default function App() {
     }
     return () => clearInterval(interval);
   }, [isAnalyzing, isGeneratingDefense]);
+
+  // Efeito do Carrossel Dinâmico
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProofIndex((prev) => (prev + 1) % SOCIAL_PROOF_MESSAGES.length);
+    }, 4500); // Troca a cada 4.5 segundos
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
@@ -281,7 +300,7 @@ export default function App() {
     setIsResultModalOpen(false);
     setShowSuccessMessage(false);
     setShowFomoBanner(false);
-    setIsUploadModalOpen(false); // Fecha o modal de upload
+    setIsUploadModalOpen(false); 
 
     const reader = new FileReader();
     reader.onload = () => {
@@ -661,7 +680,7 @@ export default function App() {
                     <button 
                       key={v.id}
                       onClick={() => handleViolationSelect(v.name)}
-                      className="flex flex-col items-center justify-center gap-3 p-4 sm:p-5 bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all duration-200 group text-slate-700 hover:text-blue-700"
+                      className="flex flex-col items-center justify-center gap-3 p-4 sm:p-5 bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all duration-200 group text-slate-700 hover:text-blue-700 shadow-sm hover:shadow"
                     >
                       <v.icon className="w-8 h-8 sm:w-10 sm:h-10 text-slate-400 group-hover:text-blue-500 transition-colors" />
                       <span className="text-sm sm:text-base font-bold text-center leading-tight">{v.name}</span>
@@ -671,17 +690,27 @@ export default function App() {
              </div>
           )}
           
-          <div className="text-center pt-2">
-             <p className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-center gap-1.5">
-               <Zap className="w-3.5 h-3.5 text-amber-500" />
-               Mais de 300 auditorias realizadas esta semana
-             </p>
+          {/* NOVO: Carrossel Dinâmico de Prova Social */}
+          <div className="flex justify-center mt-6 h-10 overflow-hidden relative w-full max-w-md mx-auto">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={proofIndex}
+                initial={{ y: 25, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -25, opacity: 0 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="absolute flex items-center justify-center gap-2 text-[13px] sm:text-sm font-bold text-slate-600 bg-white px-5 py-2 rounded-full border border-slate-200 shadow-sm w-max"
+              >
+                {SOCIAL_PROOF_MESSAGES[proofIndex].icon}
+                {SOCIAL_PROOF_MESSAGES[proofIndex].text}
+              </motion.div>
+            </AnimatePresence>
           </div>
           
         </main>
       </div>
 
-      {/* NOVO: MODAL DE UPLOAD (Abre após selecionar a infração) */}
+      {/* MODAL DE UPLOAD (Abre após selecionar a infração) */}
       <AnimatePresence>
         {isUploadModalOpen && (
           <div className="fixed inset-0 z-[55] overflow-y-auto bg-slate-900/60 backdrop-blur-sm">
