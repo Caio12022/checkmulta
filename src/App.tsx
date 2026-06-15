@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useRef, useEffect } from "react";
-import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, MessageSquare, ClipboardList, Menu } from "lucide-react";
+import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, MessageSquare, ClipboardList, Menu, Timer } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 declare global {
@@ -75,8 +75,11 @@ export default function App() {
 
   const [hasAnalyzed, setHasAnalyzed] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
+  const [showFomoBanner, setShowFomoBanner] = useState(false); // NOVO: Banner de Urgência
+  
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
+  const [pixTimeLeft, setPixTimeLeft] = useState(600); // NOVO: Cronômetro de 10 min
 
   const [paymentId, setPaymentId] = useState<number | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
@@ -109,6 +112,25 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isAnalyzing, isGeneratingDefense]);
 
+  // NOVO: Efeito do Cronômetro do PIX
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (isPixModalOpen && pixTimeLeft > 0) {
+      timer = setInterval(() => {
+        setPixTimeLeft((prev) => prev - 1);
+      }, 1000);
+    } else if (!isPixModalOpen) {
+      setPixTimeLeft(600); // Reseta ao fechar
+    }
+    return () => clearInterval(timer);
+  }, [isPixModalOpen, pixTimeLeft]);
+
+  const formatTime = (seconds: number) => {
+    const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+    const s = (seconds % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  };
+
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
     let timeoutId: NodeJS.Timeout;
@@ -126,7 +148,6 @@ export default function App() {
           setIsPaid(true);
           localStorage.setItem('checkmulta_paid_status', 'true'); 
 
-          // --- BLOCO DE CONVERSÃO OTIMIZADO PARA GA4/GOOGLE ADS ---
           if (typeof window !== 'undefined' && window.gtag) {
             window.gtag('event', 'purchase', {
               send_to: 'AW-3277250868',
@@ -135,9 +156,7 @@ export default function App() {
               currency: 'BRL',
               items: [{ item_id: 'defesa_ia', item_name: 'Defesa de Multa - IA', price: 19.90, quantity: 1 }]
             });
-            console.log("Evento de purchase disparado para GA4/Google Ads");
           }
-          // ---------------------------------------------------------
         }
       } catch (err) {
         console.error("Erro no radar do PIX", err);
@@ -149,7 +168,7 @@ export default function App() {
 
       timeoutId = setTimeout(() => {
         clearInterval(intervalId);
-        console.log("Radar do PIX desativado por tempo limite (10 min).");
+        console.log("Radar do PIX desativado por tempo limite.");
       }, 600000);
     }
 
@@ -206,12 +225,21 @@ export default function App() {
     setPaymentId(null);
     setSecretClickCount(0);
     setShowSuccessMessage(false);
+    setShowFomoBanner(false);
 
     localStorage.removeItem('checkmulta_saved_result');
     localStorage.removeItem('checkmulta_paid_status');
 
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
+    }
+  };
+
+  const closeResultModal = () => {
+    setIsResultModalOpen(false);
+    // Ativa o banner de urgência se fechou sem pagar e tem tese validada
+    if (result && !isPaid && !isExpiredBypassActive && !error) {
+      setShowFomoBanner(true);
     }
   };
 
@@ -231,6 +259,7 @@ export default function App() {
     setIsPaid(false);
     setIsResultModalOpen(false);
     setShowSuccessMessage(false);
+    setShowFomoBanner(false);
 
     const reader = new FileReader();
     reader.onload = () => {
@@ -253,6 +282,7 @@ export default function App() {
     setIsPaid(false);
     setIsResultModalOpen(true);
     setShowSuccessMessage(false);
+    setShowFomoBanner(false);
 
     let isBusinessError = false; 
 
@@ -412,6 +442,7 @@ export default function App() {
 
       setDefenseResult(data.result);
       setShowSuccessMessage(true); 
+      setShowFomoBanner(false); // Garante que some se estava ativo
       localStorage.removeItem('checkmulta_saved_result');
       localStorage.removeItem('checkmulta_paid_status');
     } catch (err: any) {
@@ -511,6 +542,35 @@ export default function App() {
           )}
         </AnimatePresence>
       </header>
+
+      {/* NOVO: BANNER DE URGÊNCIA (FOMO) */}
+      <AnimatePresence>
+        {showFomoBanner && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            className="fixed bottom-0 left-0 w-full bg-red-600 text-white p-4 shadow-[0_-10px_40px_-15px_rgba(220,38,38,0.5)] z-30 flex flex-col sm:flex-row items-center justify-center gap-4 border-t border-red-500"
+          >
+            <div className="flex items-center gap-3 text-center sm:text-left">
+              <AlertCircle className="w-6 h-6 animate-pulse hidden sm:block" />
+              <p className="text-sm sm:text-base font-medium">
+                <strong>Atenção:</strong> Sua petição de recurso validada expirará em 24h.
+              </p>
+            </div>
+            <button
+              onClick={() => {
+                setShowFomoBanner(false);
+                setIsResultModalOpen(true);
+              }}
+              className="px-6 py-2.5 bg-white text-red-700 font-bold rounded-xl hover:bg-red-50 transition-colors shadow-sm whitespace-nowrap w-full sm:w-auto"
+            >
+              Concluir Liberação
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <div className="w-full max-w-3xl flex-1 px-4 py-8 md:py-12">
         <section id="inicio" className="mb-10 text-center pt-4">
           <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-6 leading-tight">
@@ -530,7 +590,8 @@ export default function App() {
         </section>
         <main className="space-y-6">
           <div className={`relative group rounded-3xl p-8 sm:p-12 transition-all duration-200 ease-in-out text-center ${previewUrl ? "bg-transparent" : "border-2 border-dashed border-gray-300 hover:border-blue-400 hover:bg-white bg-white shadow-sm"}`}>
-            <input type="file" ref={fileInputRef} onChange={handleFileSelect} accept="image/*,application/pdf" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed" disabled={isAnalyzing || isPaid} id="upload-input" />
+            {/* NOVO: capture="environment" adicionado para abrir a câmera traseira no mobile direto */}
+            <input type="file" ref={fileInputRef} onChange={handleFileSelect} accept="image/*,application/pdf" capture="environment" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed" disabled={isAnalyzing || isPaid} id="upload-input" />
             <AnimatePresence mode="wait">
               {previewUrl ? (
                 <motion.div key="preview" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="space-y-4">
@@ -555,6 +616,7 @@ export default function App() {
                         if (imageFile) {
                           if (result || error) {
                             setIsResultModalOpen(true);
+                            setShowFomoBanner(false); // Oculta o banner se abrir o modal
                           } else {
                             const reader = new FileReader();
                             reader.onload = () => {
@@ -581,7 +643,7 @@ export default function App() {
                   </div>
                   <div className="space-y-1">
                     <p className="text-lg font-medium text-slate-800">Envie a foto da notificação para a nossa IA</p>
-                    <p className="text-slate-500 text-sm"><span className="font-semibold text-blue-600">Clique aqui</span> ou arraste o arquivo. O diagnóstico sai em menos de 1 minuto.</p>
+                    <p className="text-slate-500 text-sm"><span className="font-semibold text-blue-600">Clique aqui</span> ou tire a foto agora. O diagnóstico sai em menos de 1 minuto.</p>
                   </div>
                 </motion.div>
               )}
@@ -728,7 +790,7 @@ export default function App() {
               <motion.div initial={{ opacity: 0, scale: 0.95, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 10 }} 
                 className={`max-w-3xl w-full flex flex-col relative rounded-2xl shadow-lg ${error ? "bg-red-50/95 border border-red-200 p-8" : "bg-white/95 backdrop-blur-md p-6 sm:p-10"}`} 
                 onClick={(e) => e.stopPropagation()}>
-                <button onClick={() => setIsResultModalOpen(false)} className={`absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full transition-colors z-10 ${error ? "hover:bg-red-100" : "hover:bg-slate-100"}`} aria-label="Fechar"><X className="w-6 h-6" /></button>
+                <button onClick={closeResultModal} className={`absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full transition-colors z-10 ${error ? "hover:bg-red-100" : "hover:bg-slate-100"}`} aria-label="Fechar"><X className="w-6 h-6" /></button>
                 <div className="w-full mt-4 space-y-6">
                   {isAnalyzing && (
                     <div className="flex flex-col items-center justify-center p-6 space-y-6 max-w-md mx-auto">
@@ -811,7 +873,7 @@ export default function App() {
                           <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-3 sm:py-4 px-2 sm:px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
                             <div className="flex flex-row items-center justify-center gap-2 text-[15px] sm:text-base font-bold text-center leading-tight">
                               {isCheckoutLoading ? <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 animate-spin flex-shrink-0" /> : <Scale className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />}
-                              <span>{isCheckoutLoading ? "Gerando Modelo..." : "Modelo Pronto para Recurso"}</span>
+                              <span>{isCheckoutLoading ? "Gerando PIX..." : "Modelo Pronto para Recurso"}</span>
                             </div>
                             <span className="text-xs sm:text-sm font-medium opacity-95 mt-1">Taxa única de R$ 19,90</span>
                           </button>
@@ -932,10 +994,10 @@ export default function App() {
               <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="relative w-11/12 max-w-sm bg-white rounded-2xl shadow-2xl p-6">
                 <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-5 h-5" /></button>
                 
-                  <div className="text-center space-y-6">
+                  <div className="text-center space-y-5">
                     <div className="flex justify-center">
                       <div 
-                        className="w-full p-6 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center cursor-pointer"
+                        className="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center cursor-pointer"
                         onClick={() => {
                           setSecretClickCount(prev => {
                             if (prev + 1 >= 5) {
@@ -946,13 +1008,25 @@ export default function App() {
                           });
                         }}
                       >
-                        <img src="/mercadopago.png" alt="Mercado Pago" className="h-16 w-auto object-contain" />
+                        <img src="/mercadopago.png" alt="Mercado Pago" className="h-10 w-auto object-contain" />
                       </div>
                     </div>
-                    <div><h3 className="text-2xl font-bold text-slate-800">Pagamento via Pix</h3></div>
-                    <div className="flex justify-center py-4"><div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300">
+                    
+                    {/* NOVO: Injeção de Confiança Massiva no Modal do PIX */}
+                    <div>
+                      <h3 className="text-3xl font-black text-slate-800 tracking-tight">R$ 19,90</h3>
+                      <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mt-1">Defesa de Multa - IA</p>
+                    </div>
+
+                    <div className="flex items-center justify-center gap-2 text-red-600 font-bold bg-red-50 py-2.5 rounded-xl border border-red-100">
+                      <Timer className="w-5 h-5 animate-pulse" />
+                      <span>O código expira em {formatTime(pixTimeLeft)}</span>
+                    </div>
+                    
+                    <div className="flex justify-center py-2"><div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300">
                       {qrCodeBase64 ? <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" className="w-full h-full p-2 object-contain" /> : <QrCode className="w-24 h-24 text-slate-300 animate-pulse" />}
                     </div></div>
+                    
                     <div className="space-y-3">
                       <div className="flex items-center space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
                         <p className="text-sm text-slate-500 font-mono truncate flex-1 text-left">{qrCode || "Gerando Pix..."}</p>
@@ -960,16 +1034,23 @@ export default function App() {
                           {isPixCopied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                         </button>
                       </div>
+
+                      <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 flex items-start gap-2 text-left">
+                        <ShieldCheck className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <p className="text-[11px] leading-tight text-emerald-800">
+                          <strong>Garantia CheckMulta:</strong> Se a petição não for gerada com sucesso após o pagamento, garantimos o reembolso imediato do valor via PIX.
+                        </p>
+                      </div>
                       
-                      <div className="bg-blue-50/80 border border-blue-100 rounded-xl p-3 mt-2 flex items-start gap-2.5 text-left">
+                      <div className="bg-blue-50/80 border border-blue-100 rounded-xl p-3 flex items-start gap-2.5 text-left">
                         <Lock className="w-4 h-4 text-blue-600 flex-shrink-0 mt-0.5" />
                         <p className="text-[11px] leading-tight text-blue-800">
-                          <strong>Pagamento Seguro:</strong> Para sua segurança e rastreabilidade, o recebedor no seu banco aparecerá em nome de <strong>João Antônio de Brito</strong> (Responsável Legal da CheckMulta).
+                          <strong>Aviso de Transparência:</strong> Para sua segurança e rastreabilidade, o recebedor no seu banco aparecerá em nome de <strong>João Antônio de Brito</strong> (Diretor e Responsável Legal da CheckMulta).
                         </p>
                       </div>
                       
                     </div>
-                    <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-sm text-slate-500 font-medium">
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-center gap-2 text-sm text-slate-500 font-medium">
                       <RefreshCcw className="w-4 h-4 animate-spin" />
                       Aguardando pagamento no banco...
                     </div>
