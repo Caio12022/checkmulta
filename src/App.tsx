@@ -58,7 +58,6 @@ const VIOLATION_TYPES = [
   { id: 'outras', name: 'Outras Infrações', icon: PlusCircle },
 ];
 
-// NOVO: Textos para o carrossel dinâmico
 const SOCIAL_PROOF_MESSAGES = [
   { icon: <Zap className="w-4 h-4 text-amber-500" />, text: "Mais de 340 auditorias realizadas só nesta semana." },
   { icon: <CheckCircle2 className="w-4 h-4 text-emerald-500" />, text: "Há 2 min: Defesa de Radar (SP) gerada com sucesso." },
@@ -98,7 +97,6 @@ export default function App() {
   const [selectedViolation, setSelectedViolation] = useState<string | null>(null);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
 
-  // NOVO: Controle do carrossel
   const [proofIndex, setProofIndex] = useState(0);
 
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
@@ -136,11 +134,10 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isAnalyzing, isGeneratingDefense]);
 
-  // Efeito do Carrossel Dinâmico
   useEffect(() => {
     const interval = setInterval(() => {
       setProofIndex((prev) => (prev + 1) % SOCIAL_PROOF_MESSAGES.length);
-    }, 4500); // Troca a cada 4.5 segundos
+    }, 4500); 
     return () => clearInterval(interval);
   }, []);
 
@@ -690,7 +687,6 @@ export default function App() {
              </div>
           )}
           
-          {/* NOVO: Carrossel Dinâmico de Prova Social */}
           <div className="flex justify-center mt-6 h-10 overflow-hidden relative w-full max-w-md mx-auto">
             <AnimatePresence mode="wait">
               <motion.div
@@ -710,7 +706,6 @@ export default function App() {
         </main>
       </div>
 
-      {/* MODAL DE UPLOAD (Abre após selecionar a infração) */}
       <AnimatePresence>
         {isUploadModalOpen && (
           <div className="fixed inset-0 z-[55] overflow-y-auto bg-slate-900/60 backdrop-blur-sm">
@@ -903,7 +898,7 @@ export default function App() {
                         </AnimatePresence>
                       </div>
                       <p className="text-sm text-slate-500 font-medium text-center bg-slate-50 p-3 rounded-lg border border-slate-200">
-                        A inteligência artificial está extraindo os dados em alta resolução. <strong>Isso pode levar cerca de 1 minuto.</strong> Não feche a página.
+                        A inteligência artificial está extraindo os dados em alta resolução. <strong>Isso pode levar cerca de 1 minuto.</strong> Não feche a tela.
                       </p>
                     </div>
                   )}
@@ -944,6 +939,8 @@ export default function App() {
                           </div>
                         </div>
                       )}
+                      
+                      {/* CABEÇALHO DO SUCESSO */}
                       <div className="flex items-start space-x-4">
                         <CheckCircle2 className="w-8 h-8 text-green-600 flex-shrink-0 mt-1" />
                         <div>
@@ -953,14 +950,41 @@ export default function App() {
                             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-bold rounded-full">
                               <ShieldCheck className="w-4 h-4 text-emerald-600" />Força da Tese: ALTA
                             </div>
-                            <p className="text-[11px] text-slate-500 mt-2">*Baseado em falhas materiais ou formais identificadas no auto de infração.</p>
                           </div>
                         </div>
                       </div>
-                      <div className="pl-4 text-slate-600 text-sm font-medium whitespace-pre-wrap leading-relaxed border-l-2 border-slate-200">
-                        <strong className="text-slate-800">Resumo do Auto:</strong><br/>{formatDocumentText(result)}
+
+                      {/* NOVO: TRADUTOR DE BENEFÍCIOS (A MÁQUINA DE VENDAS) */}
+                      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 sm:p-5 shadow-sm text-left relative overflow-hidden mt-6 mb-2">
+                        <div className="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                        <h3 className="text-blue-900 font-black text-base sm:text-lg mb-3 flex items-center gap-2">
+                          <AlertCircle className="w-5 h-5 text-blue-600" /> Resumo da Brecha Encontrada:
+                        </h3>
+                        <ul className="space-y-3 text-[13px] sm:text-[15px] text-blue-800 font-medium">
+                          <li className="flex items-start gap-2">
+                            <span className="mt-0.5 font-bold text-blue-600">1.</span>
+                            <span><strong className="text-blue-900">O erro do agente:</strong> Nossa IA cruzou seu documento com o Código de Trânsito e identificou falhas no preenchimento da infração.</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="mt-0.5 font-bold text-blue-600">2.</span>
+                            <span><strong className="text-blue-900">O que isso significa:</strong> Essa irregularidade técnica cria uma brecha legal com <strong className="text-blue-900 underline decoration-blue-300">alta probabilidade de anulação</strong> da multa.</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="mt-0.5 font-bold text-blue-600">3.</span>
+                            <span><strong className="text-blue-900">Sua defesa:</strong> O modelo pronto de R$ 19,90 já contém a tese exata fundamentada para você protocolar e proteger sua CNH.</span>
+                          </li>
+                        </ul>
                       </div>
-                      <div className="pt-6">
+
+                      {/* JURIDIQUÊS REBAIXADO VISUALMENTE */}
+                      <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-left">
+                        <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Diagnóstico Técnico (Uso da IA)</p>
+                        <div className="text-slate-500 text-[13px] sm:text-sm font-medium whitespace-pre-wrap leading-relaxed">
+                          {formatDocumentText(result)}
+                        </div>
+                      </div>
+
+                      <div className="pt-2">
                         <div className="flex flex-col space-y-4 sm:space-y-5 bg-emerald-50/50 p-4 sm:p-6 w-full rounded-2xl border border-emerald-100">
                           <p className="text-center text-emerald-900 text-lg sm:text-xl md:text-2xl font-black px-1 sm:px-2 leading-tight mb-2">
                             Tese Validada com Sucesso! <br className="md:hidden" />
