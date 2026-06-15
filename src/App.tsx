@@ -75,11 +75,8 @@ export default function App() {
 
   const [hasAnalyzed, setHasAnalyzed] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
-  
-  const [isPixModalOpen, setIsPixModalOpen] = useState(false);
-  const [pixStep, setPixStep] = useState<"whatsapp" | "qrcode">("whatsapp");
-  const [whatsapp, setWhatsapp] = useState("");
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [isPixModalOpen, setIsPixModalOpen] = useState(false);
 
   const [paymentId, setPaymentId] = useState<number | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
@@ -117,7 +114,7 @@ export default function App() {
     let timeoutId: NodeJS.Timeout;
 
     const checkPaymentStatus = async () => {
-      if (!paymentId || !isPixModalOpen || pixStep !== "qrcode") return;
+      if (!paymentId || !isPixModalOpen) return;
       try {
         const res = await fetch(`/api/check-payment/${paymentId}`);
         const data = await res.json();
@@ -129,6 +126,7 @@ export default function App() {
           setIsPaid(true);
           localStorage.setItem('checkmulta_paid_status', 'true'); 
 
+          // --- BLOCO DE CONVERSÃO OTIMIZADO PARA GA4/GOOGLE ADS ---
           if (typeof window !== 'undefined' && window.gtag) {
             window.gtag('event', 'purchase', {
               send_to: 'AW-3277250868',
@@ -137,14 +135,16 @@ export default function App() {
               currency: 'BRL',
               items: [{ item_id: 'defesa_ia', item_name: 'Defesa de Multa - IA', price: 19.90, quantity: 1 }]
             });
+            console.log("Evento de purchase disparado para GA4/Google Ads");
           }
+          // ---------------------------------------------------------
         }
       } catch (err) {
         console.error("Erro no radar do PIX", err);
       }
     };
 
-    if (isPixModalOpen && paymentId && pixStep === "qrcode") {
+    if (isPixModalOpen && paymentId) {
       intervalId = setInterval(checkPaymentStatus, 3000);
 
       timeoutId = setTimeout(() => {
@@ -157,7 +157,7 @@ export default function App() {
       if (intervalId) clearInterval(intervalId);
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [isPixModalOpen, paymentId, pixStep]);
+  }, [isPixModalOpen, paymentId]);
 
   useEffect(() => {
     if (isPaid && result && !defenseResult && !isGeneratingDefense) {
@@ -206,7 +206,6 @@ export default function App() {
     setPaymentId(null);
     setSecretClickCount(0);
     setShowSuccessMessage(false);
-    setWhatsapp("");
 
     localStorage.removeItem('checkmulta_saved_result');
     localStorage.removeItem('checkmulta_paid_status');
@@ -342,36 +341,15 @@ export default function App() {
     }
   };
 
-  const handleWhatsappChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value.replace(/\D/g, "");
-    if (value.length > 11) value = value.slice(0, 11);
-    let masked = value;
-    if (value.length > 2) masked = `(${value.slice(0, 2)}) ${value.slice(2)}`;
-    if (value.length > 7) masked = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
-    setWhatsapp(masked);
-  };
-
-  const openWhatsappModal = () => {
-    setPixStep("whatsapp");
-    setWhatsapp("");
-    setIsPixModalOpen(true);
-  };
-
   const handleCheckout = async () => {
-    const pureNumber = whatsapp.replace(/\D/g, "");
-    if (pureNumber.length < 10) return;
-    
+    if (!result) return;
     setIsCheckoutLoading(true);
 
     try {
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', 'whatsapp_informado');
-      }
-
       const response = await fetch("/api/create-payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: "comprador@checkmulta.com.br", whatsapp: pureNumber }),
+        body: JSON.stringify({ email: "comprador@checkmulta.com.br" }),
       });
 
       const data = await response.json();
@@ -384,7 +362,7 @@ export default function App() {
         setPaymentId(data.id);
         setQrCode(data.qr_code);
         setQrCodeBase64(data.qr_code_base64);
-        setPixStep("qrcode");
+        setIsPixModalOpen(true);
       } else {
         alert("Erro ao inicializar gateway de pagamento. Verifique o Token no Render.");
       }
@@ -830,10 +808,10 @@ export default function App() {
                             Tese Validada com Sucesso! <br className="md:hidden" />
                             <span className="text-emerald-700 text-[15px] sm:text-lg md:text-xl font-bold mt-1 sm:mt-2 block">Deseja liberar sua defesa completa e formatada?</span>
                           </p>
-                          <button onClick={openWhatsappModal} className="w-full flex flex-col items-center justify-center py-3 sm:py-4 px-2 sm:px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md">
+                          <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-3 sm:py-4 px-2 sm:px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
                             <div className="flex flex-row items-center justify-center gap-2 text-[15px] sm:text-base font-bold text-center leading-tight">
-                              <Scale className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
-                              <span>Modelo Pronto para Recurso</span>
+                              {isCheckoutLoading ? <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 animate-spin flex-shrink-0" /> : <Scale className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />}
+                              <span>{isCheckoutLoading ? "Gerando Modelo..." : "Modelo Pronto para Recurso"}</span>
                             </div>
                             <span className="text-xs sm:text-sm font-medium opacity-95 mt-1">Taxa única de R$ 19,90</span>
                           </button>
@@ -954,40 +932,6 @@ export default function App() {
               <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="relative w-11/12 max-w-sm bg-white rounded-2xl shadow-2xl p-6">
                 <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-5 h-5" /></button>
                 
-                {pixStep === "whatsapp" ? (
-                  <div className="text-center space-y-6 pt-2">
-                    <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                      <FileText className="w-8 h-8" />
-                    </div>
-                    <h3 className="text-2xl font-black text-slate-800">Sua Petição Está Pronta!</h3>
-                    <p className="text-sm text-slate-600 font-medium">
-                      Para garantir que você não perca sua defesa caso a página feche, informe seu WhatsApp. Enviaremos a sua cópia de segurança em tempo real.
-                    </p>
-                    <div className="space-y-4">
-                      <div className="text-left">
-                        <label className="block text-xs font-bold text-slate-700 mb-1 ml-1">Seu WhatsApp (com DDD)</label>
-                        <input
-                          type="tel"
-                          value={whatsapp}
-                          onChange={handleWhatsappChange}
-                          placeholder="(11) 99999-9999"
-                          className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all text-slate-800 font-bold text-lg text-center tracking-wide"
-                        />
-                      </div>
-                      <button
-                        onClick={handleCheckout}
-                        disabled={whatsapp.replace(/\D/g, "").length < 10 || isCheckoutLoading}
-                        className="w-full py-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors font-bold text-lg shadow-md disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                      >
-                        {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin" /> : <Lock className="w-5 h-5" />}
-                        {isCheckoutLoading ? "Gerando PIX..." : "Liberar Meu Documento"}
-                      </button>
-                      <p className="text-[11px] text-slate-400 font-medium flex items-center justify-center gap-1 mt-2">
-                        <ShieldCheck className="w-3 h-3" /> Prometemos não enviar spam.
-                      </p>
-                    </div>
-                  </div>
-                ) : (
                   <div className="text-center space-y-6">
                     <div className="flex justify-center">
                       <div 
@@ -1030,7 +974,6 @@ export default function App() {
                       Aguardando pagamento no banco...
                     </div>
                   </div>
-                )}
               </motion.div>
             </div>
           </div>
