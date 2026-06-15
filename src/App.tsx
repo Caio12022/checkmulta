@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useRef, useEffect } from "react";
-import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, MessageSquare, ClipboardList, Menu, Timer } from "lucide-react";
+import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, MessageSquare, ClipboardList, Menu, Timer, Zap, Camera, TrafficCone, Car, Smartphone, Map, PlusCircle } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 declare global {
@@ -49,6 +49,15 @@ const LOADER_MESSAGES = [
   "Buscando jurisprudência no MBFT..."
 ];
 
+const VIOLATION_TYPES = [
+  { id: 'velocidade', name: 'Excesso de Velocidade', icon: Camera },
+  { id: 'sinal', name: 'Avanço de Sinal', icon: TrafficCone },
+  { id: 'estacionamento', name: 'Estacionamento', icon: Car },
+  { id: 'celular', name: 'Celular ou Cinto', icon: Smartphone },
+  { id: 'pedagio', name: 'Evasão de Pedágio', icon: Map },
+  { id: 'outras', name: 'Outras Infrações', icon: PlusCircle },
+];
+
 export default function App() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -75,11 +84,15 @@ export default function App() {
 
   const [hasAnalyzed, setHasAnalyzed] = useState(false);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
-  const [showFomoBanner, setShowFomoBanner] = useState(false); // NOVO: Banner de Urgência
+  const [showFomoBanner, setShowFomoBanner] = useState(false);
   
+  // Novos estados para a triagem inteligente
+  const [selectedViolation, setSelectedViolation] = useState<string | null>(null);
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
-  const [pixTimeLeft, setPixTimeLeft] = useState(600); // NOVO: Cronômetro de 10 min
+  const [pixTimeLeft, setPixTimeLeft] = useState(600);
 
   const [paymentId, setPaymentId] = useState<number | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
@@ -112,7 +125,6 @@ export default function App() {
     return () => clearInterval(interval);
   }, [isAnalyzing, isGeneratingDefense]);
 
-  // NOVO: Efeito do Cronômetro do PIX
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (isPixModalOpen && pixTimeLeft > 0) {
@@ -120,7 +132,7 @@ export default function App() {
         setPixTimeLeft((prev) => prev - 1);
       }, 1000);
     } else if (!isPixModalOpen) {
-      setPixTimeLeft(600); // Reseta ao fechar
+      setPixTimeLeft(600);
     }
     return () => clearInterval(timer);
   }, [isPixModalOpen, pixTimeLeft]);
@@ -184,6 +196,14 @@ export default function App() {
     }
   }, [isPaid, result]);
 
+  const handleViolationSelect = (violationName: string) => {
+    setSelectedViolation(violationName);
+    setIsUploadModalOpen(true);
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'violation_selected', { violation_type: violationName });
+    }
+  };
+
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -226,6 +246,8 @@ export default function App() {
     setSecretClickCount(0);
     setShowSuccessMessage(false);
     setShowFomoBanner(false);
+    setSelectedViolation(null);
+    setIsUploadModalOpen(false);
 
     localStorage.removeItem('checkmulta_saved_result');
     localStorage.removeItem('checkmulta_paid_status');
@@ -237,7 +259,6 @@ export default function App() {
 
   const closeResultModal = () => {
     setIsResultModalOpen(false);
-    // Ativa o banner de urgência se fechou sem pagar e tem tese validada
     if (result && !isPaid && !isExpiredBypassActive && !error) {
       setShowFomoBanner(true);
     }
@@ -260,6 +281,7 @@ export default function App() {
     setIsResultModalOpen(false);
     setShowSuccessMessage(false);
     setShowFomoBanner(false);
+    setIsUploadModalOpen(false); // Fecha o modal de upload
 
     const reader = new FileReader();
     reader.onload = () => {
@@ -442,7 +464,7 @@ export default function App() {
 
       setDefenseResult(data.result);
       setShowSuccessMessage(true); 
-      setShowFomoBanner(false); // Garante que some se estava ativo
+      setShowFomoBanner(false); 
       localStorage.removeItem('checkmulta_saved_result');
       localStorage.removeItem('checkmulta_paid_status');
     } catch (err: any) {
@@ -543,7 +565,7 @@ export default function App() {
         </AnimatePresence>
       </header>
 
-      {/* NOVO: BANNER DE URGÊNCIA (FOMO) */}
+      {/* BANNER DE URGÊNCIA (FOMO) */}
       <AnimatePresence>
         {showFomoBanner && (
           <motion.div
@@ -571,29 +593,22 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      <div className="w-full max-w-3xl flex-1 px-4 py-8 md:py-12">
-        <section id="inicio" className="mb-10 text-center pt-4">
+      <div className="w-full max-w-4xl flex-1 px-4 py-8 md:py-12">
+        <section id="inicio" className="mb-8 text-center pt-4">
           <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-6 leading-tight">
-            Descubra Gratuitamente se Sua Multa Ainda Pode Ser Recorrida
+            Descubra em 60 Segundos se Sua Multa Pode Ser Anulada
           </h1>
-          <p className="text-slate-800 font-medium text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-            Nossa Inteligência Artificial cruza os dados da sua notificação com a lei de trânsito em segundos. Descubra gratuitamente se o prazo é válido, se há erros do agente e se vale a pena recorrer.
-          </p>
-          <div className="bg-emerald-50 rounded-2xl p-6 md:p-8 max-w-2xl mx-auto flex flex-col items-center shadow-sm border border-emerald-100">
-            <p className="text-emerald-800 font-bold text-lg md:text-xl text-center leading-snug">
-              Auditoria imediata: O que o olho humano não vê, nossa IA encontra. Verifique agora se a sua multa possui falhas ocultas que permitem o cancelamento.
-            </p>
-            <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} className="mt-5">
-              <ArrowDown className="w-8 h-8 text-emerald-700" />
-            </motion.div>
+          
+          <div className="max-w-xl mx-auto flex flex-col items-center sm:items-start space-y-3 mb-10 text-slate-700 font-medium text-[15px] sm:text-lg">
+            <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0" /> Análise gratuita baseada no CTB e MBFT</div>
+            <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0" /> Sem necessidade de advogado</div>
+            <div className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0" /> Resultado imediato e confidencial</div>
           </div>
         </section>
-        <main className="space-y-6">
-          <div className={`relative group rounded-3xl p-8 sm:p-12 transition-all duration-200 ease-in-out text-center ${previewUrl ? "bg-transparent" : "border-2 border-dashed border-gray-300 hover:border-blue-400 hover:bg-white bg-white shadow-sm"}`}>
-            {/* NOVO: capture="environment" adicionado para abrir a câmera traseira no mobile direto */}
-            <input type="file" ref={fileInputRef} onChange={handleFileSelect} accept="image/*,application/pdf" capture="environment" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed" disabled={isAnalyzing || isPaid} id="upload-input" />
-            <AnimatePresence mode="wait">
-              {previewUrl ? (
+        
+        <main className="space-y-6 w-full max-w-3xl mx-auto">
+          {previewUrl ? (
+             <div className="bg-white p-8 sm:p-12 rounded-3xl shadow-sm border border-slate-200 transition-all duration-200 ease-in-out text-center">
                 <motion.div key="preview" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="space-y-4">
                   <div className="relative mx-auto rounded-2xl overflow-hidden max-w-xs flex justify-center">
                     {imageFile?.type === "application/pdf" ? (
@@ -605,6 +620,7 @@ export default function App() {
                     )}
                   </div>
                   <p className="text-sm font-medium text-slate-600">{imageFile?.name}</p>
+                  
                   {!isAnalyzing && !hasAnalyzed && (
                     <button onClick={clearImage} className="relative z-10 text-sm font-medium text-slate-500 hover:text-red-500 underline decoration-slate-300 hover:decoration-red-300 underline-offset-4 transition-colors" type="button">
                       Excluir ou subir nova foto
@@ -616,7 +632,7 @@ export default function App() {
                         if (imageFile) {
                           if (result || error) {
                             setIsResultModalOpen(true);
-                            setShowFomoBanner(false); // Oculta o banner se abrir o modal
+                            setShowFomoBanner(false); 
                           } else {
                             const reader = new FileReader();
                             reader.onload = () => {
@@ -636,21 +652,72 @@ export default function App() {
                     </div>
                   )}
                 </motion.div>
-              ) : (
-                <motion.div key="upload" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex flex-col items-center justify-center space-y-4 pointer-events-none">
-                  <div className="w-16 h-16 bg-blue-100/50 text-blue-700 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-                    <UploadCloud className="w-8 h-8" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-lg font-medium text-slate-800">Envie a foto da notificação para a nossa IA</p>
-                    <p className="text-slate-500 text-sm"><span className="font-semibold text-blue-600">Clique aqui</span> ou tire a foto agora. O diagnóstico sai em menos de 1 minuto.</p>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+             </div>
+          ) : (
+             <div className="bg-white p-6 sm:p-10 rounded-3xl shadow-sm border border-slate-200">
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-800 text-center mb-6 sm:mb-8">Qual foi o motivo da sua autuação?</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+                  {VIOLATION_TYPES.map((v) => (
+                    <button 
+                      key={v.id}
+                      onClick={() => handleViolationSelect(v.name)}
+                      className="flex flex-col items-center justify-center gap-3 p-4 sm:p-5 bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all duration-200 group text-slate-700 hover:text-blue-700"
+                    >
+                      <v.icon className="w-8 h-8 sm:w-10 sm:h-10 text-slate-400 group-hover:text-blue-500 transition-colors" />
+                      <span className="text-sm sm:text-base font-bold text-center leading-tight">{v.name}</span>
+                    </button>
+                  ))}
+                </div>
+             </div>
+          )}
+          
+          <div className="text-center pt-2">
+             <p className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center justify-center gap-1.5">
+               <Zap className="w-3.5 h-3.5 text-amber-500" />
+               Mais de 300 auditorias realizadas esta semana
+             </p>
           </div>
+          
         </main>
       </div>
+
+      {/* NOVO: MODAL DE UPLOAD (Abre após selecionar a infração) */}
+      <AnimatePresence>
+        {isUploadModalOpen && (
+          <div className="fixed inset-0 z-[55] overflow-y-auto bg-slate-900/60 backdrop-blur-sm">
+            <div className="min-h-full flex items-center justify-center p-4">
+              <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl p-6 sm:p-8">
+                <button onClick={() => setIsUploadModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-6 h-6" /></button>
+                
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-black text-slate-800 mb-2">Análise de {selectedViolation}</h3>
+                  <div className="bg-amber-50 border border-amber-200 p-3.5 rounded-xl text-left flex items-start gap-3 mt-4">
+                    <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                    <p className="text-sm text-amber-800 font-medium">
+                      <strong>Dica para a Inteligência Artificial:</strong> Para conseguirmos achar as brechas na lei, a sua foto precisa estar nítida. Deixe as <strong>datas, a placa e o órgão autuador</strong> bem legíveis.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="relative group rounded-2xl p-8 transition-all duration-200 ease-in-out text-center border-2 border-dashed border-slate-300 hover:border-blue-400 hover:bg-slate-50 bg-slate-50/50 cursor-pointer">
+                  <input type="file" ref={fileInputRef} onChange={handleFileSelect} accept="image/*,application/pdf" capture="environment" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10" disabled={isAnalyzing || isPaid} title="Clique para enviar a foto" />
+                  <div className="flex flex-col items-center justify-center space-y-4 pointer-events-none">
+                    <div className="w-16 h-16 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-sm">
+                      <Camera className="w-8 h-8" />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-lg font-bold text-slate-800">Tirar Foto ou Enviar Arquivo</p>
+                      <p className="text-slate-500 text-sm font-medium">Toque aqui para abrir a câmera.</p>
+                    </div>
+                  </div>
+                </div>
+                
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
+
       <section id="como-funciona" className="w-full bg-slate-100/50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-5xl w-full">
           <h2 className="text-3xl font-bold text-center text-slate-800 mb-12 tracking-tight">Como funciona a análise da sua multa?</h2>
@@ -866,14 +933,24 @@ export default function App() {
                       </div>
                       <div className="pt-6">
                         <div className="flex flex-col space-y-4 sm:space-y-5 bg-emerald-50/50 p-4 sm:p-6 w-full rounded-2xl border border-emerald-100">
-                          <p className="text-center text-emerald-900 text-lg sm:text-xl md:text-2xl font-black px-1 sm:px-2 leading-tight">
+                          <p className="text-center text-emerald-900 text-lg sm:text-xl md:text-2xl font-black px-1 sm:px-2 leading-tight mb-2">
                             Tese Validada com Sucesso! <br className="md:hidden" />
                             <span className="text-emerald-700 text-[15px] sm:text-lg md:text-xl font-bold mt-1 sm:mt-2 block">Deseja liberar sua defesa completa e formatada?</span>
                           </p>
+                          
+                          <div className="bg-white rounded-xl p-4 text-left border border-emerald-100 mb-2 shadow-sm w-full">
+                            <p className="text-sm font-bold text-slate-800 mb-3">O que você vai receber agora:</p>
+                            <ul className="space-y-2.5 text-[13px] sm:text-sm text-slate-700 font-medium">
+                              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" /> Petição completa pronta para protocolo</li>
+                              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" /> Fundamentação baseada no CTB e MBFT</li>
+                              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" /> Entrega imediata na sua tela para download</li>
+                            </ul>
+                          </div>
+
                           <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-3 sm:py-4 px-2 sm:px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
                             <div className="flex flex-row items-center justify-center gap-2 text-[15px] sm:text-base font-bold text-center leading-tight">
                               {isCheckoutLoading ? <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 animate-spin flex-shrink-0" /> : <Scale className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />}
-                              <span>{isCheckoutLoading ? "Gerando PIX..." : "Modelo Pronto para Recurso"}</span>
+                              <span>{isCheckoutLoading ? "Gerando PIX..." : "Liberar Meu Documento"}</span>
                             </div>
                             <span className="text-xs sm:text-sm font-medium opacity-95 mt-1">Taxa única de R$ 19,90</span>
                           </button>
@@ -1012,7 +1089,6 @@ export default function App() {
                       </div>
                     </div>
                     
-                    {/* NOVO: Injeção de Confiança Massiva no Modal do PIX */}
                     <div>
                       <h3 className="text-3xl font-black text-slate-800 tracking-tight">R$ 19,90</h3>
                       <p className="text-sm font-bold text-slate-500 uppercase tracking-wider mt-1">Defesa de Multa - IA</p>
