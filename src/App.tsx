@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useRef, useEffect } from "react";
-import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, MessageSquare, ClipboardList, Menu, Timer, Zap, Camera, TrafficCone, Car, Smartphone, Map, PlusCircle } from "lucide-react";
+import { UploadCloud, ShieldCheck, CheckCircle2, AlertCircle, Loader2, Scale, QrCode, X, Copy, Download, Check, Search, FileText, Lock, UserX, Route, ArrowDown, RefreshCcw, MessageSquare, ClipboardList, Menu, Timer, Zap, Camera, TrafficCone, Car, Smartphone, Map, PlusCircle, Calendar, DollarSign, Tag } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 declare global {
@@ -12,6 +12,15 @@ declare global {
     dataLayer: any[];
     gtag: (...args: any[]) => void;
   }
+}
+
+interface ExtractedMultaData {
+  placa?: string;
+  data?: string;
+  valor?: string;
+  infracao?: string;
+  agente?: string;
+  cidade?: string;
 }
 
 const formatDocumentText = (text: string) => {
@@ -40,6 +49,57 @@ const formatDocumentText = (text: string) => {
     }
     return <span key={index}>{part}</span>;
   });
+};
+
+const extractMultaData = (result: string): ExtractedMultaData => {
+  const data: ExtractedMultaData = {};
+  
+  // Extrair placa
+  const placaMatch = result.match(/Placa:\s*([A-Z0-9\-]+)/i);
+  if (placaMatch) data.placa = placaMatch[1].trim();
+  
+  // Extrair data
+  const dataMatch = result.match(/Data:\s*(\d{1,2}\/\d{1,2}\/\d{4})/i);
+  if (dataMatch) data.data = dataMatch[1].trim();
+  
+  // Extrair valor
+  const valorMatch = result.match(/Valor:\s*R\$\s*([\d.,]+)/i);
+  if (valorMatch) data.valor = valorMatch[1].trim();
+  
+  // Extrair infração
+  const infracaoMatch = result.match(/Infração:\s*([^\n]+)/i);
+  if (infracaoMatch) data.infracao = infracaoMatch[1].trim();
+  
+  // Extrair agente
+  const agenteMatch = result.match(/Agente(?:\s+Autuador)?:\s*([^\n]+)/i);
+  if (agenteMatch) data.agente = agenteMatch[1].trim();
+  
+  // Extrair cidade/órgão
+  const cidadeMatch = result.match(/(?:Órgão|Cidade):\s*([^\n]+)/i);
+  if (cidadeMatch) data.cidade = cidadeMatch[1].trim();
+  
+  return data;
+};
+
+const calculateDeadline = (dataInfracao: string | undefined): { diasRestantes: number; dataVencimento: string; urgente: boolean } | null => {
+  if (!dataInfracao) return null;
+  
+  try {
+    const parts = dataInfracao.split('/');
+    if (parts.length !== 3) return null;
+    
+    const date = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
+    const prazoVencimento = new Date(date.getTime() + 30 * 24 * 60 * 60 * 1000);
+    const agora = new Date();
+    const diasRestantes = Math.ceil((prazoVencimento.getTime() - agora.getTime()) / (24 * 60 * 60 * 1000));
+    
+    const dataVencimentoStr = prazoVencimento.toLocaleDateString('pt-BR');
+    const urgente = diasRestantes <= 10 && diasRestantes > 0;
+    
+    return { diasRestantes, dataVencimento: dataVencimentoStr, urgente };
+  } catch (e) {
+    return null;
+  }
 };
 
 const LOADER_MESSAGES = [
@@ -847,7 +907,7 @@ export default function App() {
                   {activeModal === "suporte" && <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2"><span>💬</span> Central de Suporte</h3>}
                 </div>
                 <div className="text-sm text-slate-600 leading-relaxed space-y-3">
-                  {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente de forma algorítmica e não constitui tese jurídica garantida. Nós não somos um escritório de advocacia e este sistema não substitui a consulta a um advogado especialista. É plenamente possível que o recurso seja indeferido, sendo o julgamento de total responsabilidade do órgão de trânsito competente.</p>}
+                  {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente e não constitui consultoria jurídica garantida. Nós não somos um escritório de advocacia. <strong>A decisão final do recurso é exclusiva responsabilidade do órgão autuador (JARI).</strong> Nossa garantia cobre apenas a geração técnica do documento. É plenamente possível que o recurso seja indeferido, não implicando em reembolso.</p>}
                   {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial para formulação de teses administrativas. Não nos responsabilizamos por prazos excedidos, inserção de dados incorretos pelo usuário ou resultado das decisões julgadas pelas juntas de recursos JARI ou instâncias superiores.</p>}
                   {activeModal === "privacidade" && <p>Sua privacidade é absoluta. Não possuímos banco de dados, nem realizamos registros ou retenções em log da fotografia do seu auto de infração, dados pessoais ou da petição gerada. O processamento é de estrito caráter transitório (em memória) para elaboração do documento, que é imediatamente apagado após o fechamento da página ou download.</p>}
                   {activeModal === "suporte" && (
@@ -939,6 +999,63 @@ export default function App() {
                           </div>
                         </div>
                       )}
+
+                      {/* DADOS PERSONALIZADOS DA MULTA */}
+                      {(() => {
+                        const multaData = extractMultaData(result);
+                        const deadline = multaData.data ? calculateDeadline(multaData.data) : null;
+                        
+                        return (
+                          <div className="bg-gradient-to-r from-blue-50 to-slate-50 border border-blue-200 rounded-xl p-4 sm:p-5 shadow-sm">
+                            <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">Sua Multa Analisada</h3>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                              {multaData.placa && (
+                                <div className="flex items-center gap-2">
+                                  <Tag className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                                  <div className="text-[13px]">
+                                    <p className="text-slate-500 font-medium">Placa</p>
+                                    <p className="font-black text-slate-900">{multaData.placa}</p>
+                                  </div>
+                                </div>
+                              )}
+                              {multaData.data && (
+                                <div className="flex items-center gap-2">
+                                  <Calendar className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                                  <div className="text-[13px]">
+                                    <p className="text-slate-500 font-medium">Data</p>
+                                    <p className="font-black text-slate-900">{multaData.data}</p>
+                                  </div>
+                                </div>
+                              )}
+                              {multaData.valor && (
+                                <div className="flex items-center gap-2">
+                                  <DollarSign className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                                  <div className="text-[13px]">
+                                    <p className="text-slate-500 font-medium">Valor</p>
+                                    <p className="font-black text-slate-900">{multaData.valor}</p>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* PRAZO LEGAL COM URGÊNCIA */}
+                            {deadline && (
+                              <div className={`mt-3 pt-3 border-t border-blue-200 flex items-center gap-3 ${deadline.urgente ? 'bg-red-50 p-2 rounded-lg' : ''}`}>
+                                <Timer className={`w-4 h-4 flex-shrink-0 ${deadline.urgente ? 'text-red-600 animate-pulse' : 'text-blue-600'}`} />
+                                <div className="text-[13px]">
+                                  <p className="text-slate-500 font-medium">Prazo para Recurso</p>
+                                  <p className={`font-black ${deadline.urgente ? 'text-red-700' : 'text-slate-900'}`}>
+                                    {deadline.diasRestantes > 0 ? `${deadline.diasRestantes} dias restantes` : 'Prazo expirado'}
+                                  </p>
+                                  {deadline.diasRestantes > 0 && (
+                                    <p className="text-[11px] text-slate-500 font-medium">Vence em {deadline.dataVencimento}</p>
+                                  )}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })()}
                       
                       {/* CABEÇALHO DO SUCESSO */}
                       <div className="flex items-start space-x-4">
@@ -954,7 +1071,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* TRADUTOR DE BENEFÍCIOS (A MÁQUINA DE VENDAS) */}
+                      {/* TRADUTOR DE BENEFÍCIOS */}
                       <div className="bg-blue-50/50 border border-blue-200 rounded-xl p-4 sm:p-5 shadow-sm text-left relative overflow-hidden mt-6 mb-2">
                         <div className="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
                         <h3 className="text-slate-900 font-black text-base sm:text-lg mb-3 flex items-center gap-2">
@@ -976,7 +1093,7 @@ export default function App() {
                         </ul>
                       </div>
 
-                      {/* JURIDIQUÊS REBAIXADO VISUALMENTE - CÓDIGO CORRIGIDO SEM DUPLICAÇÃO E SEM ESPAÇO EXTRA */}
+                      {/* DIAGNÓSTICO TÉCNICO */}
                       <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-left">
                         <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Diagnóstico Técnico (Uso da IA)</p>
                         <div className="text-slate-500 text-[13px] sm:text-sm font-medium whitespace-pre-wrap leading-relaxed">
@@ -984,28 +1101,78 @@ export default function App() {
                         </div>
                       </div>
 
+                      {/* CTA COM COMPARAÇÃO DE ECONOMIA */}
                       <div className="pt-2">
                         <div className="flex flex-col space-y-4 sm:space-y-5 bg-emerald-50/50 p-4 sm:p-6 w-full rounded-2xl border border-emerald-100">
                           <p className="text-center text-emerald-900 text-lg sm:text-xl md:text-2xl font-black px-1 sm:px-2 leading-tight mb-2">
-                            Tese Validada com Sucesso! <br className="md:hidden" />
-                            <span className="text-emerald-700 text-[15px] sm:text-lg md:text-xl font-bold mt-1 sm:mt-2 block">Deseja liberar sua defesa completa e formatada?</span>
+                            Proteja Sua CNH Agora
+                            <span className="text-emerald-700 text-[15px] sm:text-lg md:text-xl font-bold mt-1 sm:mt-2 block">Libere sua defesa jurídica em 60 segundos</span>
                           </p>
                           
+                          {/* COMPARAÇÃO DE ECONOMIA */}
+                          {(() => {
+                            const multaData = extractMultaData(result);
+                            const valorMulta = multaData.valor ? parseFloat(multaData.valor.replace(/[R$\s.,]/g, '').replace(',', '.')) : null;
+                            const custoAdvogado = 700;
+                            const custoCheckMulta = 19.90;
+                            const economia = valorMulta ? Math.max(custoAdvogado, valorMulta * 0.15) : custoAdvogado;
+                            
+                            return (
+                              <div className="bg-white rounded-xl p-4 text-left border border-emerald-100 shadow-sm w-full">
+                                <p className="text-[12px] font-black text-slate-400 uppercase tracking-wider mb-3">Comparação de Investimento</p>
+                                <div className="space-y-3">
+                                  <div className="flex items-start justify-between pb-3 border-b border-slate-200">
+                                    <div>
+                                      <p className="text-sm font-bold text-slate-800">Com Advogado:</p>
+                                      <p className="text-[12px] text-slate-500 mt-1">Petição + acompanhamento</p>
+                                    </div>
+                                    <div className="text-right">
+                                      <p className="text-sm font-black text-slate-900">R$ 500-1000</p>
+                                    </div>
+                                  </div>
+                                  <div className="flex items-start justify-between pb-3">
+                                    <div>
+                                      <p className="text-sm font-bold text-emerald-700">Com CheckMulta:</p>
+                                      <p className="text-[12px] text-emerald-600 mt-1">Petição + protocolo direto</p>
+                                    </div>
+                                    <div className="text-right">
+                                      <p className="text-sm font-black text-emerald-700">R$ 19,90</p>
+                                    </div>
+                                  </div>
+                                  <div className="bg-emerald-100/40 border border-emerald-300 rounded-lg p-2.5 flex items-center gap-2">
+                                    <Zap className="w-4 h-4 text-emerald-700 flex-shrink-0" />
+                                    <p className="text-[13px] font-black text-emerald-900">
+                                      Você economiza até <strong>R$ {Math.round(economia).toLocaleString('pt-BR')}</strong>
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })()}
+
                           <div className="bg-white rounded-xl p-4 text-left border border-emerald-100 mb-2 shadow-sm w-full">
-                            <p className="text-sm font-bold text-slate-800 mb-3">O que você vai receber agora:</p>
+                            <p className="text-sm font-bold text-slate-800 mb-3">O que você recebe:</p>
                             <ul className="space-y-2.5 text-[13px] sm:text-sm text-slate-700 font-medium">
-                              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" /> Petição completa pronta para protocolo</li>
-                              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" /> Fundamentação baseada no CTB e MBFT</li>
-                              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" /> Entrega imediata na sua tela para download</li>
+                              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" /> Petição pronta para protocolar na JARI</li>
+                              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" /> Fundamentação em CTB + MBFT + jurisprudência</li>
+                              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" /> Acesso imediato para download em TXT</li>
                             </ul>
                           </div>
 
-                          <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-3 sm:py-4 px-2 sm:px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed">
-                            <div className="flex flex-row items-center justify-center gap-2 text-[15px] sm:text-base font-bold text-center leading-tight">
-                              {isCheckoutLoading ? <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 animate-spin flex-shrink-0" /> : <Scale className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />}
-                              <span>{isCheckoutLoading ? "Gerando PIX..." : "Liberar Meu Documento"}</span>
+                          {/* AVISO LEGAL - SEM GARANTIA DE RESULTADO */}
+                          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 flex items-start gap-2">
+                            <AlertCircle className="w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5" />
+                            <div className="text-[12px] text-amber-900 font-medium">
+                              <p><strong>Transparência Jurídica:</strong> CheckMulta gera a petição com tese de risco validada. A decisão final sempre depende do órgão autuador (JARI). Sua economia é garantida no preço da petição — não no resultado.</p>
                             </div>
-                            <span className="text-xs sm:text-sm font-medium opacity-95 mt-1">Taxa única de R$ 19,90</span>
+                          </div>
+
+                          <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-3 sm:py-4 px-2 sm:px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors shadow-md disabled:opacity-75 disabled:cursor-not-allowed font-bold">
+                            <div className="flex flex-row items-center justify-center gap-2 text-[15px] sm:text-base text-center leading-tight">
+                              {isCheckoutLoading ? <Loader2 className="w-5 h-5 sm:w-6 sm:h-6 animate-spin flex-shrink-0" /> : <Scale className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />}
+                              <span>{isCheckoutLoading ? "Gerando PIX..." : "Gerar Minha Petição Agora"}</span>
+                            </div>
+                            <span className="text-xs sm:text-sm font-medium opacity-95 mt-1">R$ 19,90 • Entrega imediata</span>
                           </button>
                         </div>
                       </div>
@@ -1167,7 +1334,7 @@ export default function App() {
                       <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 flex items-start gap-2 text-left">
                         <ShieldCheck className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
                         <p className="text-[11px] leading-tight text-emerald-800">
-                          <strong>Garantia CheckMulta:</strong> Se a petição não for gerada com sucesso após o pagamento, garantimos o reembolso imediato do valor via PIX.
+                          <strong>Garantia Técnica:</strong> Se a petição não for gerada após o pagamento, garantimos reembolso imediato via PIX.
                         </p>
                       </div>
                       
