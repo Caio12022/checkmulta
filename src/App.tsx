@@ -954,24 +954,24 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* NOVO: TRADUTOR DE BENEFÍCIOS (A MÁQUINA DE VENDAS) */}
-                      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 sm:p-5 shadow-sm text-left relative overflow-hidden mt-6 mb-2">
+                      {/* TRADUTOR DE BENEFÍCIOS (A MÁQUINA DE VENDAS) - CORRIGIDO PARA TONS ESCUROS */}
+                      <div className="bg-blue-50/50 border border-blue-200 rounded-xl p-4 sm:p-5 shadow-sm text-left relative overflow-hidden mt-6 mb-2">
                         <div className="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
-                        <h3 className="text-blue-900 font-black text-base sm:text-lg mb-3 flex items-center gap-2">
+                        <h3 className="text-slate-900 font-black text-base sm:text-lg mb-3 flex items-center gap-2">
                           <AlertCircle className="w-5 h-5 text-blue-600" /> Resumo da Brecha Encontrada:
                         </h3>
-                        <ul className="space-y-3 text-[13px] sm:text-[15px] text-blue-800 font-medium">
+                        <ul className="space-y-3 text-[13px] sm:text-[15px] text-slate-700 font-medium">
                           <li className="flex items-start gap-2">
                             <span className="mt-0.5 font-bold text-blue-600">1.</span>
-                            <span><strong className="text-blue-900">O erro do agente:</strong> Nossa IA cruzou seu documento com o Código de Trânsito e identificou falhas no preenchimento da infração.</span>
+                            <span><strong className="text-slate-900">O erro do agente:</strong> Nossa IA cruzou seu documento com o Código de Trânsito e identificou falhas no preenchimento da infração.</span>
                           </li>
                           <li className="flex items-start gap-2">
                             <span className="mt-0.5 font-bold text-blue-600">2.</span>
-                            <span><strong className="text-blue-900">O que isso significa:</strong> Essa irregularidade técnica cria uma brecha legal com <strong className="text-blue-900 underline decoration-blue-300">alta probabilidade de anulação</strong> da multa.</span>
+                            <span><strong className="text-slate-900">O que isso significa:</strong> Essa irregularidade técnica cria uma brecha legal com <strong className="text-slate-900 underline decoration-blue-300">alta probabilidade de anulação</strong> da multa.</span>
                           </li>
                           <li className="flex items-start gap-2">
                             <span className="mt-0.5 font-bold text-blue-600">3.</span>
-                            <span><strong className="text-blue-900">Sua defesa:</strong> O modelo pronto de R$ 19,90 já contém a tese exata fundamentada para você protocolar e proteger sua CNH.</span>
+                            <span><strong className="text-slate-900">Sua defesa:</strong> O modelo pronto de R$ 19,90 já contém a tese exata fundamentada para você protocolar e proteger sua CNH.</span>
                           </li>
                         </ul>
                       </div>
