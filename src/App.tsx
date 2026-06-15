@@ -954,7 +954,7 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* TRADUTOR DE BENEFÍCIOS (A MÁQUINA DE VENDAS) - CORRIGIDO PARA TONS ESCUROS */}
+                      {/* TRADUTOR DE BENEFÍCIOS (A MÁQUINA DE VENDAS) */}
                       <div className="bg-blue-50/50 border border-blue-200 rounded-xl p-4 sm:p-5 shadow-sm text-left relative overflow-hidden mt-6 mb-2">
                         <div className="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
                         <h3 className="text-slate-900 font-black text-base sm:text-lg mb-3 flex items-center gap-2">
@@ -976,11 +976,11 @@ export default function App() {
                         </ul>
                       </div>
 
-                      {/* JURIDIQUÊS REBAIXADO VISUALMENTE */}
+                      {/* JURIDIQUÊS REBAIXADO VISUALMENTE - CÓDIGO CORRIGIDO SEM DUPLICAÇÃO E SEM ESPAÇO EXTRA */}
                       <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-left">
                         <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Diagnóstico Técnico (Uso da IA)</p>
                         <div className="text-slate-500 text-[13px] sm:text-sm font-medium whitespace-pre-wrap leading-relaxed">
-                          {formatDocumentText(result)}
+                          {formatDocumentText(result.replace(/- STATUS DA ANÁLISE:.*?(?=\n|$)/i, '').trim())}
                         </div>
                       </div>
 
