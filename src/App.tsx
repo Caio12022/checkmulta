@@ -655,15 +655,9 @@ export default function App() {
         
         {/* HERO SECTION */}
         <section id="inicio" className="mb-10 flex flex-col items-center text-center w-full max-w-3xl mx-auto">
-          
-          {/* BADGE PISCANDO */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 mb-6 shadow-sm">
-             <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
-             <span className="text-[11px] sm:text-xs font-bold text-emerald-800 uppercase tracking-wide">IA analisando multas agora</span>
-          </div>
 
           {/* HEADLINES */}
-          <h1 className="text-[34px] sm:text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] mb-5 tracking-tight">
+          <h1 className="text-[34px] sm:text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] mb-5 tracking-tight mt-4">
             Sua multa tem <span className="text-red-500">brecha legal?</span><br className="hidden sm:block" /> Descubra em 60 segundos
           </h1>
           <p className="text-slate-600 text-sm sm:text-base md:text-lg font-medium max-w-2xl mx-auto mb-8 leading-relaxed">
@@ -680,7 +674,7 @@ export default function App() {
           </div>
 
           {/* STATS SECTION */}
-          <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-0 border border-slate-200 rounded-2xl bg-white shadow-sm mb-12 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 overflow-hidden">
+          <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-0 border border-slate-200 rounded-2xl bg-white shadow-sm mb-8 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 overflow-hidden">
              <div className="py-6 px-4 flex flex-col items-center justify-center">
                 <span className="text-2xl sm:text-3xl font-black text-slate-900">12.400+</span>
                 <span className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase mt-1 tracking-wider">multas analisadas</span>
@@ -693,6 +687,12 @@ export default function App() {
                 <span className="text-2xl sm:text-3xl font-black text-slate-900">R$ 293</span>
                 <span className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase mt-1 tracking-wider">economia média</span>
              </div>
+          </div>
+
+          {/* BADGE PISCANDO */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 mb-2 shadow-sm">
+             <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+             <span className="text-[11px] sm:text-xs font-bold text-emerald-800 uppercase tracking-wide">IA analisando multas agora</span>
           </div>
         </section>
         
