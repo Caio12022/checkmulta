@@ -226,7 +226,6 @@ export default function App() {
 
           if (typeof window !== 'undefined' && window.gtag) {
             window.gtag('event', 'purchase', {
-              send_to: 'AW-3277250868',
               transaction_id: paymentId.toString(),
               value: 19.90,
               currency: 'BRL',
@@ -689,7 +688,7 @@ export default function App() {
              </div>
           </div>
 
-          {/* BADGE PISCANDO */}
+          {/* BADGE PISCANDO (MOVIDA PARA BAIXO) */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 mb-2 shadow-sm">
              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
              <span className="text-[11px] sm:text-xs font-bold text-emerald-800 uppercase tracking-wide">IA analisando multas agora</span>
@@ -820,7 +819,6 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* SEÇÃO "COMO FUNCIONA" - MODELO GRID DE BLOCOS */}
       <section id="como-funciona" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-5xl w-full">
           <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Como funciona a análise?</h2>
@@ -844,7 +842,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* SEÇÃO "SEGURANÇA" */}
       <section id="seguranca" className="w-full bg-white border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-5xl w-full">
           <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Seus Dados 100% Seguros</h2>
@@ -868,7 +865,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* SEÇÃO "FAQ" */}
       <section id="faq-seo" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-4xl w-full space-y-12">
           <div className="text-center">
