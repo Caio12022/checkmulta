@@ -120,6 +120,38 @@ const SOCIAL_PROOF_MESSAGES = [
   { icon: <Check className="w-4 h-4 text-emerald-500 flex-shrink-0" />, text: "Há 24 min: Erro formal de preenchimento detectado (SC) — economia de R$ 130,16" }
 ];
 
+// Componente para a animação dos números
+const AnimatedNumber = ({ end, start = 0, duration = 2500, prefix = "", suffix = "" }: { end: number, start?: number, duration?: number, prefix?: string, suffix?: string }) => {
+  const [value, setValue] = useState(start);
+
+  useEffect(() => {
+    let startTime: number | null = null;
+    let animationFrame: number;
+
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = timestamp - startTime;
+      const percentage = Math.min(progress / duration, 1);
+      
+      // Efeito easeOutQuart: rápido no início e vai travando suavemente no final
+      const easeOut = 1 - Math.pow(1 - percentage, 4);
+      
+      setValue(Math.floor(start + (end - start) * easeOut));
+
+      if (progress < duration) {
+        animationFrame = requestAnimationFrame(animate);
+      } else {
+        setValue(end);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrame);
+  }, [end, start, duration]);
+
+  return <>{prefix}{value.toLocaleString('pt-BR')}{suffix}</>;
+};
+
 export default function App() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -654,7 +686,7 @@ export default function App() {
       <div className="w-full max-w-4xl flex-1 px-4 py-8 md:py-12 mx-auto">
         
         {/* HERO SECTION */}
-        <section id="inicio" className="mb-8 flex flex-col items-center text-center w-full max-w-3xl mx-auto">
+        <section id="inicio" className="mb-10 flex flex-col items-center text-center w-full max-w-3xl mx-auto">
 
           {/* HEADLINES */}
           <h1 className="text-[34px] sm:text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] mb-5 tracking-tight mt-4">
@@ -673,18 +705,24 @@ export default function App() {
             <div className="flex items-center gap-2"><Timer className="w-4 h-4 text-emerald-600" /> Resultado imediato</div>
           </div>
 
-          {/* STATS SECTION */}
+          {/* STATS SECTION COM NÚMEROS ANIMADOS */}
           <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-0 border border-slate-200 rounded-2xl bg-white shadow-sm mb-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 overflow-hidden">
              <div className="py-6 px-4 flex flex-col items-center justify-center">
-                <span className="text-2xl sm:text-3xl font-black text-slate-900">12.400+</span>
+                <span className="text-2xl sm:text-3xl font-black text-slate-900">
+                  <AnimatedNumber start={11800} end={12400} duration={2500} suffix="+" />
+                </span>
                 <span className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase mt-1 tracking-wider">multas analisadas</span>
              </div>
              <div className="py-6 px-4 flex flex-col items-center justify-center bg-slate-50/50">
-                <span className="text-2xl sm:text-3xl font-black text-slate-900">67%</span>
+                <span className="text-2xl sm:text-3xl font-black text-slate-900">
+                  <AnimatedNumber start={0} end={67} duration={2500} suffix="%" />
+                </span>
                 <span className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase mt-1 tracking-wider">apresentam brecha</span>
              </div>
              <div className="py-6 px-4 flex flex-col items-center justify-center">
-                <span className="text-2xl sm:text-3xl font-black text-slate-900">R$ 293</span>
+                <span className="text-2xl sm:text-3xl font-black text-slate-900">
+                  <AnimatedNumber start={0} end={293} duration={2500} prefix="R$ " />
+                </span>
                 <span className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase mt-1 tracking-wider">economia média</span>
              </div>
           </div>
@@ -756,9 +794,9 @@ export default function App() {
                   ))}
                 </div>
 
-                {/* BADGE PISCANDO E DINÂMICA ABAIXO DOS BOTÕES */}
+                {/* BADGE PISCANDO E DINÂMICA ABAIXO DOS BOTÕES (COM EFEITO PING MELHORADO) */}
                 <div className="flex justify-center mt-8 mb-2">
-                  <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-emerald-50 border border-emerald-200 shadow-sm">
+                  <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-emerald-50 border border-emerald-200 shadow-sm">
                     <div className="relative flex items-center justify-center w-3 h-3">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
