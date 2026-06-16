@@ -46,14 +46,13 @@
 
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
-        window.gtag = gtag; // Torna o gtag global para o React
+        window.gtag = gtag;
         gtag('js', new Date());
 
         gtag('config', 'G-7LMKRN6FYD');
         gtag('config', 'AW-3277250868');
       }
 
-      // Dispara o script assim que o utilizador tocar, fizer scroll ou mover o rato
       ['scroll', 'touchstart', 'mousemove', 'keydown'].forEach(function(e) {
         window.addEventListener(e, loadGtag, { passive: true, once: true });
       });
@@ -88,6 +87,96 @@
       }
     }
     </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Vale a pena recorrer de uma multa de trânsito?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Recorrer é um direito garantido pelo Código de Trânsito Brasileiro. Além de evitar o pagamento e a perda de pontos na CNH, a defesa obriga o órgão autuador a provar que a infração foi lavrada corretamente. Erros de preenchimento, falhas do agente ou equipamentos sem calibração podem anular a penalidade."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Qual o prazo para recorrer de uma multa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O prazo para apresentar a Defesa Prévia é de 15 dias corridos a partir do recebimento da notificação de autuação. Caso a defesa seja indeferida, você tem mais 30 dias para interpor o recurso em primeira instância (JARI). A CheckMulta verifica automaticamente se sua multa ainda está dentro do prazo ao analisar o documento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como a CheckMulta identifica erros na multa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nossa inteligência artificial cruza cada campo do auto de infração com o Código de Trânsito Brasileiro (CTB) e o Manual Brasileiro de Fiscalização de Trânsito (MBFT). O sistema verifica erros de preenchimento, identificação incorreta do condutor, falhas na descrição da infração, equipamentos sem certificação e irregularidades processuais que podem anular a multa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quais tipos de multa podem ser contestadas?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Praticamente qualquer infração pode ser contestada se houver erro formal na autuação: excesso de velocidade por radar ou lombada, avanço de sinal vermelho, uso de celular ao volante, estacionamento irregular, evasão de pedágio e outras infrações previstas no CTB. O que determina a viabilidade do recurso é a existência de falhas no processo de autuação, não o tipo da infração."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "A CheckMulta armazena meus dados ou a foto do documento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não. A imagem do seu auto de infração é processada na memória do servidor e imediatamente deletada após a análise. Não exigimos cadastro, e-mail ou senha. Nenhum dado pessoal ou do veículo é armazenado em nossos sistemas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que é gerado após a análise da multa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Se a IA identificar uma brecha legal, a CheckMulta gera uma petição técnica de defesa prévia pronta para protocolar, com os fundamentos jurídicos baseados no CTB e no MBFT. O documento é estruturado para ser apresentado diretamente ao órgão autuador, sem necessidade de advogado."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Preciso de advogado para usar a CheckMulta?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não. A defesa prévia e o recurso de multa de trânsito em primeira e segunda instância podem ser apresentados pelo próprio condutor, sem necessidade de representação jurídica. A CheckMulta gera o documento técnico fundamentado em lei para você protocolar diretamente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "A análise da CheckMulta é gratuita?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim, a análise inicial é gratuita. Nossa IA verifica o auto de infração e aponta se há brecha legal sem nenhum custo. Caso haja viabilidade de recurso e você queira a petição completa pronta para protocolar, é cobrada uma taxa de R$ 19,90, muito inferior ao valor médio de uma multa de R$ 293."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Multa de radar tem como recorrer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Multas de radar podem ser contestadas quando o equipamento não possui certificação do INMETRO vigente, quando a placa foi lida de forma incorreta, quando a sinalização de velocidade máxima não estava visível ou regular, ou quando há erros no preenchimento do auto de infração. A CheckMulta verifica automaticamente esses pontos ao analisar o documento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Recorrer da multa suspende o pagamento e os pontos na CNH?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Enquanto a defesa prévia ou o recurso estiver em análise pelo órgão autuador, a multa fica com o pagamento e a pontuação na CNH suspensos. Ou seja, você não perde pontos nem precisa pagar enquanto aguarda a decisão — o que por si só já torna o recurso vantajoso."
+          }
+        }
+      ]
+    }
+    </script>
+
   </head>
   <body>
     <div id="root"></div>
