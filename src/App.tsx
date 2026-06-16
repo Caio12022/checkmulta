@@ -103,7 +103,6 @@ const LOADER_MESSAGES = [
   "Buscando jurisprudência no MBFT..."
 ];
 
-// Subtítulos adicionados para refletir a imagem
 const VIOLATION_TYPES = [
   { id: 'velocidade', name: 'Excesso de velocidade', subtitle: 'radar ou lombada', icon: Camera },
   { id: 'sinal', name: 'Avanço de sinal', subtitle: 'semáforo vermelho', icon: TrafficCone },
@@ -584,6 +583,7 @@ export default function App() {
         <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-600 items-center">
           <a href="#inicio" className="hover:text-blue-600 transition-colors">Início</a>
           <a href="#como-funciona" className="hover:text-blue-600 transition-colors">Como Funciona</a>
+          <a href="#seguranca" className="hover:text-blue-600 transition-colors">Segurança</a>
           <a href="#faq-seo" className="hover:text-blue-600 transition-colors">Dúvidas</a>
           <button onClick={() => setActiveModal("suporte")} className="hover:text-blue-600 transition-colors font-bold flex items-center gap-1 text-blue-600">
             Suporte
@@ -606,6 +606,7 @@ export default function App() {
             >
               <a href="#inicio" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Início</a>
               <a href="#como-funciona" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Como Funciona</a>
+              <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Segurança</a>
               <a href="#faq-seo" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Dúvidas</a>
               <button 
                 onClick={() => {
@@ -652,7 +653,7 @@ export default function App() {
 
       <div className="w-full max-w-4xl flex-1 px-4 py-8 md:py-12 mx-auto">
         
-        {/* NOVO HERO SECTION BASEADO NA IMAGEM */}
+        {/* HERO SECTION */}
         <section id="inicio" className="mb-10 flex flex-col items-center text-center w-full max-w-3xl mx-auto">
           
           {/* BADGE PISCANDO */}
@@ -819,73 +820,83 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* NOVA SEÇÃO "COMO FUNCIONA" EM FORMATO DE LISTA VERTICAL */}
+      {/* SEÇÃO "COMO FUNCIONA" - MODELO GRID DE BLOCOS */}
       <section id="como-funciona" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
-        <div className="max-w-3xl w-full">
-          <h2 className="text-2xl sm:text-3xl font-black text-center text-slate-900 mb-10 tracking-tight">Como funciona</h2>
-          
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-10 shadow-sm">
-            <div className="space-y-8">
-              {/* Passo 1 */}
-              <div className="flex items-start gap-4 sm:gap-6">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold text-sm sm:text-base flex-shrink-0 mt-1">1</div>
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-1.5">Envie a foto do documento</h3>
-                  <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">Tire uma foto ou suba o PDF do seu auto de infração. Nenhum dado é armazenado após a análise.</p>
-                </div>
-              </div>
-
-              {/* Passo 2 */}
-              <div className="flex items-start gap-4 sm:gap-6">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold text-sm sm:text-base flex-shrink-0 mt-1">2</div>
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-1.5">A IA audita o preenchimento</h3>
-                  <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">Cruzamos cada campo com o CTB e o Manual Brasileiro de Fiscalização de Trânsito (MBFT).</p>
-                </div>
-              </div>
-
-              {/* Passo 3 */}
-              <div className="flex items-start gap-4 sm:gap-6">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-800 text-white flex items-center justify-center font-bold text-sm sm:text-base flex-shrink-0 mt-1">3</div>
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 mb-1.5">Você recebe o diagnóstico grátis</h3>
-                  <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">Se houver brecha, liberamos a petição técnica pronta para protocolar — sem advogado, sem burocracia.</p>
-                </div>
-              </div>
+        <div className="max-w-5xl w-full">
+          <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Como funciona a análise?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><UploadCloud className="w-8 h-8" /></div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">1. Envie a foto do documento</h3>
+              <p className="text-slate-600 font-medium leading-relaxed">Tire uma foto ou suba o PDF do seu auto de infração. Nenhum dado é armazenado.</p>
+            </div>
+            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><Search className="w-8 h-8" /></div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">2. A IA audita o preenchimento</h3>
+              <p className="text-slate-600 font-medium leading-relaxed">Cruzamos cada campo com o CTB e o Manual Brasileiro de Fiscalização de Trânsito (MBFT).</p>
+            </div>
+            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><FileText className="w-8 h-8" /></div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">3. Diagnóstico grátis</h3>
+              <p className="text-slate-600 font-medium leading-relaxed">Se houver brecha, geramos a petição técnica pronta para protocolar — sem burocracia.</p>
             </div>
           </div>
-          
         </div>
       </section>
 
-      <section id="faq-seo" className="w-full bg-white border-t border-slate-200 py-16 px-4 flex justify-center">
+      {/* SEÇÃO "SEGURANÇA" */}
+      <section id="seguranca" className="w-full bg-white border-t border-slate-200 py-16 px-4 flex justify-center">
+        <div className="max-w-5xl w-full">
+          <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Seus Dados 100% Seguros</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6"><Lock className="w-8 h-8" /></div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Zero Armazenamento</h3>
+              <p className="text-slate-600 font-medium leading-relaxed">Não guardamos a foto do seu documento. A imagem é processada na memória do servidor e imediatamente deletada.</p>
+            </div>
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><UserX className="w-8 h-8" /></div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Sem Cadastro</h3>
+              <p className="text-slate-600 font-medium leading-relaxed">Você não precisa criar conta, colocar e-mail ou senha para auditar a sua multa. É direto ao ponto.</p>
+            </div>
+            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
+              <div className="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-6"><Route className="w-8 h-8" /></div>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Total Transparência</h3>
+              <p className="text-slate-600 font-medium leading-relaxed">Atuamos como uma ferramenta tecnológica baseada no CTB. Nós criamos a tese, mas a decisão final é do órgão julgador.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO "FAQ" */}
+      <section id="faq-seo" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-4xl w-full space-y-12">
           <div className="text-center">
             <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Dúvidas Frequentes</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            <div className="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-slate-200 transition-colors">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 transition-colors">
               <h2 className="text-base sm:text-lg font-bold text-slate-900 mb-2">Como saber se ainda dá tempo de recorrer da multa?</h2>
               <p className="text-slate-600 text-sm leading-relaxed font-medium">Nossa inteligência artificial analisa a data da infração e os prazos legais da sua notificação para confirmar se você ainda está dentro do período válido para apresentar sua defesa prévia ou recurso.</p>
             </div>
             
-            <div className="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-slate-200 transition-colors">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 transition-colors">
               <h2 className="text-base sm:text-lg font-bold text-slate-900 mb-2">Quais multas podem ser contestadas?</h2>
               <p className="text-slate-600 text-sm leading-relaxed font-medium">Praticamente qualquer infração pode ser contestada se houver erros formais na autuação. Nosso foco é identificar falhas do agente de trânsito baseadas no Manual Brasileiro de Fiscalização (MBFT).</p>
             </div>
 
-            <div className="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-slate-200 transition-colors">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 transition-colors">
               <h2 className="text-base sm:text-lg font-bold text-slate-900 mb-2">Como funciona a análise da CheckMulta?</h2>
               <p className="text-slate-600 text-sm leading-relaxed font-medium">Você envia a foto do seu documento, nosso sistema cruza os dados com a legislação vigente em segundos e aponta se há viabilidade legal para solicitar a anulação da penalidade.</p>
             </div>
 
-            <div className="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-slate-200 transition-colors">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 transition-colors">
               <h2 className="text-base sm:text-lg font-bold text-slate-900 mb-2">O que contém o relatório de contestação?</h2>
               <p className="text-slate-600 text-sm leading-relaxed font-medium">O modelo de recurso gerado entrega uma defesa estruturada e fundamentada em leis, pronta para você preencher com seus dados pessoais e protocolar no órgão autuador.</p>
             </div>
 
-            <div className="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-100 hover:border-slate-200 md:col-span-2 transition-colors">
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 md:col-span-2 transition-colors">
               <h2 className="text-base sm:text-lg font-bold text-slate-900 mb-2">Vale a pena recorrer de uma multa?</h2>
               <p className="text-slate-600 text-sm leading-relaxed font-medium">Sim! Recorrer é um direito garantido por lei. Além de evitar pontos na CNH e a cobrança financeira, a defesa obriga o órgão a provar que a autuação foi feita de forma impecável, o que muitas vezes não ocorre devido a erros de preenchimento.</p>
             </div>
@@ -1070,7 +1081,7 @@ export default function App() {
                         );
                       })()}
                       
-                      {/* CABEÇALHO DO SUCESSO - Alterado para usar a palavra "Brecha" */}
+                      {/* CABEÇALHO DO SUCESSO */}
                       <div className="flex items-start space-x-4">
                         <CheckCircle2 className="w-8 h-8 text-emerald-600 flex-shrink-0 mt-1" />
                         <div>
