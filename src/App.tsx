@@ -604,7 +604,7 @@ export default function App() {
     <div className="min-h-screen bg-gray-50 flex flex-col items-center text-gray-900 font-sans selection:bg-blue-100 selection:text-blue-900 w-full scroll-smooth">
       <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-40 overflow-visible">
         <div className="flex items-center h-full w-[180px] md:w-[240px]">
-          <img src="/checkmulta-logo.png" alt="CheckMulta Logo" width="240" height="64" className="w-full h-auto object-contain scale-[1.3] md:scale-[1.5] origin-left translate-y-1" />
+          <img src="/checkmulta-logo.webp" alt="CheckMulta Logo" width="240" height="64" className="w-full h-auto object-contain scale-[1.3] md:scale-[1.5] origin-left translate-y-1" />
         </div>
         <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-600 items-center">
           <a href="#inicio" className="hover:text-blue-600 transition-colors">Início</a>
@@ -889,7 +889,7 @@ export default function App() {
       </section>
       <footer className="w-full text-center px-6 py-6 border-t border-gray-200 bg-gray-100 mt-auto">
         <div className="flex flex-col items-center justify-center mb-6">
-          <img src="/checkmulta-logo.png" alt="CheckMulta Logo" width="240" height="64" className="h-[48px] md:h-[64px] w-auto object-contain opacity-90" />
+          <img src="/checkmulta-logo.webp" alt="CheckMulta Logo" width="240" height="64" className="h-[48px] md:h-[64px] w-auto object-contain opacity-90" />
         </div>
         <p className="text-xs text-slate-500 max-w-3xl mx-auto leading-relaxed">
           🛡️ <strong className="font-semibold text-slate-600">Transparência e Privacidade:</strong> Nosso sistema atua como organizador tecnológico com base no Manual Brasileiro de Fiscalização de Trânsito. A decisão final é do órgão julgador. Não exigimos cadastro e não armazenamos a sua petição ou dados do veículo. Tudo é apagado após o download.
