@@ -119,11 +119,16 @@ const VIOLATION_TYPES = [
 ];
 
 const SOCIAL_PROOF_MESSAGES = [
-  { icon: <Zap className="w-4 h-4 text-amber-500" />, text: "Mais de 340 auditorias realizadas só nesta semana." },
-  { icon: <CheckCircle2 className="w-4 h-4 text-emerald-500" />, text: "Há 2 min: Defesa de Radar (SP) gerada com sucesso." },
-  { icon: <ShieldCheck className="w-4 h-4 text-blue-500" />, text: "Há 15 min: Falha legal identificada em autuação (RJ)." },
-  { icon: <CheckCircle2 className="w-4 h-4 text-emerald-500" />, text: "Há 42 min: Modelo de recurso liberado. Economia: R$ 293,47." },
-  { icon: <FileText className="w-4 h-4 text-slate-500" />, text: "Há 1 hora: Tese de defesa para Lei Seca estruturada." }
+  { icon: <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500 flex-shrink-0" />, text: "Mais de 340 auditorias realizadas só nesta semana." },
+  { icon: <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500 flex-shrink-0" />, text: "Há 2 min: Defesa de Radar (SP) gerada com sucesso." },
+  { icon: <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500 flex-shrink-0" />, text: "Há 15 min: Falha legal identificada em autuação (RJ)." },
+  { icon: <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500 flex-shrink-0" />, text: "Há 42 min: Modelo de recurso liberado. Economia: R$ 293,47." },
+  { icon: <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500 flex-shrink-0" />, text: "Há 1 hora: Tese de defesa para Lei Seca estruturada." },
+  { icon: <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500 flex-shrink-0" />, text: "Há 5 min: Multa de celular anulada com nossa tese (MG)." },
+  { icon: <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500 flex-shrink-0" />, text: "Há 28 min: Erro formal no preenchimento detectado (PR)." },
+  { icon: <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500 flex-shrink-0" />, text: "Inteligência Artificial atualizada com o novo CTB 2026." },
+  { icon: <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-500 flex-shrink-0" />, text: "Há 12 min: Recurso para avanço de sinal vermelho liberado (SC)." },
+  { icon: <FileText className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500 flex-shrink-0" />, text: "Há 3 horas: Mais de 15 CNHs protegidas da suspensão hoje." }
 ];
 
 export default function App() {
@@ -157,7 +162,8 @@ export default function App() {
   const [selectedViolation, setSelectedViolation] = useState<string | null>(null);
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
 
-  const [proofIndex, setProofIndex] = useState(0);
+  // Início aleatório para dar mais credibilidade anti-robô
+  const [proofIndex, setProofIndex] = useState(() => Math.floor(Math.random() * SOCIAL_PROOF_MESSAGES.length));
 
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
@@ -598,7 +604,7 @@ export default function App() {
     <div className="min-h-screen bg-gray-50 flex flex-col items-center text-gray-900 font-sans selection:bg-blue-100 selection:text-blue-900 w-full scroll-smooth">
       <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-40 overflow-visible">
         <div className="flex items-center h-full w-[180px] md:w-[240px]">
-          <img src="/checkmulta-logo.png" alt="CheckMulta Logo" className="w-full h-auto object-contain scale-[1.3] md:scale-[1.5] origin-left translate-y-1" />
+          <img src="/checkmulta-logo.png" alt="CheckMulta Logo" width="240" height="64" className="w-full h-auto object-contain scale-[1.3] md:scale-[1.5] origin-left translate-y-1" />
         </div>
         <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-600 items-center">
           <a href="#inicio" className="hover:text-blue-600 transition-colors">Início</a>
@@ -747,7 +753,8 @@ export default function App() {
              </div>
           )}
           
-          <div className="flex justify-center mt-6 h-10 overflow-hidden relative w-full max-w-md mx-auto">
+          {/* BANNER DE PROVA SOCIAL - RESPONSIVO E COM INÍCIO ALEATÓRIO */}
+          <div className="flex justify-center mt-6 min-h-[52px] sm:h-10 overflow-hidden relative w-full px-4 sm:px-0 mx-auto">
             <AnimatePresence mode="wait">
               <motion.div
                 key={proofIndex}
@@ -755,10 +762,10 @@ export default function App() {
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: -25, opacity: 0 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="absolute flex items-center justify-center gap-2 text-[13px] sm:text-sm font-bold text-slate-600 bg-white px-5 py-2 rounded-full border border-slate-200 shadow-sm w-max"
+                className="absolute flex items-center justify-center gap-2 sm:gap-3 text-[12px] sm:text-sm font-bold text-slate-600 bg-white px-4 sm:px-5 py-2 sm:py-2 rounded-xl sm:rounded-full border border-slate-200 shadow-sm w-full max-w-[320px] sm:max-w-max text-center leading-snug"
               >
                 {SOCIAL_PROOF_MESSAGES[proofIndex].icon}
-                {SOCIAL_PROOF_MESSAGES[proofIndex].text}
+                <span>{SOCIAL_PROOF_MESSAGES[proofIndex].text}</span>
               </motion.div>
             </AnimatePresence>
           </div>
@@ -882,7 +889,7 @@ export default function App() {
       </section>
       <footer className="w-full text-center px-6 py-6 border-t border-gray-200 bg-gray-100 mt-auto">
         <div className="flex flex-col items-center justify-center mb-6">
-          <img src="/checkmulta-logo.png" alt="CheckMulta Logo" className="h-[48px] md:h-[64px] w-auto object-contain opacity-90" />
+          <img src="/checkmulta-logo.png" alt="CheckMulta Logo" width="240" height="64" className="h-[48px] md:h-[64px] w-auto object-contain opacity-90" />
         </div>
         <p className="text-xs text-slate-500 max-w-3xl mx-auto leading-relaxed">
           🛡️ <strong className="font-semibold text-slate-600">Transparência e Privacidade:</strong> Nosso sistema atua como organizador tecnológico com base no Manual Brasileiro de Fiscalização de Trânsito. A decisão final é do órgão julgador. Não exigimos cadastro e não armazenamos a sua petição ou dados do veículo. Tudo é apagado após o download.
@@ -1305,7 +1312,7 @@ export default function App() {
                           });
                         }}
                       >
-                        <img src="/mercadopago.png" alt="Mercado Pago" className="h-10 w-auto object-contain" />
+                        <img src="/mercadopago.png" alt="Mercado Pago" width="150" height="40" className="h-10 w-auto object-contain" />
                       </div>
                     </div>
                     
@@ -1320,7 +1327,7 @@ export default function App() {
                     </div>
                     
                     <div className="flex justify-center py-2"><div className="w-48 h-48 bg-slate-100 rounded-2xl flex items-center justify-center border-2 border-dashed border-slate-300">
-                      {qrCodeBase64 ? <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" className="w-full h-full p-2 object-contain" /> : <QrCode className="w-24 h-24 text-slate-300 animate-pulse" />}
+                      {qrCodeBase64 ? <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" width="192" height="192" className="w-full h-full p-2 object-contain" /> : <QrCode className="w-24 h-24 text-slate-300 animate-pulse" />}
                     </div></div>
                     
                     <div className="space-y-3">
