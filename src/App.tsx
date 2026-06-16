@@ -1045,36 +1045,19 @@ export default function App() {
                               )}
                             </div>
 
-                            {(deadline || multaData.infracao) && (
-                              <div className="mt-3 pt-3 border-t border-blue-200 grid grid-cols-1 sm:grid-cols-2 gap-3 items-center">
-                                {/* PRAZO LEGAL COM URGÊNCIA */}
-                                {deadline && (
-                                  <div className={`flex items-center gap-3 ${deadline.urgente ? 'bg-red-50 p-2 rounded-lg' : ''}`}>
-                                    <Timer className={`w-4 h-4 flex-shrink-0 ${deadline.urgente ? 'text-red-600 animate-pulse' : 'text-blue-600'}`} />
-                                    <div className="text-[13px]">
-                                      <p className="text-slate-500 font-medium">Prazo para Recurso</p>
-                                      <p className={`font-black ${deadline.urgente ? 'text-red-700' : 'text-slate-900'}`}>
-                                        {deadline.diasRestantes > 0 ? `${deadline.diasRestantes} dias restantes` : 'Prazo expirado'}
-                                      </p>
-                                      {deadline.diasRestantes > 0 && (
-                                        <p className="text-[11px] text-slate-500 font-medium">Vence em {deadline.dataVencimento}</p>
-                                      )}
-                                    </div>
-                                  </div>
-                                )}
-
-                                {/* INFRAÇÃO ANALISADA */}
-                                {multaData.infracao && (
-                                  <div className="flex items-center gap-3">
-                                    <FileText className="w-4 h-4 text-blue-600 flex-shrink-0" />
-                                    <div className="text-[13px]">
-                                      <p className="text-slate-500 font-medium">Infração Analisada</p>
-                                      <p className="font-black text-slate-900" title={multaData.infracao}>
-                                        {multaData.infracao.length > 50 ? `${multaData.infracao.substring(0, 50)}...` : multaData.infracao}
-                                      </p>
-                                    </div>
-                                  </div>
-                                )}
+                            {/* PRAZO LEGAL COM URGÊNCIA */}
+                            {deadline && (
+                              <div className={`mt-3 pt-3 border-t border-blue-200 flex items-center gap-3 ${deadline.urgente ? 'bg-red-50 p-2 rounded-lg' : ''}`}>
+                                <Timer className={`w-4 h-4 flex-shrink-0 ${deadline.urgente ? 'text-red-600 animate-pulse' : 'text-blue-600'}`} />
+                                <div className="text-[13px]">
+                                  <p className="text-slate-500 font-medium">Prazo para Recurso</p>
+                                  <p className={`font-black ${deadline.urgente ? 'text-red-700' : 'text-slate-900'}`}>
+                                    {deadline.diasRestantes > 0 ? `${deadline.diasRestantes} dias restantes` : 'Prazo expirado'}
+                                  </p>
+                                  {deadline.diasRestantes > 0 && (
+                                    <p className="text-[11px] text-slate-500 font-medium">Vence em {deadline.dataVencimento}</p>
+                                  )}
+                                </div>
                               </div>
                             )}
                           </div>
