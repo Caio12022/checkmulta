@@ -994,8 +994,8 @@ const [isSeoOpen, setIsSeoOpen] = useState(false);
             <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Recorrer da multa suspende os pontos na CNH?</h3>
             <p>
               Sim. Enquanto a defesa prévia ou o recurso estiver em análise pelo órgão autuador, tanto o <strong className="text-slate-800">pagamento da multa</strong> quanto a <strong className="text-slate-800">pontuação na CNH</strong> ficam suspensos. Isso significa que, ao apresentar o recurso dentro do prazo, você não perde pontos nem precisa pagar enquanto aguarda a decisão — o que por si só já torna o recurso vantajoso, mesmo nos casos em que o resultado seja incerto.
-            </p>}
-          </div>
+            </p>
+          </div>}
         </div>
       </section>
 
