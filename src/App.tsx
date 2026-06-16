@@ -946,7 +946,6 @@ export default function App() {
           </div>
         </div>
       </section>
-</section>
 
       {/* SEÇÃO SEO - CONTEÚDO PARA RANQUEAMENTO */}
       <section className="w-full bg-white border-t border-slate-200 py-16 px-4 flex justify-center">
