@@ -914,8 +914,8 @@ export default function App() {
                   {activeModal === "suporte" && <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2"><span>💬</span> Central de Suporte</h3>}
                 </div>
                 <div className="text-sm text-slate-600 leading-relaxed space-y-3">
-                  {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente e não constitui consultoria jurídica garantida. Nós não somos um escritório de advocacia. <strong>A decisão final do recurso é exclusiva responsabilidade do órgão autuador (JARI).</strong> Nossa garantia cobre apenas a geração técnica do documento. É plenamente possível que o recurso seja indeferido, não implicando em reembolso.</p>}
-                  {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial para formulação de teses administrativas. Não nos responsabilizamos por prazos excedidos, inserção de dados incorretos pelo usuário ou resultado das decisões julgadas pelas juntas de recursos JARI ou instâncias superiores.</p>}
+                  {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente e não constitui consultoria jurídica garantida. Nós não somos um escritório de advocacia. <strong>A decisão final do recurso é exclusiva responsabilidade do órgão autuador.</strong> Nossa garantia cobre apenas a geração técnica do documento. É plenamente possível que o recurso seja indeferido, não implicando em reembolso.</p>}
+                  {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial para formulação de teses administrativas. Não nos responsabilizamos por prazos excedidos, inserção de dados incorretos pelo usuário ou resultado das decisões julgadas pelas juntas de recursos ou instâncias superiores.</p>}
                   {activeModal === "privacidade" && <p>Sua privacidade é absoluta. Não possuímos banco de dados, nem realizamos registros ou retenções em log da fotografia do seu auto de infração, dados pessoais ou da petição gerada. O processamento é de estrito caráter transitório (em memória) para elaboração do documento, que é imediatamente apagado após o fechamento da página ou download.</p>}
                   {activeModal === "suporte" && (
                     <div className="space-y-5 pt-2">
@@ -1160,7 +1160,7 @@ export default function App() {
                           <div className="bg-white rounded-xl p-4 text-left border border-emerald-100 mb-2 shadow-sm w-full">
                             <p className="text-sm font-bold text-slate-800 mb-3">O que você recebe:</p>
                             <ul className="space-y-2.5 text-[13px] sm:text-sm text-slate-700 font-medium">
-                              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" /> Petição pronta para protocolar na JARI</li>
+                              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" /> Petição pronta para protocolar no órgão de trânsito</li>
                               <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" /> Fundamentação em CTB + MBFT + jurisprudência</li>
                               <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" /> Acesso imediato para download em TXT</li>
                             </ul>
@@ -1170,7 +1170,7 @@ export default function App() {
                           <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 flex items-start gap-2">
                             <AlertCircle className="w-5 h-5 text-amber-700 flex-shrink-0 mt-0.5" />
                             <div className="text-[12px] text-amber-900 font-medium">
-                              <p><strong>Transparência Jurídica:</strong> CheckMulta gera a petição com tese de risco validada. A decisão final sempre depende do órgão autuador (JARI). Sua economia é garantida no preço da petição — não no resultado.</p>
+                              <p><strong>Transparência Jurídica:</strong> CheckMulta gera a petição com tese de risco validada. A decisão final sempre depende do órgão autuador. Sua economia é garantida no preço da petição — não no resultado.</p>
                             </div>
                           </div>
 
