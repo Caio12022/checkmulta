@@ -32,22 +32,34 @@
     <meta name="twitter:description" content="Faça a consulta gratuita da sua multa. Nossa Inteligência Artificial acha o erro na infração e cria seu recurso na hora. Consulte grátis!" />
     <meta name="twitter:image" content="/logo.webp" />
 
-    <script type="text/javascript">
-      setTimeout(function() {
-        var gtagScript = document.createElement('script');
-        gtagScript.async = true;
-        gtagScript.src = "https://www.googletagmanager.com/gtag/js?id=G-7LMKRN6FYD";
-        document.head.appendChild(gtagScript);
+    <!-- Script do Google Ads (Lazy Load por Interação - Rápido e Preciso) -->
+    <script>
+      let gtagLoaded = false;
+      function loadGtag() {
+        if (gtagLoaded) return;
+        gtagLoaded = true;
+        
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtag/js?id=G-7LMKRN6FYD';
+        document.head.appendChild(script);
 
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
+        window.gtag = gtag; // Torna o gtag global para o React
         gtag('js', new Date());
 
         gtag('config', 'G-7LMKRN6FYD');
         gtag('config', 'AW-3277250868');
-      }, 3000); // 3000ms = 3 segundos de atraso intencional
+      }
+
+      // Dispara o script assim que o utilizador tocar, fizer scroll ou mover o rato
+      ['scroll', 'touchstart', 'mousemove', 'keydown'].forEach(function(e) {
+        window.addEventListener(e, loadGtag, { passive: true, once: true });
+      });
     </script>
 
+    <!-- Clarity mantido com defer -->
     <script defer type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
