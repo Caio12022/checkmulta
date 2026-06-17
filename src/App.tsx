@@ -626,13 +626,11 @@ export default function App() {
             <div className="flex items-center gap-2"><Timer className="w-4 h-4 text-emerald-600" /> Resultado imediato</div>
           </div>
 
-          {/* ESTATÍSTICAS — baseadas no produto real, sem números fabricados */}
+          {/* ESTATÍSTICAS — apenas claims verdadeiros e sustentáveis */}
           <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-0 border border-slate-200 rounded-2xl bg-white shadow-sm mb-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 overflow-hidden">
             <div className="py-6 px-4 flex flex-col items-center justify-center">
-              <span className="text-2xl sm:text-3xl font-black text-slate-900">
-                <AnimatedNumber start={11800} end={12400} duration={2500} suffix="+" />
-              </span>
-              <span className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase mt-1 tracking-wider">multas analisadas</span>
+              <span className="text-2xl sm:text-3xl font-black text-slate-900">60s</span>
+              <span className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase mt-1 tracking-wider">análise na hora</span>
             </div>
             <div className="py-6 px-4 flex flex-col items-center justify-center bg-slate-50/50">
               <span className="text-2xl sm:text-3xl font-black text-slate-900">R$ 19,90</span>
@@ -1329,6 +1327,7 @@ export default function App() {
                   <div>
                     <h3 className="text-3xl font-black text-slate-900 tracking-tight">R$ 19,90</h3>
                     <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mt-1">Petição Estruturada (IA)</p>
+                    <p className="text-[11px] text-slate-400 font-medium mt-1.5">CheckMulta Tecnologia · CNPJ 63.524.338/0001-62</p>
                   </div>
                   <div className="flex items-center justify-center gap-2 text-red-700 font-bold bg-red-50 py-2.5 rounded-xl border border-red-100">
                     <Timer className="w-5 h-5 animate-pulse" />
