@@ -120,7 +120,6 @@ const SOCIAL_PROOF_MESSAGES = [
   { icon: <Check className="w-4 h-4 text-emerald-500 flex-shrink-0" />, text: "Há 24 min: Erro formal de preenchimento detectado (SC) — economia de R$ 130,16" }
 ];
 
-// Componente para a animação dos números
 const AnimatedNumber = ({ end, start = 0, duration = 2500, prefix = "", suffix = "" }: { end: number, start?: number, duration?: number, prefix?: string, suffix?: string }) => {
   const [value, setValue] = useState(start);
 
@@ -133,7 +132,6 @@ const AnimatedNumber = ({ end, start = 0, duration = 2500, prefix = "", suffix =
       const progress = timestamp - startTime;
       const percentage = Math.min(progress / duration, 1);
       
-      // Efeito easeOutQuart: rápido no início e vai travando suavemente no final
       const easeOut = 1 - Math.pow(1 - percentage, 4);
       
       setValue(Math.floor(start + (end - start) * easeOut));
@@ -186,6 +184,8 @@ export default function App() {
   const [proofIndex, setProofIndex] = useState(() => Math.floor(Math.random() * SOCIAL_PROOF_MESSAGES.length));
 
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null); // NOVO ESTADO DE ERRO VISUAL
+  
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
   const [pixTimeLeft, setPixTimeLeft] = useState(600);
 
@@ -256,7 +256,6 @@ export default function App() {
           setIsPaid(true);
           localStorage.setItem('checkmulta_paid_status', 'true'); 
 
-          // O Analytics capta e manda para o Google Ads
           if (typeof window !== 'undefined' && window.gtag) {
             window.gtag('event', 'purchase', {
               transaction_id: paymentId.toString(),
@@ -276,7 +275,6 @@ export default function App() {
 
       timeoutId = setTimeout(() => {
         clearInterval(intervalId);
-        console.log("Radar do PIX desativado por tempo limite.");
       }, 600000);
     }
 
@@ -324,6 +322,7 @@ export default function App() {
     setDefenseResult(null);
     setError(null);
     setDefenseError(null);
+    setCheckoutError(null); // Limpar erro ao iniciar nova multa
     setExpiredBypassData(null);
     setIsExpiredBypassActive(false);
     setIsPaid(false);
@@ -363,6 +362,7 @@ export default function App() {
     setResult(null);
     setDefenseResult(null);
     setDefenseError(null);
+    setCheckoutError(null);
     setExpiredBypassData(null);
     setIsExpiredBypassActive(false);
     setIsPaid(false);
@@ -481,9 +481,11 @@ export default function App() {
     }
   };
 
+  // ----- SISTEMA DE CHECKOUT CORRIGIDO COM TRATAMENTO DE ERRO VISUAL -----
   const handleCheckout = async () => {
     if (!result) return;
     setIsCheckoutLoading(true);
+    setCheckoutError(null); // Limpa erros anteriores antes de tentar novamente
 
     try {
       const response = await fetch("/api/create-payment", {
@@ -491,6 +493,12 @@ export default function App() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: "comprador@checkmulta.com.br" }),
       });
+
+      // Proteção contra hibernação do Render (quando ele devolve tela HTML de erro em vez do JSON)
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("O servidor demorou para responder (hibernação) ou está fora do ar. Por favor, aguarde 1 minuto e clique novamente.");
+      }
 
       const data = await response.json();
 
@@ -504,11 +512,12 @@ export default function App() {
         setQrCodeBase64(data.qr_code_base64);
         setIsPixModalOpen(true);
       } else {
-        alert("Erro ao inicializar gateway de pagamento. Verifique o Token no Render.");
+        console.error("Erro retornado pela API do Mercado Pago:", data);
+        setCheckoutError("Erro na integração com o Mercado Pago. Verifique o Access Token no servidor.");
       }
-    } catch (err) {
-      console.error("Erro ao chamar API de Pagamento:", err);
-      alert("Não foi possível conectar ao servidor de pagamento.");
+    } catch (err: any) {
+      console.error("Erro crítico ao chamar API de Pagamento:", err);
+      setCheckoutError(err.message || "Falha de conexão com o servidor. Verifique sua internet ou tente novamente.");
     } finally {
       setIsCheckoutLoading(false);
     }
@@ -606,6 +615,13 @@ export default function App() {
     URL.revokeObjectURL(url);
   };
 
+  // Função auxiliar para tempo
+  const formatTime = (seconds: number) => {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col items-center text-gray-900 font-sans selection:bg-blue-100 selection:text-blue-900 w-full scroll-smooth">
       <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-40 overflow-visible">
@@ -655,7 +671,6 @@ export default function App() {
         </AnimatePresence>
       </header>
 
-      {/* BANNER DE URGÊNCIA (FOMO) */}
       <AnimatePresence>
         {showFomoBanner && (
           <motion.div
@@ -685,10 +700,7 @@ export default function App() {
 
       <div className="w-full max-w-4xl flex-1 px-4 py-8 md:py-12 mx-auto">
         
-        {/* HERO SECTION */}
         <section id="inicio" className="mb-10 flex flex-col items-center text-center w-full max-w-3xl mx-auto">
-
-          {/* HEADLINES */}
           <h1 className="text-[34px] sm:text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] mb-5 tracking-tight mt-4">
             Sua multa tem <span className="text-red-500">brecha legal?</span><br className="hidden sm:block" /> Descubra em 60 segundos
           </h1>
@@ -696,7 +708,6 @@ export default function App() {
             Nossa IA cruza seu auto de infração com o CTB e o MBFT e aponta erros do agente autuador que podem anular a penalidade.
           </p>
 
-          {/* TRUST BADGES INLINE */}
           <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-[13px] sm:text-sm font-bold text-slate-700 mb-10">
             <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-600" /> Análise gratuita</div>
             <div className="hidden sm:block w-px h-4 bg-slate-300"></div>
@@ -705,7 +716,6 @@ export default function App() {
             <div className="flex items-center gap-2"><Timer className="w-4 h-4 text-emerald-600" /> Resultado imediato</div>
           </div>
 
-          {/* STATS SECTION COM NÚMEROS ANIMADOS */}
           <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-0 border border-slate-200 rounded-2xl bg-white shadow-sm mb-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 overflow-hidden">
              <div className="py-6 px-4 flex flex-col items-center justify-center">
                 <span className="text-2xl sm:text-3xl font-black text-slate-900">
@@ -797,7 +807,6 @@ export default function App() {
                   ))}
                 </div>
 
-                {/* BADGE PISCANDO E DINÂMICA ABAIXO DOS BOTÕES (COM EFEITO PING MELHORADO) */}
                 <div className="flex justify-center mt-8 mb-2">
                   <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-emerald-50 border border-emerald-200 shadow-sm">
                     <div className="relative flex items-center justify-center w-3 h-3">
@@ -810,7 +819,6 @@ export default function App() {
              </div>
           )}
           
-          {/* BANNER DE PROVA SOCIAL - RESPONSIVO E COM INÍCIO ALEATÓRIO */}
           <div className="flex justify-center mt-4 min-h-[52px] sm:h-10 overflow-hidden relative w-full px-4 sm:px-0 mx-auto">
             <AnimatePresence mode="wait">
               <motion.div
@@ -866,7 +874,6 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* SEÇÃO "COMO FUNCIONA" */}
       <section id="como-funciona" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-5xl w-full">
           <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Como funciona a análise?</h2>
@@ -890,7 +897,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* SEÇÃO "SEGURANÇA" */}
       <section id="seguranca" className="w-full bg-white border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-5xl w-full">
           <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Seus Dados 100% Seguros</h2>
@@ -914,7 +920,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* SEÇÃO "FAQ" */}
       <section id="faq-seo" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-4xl w-full space-y-12">
           <div className="text-center">
@@ -950,7 +955,6 @@ export default function App() {
         </div>
       </section>
 
-    {/* SEÇÃO SEO - CONTEÚDO PARA RANQUEAMENTO */}
       <section className="w-full bg-slate-50 border-t border-slate-200 py-8 px-4 flex justify-center">
         <div className="max-w-4xl w-full">
           <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 transition-colors">
@@ -1294,6 +1298,16 @@ export default function App() {
                             </div>
                           </div>
 
+                          {/* CAIXA DE ERRO VISUAL NO CHECKOUT */}
+                          {checkoutError && (
+                            <div className="bg-red-50 border border-red-200 text-red-700 p-3.5 rounded-xl flex items-start gap-2.5 shadow-sm">
+                              <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                              <div className="text-sm font-bold text-left">
+                                <p>{checkoutError}</p>
+                              </div>
+                            </div>
+                          )}
+
                           <button onClick={handleCheckout} disabled={isCheckoutLoading} className="w-full flex flex-col items-center justify-center py-4 px-4 bg-emerald-600 text-white rounded-2xl hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-600/20 disabled:opacity-75 disabled:cursor-not-allowed font-bold">
                             <div className="flex flex-row items-center justify-center gap-2 text-lg text-center leading-tight">
                               {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6 flex-shrink-0" />}
@@ -1411,9 +1425,11 @@ export default function App() {
           </div>
         )}
       </AnimatePresence>
+      
+      {/* MODAL DO PIX COM Z-INDEX BLINDADO (100) */}
       <AnimatePresence>
         {isPixModalOpen && (
-          <div className="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm">
+          <div className="fixed inset-0 z-[100] overflow-y-auto bg-slate-900/60 backdrop-blur-sm">
              <div className="min-h-full flex items-center justify-center p-4">
               <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} className="relative w-11/12 max-w-sm bg-white rounded-3xl shadow-2xl p-6">
                 <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"><X className="w-5 h-5" /></button>
