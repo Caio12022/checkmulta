@@ -193,7 +193,7 @@ export default function App() {
   const [qrCode, setQrCode] = useState<string | null>(null);
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
   const [isPixCopied, setIsPixCopied] = useState(false);
-const [isSeoOpen, setIsSeoOpen] = useState(false);
+  const [isSeoOpen, setIsSeoOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -777,7 +777,10 @@ const [isSeoOpen, setIsSeoOpen] = useState(false);
              </div>
           ) : (
              <div className="text-center mt-6">
-                <h2 className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 sm:mb-6">Qual foi o motivo da autuação?</h2>
+                <div className="mb-6 sm:mb-8">
+                  <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-2 tracking-tight">Descubra agora se sua multa pode ser anulada</h2>
+                  <p className="text-sm sm:text-base text-slate-600 font-medium">Selecione abaixo qual foi a infração cometida para iniciar a análise gratuita:</p>
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                   {VIOLATION_TYPES.map((v) => (
                     <button 
@@ -948,54 +951,67 @@ const [isSeoOpen, setIsSeoOpen] = useState(false);
       </section>
 
     {/* SEÇÃO SEO - CONTEÚDO PARA RANQUEAMENTO */}
-      <section className="w-full bg-white border-t border-slate-200 py-16 px-4 flex justify-center">
+      <section className="w-full bg-slate-50 border-t border-slate-200 py-8 px-4 flex justify-center">
         <div className="max-w-4xl w-full">
-          <button
-            onClick={() => setIsSeoOpen(!isSeoOpen)}
-            className="w-full flex items-center justify-between text-left gap-4 group"
-          >
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Como recorrer de uma multa de trânsito no Brasil</h2>
-            <ArrowDown className={`w-6 h-6 text-slate-400 flex-shrink-0 transition-transform duration-300 ${isSeoOpen ? 'rotate-180' : ''}`} />
-          </button>
-          
-          {isSeoOpen && <div className="prose prose-slate max-w-none space-y-6 text-slate-600 text-sm sm:text-base leading-relaxed font-medium mt-8">
-            <p>
-              Recorrer de uma multa de trânsito é um direito garantido pelo <strong className="text-slate-800">Código de Trânsito Brasileiro (CTB)</strong> a todo condutor que acredite ter sido autuado de forma irregular. O processo envolve a apresentação de uma <strong className="text-slate-800">defesa prévia</strong> ao órgão autuador dentro do prazo legal, seguida — se necessário — de um <strong className="text-slate-800">recurso à JARI</strong> (Junta Administrativa de Recursos de Infrações).
-            </p>
+          <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 transition-colors">
+            <button
+              onClick={() => setIsSeoOpen(!isSeoOpen)}
+              className="w-full flex items-center justify-between text-left gap-4 group focus:outline-none"
+            >
+              <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Como recorrer de uma multa de trânsito no Brasil</h2>
+              <ArrowDown className={`w-6 h-6 text-slate-400 flex-shrink-0 transition-transform duration-300 ${isSeoOpen ? 'rotate-180' : ''}`} />
+            </button>
+            
+            <AnimatePresence>
+              {isSeoOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  className="overflow-hidden"
+                >
+                  <div className="prose prose-slate max-w-none space-y-6 text-slate-600 text-sm sm:text-base leading-relaxed font-medium mt-6 pt-6 border-t border-slate-100">
+                    <p>
+                      Recorrer de uma multa de trânsito é um direito garantido pelo <strong className="text-slate-800">Código de Trânsito Brasileiro (CTB)</strong> a todo condutor que acredite ter sido autuado de forma irregular. O processo envolve a apresentação de uma <strong className="text-slate-800">defesa prévia</strong> ao órgão autuador dentro do prazo legal, seguida — se necessário — de um <strong className="text-slate-800">recurso à JARI</strong> (Junta Administrativa de Recursos de Infrações).
+                    </p>
 
-            <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Qual o prazo para recorrer de uma multa?</h3>
-            <p>
-              O prazo para apresentar a <strong className="text-slate-800">defesa prévia</strong> é de <strong className="text-slate-800">15 dias corridos</strong> a partir do recebimento da notificação de autuação. Caso a defesa seja indeferida, o condutor tem mais <strong className="text-slate-800">30 dias para interpor o recurso</strong> em primeira instância na JARI. É fundamental respeitar esses prazos: após o vencimento, não é mais possível contestar a infração administrativamente.
-            </p>
+                    <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Qual o prazo para recorrer de uma multa?</h3>
+                    <p>
+                      O prazo para apresentar a <strong className="text-slate-800">defesa prévia</strong> é de <strong className="text-slate-800">15 dias corridos</strong> a partir do recebimento da notificação de autuação. Caso a defesa seja indeferida, o condutor tem mais <strong className="text-slate-800">30 dias para interpor o recurso</strong> em primeira instância na JARI. É fundamental respeitar esses prazos: após o vencimento, não é mais possível contestar a infração administrativamente.
+                    </p>
 
-            <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Quais erros em uma multa podem anulá-la?</h3>
-            <p>
-              O <strong className="text-slate-800">Manual Brasileiro de Fiscalização de Trânsito (MBFT)</strong> estabelece regras rígidas para o preenchimento do auto de infração. Qualquer desvio dessas normas pode ser utilizado como fundamento legal para anular a multa. Os erros mais comuns incluem:
-            </p>
-            <ul className="list-disc pl-6 space-y-2">
-              <li>Identificação incorreta do veículo ou da placa</li>
-              <li>Descrição imprecisa ou incompleta da infração cometida</li>
-              <li>Equipamento de medição (radar ou lombada) sem certificação do INMETRO vigente</li>
-              <li>Ausência ou ilegibilidade de dados obrigatórios no documento</li>
-              <li>Sinalização de velocidade máxima ausente ou irregular no local da infração</li>
-              <li>Erros na identificação do agente autuador</li>
-            </ul>
+                    <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Quais erros em uma multa podem anulá-la?</h3>
+                    <p>
+                      O <strong className="text-slate-800">Manual Brasileiro de Fiscalização de Trânsito (MBFT)</strong> estabelece regras rígidas para o preenchimento do auto de infração. Qualquer desvio dessas normas pode ser utilizado como fundamento legal para anular a multa. Os erros mais comuns incluem:
+                    </p>
+                    <ul className="list-disc pl-6 space-y-2">
+                      <li>Identificação incorreta do veículo ou da placa</li>
+                      <li>Descrição imprecisa ou incompleta da infração cometida</li>
+                      <li>Equipamento de medição (radar ou lombada) sem certificação do INMETRO vigente</li>
+                      <li>Ausência ou ilegibilidade de dados obrigatórios no documento</li>
+                      <li>Sinalização de velocidade máxima ausente ou irregular no local da infração</li>
+                      <li>Erros na identificação do agente autuador</li>
+                    </ul>
 
-            <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Como a inteligência artificial identifica brechas legais em multas?</h3>
-            <p>
-              A <strong className="text-slate-800">CheckMulta</strong> utiliza inteligência artificial para cruzar automaticamente cada campo do seu auto de infração com os requisitos do CTB e do MBFT. Em segundos, o sistema identifica inconsistências, falhas de preenchimento e irregularidades que o agente autuador ou o órgão de trânsito pode ter cometido — e que fundamentam legalmente o pedido de anulação da penalidade.
-            </p>
+                    <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Como a inteligência artificial identifica brechas legais em multas?</h3>
+                    <p>
+                      A <strong className="text-slate-800">CheckMulta</strong> utiliza inteligência artificial para cruzar automaticamente cada campo do seu auto de infração com os requisitos do CTB e do MBFT. Em segundos, o sistema identifica inconsistências, falhas de preenchimento e irregularidades que o agente autuador ou o órgão de trânsito pode ter cometido — e que fundamentam legalmente o pedido de anulação da penalidade.
+                    </p>
 
-            <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Vale a pena recorrer de multa de radar?</h3>
-            <p>
-              Sim. <strong className="text-slate-800">Multas de radar e lombada eletrônica</strong> são as que mais apresentam brechas legais no Brasil. Isso ocorre porque os equipamentos precisam estar com a <strong className="text-slate-800">aferição do INMETRO</strong> em dia, devidamente identificados com placa informativa, e o auto de infração precisa conter todos os dados técnicos exigidos pelo MBFT. Qualquer irregularidade nesses requisitos pode fundamentar a anulação da multa — independentemente de o condutor ter excedido a velocidade ou não.
-            </p>
+                    <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Vale a pena recorrer de multa de radar?</h3>
+                    <p>
+                      Sim. <strong className="text-slate-800">Multas de radar e lombada eletrônica</strong> são as que mais apresentam brechas legais no Brasil. Isso ocorre porque os equipamentos precisam estar com a <strong className="text-slate-800">aferição do INMETRO</strong> em dia, devidamente identificados com placa informativa, e o auto de infração precisa conter todos os dados técnicos exigidos pelo MBFT. Qualquer irregularidade nesses requisitos pode fundamentar a anulação da multa — independentemente de o condutor ter excedido a velocidade ou não.
+                    </p>
 
-            <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Recorrer da multa suspende os pontos na CNH?</h3>
-            <p>
-              Sim. Enquanto a defesa prévia ou o recurso estiver em análise pelo órgão autuador, tanto o <strong className="text-slate-800">pagamento da multa</strong> quanto a <strong className="text-slate-800">pontuação na CNH</strong> ficam suspensos. Isso significa que, ao apresentar o recurso dentro do prazo, você não perde pontos nem precisa pagar enquanto aguarda a decisão — o que por si só já torna o recurso vantajoso, mesmo nos casos em que o resultado seja incerto.
-            </p>
-          </div>}
+                    <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Recorrer da multa suspende os pontos na CNH?</h3>
+                    <p>
+                      Sim. Enquanto a defesa prévia ou o recurso estiver em análise pelo órgão autuador, tanto o <strong className="text-slate-800">pagamento da multa</strong> quanto a <strong className="text-slate-800">pontuação na CNH</strong> ficam suspensos. Isso significa que, ao apresentar o recurso dentro do prazo, você não perde pontos nem precisa pagar enquanto aguarda a decisão — o que por si só já torna o recurso vantajoso, mesmo nos casos em que o resultado seja incerto.
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </section>
 
