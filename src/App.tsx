@@ -612,7 +612,7 @@ export default function App() {
         {/* HERO */}
         <section id="inicio" className="mb-10 flex flex-col items-center text-center w-full max-w-3xl mx-auto">
           <h1 className="text-[34px] sm:text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] mb-5 tracking-tight mt-4">
-            Sua multa tem <span className="text-red-500">brecha legal?</span><br className="hidden sm:block" /> Descubra em 60 segundos
+            Sua multa tem <span className="text-emerald-600">brecha legal?</span><br className="hidden sm:block" /> Descubra em 60 segundos
           </h1>
           <p className="text-slate-600 text-sm sm:text-base md:text-lg font-medium max-w-2xl mx-auto mb-8 leading-relaxed">
             Nossa IA cruza seu auto de infração com o CTB e o MBFT e aponta erros do agente autuador que podem anular a penalidade.
@@ -626,15 +626,15 @@ export default function App() {
             <div className="flex items-center gap-2"><Timer className="w-4 h-4 text-emerald-600" /> Resultado imediato</div>
           </div>
 
-          {/* ESTATÍSTICAS — apenas claims verdadeiros e sustentáveis */}
+          {/* ESTATÍSTICAS — claims verdadeiros, isca gratuita em destaque */}
           <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-0 border border-slate-200 rounded-2xl bg-white shadow-sm mb-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 overflow-hidden">
             <div className="py-6 px-4 flex flex-col items-center justify-center">
-              <span className="text-2xl sm:text-3xl font-black text-slate-900">60s</span>
-              <span className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase mt-1 tracking-wider">análise na hora</span>
+              <span className="text-2xl sm:text-3xl font-black text-slate-900">Sem cadastro</span>
+              <span className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase mt-1 tracking-wider">direto ao ponto</span>
             </div>
-            <div className="py-6 px-4 flex flex-col items-center justify-center bg-slate-50/50">
-              <span className="text-2xl sm:text-3xl font-black text-slate-900">R$ 19,90</span>
-              <span className="text-[11px] sm:text-xs font-bold text-slate-500 uppercase mt-1 tracking-wider">petição completa</span>
+            <div className="py-6 px-4 flex flex-col items-center justify-center bg-emerald-50/80">
+              <span className="text-2xl sm:text-3xl font-black text-emerald-700">Grátis</span>
+              <span className="text-[11px] sm:text-xs font-bold text-emerald-600 uppercase mt-1 tracking-wider">análise sem custo</span>
             </div>
             <div className="py-6 px-4 flex flex-col items-center justify-center">
               <span className="text-2xl sm:text-3xl font-black text-slate-900">Art. 280</span>
@@ -1119,7 +1119,7 @@ export default function App() {
                         <CheckCircle2 className="w-8 h-8 text-emerald-600 flex-shrink-0 mt-1" />
                         <div>
                           <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-2 leading-tight">
-                            Encontramos uma <span className="text-red-500">brecha legal</span> nesta multa
+                            Encontramos uma <span className="text-emerald-600">brecha legal</span> nesta multa
                           </h2>
                           <p className="text-slate-600 font-medium leading-relaxed">
                             Nossa IA identificou um erro de preenchimento que pode fundamentar a anulação.
