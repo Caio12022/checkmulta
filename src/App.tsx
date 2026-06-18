@@ -1185,6 +1185,7 @@ export default function App() {
                         </div>
                         <span className="text-sm font-medium text-emerald-100 mt-1">Pagamento único · R$ 19,90 · Entrega imediata</span>
                       </button>
+                      <p className="text-center text-[11px] text-slate-400 font-medium mt-2">CheckMulta Tecnologia · CNPJ 63.524.338/0001-62</p>
                     </div>
                   )}
 
@@ -1358,7 +1359,7 @@ export default function App() {
                     <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex items-start gap-2.5 text-left">
                       <Lock className="w-4 h-4 text-slate-500 flex-shrink-0 mt-0.5" />
                       <p className="text-[10px] leading-relaxed font-medium text-slate-600">
-                        Para sua segurança, o recebedor no app do banco aparecerá como <strong>João Antônio de Brito</strong> (Diretor CheckMulta).
+                        Para sua segurança, o recebedor no app do banco aparecerá como <strong>Dagnara Aguilar Garcia</strong> (CheckMulta Tecnologia).
                       </p>
                     </div>
                   </div>
