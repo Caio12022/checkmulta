@@ -1127,11 +1127,18 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* DIAGNÓSTICO — linguagem clara */}
+                      {/* DIAGNÓSTICO — a pista, em linguagem clara */}
                       <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left">
-                        <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">O que a IA encontrou</p>
+                        <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">O que a IA encontrou na sua multa</p>
                         <div className="text-slate-700 text-[13px] sm:text-sm font-medium whitespace-pre-wrap leading-relaxed">
-                          {formatDocumentText(result.replace(/- STATUS DA ANÁLISE:.*?(?=\n|$)/i, "").trim())}
+                          {formatDocumentText(
+                            result
+                              .replace(/- STATUS DA ANÁLISE:.*?(?=\n|$)/i, "")
+                              .replace(/DADOS EXTRA[ÍI]DOS DO SEU AUTO:[\s\S]*?(?=O QUE ENCONTRAMOS|DIAGN[ÓO]STICO|$)/i, "")
+                              .replace(/O QUE ENCONTRAMOS NA SUA MULTA:/i, "")
+                              .replace(/DIAGN[ÓO]STICO T[ÉE]CNICO DA IRREGULARIDADE:/i, "")
+                              .trim()
+                          )}
                         </div>
                       </div>
 
