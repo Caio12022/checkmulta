@@ -97,6 +97,30 @@ const calculateDeadline = (dataInfracao: string | undefined) => {
   }
 };
 
+// ─── VIABILIDADE: extrai nível e devolve estilo de cor ─────────────────────
+type Viabilidade = { nivel: "Alta" | "Média" | "Baixa"; cor: string; bg: string; borda: string };
+
+const extractViabilidade = (result: string): Viabilidade | null => {
+  const m = result.match(/VIABILIDADE DO RECURSO:\s*([A-Za-zÀ-ú]+)/i);
+  if (!m) return null;
+  const raw = m[1].trim().toLowerCase();
+  if (raw.startsWith("alt")) return { nivel: "Alta", cor: "text-emerald-700", bg: "bg-emerald-50", borda: "border-emerald-200" };
+  if (raw.startsWith("méd") || raw.startsWith("med")) return { nivel: "Média", cor: "text-amber-700", bg: "bg-amber-50", borda: "border-amber-200" };
+  if (raw.startsWith("baix")) return { nivel: "Baixa", cor: "text-red-700", bg: "bg-red-50", borda: "border-red-200" };
+  return null;
+};
+
+// ─── Limpa o texto da pista, removendo cabeçalhos e a linha de viabilidade ──
+const extractPista = (result: string): string => {
+  return result
+    .replace(/- STATUS DA ANÁLISE:.*?(?=\n|$)/i, "")
+    .replace(/DADOS EXTRA[ÍI]DOS DO SEU AUTO:[\s\S]*?(?=O QUE ENCONTRAMOS|DIAGN[ÓO]STICO|$)/i, "")
+    .replace(/O QUE ENCONTRAMOS NA SUA MULTA:/i, "")
+    .replace(/DIAGN[ÓO]STICO T[ÉE]CNICO DA IRREGULARIDADE:/i, "")
+    .replace(/-?\s*VIABILIDADE DO RECURSO:.*?(?=\n|$)/i, "")
+    .trim();
+};
+
 // ─── CONSTANTES ────────────────────────────────────────────────────────────
 const LOADER_MESSAGES = [
   "Analisando documento...",
@@ -378,6 +402,10 @@ export default function App() {
         if (cleanBypassText.length < 10) cleanBypassText = "Análise processada.";
         setExpiredBypassData(cleanBypassText);
         throw new Error("Análise Concluída: O prazo de defesa desta notificação já está vencido.");
+      } else if (lowerResult.includes("rejeicao_tipo_a")) {
+        isBusinessError = true;
+        if (typeof window !== "undefined" && window.gtag) window.gtag("event", "ia_analise_inviavel", { motivo: "lei_seca" });
+        throw new Error("Esta notificação envolve infração de Lei Seca (Art. 165/165-A), que exige acompanhamento jurídico especializado e não pode ser tratada automaticamente por aqui.");
       } else if (lowerResult.includes("rejeição") || lowerResult.includes("rejeicao")) {
         isBusinessError = true;
         if (typeof window !== "undefined" && window.gtag) window.gtag("event", "ia_analise_inviavel", { motivo: "sem_viabilidade_legal" });
@@ -1114,32 +1142,48 @@ export default function App() {
                         ) : null;
                       })()}
 
-                      {/* CABEÇALHO DO SUCESSO */}
-                      <div className="flex items-start space-x-4">
-                        <CheckCircle2 className="w-8 h-8 text-emerald-600 flex-shrink-0 mt-1" />
-                        <div>
-                          <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-2 leading-tight">
-                            Encontramos uma <span className="text-emerald-600">brecha legal</span> nesta multa
-                          </h2>
-                          <p className="text-slate-600 font-medium leading-relaxed">
-                            Nossa IA identificou um erro de preenchimento que pode fundamentar a anulação.
-                          </p>
-                        </div>
-                      </div>
+                      {/* CABEÇALHO — adapta ao nível de viabilidade */}
+                      {(() => {
+                        const v = extractViabilidade(result);
+                        const baixa = v?.nivel === "Baixa";
+                        return (
+                          <div className="flex items-start space-x-4">
+                            <CheckCircle2 className={`w-8 h-8 flex-shrink-0 mt-1 ${baixa ? "text-amber-500" : "text-emerald-600"}`} />
+                            <div>
+                              <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-2 leading-tight">
+                                {baixa ? (
+                                  <>Analisamos sua multa e há um <span className="text-amber-600">ângulo possível</span></>
+                                ) : (
+                                  <>Encontramos uma <span className="text-emerald-600">brecha legal</span> nesta multa</>
+                                )}
+                              </h2>
+                              <p className="text-slate-600 font-medium leading-relaxed">
+                                {baixa
+                                  ? "O caso é mais limitado, mas ainda existe margem para tentar o recurso. A decisão é sua."
+                                  : "Nossa IA identificou um erro de preenchimento que pode fundamentar a anulação."}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                      })()}
 
                       {/* DIAGNÓSTICO — a pista, em linguagem clara */}
                       <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left">
                         <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">O que a IA encontrou na sua multa</p>
-                        <div className="text-slate-700 text-[13px] sm:text-sm font-medium whitespace-pre-wrap leading-relaxed">
-                          {formatDocumentText(
-                            result
-                              .replace(/- STATUS DA ANÁLISE:.*?(?=\n|$)/i, "")
-                              .replace(/DADOS EXTRA[ÍI]DOS DO SEU AUTO:[\s\S]*?(?=O QUE ENCONTRAMOS|DIAGN[ÓO]STICO|$)/i, "")
-                              .replace(/O QUE ENCONTRAMOS NA SUA MULTA:/i, "")
-                              .replace(/DIAGN[ÓO]STICO T[ÉE]CNICO DA IRREGULARIDADE:/i, "")
-                              .trim()
-                          )}
+                        <div className="text-slate-800 text-sm sm:text-[15px] font-semibold whitespace-pre-wrap leading-relaxed">
+                          {formatDocumentText(extractPista(result))}
                         </div>
+                        {(() => {
+                          const v = extractViabilidade(result);
+                          if (!v) return null;
+                          return (
+                            <div className={`mt-4 inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border ${v.bg} ${v.borda}`}>
+                              <ShieldCheck className={`w-4 h-4 ${v.cor}`} />
+                              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Viabilidade do recurso:</span>
+                              <span className={`text-sm font-black uppercase ${v.cor}`}>{v.nivel}</span>
+                            </div>
+                          );
+                        })()}
                       </div>
 
                       {/* O QUE VOCÊ RECEBE */}
