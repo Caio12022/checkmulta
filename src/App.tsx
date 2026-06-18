@@ -329,6 +329,15 @@ export default function App() {
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
+  // Reseta tudo e volta para os cards de seleção de infração — sem rastro do estado anterior
+  const handleNovaAnalise = () => {
+    clearImage();
+    setIsResultModalOpen(false);
+    setRejeicaoInfo(null);
+    setSelectedViolation(null);
+    setIsUploadModalOpen(false);
+  };
+
   const closeResultModal = () => {
     setIsResultModalOpen(false);
     if (result && !isPaid && !isExpiredBypassActive && !error) {
@@ -1105,7 +1114,7 @@ export default function App() {
                               <strong>Dica:</strong> Se você acredita que há algum erro que não aparece no documento (ex: sinalização irregular no local, radar sem placa informativa visível), consulte um advogado especializado em trânsito.
                             </p>
                           </div>
-                          <button onClick={clearImage} className="mt-2 px-6 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition-colors">
+                          <button onClick={handleNovaAnalise} className="mt-2 px-6 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition-colors">
                             Analisar outra multa
                           </button>
                         </>
@@ -1131,7 +1140,7 @@ export default function App() {
                               <strong>Por que não fazemos esse tipo?</strong> Nossa IA foi desenvolvida para infrações administrativas comuns (velocidade, estacionamento, sinalização, celular). Casos como Lei Seca exigem análise de provas e defesa personalizada que só um advogado pode oferecer.
                             </p>
                           </div>
-                          <button onClick={clearImage} className="mt-2 px-6 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition-colors">
+                          <button onClick={handleNovaAnalise} className="mt-2 px-6 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition-colors">
                             Analisar outra multa
                           </button>
                         </>
@@ -1163,7 +1172,7 @@ export default function App() {
                               Ver análise da multa mesmo assim
                             </button>
                           )}
-                          <button onClick={clearImage} className="px-6 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition-colors">
+                          <button onClick={handleNovaAnalise} className="px-6 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition-colors">
                             Analisar outra multa
                           </button>
                         </>
