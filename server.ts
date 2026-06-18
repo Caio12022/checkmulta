@@ -70,6 +70,8 @@ async function startServer() {
 
   // ==========================================
   // ROTA: ANALISAR MULTA (PROMPT BLINDADO - 2026)
+  // Diagnóstico DOSADO: mostra qual campo falhou e que é grave (a "pista"),
+  // mas NÃO entrega a tese jurídica articulada (isso é o produto pago).
   // ==========================================
   app.post("/api/analyze-ticket", async (req, res) => {
     try {
@@ -108,10 +110,24 @@ Local exato: [Extrair]
 Órgão Autuador: [Extrair]
 Nome: [Extrair]
 
-DIAGNÓSTICO TÉCNICO DA IRREGULARIDADE:
-[Explique o erro técnico e legal do agente baseando-se no Art 280 do CTB em linguagem rebuscada e formal. Ex: "Constatada desconformidade formal insanável..."]
+O QUE ENCONTRAMOS NA SUA MULTA:
+[REGRA CRÍTICA DE DOSAGEM - LEIA COM ATENÇÃO:
+Escreva de 2 a 3 frases curtas, em linguagem SIMPLES e direta, que QUALQUER pessoa leiga entenda. 
+O objetivo é o condutor entender QUAL é o problema concreto da multa DELE e sentir que é um erro real e grave — SEM você ensinar a defesa.
 
-- VIABILIDADE DO RECURSO: Alta. O descumprimento das formalidades obrigatórias retira a presunção de legitimidade da autuação.
+VOCÊ DEVE:
+- Nomear o campo ou requisito específico que falhou NA multa dele (ex: "faltou o local exato da infração", "o agente deixou o campo de observações em branco", "não há registro de aferição do radar pelo INMETRO", "a infração não justifica a ausência de abordagem do condutor").
+- Dizer, em uma frase, por que isso é um problema (ex: "esse dado é obrigatório por lei", "sem isso a autuação fica fragilizada").
+
+VOCÊ NÃO PODE:
+- NÃO cite o número de artigos, incisos ou parágrafos do CTB/MBFT (nada de "inciso II do Art. 280"). Essa fundamentação é o produto pago.
+- NÃO escreva a tese jurídica, nem argumentação formal, nem o passo a passo de como recorrer.
+- NÃO use juridiquês ("desconformidade formal insanável", "presunção de legitimidade", "vício de forma"). Fale como um amigo que entende do assunto explicando pra você.
+
+EXEMPLO DE TOM CORRETO (adapte ao erro REAL da multa analisada):
+"Encontramos um problema sério no preenchimento da sua multa: o agente não registrou o local exato onde a infração teria acontecido. Esse é um dado obrigatório, e a falta dele enfraquece a autuação. É exatamente esse tipo de falha que pode ser usado a seu favor para pedir o cancelamento."]
+
+- VIABILIDADE DO RECURSO: Alta.
 
 [IMPORTANTE - MARCADOR DE VENCIMENTO]:
 Após escrever TODO o relatório acima, avalie a Data da Infração ou o Prazo para Defesa. Se a multa for de anos anteriores a 2026 (ex: 2024, 2025) ou o prazo já tiver passado, pule uma linha no final do seu texto e escreva OBRIGATORIAMENTE a exata string "rejeicao_prazo_expirado" isolada. Se o prazo estiver rigorosamente em dia, não escreva esta string.`;
@@ -137,6 +153,7 @@ Após escrever TODO o relatório acima, avalie a Data da Infração ou o Prazo p
 
   // ==========================================
   // ROTA: GERAÇÃO DA PETIÇÃO COMPLETA
+  // Aqui SIM entra toda a fundamentação jurídica (o produto pago).
   // ==========================================
   app.post("/api/generate-defense", async (req, res) => {
     try {
