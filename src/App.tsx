@@ -799,48 +799,65 @@ export default function App() {
         </main>
       </div>
 
-      {/* MODAL DE UPLOAD */}
+      {/* MODAL DE UPLOAD — compacto, identidade verde/azul escuro */}
       <AnimatePresence>
         {isUploadModalOpen && (
-          <div className="fixed inset-0 z-[55] overflow-y-auto bg-slate-900/60 backdrop-blur-sm">
+          <div className="fixed inset-0 z-[55] overflow-y-auto bg-slate-900/70 backdrop-blur-sm">
             <div className="min-h-full flex items-center justify-center p-4">
               <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                initial={{ opacity: 0, scale: 0.96, y: 16 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl p-6 sm:p-8"
+                exit={{ opacity: 0, scale: 0.96, y: 16 }}
+                transition={{ duration: 0.2 }}
+                className="relative w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden"
               >
-                <button onClick={() => setIsUploadModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors">
-                  <X className="w-6 h-6" />
-                </button>
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-black text-slate-800 mb-2">Análise de {selectedViolation}</h3>
-                  <div className="bg-amber-50 border border-amber-200 p-3.5 rounded-xl text-left flex items-start gap-3 mt-4">
-                    <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-sm text-amber-800 font-medium">
-                      <strong>Dica para a IA:</strong> Para encontrarmos as brechas, a foto precisa estar nítida. Deixe a <strong>data, a placa e o órgão autuador</strong> bem legíveis.
+                {/* Faixa superior azul escuro */}
+                <div className="bg-blue-900 px-5 py-4 flex items-center justify-between">
+                  <div>
+                    <p className="text-[10px] font-bold text-blue-300 uppercase tracking-widest mb-0.5">Análise gratuita</p>
+                    <h3 className="text-base font-black text-white leading-tight">{selectedViolation}</h3>
+                  </div>
+                  <button onClick={() => setIsUploadModalOpen(false)} className="p-1.5 text-blue-300 hover:text-white hover:bg-blue-800 rounded-lg transition-colors">
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+
+                <div className="p-5 space-y-4">
+                  {/* Dica compacta */}
+                  <div className="flex items-start gap-2.5 bg-amber-50 border border-amber-200 rounded-xl p-3">
+                    <AlertCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
+                    <p className="text-xs text-amber-800 font-medium leading-relaxed">
+                      Foto nítida garante melhor análise. Deixe <strong>data, placa e órgão autuador</strong> bem legíveis.
                     </p>
                   </div>
-                </div>
-                <div className="relative group rounded-2xl p-8 transition-all duration-200 ease-in-out text-center border-2 border-dashed border-slate-300 hover:border-blue-400 hover:bg-slate-50 bg-slate-50/50 cursor-pointer">
-                  <input
-                    type="file"
-                    ref={fileInputRef}
-                    onChange={handleFileSelect}
-                    accept="image/*,application/pdf"
-                    capture="environment"
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10"
-                    disabled={isAnalyzing || isPaid}
-                    title="Clique para enviar a foto"
-                  />
-                  <div className="flex flex-col items-center justify-center space-y-4 pointer-events-none">
-                    <div className="w-16 h-16 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-sm">
-                      <Camera className="w-8 h-8" />
+
+                  {/* Área de upload */}
+                  <div className="relative group rounded-xl transition-all duration-200 text-center border-2 border-dashed border-emerald-300 hover:border-emerald-500 hover:bg-emerald-50/40 bg-emerald-50/20 cursor-pointer">
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      onChange={handleFileSelect}
+                      accept="image/*,application/pdf"
+                      capture="environment"
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10"
+                      disabled={isAnalyzing || isPaid}
+                      title="Clique para enviar a foto"
+                    />
+                    <div className="flex flex-col items-center justify-center py-7 space-y-3 pointer-events-none">
+                      <div className="w-14 h-14 bg-emerald-600 text-white rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-200 shadow-md">
+                        <Camera className="w-7 h-7" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-black text-slate-800">Tirar Foto ou Enviar Arquivo</p>
+                        <p className="text-slate-500 text-xs font-medium mt-0.5">Toque para abrir a câmera</p>
+                      </div>
                     </div>
-                    <div className="space-y-1">
-                      <p className="text-lg font-bold text-slate-800">Tirar Foto ou Enviar Arquivo</p>
-                      <p className="text-slate-500 text-sm font-medium">Toque aqui para abrir a câmera.</p>
-                    </div>
+                  </div>
+
+                  {/* Rodapé de segurança */}
+                  <div className="flex items-center justify-center gap-1.5 text-slate-400">
+                    <Lock className="w-3 h-3" />
+                    <p className="text-[11px] font-medium">Imagem processada e deletada imediatamente</p>
                   </div>
                 </div>
               </motion.div>
@@ -853,21 +870,61 @@ export default function App() {
       <section id="como-funciona" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-5xl w-full">
           <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Como funciona a análise?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
-              <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><UploadCloud className="w-8 h-8" /></div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">1. Envie a foto do documento</h3>
-              <p className="text-slate-600 font-medium leading-relaxed">Tire uma foto ou suba o PDF do seu auto de infração. Nenhum dado é armazenado.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-5"><UploadCloud className="w-7 h-7" /></div>
+              <h3 className="text-base font-bold text-slate-900 mb-2">1. Envie a foto</h3>
+              <p className="text-slate-500 text-sm font-medium leading-relaxed">Tire uma foto ou suba o PDF do auto de infração. Nenhum dado é armazenado.</p>
             </div>
-            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
-              <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><Search className="w-8 h-8" /></div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">2. A IA audita o preenchimento</h3>
-              <p className="text-slate-600 font-medium leading-relaxed">Cruzamos cada campo com o CTB e o Manual Brasileiro de Fiscalização de Trânsito (MBFT).</p>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-5"><Search className="w-7 h-7" /></div>
+              <h3 className="text-base font-bold text-slate-900 mb-2">2. A IA audita</h3>
+              <p className="text-slate-500 text-sm font-medium leading-relaxed">Cruzamos cada campo com o CTB e o Manual Brasileiro de Fiscalização (MBFT).</p>
             </div>
-            <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
-              <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><FileText className="w-8 h-8" /></div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">3. Diagnóstico grátis</h3>
-              <p className="text-slate-600 font-medium leading-relaxed">Se houver brecha, geramos a petição técnica pronta para protocolar — sem burocracia.</p>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-5"><FileText className="w-7 h-7" /></div>
+              <h3 className="text-base font-bold text-slate-900 mb-2">3. Diagnóstico grátis</h3>
+              <p className="text-slate-500 text-sm font-medium leading-relaxed">Revelamos a falha encontrada e o nível de viabilidade do seu recurso.</p>
+            </div>
+
+            {/* 4º CARD — possíveis resultados */}
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col text-left hover:shadow-md transition-shadow">
+              <div className="w-14 h-14 bg-blue-900 text-white rounded-2xl flex items-center justify-center mb-5 flex-shrink-0">
+                <ShieldCheck className="w-7 h-7" />
+              </div>
+              <h3 className="text-base font-bold text-slate-900 mb-4">4. Resultado da análise</h3>
+              <div className="space-y-3 flex-1">
+                {/* Alta */}
+                <div className="flex items-start gap-2.5">
+                  <div className="flex items-center gap-1.5 shrink-0 mt-0.5">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-black text-emerald-700 uppercase tracking-wider">Viabilidade Alta</span>
+                    <p className="text-xs text-slate-500 font-medium mt-0.5 leading-relaxed">Erro formal grave encontrado. Boas chances de anulação.</p>
+                  </div>
+                </div>
+                {/* Média */}
+                <div className="flex items-start gap-2.5">
+                  <div className="flex items-center gap-1.5 shrink-0 mt-0.5">
+                    <AlertCircle className="w-4 h-4 text-amber-500" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-black text-amber-600 uppercase tracking-wider">Viabilidade Média</span>
+                    <p className="text-xs text-slate-500 font-medium mt-0.5 leading-relaxed">Há um ângulo de defesa possível, mas não garantido.</p>
+                  </div>
+                </div>
+                {/* Baixa */}
+                <div className="flex items-start gap-2.5">
+                  <div className="flex items-center gap-1.5 shrink-0 mt-0.5">
+                    <AlertCircle className="w-4 h-4 text-red-400" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-black text-red-500 uppercase tracking-wider">Viabilidade Baixa</span>
+                    <p className="text-xs text-slate-500 font-medium mt-0.5 leading-relaxed">Caso fraco. Ainda possível tentar — a decisão é sua.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
