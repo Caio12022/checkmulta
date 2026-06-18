@@ -172,6 +172,8 @@ export default function App() {
   const [expiredDate, setExpiredDate] = useState<string | null>(null);
   const [expiredBypassData, setExpiredBypassData] = useState<string | null>(null);
   const [isExpiredBypassActive, setIsExpiredBypassActive] = useState(false);
+  // Rejeição elegante: tipo + motivo legível
+  const [rejeicaoInfo, setRejeicaoInfo] = useState<{ tipo: "sem_falha" | "fora_escopo" | "prazo"; motivo: string } | null>(null);
   const [secretClickCount, setSecretClickCount] = useState(0);
 
   const [isGeneratingDefense, setIsGeneratingDefense] = useState(false);
@@ -310,6 +312,7 @@ export default function App() {
     setDefenseError(null);
     setCheckoutError(null);
     setExpiredBypassData(null);
+    setRejeicaoInfo(null);
     setIsExpiredBypassActive(false);
     setIsPaid(false);
     setHasAnalyzed(false);
@@ -345,6 +348,7 @@ export default function App() {
     setDefenseError(null);
     setCheckoutError(null);
     setExpiredBypassData(null);
+    setRejeicaoInfo(null);
     setIsExpiredBypassActive(false);
     setIsPaid(false);
     setIsResultModalOpen(false);
@@ -368,6 +372,7 @@ export default function App() {
     setDefenseResult(null);
     setDefenseError(null);
     setExpiredBypassData(null);
+    setRejeicaoInfo(null);
     setIsExpiredBypassActive(false);
     setIsPaid(false);
     setIsResultModalOpen(true);
@@ -395,21 +400,49 @@ export default function App() {
         if (typeof window !== "undefined" && window.gtag) window.gtag("event", "ia_analise_erro", { tipo: "imagem_ilegivel" });
         throw new Error("A imagem está muito borrada ou cortada. Por favor, envie uma foto nítida do documento.");
       }
+
+      // ── Rejeição fora do escopo (Lei Seca, penal, etc) ──────────────────
+      if (lowerResult.includes("rejeicao_fora_escopo")) {
+        isBusinessError = true;
+        const match = finalResult.match(/rejeicao_fora_escopo\|([^\n]+)/i);
+        const tipoInfracao = match ? match[1].trim() : "Infração fora do escopo";
+        if (typeof window !== "undefined" && window.gtag) window.gtag("event", "ia_analise_inviavel", { motivo: "fora_escopo" });
+        setRejeicaoInfo({ tipo: "fora_escopo", motivo: tipoInfracao });
+        setIsResultModalOpen(true);
+        setIsAnalyzing(false);
+        return;
+      }
+
+      // ── Rejeição: multa sem nenhuma falha real ───────────────────────────
+      if (lowerResult.includes("rejeicao_sem_falha")) {
+        isBusinessError = true;
+        if (typeof window !== "undefined" && window.gtag) window.gtag("event", "ia_analise_inviavel", { motivo: "sem_falha" });
+        setRejeicaoInfo({ tipo: "sem_falha", motivo: "" });
+        setIsResultModalOpen(true);
+        setIsAnalyzing(false);
+        return;
+      }
+
+      // ── Prazo vencido: mantém o resultado mas sinaliza ───────────────────
       if (lowerResult.includes("rejeicao_prazo_expirado")) {
         isBusinessError = true;
         if (typeof window !== "undefined" && window.gtag) window.gtag("event", "ia_analise_inviavel", { motivo: "prazo_expirado" });
         let cleanBypassText = finalResult.replace(/rejeicao_prazo_expirado/gi, "").trim();
         if (cleanBypassText.length < 10) cleanBypassText = "Análise processada.";
-        setExpiredBypassData(cleanBypassText);
-        throw new Error("Análise Concluída: O prazo de defesa desta notificação já está vencido.");
-      } else if (lowerResult.includes("rejeicao_tipo_a")) {
+        setRejeicaoInfo({ tipo: "prazo", motivo: cleanBypassText });
+        setIsResultModalOpen(true);
+        setIsAnalyzing(false);
+        return;
+      }
+
+      // ── Fallback: qualquer outra rejeicao genérica ───────────────────────
+      if (lowerResult.includes("rejeição") || lowerResult.includes("rejeicao")) {
         isBusinessError = true;
-        if (typeof window !== "undefined" && window.gtag) window.gtag("event", "ia_analise_inviavel", { motivo: "lei_seca" });
-        throw new Error("Esta notificação envolve infração de Lei Seca (Art. 165/165-A), que exige acompanhamento jurídico especializado e não pode ser tratada automaticamente por aqui.");
-      } else if (lowerResult.includes("rejeição") || lowerResult.includes("rejeicao")) {
-        isBusinessError = true;
-        if (typeof window !== "undefined" && window.gtag) window.gtag("event", "ia_analise_inviavel", { motivo: "sem_viabilidade_legal" });
-        throw new Error("Análise Concluída: Não encontramos viabilidade legal para recurso nesta notificação.");
+        if (typeof window !== "undefined" && window.gtag) window.gtag("event", "ia_analise_inviavel", { motivo: "generica" });
+        setRejeicaoInfo({ tipo: "sem_falha", motivo: "" });
+        setIsResultModalOpen(true);
+        setIsAnalyzing(false);
+        return;
       }
       if (lowerResult.includes("erro_seguranca") || lowerResult.includes("erro_segurança")) {
         isBusinessError = true;
@@ -1035,6 +1068,7 @@ export default function App() {
                   )}
 
                   {/* ERRO */}
+                  {/* ERROS TÉCNICOS (imagem inválida, servidor fora, etc) */}
                   {error && (
                     <div className="flex flex-col items-center text-center space-y-4">
                       <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
@@ -1044,20 +1078,97 @@ export default function App() {
                         <h3 className="text-xl font-bold text-red-800 mb-2">Análise Indisponível</h3>
                         <p className="text-red-700 font-medium leading-relaxed">{error}</p>
                       </div>
-                      {expiredBypassData && (
-                        <button
-                          onClick={() => {
-                            setError(null);
-                            setResult(expiredBypassData);
-                            setHasAnalyzed(true);
-                            setIsExpiredBypassActive(true);
-                            localStorage.setItem("checkmulta_saved_result", expiredBypassData);
-                          }}
-                          className="mt-4 px-4 py-2 text-sm text-red-700 bg-red-100 hover:bg-red-200 font-bold rounded-lg transition-colors underline decoration-red-300 underline-offset-4"
-                        >
-                          Ver resultado mesmo assim
-                        </button>
+                    </div>
+                  )}
+
+                  {/* REJEIÇÕES ELEGANTES — sem tela de erro vermelha, dentro do modal normal */}
+                  {!error && !result && !isAnalyzing && rejeicaoInfo && (
+                    <div className="flex flex-col items-center text-center space-y-5 max-w-md mx-auto py-4">
+
+                      {/* SEM FALHA: multa impecável */}
+                      {rejeicaoInfo.tipo === "sem_falha" && (
+                        <>
+                          <div className="w-20 h-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center">
+                            <ShieldCheck className="w-11 h-11" />
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-black text-slate-800 mb-2">Multa sem irregularidades</h3>
+                            <p className="text-slate-600 font-medium leading-relaxed">
+                              Analisamos seu auto de infração campo por campo e <strong>não encontramos nenhuma falha formal</strong> no preenchimento. O documento está corretamente preenchido conforme o CTB e o MBFT.
+                            </p>
+                            <p className="text-slate-500 text-sm mt-3 font-medium">
+                              Infelizmente, sem uma irregularidade real, não há base técnica para um recurso com chances reais de êxito. Gerar uma petição neste caso não traria resultado.
+                            </p>
+                          </div>
+                          <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-left w-full">
+                            <p className="text-sm text-blue-800 font-medium">
+                              <strong>Dica:</strong> Se você acredita que há algum erro que não aparece no documento (ex: sinalização irregular no local, radar sem placa informativa visível), consulte um advogado especializado em trânsito.
+                            </p>
+                          </div>
+                          <button onClick={clearImage} className="mt-2 px-6 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition-colors">
+                            Analisar outra multa
+                          </button>
+                        </>
                       )}
+
+                      {/* FORA DO ESCOPO: Lei Seca, penal, etc */}
+                      {rejeicaoInfo.tipo === "fora_escopo" && (
+                        <>
+                          <div className="w-20 h-20 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center">
+                            <AlertCircle className="w-11 h-11" />
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-black text-slate-800 mb-2">Infração fora do nosso escopo</h3>
+                            <p className="text-slate-600 font-medium leading-relaxed">
+                              Identificamos que esta é uma multa de <strong>{rejeicaoInfo.motivo}</strong>.
+                            </p>
+                            <p className="text-slate-500 text-sm mt-3 font-medium leading-relaxed">
+                              Esse tipo de infração envolve complexidade jurídica que vai além da nossa análise automatizada. <strong>Recomendamos procurar um advogado especializado em Direito de Trânsito</strong> para avaliar o seu caso pessoalmente.
+                            </p>
+                          </div>
+                          <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-left w-full">
+                            <p className="text-sm text-amber-800 font-medium">
+                              <strong>Por que não fazemos esse tipo?</strong> Nossa IA foi desenvolvida para infrações administrativas comuns (velocidade, estacionamento, sinalização, celular). Casos como Lei Seca exigem análise de provas e defesa personalizada que só um advogado pode oferecer.
+                            </p>
+                          </div>
+                          <button onClick={clearImage} className="mt-2 px-6 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition-colors">
+                            Analisar outra multa
+                          </button>
+                        </>
+                      )}
+
+                      {/* PRAZO VENCIDO: mostra o resultado mesmo assim */}
+                      {rejeicaoInfo.tipo === "prazo" && (
+                        <>
+                          <div className="w-20 h-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center">
+                            <Timer className="w-11 h-11" />
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-black text-slate-800 mb-2">Prazo para recurso vencido</h3>
+                            <p className="text-slate-600 font-medium leading-relaxed">
+                              O prazo legal para apresentar defesa ou recurso desta multa já se encerrou. Não é mais possível contestá-la administrativamente.
+                            </p>
+                          </div>
+                          {rejeicaoInfo.motivo && rejeicaoInfo.motivo.length > 10 && (
+                            <button
+                              onClick={() => {
+                                setRejeicaoInfo(null);
+                                setResult(rejeicaoInfo.motivo);
+                                setHasAnalyzed(true);
+                                setIsExpiredBypassActive(true);
+                                localStorage.setItem("checkmulta_saved_result", rejeicaoInfo.motivo);
+                              }}
+                              className="px-5 py-2.5 text-sm text-slate-600 bg-slate-100 hover:bg-slate-200 font-bold rounded-xl transition-colors border border-slate-200"
+                            >
+                              Ver análise da multa mesmo assim
+                            </button>
+                          )}
+                          <button onClick={clearImage} className="px-6 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition-colors">
+                            Analisar outra multa
+                          </button>
+                        </>
+                      )}
+
                     </div>
                   )}
 
