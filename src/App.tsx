@@ -1034,7 +1034,7 @@ export default function App() {
           🛡️ <strong className="font-bold text-slate-700">Transparência e Privacidade:</strong> Nosso sistema atua como organizador tecnológico com base no Manual Brasileiro de Fiscalização de Trânsito. A decisão final é do órgão julgador. Não exigimos cadastro e não armazenamos a sua petição ou dados do veículo.
         </p>
         {/* CNPJ */}
-        <p className="text-xs text-slate-400 mt-3 font-medium">
+        <p className="text-xs text-slate-700 font-medium mt-3">
           CheckMulta Tecnologia · CNPJ 63.524.338/0001-62
         </p>
         <div className="flex justify-center space-x-6 mt-4 text-[11px] sm:text-xs font-bold text-slate-400 uppercase tracking-wide">
