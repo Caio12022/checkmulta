@@ -17,8 +17,16 @@ declare global {
   interface Window {
     dataLayer: any[];
     gtag: (...args: any[]) => void;
+    clarity: (...args: any[]) => void;
   }
 }
+
+// Helper: dispara evento no Clarity (se disponível) e no gtag simultaneamente
+const track = (gtagEvent: string, clarityEvent: string, params?: Record<string, any>) => {
+  if (typeof window === "undefined") return;
+  if (window.gtag) window.gtag("event", gtagEvent, params || {});
+  if (window.clarity) window.clarity("event", clarityEvent);
+};
 
 interface ExtractedMultaData {
   placa?: string;
@@ -253,14 +261,12 @@ export default function App() {
           setIsPixModalOpen(false);
           setIsPaid(true);
           localStorage.setItem("checkmulta_paid_status", "true");
-          if (typeof window !== "undefined" && window.gtag) {
-            window.gtag("event", "purchase", {
+          track("purchase", "funil_5_pagamento_confirmado", {
               transaction_id: paymentId.toString(),
               value: 19.9,
               currency: "BRL",
               items: [{ item_id: "defesa_ia", item_name: "Defesa de Multa - IA", price: 19.9, quantity: 1 }],
             });
-          }
         }
       } catch (err) {
         console.error("Erro no radar do PIX", err);
@@ -286,9 +292,7 @@ export default function App() {
   const handleViolationSelect = (violationName: string) => {
     setSelectedViolation(violationName);
     setIsUploadModalOpen(true);
-    if (typeof window !== "undefined" && window.gtag) {
-      window.gtag("event", "violation_selected", { violation_type: violationName });
-    }
+    track("violation_selected", "funil_1_infracao_selecionada", { violation_type: violationName });
   };
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -346,9 +350,7 @@ export default function App() {
   };
 
   const processFile = (file: File) => {
-    if (typeof window !== "undefined" && window.gtag) {
-      window.gtag("event", "file_upload", { file_type: file.type });
-    }
+    track("file_upload", "funil_2_foto_enviada", { file_type: file.type });
     setImageFile(file);
     setPreviewUrl(null);
     setError(null);
@@ -415,7 +417,7 @@ export default function App() {
         isBusinessError = true;
         const match = finalResult.match(/rejeicao_fora_escopo\|([^\n]+)/i);
         const tipoInfracao = match ? match[1].trim() : "Infração fora do escopo";
-        if (typeof window !== "undefined" && window.gtag) window.gtag("event", "ia_analise_inviavel", { motivo: "fora_escopo" });
+        track("ia_analise_inviavel", "funil_3_rejeitado_fora_escopo", { motivo: "fora_escopo" });
         setRejeicaoInfo({ tipo: "fora_escopo", motivo: tipoInfracao });
         setIsResultModalOpen(true);
         setIsAnalyzing(false);
@@ -425,7 +427,7 @@ export default function App() {
       // ── Rejeição: multa sem nenhuma falha real ───────────────────────────
       if (lowerResult.includes("rejeicao_sem_falha")) {
         isBusinessError = true;
-        if (typeof window !== "undefined" && window.gtag) window.gtag("event", "ia_analise_inviavel", { motivo: "sem_falha" });
+        track("ia_analise_inviavel", "funil_3_rejeitado_sem_falha", { motivo: "sem_falha" });
         setRejeicaoInfo({ tipo: "sem_falha", motivo: "" });
         setIsResultModalOpen(true);
         setIsAnalyzing(false);
@@ -435,7 +437,7 @@ export default function App() {
       // ── Prazo vencido: mantém o resultado mas sinaliza ───────────────────
       if (lowerResult.includes("rejeicao_prazo_expirado")) {
         isBusinessError = true;
-        if (typeof window !== "undefined" && window.gtag) window.gtag("event", "ia_analise_inviavel", { motivo: "prazo_expirado" });
+        track("ia_analise_inviavel", "funil_3_rejeitado_prazo_expirado", { motivo: "prazo_expirado" });
         let cleanBypassText = finalResult.replace(/rejeicao_prazo_expirado/gi, "").trim();
         if (cleanBypassText.length < 10) cleanBypassText = "Análise processada.";
         setRejeicaoInfo({ tipo: "prazo", motivo: cleanBypassText });
@@ -466,7 +468,7 @@ export default function App() {
       setExpiredDate(expDate);
       setResult(finalResult);
       if (finalResult) {
-        if (typeof window !== "undefined" && window.gtag) window.gtag("event", "ia_analise_viavel");
+        track("ia_analise_viavel", "funil_3_paywall_exibido");
         setHasAnalyzed(true);
         localStorage.setItem("checkmulta_saved_result", finalResult);
       }
@@ -503,9 +505,7 @@ export default function App() {
       }
       const data = await response.json();
       if (response.ok && data.qr_code) {
-        if (typeof window !== "undefined" && window.gtag) {
-          window.gtag("event", "begin_checkout", { value: 19.9, currency: "BRL" });
-        }
+        track("begin_checkout", "funil_4_checkout_iniciado", { value: 19.9, currency: "BRL" });
         setPaymentId(data.id);
         setQrCode(data.qr_code);
         setQrCodeBase64(data.qr_code_base64);
@@ -569,7 +569,7 @@ export default function App() {
     if (!defenseResult) return;
     try {
       await navigator.clipboard.writeText(defenseResult);
-      if (typeof window !== "undefined" && window.gtag) window.gtag("event", "defesa_copiada");
+      track("defesa_copiada", "funil_6_defesa_copiada");
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
     } catch {}
@@ -586,7 +586,7 @@ export default function App() {
 
   const handleDownload = () => {
     if (!defenseResult) return;
-    if (typeof window !== "undefined" && window.gtag) window.gtag("event", "defesa_baixada");
+    track("defesa_baixada", "funil_6_defesa_baixada");
     const blob = new Blob([defenseResult], { type: "text/plain" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
