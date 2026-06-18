@@ -70,8 +70,8 @@ async function startServer() {
 
   // ==========================================
   // ROTA: ANALISAR MULTA (PROMPT BLINDADO - 2026)
-  // Diagnóstico DOSADO + viabilidade honesta (Alta/Média/Baixa).
-  // A IA é PROIBIDA de inventar erro que não existe no documento.
+  // Diagnóstico DOSADO: mostra qual campo falhou e que é grave (a "pista"),
+  // mas NÃO entrega a tese jurídica articulada (isso é o produto pago).
   // ==========================================
   app.post("/api/analyze-ticket", async (req, res) => {
     try {
@@ -88,31 +88,38 @@ REGRA DE OURO 1: VALIDAÇÃO DO DOCUMENTO E DA IMAGEM
 - Se a imagem NÃO for um documento de trânsito oficial brasileiro (ex: foto de retrovisor, paisagem, pessoas, tela preta), PARE TUDO e retorne APENAS a exata string: documento_invalido
 - Se a imagem for um documento, mas estiver impossível de ler (borrada/cortada), retorne APENAS: imagem_ilegivel
 
-REGRA DE OURO 2: CASOS INVIÁVEIS (LEI SECA)
-- LEI SECA/BAFÔMETRO (Art 165/165-A): Responda APENAS: rejeicao_tipo_a
+REGRA DE OURO 2: CASOS FORA DO ESCOPO (retorne APENAS a string indicada, sem mais nada)
+- LEI SECA / BAFÔMETRO (Art 165 ou 165-A): retorne APENAS → rejeicao_fora_escopo|Lei Seca / Bafômetro (Art. 165)
+- DIREÇÃO PERIGOSA / RACHA (Art 173 ou 308): retorne APENAS → rejeicao_fora_escopo|Direção Perigosa ou Racha (Art. 173/308)
+- HOMICÍDIO / LESÃO CULPOSA NO TRÂNSITO (Art 302 ou 303 do CTB): retorne APENAS → rejeicao_fora_escopo|Acidente com vítima (Art. 302/303)
+- Qualquer infração penal de trânsito (que exija processo judicial, não apenas administrativo): retorne APENAS → rejeicao_fora_escopo|Infração penal de trânsito
 
-REGRA DE OURO 2.1: HONESTIDADE ABSOLUTA - VOCÊ NÃO PODE INVENTAR ERROS
-Esta é a regra mais importante de todas. Você SÓ pode apontar um erro que você REALMENTE consegue ver no documento.
-- Se um campo ESTÁ preenchido no documento, você está PROIBIDO de dizer que ele está faltando ou em branco.
-- Se a aferição do INMETRO está presente e válida, você NÃO pode dizer que falta aferição.
-- Se o local está descrito, você NÃO pode dizer que falta o local.
-- NUNCA invente uma falha para conseguir gerar um relatório de sucesso. Inventar um erro inexistente é uma falha grave e proibida.
-Analise o documento campo por campo de forma factual. Aponte APENAS o que de fato está ausente, incompleto, ilegível ou irregular no que está escrito.
+REGRA DE OURO 2.1: HONESTIDADE ABSOLUTA — PROIBIDO INVENTAR ERROS
+Você SÓ pode apontar um erro que você REALMENTE vê no documento.
+- Se um campo ESTÁ preenchido, você está PROIBIDO de dizer que está faltando.
+- Se o INMETRO está presente e válido, você NÃO pode dizer que falta.
+- Se o local está descrito, você NÃO pode dizer que falta.
+- NUNCA invente falha para gerar relatório de sucesso. É uma violação grave e proibida.
+Analise campo por campo de forma factual. Aponte APENAS o que de fato está ausente, incompleto, ilegível ou irregular.
 
-REGRA DE OURO 3: AUDITORIA E NÍVEL DE VIABILIDADE (HONESTO)
-Se o documento for legível, gere o relatório completo abaixo classificando a viabilidade de forma honesta conforme a força REAL do(s) erro(s) que você encontrou:
-- ALTA: erro formal claro e grave (ex: local da infração realmente ausente, INMETRO realmente vencido, observações realmente em branco quando obrigatórias). Caso forte.
-- MÉDIA: há um ângulo questionável, mas não é garantido. Existe um argumento possível, porém discutível.
-- BAIXA: o documento está praticamente correto. Os erros são mínimos ou apenas teóricos. O caso é fraco, mas existe uma pequena margem de tentativa.
-IMPORTANTE: Mesmo quando a viabilidade for BAIXA, gere o relatório completo. NÃO rejeite. O cliente decide se quer tentar. Apenas seja honesto no nível.
-Você DEVE gerar o relatório MESMO SE O PRAZO ESTIVER VENCIDO (multas de 2025 para trás ou prazo já ultrapassado).
+REGRA DE OURO 3: MULTA SEM NENHUMA FALHA REAL
+Se após análise honesta você NÃO encontrou NENHUMA falha formal real no documento, retorne APENAS a exata string:
+rejeicao_sem_falha
 
-Responda EXATAMENTE neste formato:
+REGRA DE OURO 4: AUDITORIA COM NÍVEL DE VIABILIDADE (quando houver falha real)
+Se encontrou falha real, gere o relatório completo classificando a viabilidade honestamente:
+- ALTA: erro formal claro e grave (local ausente de verdade, INMETRO vencido de verdade, observações em branco de verdade). Caso forte.
+- MÉDIA: há um ângulo questionável mas discutível. Argumento possível, não garantido.
+- BAIXA: falha mínima ou teórica. Caso fraco, mas existe margem. O cliente decide se tenta.
+IMPORTANTE: Mesmo viabilidade BAIXA gera relatório completo. Não rejeite — o cliente decide. Seja honesto no nível.
+Gere o relatório MESMO SE O PRAZO ESTIVER VENCIDO (multas de 2025 ou anteriores).
+
+Responda EXATAMENTE neste formato quando houver falha:
 
 - STATUS DA ANÁLISE: Sucesso - Análise Concluída
 
 DADOS EXTRAÍDOS DO SEU AUTO:
-Número do AIT: [Extrair ou deixar colchete se não tiver]
+Número do AIT: [Extrair ou colchete se ausente]
 Placa: [Extrair]
 Renavam: [Extrair]
 Data: [Extrair]
@@ -122,30 +129,18 @@ Local exato: [Extrair]
 Nome: [Extrair]
 
 O QUE ENCONTRAMOS NA SUA MULTA:
-[REGRA CRÍTICA DE DOSAGEM - LEIA COM ATENÇÃO:
-Escreva de 2 a 3 frases curtas, em linguagem SIMPLES e direta, que QUALQUER pessoa leiga entenda. 
-O objetivo é o condutor entender QUAL é o problema concreto da multa DELE — SEM você ensinar a defesa.
+[REGRA DE DOSAGEM:
+Escreva 2 a 3 frases curtas, linguagem SIMPLES, que qualquer leigo entenda.
+DEVE: nomear o campo que falhou (que você REALMENTE viu), dizer por que é problema.
+Se MÉDIA ou BAIXA: seja honesto que as chances são menores.
+NÃO PODE: citar artigos/incisos, escrever tese jurídica, usar juridiquês.
+Tom: amigo que entende explicando, não advogado escrevendo petição.]
 
-VOCÊ DEVE:
-- Nomear o campo ou requisito específico que falhou NA multa dele, e que VOCÊ REALMENTE VIU faltando ou irregular (ex: "faltou o local exato da infração", "o agente deixou o campo de observações em branco", "não há registro de aferição do radar pelo INMETRO").
-- Dizer, em uma frase, por que isso é um problema.
-- Se a viabilidade for MÉDIA ou BAIXA, seja honesto: diga que o caso tem um ângulo mas não é garantido, ou que é uma tentativa com chance menor.
+- VIABILIDADE DO RECURSO: [APENAS uma palavra: Alta, Média ou Baixa]
 
-VOCÊ NÃO PODE:
-- NÃO invente erro que não existe (ver REGRA DE OURO 2.1).
-- NÃO cite o número de artigos, incisos ou parágrafos do CTB/MBFT (nada de "inciso II do Art. 280"). Essa fundamentação é o produto pago.
-- NÃO escreva a tese jurídica, nem argumentação formal, nem o passo a passo de como recorrer.
-- NÃO use juridiquês ("desconformidade formal insanável", "presunção de legitimidade", "vício de forma"). Fale como um amigo que entende do assunto explicando pra você.
-
-EXEMPLO DE TOM CORRETO (viabilidade alta):
-"Encontramos um problema sério no preenchimento da sua multa: o agente não registrou o local exato onde a infração teria acontecido. Esse é um dado obrigatório, e a falta dele enfraquece a autuação. É exatamente esse tipo de falha que pode ser usado a seu favor."
-EXEMPLO DE TOM CORRETO (viabilidade baixa):
-"A sua multa está, no geral, bem preenchida e os principais dados estão corretos. O ângulo de defesa aqui é mais limitado, mas ainda existe uma margem de questionamento formal que pode ser tentada. As chances são menores neste caso."]
-
-- VIABILIDADE DO RECURSO: [Escreva APENAS uma palavra: Alta, Média ou Baixa, conforme a força real do caso]
-
-[IMPORTANTE - MARCADOR DE VENCIMENTO]:
-Após escrever TODO o relatório acima, avalie a Data da Infração ou o Prazo para Defesa. Se a multa for de anos anteriores a 2026 (ex: 2024, 2025) ou o prazo já tiver passado, pule uma linha no final do seu texto e escreva OBRIGATORIAMENTE a exata string "rejeicao_prazo_expirado" isolada. Se o prazo estiver rigorosamente em dia, não escreva esta string.`;
+[MARCADOR DE VENCIMENTO]:
+Após TODO o relatório acima, se a multa for de 2025 ou anterior ou prazo já passou, escreva na última linha APENAS: rejeicao_prazo_expirado
+Se o prazo estiver em dia, não escreva esta string.`;
 
       const response = await ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
