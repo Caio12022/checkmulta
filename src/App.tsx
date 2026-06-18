@@ -892,9 +892,9 @@ export default function App() {
 
           {/* Faixa separada — possíveis resultados */}
           <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
-            <div className="bg-blue-900 px-6 py-4 flex items-center gap-3">
-              <ShieldCheck className="w-5 h-5 text-blue-300 flex-shrink-0" />
-              <p className="text-sm font-black text-white uppercase tracking-wider">O que o diagnóstico pode revelar</p>
+            <div className="px-6 pt-5 pb-4 border-b border-slate-100 flex items-center gap-2.5">
+              <ShieldCheck className="w-4 h-4 text-slate-400 flex-shrink-0" />
+              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">O que o diagnóstico pode revelar</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
               {/* Alta */}
