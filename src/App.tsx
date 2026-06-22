@@ -1035,7 +1035,7 @@ export default function App() {
         </p>
         {/* CNPJ */}
         <p className="text-xs text-slate-700 font-medium mt-3">
-          CheckMulta Tecnologia · CNPJ 63.524.338/0001-62
+          CheckMulta Tecnologia · CNPJ 64.824.475/0001-85
         </p>
         <div className="flex justify-center space-x-6 mt-4 text-[11px] sm:text-xs font-bold text-slate-400 uppercase tracking-wide">
           <button onClick={() => setActiveModal("termos")} className="hover:text-slate-600 transition-colors">Termos</button>
@@ -1416,7 +1416,7 @@ export default function App() {
                         </div>
                         <span className="text-sm font-medium text-emerald-100 mt-1">Pagamento único · R$ 19,90 · Entrega imediata</span>
                       </button>
-                      <p className="text-center text-[11px] text-slate-400 font-medium mt-2">CheckMulta Tecnologia · CNPJ 63.524.338/0001-62</p>
+                      <p className="text-center text-[11px] text-slate-400 font-medium mt-2">CheckMulta Tecnologia · CNPJ 64.824.475/0001-85</p>
                     </div>
                   )}
 
@@ -1559,7 +1559,7 @@ export default function App() {
                   <div>
                     <h3 className="text-3xl font-black text-slate-900 tracking-tight">R$ 19,90</h3>
                     <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mt-1">Petição Estruturada (IA)</p>
-                    <p className="text-[11px] text-slate-400 font-medium mt-1.5">CheckMulta Tecnologia · CNPJ 63.524.338/0001-62</p>
+                    <p className="text-[11px] text-slate-400 font-medium mt-1.5">CheckMulta Tecnologia · CNPJ 64.824.475/0001-85</p>
                   </div>
                   <div className="flex items-center justify-center gap-2 text-red-700 font-bold bg-red-50 py-2.5 rounded-xl border border-red-100">
                     <Timer className="w-5 h-5 animate-pulse" />
