@@ -2,10 +2,7 @@ import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
-import Stripe from "stripe";
-
-// Inicializa o Stripe buscando do cofre do Render (Environment Variables)
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
+import { MercadoPagoConfig, Payment } from "mercadopago";
 
 let aiClient: GoogleGenAI | null = null;
 function getAIClient() {
@@ -18,6 +15,11 @@ function getAIClient() {
   return aiClient;
 }
 
+const mpClient = new MercadoPagoConfig({
+  accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN || "",
+});
+const paymentClient = new Payment(mpClient);
+
 async function startServer() {
   const app = express();
   const PORT = parseInt(process.env.PORT || "3000", 10);
@@ -25,62 +27,51 @@ async function startServer() {
   app.use(express.json({ limit: "50mb" }));
 
   // ==========================================
-  // ROTA: GERAR PIX COM STRIPE
+  // ROTA: GERAR PIX
   // ==========================================
   app.post("/api/create-payment", async (req, res) => {
     try {
-      if (!process.env.STRIPE_SECRET_KEY) {
-        return res.status(500).json({ error: "STRIPE_SECRET_KEY não configurada no Render." });
+      if (!process.env.MERCADO_PAGO_ACCESS_TOKEN) {
+        return res.status(500).json({ error: "MERCADO_PAGO_ACCESS_TOKEN não configurado." });
       }
       const { email } = req.body;
-      
-      const paymentIntent = await stripe.paymentIntents.create({
-        amount: 1990, // R$ 19,90 em centavos
-        currency: "brl",
-        payment_method_types: ["pix"],
-        payment_method_data: {
-          type: "pix",
+      const paymentData = {
+        body: {
+          transaction_amount: 19.90, // VALOR OFICIAL DE PRODUÇÃO ATUALIZADO
+          description: "Criação de Recurso - CheckMulta",
+          payment_method_id: "pix",
+          payer: { email: email || "cliente@checkmulta.com.br" },
         },
-        confirm: true,
-        receipt_email: email || "cliente@checkmulta.com.br",
-        description: "Criação de Recurso - CheckMulta",
-        return_url: "https://checkmulta.com.br",
-      });
-
-      const pixData = paymentIntent.next_action?.pix_display_qr_code;
-
+      };
+      const response = await paymentClient.create(paymentData);
       res.json({
-        id: paymentIntent.id,
-        status: paymentIntent.status,
-        qr_code: pixData?.data,
-        qr_code_url: pixData?.image_url_png,
+        id: response.id,
+        status: response.status,
+        qr_code: response.point_of_interaction?.transaction_data?.qr_code,
+        qr_code_base64: response.point_of_interaction?.transaction_data?.qr_code_base64,
       });
     } catch (err: any) {
-      console.error("Erro ao criar pagamento no Stripe:", err);
+      console.error("Erro ao criar pagamento:", err);
       res.status(500).json({ error: err.message || "Erro interno ao gerar o Pix." });
     }
   });
 
-  // ==========================================
-  // ROTA: CHECAR PAGAMENTO (STRIPE)
-  // ==========================================
   app.get("/api/check-payment/:id", async (req, res) => {
     try {
-      const paymentId = req.params.id;
+      const paymentId = Number(req.params.id);
       if (!paymentId) return res.status(400).json({ error: "ID inválido" });
-      
-      const paymentIntent = await stripe.paymentIntents.retrieve(paymentId);
-      const statusFinal = paymentIntent.status === "succeeded" ? "approved" : paymentIntent.status;
-      
-      res.json({ status: statusFinal });
+      const payment = await paymentClient.get({ id: paymentId });
+      res.json({ status: payment.status });
     } catch (err: any) {
-      console.error("Erro ao checar pagamento no Stripe:", err);
+      console.error("Erro ao checar pagamento:", err);
       res.status(500).json({ error: "Erro interno ao verificar Pix" });
     }
   });
 
   // ==========================================
   // ROTA: ANALISAR MULTA (PROMPT BLINDADO - 2026)
+  // Diagnóstico DOSADO: mostra qual campo falhou e que é grave (a "pista"),
+  // mas NÃO entrega a tese jurídica articulada (isso é o produto pago).
   // ==========================================
   app.post("/api/analyze-ticket", async (req, res) => {
     try {
@@ -108,7 +99,7 @@ Você SÓ pode apontar um erro que você REALMENTE vê no documento.
 - Se um campo ESTÁ preenchido, você está PROIBIDO de dizer que está faltando.
 - Se o INMETRO está presente e válido, você NÃO pode dizer que falta.
 - Se o local está descrito, você NÃO pode dizer que falta.
-- NUNCA invente falha para gerar relatório de sucesso. É uma violação grave and proibida.
+- NUNCA invente falha para gerar relatório de sucesso. É uma violação grave e proibida.
 Analise campo por campo de forma factual. Aponte APENAS o que de fato está ausente, incompleto, ilegível ou irregular.
 
 REGRA DE OURO 3: MULTA SEM NENHUMA FALHA REAL
@@ -172,6 +163,7 @@ Se o prazo estiver em dia, não escreva esta string.`;
 
   // ==========================================
   // ROTA: GERAÇÃO DA PETIÇÃO COMPLETA
+  // Aqui SIM entra toda a fundamentação jurídica (o produto pago).
   // ==========================================
   app.post("/api/generate-defense", async (req, res) => {
     try {
