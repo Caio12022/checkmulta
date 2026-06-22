@@ -2,7 +2,10 @@ import express from "express";
 import path from "path";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
-import { MercadoPagoConfig, Payment } from "mercadopago";
+import Stripe from "stripe";
+
+// CHAVE DO STRIPE INSERIDA AQUI
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 let aiClient: GoogleGenAI | null = null;
 function getAIClient() {
@@ -15,11 +18,6 @@ function getAIClient() {
   return aiClient;
 }
 
-const mpClient = new MercadoPagoConfig({
-  accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN || "",
-});
-const paymentClient = new Payment(mpClient);
-
 async function startServer() {
   const app = express();
   const PORT = parseInt(process.env.PORT || "3000", 10);
@@ -27,43 +25,57 @@ async function startServer() {
   app.use(express.json({ limit: "50mb" }));
 
   // ==========================================
-  // ROTA: GERAR PIX
+  // ROTA: GERAR PIX COM STRIPE
   // ==========================================
   app.post("/api/create-payment", async (req, res) => {
     try {
-      if (!process.env.MERCADO_PAGO_ACCESS_TOKEN) {
-        return res.status(500).json({ error: "MERCADO_PAGO_ACCESS_TOKEN não configurado." });
-      }
       const { email } = req.body;
-      const paymentData = {
-        body: {
-          transaction_amount: 19.90, // VALOR OFICIAL DE PRODUÇÃO ATUALIZADO
-          description: "Criação de Recurso - CheckMulta",
-          payment_method_id: "pix",
-          payer: { email: email || "cliente@checkmulta.com.br" },
+      
+      // Cria o pagamento no Stripe e já confirma para gerar o Pix na hora
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: 1990, // No Stripe, R$ 19,90 é escrito em centavos (1990)
+        currency: "brl",
+        payment_method_types: ["pix"],
+        payment_method_data: {
+          type: "pix",
         },
-      };
-      const response = await paymentClient.create(paymentData);
+        confirm: true,
+        receipt_email: email || "cliente@checkmulta.com.br",
+        description: "Criação de Recurso - CheckMulta",
+        return_url: "https://checkmulta.com.br",
+      });
+
+      // Extrai os dados do Pix da resposta do Stripe
+      const pixData = paymentIntent.next_action?.pix_display_qr_code;
+
       res.json({
-        id: response.id,
-        status: response.status,
-        qr_code: response.point_of_interaction?.transaction_data?.qr_code,
-        qr_code_base64: response.point_of_interaction?.transaction_data?.qr_code_base64,
+        id: paymentIntent.id,
+        status: paymentIntent.status,
+        qr_code: pixData?.data, // Código Copia e Cola
+        qr_code_url: pixData?.image_url_png, // URL da imagem do QR Code
       });
     } catch (err: any) {
-      console.error("Erro ao criar pagamento:", err);
+      console.error("Erro ao criar pagamento no Stripe:", err);
       res.status(500).json({ error: err.message || "Erro interno ao gerar o Pix." });
     }
   });
 
+  // ==========================================
+  // ROTA: CHECAR PAGAMENTO (STRIPE)
+  // ==========================================
   app.get("/api/check-payment/:id", async (req, res) => {
     try {
-      const paymentId = Number(req.params.id);
+      const paymentId = req.params.id;
       if (!paymentId) return res.status(400).json({ error: "ID inválido" });
-      const payment = await paymentClient.get({ id: paymentId });
-      res.json({ status: payment.status });
+      
+      const paymentIntent = await stripe.paymentIntents.retrieve(paymentId);
+      
+      // O Stripe devolve 'succeeded' quando pago. Convertendo para 'approved' pro seu front-end entender.
+      const statusFinal = paymentIntent.status === "succeeded" ? "approved" : paymentIntent.status;
+      
+      res.json({ status: statusFinal });
     } catch (err: any) {
-      console.error("Erro ao checar pagamento:", err);
+      console.error("Erro ao checar pagamento no Stripe:", err);
       res.status(500).json({ error: "Erro interno ao verificar Pix" });
     }
   });
