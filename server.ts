@@ -4,8 +4,8 @@ import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import Stripe from "stripe";
 
-// CHAVE DO STRIPE INSERIDA AQUI
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+// Inicializa o Stripe buscando do cofre do Render (Environment Variables)
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
 
 let aiClient: GoogleGenAI | null = null;
 function getAIClient() {
@@ -29,11 +29,13 @@ async function startServer() {
   // ==========================================
   app.post("/api/create-payment", async (req, res) => {
     try {
+      if (!process.env.STRIPE_SECRET_KEY) {
+        return res.status(500).json({ error: "STRIPE_SECRET_KEY não configurada no Render." });
+      }
       const { email } = req.body;
       
-      // Cria o pagamento no Stripe e já confirma para gerar o Pix na hora
       const paymentIntent = await stripe.paymentIntents.create({
-        amount: 1990, // No Stripe, R$ 19,90 é escrito em centavos (1990)
+        amount: 1990, // R$ 19,90 em centavos
         currency: "brl",
         payment_method_types: ["pix"],
         payment_method_data: {
@@ -45,14 +47,13 @@ async function startServer() {
         return_url: "https://checkmulta.com.br",
       });
 
-      // Extrai os dados do Pix da resposta do Stripe
       const pixData = paymentIntent.next_action?.pix_display_qr_code;
 
       res.json({
         id: paymentIntent.id,
         status: paymentIntent.status,
-        qr_code: pixData?.data, // Código Copia e Cola
-        qr_code_url: pixData?.image_url_png, // URL da imagem do QR Code
+        qr_code: pixData?.data,
+        qr_code_url: pixData?.image_url_png,
       });
     } catch (err: any) {
       console.error("Erro ao criar pagamento no Stripe:", err);
@@ -69,8 +70,6 @@ async function startServer() {
       if (!paymentId) return res.status(400).json({ error: "ID inválido" });
       
       const paymentIntent = await stripe.paymentIntents.retrieve(paymentId);
-      
-      // O Stripe devolve 'succeeded' quando pago. Convertendo para 'approved' pro seu front-end entender.
       const statusFinal = paymentIntent.status === "succeeded" ? "approved" : paymentIntent.status;
       
       res.json({ status: statusFinal });
@@ -82,8 +81,6 @@ async function startServer() {
 
   // ==========================================
   // ROTA: ANALISAR MULTA (PROMPT BLINDADO - 2026)
-  // Diagnóstico DOSADO: mostra qual campo falhou e que é grave (a "pista"),
-  // mas NÃO entrega a tese jurídica articulada (isso é o produto pago).
   // ==========================================
   app.post("/api/analyze-ticket", async (req, res) => {
     try {
@@ -111,7 +108,7 @@ Você SÓ pode apontar um erro que você REALMENTE vê no documento.
 - Se um campo ESTÁ preenchido, você está PROIBIDO de dizer que está faltando.
 - Se o INMETRO está presente e válido, você NÃO pode dizer que falta.
 - Se o local está descrito, você NÃO pode dizer que falta.
-- NUNCA invente falha para gerar relatório de sucesso. É uma violação grave e proibida.
+- NUNCA invente falha para gerar relatório de sucesso. É uma violação grave and proibida.
 Analise campo por campo de forma factual. Aponte APENAS o que de fato está ausente, incompleto, ilegível ou irregular.
 
 REGRA DE OURO 3: MULTA SEM NENHUMA FALHA REAL
@@ -175,7 +172,6 @@ Se o prazo estiver em dia, não escreva esta string.`;
 
   // ==========================================
   // ROTA: GERAÇÃO DA PETIÇÃO COMPLETA
-  // Aqui SIM entra toda a fundamentação jurídica (o produto pago).
   // ==========================================
   app.post("/api/generate-defense", async (req, res) => {
     try {
