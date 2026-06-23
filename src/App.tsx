@@ -511,7 +511,7 @@ export default function App() {
         setQrCodeImg(data.qr_code_base64); // URL da imagem do QR (Stripe)
         setIsPixModalOpen(true);
       } else {
-        setCheckoutError("Erro ao gerar o pagamento. Tente novamente ou fale com o suporte.");
+        setCheckoutError("Erro na integração com o Mercado Pago. Tente novamente ou fale com o suporte.");
       }
     } catch (err: any) {
       setCheckoutError(err.message || "Falha de conexão. Verifique sua internet ou tente novamente.");
@@ -682,10 +682,10 @@ export default function App() {
         {/* HERO */}
         <section id="inicio" className="mb-10 flex flex-col items-center text-center w-full max-w-3xl mx-auto">
           <h1 className="text-[34px] sm:text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] mb-5 tracking-tight mt-4">
-            Sua multa tem <span className="text-emerald-600">brecha legal?</span><br className="hidden sm:block" /> Descubra em 60 segundos
+            Todo auto de infração pode ter uma <span className="text-emerald-600">falha que o anula.</span><br className="hidden sm:block" /> Veja em 60 segundos se a sua tem
           </h1>
           <p className="text-slate-600 text-sm sm:text-base md:text-lg font-medium max-w-2xl mx-auto mb-8 leading-relaxed">
-            Nossa IA cruza seu auto de infração com o CTB e o MBFT e aponta erros do agente autuador que podem anular a penalidade.
+            A falha que anula uma multa quase sempre passa despercebida. Nossa IA percorre cada campo do seu auto à luz do CTB e do MBFT para encontrá-la — e, não havendo fundamento, informa você sem qualquer custo.
           </p>
 
           <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-[13px] sm:text-sm font-bold text-slate-700 mb-10">
@@ -1166,7 +1166,7 @@ export default function App() {
                               Analisamos seu auto de infração campo por campo e <strong>não encontramos nenhuma falha formal</strong> no preenchimento. O documento está corretamente preenchido conforme o CTB e o MBFT.
                             </p>
                             <p className="text-slate-500 text-sm mt-3 font-medium">
-                              Infelizmente, sem uma irregularidade real, não há base técnica para um recurso com chances reais de êxito. Gerar uma petição neste caso não traria resultado.
+                              Seu auto de infração está em conformidade com a legislação, e por essa razão não há cobrança. Optamos por informá-lo com franqueza, em vez de elaborar uma petição sem fundamento real. Esse é o critério que aplicamos em toda análise.
                             </p>
                           </div>
                           <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-left w-full">
@@ -1392,7 +1392,7 @@ export default function App() {
                       <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 flex items-start gap-2.5">
                         <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                         <p className="text-[11px] sm:text-xs text-amber-800 font-medium leading-relaxed">
-                          <strong>Transparência:</strong> O CheckMulta gera a petição com tese técnica baseada no CTB. A decisão final depende exclusivamente do órgão julgador. O valor de R$ 19,90 refere-se ao documento gerado, não ao resultado do recurso.
+                          <strong>Por que vale a pena:</strong> a elaboração dessa defesa por um advogado costuma custar entre R$ 200 e R$ 500. Aqui, são R$ 19,90 — e apenas quando identificamos uma falha concreta. A petição é integralmente fundamentada no CTB; a decisão final cabe ao órgão julgador.
                         </p>
                       </div>
 
@@ -1589,7 +1589,7 @@ export default function App() {
                     <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex items-start gap-2.5 text-left">
                       <Lock className="w-4 h-4 text-slate-500 flex-shrink-0 mt-0.5" />
                       <p className="text-[10px] leading-relaxed font-medium text-slate-600">
-                        Para sua segurança, o recebedor no app do banco aparecerá como <strong>CheckMulta Tecnologia</strong> (pagamento processado via Stripe).
+                        O recebedor identificado no seu aplicativo bancário será <strong>CheckMulta Tecnologia</strong> — CNPJ 63.524.338/0001-62.
                       </p>
                     </div>
                   </div>
