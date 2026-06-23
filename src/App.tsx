@@ -511,7 +511,7 @@ export default function App() {
         setQrCodeImg(data.qr_code_base64); // URL da imagem do QR (Stripe)
         setIsPixModalOpen(true);
       } else {
-        setCheckoutError("Erro na integração com o Mercado Pago. Tente novamente ou fale com o suporte.");
+        setCheckoutError("Erro ao gerar o pagamento. Tente novamente ou fale com o suporte.");
       }
     } catch (err: any) {
       setCheckoutError(err.message || "Falha de conexão. Verifique sua internet ou tente novamente.");
