@@ -682,10 +682,10 @@ export default function App() {
         {/* HERO */}
         <section id="inicio" className="mb-10 flex flex-col items-center text-center w-full max-w-3xl mx-auto">
           <h1 className="text-[34px] sm:text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] mb-5 tracking-tight mt-4">
-            Todo auto de infração pode ter uma <span className="text-emerald-600">falha que o anula.</span><br className="hidden sm:block" /> Veja em 60 segundos se a sua tem
+            Toda multa pode ter uma <span className="text-emerald-600">falha que a anula.</span><br className="hidden sm:block" /> Descubra em 60 segundos
           </h1>
           <p className="text-slate-600 text-sm sm:text-base md:text-lg font-medium max-w-2xl mx-auto mb-8 leading-relaxed">
-            A falha que anula uma multa quase sempre passa despercebida. Nossa IA percorre cada campo do seu auto à luz do CTB e do MBFT para encontrá-la — e, não havendo fundamento, informa você sem qualquer custo.
+            Nossa IA cruza sua multa com o CTB e o MBFT, campo por campo, em busca do erro que pode anulá-la. Se não encontrar, você não paga nada por essa analise, é grátis.
           </p>
 
           <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-[13px] sm:text-sm font-bold text-slate-700 mb-10">
