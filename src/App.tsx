@@ -209,7 +209,7 @@ export default function App() {
 
   const [paymentId, setPaymentId] = useState<number | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
-  const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
+  const [qrCodeImg, setQrCodeImg] = useState<string | null>(null);
   const [isPixCopied, setIsPixCopied] = useState(false);
   const [isSeoOpen, setIsSeoOpen] = useState(false);
 
@@ -321,7 +321,7 @@ export default function App() {
     setIsPaid(false);
     setHasAnalyzed(false);
     setQrCode(null);
-    setQrCodeBase64(null);
+    setQrCodeImg(null);
     setPaymentId(null);
     setSecretClickCount(0);
     setShowSuccessMessage(false);
@@ -508,7 +508,7 @@ export default function App() {
         track("begin_checkout", "funil_4_checkout_iniciado", { value: 19.9, currency: "BRL" });
         setPaymentId(data.id);
         setQrCode(data.qr_code);
-        setQrCodeBase64(data.qr_code_base64);
+        setQrCodeImg(data.qr_code_base64); // URL da imagem do QR (Stripe)
         setIsPixModalOpen(true);
       } else {
         setCheckoutError("Erro na integração com o Mercado Pago. Tente novamente ou fale com o suporte.");
@@ -1553,7 +1553,7 @@ export default function App() {
                         });
                       }}
                     >
-                      <img src="/mercadopago.png" alt="Mercado Pago" width="150" height="40" className="h-8 w-auto object-contain" />
+                      <img src="/stripe-badge.png" alt="Stripe" width="150" height="40" className="h-8 w-auto object-contain" />
                     </div>
                   </div>
                   <div>
@@ -1567,8 +1567,8 @@ export default function App() {
                   </div>
                   <div className="flex justify-center py-2">
                     <div className="w-48 h-48 bg-white rounded-2xl flex items-center justify-center border-2 border-slate-200 shadow-sm">
-                      {qrCodeBase64 ? (
-                        <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" width="192" height="192" className="w-full h-full p-2 object-contain rounded-xl" />
+                      {qrCodeImg ? (
+                        <img src={qrCodeImg} alt="QR Code" width="192" height="192" className="w-full h-full p-2 object-contain rounded-xl" />
                       ) : (
                         <QrCode className="w-24 h-24 text-slate-200 animate-pulse" />
                       )}
@@ -1590,7 +1590,7 @@ export default function App() {
                     <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex items-start gap-2.5 text-left">
                       <Lock className="w-4 h-4 text-slate-500 flex-shrink-0 mt-0.5" />
                       <p className="text-[10px] leading-relaxed font-medium text-slate-600">
-                        Para sua segurança, o recebedor no app do banco aparecerá como <strong>Dagnara Aguilar Garcia</strong> (CheckMulta Tecnologia).
+                        Para sua segurança, o recebedor no app do banco aparecerá como <strong>CheckMulta Tecnologia</strong> (pagamento processado via Stripe).
                       </p>
                     </div>
                   </div>
