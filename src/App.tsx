@@ -1543,18 +1543,17 @@ export default function App() {
                   <X className="w-5 h-5" />
                 </button>
                 <div className="text-center space-y-5">
-                  <div className="flex justify-center">
-                    <div
-                      className="w-full p-4 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center cursor-pointer"
-                      onClick={() => {
-                        setSecretClickCount((prev) => {
-                          if (prev + 1 >= 5) { simulateApprovedPayment(); return 0; }
-                          return prev + 1;
-                        });
-                      }}
-                    >
-                      <img src="/stripe-badge.png" alt="Stripe" width="150" height="40" className="h-8 w-auto object-contain" />
-                    </div>
+                  <div
+                    className="flex items-center justify-center gap-2 py-2 cursor-pointer"
+                    onClick={() => {
+                      setSecretClickCount((prev) => {
+                        if (prev + 1 >= 5) { simulateApprovedPayment(); return 0; }
+                        return prev + 1;
+                      });
+                    }}
+                  >
+                    <Lock className="w-3.5 h-3.5 text-slate-400" />
+                    <span className="text-xs font-medium text-slate-400">Pagamento seguro · Criptografia SSL</span>
                   </div>
                   <div>
                     <h3 className="text-3xl font-black text-slate-900 tracking-tight">R$ 19,90</h3>
