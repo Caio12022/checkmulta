@@ -209,7 +209,7 @@ export default function App() {
 
   const [paymentId, setPaymentId] = useState<number | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
-  const [qrCodeImg, setQrCodeImg] = useState<string | null>(null);
+  const [qrCodeImg, setQrCodeBase64] = useState<string | null>(null);
   const [isPixCopied, setIsPixCopied] = useState(false);
   const [isSeoOpen, setIsSeoOpen] = useState(false);
 
@@ -321,7 +321,7 @@ export default function App() {
     setIsPaid(false);
     setHasAnalyzed(false);
     setQrCode(null);
-    setQrCodeImg(null);
+    setQrCodeBase64(null);
     setPaymentId(null);
     setSecretClickCount(0);
     setShowSuccessMessage(false);
