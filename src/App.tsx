@@ -696,7 +696,7 @@ export default function App() {
             <div className="flex items-center gap-2"><Timer className="w-4 h-4 text-emerald-600" /> Resultado imediato</div>
           </div>
 
-          {/* ESTATÍSTICAS — claims verdadeiros, isca gratuita em destaque */}
+          {/* ESTATÍSTICAS */}
           <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-0 border border-slate-200 rounded-2xl bg-white shadow-sm mb-4 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 overflow-hidden">
             <div className="py-6 px-4 flex flex-col items-center justify-center">
               <span className="text-2xl sm:text-3xl font-black text-slate-900">Sem cadastro</span>
@@ -799,7 +799,7 @@ export default function App() {
         </main>
       </div>
 
-      {/* MODAL DE UPLOAD — compacto, identidade verde/azul escuro */}
+      {/* MODAL DE UPLOAD */}
       <AnimatePresence>
         {isUploadModalOpen && (
           <div className="fixed inset-0 z-[55] overflow-y-auto bg-slate-900/70 backdrop-blur-sm">
@@ -811,7 +811,6 @@ export default function App() {
                 transition={{ duration: 0.2 }}
                 className="relative w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden"
               >
-                {/* Faixa superior azul escuro */}
                 <div className="bg-blue-900 px-5 py-4 flex items-center justify-between">
                   <div>
                     <p className="text-[10px] font-bold text-blue-300 uppercase tracking-widest mb-0.5">Análise gratuita</p>
@@ -823,7 +822,6 @@ export default function App() {
                 </div>
 
                 <div className="p-5 space-y-4">
-                  {/* Dica compacta */}
                   <div className="flex items-start gap-2.5 bg-amber-50 border border-amber-200 rounded-xl p-3">
                     <AlertCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
                     <p className="text-xs text-amber-800 font-medium leading-relaxed">
@@ -831,7 +829,6 @@ export default function App() {
                     </p>
                   </div>
 
-                  {/* Área de upload */}
                   <div className="relative group rounded-xl transition-all duration-200 text-center border-2 border-dashed border-emerald-300 hover:border-emerald-500 hover:bg-emerald-50/40 bg-emerald-50/20 cursor-pointer">
                     <input
                       type="file"
@@ -854,7 +851,6 @@ export default function App() {
                     </div>
                   </div>
 
-                  {/* Rodapé de segurança */}
                   <div className="flex items-center justify-center gap-1.5 text-slate-400">
                     <Lock className="w-3 h-3" />
                     <p className="text-[11px] font-medium">Imagem processada e deletada imediatamente</p>
@@ -871,7 +867,6 @@ export default function App() {
         <div className="max-w-5xl w-full">
           <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Como funciona a análise?</h2>
 
-          {/* 3 cards originais — grid uniforme */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
             <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
               <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-5"><UploadCloud className="w-7 h-7" /></div>
@@ -890,14 +885,12 @@ export default function App() {
             </div>
           </div>
 
-          {/* Faixa separada — possíveis resultados */}
           <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
             <div className="px-6 pt-5 pb-4 border-b border-slate-100 flex items-center gap-2.5">
               <ShieldCheck className="w-4 h-4 text-slate-400 flex-shrink-0" />
               <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">O que o diagnóstico pode revelar</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
-              {/* Alta */}
               <div className="flex items-start gap-4 p-6">
                 <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
                   <CheckCircle2 className="w-5 h-5 text-emerald-600" />
@@ -907,7 +900,6 @@ export default function App() {
                   <p className="text-sm text-slate-500 font-medium mt-1 leading-relaxed">Erro formal grave encontrado. Boas chances de anulação da multa.</p>
                 </div>
               </div>
-              {/* Média */}
               <div className="flex items-start gap-4 p-6">
                 <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
                   <AlertCircle className="w-5 h-5 text-amber-500" />
@@ -917,7 +909,6 @@ export default function App() {
                   <p className="text-sm text-slate-500 font-medium mt-1 leading-relaxed">Há um ângulo de defesa possível, mas não garantido.</p>
                 </div>
               </div>
-              {/* Baixa */}
               <div className="flex items-start gap-4 p-6">
                 <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
                   <AlertCircle className="w-5 h-5 text-red-400" />
@@ -1033,7 +1024,6 @@ export default function App() {
         <p className="text-xs text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium">
           🛡️ <strong className="font-bold text-slate-700">Transparência e Privacidade:</strong> Nosso sistema atua como organizador tecnológico com base no Manual Brasileiro de Fiscalização de Trânsito. A decisão final é do órgão julgador. Não exigimos cadastro e não armazenamos a sua petição ou dados do veículo.
         </p>
-        {/* CNPJ */}
         <p className="text-xs text-slate-700 font-medium mt-3">
           CheckMulta Tecnologia · CNPJ 63.524.338/0001-62
         </p>
@@ -1137,7 +1127,6 @@ export default function App() {
                   )}
 
                   {/* ERRO */}
-                  {/* ERROS TÉCNICOS (imagem inválida, servidor fora, etc) */}
                   {error && (
                     <div className="flex flex-col items-center text-center space-y-4">
                       <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
@@ -1150,11 +1139,10 @@ export default function App() {
                     </div>
                   )}
 
-                  {/* REJEIÇÕES ELEGANTES — sem tela de erro vermelha, dentro do modal normal */}
+                  {/* REJEIÇÕES ELEGANTES */}
                   {!error && !result && !isAnalyzing && rejeicaoInfo && (
                     <div className="flex flex-col items-center text-center space-y-5 max-w-md mx-auto py-4">
 
-                      {/* SEM FALHA: multa impecável */}
                       {rejeicaoInfo.tipo === "sem_falha" && (
                         <>
                           <div className="w-20 h-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center">
@@ -1180,7 +1168,6 @@ export default function App() {
                         </>
                       )}
 
-                      {/* FORA DO ESCOPO: Lei Seca, penal, etc */}
                       {rejeicaoInfo.tipo === "fora_escopo" && (
                         <>
                           <div className="w-20 h-20 bg-amber-50 text-amber-600 rounded-full flex items-center justify-center">
@@ -1206,7 +1193,6 @@ export default function App() {
                         </>
                       )}
 
-                      {/* PRAZO VENCIDO: mostra o resultado mesmo assim */}
                       {rejeicaoInfo.tipo === "prazo" && (
                         <>
                           <div className="w-20 h-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center">
@@ -1255,7 +1241,6 @@ export default function App() {
                         </div>
                       )}
 
-                      {/* CARD DE DADOS DA MULTA — personalizado */}
                       {(() => {
                         const multaData = extractMultaData(result);
                         const deadline = multaData.data ? calculateDeadline(multaData.data) : null;
@@ -1303,7 +1288,6 @@ export default function App() {
                               )}
                             </div>
 
-                            {/* PRAZO */}
                             {deadline && (
                               <div className={`mt-4 pt-4 border-t border-blue-200/60 flex items-center gap-3 ${deadline.urgente ? "bg-red-50 p-3 rounded-xl border border-red-100" : ""}`}>
                                 <Timer className={`w-5 h-5 flex-shrink-0 ${deadline.urgente ? "text-red-600 animate-pulse" : "text-blue-600"}`} />
@@ -1322,7 +1306,6 @@ export default function App() {
                         ) : null;
                       })()}
 
-                      {/* CABEÇALHO — adapta ao nível de viabilidade */}
                       {(() => {
                         const v = extractViabilidade(result);
                         const baixa = v?.nivel === "Baixa";
@@ -1347,7 +1330,6 @@ export default function App() {
                         );
                       })()}
 
-                      {/* DIAGNÓSTICO — a pista, em linguagem clara */}
                       <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left">
                         <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">O que a IA encontrou na sua multa</p>
                         <div className="text-slate-800 text-sm sm:text-[15px] font-semibold whitespace-pre-wrap leading-relaxed">
@@ -1366,7 +1348,6 @@ export default function App() {
                         })()}
                       </div>
 
-                      {/* O QUE VOCÊ RECEBE */}
                       <div className="bg-blue-50/50 border border-blue-200 rounded-2xl p-5 text-left relative overflow-hidden">
                         <div className="absolute top-0 left-0 w-1.5 h-full bg-blue-500 rounded-l-2xl" />
                         <h3 className="text-slate-900 font-black text-base sm:text-lg mb-4 flex items-center gap-2 pl-2">
@@ -1388,7 +1369,6 @@ export default function App() {
                         </ul>
                       </div>
 
-                      {/* AVISO LEGAL HONESTO */}
                       <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 flex items-start gap-2.5">
                         <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                         <p className="text-[11px] sm:text-xs text-amber-800 font-medium leading-relaxed">
@@ -1396,7 +1376,6 @@ export default function App() {
                         </p>
                       </div>
 
-                      {/* ERRO DE CHECKOUT */}
                       {checkoutError && (
                         <div className="bg-red-50 border border-red-200 text-red-700 p-3.5 rounded-xl flex items-start gap-2.5 shadow-sm">
                           <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
@@ -1404,7 +1383,6 @@ export default function App() {
                         </div>
                       )}
 
-                      {/* BOTÃO DE CHECKOUT */}
                       <button
                         onClick={handleCheckout}
                         disabled={isCheckoutLoading}
@@ -1567,7 +1545,7 @@ export default function App() {
                   <div className="flex justify-center py-2">
                     <div className="w-48 h-48 bg-white rounded-2xl flex items-center justify-center border-2 border-slate-200 shadow-sm">
                       {qrCodeBase64 ? (
-                        <img src={data:image/png;base64,${qrCodeBase64}} alt="QR Code" width="192" height="192" className="w-full h-full p-2 object-contain rounded-xl" />
+                        <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" width="192" height="192" className="w-full h-full p-2 object-contain rounded-xl" />
                       ) : (
                         <QrCode className="w-24 h-24 text-slate-200 animate-pulse" />
                       )}
