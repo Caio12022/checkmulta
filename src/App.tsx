@@ -508,7 +508,7 @@ export default function App() {
         track("begin_checkout", "funil_4_checkout_iniciado", { value: 19.9, currency: "BRL" });
         setPaymentId(data.id);
         setQrCode(data.qr_code);
-        setQrCodeImg(data.qr_code_base64); // URL da imagem do QR (Stripe)
+        setQrCodeImg(data.qr_code_base64);
         setIsPixModalOpen(true);
       } else {
         setCheckoutError("Erro na integração com o Mercado Pago. Tente novamente ou fale com o suporte.");
