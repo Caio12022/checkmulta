@@ -1567,7 +1567,7 @@ export default function App() {
                   <div className="flex justify-center py-2">
                     <div className="w-48 h-48 bg-white rounded-2xl flex items-center justify-center border-2 border-slate-200 shadow-sm">
                       {qrCodeImg ? (
-                        <img src={qrCodeImg} alt="QR Code" width="192" height="192" className="w-full h-full p-2 object-contain rounded-xl" />
+                        <img src={qrCodeBase64} alt="QR Code" width="192" height="192" className="w-full h-full p-2 object-contain rounded-xl" />
                       ) : (
                         <QrCode className="w-24 h-24 text-slate-200 animate-pulse" />
                       )}
