@@ -209,7 +209,7 @@ export default function App() {
 
   const [paymentId, setPaymentId] = useState<number | null>(null);
   const [qrCode, setQrCode] = useState<string | null>(null);
-  const [qrCodeImg, setQrCodeBase64] = useState<string | null>(null);
+  const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
   const [isPixCopied, setIsPixCopied] = useState(false);
   const [isSeoOpen, setIsSeoOpen] = useState(false);
 
@@ -1566,7 +1566,7 @@ export default function App() {
                   </div>
                   <div className="flex justify-center py-2">
                     <div className="w-48 h-48 bg-white rounded-2xl flex items-center justify-center border-2 border-slate-200 shadow-sm">
-                      {qrCodeImg ? (
+                      {qrCodeBase64 ? (
                         <img src={data:image/png;base64,${qrCodeBase64}} alt="QR Code" width="192" height="192" className="w-full h-full p-2 object-contain rounded-xl" />
                       ) : (
                         <QrCode className="w-24 h-24 text-slate-200 animate-pulse" />
