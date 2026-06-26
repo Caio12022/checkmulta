@@ -176,6 +176,10 @@ export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const artigo = artigos.find((a) => a.slug === slug);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [slug]);
+
   if (!artigo) return <Navigate to="/blog" replace />;
 
   const url = `https://www.checkmulta.com.br/blog/${artigo.slug}`;
