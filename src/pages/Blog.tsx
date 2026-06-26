@@ -1,4 +1,5 @@
-import { Link, useEffect } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { ArrowRight, Clock, ShieldCheck, Search } from "lucide-react";
 import { artigos } from "../data/artigos";
 import { useState } from "react";
