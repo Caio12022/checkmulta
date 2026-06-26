@@ -1308,8 +1308,11 @@ export default function App() {
                       })()}
 
                       {(() => {
-                        const v = extractViabilidade(result);
-                        const baixa = v?.nivel === "Baixa";
+                       const v = extractViabilidade(result);
+if (typeof window !== "undefined" && window.gtag) {
+  window.gtag("event", "resultado_analise", { viabilidade: v ? v.nivel : "Negada" });
+}
+const baixa = v?.nivel === "Baixa";
                         return (
                           <div className="flex items-start space-x-4">
                             <CheckCircle2 className={`w-8 h-8 flex-shrink-0 mt-1 ${baixa ? "text-amber-500" : "text-emerald-600"}`} />
