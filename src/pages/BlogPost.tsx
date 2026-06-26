@@ -1,7 +1,61 @@
-import { useParams, Link, Navigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { useParams, Link, Navigate, useEffect } from "react-router-dom";
 import { ArrowLeft, Clock, ShieldCheck, ArrowRight } from "lucide-react";
 import { artigos } from "../data/artigos";
+
+// Hook para atualizar meta tags via DOM nativo
+const useMetaTags = (titulo: string, descricao: string, url: string, keywords: string) => {
+  useEffect(() => {
+    // Título
+    document.title = `${titulo} | CheckMulta`;
+
+    // Description
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', descricao);
+
+    // Keywords
+    let metaKey = document.querySelector('meta[name="keywords"]');
+    if (!metaKey) {
+      metaKey = document.createElement('meta');
+      metaKey.setAttribute('name', 'keywords');
+      document.head.appendChild(metaKey);
+    }
+    metaKey.setAttribute('content', keywords);
+
+    // Canonical
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', url);
+
+    // OG tags
+    const setOG = (property: string, content: string) => {
+      let tag = document.querySelector(`meta[property="${property}"]`);
+      if (!tag) {
+        tag = document.createElement('meta');
+        tag.setAttribute('property', property);
+        document.head.appendChild(tag);
+      }
+      tag.setAttribute('content', content);
+    };
+
+    setOG('og:title', `${titulo} | CheckMulta`);
+    setOG('og:description', descricao);
+    setOG('og:url', url);
+    setOG('og:type', 'article');
+
+    return () => {
+      document.title = 'CheckMulta — Análise de Multas com IA';
+    };
+  }, [titulo, descricao, url, keywords]);
+};
 
 const renderMarkdown = (texto: string) => {
   const linhas = texto.trim().split("\n");
@@ -113,8 +167,8 @@ const renderMarkdown = (texto: string) => {
 
 const formatarTexto = (texto: string): string => {
   return texto
-    .replace(/\\(.?)\\*/g, '<strong class="text-slate-900 font-black">$1</strong>')
-    .replace(/\(.?)\*/g, '<em class="italic">$1</em>');
+    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-slate-900 font-black">$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
 };
 
 export default function BlogPost() {
@@ -123,26 +177,19 @@ export default function BlogPost() {
 
   if (!artigo) return <Navigate to="/blog" replace />;
 
+  const url = `https://www.checkmulta.com.br/blog/${artigo.slug}`;
+
+  useMetaTags(
+    artigo.titulo,
+    artigo.descricao,
+    url,
+    artigo.palavrasChave.join(", ")
+  );
+
   const outrosArtigos = artigos.filter((a) => a.slug !== slug).slice(0, 3);
-  const url = https://www.checkmulta.com.br/blog/${artigo.slug};
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
-
-      <Helmet>
-        <title>{artigo.titulo} | CheckMulta</title>
-        <meta name="description" content={artigo.descricao} />
-        <meta name="keywords" content={artigo.palavrasChave.join(", ")} />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={url} />
-        <meta property="og:title" content={${artigo.titulo} | CheckMulta} />
-        <meta property="og:description" content={artigo.descricao} />
-        <meta property="og:url" content={url} />
-        <meta property="og:type" content="article" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={artigo.titulo} />
-        <meta name="twitter:description" content={artigo.descricao} />
-      </Helmet>
 
       {/* HEADER */}
       <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-40">
@@ -167,7 +214,7 @@ export default function BlogPost() {
       <article className="max-w-3xl mx-auto px-4 pt-6 pb-16">
 
         {/* Cabeçalho */}
-        <div className={bg-gradient-to-br ${artigo.imagemBg} rounded-3xl p-8 sm:p-10 mb-8 relative overflow-hidden}>
+        <div className={`bg-gradient-to-br ${artigo.imagemBg} rounded-3xl p-8 sm:p-10 mb-8 relative overflow-hidden`}>
           <div className="absolute top-4 right-4 text-5xl opacity-30">{artigo.imagemEmoji}</div>
           <span className="inline-block bg-white/20 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
             {artigo.categoria}
@@ -213,9 +260,9 @@ export default function BlogPost() {
           <h2 className="text-xl font-black text-slate-900 mb-5">Outros artigos</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {outrosArtigos.map((a) => (
-              <Link key={a.slug} to={/blog/${a.slug}} className="group block">
+              <Link key={a.slug} to={`/blog/${a.slug}`} className="group block">
                 <div className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all overflow-hidden">
-                  <div className={bg-gradient-to-br ${a.imagemBg} p-4 flex items-center justify-between}>
+                  <div className={`bg-gradient-to-br ${a.imagemBg} p-4 flex items-center justify-between`}>
                     <span className="text-xs font-bold text-white/80 uppercase tracking-wider">{a.categoria}</span>
                     <span className="text-2xl">{a.imagemEmoji}</span>
                   </div>
