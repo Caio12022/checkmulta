@@ -1103,5 +1103,1125 @@ Para multas de valor baixo, a via judicial raramente compensa. Para multas altas
 
 Pelo mesmo sistema onde você protocolou — SIGER (PRF), portal do DETRAN estadual ou portal da prefeitura. Use o número de protocolo gerado no momento do envio.
     `
-  }
+  },
+  {
+    slug: "multa-alta-velocidade-como-recorrer",
+    titulo: "Multa por Alta Velocidade: Como Recorrer e Quais São Suas Chances",
+    descricao: "Levou multa de radar por excesso de velocidade? Saiba quais erros técnicos podem anular a multa, como verificar a calibração do equipamento e como montar sua defesa.",
+    categoria: "Velocidade",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🚨",
+    imagemBg: "from-red-600 to-orange-700",
+    palavrasChave: ["multa alta velocidade como recorrer", "recurso multa radar velocidade", "contestar multa excesso velocidade"],
+    conteudo: `
+## Multa de velocidade é a mais comum — e a mais contestável
+
+Multas por excesso de velocidade representam quase metade de todas as autuações no Brasil. E são também as que mais têm base para recurso, porque dependem de equipamentos que precisam estar rigorosamente calibrados e sinalizados.
+
+## O que a lei exige para uma multa de radar ser válida
+
+Para ser válida, a autuação por excesso de velocidade precisa cumprir todos esses requisitos:
+
+**1. Aferição INMETRO válida**
+Todo equipamento de medição de velocidade precisa ter certificado de aferição do INMETRO. Esse certificado tem prazo de validade — geralmente 12 meses para radares fixos e 6 meses para portáteis.
+
+**2. Margem de erro aplicada corretamente**
+O CTB determina que a velocidade registrada deve descontar a margem de erro do equipamento antes de gerar a infração. As margens são:
+- Radares fixos e estáticos: 5% da velocidade medida
+- Radares portáteis e laser: 5% ou 3 km/h (o maior)
+
+Se o radar registrou 76 km/h em uma via de 70 km/h com margem de 5%, a velocidade considerada seria 72,2 km/h — e a multa não deveria ser emitida.
+
+**3. Sinalização prévia obrigatória**
+A Resolução CONTRAN nº 396 exige placa informando a existência do equipamento antes do ponto de medição. Ausência de sinalização é vício formal.
+
+**4. Enquadramento correto da infração**
+Excesso de velocidade tem quatro faixas com penalidades diferentes:
+- Até 20%: infração grave (5 pontos)
+- Entre 20% e 50%: infração gravíssima (7 pontos)
+- Acima de 50%: gravíssima com agravante (7 pontos + suspensão)
+
+Enquadramento errado é motivo de recurso.
+
+## Como verificar se o radar estava calibrado
+
+1. No auto de infração, localize o número de série do equipamento
+2. Acesse o site do INMETRO (inmetro.gov.br) ou do IPEM do seu estado
+3. Consulte o certificado de aferição pelo número de série
+4. Verifique se a data da autuação estava dentro do período de validade
+
+Se o certificado estava vencido na data da multa, a autuação é nula.
+
+## Estratégia de recurso para multa de velocidade
+
+A defesa mais sólida combina:
+- Vício formal (aferição vencida, sinalização ausente, enquadramento errado)
+- Contestação da margem de erro (se a velocidade está próxima do limite)
+- Circunstâncias excepcionais (emergência médica, condição da via)
+
+Nossa IA analisa o auto de infração e identifica automaticamente qual dessas estratégias se aplica ao seu caso.
+    `
+  },
+  {
+    slug: "pontuacao-cnh-como-funciona-sistema",
+    titulo: "Sistema de Pontos da CNH: Tudo que Você Precisa Saber em 2025",
+    descricao: "Entenda como funciona o sistema de pontuação da CNH, quantos pontos cada infração gera, quando a carteira é suspensa e como limpar seu histórico.",
+    categoria: "CNH e Pontos",
+    tempoLeitura: "6 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-blue-600 to-indigo-800",
+    palavrasChave: ["sistema pontos CNH", "como funciona pontuação CNH", "pontos CNH 2025"],
+    conteudo: `
+## Como funciona o sistema de pontos da CNH
+
+O sistema de pontos da CNH foi criado para monitorar o comportamento dos condutores ao longo do tempo. Cada infração gera uma quantidade de pontos que fica registrada por 12 meses. Se o total ultrapassar o limite, a CNH é suspensa.
+
+## Quantos pontos cada tipo de infração gera
+
+| Gravidade | Exemplos | Pontos |
+|-----------|----------|--------|
+| Leve | Não usar cinto de segurança | 3 |
+| Média | Ultrapassar em local proibido | 4 |
+| Grave | Excesso de velocidade até 20% | 5 |
+| Gravíssima | Celular ao volante, avanço de sinal | 7 |
+
+## Quando a CNH é suspensa?
+
+O limite varia de acordo com o perfil do condutor:
+
+**20 pontos** — limite para qualquer condutor (regra mais restritiva)
+
+**30 pontos** — se o condutor:
+- Tem CNH há mais de 1 ano
+- Não cometeu infração gravíssima nos últimos 12 meses
+
+**40 pontos** — se o condutor:
+- Tem CNH há mais de 2 anos
+- Não cometeu infração gravíssima
+- Cometeu no máximo 1 infração grave
+
+## Por quanto tempo os pontos ficam na CNH?
+
+Os pontos permanecem por **12 meses** a partir da data da infração — não da data de pagamento ou do julgamento do recurso.
+
+Exemplo: infração em janeiro de 2025 → pontos saem em janeiro de 2026.
+
+## O que acontece quando a CNH é suspensa?
+
+- Prazo mínimo de 6 meses sem poder dirigir
+- Obrigatoriedade de novo exame de legislação
+- Reincidência aumenta o prazo de suspensão
+
+Dirigir com a CNH suspensa é **crime de trânsito** (Art. 307 do CTB) — não é apenas infração administrativa.
+
+## Como os pontos são lançados na CNH?
+
+Os pontos só são lançados após o **trânsito em julgado** da infração na esfera administrativa. Isso significa que, enquanto você está recorrendo, os pontos ficam suspensos.
+
+Por isso recorrer tem dupla vantagem: chance de cancelar a multa E os pontos ficam suspensos durante todo o processo.
+
+## Como verificar meus pontos atuais?
+
+- Portal Senatran: portalservicos.senatran.serpro.gov.br
+- App Carteira Digital de Trânsito (CDT)
+- Portal do DETRAN do seu estado
+
+O extrato mostra cada infração, os pontos gerados e a data de expiração de cada um.
+
+## Dica: monitore seu saldo regularmente
+
+Muitos condutores só descobrem que estão perto do limite quando já é tarde. Verificar seu extrato de pontos mensalmente é uma boa prática — especialmente se você já teve alguma infração recente.
+    `
+  },
+  {
+    slug: "multa-estacionamento-zona-azul",
+    titulo: "Multa de Estacionamento em Zona Azul: Como Recorrer",
+    descricao: "Levou multa na zona azul ou área rotativa? Veja quais são os erros mais comuns nesse tipo de autuação e como contestar com boas chances de cancelamento.",
+    categoria: "Estacionamento",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🅿️",
+    imagemBg: "from-blue-500 to-cyan-600",
+    palavrasChave: ["multa zona azul como recorrer", "recurso multa estacionamento rotativo", "contestar multa zona azul"],
+    conteudo: `
+## Zona azul: o que é e quem fiscaliza
+
+A zona azul (ou área de estacionamento rotativo) é um sistema pago de controle de vagas em vias públicas. A fiscalização é feita por agentes de trânsito ou por empresas concessionárias contratadas pela prefeitura.
+
+Multas de zona azul têm particularidades importantes que abrem espaço para contestação.
+
+## Erros mais comuns em multas de zona azul
+
+### 1. Agente sem credenciamento visível
+O agente que lavra o auto deve estar identificado com crachá e colete da concessionária ou do órgão de trânsito. Se não havia identificação clara, é argumento de defesa.
+
+### 2. Sinalização inadequada da área
+A área de zona azul deve ser claramente sinalizada com placas regulamentares. Se você estava em uma vaga e a sinalização estava ausente, danificada ou ambígua, a multa pode ser contestada.
+
+### 3. Equipamento de emissão de comprovante com defeito
+Se a máquina de compra do talão estava com defeito e você tem como comprovar (foto, testemunha), é argumento válido.
+
+### 4. Horário fora do período de funcionamento
+A zona azul tem horários específicos de funcionamento (geralmente dias úteis em horário comercial). Multa fora desse período é inválida.
+
+### 5. Vaga para pessoas com deficiência sem sinalização adequada
+Se a vaga era especial (PcD, idoso) mas não estava adequadamente sinalizada, a multa pode ser contestada.
+
+## Como montar o recurso
+
+No recurso, você precisa indicar especificamente qual requisito do Art. 280 do CTB não foi cumprido, ou qual irregularidade operacional ocorreu.
+
+Documentos úteis:
+- Foto do local mostrando a sinalização (ou ausência dela)
+- Comprovante de tentativa de compra do talão
+- Declaração de testemunha
+- Horário de funcionamento da zona azul na região
+
+## Onde protocolar
+
+Multas de zona azul são geralmente lavradas pela prefeitura ou concessionária, mas o recurso vai para o **órgão de trânsito municipal** (CET, SETTRAN, SMTT, dependendo da cidade).
+
+O prazo é de **15 dias** da notificação.
+    `
+  },
+  {
+    slug: "recurso-multa-câmera-semaforo",
+    titulo: "Multa de Câmera de Semáforo: Como Contestar",
+    descricao: "Câmeras de semáforo geram milhares de multas por avanço de sinal vermelho. Saiba quais são os vícios técnicos mais comuns e como usar isso na sua defesa.",
+    categoria: "Semáforo",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🚦",
+    imagemBg: "from-red-500 to-yellow-600",
+    palavrasChave: ["multa câmera semáforo como recorrer", "recurso multa avanço sinal câmera", "contestar multa semáforo eletrônico"],
+    conteudo: `
+## Câmeras de semáforo: como funcionam
+
+As câmeras instaladas em cruzamentos capturam imagens dos veículos que avançam o sinal vermelho. O sistema funciona com sensores no asfalto ou por vídeo, registrando automaticamente a placa, a data, o horário e a fase do semáforo.
+
+A infração (Art. 208 do CTB) é gravíssima: 7 pontos e multa de R$ 293,47.
+
+## Por que câmeras de semáforo geram muitos recursos bem-sucedidos?
+
+Porque o sistema depende de equipamentos e processos que precisam estar rigorosamente corretos. Qualquer falha técnica invalida a autuação.
+
+## Vícios técnicos mais comuns
+
+### 1. Equipamento sem homologação INMETRO válida
+As câmeras de semáforo precisam de homologação do INMETRO assim como os radares. Verifique o número de série no auto e consulte a validade da homologação.
+
+### 2. Sincronização incorreta do semáforo
+O sistema precisa registrar que o sinal estava vermelho no exato momento da passagem. Falha na sincronização entre câmera e controlador semafórico invalida a prova.
+
+### 3. Tempo de amarelo insuficiente
+A Resolução CONTRAN nº 796/2020 define tempos mínimos para o sinal amarelo. Se o amarelo durou menos que o mínimo legal, o condutor não teve tempo suficiente para parar e a autuação é questionável.
+
+### 4. Imagem que não identifica claramente a placa
+A foto deve mostrar claramente a placa do veículo. Imagem borrada, com reflexo ou parcialmente encoberta invalida a prova.
+
+### 5. Posição da câmera não cadastrada
+A câmera deve estar cadastrada no órgão de trânsito na posição exata em que está instalada. Câmeras realocadas sem novo cadastramento geram autuações inválidas.
+
+### 6. Sinalização prévia ausente
+Assim como os radares, as câmeras de semáforo devem ser precedidas de sinalização informativa.
+
+## Como verificar a homologação da câmera
+
+1. Localize o número de série do equipamento no auto de infração
+2. Acesse o portal do INMETRO ou do IPEM do seu estado
+3. Consulte a validade da homologação
+4. Verifique se a data da infração estava dentro do período válido
+
+## Estratégia de recurso
+
+Para câmeras de semáforo, priorize a análise técnica:
+- Homologação do equipamento
+- Qualidade da imagem
+- Sincronização semafórica
+
+Se houver qualquer dúvida técnica, a interpretação deve ser favorável ao condutor — o ônus da prova é do órgão autuador.
+    `
+  },
+  {
+    slug: "multa-cnh-vencida-o-que-fazer",
+    titulo: "Multa por CNH Vencida: Dá para Recorrer?",
+    descricao: "Dirigiu com a CNH vencida e levou multa? Entenda o que diz a lei, qual é a penalidade, quando dá para contestar e o que fazer para regularizar sua situação.",
+    categoria: "CNH e Pontos",
+    tempoLeitura: "4 min",
+    imagemEmoji: "📄",
+    imagemBg: "from-amber-500 to-orange-600",
+    palavrasChave: ["multa CNH vencida como recorrer", "dirigir com CNH vencida multa", "recurso multa habilitação vencida"],
+    conteudo: `
+## O que diz a lei sobre CNH vencida
+
+Dirigir com a CNH vencida é infração gravíssima prevista no Art. 162, inciso III do CTB. A penalidade é:
+- Multa de R$ 293,47
+- 7 pontos na CNH
+- Retenção do veículo até regularização
+
+Mas existe uma diferença importante que muita gente não sabe: **CNH vencida é diferente de CNH cassada ou suspensa**.
+
+## CNH vencida x CNH suspensa: a diferença importa
+
+**CNH vencida:** o prazo de validade expirou, mas o condutor ainda tem habilitação — só precisa renovar. A infração é administrativa.
+
+**CNH suspensa ou cassada:** o condutor perdeu temporária ou definitivamente o direito de dirigir. Aqui é crime de trânsito (Art. 307 do CTB).
+
+Essa distinção é importante porque muda a estratégia de defesa.
+
+## Quando dá para recorrer de multa por CNH vencida?
+
+### Erro de identificação
+Se a sua CNH estava válida e o agente errou ao verificar a data de validade, o recurso é direto — basta apresentar a CNH com a data correta.
+
+### Vício formal no auto
+O auto de infração precisa descrever claramente a infração, identificar o agente e conter todos os requisitos do Art. 280 do CTB. Qualquer falha formal é motivo de contestação.
+
+### Renovação já solicitada
+Em alguns estados, se você já havia protocolado o pedido de renovação mas ainda não havia recebido a nova CNH, é possível argumentar boa-fé e apresentar o protocolo de renovação.
+
+### Situação de emergência
+Se você estava dirigindo por emergência comprovada (urgência médica, por exemplo) e a CNH estava vencida há pouco tempo, é possível usar isso na defesa — as chances são menores, mas existe precedente.
+
+## O que fazer se a CNH está vencida
+
+1. Agende a renovação imediatamente no DETRAN
+2. Não dirija até receber a nova CNH
+3. Recorra da multa dentro do prazo de 15 dias
+
+A renovação não cancela a multa retroativamente, mas demonstra boa-fé e regularização — o que pode ajudar no julgamento do recurso.
+
+## Quanto tempo dura o processo de renovação?
+
+Varia por estado, mas em geral:
+- Exame médico: 1 a 5 dias úteis para resultado
+- Entrega da nova CNH: 5 a 15 dias úteis após aprovação
+
+Durante esse período, guarde o protocolo de renovação — ele serve como documento de trânsito provisório em alguns estados.
+    `
+  },
+  {
+    slug: "jari-o-que-e-como-funciona",
+    titulo: "O que é a JARI e Como Recorrer a Ela Após Indeferimento",
+    descricao: "A JARI é a segunda instância do recurso de multa. Se sua defesa prévia foi negada, você ainda tem 30 dias para recorrer. Saiba como funciona e o que esperar.",
+    categoria: "Processo de Recurso",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🏛️",
+    imagemBg: "from-slate-600 to-zinc-800",
+    palavrasChave: ["JARI multa trânsito", "como recorrer JARI", "segunda instância recurso multa"],
+    conteudo: `
+## O que é a JARI?
+
+A **JARI (Junta Administrativa de Recursos de Infrações)** é o órgão de segunda instância para recursos de multas de trânsito. Se sua defesa prévia foi indeferida pelo órgão autuador, a JARI é o próximo passo.
+
+A JARI é composta por representantes do órgão de trânsito, do Ministério Público e da sociedade civil — o que garante uma análise independente em relação ao órgão que lavrou o auto.
+
+## Qual é o prazo para recorrer à JARI?
+
+**30 dias** a partir do recebimento da notificação de indeferimento da defesa prévia.
+
+Diferente da defesa prévia (15 dias), o prazo da JARI é mais generoso — mas ainda assim não pode ser perdido.
+
+## Como funciona o processo na JARI?
+
+1. Você protocola o recurso (online ou presencialmente)
+2. A JARI designa um relator para o caso
+3. O relator faz um parecer e apresenta ao colegiado
+4. O colegiado vota pelo provimento ou manutenção da multa
+5. Você recebe a notificação do resultado
+
+O prazo para julgamento pela JARI não está fixado em lei, mas costuma ser de 30 a 90 dias.
+
+## O que muda na JARI em relação à defesa prévia?
+
+Na defesa prévia, o recurso é analisado pelo mesmo órgão que autuou — o que cria um viés natural para manutenção da multa.
+
+Na JARI, a análise é feita por um colegiado independente. Isso significa que casos indeferidos na defesa prévia frequentemente são providos na JARI — especialmente quando há vício formal claro que o órgão autuador ignorou.
+
+## O que incluir no recurso à JARI?
+
+- Cópia do auto de infração
+- Cópia da defesa prévia
+- Cópia do indeferimento
+- Nova petição reforçando os argumentos (pode incluir argumentos novos)
+- Documentos de suporte
+
+Na JARI você pode complementar sua defesa com novos argumentos que não usou na defesa prévia.
+
+## E se a JARI também indeferir?
+
+Ainda há duas instâncias:
+
+**CETRAN** (Conselho Estadual de Trânsito) — para infrações estaduais
+**CONTRAN** (Conselho Nacional de Trânsito) — para infrações federais (PRF, DNIT)
+
+Após esgotar as instâncias administrativas, é possível recorrer ao **Judiciário**, mas o custo raramente justifica para multas de valor baixo.
+
+## Vale a pena recorrer à JARI?
+
+Sim, quase sempre. Os motivos:
+- Os pontos continuam suspensos enquanto aguarda julgamento
+- A JARI tem viés mais imparcial que o órgão autuador
+- O processo é gratuito
+- Você pode apresentar novos argumentos
+
+A única exceção é quando a infração é clara, não há vício formal e os pontos já expiraram — aí o esforço pode não compensar.
+    `
+  },
+  {
+    slug: "multa-transito-afeta-seguro-auto",
+    titulo: "Multa de Trânsito Afeta o Seguro do Carro?",
+    descricao: "Muitos motoristas não sabem que multas e pontos na CNH podem impactar o valor do seguro do veículo. Entenda como as seguradoras avaliam seu perfil de risco.",
+    categoria: "Seguro e Financeiro",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🛡️",
+    imagemBg: "from-emerald-600 to-teal-800",
+    palavrasChave: ["multa trânsito afeta seguro carro", "pontos CNH seguro auto", "seguro carro multas histórico"],
+    conteudo: `
+## Multas afetam o seguro? A resposta é: depende
+
+Tecnicamente, as seguradoras brasileiras não têm acesso direto ao banco de dados de multas do DETRAN. Mas isso não significa que seu histórico de infrações não afeta o seguro.
+
+## Como as seguradoras avaliam o risco do condutor
+
+No momento da contratação ou renovação do seguro, as seguradoras fazem perguntas sobre o perfil do condutor principal:
+
+- Já teve a CNH suspensa ou cassada?
+- Tem histórico de sinistros nos últimos anos?
+- Qual é o uso do veículo (lazer, trabalho, aplicativo)?
+
+Mentir nessas perguntas é **fraude** e pode resultar na negativa de indenização em caso de sinistro.
+
+## CNH suspensa impacta diretamente
+
+Se a sua CNH foi suspensa por acúmulo de pontos, isso **sim** é informação que as seguradoras consideram diretamente. Condutores com histórico de suspensão são classificados em perfis de maior risco, o que aumenta o prêmio.
+
+## O impacto nos bônus de desconto
+
+A maioria das seguradoras oferece descontos progressivos para condutores sem sinistros — o chamado "bônus". Esse bônus pode representar até 40% de desconto no prêmio.
+
+Embora o bônus seja baseado em sinistros (não em multas), um condutor com muitas multas tende a ter mais sinistros — e as seguradoras usam modelos estatísticos que correlacionam esses dados.
+
+## Quando o seguro pode ser negado?
+
+As seguradoras podem negar a contratação ou renovação nos seguintes casos:
+- CNH suspensa ou cassada no período
+- Histórico de sinistros frequentes
+- Uso do veículo diferente do declarado
+- Condutor com perfil de alto risco por critérios da seguradora
+
+## O que fazer para não perder o bônus
+
+- Recorra de multas injustas — cancelar a multa cancela os pontos
+- Evite infrações gravíssimas (7 pontos cada)
+- Monitore seu extrato de pontos regularmente
+- Declare corretamente seu perfil na contratação
+
+## Recorrer da multa protege mais do que o bolso
+
+Cancelar uma multa não é só sobre os R$ 293 da infração. É sobre os pontos que podem levar à suspensão da CNH, que por sua vez pode aumentar significativamente o custo do seu seguro nos próximos anos.
+
+Nossa IA analisa o auto de infração gratuitamente e identifica se há base para contestar — o custo de R$ 19,90 pela petição pode economizar muito mais a longo prazo.
+    `
+  },
+  {
+    slug: "como-funciona-notificacao-multa-correios",
+    titulo: "Como Funciona a Notificação de Multa pelos Correios",
+    descricao: "Entenda como o processo de notificação de multas funciona, o que acontece se não receber, qual é o prazo real para recorrer e como comprovar que foi notificado.",
+    categoria: "Processo de Recurso",
+    tempoLeitura: "4 min",
+    imagemEmoji: "📬",
+    imagemBg: "from-yellow-600 to-amber-700",
+    palavrasChave: ["notificação multa correios prazo", "não recebi notificação de multa", "como funciona notificação multa trânsito"],
+    conteudo: `
+## Como as notificações de multa chegam até você
+
+Quando um auto de infração é lavrado, o processo de notificação segue etapas específicas definidas pelo CTB:
+
+**1ª notificação — Notificação de Autuação (NA)**
+Informa que você foi autuado. É nesse momento que começa o prazo para a defesa prévia (15 dias).
+
+**2ª notificação — Notificação de Penalidade (NP)**
+Caso a defesa prévia não seja apresentada ou seja indeferida, você recebe a notificação de penalidade com o valor da multa e o prazo para pagamento ou recurso à JARI.
+
+## Como as notificações são enviadas
+
+As notificações podem ser enviadas de três formas:
+- **Carta registrada** pelos Correios (endereço do CRV/documento do veículo)
+- **Notificação eletrônica** (SNE — Sistema de Notificação Eletrônica, para quem aderiu)
+- **Edital** em Diário Oficial (quando a carta retorna ou o endereço é desconhecido)
+
+## O que acontece se eu não receber a notificação?
+
+Se a carta foi enviada para o endereço cadastrado no documento do veículo e retornou, o órgão pode publicar a notificação em Diário Oficial ou portal eletrônico. Após a publicação, o prazo começa a correr — mesmo que você nunca tenha visto o aviso.
+
+Por isso é essencial manter o endereço do veículo atualizado no DETRAN.
+
+## "Não recebi a notificação" é argumento de defesa?
+
+Às vezes. Se você pode provar que:
+- O endereço no CRV estava incorreto por erro do DETRAN
+- A carta foi entregue a terceiros sem sua autorização
+- Houve falha comprovada dos Correios
+
+Nesses casos, é possível argumentar que o prazo não deveria ter começado a correr.
+
+## Como verificar se existe notificação pendente
+
+Não espere a carta chegar. Consulte periodicamente:
+- Portal do DETRAN do seu estado
+- App Carteira Digital de Trânsito
+- Sistema de Notificação Eletrônica (SNE) do Senatran
+
+## O que é o SNE (Sistema de Notificação Eletrônica)?
+
+O SNE é um sistema voluntário onde o condutor opta por receber todas as notificações eletronicamente. As vantagens são:
+- Desconto de 40% no valor da multa se pagar rapidamente
+- Notificação instantânea (sem atraso dos Correios)
+- Prazo começa a correr de forma transparente
+
+A adesão é gratuita e pode ser feita no portal do Senatran.
+
+## Dica importante
+
+Se você comprou um veículo usado e o vendedor não transferiu o documento, as notificações continuam chegando no endereço do antigo proprietário. Transfira o veículo imediatamente após a compra — o prazo de 30 dias é obrigatório por lei.
+    `
+  },
+  {
+    slug: "multa-transito-como-pagar-com-desconto",
+    titulo: "Como Pagar Multa de Trânsito com Desconto de 40%",
+    descricao: "Sabia que dá para pagar multa com até 40% de desconto? Entenda como funciona o SNE, quais multas têm desconto e como aproveitar antes do prazo acabar.",
+    categoria: "Pagamento",
+    tempoLeitura: "4 min",
+    imagemEmoji: "💰",
+    imagemBg: "from-green-500 to-emerald-700",
+    palavrasChave: ["pagar multa com desconto", "desconto multa trânsito 40%", "SNE desconto multa"],
+    conteudo: `
+## Desconto de 40% na multa: isso existe de verdade?
+
+Sim, existe. E muita gente perde esse benefício por não saber que tem prazo curto.
+
+O desconto está previsto no Art. 284-A do CTB e é aplicado automaticamente para quem aderiu ao **SNE (Sistema de Notificação Eletrônica)** e paga a multa dentro de 15 dias úteis do recebimento da notificação eletrônica.
+
+## Como funciona o SNE
+
+O SNE é um sistema voluntário onde o condutor opta por receber todas as notificações de multa eletronicamente, pelo portal do Senatran, em vez de esperar a carta pelos Correios.
+
+Vantagens:
+- Desconto de 40% no valor da multa se pagar em até 15 dias úteis
+- Notificação imediata (sem depender dos Correios)
+- Prazo de recurso começa a contar de forma transparente
+- Acesso a todas as notificações em um só lugar
+
+## Como aderir ao SNE
+
+1. Acesse **portalservicos.senatran.serpro.gov.br**
+2. Faça login com sua conta gov.br
+3. Acesse "Sistema de Notificação Eletrônica"
+4. Selecione os veículos que deseja incluir
+5. Confirme a adesão
+
+A adesão é gratuita e pode ser cancelada a qualquer momento.
+
+## Quais multas têm desconto?
+
+O desconto de 40% se aplica a multas federais (PRF, DNIT) e estaduais, desde que o estado tenha aderido ao SNE. A maioria dos estados já participa.
+
+Multas municipais (prefeituras) seguem regras próprias — consulte o órgão de trânsito da sua cidade.
+
+## E se eu quiser recorrer em vez de pagar?
+
+Você não precisa escolher entre o desconto e o recurso. Se preferir contestar a multa, apresente a defesa prévia dentro do prazo de 15 dias. O recurso suspende o pagamento — e se você ganhar, não paga nada.
+
+O desconto só faz sentido se você decidiu **não recorrer** e quer minimizar o valor da multa.
+
+## Comparando as opções
+
+Para uma multa gravíssima de R$ 293,47:
+- Com desconto SNE: R$ 176,08
+- Sem desconto (pagamento normal): R$ 293,47
+- Recorrendo e ganhando: R$ 0,00
+
+Nossa IA analisa gratuitamente se há base para recurso. Se não houver, o desconto de 40% é o caminho mais inteligente.
+    `
+  },
+  {
+    slug: "multa-transito-prescreve",
+    titulo: "Multa de Trânsito Prescreve? Prazo e O que Acontece se Não Pagar",
+    descricao: "Multa de trânsito tem prazo de prescrição? O que acontece com multas antigas não pagas? Entenda as consequências reais e o que fazer com débitos antigos.",
+    categoria: "Dúvidas Frequentes",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⏰",
+    imagemBg: "from-gray-600 to-slate-800",
+    palavrasChave: ["multa trânsito prescreve", "prazo prescrição multa trânsito", "multa antiga não paga o que acontece"],
+    conteudo: `
+## Multa de trânsito prescreve?
+
+Sim — mas não da forma que a maioria das pessoas imagina, e o processo é longo.
+
+A prescrição de multas de trânsito segue o **Decreto nº 20.910/1932**, que define prazo de 5 anos para dívidas com a administração pública. Mas na prática, antes de prescrever, a multa passa por várias etapas que têm consequências sérias.
+
+## O que acontece com uma multa não paga ao longo do tempo
+
+**Dias 1-30:** Prazo para pagamento com ou sem desconto
+
+**Após 30 dias:** A multa vai para **dívida ativa** do estado ou município. A partir daí:
+- Acrescenta juros de mora (1% ao mês) e correção monetária
+- Pode ser inscrita no CADIN (Cadastro Informativo de Créditos)
+- Impede o licenciamento do veículo
+
+**Após o licenciamento vencer:** O veículo fica com restrição — não pode ser transferido, não passa na vistoria e pode ser retido em fiscalização.
+
+**Em casos extremos:** A dívida pode ser cobrada judicialmente via execução fiscal.
+
+## Os pontos prescrevem antes da multa
+
+Os **pontos na CNH** têm prazo de 12 meses a partir da infração. Depois disso, saem automaticamente do prontuário — independente de a multa ter sido paga ou não.
+
+Ou seja: uma multa de 2020 não paga ainda gera débito financeiro, mas os pontos já sumiram há anos.
+
+## O que NÃO acontece com multa não paga
+
+Muita gente tem medo sem necessidade. Multa de trânsito não paga:
+- **Não gera prisão** — é dívida administrativa, não crime
+- **Não vai para SPC/Serasa** diretamente (apenas via CADIN em alguns casos)
+- **Não suspende a CNH** retroativamente (os pontos já expiraram)
+
+## Quando a multa realmente prescreve
+
+Após 5 anos da inscrição em dívida ativa sem cobrança judicial, a multa prescreve. Na prática, para multas de baixo valor, muitos órgãos não entram com execução fiscal — e a dívida acaba prescrevendo.
+
+Para multas de alto valor ou acúmulo de débitos, o risco de cobrança judicial é maior.
+
+## O que fazer com débitos antigos
+
+Se você tem multas antigas não pagas:
+1. Consulte o extrato no DETRAN ou portal do Senatran
+2. Verifique se ainda estão dentro do prazo de recurso (improvável para multas antigas)
+3. Verifique se impedem o licenciamento do veículo
+4. Avalie negociação — muitos estados oferecem parcelamento ou até anistia periódica
+
+## Dica: DETRAN SP e outros estados têm parcelamento
+
+Diversos estados permitem parcelar multas antigas em até 60 vezes. Consulte o DETRAN do seu estado para verificar as condições disponíveis.
+    `
+  },
+  {
+    slug: "como-tirar-pontos-cnh",
+    titulo: "Como Tirar Pontos da CNH: O Que Funciona e O Que É Mito",
+    descricao: "Existem cursos, recursos e estratégias para reduzir pontos na CNH. Mas muito do que circula na internet é mito. Saiba o que realmente funciona.",
+    categoria: "CNH e Pontos",
+    tempoLeitura: "5 min",
+    imagemEmoji: "✂️",
+    imagemBg: "from-purple-600 to-violet-800",
+    palavrasChave: ["como tirar pontos CNH", "reduzir pontos carteira de habilitação", "curso pontos CNH"],
+    conteudo: `
+## Dá para tirar pontos da CNH?
+
+Sim — mas as opções são bem mais limitadas do que muita gente vende por aí. Vamos separar o que funciona do que é mito.
+
+## O que realmente funciona
+
+### 1. Esperar os 12 meses
+A forma mais simples e garantida. Os pontos saem automaticamente após 12 meses da data da infração. Não existe atalho mais confiável que esse.
+
+### 2. Recorrer da multa e ganhar
+Se a multa for cancelada em recurso (defesa prévia, JARI ou CONTRAN), os pontos correspondentes também são cancelados. Essa é a única forma de remover pontos antes dos 12 meses de forma legítima.
+
+### 3. Curso de reciclagem (em casos específicos)
+O curso de reciclagem **não remove pontos** — ele é obrigatório como condição para reobter a CNH após suspensão. Quem te disse que o curso tira pontos está errado.
+
+## O que NÃO funciona (mitos comuns)
+
+### "Curso de direção defensiva tira pontos"
+**Mito.** Cursos de direção defensiva são ótimos para a segurança no trânsito, mas não têm efeito legal sobre os pontos na CNH.
+
+### "Trocar de DETRAN zera os pontos"
+**Mito.** Os pontos ficam vinculados ao CPF do condutor, não ao estado. Mudar de estado não apaga o histórico.
+
+### "Pagar a multa antes cancela os pontos"
+**Mito.** O pagamento quita a dívida financeira mas não cancela os pontos. Os pontos só saem com o prazo de 12 meses ou com o cancelamento da multa via recurso.
+
+### "Advogado consegue tirar pontos rápido"
+**Depende.** Um advogado pode entrar com recurso administrativo ou judicial para cancelar a multa — aí os pontos somem. Mas não existe atalho jurídico mágico que burle o sistema.
+
+## Estratégia inteligente para quem está próximo do limite
+
+Se você está com 15+ pontos e próximo do limite de suspensão:
+
+1. **Analise cada multa recente** — alguma tem vício formal? Vale recorrer.
+2. **Evite infrações gravíssimas** (7 pontos cada) — elas travam você no limite de 20 pontos.
+3. **Monitore seu extrato mensalmente** — saiba exatamente quando cada ponto expira.
+4. **Calcule o momento** — às vezes esperar um mês para uma infração antiga expirar resolve o problema.
+
+## Quanto tempo leva para os pontos sumirem?
+
+Os pontos saem exatamente 12 meses após a data da **infração** — não da notificação, não do pagamento.
+
+Exemplo: infração em 10 de março de 2025 → pontos saem em 10 de março de 2026.
+
+Você pode acompanhar no extrato do DETRAN ou no app Carteira Digital de Trânsito.
+    `
+  },
+  {
+    slug: "multa-lombada-eletronica-como-recorrer",
+    titulo: "Multa de Lombada Eletrônica: Como Contestar",
+    descricao: "Lombadas eletrônicas geram muitas multas questionáveis. Saiba como verificar se o equipamento estava calibrado, se a sinalização era adequada e como montar seu recurso.",
+    categoria: "Velocidade",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🛑",
+    imagemBg: "from-orange-600 to-red-700",
+    palavrasChave: ["multa lombada eletrônica como recorrer", "contestar multa redutor velocidade", "recurso multa lombada"],
+    conteudo: `
+## O que é a lombada eletrônica
+
+A lombada eletrônica (ou redutor de velocidade eletrônico) é um equipamento que mede a velocidade do veículo em um trecho específico, geralmente em áreas escolares, hospitalares ou de alto risco de acidentes.
+
+Diferente do radar convencional que mede a velocidade pontual, algumas lombadas medem a velocidade média em um trecho.
+
+## Requisitos legais para lombada eletrônica
+
+Para que a autuação seja válida, a lombada eletrônica precisa cumprir:
+
+**1. Homologação INMETRO**
+O equipamento deve ter certificado de homologação válido. Verifique o número de série no auto e consulte no portal do INMETRO.
+
+**2. Sinalização prévia obrigatória**
+Deve haver placa informando a lombada eletrônica antes do equipamento. A distância mínima de antecedência é definida pela Resolução CONTRAN.
+
+**3. Limite de velocidade sinalizado**
+O limite de velocidade da via deve estar claramente sinalizado antes do ponto de medição.
+
+**4. Margem de erro aplicada**
+Assim como nos radares, a margem de erro do equipamento deve ser descontada antes de gerar a autuação.
+
+## Erros mais comuns em multas de lombada eletrônica
+
+### Sinalização insuficiente ou danificada
+A placa avisando a lombada estava ausente, danificada ou posicionada de forma que não era visível? É argumento válido de contestação.
+
+### Homologação vencida
+Verifique sempre a data de validade do certificado INMETRO. Lombadas com homologação vencida geram autuações inválidas.
+
+### Limite de velocidade ambíguo
+Se a via tinha múltiplas sinalizações contraditórias sobre o limite de velocidade, o recurso pode alegar ambiguidade na sinalização.
+
+### Lombada não cadastrada no órgão
+O equipamento deve estar oficialmente cadastrado no órgão de trânsito. Lombadas instaladas por iniciativa privada sem cadastramento oficial são ilegais.
+
+## Como verificar informações sobre a lombada
+
+1. Anote o número de série do equipamento no auto de infração
+2. Consulte o portal do INMETRO (inmetro.gov.br) para verificar a homologação
+3. Consulte o DETRAN ou CET do seu município para confirmar o cadastramento do equipamento
+4. Se possível, fotografe o local para documentar a sinalização
+
+## Diferença entre lombada física e eletrônica na autuação
+
+A lombada física (de asfalto) não gera autuação automática — o agente precisa estar presente. A lombada eletrônica gera autuação automática por câmera.
+
+Para recorrer de multa por não respeitar lombada física, o processo é diferente — geralmente envolve questionamento da presença e identificação do agente.
+    `
+  },
+  {
+    slug: "detran-sp-recurso-multa-como-fazer",
+    titulo: "Como Recorrer de Multa no DETRAN SP: Passo a Passo",
+    descricao: "Guia completo para contestar multas pelo DETRAN de São Paulo. Sistema online, prazos, documentos necessários e o que esperar do julgamento.",
+    categoria: "DETRAN",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-blue-700 to-slate-900",
+    palavrasChave: ["recurso multa DETRAN SP", "como recorrer multa São Paulo", "defesa prévia DETRAN SP online"],
+    conteudo: `
+## DETRAN SP: o maior volume de multas do Brasil
+
+São Paulo concentra o maior volume de autuações de trânsito do país. Por isso, o DETRAN SP tem um sistema online bem desenvolvido para protocolos de recurso — o que facilita (mas não simplifica) o processo.
+
+## Sistema para recurso de multas no DETRAN SP
+
+O DETRAN SP utiliza dois sistemas principais dependendo do tipo de infração:
+
+**Portal DETRAN SP (www.detran.sp.gov.br)**
+Para infrações estaduais — autuadas pela Polícia Militar, CIRETRAN e fiscalização estadual.
+
+**Portal CET SP (www.cetsp.com.br)**
+Para infrações municipais — autuadas pela CET (Companhia de Engenharia de Tráfego) na cidade de São Paulo.
+
+Fique atento: usar o portal errado atrasa o processo.
+
+## Como identificar quem autuou
+
+No auto de infração, procure o campo "Órgão Autuador":
+- **PM / DETRAN / CIRETRAN** → portal DETRAN SP
+- **CET** → portal CET SP
+- **DER** (Departamento de Estradas de Rodagem) → portal DER SP
+
+## Passo a passo para recurso online no DETRAN SP
+
+**1. Acesse o portal correto**
+Entre em detran.sp.gov.br e localize a área de "Recursos e Defesa Prévia".
+
+**2. Faça login**
+Use o CPF e senha cadastrados ou acesse via Gov.br.
+
+**3. Localize o auto de infração**
+Informe o número do auto ou a placa do veículo.
+
+**4. Selecione o tipo de recurso**
+- Defesa Prévia (dentro de 15 dias da notificação)
+- Recurso à JARI (dentro de 30 dias após indeferimento)
+
+**5. Redija ou cole a petição**
+O sistema permite digitar o texto da defesa diretamente ou anexar PDF.
+
+**6. Anexe documentos**
+Upload do auto de infração, documentos pessoais e qualquer prova que suporte a defesa.
+
+**7. Protocole**
+Guarde o número de protocolo gerado — é a prova de entrega dentro do prazo.
+
+## Prazos no DETRAN SP
+
+- Defesa Prévia: 15 dias da notificação de autuação
+- Recurso à JARI: 30 dias após indeferimento da defesa prévia
+- Resposta do órgão: sem prazo fixo em lei (média de 30 a 90 dias)
+
+## Dica importante para São Paulo
+
+Em São Paulo, multas da CET e do DETRAN são sistemas completamente separados. Um condutor pode ter multas nos dois sistemas ao mesmo tempo e precisa acompanhar em portais diferentes.
+
+Se você recebeu uma multa mas não tem certeza de qual órgão autuou, ligue para o 0800 055 5540 (DETRAN SP) ou consulte diretamente o portal com a placa do veículo.
+    `
+  },
+  {
+    slug: "multa-transito-recorrer-sem-advogado",
+    titulo: "Dá Para Recorrer de Multa Sem Advogado?",
+    descricao: "A resposta é sim — e na maioria dos casos você não precisa de um. Entenda quando o recurso pode ser feito por você mesmo e quando vale contratar um advogado.",
+    categoria: "Dúvidas Frequentes",
+    tempoLeitura: "4 min",
+    imagemEmoji: "✅",
+    imagemBg: "from-teal-500 to-emerald-700",
+    palavrasChave: ["recorrer multa sem advogado", "recurso multa próprio", "preciso de advogado para contestar multa"],
+    conteudo: `
+## Você não precisa de advogado para recorrer de multa
+
+O recurso de multa de trânsito é um processo administrativo — não judicial. Isso significa que qualquer pessoa pode protocolar sua própria defesa sem necessidade de representação por advogado.
+
+Essa é uma garantia do CTB e da Constituição: o direito de defesa não exige intermediário.
+
+## Quando você mesmo pode (e deve) recorrer
+
+Na maioria dos casos, o recurso administrativo é simples o suficiente para ser feito sem advogado:
+
+- Quando há vício formal claro (erro no endereço, data, identificação do agente)
+- Quando o equipamento não tinha aferição válida
+- Quando a sinalização era inadequada
+- Quando você não estava dirigindo o veículo
+- Quando há erro de enquadramento da infração
+
+Nesses casos, a argumentação é técnica e objetiva — não exige conhecimento jurídico aprofundado.
+
+## O que você precisa para recorrer sozinho
+
+1. O auto de infração completo
+2. Identificação do vício formal (o que está errado no auto)
+3. Uma petição bem estruturada citando o Art. 280 do CTB
+4. Documentos de suporte (se houver)
+
+Nossa IA faz exatamente isso: analisa o auto, identifica os vícios e gera a petição completa por R$ 19,90 — sem advogado, sem burocracia.
+
+## Quando vale contratar um advogado
+
+Existem situações em que a expertise jurídica faz diferença:
+
+- **Suspensão ou cassação da CNH** com impacto na sua atividade profissional
+- **Recurso judicial** após esgotamento das instâncias administrativas
+- **Acúmulo elevado de multas** com risco real de suspensão
+- **Multas de altíssimo valor** onde o custo do advogado se justifica economicamente
+- **Infrações com agravantes penais** (acidente, embriaguez, fuga)
+
+Nesses casos, o custo do advogado pode ser menor que as consequências de perder o recurso.
+
+## Quanto custa um advogado de trânsito?
+
+Os valores variam muito, mas em média:
+- Defesa prévia simples: R$ 300 a R$ 800
+- Recurso à JARI: R$ 500 a R$ 1.500
+- Recurso judicial: R$ 1.500 a R$ 5.000+
+
+Para uma multa de R$ 293,47, contratar advogado raramente faz sentido econômico — a menos que haja pontos em jogo que afetem a CNH.
+
+## A solução inteligente: IA para o recurso
+
+Nossa ferramenta combina o melhor dos dois mundos: análise jurídica de qualidade sem o custo de um advogado. A IA identifica os mesmos vícios que um especialista identificaria e gera uma petição fundamentada no CTB — por uma fração do preço.
+    `
+  },
+  {
+    slug: "multa-transito-moto-como-recorrer",
+    titulo: "Multa de Moto: Diferenças no Processo de Recurso",
+    descricao: "Motociclistas têm algumas particularidades no processo de recurso de multas. Entenda quais infrações são mais comuns para motos e como contestar de forma eficaz.",
+    categoria: "Motocicletas",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🏍️",
+    imagemBg: "from-zinc-700 to-gray-900",
+    palavrasChave: ["multa moto como recorrer", "recurso multa motocicleta", "contestar multa moto"],
+    conteudo: `
+## Motociclistas e multas: um cenário particular
+
+Motociclistas recebem, proporcionalmente, mais multas do que condutores de automóveis. Parte disso se deve ao comportamento no trânsito; parte, a autuações questionáveis por parte dos agentes.
+
+O processo de recurso para motos segue as mesmas regras do CTB que para carros — mas algumas infrações têm características específicas que abrem espaço para contestação.
+
+## Infrações mais comuns para motociclistas
+
+### Condução entre faixas (corredor)
+O CTB não proíbe expressamente a condução entre faixas — existe uma lacuna legal. A Resolução CONTRAN nº 528/2015 trata do assunto mas com linguagem ambígua. Muitos recursos baseados nessa ambiguidade são providos.
+
+### Não usar colete refletivo
+Obrigatório para motociclistas em rodovias. Dentro do perímetro urbano, a exigência é diferente. Verifique se a infração ocorreu em local onde o colete era realmente obrigatório.
+
+### Excesso de velocidade por radar
+Para motos, a identificação da placa traseira pode ser mais difícil para câmeras. Imagem que não identifica claramente a placa invalida a autuação.
+
+### Ultrapassagem pela direita
+É proibida em determinadas circunstâncias. Mas a definição de "ultrapassagem" versus "manobra de fila" tem sido contestada com sucesso em muitos recursos.
+
+### Não usar capacete adequado
+O capacete deve ser de acordo com as normas ABNT. Mas a autuação precisa especificar qual norma foi violada — descrição genérica é vício formal.
+
+## Particularidades na identificação do condutor
+
+Para motos, o agente frequentemente não consegue identificar o condutor no momento da infração. Nesses casos:
+
+- A notificação vai para o proprietário do veículo
+- O proprietário pode indicar o condutor real (ICI)
+- O prazo para indicação é de 15 dias
+
+Se você era o condutor mas não é o proprietário, e o proprietário te indicou, você recebe a notificação e pode apresentar sua própria defesa.
+
+## Como a câmera identifica a moto
+
+Câmeras traseiras identificam a placa. Câmeras frontais muitas vezes não conseguem identificar motos adequadamente — o que abre espaço para contestação da autoria.
+
+Se a imagem não mostra claramente a placa da sua moto, exija que o órgão apresente prova técnica de que o veículo era o seu.
+
+## Dica específica para motociclistas
+
+Muitos agentes autuam motociclistas de forma subjetiva — "condução perigosa", "zigue-zague" — sem descrever objetivamente o comportamento observado.
+
+A descrição da infração precisa ser específica. "Conduzia de forma perigosa" sem mais detalhes é vício formal que pode anular a multa.
+    `
+  },
+  {
+    slug: "blitz-policia-direitos-motorista",
+    titulo: "Blitz Policial: Quais São Seus Direitos Como Motorista",
+    descricao: "Saber seus direitos em uma abordagem policial evita situações desnecessárias. Entenda o que a polícia pode e não pode fazer, o que você é obrigado a apresentar e como agir.",
+    categoria: "Direitos do Motorista",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🚔",
+    imagemBg: "from-blue-800 to-indigo-900",
+    palavrasChave: ["direitos motorista blitz", "blitz policial o que fazer", "abordagem policial trânsito direitos"],
+    conteudo: `
+## O que é uma blitz e quando ela é legal
+
+A blitz de trânsito é uma fiscalização coletiva em via pública, geralmente realizada por agentes de trânsito, Polícia Militar ou PRF. Para ser legal, a blitz deve:
+
+- Estar em local com sinalização visível
+- Ser realizada por agentes identificados e uniformizados
+- Ter finalidade de fiscalização (documentos, álcool, condições do veículo)
+
+Blitz sem identificação dos agentes ou em local sem sinalização pode ser questionada.
+
+## O que você é obrigado a apresentar
+
+Em uma blitz de trânsito, você é obrigado a apresentar:
+
+- **CNH** (Carteira Nacional de Habilitação) ou Permissão para Dirigir
+- **CRLV** (Certificado de Registro e Licenciamento do Veículo) — pode ser digital
+- **Documento de identidade** quando solicitado
+
+A CNH digital e o CRLV-e (digital) têm validade legal e devem ser aceitos.
+
+## O que a polícia PODE fazer
+
+- Verificar documentos do veículo e do condutor
+- Solicitar teste do bafômetro (Lei Seca)
+- Vistoriar o veículo externamente
+- Verificar equipamentos obrigatórios (cinto, faróis, pneus)
+- Autuar por infrações observadas
+
+## O que a polícia NÃO pode fazer sem mandado
+
+- Revistar o interior do veículo sem consentimento ou fundada suspeita
+- Abrir o porta-malas sem autorização
+- Deter o condutor sem flagrante ou ordem judicial
+- Apreender documentos originais (pode tirar cópia)
+
+## Teste do bafômetro: posso me recusar?
+
+Tecnicamente sim — mas há consequências. A recusa ao bafômetro é equiparada à infração de embriaguez (Art. 165-A do CTB) e gera:
+- Multa de R$ 2.934,70
+- Suspensão da CNH por 12 meses
+- Retenção do veículo
+
+Além disso, a recusa pode ser usada como indício em processos posteriores.
+
+## Como agir em uma blitz
+
+1. **Pare com segurança** no local indicado pelos agentes
+2. **Mantenha a calma** — nervosismo desnecessário complica a situação
+3. **Apresente os documentos solicitados** sem discussão
+4. **Não assine nada sem ler** — especialmente o auto de infração
+5. **Anote tudo** — nome e matrícula do agente, hora, local
+
+Se receber um auto que considera injusto, não discuta na hora. Assine com ressalva ("assino sem concordar") e recorra dentro do prazo legal.
+
+## Posso filmar a abordagem?
+
+Sim. Filmar agentes públicos em exercício de função é legal no Brasil. A gravação pode ser usada como prova em recurso posterior.
+
+## O que fazer se considerar a abordagem abusiva
+
+- Anote todos os dados da ocorrência
+- Registre Boletim de Ocorrência se houver irregularidade
+- Procure a Ouvidoria do órgão de trânsito
+- Consulte a Defensoria Pública se houver violação de direitos
+    `
+  },
+  {
+    slug: "multa-transito-recorrer-pelo-celular",
+    titulo: "Como Recorrer de Multa Pelo Celular: Apps e Portais",
+    descricao: "Não precisa ir ao DETRAN pessoalmente. Saiba quais apps e portais permitem contestar multas pelo celular, como funciona e o que você precisa para protocolar.",
+    categoria: "Digital",
+    tempoLeitura: "4 min",
+    imagemEmoji: "📱",
+    imagemBg: "from-cyan-600 to-blue-700",
+    palavrasChave: ["recorrer multa pelo celular", "app recurso multa trânsito", "contestar multa online celular"],
+    conteudo: `
+## É possível recorrer de multa sem sair de casa?
+
+Sim — e em 2025, a maioria dos órgãos de trânsito já tem sistemas online ou apps que permitem protocolar o recurso completamente pelo celular.
+
+Acabou a necessidade de enfrentar fila no DETRAN para contestar uma multa.
+
+## Principais canais digitais por órgão
+
+### Infrações federais (PRF, DNIT)
+**App: Carteira Digital de Trânsito (CDT)**
+Disponível para iOS e Android. Permite consultar infrações, acompanhar recursos e acessar o sistema SIGER da PRF.
+
+**Portal:** siger.prf.gov.br (funciona bem pelo celular)
+
+### Infrações estaduais — São Paulo
+**Portal DETRAN SP:** detran.sp.gov.br (adaptado para mobile)
+**App DETRAN SP:** disponível na App Store e Google Play
+
+### Infrações municipais — São Paulo
+**Portal CET SP:** cetsp.com.br
+
+### Outros estados
+A maioria dos DETRANs estaduais tem portal web responsivo. Consulte o site do DETRAN do seu estado.
+
+## O que você precisa para protocolar pelo celular
+
+- Conta gov.br (nível prata ou ouro para algumas funcionalidades)
+- Auto de infração (número ou foto)
+- Documentos pessoais (CPF, foto da CNH)
+- A petição de defesa em texto ou PDF
+
+## Como funciona o app Carteira Digital de Trânsito (CDT)
+
+O CDT é o app oficial do governo federal para condutores:
+
+1. Baixe na App Store ou Google Play
+2. Faça login com conta gov.br
+3. Acesse "Infrações"
+4. Selecione a infração que deseja contestar
+5. Protocole a defesa prévia ou recurso
+
+O app também mostra seu extrato de pontos em tempo real.
+
+## Dica: foto do auto de infração como prova
+
+Se você não tem o documento físico mas tirou foto do auto no momento da abordagem, a foto é aceita como referência para localizar a infração no sistema. O número do auto está sempre na foto.
+
+## Acompanhamento do recurso pelo celular
+
+Após protocolar, você pode acompanhar o andamento no mesmo portal ou app. Guarde o número de protocolo — é fundamental para acompanhar o status.
+
+## E se o sistema online não funcionar?
+
+Se o portal estiver fora do ar e o prazo estiver vencendo, vá presencialmente ao DETRAN ou protocole por Sedex com aviso de recebimento. Guarde o comprovante de envio — ele prova que você agiu dentro do prazo mesmo que o sistema falhe.
+    `
+  },
+  {
+    slug: "multa-velocidade-media-como-funciona",
+    titulo: "Multa por Velocidade Média: Como Funciona e Como Recorrer",
+    descricao: "O sistema de velocidade média mede o tempo que você leva entre dois pontos. Entenda como funciona, quais são as margens de erro e como contestar esse tipo de multa.",
+    categoria: "Velocidade",
+    tempoLeitura: "5 min",
+    imagemEmoji: "📍",
+    imagemBg: "from-rose-600 to-red-800",
+    palavrasChave: ["multa velocidade média como recorrer", "radar velocidade média contestar", "recurso multa velocidade média"],
+    conteudo: `
+## O que é o sistema de velocidade média
+
+O sistema de velocidade média (também chamado de Controle de Velocidade Média ou CVM) mede o tempo que o veículo leva para percorrer um trecho entre dois pontos de leitura. Com base na distância e no tempo, calcula a velocidade média.
+
+Se a velocidade média ultrapassar o limite estabelecido, o sistema gera a autuação automaticamente.
+
+## Como o cálculo é feito
+
+Fórmula básica: **Velocidade Média = Distância ÷ Tempo**
+
+Exemplo:
+- Distância entre os pontos: 10 km
+- Tempo percorrido: 7 minutos
+- Velocidade média calculada: 85,7 km/h
+
+Se o limite da via é 80 km/h, o sistema verifica se a velocidade média (descontada a margem de erro) ultrapassa o limite.
+
+## Margem de erro nos sistemas de velocidade média
+
+Assim como nos radares convencionais, os sistemas de velocidade média têm margem de erro que deve ser descontada antes de gerar a autuação.
+
+A margem específica varia por equipamento e deve estar no certificado de homologação. Tipicamente é de 3% a 5%.
+
+Verifique sempre se a velocidade considerada para a autuação já descontou essa margem.
+
+## Vícios técnicos mais comuns
+
+### 1. Homologação INMETRO dos equipamentos de leitura
+Cada câmera de leitura de placa no sistema precisa de homologação individual. Sistemas com câmeras sem homologação válida geram autuações inválidas.
+
+### 2. Sincronização entre os pontos
+Os equipamentos nos dois pontos precisam ter relógios sincronizados. Dessincronização altera o cálculo do tempo e consequentemente da velocidade.
+
+### 3. Identificação incorreta da placa
+Se o sistema leu uma placa diferente da sua em um dos pontos (por erro de OCR ou placa danificada), o cálculo de tempo fica comprometido.
+
+### 4. Trecho com desvio obrigatório
+Se havia obras ou desvio obrigatório que aumentou a distância percorrida, o cálculo de velocidade média é impreciso.
+
+### 5. Parada intermediária não considerada
+Se você parou em um posto de combustível, banheiro ou atendimento de emergência entre os dois pontos, o tempo parado inflou o tempo total — o que paradoxalmente poderia fazer a velocidade média parecer menor. Mas se o sistema não registrou a parada, pode haver inconsistências.
+
+## Como verificar os dados da autuação
+
+No auto de infração por velocidade média, procure:
+- Localização dos dois pontos de leitura
+- Horário de passagem em cada ponto
+- Distância considerada
+- Velocidade calculada antes e depois da margem de erro
+- Número de série dos equipamentos
+
+Com essas informações, você pode verificar o cálculo e a homologação dos equipamentos.
+
+## Estratégia de recurso
+
+Para sistemas de velocidade média, a contestação mais eficaz é técnica:
+1. Verifique a homologação de ambos os equipamentos
+2. Confira se o cálculo matemático está correto
+3. Verifique se houve alguma parada ou desvio no trecho
+4. Questione a sincronização dos equipamentos se houver indício de erro
+    `
+  },
 ];
