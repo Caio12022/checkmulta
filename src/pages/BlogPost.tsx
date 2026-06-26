@@ -1,8 +1,8 @@
 import { useParams, Link, Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { ArrowLeft, Clock, ShieldCheck, ArrowRight } from "lucide-react";
 import { artigos } from "../data/artigos";
 
-// Renderizador simples de markdown para o conteúdo dos artigos
 const renderMarkdown = (texto: string) => {
   const linhas = texto.trim().split("\n");
   const elementos: JSX.Element[] = [];
@@ -11,7 +11,6 @@ const renderMarkdown = (texto: string) => {
   while (i < linhas.length) {
     const linha = linhas[i];
 
-    // H2
     if (linha.startsWith("## ")) {
       elementos.push(
         <h2 key={i} className="text-xl sm:text-2xl font-black text-slate-900 mt-10 mb-4 leading-tight">
@@ -19,7 +18,6 @@ const renderMarkdown = (texto: string) => {
         </h2>
       );
     }
-    // H3
     else if (linha.startsWith("### ")) {
       elementos.push(
         <h3 key={i} className="text-lg font-black text-slate-800 mt-6 mb-3 leading-tight">
@@ -27,7 +25,6 @@ const renderMarkdown = (texto: string) => {
         </h3>
       );
     }
-    // Tabela simples (linha com |)
     else if (linha.includes("|") && linha.trim().startsWith("|")) {
       const linhasTabela: string[] = [];
       while (i < linhas.length && linhas[i].includes("|")) {
@@ -60,7 +57,6 @@ const renderMarkdown = (texto: string) => {
       );
       continue;
     }
-    // Lista com -
     else if (linha.startsWith("- ")) {
       const itens: string[] = [];
       while (i < linhas.length && linhas[i].startsWith("- ")) {
@@ -79,7 +75,6 @@ const renderMarkdown = (texto: string) => {
       );
       continue;
     }
-    // Lista numerada
     else if (/^\d+\.\s/.test(linha)) {
       const itens: string[] = [];
       while (i < linhas.length && /^\d+\.\s/.test(linhas[i])) {
@@ -100,11 +95,9 @@ const renderMarkdown = (texto: string) => {
       );
       continue;
     }
-    // Parágrafo vazio
     else if (linha.trim() === "") {
       // ignora
     }
-    // Parágrafo normal
     else {
       elementos.push(
         <p key={i} className="text-slate-700 text-[15px] sm:text-base leading-relaxed font-medium my-3"
@@ -118,11 +111,10 @@ const renderMarkdown = (texto: string) => {
   return elementos;
 };
 
-// Formata negrito e itálico inline
 const formatarTexto = (texto: string): string => {
   return texto
-    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-slate-900 font-black">$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
+    .replace(/\\(.?)\\*/g, '<strong class="text-slate-900 font-black">$1</strong>')
+    .replace(/\(.?)\*/g, '<em class="italic">$1</em>');
 };
 
 export default function BlogPost() {
@@ -132,9 +124,25 @@ export default function BlogPost() {
   if (!artigo) return <Navigate to="/blog" replace />;
 
   const outrosArtigos = artigos.filter((a) => a.slug !== slug).slice(0, 3);
+  const url = https://www.checkmulta.com.br/blog/${artigo.slug};
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
+
+      <Helmet>
+        <title>{artigo.titulo} | CheckMulta</title>
+        <meta name="description" content={artigo.descricao} />
+        <meta name="keywords" content={artigo.palavrasChave.join(", ")} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={url} />
+        <meta property="og:title" content={${artigo.titulo} | CheckMulta} />
+        <meta property="og:description" content={artigo.descricao} />
+        <meta property="og:url" content={url} />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={artigo.titulo} />
+        <meta name="twitter:description" content={artigo.descricao} />
+      </Helmet>
 
       {/* HEADER */}
       <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-40">
@@ -155,11 +163,11 @@ export default function BlogPost() {
         </Link>
       </div>
 
-      {/* HERO DO ARTIGO */}
+      {/* ARTIGO */}
       <article className="max-w-3xl mx-auto px-4 pt-6 pb-16">
 
         {/* Cabeçalho */}
-        <div className={`bg-gradient-to-br ${artigo.imagemBg} rounded-3xl p-8 sm:p-10 mb-8 relative overflow-hidden`}>
+        <div className={bg-gradient-to-br ${artigo.imagemBg} rounded-3xl p-8 sm:p-10 mb-8 relative overflow-hidden}>
           <div className="absolute top-4 right-4 text-5xl opacity-30">{artigo.imagemEmoji}</div>
           <span className="inline-block bg-white/20 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
             {artigo.categoria}
@@ -205,9 +213,9 @@ export default function BlogPost() {
           <h2 className="text-xl font-black text-slate-900 mb-5">Outros artigos</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {outrosArtigos.map((a) => (
-              <Link key={a.slug} to={`/blog/${a.slug}`} className="group block">
+              <Link key={a.slug} to={/blog/${a.slug}} className="group block">
                 <div className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all overflow-hidden">
-                  <div className={`bg-gradient-to-br ${a.imagemBg} p-4 flex items-center justify-between`}>
+                  <div className={bg-gradient-to-br ${a.imagemBg} p-4 flex items-center justify-between}>
                     <span className="text-xs font-bold text-white/80 uppercase tracking-wider">{a.categoria}</span>
                     <span className="text-2xl">{a.imagemEmoji}</span>
                   </div>
