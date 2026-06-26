@@ -1340,8 +1340,11 @@ const baixa = v?.nivel === "Baixa";
                           {formatDocumentText(extractPista(result))}
                         </div>
                         {(() => {
-                          const v = extractViabilidade(result);
-                          if (!v) return null;
+                         const v = extractViabilidade(result);
+if (typeof window !== "undefined" && window.gtag) {
+  window.gtag("event", "resultado_analise", { viabilidade: v ? v.nivel : "Negada" });
+}
+if (!v) return null;
                           return (
                             <div className={`mt-4 inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border ${v.bg} ${v.borda}`}>
                               <ShieldCheck className={`w-4 h-4 ${v.cor}`} />
