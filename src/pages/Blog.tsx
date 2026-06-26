@@ -1,8 +1,7 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { ArrowRight, Clock, ShieldCheck, Search } from "lucide-react";
 import { artigos } from "../data/artigos";
-import { useState } from "react";
 
 export default function Blog() {
   const [busca, setBusca] = useState("");
@@ -11,13 +10,13 @@ export default function Blog() {
     document.title = "Blog CheckMulta — Guias sobre Multas de Trânsito no Brasil";
     let metaDesc = document.querySelector('meta[name="description"]');
     if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.setAttribute('name', 'description');
+      metaDesc = document.createElement("meta");
+      metaDesc.setAttribute("name", "description");
       document.head.appendChild(metaDesc);
     }
-    metaDesc.setAttribute('content', 'Guias práticos sobre como recorrer de multas de trânsito, prazos legais, pontos na CNH e seus direitos como condutor.');
+    metaDesc.setAttribute("content", "Guias práticos sobre como recorrer de multas de trânsito, prazos legais, pontos na CNH e seus direitos como condutor.");
     return () => {
-      document.title = 'CheckMulta — Análise de Multas com IA';
+      document.title = "CheckMulta — Análise de Multas com IA";
     };
   }, []);
 
@@ -42,7 +41,7 @@ export default function Blog() {
         </nav>
       </header>
 
-      {/* HERO DO BLOG */}
+      {/* HERO */}
       <section className="w-full bg-gradient-to-br from-blue-900 to-slate-900 py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-blue-800/50 border border-blue-700 rounded-full px-4 py-1.5 mb-6">
@@ -55,8 +54,6 @@ export default function Blog() {
           <p className="text-slate-300 text-base sm:text-lg font-medium max-w-2xl mx-auto mb-8">
             Guias práticos sobre como recorrer, prazos, pontos na CNH e seus direitos como condutor.
           </p>
-
-          {/* BUSCA */}
           <div className="relative max-w-md mx-auto">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
             <input
@@ -73,9 +70,9 @@ export default function Blog() {
       {/* ARTIGO DESTAQUE */}
       {!busca && (
         <section className="max-w-4xl mx-auto px-4 -mt-6 mb-8">
-          <Link to={`/blog/${artigos[0].slug}`} className="block">
+          <Link to={"/blog/" + artigos[0].slug} className="block">
             <div className="bg-white rounded-3xl shadow-lg border border-slate-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
-              <div className={`bg-gradient-to-r ${artigos[0].imagemBg} p-8 sm:p-10 flex items-center justify-between`}>
+              <div className={"bg-gradient-to-r " + artigos[0].imagemBg + " p-8 sm:p-10 flex items-center justify-between"}>
                 <div className="flex-1">
                   <span className="inline-block bg-white/20 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
                     {artigos[0].categoria}
@@ -101,19 +98,18 @@ export default function Blog() {
         </section>
       )}
 
-      {/* GRID DE ARTIGOS */}
+      {/* GRID */}
       <section className="max-w-4xl mx-auto px-4 pb-16">
         {busca && (
           <p className="text-slate-500 text-sm font-medium mb-6">
             {artigosFiltrados.length} {artigosFiltrados.length === 1 ? "resultado" : "resultados"} para "{busca}"
           </p>
         )}
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {(busca ? artigosFiltrados : artigos.slice(1)).map((artigo) => (
-            <Link key={artigo.slug} to={`/blog/${artigo.slug}`} className="group block">
+            <Link key={artigo.slug} to={"/blog/" + artigo.slug} className="group block">
               <div className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden h-full flex flex-col">
-                <div className={`bg-gradient-to-br ${artigo.imagemBg} p-6 flex items-center justify-between`}>
+                <div className={"bg-gradient-to-br " + artigo.imagemBg + " p-6 flex items-center justify-between"}>
                   <span className="text-xs font-bold text-white/80 uppercase tracking-widest bg-white/10 px-2.5 py-1 rounded-full">
                     {artigo.categoria}
                   </span>
@@ -140,7 +136,6 @@ export default function Blog() {
             </Link>
           ))}
         </div>
-
         {artigosFiltrados.length === 0 && busca && (
           <div className="text-center py-16">
             <p className="text-slate-400 text-lg font-medium">Nenhum artigo encontrado para "{busca}"</p>
@@ -151,15 +146,12 @@ export default function Blog() {
         )}
       </section>
 
-      {/* CTA FINAL */}
+      {/* CTA */}
       <section className="w-full bg-emerald-600 py-12 px-4">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-black text-white mb-3">Tem uma multa para analisar?</h2>
           <p className="text-emerald-100 font-medium mb-6">Nossa IA analisa gratuitamente e encontra erros que podem anular sua multa.</p>
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 bg-white text-emerald-700 font-black px-8 py-4 rounded-2xl hover:bg-emerald-50 transition-colors shadow-lg text-lg"
-          >
+          <Link to="/" className="inline-flex items-center gap-2 bg-white text-emerald-700 font-black px-8 py-4 rounded-2xl hover:bg-emerald-50 transition-colors shadow-lg text-lg">
             Analisar Minha Multa Grátis <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
@@ -167,9 +159,7 @@ export default function Blog() {
 
       {/* FOOTER */}
       <footer className="w-full text-center px-6 py-6 border-t border-gray-200 bg-gray-100">
-        <p className="text-xs text-slate-500 font-medium">
-          CheckMulta Tecnologia · CNPJ 63.524.338/0001-62
-        </p>
+        <p className="text-xs text-slate-500 font-medium">CheckMulta Tecnologia · CNPJ 63.524.338/0001-62</p>
         <Link to="/" className="text-xs text-blue-600 font-bold hover:underline mt-1 inline-block">
           ← Voltar ao site
         </Link>
