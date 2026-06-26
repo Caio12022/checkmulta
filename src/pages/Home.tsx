@@ -846,15 +846,15 @@ export default function App() {
                         <Camera className="w-7 h-7" />
                       </div>
                       <div>
-                        <p className="text-sm font-black text-slate-800">Tirar Foto ou Enviar Arquivo</p>
-                        <p className="text-slate-500 text-xs font-medium mt-0.5">Toque para abrir a câmera</p>
+                        <p className="text-sm font-black text-slate-800">Foto do Auto de Infração</p>
+              <p className="text-slate-500 text-xs font-medium mt-0.5">Fotografe o documento da multa — frente completa</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-center gap-1.5 text-slate-400">
                     <Lock className="w-3 h-3" />
-                    <p className="text-[11px] font-medium">Imagem processada e deletada imediatamente</p>
+                    <p className="text-[11px] font-medium">Imagem deletada imediatamente após a análise</p>
                   </div>
                 </div>
               </motion.div>
