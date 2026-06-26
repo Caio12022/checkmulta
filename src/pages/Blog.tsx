@@ -1,11 +1,24 @@
-import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { Link, useEffect } from "react-router-dom";
 import { ArrowRight, Clock, ShieldCheck, Search } from "lucide-react";
 import { artigos } from "../data/artigos";
 import { useState } from "react";
 
 export default function Blog() {
   const [busca, setBusca] = useState("");
+
+  useEffect(() => {
+    document.title = "Blog CheckMulta — Guias sobre Multas de Trânsito no Brasil";
+    let metaDesc = document.querySelector('meta[name="description"]');
+    if (!metaDesc) {
+      metaDesc = document.createElement('meta');
+      metaDesc.setAttribute('name', 'description');
+      document.head.appendChild(metaDesc);
+    }
+    metaDesc.setAttribute('content', 'Guias práticos sobre como recorrer de multas de trânsito, prazos legais, pontos na CNH e seus direitos como condutor.');
+    return () => {
+      document.title = 'CheckMulta — Análise de Multas com IA';
+    };
+  }, []);
 
   const artigosFiltrados = artigos.filter(
     (a) =>
@@ -16,17 +29,6 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
-
-      <Helmet>
-        <title>Blog CheckMulta — Guias sobre Multas de Trânsito no Brasil</title>
-        <meta name="description" content="Guias práticos sobre como recorrer de multas de trânsito, prazos legais, pontos na CNH e seus direitos como condutor. Conteúdo gratuito e atualizado." />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://www.checkmulta.com.br/blog" />
-        <meta property="og:title" content="Blog CheckMulta — Guias sobre Multas de Trânsito" />
-        <meta property="og:description" content="Guias práticos sobre como recorrer de multas, prazos e seus direitos como condutor." />
-        <meta property="og:url" content="https://www.checkmulta.com.br/blog" />
-        <meta property="og:type" content="website" />
-      </Helmet>
 
       {/* HEADER */}
       <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-40">
@@ -70,9 +72,9 @@ export default function Blog() {
       {/* ARTIGO DESTAQUE */}
       {!busca && (
         <section className="max-w-4xl mx-auto px-4 -mt-6 mb-8">
-          <Link to={/blog/${artigos[0].slug}} className="block">
+          <Link to={`/blog/${artigos[0].slug}`} className="block">
             <div className="bg-white rounded-3xl shadow-lg border border-slate-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
-              <div className={bg-gradient-to-r ${artigos[0].imagemBg} p-8 sm:p-10 flex items-center justify-between}>
+              <div className={`bg-gradient-to-r ${artigos[0].imagemBg} p-8 sm:p-10 flex items-center justify-between`}>
                 <div className="flex-1">
                   <span className="inline-block bg-white/20 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
                     {artigos[0].categoria}
@@ -108,9 +110,9 @@ export default function Blog() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {(busca ? artigosFiltrados : artigos.slice(1)).map((artigo) => (
-            <Link key={artigo.slug} to={/blog/${artigo.slug}} className="group block">
+            <Link key={artigo.slug} to={`/blog/${artigo.slug}`} className="group block">
               <div className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden h-full flex flex-col">
-                <div className={bg-gradient-to-br ${artigo.imagemBg} p-6 flex items-center justify-between}>
+                <div className={`bg-gradient-to-br ${artigo.imagemBg} p-6 flex items-center justify-between`}>
                   <span className="text-xs font-bold text-white/80 uppercase tracking-widest bg-white/10 px-2.5 py-1 rounded-full">
                     {artigo.categoria}
                   </span>
