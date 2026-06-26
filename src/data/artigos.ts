@@ -584,5 +584,524 @@ Em ambos os casos, você receberá uma notificação com o resultado.
 
 Nossa IA analisa o auto de infração, identifica os vícios formais e gera a petição completa de defesa prévia com toda fundamentação legal — em segundos, por R$ 19,90.
     `
+  },
+  {
+    slug: "multa-injusta-o-que-fazer",
+    titulo: "Levei uma Multa Injusta — O que Fazer Agora?",
+    descricao: "Tomou uma multa que não faz sentido? Antes de xingar o agente, leia isso. Tem coisa que você pode fazer — e pode funcionar.",
+    categoria: "Direto ao Ponto",
+    tempoLeitura: "4 min",
+    imagemEmoji: "😤",
+    imagemBg: "from-orange-500 to-red-600",
+    palavrasChave: ["multa injusta", "como contestar multa", "multa errada o que fazer"],
+    conteudo: `
+## Calma. Respira. E lê isso antes de fazer qualquer coisa.
+
+Receber uma multa que você sente ser injusta é frustrante. Mas reagir na raiva — discutir com o agente, ignorar o documento ou simplesmente não fazer nada — são as piores escolhas que você pode fazer.
+
+A boa notícia: **você tem direito de contestar**. E dependendo do que aconteceu, as chances de cancelar são reais.
+
+## Primeiro passo: analisa o documento
+
+Antes de qualquer coisa, pega o auto de infração e lê com calma. Verifique:
+
+- O local está descrito corretamente?
+- A placa é a do seu veículo?
+- A data e hora fazem sentido?
+- O agente assinou e está identificado?
+
+Qualquer erro nesses campos já é argumento para o recurso.
+
+## "Mas eu não fiz o que está escrito"
+
+Esse é o caso mais difícil — quando o auto está formalmente correto mas você discorda do fato em si.
+
+Aqui a estratégia muda:
+
+- Você tem **prova** de que não estava no local? (nota fiscal, câmera, testemunha)
+- O agente poderia ter confundido seu veículo com outro?
+- Havia alguma situação de emergência?
+
+Sem prova concreta, é difícil ganhar só com negação. Mas ainda vale tentar — o órgão precisa provar que a autuação foi correta.
+
+## "E se eu simplesmente não pagar?"
+
+Péssima ideia. A multa não paga:
+
+- Ganha **juros e correção monetária**
+- Vai para **dívida ativa**
+- Pode resultar em **bloqueio de RENAVAM** (impossibilidade de transferir ou licenciar o veículo)
+- Os **pontos vão para a CNH** normalmente
+
+Recorrer dentro do prazo **suspende o pagamento** legalmente. Ignorar, não.
+
+## O prazo é curto — age rápido
+
+Você tem **15 dias** a partir do recebimento da notificação para apresentar defesa prévia. Esse prazo não tem prorrogação.
+
+Nossa IA analisa seu auto gratuitamente em menos de 1 minuto e diz se há base formal para o recurso.
+    `
+  },
+  {
+    slug: "artigo-280-ctb-o-que-e",
+    titulo: "Artigo 280 do CTB: O que É e Por que É sua Maior Arma",
+    descricao: "O Art. 280 do CTB define o que um auto de infração precisa ter para ser válido. Entenda por que qualquer campo faltando pode anular sua multa.",
+    categoria: "Jurídico",
+    tempoLeitura: "6 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-slate-700 to-blue-900",
+    palavrasChave: ["artigo 280 CTB", "requisitos auto de infração", "nulidade multa trânsito"],
+    conteudo: `
+## O que diz o Artigo 280 do CTB?
+
+O **Artigo 280 do Código de Trânsito Brasileiro** é a base legal de qualquer recurso de multa. Ele define os requisitos obrigatórios que todo auto de infração deve conter para ser considerado válido.
+
+Se qualquer um desses requisitos estiver ausente, incorreto ou ilegível, o auto é **nulo de pleno direito** — ou seja, a multa pode ser cancelada.
+
+## Os requisitos obrigatórios do Art. 280
+
+O auto de infração deve conter obrigatoriamente:
+
+**I — Tipificação da infração**
+A descrição precisa do ato infracional, com referência ao artigo e inciso do CTB violado.
+
+**II — Local, data e hora da infração**
+Endereço completo onde ocorreu a infração, com data e horário precisos.
+
+**III — Identificação do veículo**
+Placa, RENAVAM e tipo de veículo.
+
+**IV — Identificação do condutor**
+Quando possível identificar o condutor no momento da autuação.
+
+**V — Identificação do agente autuador**
+Nome completo e número funcional do agente que lavrou o auto.
+
+**VI — Assinatura do infrator (quando possível)**
+Ou declaração de recusa em assinar.
+
+**VII — Identificação do equipamento (quando aplicável)**
+Para infrações medidas por equipamento eletrônico: número de série e data de aferição INMETRO.
+
+## Por que qualquer vício formal anula o auto?
+
+O princípio é simples: o auto de infração é um **ato administrativo**. Para ser válido, precisa cumprir todos os requisitos legais. Sem isso, falta motivação — e ato administrativo sem motivação é nulo.
+
+O Art. 281, parágrafo único, inciso I do CTB determina que a autoridade de trânsito deve arquivar o auto quando este **não preencher os requisitos do Art. 280**.
+
+## Na prática: o que verificar no seu auto
+
+### Campo de local
+Não basta escrever "Av. Paulista". Precisa de número, bairro e município. Endereços vagos são o erro mais comum e o mais fácil de contestar.
+
+### Identificação do equipamento
+Para multas de radar, lombada ou semáforo eletrônico: o número de série e a data da última aferição INMETRO são obrigatórios. Aferição vencida = multa nula.
+
+### Descrição da infração
+"Infração ao CTB" sem especificar o artigo e o comportamento observado é insuficiente. A descrição precisa ser específica o bastante para o condutor entender exatamente o que fez de errado.
+
+### Identificação do agente
+Nome ilegível ou número funcional ausente é vício formal. O agente precisa ser identificável.
+
+## Como usar o Art. 280 no seu recurso
+
+Na defesa prévia, cite explicitamente:
+
+*"O auto de infração nº [número] não preenche o requisito do Art. 280, inciso [X] do CTB, porquanto [descreva o vício]. Nos termos do Art. 281, parágrafo único, inciso I do CTB, requer-se o arquivamento do presente auto."*
+
+Nossa IA faz exatamente essa análise — campo por campo, baseada no Art. 280 — e gera a petição completa automaticamente.
+    `
+  },
+  {
+    slug: "multa-de-transito-suspende-cnh",
+    titulo: "Quando a Multa Suspende a CNH? Guia Completo 2025",
+    descricao: "Entenda exatamente quando sua CNH pode ser suspensa por pontos, quais multas pesam mais e como evitar a suspensão recorrendo dentro do prazo.",
+    categoria: "CNH e Pontos",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🚗",
+    imagemBg: "from-yellow-500 to-orange-500",
+    palavrasChave: ["suspensão CNH multa", "quando CNH é suspensa", "pontos CNH suspensão"],
+    conteudo: `
+## A CNH não é suspensa por uma multa — é pelos pontos
+
+Um erro muito comum é achar que uma única multa grave suspende a CNH automaticamente. **Não é assim que funciona.**
+
+A suspensão acontece quando o condutor acumula pontos demais em um período de 12 meses. A multa em si gera os pontos; são os pontos acumulados que suspendem.
+
+## Quando a CNH é suspensa?
+
+O CTB prevê três limites diferentes dependendo do perfil do condutor:
+
+**20 pontos** — para qualquer condutor (regra geral)
+
+**30 pontos** — se o condutor:
+- Tem CNH há mais de 1 ano
+- Não cometeu infração gravíssima nos últimos 12 meses
+
+**40 pontos** — se o condutor:
+- Tem CNH há mais de 2 anos
+- Não cometeu infração gravíssima
+- Cometeu no máximo 1 infração grave
+
+## Quais infrações são gravíssimas?
+
+Infrações gravíssimas geram 7 pontos e travam você no limite mais baixo (20 pontos):
+
+- Celular ao volante
+- Ultrapassar sinal vermelho
+- Excesso de velocidade acima de 50%
+- Dirigir sem CNH
+- Não dar passagem a pedestres na faixa
+- Dirigir na contramão
+- Racha
+
+## Quanto tempo os pontos ficam na CNH?
+
+Os pontos permanecem por **12 meses** a partir da data da infração. Após esse período, são automaticamente retirados.
+
+Exemplo: se você levou uma multa em março de 2024, os pontos saem em março de 2025.
+
+## Recorrer suspende os pontos?
+
+**Sim.** Enquanto a defesa ou recurso estiver em análise pelo órgão, os pontos **não são lançados na CNH**.
+
+Isso significa que recorrer dentro do prazo tem dupla vantagem:
+1. Chance de cancelar a multa
+2. Atrasa o lançamento dos pontos mesmo se perder
+
+## O que acontece após a suspensão?
+
+- Prazo mínimo de 6 meses sem poder dirigir
+- Obrigatoriedade de novo exame de legislação
+- Dirigir durante a suspensão é **crime de trânsito** (Art. 307 do CTB)
+
+## Como verificar meus pontos atuais?
+
+Acesse o portal do DETRAN do seu estado ou o site do Senatran com CPF e data de nascimento. O extrato mostra cada infração, os pontos e a data de vencimento.
+
+Se você está próximo do limite, **qualquer nova multa é urgente** e deve ser contestada imediatamente.
+    `
+  },
+  {
+    slug: "recurso-multa-prf-rodovia-federal",
+    titulo: "Como Recorrer de Multa da PRF (Rodovia Federal)",
+    descricao: "Multa da Polícia Rodoviária Federal tem processo diferente dos outros órgãos. Saiba onde protocolar, qual sistema usar e como montar seu recurso.",
+    categoria: "PRF",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🛣️",
+    imagemBg: "from-green-700 to-emerald-900",
+    palavrasChave: ["recurso multa PRF", "como recorrer multa rodovia federal", "defesa prévia PRF"],
+    conteudo: `
+## Multa da PRF é diferente das outras
+
+A **Polícia Rodoviária Federal** tem seu próprio sistema de gestão de infrações, separado dos DETRANs estaduais. Isso significa que o processo de recurso segue regras próprias e usa plataformas diferentes.
+
+## Onde protocolar o recurso de multa da PRF?
+
+O recurso de multa da PRF é feito exclusivamente pelo sistema **SIGER** (Sistema de Infrações e Gestão de Recursos):
+
+**siger.prf.gov.br**
+
+O protocolo presencial também é aceito em qualquer **Superintendência ou Delegacia da PRF**.
+
+## Prazos para recurso de multa da PRF
+
+Os prazos seguem o CTB:
+
+- **Defesa Prévia:** 15 dias do recebimento da notificação
+- **Recurso à JARI da PRF:** 30 dias após indeferimento
+- **Recurso ao CONTRAN:** 30 dias após indeferimento da JARI
+
+## Erros mais comuns em multas da PRF
+
+### Equipamento sem aferição válida
+
+A PRF usa radares portáteis, fixos e aéreos. Todos precisam de aferição INMETRO válida. Radares portáteis têm prazo de aferição mais curto — verifique sempre.
+
+### Local impreciso em rodovia
+
+O local deve indicar a **rodovia, o sentido e o KM exato**. "BR-101 sentido Norte" sem o KM é insuficiente.
+
+### Ausência de identificação do agente
+
+Mesmo em autuação eletrônica, o agente responsável deve estar identificado no auto.
+
+### Radar aéreo (AEROSCAN)
+
+Multas de radar aéreo exigem documentação específica do equipamento. São relativamente novas e ainda têm muita discussão jurídica. Vale sempre verificar a regularidade.
+
+## Como acessar o SIGER
+
+1. Acesse **siger.prf.gov.br**
+2. Clique em "Defesa de Autuação" ou "Recurso"
+3. Informe o número do auto de infração
+4. Preencha seus dados
+5. Anexe a petição em PDF
+6. Protocole
+
+Guarde o número de protocolo gerado — é sua prova de entrega dentro do prazo.
+
+## Preciso ir presencialmente?
+
+Não. O SIGER aceita todo o processo online, incluindo upload de documentos. O protocolo presencial só é necessário se você tiver dificuldade com o sistema online.
+
+## Multa da PRF vai para o DETRAN?
+
+Sim. Mesmo sendo autuada pela PRF, a multa é registrada no RENAVAM do veículo e os pontos vão para a CNH no DETRAN do estado de emplacamento.
+
+Por isso, o recurso deve ser feito na PRF, mas os efeitos (pontos e débito) aparecem no DETRAN.
+    `
+  },
+  {
+    slug: "mbft-manual-fiscalizacao-transito",
+    titulo: "O que é o MBFT e Por que Ele Pode Anular sua Multa",
+    descricao: "O Manual Brasileiro de Fiscalização de Trânsito define as regras que os agentes devem seguir ao autuar. Descubra como usá-lo a seu favor.",
+    categoria: "Jurídico",
+    tempoLeitura: "6 min",
+    imagemEmoji: "📖",
+    imagemBg: "from-indigo-700 to-blue-900",
+    palavrasChave: ["MBFT trânsito", "Manual Brasileiro Fiscalização Trânsito", "normas autuação trânsito"],
+    conteudo: `
+## O que é o MBFT?
+
+O **Manual Brasileiro de Fiscalização de Trânsito (MBFT)** é o documento oficial que define como os agentes de trânsito devem agir ao fiscalizar e autuar condutores.
+
+Publicado pelo DENATRAN (atual SENATRAN), o MBFT é vinculante — ou seja, agentes e órgãos de trânsito são obrigados a segui-lo. Quando não seguem, a autuação pode ser declarada nula.
+
+## Por que o MBFT importa para o seu recurso?
+
+O CTB define as infrações. O MBFT define **como** essas infrações devem ser comprovadas e registradas. São dois documentos diferentes que trabalham juntos.
+
+Uma autuação pode estar "dentro do CTB" mas fora do MBFT — e ainda assim ser nula.
+
+## O que o MBFT exige dos agentes?
+
+### Para infrações registradas por equipamento eletrônico:
+
+- Certificado de aferição INMETRO dentro do prazo de validade
+- Número de série do equipamento no auto
+- Imagem que identifique claramente o veículo e a placa
+- Localização precisa do equipamento conforme cadastro do órgão
+- Placa de sinalização informativa precedendo o equipamento
+
+### Para infrações registradas por agente no local:
+
+- Descrição detalhada do comportamento observado
+- Local preciso com endereço completo
+- Identificação completa do agente (nome e matrícula)
+- Horário exato da observação
+
+### Para infrações de velocidade:
+
+- O MBFT define margens de erro específicas por tipo de equipamento
+- Velocidade registrada deve superar o limite **mais a margem de erro** para gerar autuação válida
+- Exemplo: radar com margem de 5% em via de 60 km/h — velocidade deve superar 63 km/h para autuação válida
+
+## Como citar o MBFT no seu recurso
+
+Na defesa prévia, você pode escrever:
+
+*"O auto viola o disposto no Manual Brasileiro de Fiscalização de Trânsito (MBFT), que exige [descreva o requisito não cumprido]. A ausência desse elemento essencial configura vício formal insanável, nos termos do Art. 280, inciso [X] do CTB."*
+
+## O MBFT é público?
+
+Sim. O MBFT está disponível no site do SENATRAN (senatran.gov.br) e pode ser consultado gratuitamente por qualquer pessoa.
+
+Nossa IA foi treinada com base no CTB e no MBFT para identificar automaticamente quando o seu auto viola esses documentos.
+
+## Casos em que o MBFT é especialmente útil
+
+- Multas de radar com certificado INMETRO questionável
+- Multas em que a imagem não identifica claramente a placa
+- Autuações onde a placa informativa do radar estava ausente
+- Casos em que a velocidade registrada está dentro da margem de erro
+
+Em todos esses casos, o MBFT fornece a base técnica para anular a multa.
+    `
+  },
+  {
+    slug: "fui-multado-mas-nao-estava-dirigindo",
+    titulo: "Fui Multado Mas Não Estava Dirigindo o Carro — O que Fazer?",
+    descricao: "Se você é proprietário do veículo mas não estava ao volante na hora da multa, existe um processo para transferir a responsabilidade. Veja como funciona.",
+    categoria: "Casos Especiais",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🔄",
+    imagemBg: "from-teal-600 to-cyan-800",
+    palavrasChave: ["multa proprietário não estava dirigindo", "transferir multa outro condutor", "indicação condutor multa"],
+    conteudo: `
+## A multa veio no seu nome mas você não estava dirigindo?
+
+Isso é mais comum do que parece — emprestou o carro para alguém, o veículo foi furtado, ou simplesmente outra pessoa da família estava dirigindo.
+
+A boa notícia: **existe um processo legal para transferir a responsabilidade** ao condutor real. E se você não fizer isso dentro do prazo, os pontos vão para a sua CNH mesmo sem ter cometido a infração.
+
+## Como funciona a indicação de condutor?
+
+Quando o proprietário do veículo não era o condutor no momento da infração, ele pode **indicar o real infrator** ao órgão autuador. Esse processo se chama **Indicação de Condutor Infrator (ICI)**.
+
+Após a indicação:
+- Os **pontos são transferidos** para a CNH do condutor real
+- O **débito da multa permanece no veículo** (o proprietário ainda pode pagar ou o condutor pode reembolsá-lo)
+
+## Qual o prazo para indicar o condutor?
+
+O prazo é o mesmo da defesa prévia: **15 dias** do recebimento da notificação de autuação.
+
+Se você perder esse prazo, não poderá mais indicar o condutor e os pontos ficam na sua CNH.
+
+## O que é necessário para indicar o condutor?
+
+- Nome completo do condutor real
+- Número do CPF
+- Número da CNH e categoria
+- Endereço completo
+
+O condutor indicado receberá uma notificação e poderá apresentar sua própria defesa, se quiser.
+
+## E se o carro foi furtado ou clonado?
+
+Se o veículo foi furtado ou a placa foi clonada, você precisa apresentar:
+
+- **Boletim de Ocorrência** do furto/roubo ou clonagem
+- Documento do veículo
+
+Com o BO, a multa deve ser arquivada porque o proprietário não tinha controle do veículo.
+
+## E se eu emprestei o carro e a pessoa não quer assumir?
+
+Juridicamente, você pode indicar a pessoa mesmo sem consentimento dela. O que ela fizer depois (contestar a indicação ou não) é problema dela.
+
+Se a pessoa negar que estava dirigindo, o caso vai para análise do órgão — que pode solicitar provas de ambos os lados.
+
+## Posso apresentar defesa prévia E indicar o condutor?
+
+Não simultaneamente. Você escolhe um caminho:
+
+1. **Indicar o condutor** — transfere os pontos, débito permanece no veículo
+2. **Apresentar defesa prévia** — tenta cancelar a multa por vício formal
+
+Se há erro formal no auto, a defesa prévia pode cancelar tudo. Se não há erro, a indicação de condutor ao menos protege sua CNH.
+
+Nossa IA analisa o auto gratuitamente e te ajuda a decidir qual caminho é melhor para o seu caso.
+    `
+  },
+  {
+    slug: "multa-pedagio-como-recorrer",
+    titulo: "Multa por Evasão de Pedágio: Como Recorrer e Cancelar",
+    descricao: "Passou pela cancela sem pagar ou recebeu multa de pedágio automático? Saiba seus direitos, os erros que anulam essas multas e como apresentar recurso.",
+    categoria: "Pedágio",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🛤️",
+    imagemBg: "from-green-600 to-teal-700",
+    palavrasChave: ["multa pedágio como recorrer", "evasão pedágio recurso", "multa cancela pedágio"],
+    conteudo: `
+## Multa de pedágio: quando acontece?
+
+A multa por evasão de pedágio (Art. 162-A do CTB, inserido pela Lei 14.599/2023) é aplicada quando o veículo passa pela praça de pedágio sem efetuar o pagamento — seja na cancela tradicional, no sistema free flow (cobrança automática) ou no tag eletrônico.
+
+## Tipos de cobrança e suas particularidades
+
+### Pedágio tradicional (cancela)
+O agente da concessionária ou câmera registra a passagem sem pagamento. O auto é lavrado pela concessionária e encaminhado ao órgão fiscalizador.
+
+### Free flow (cobrança por imagem)
+Câmeras capturam a placa em movimento. Não há cancela. O sistema identifica o veículo automaticamente e, se não houver pagamento posterior, gera a notificação.
+
+### Tag eletrônico (sem parar)
+Se o tag não funciona ou o saldo está zerado, pode gerar autuação. Mas aqui há margem para contestação.
+
+## Erros que anulam multa de pedágio
+
+### 1. Imagem que não identifica a placa
+A fotografia deve identificar claramente a placa do veículo. Imagem borrada, parcial ou com reflexo que impeça a leitura invalida a autuação.
+
+### 2. Equipamento sem certificação válida
+As câmeras de leitura de placa também precisam de homologação. Verifique se o equipamento está regularizado.
+
+### 3. Notificação enviada para endereço desatualizado
+Se você mudou de endereço e não foi notificado por culpa do sistema (endereço desatualizado no DETRAN), pode argumentar que não teve oportunidade de defesa.
+
+### 4. Tag com saldo e falha técnica
+Se você tinha saldo no tag e a falha foi técnica (leitor com defeito, por exemplo), apresente extrato do tag mostrando saldo disponível. A responsabilidade é da concessionária.
+
+### 5. Veículo isento não reconhecido
+Alguns veículos têm isenção de pedágio (pessoas com deficiência, transporte coletivo, etc.). Se seu veículo é isento e foi multado, a contestação é direta.
+
+## Como apresentar o recurso?
+
+O processo depende de quem administra a rodovia:
+
+- **Rodovia federal:** PRF + ANTT (Agência Nacional de Transportes Terrestres)
+- **Rodovia estadual:** DER do estado
+- **Concessão privada:** o recurso vai ao órgão regulador (ANTT ou ARTESP, dependendo do estado)
+
+O prazo é sempre **15 dias** da notificação.
+
+## E se eu realmente passei sem pagar?
+
+Mesmo assim, vale verificar se há erro formal no auto. Se houver, a multa pode ser cancelada independentemente da infração em si.
+
+Se não houver erro formal, você pode tentar argumentar circunstâncias — falha técnica, sinalização inadequada, emergência — mas as chances são menores.
+    `
+  },
+  {
+    slug: "recurso-multa-deu-certo-o-que-esperar",
+    titulo: "Recorri da Multa — Quanto Tempo Demora e O que Esperar?",
+    descricao: "Apresentou a defesa prévia ou recurso e agora está esperando? Entenda os prazos de resposta, o que cada resultado significa e o que fazer em cada caso.",
+    categoria: "Depois do Recurso",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⏳",
+    imagemBg: "from-violet-600 to-purple-800",
+    palavrasChave: ["prazo resposta recurso multa", "quanto tempo demora recurso multa", "resultado defesa prévia multa"],
+    conteudo: `
+## Apresentei o recurso. E agora?
+
+Protocolar a defesa é só metade do caminho. Agora começa a espera — e entender o que está acontecendo evita ansiedade desnecessária.
+
+## Quanto tempo demora para ter resposta?
+
+O CTB não define um prazo máximo específico para a análise da defesa prévia. Na prática, varia muito por órgão:
+
+- **DETRAN estaduais:** 30 a 90 dias em média
+- **PRF:** 30 a 60 dias em média
+- **Prefeituras/CET:** 15 a 60 dias
+
+Se passou mais de 90 dias sem resposta, você pode protocolar um pedido de informação sobre o andamento.
+
+## O que acontece enquanto aguardo?
+
+Durante o período de análise:
+
+- O pagamento da multa fica **suspenso** — você não precisa pagar
+- Os pontos **não são lançados** na CNH
+- O prazo de recurso subsequente só começa **após** o resultado
+
+Ou seja: você não perde nada ficando na espera.
+
+## Resultados possíveis e o que fazer em cada caso
+
+### Defesa Deferida ✅
+A melhor notícia. A multa foi cancelada. O auto é arquivado e os pontos não vão para a CNH. Guarde o documento de deferimento — pode ser necessário para comprovar o cancelamento.
+
+### Defesa Indeferida ❌
+A multa foi confirmada. Você tem **30 dias** para recorrer à JARI (Junta Administrativa de Recursos de Infrações). Não desanime — a JARI é uma segunda chance com critérios diferentes.
+
+### Sem resposta (silêncio administrativo)
+Se o prazo passou e não veio resposta, o silêncio não significa aprovação automática. Protocole um pedido de informação. Se necessário, pode-se recorrer judicialmente por omissão administrativa.
+
+## Vale a pena recorrer à JARI após indeferimento?
+
+**Sim, sempre.** A JARI é composta por membros diferentes do órgão autuador — há uma chance real de revisão. E enquanto aguarda a JARI, os pontos continuam suspensos.
+
+## E se a JARI também indeferir?
+
+Ainda há o **CETRAN** (estadual) ou **CONTRAN** (federal) como terceira instância. E após esgotar as instâncias administrativas, existe a via judicial.
+
+Para multas de valor baixo, a via judicial raramente compensa. Para multas altas ou casos de suspensão de CNH, pode valer a consulta a um advogado especializado.
+
+## Como acompanhar meu recurso?
+
+Pelo mesmo sistema onde você protocolou — SIGER (PRF), portal do DETRAN estadual ou portal da prefeitura. Use o número de protocolo gerado no momento do envio.
+    `
   }
 ];
