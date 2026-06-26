@@ -615,7 +615,8 @@ export default function App() {
           <a href="#inicio" className="hover:text-blue-600 transition-colors">Início</a>
           <a href="#como-funciona" className="hover:text-blue-600 transition-colors">Como Funciona</a>
           <a href="#seguranca" className="hover:text-blue-600 transition-colors">Segurança</a>
-          <a href="#faq-seo" className="hover:text-blue-600 transition-colors">Dúvidas</a>
+         <a href="#faq-seo" className="hover:text-blue-600 transition-colors">Dúvidas</a>
+              <a href="/blog" className="hover:text-blue-600 transition-colors">Blog</a>
           <button onClick={() => setActiveModal("suporte")} className="hover:text-blue-600 transition-colors font-bold flex items-center gap-1 text-blue-600">
             Suporte
           </button>
