@@ -234,6 +234,26 @@ export default function BlogPost() {
           </div>
         </div>
 
+
+        {/* CTA TOPO — antes do conteúdo */}
+        <div className="bg-gradient-to-r from-emerald-50 to-blue-50 border border-emerald-200 rounded-3xl p-5 sm:p-6 mb-6">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+              <ShieldCheck className="w-5 h-5 text-emerald-600" />
+            </div>
+            <div className="flex-1">
+              <p className="text-slate-900 font-black text-sm mb-1">Tem uma multa para analisar?</p>
+              <p className="text-slate-500 text-xs font-medium">Nossa IA encontra erros que podem anular sua multa. Grátis.</p>
+            </div>
+            <Link
+              to="/"
+              className="inline-flex items-center gap-1.5 bg-emerald-600 text-white font-bold px-4 py-2.5 rounded-xl hover:bg-emerald-700 transition-colors text-xs flex-shrink-0"
+            >
+              Analisar Grátis <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
+        </div>
+
         {/* CONTEÚDO */}
         <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-10 mb-8">
           {renderMarkdown(artigo.conteudo)}
