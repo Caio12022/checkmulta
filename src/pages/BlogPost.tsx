@@ -1,6 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { useEffect } from "react";
-import { ArrowLeft, Clock, ShieldCheck, ArrowRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowLeft, Clock, ShieldCheck, ArrowRight, AlertTriangle } from "lucide-react";
 import { artigos } from "../data/artigos";
 
 // Hook para atualizar meta tags via DOM nativo
@@ -175,9 +175,21 @@ const formatarTexto = (texto: string): string => {
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const artigo = artigos.find((a) => a.slug === slug);
+  const [mostrarFlutuante, setMostrarFlutuante] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+  }, [slug]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      const altura = document.body.scrollHeight - window.innerHeight;
+      // Aparece após rolar 15% e some perto do fim (últimos 12%)
+      setMostrarFlutuante(y > altura * 0.15 && y < altura * 0.88);
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, [slug]);
 
   if (!artigo) return <Navigate to="/blog" replace />;
@@ -192,6 +204,17 @@ export default function BlogPost() {
   );
 
   const outrosArtigos = artigos.filter((a) => a.slug !== slug).slice(0, 3);
+
+  // Divide o conteúdo em duas metades para inserir CTA no meio
+  const linhasConteudo = artigo.conteudo.trim().split("\n");
+  const meio = Math.floor(linhasConteudo.length / 2);
+  // Ajusta o ponto de corte para não quebrar no meio de uma seção (procura um título ## próximo)
+  let corte = meio;
+  for (let i = meio; i < linhasConteudo.length; i++) {
+    if (linhasConteudo[i].startsWith("## ")) { corte = i; break; }
+  }
+  const conteudoParte1 = linhasConteudo.slice(0, corte).join("\n");
+  const conteudoParte2 = linhasConteudo.slice(corte).join("\n");
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
@@ -235,6 +258,17 @@ export default function BlogPost() {
         </div>
 
 
+        {/* BARRA DE URGÊNCIA */}
+        <Link to="/" className="block mb-6">
+          <div className="bg-amber-50 border border-amber-200 rounded-2xl px-4 py-3 flex items-center gap-3 hover:bg-amber-100 transition-colors">
+            <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0" />
+            <p className="text-sm font-bold text-amber-800 flex-1">
+              Você tem apenas 15 dias para recorrer. Analise sua multa grátis agora
+            </p>
+            <ArrowRight className="w-4 h-4 text-amber-600 flex-shrink-0" />
+          </div>
+        </Link>
+
         {/* CTA TOPO — antes do conteúdo */}
         <div className="bg-gradient-to-r from-emerald-50 to-blue-50 border border-emerald-200 rounded-3xl p-5 sm:p-6 mb-6">
           <div className="flex items-center gap-4">
@@ -242,8 +276,8 @@ export default function BlogPost() {
               <ShieldCheck className="w-5 h-5 text-emerald-600" />
             </div>
             <div className="flex-1">
-              <p className="text-slate-900 font-black text-base font-black mb-1">Tem uma multa para analisar?</p>
-              <p className="text-slate-500 text-sm font-medium">Nossa IA encontra erros que podem anular sua multa. Grátis.</p>
+              <p className="text-slate-900 font-black text-base mb-1">Descubra em 60 segundos se sua multa tem erro</p>
+              <p className="text-slate-500 text-sm font-medium">Mais de 400 multas já analisadas. Grátis e sem cadastro.</p>
             </div>
             <Link
               to="/"
@@ -254,9 +288,30 @@ export default function BlogPost() {
           </div>
         </div>
 
-        {/* CONTEÚDO */}
-        <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-10 mb-8">
-          {renderMarkdown(artigo.conteudo)}
+        {/* CONTEÚDO — Parte 1 */}
+        <div className="bg-white rounded-t-3xl border border-b-0 border-slate-200 shadow-sm p-6 sm:p-10">
+          {renderMarkdown(conteudoParte1)}
+        </div>
+
+        {/* CTA MEIO */}
+        <div className="bg-gradient-to-r from-blue-600 to-emerald-600 p-6 sm:p-7 border-x border-slate-200">
+          <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+            <div className="flex-1">
+              <p className="text-white font-black text-base sm:text-lg mb-1">Sua multa pode ter uma falha que a anula</p>
+              <p className="text-white/80 text-sm font-medium">Nossa IA cruza seu auto com o CTB e o MBFT. Se não achar erro, você não paga nada.</p>
+            </div>
+            <Link
+              to="/"
+              className="inline-flex items-center gap-2 bg-white text-emerald-700 font-black px-6 py-3 rounded-xl hover:bg-emerald-50 transition-colors text-sm flex-shrink-0 shadow-lg"
+            >
+              Analisar Minha Multa <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+
+        {/* CONTEÚDO — Parte 2 */}
+        <div className="bg-white rounded-b-3xl border border-t-0 border-slate-200 shadow-sm p-6 sm:p-10 mb-8">
+          {renderMarkdown(conteudoParte2)}
         </div>
 
         {/* CTA INLINE */}
@@ -268,7 +323,7 @@ export default function BlogPost() {
             <div className="flex-1">
               <h3 className="text-lg font-black text-slate-900 mb-2">Tem uma multa para analisar?</h3>
               <p className="text-slate-600 font-medium text-sm mb-4">
-                Nossa IA analisa seu auto de infração gratuitamente e encontra erros formais que podem anular a multa. Se não houver falha, você não paga nada.
+                Mais de 400 multas já analisadas. Nossa IA encontra erros formais que podem anular a sua. Se não houver falha, você não paga nada.
               </p>
               <Link
                 to="/"
@@ -305,6 +360,22 @@ export default function BlogPost() {
           </div>
         </div>
       </article>
+
+      {/* BOTÃO FLUTUANTE */}
+      <div
+        className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 px-4 w-full max-w-md ${
+          mostrarFlutuante ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16 pointer-events-none"
+        }`}
+      >
+        <Link
+          to="/"
+          className="flex items-center justify-center gap-2 bg-emerald-600 text-white font-black px-6 py-4 rounded-2xl shadow-2xl hover:bg-emerald-700 transition-colors"
+        >
+          <ShieldCheck className="w-5 h-5" />
+          Analisar Minha Multa Grátis
+          <ArrowRight className="w-4 h-4" />
+        </Link>
+      </div>
 
       {/* FOOTER */}
       <footer className="w-full text-center px-6 py-6 border-t border-gray-200 bg-gray-100">
