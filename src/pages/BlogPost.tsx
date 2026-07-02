@@ -242,12 +242,12 @@ export default function BlogPost() {
               <ShieldCheck className="w-5 h-5 text-emerald-600" />
             </div>
             <div className="flex-1">
-              <p className="text-slate-900 font-black text-sm mb-1">Tem uma multa para analisar?</p>
-              <p className="text-slate-500 text-xs font-medium">Nossa IA encontra erros que podem anular sua multa. Grátis.</p>
+              <p className="text-slate-900 font-black text-base font-black mb-1">Tem uma multa para analisar?</p>
+              <p className="text-slate-500 text-sm font-medium">Nossa IA encontra erros que podem anular sua multa. Grátis.</p>
             </div>
             <Link
               to="/"
-              className="inline-flex items-center gap-1.5 bg-emerald-600 text-white font-bold px-4 py-2.5 rounded-xl hover:bg-emerald-700 transition-colors text-xs flex-shrink-0"
+              className="inline-flex items-center gap-1.5 bg-emerald-600 text-white font-bold px-4 py-2.5 rounded-xl hover:bg-emerald-700 transition-colors text-sm flex-shrink-0"
             >
               Analisar Grátis <ArrowRight className="w-3.5 h-3.5" />
             </Link>
