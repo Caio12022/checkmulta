@@ -3060,4 +3060,1738 @@ Ganhar o recurso da multa não significa ser declarado inocente civilmente — e
 Uma coisa é contestar a autuação administrativa. Outra é a responsabilidade pelo dano no acidente, que é apurada em processo civil ou pelo seguro.
     `
   },
+  {
+    slug: "multa-rodizio-municipal-como-recorrer",
+    titulo: "Multa de Rodízio Municipal: Como Recorrer",
+    descricao: "Furou o rodízio sem perceber? Entenda como funciona a fiscalização, quais são os erros mais comuns nas câmeras de rodízio e como contestar.",
+    categoria: "Rodízio",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🔄",
+    imagemBg: "from-purple-600 to-indigo-800",
+    palavrasChave: ["multa rodízio municipal recorrer", "contestar multa rodízio SP", "recurso multa rodízio veicular"],
+    conteudo: `
+## Como funciona o rodízio municipal
+
+O rodízio de veículos restringe a circulação em determinados horários conforme o final da placa. É regulamentado por lei municipal — cada cidade tem suas próprias regras, horários e exceções.
+
+A fiscalização é feita por câmeras de leitura de placa (OCR) instaladas nas vias de restrição.
+
+## Erros mais comuns nesse tipo de multa
+
+**Leitura incorreta da placa:** sistemas de OCR podem confundir caracteres semelhantes (0 e O, 1 e I). Se a placa registrada não bate exatamente com a sua, é vício de identificação.
+
+**Veículo isento não reconhecido:** táxis, veículos elétricos, de deficientes e alguns outros são isentos do rodízio em várias cidades. Se seu veículo tinha isenção e não foi reconhecida, o recurso é direto.
+
+**Horário incorreto:** o rodízio tem janelas específicas (geralmente 7h-10h e 17h-20h em dias úteis). Circular fora desse horário não é infração, mesmo com o final de placa restrito no dia.
+
+**Feriado ou ponto facultativo:** na maioria das cidades o rodízio não vale em feriados. Verifique o calendário oficial.
+
+## Como contestar
+
+Verifique a foto da infração (disponível no portal da prefeitura ou CET), confirme o horário exato e o dia, e cheque se seu veículo tem alguma isenção aplicável. Protocole o recurso no órgão municipal responsável dentro do prazo de 15 dias.
+    `
+  },
+  {
+    slug: "multa-farol-apagado-a-noite",
+    titulo: "Multa por Farol Apagado à Noite: Vale a Pena Recorrer?",
+    descricao: "Dirigir sem faróis acesos à noite é infração grave. Entenda quando a multa é aplicada corretamente e quando existe espaço para contestação.",
+    categoria: "Equipamentos",
+    tempoLeitura: "3 min",
+    imagemEmoji: "💡",
+    imagemBg: "from-slate-700 to-gray-900",
+    palavrasChave: ["multa farol apagado recorrer", "multa dirigir sem farol aceso", "infração farol desligado noite"],
+    conteudo: `
+## O que diz o CTB sobre uso de faróis
+
+O Art. 40 do CTB exige o uso de luz baixa (farol) durante a noite, em túneis, sob chuva forte, neblina ou cerração, mesmo em vias iluminadas. É infração média — 4 pontos.
+
+## Quando a multa é indevida
+
+**Erro de horário:** o crepúsculo tem definição técnica (entre o pôr do sol e o anoitecer completo). Se a infração foi lavrada em horário limítrofe, pode haver dúvida razoável.
+
+**Falha momentânea de equipamento:** se o farol apagou por problema elétrico documentado (nota fiscal de reparo próxima à data, por exemplo), há argumento de força maior.
+
+**Erro na descrição do auto:** o agente precisa descrever objetivamente a condição (farol apagado, sem luz de posição, etc.). Descrição genérica é vício formal.
+
+## O que fazer
+
+Verifique o horário exato registrado no auto e compare com o horário oficial de pôr do sol na data. Se havia boa luminosidade natural, isso pode ser usado como argumento complementar — embora a lei não exija escuridão total, apenas o período crepuscular já gera a obrigação.
+    `
+  },
+  {
+    slug: "multa-som-alto-poluicao-sonora",
+    titulo: "Multa por Som Alto (Poluição Sonora): Como Funciona",
+    descricao: "Som automotivo em volume excessivo pode gerar multa de trânsito. Entenda os limites legais, como a fiscalização funciona e quando contestar.",
+    categoria: "Equipamentos",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🔊",
+    imagemBg: "from-pink-600 to-rose-800",
+    palavrasChave: ["multa som alto carro", "poluição sonora veículo multa", "recurso multa buzina som"],
+    conteudo: `
+## Base legal da multa por poluição sonora
+
+O Art. 228 do CTB proíbe usar equipamento de som em volume que perturbe o sossego público, além dos limites definidos pelo CONAMA. É infração média — 4 pontos e apreensão do veículo em alguns casos.
+
+## Como a fiscalização é feita
+
+A medição exige equipamento específico (decibelímetro) e distância padronizada do veículo. O agente precisa registrar a medição no auto — não basta uma percepção subjetiva de "estava alto".
+
+## Vícios formais comuns
+
+**Ausência de medição técnica:** se o auto não registra o valor medido em decibéis e a distância da medição, falta prova objetiva.
+
+**Equipamento sem aferição:** decibelímetros também precisam de calibração. Verifique se há informação sobre a aferição do equipamento usado.
+
+**Local inadequado para medição:** a medição deve seguir protocolo técnico (distância, ausência de outros ruídos interferentes). Condições inadequadas invalidam o resultado.
+
+## Recurso
+
+Sem registro técnico da medição, o auto tem vício formal significativo — a autuação se baseia em critério objetivo (decibéis), não em opinião do agente. Cite a ausência dessa medição na sua defesa.
+    `
+  },
+  {
+    slug: "multa-pneu-careca-como-recorrer",
+    titulo: "Multa por Pneu Careca: Como Contestar",
+    descricao: "Rodar com pneu sem os sulcos mínimos é infração de segurança. Entenda os critérios técnicos e quando é possível recorrer dessa multa.",
+    categoria: "Equipamentos",
+    tempoLeitura: "3 min",
+    imagemEmoji: "🛞",
+    imagemBg: "from-zinc-700 to-slate-900",
+    palavrasChave: ["multa pneu careca recorrer", "profundidade sulco pneu multa", "contestar multa pneu gasto"],
+    conteudo: `
+## O critério técnico do pneu careca
+
+A infração (Art. 230, inciso VI do CTB) se baseia na profundidade dos sulcos da banda de rodagem. O limite mínimo legal é de 1,6mm, indicado pelos TWI (Tread Wear Indicators) — pequenas marcações na base dos sulcos do pneu.
+
+## Como a fiscalização verifica
+
+O agente deve medir a profundidade do sulco com instrumento apropriado (profundímetro) ou verificar visualmente se os indicadores TWI estão nivelados com a superfície do pneu.
+
+## Quando contestar
+
+**Ausência de medição registrada:** se o auto não especifica a medida encontrada ou o método de verificação, é vício formal — a alegação "pneu careca" sem dado objetivo é insuficiente.
+
+**Pneu recém-trocado:** se você trocou o pneu pouco antes ou depois da autuação, a nota fiscal da troca pode ser usada como contexto, embora não anule a multa por si só se a condição no momento da fiscalização era realmente inadequada.
+
+**Erro de identificação do pneu:** em alguns casos o agente pode confundir qual pneu (dianteiro/traseiro) estava com problema — verifique a descrição do auto.
+    `
+  },
+  {
+    slug: "multa-vidro-fume-irregular",
+    titulo: "Multa por Vidro Fumê Irregular: Limites e Como Recorrer",
+    descricao: "Aplicar película automotiva fora dos limites legais gera multa. Entenda os percentuais permitidos e quando a autuação pode ser contestada.",
+    categoria: "Equipamentos",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🚙",
+    imagemBg: "from-gray-800 to-black",
+    palavrasChave: ["multa vidro fumê irregular", "limite percentual película automotiva", "recurso multa vidro escurecido"],
+    conteudo: `
+## Os limites legais para película automotiva
+
+A Resolução CONTRAN nº 254/2007 define os percentuais mínimos de transmissão de luz visível (TLV):
+
+- Para-brisa: mínimo 75%
+- Vidros dianteiros (motorista/carona): mínimo 70%
+- Vidros traseiros e trava: sem limite mínimo específico na maioria dos estados
+
+Ultrapassar o limite de escurecimento nos vidros dianteiros é infração média — 4 pontos.
+
+## Como a fiscalização mede
+
+A medição exige um luxímetro ou equipamento específico de TLV. O agente deve registrar o percentual medido no auto de infração.
+
+## Vícios formais comuns
+
+**Medição sem equipamento adequado:** avaliação "a olho" sem instrumento de medição não é prova técnica válida.
+
+**Ausência do percentual no auto:** se o documento não especifica o TLV medido, falta elemento objetivo essencial.
+
+**Equipamento sem aferição:** luxímetros também exigem calibração periódica.
+
+## Recomendação prática
+
+Se você usa película, verifique o certificado do fabricante que declara o percentual de transmissão luminosa — isso serve como contraprova em caso de multa questionável.
+    `
+  },
+  {
+    slug: "multa-nao-usar-seta",
+    titulo: "Multa por Não Usar Seta: Quando Recorrer",
+    descricao: "Não sinalizar mudança de faixa ou conversão é infração média. Veja em quais situações essa multa pode ter vício formal e como contestar.",
+    categoria: "Comportamento no Trânsito",
+    tempoLeitura: "3 min",
+    imagemEmoji: "↩️",
+    imagemBg: "from-amber-600 to-yellow-700",
+    palavrasChave: ["multa não usar seta recorrer", "infração sinalização conversão", "contestar multa não sinalizar"],
+    conteudo: `
+## O que a lei exige
+
+O Art. 196 do CTB determina que toda manobra de mudança de direção deve ser sinalizada com antecedência através do pisca-alerta indicativo (seta), luzes de freio quando aplicável, ou gestos convencionais. É infração média — 4 pontos.
+
+## Como essa infração costuma ser autuada
+
+Diferente de multas eletrônicas, essa infração normalmente é presenciada por um agente no momento da manobra — o que exige que a descrição no auto seja específica sobre o comportamento observado.
+
+## Pontos de contestação
+
+**Descrição genérica:** "não sinalizou" sem especificar qual manobra (mudança de faixa, conversão, ultrapassagem) e o local exato é vício formal.
+
+**Distância e ângulo de observação:** o agente precisa estar em posição que permita observar claramente a ausência de sinalização. Se a posição descrita não permite essa visualização, é argumento válido.
+
+**Seta com defeito não identificado:** se sua seta estava com defeito e você não sabia, isso não isenta da infração, mas pode ser levado em conta dependendo do órgão julgador — vale declarar a situação e anexar comprovante de reparo posterior.
+    `
+  },
+  {
+    slug: "multa-farol-alto-indevido",
+    titulo: "Multa por Uso Indevido de Farol Alto: Como Recorrer",
+    descricao: "Usar farol alto em via com iluminação ou quando há veículos próximos é infração. Saiba quando a autuação é questionável.",
+    categoria: "Equipamentos",
+    tempoLeitura: "3 min",
+    imagemEmoji: "🔦",
+    imagemBg: "from-yellow-500 to-amber-700",
+    palavrasChave: ["multa farol alto indevido", "recurso multa uso farol alto", "infração farol alto trânsito"],
+    conteudo: `
+## Quando o uso de farol alto é proibido
+
+O Art. 229 do CTB proíbe usar farol alto em vias públicas iluminadas e ao cruzar com outro veículo (deve trocar para baixo a partir de 200 metros de distância aproximados, conforme o caso). É infração média — 4 pontos.
+
+## Situações comuns de autuação questionável
+
+**Via mal iluminada apresentada como "iluminada":** se a via na verdade tinha iluminação deficiente, o uso do farol alto pode ter sido necessário para segurança — argumento de razoabilidade, embora nem sempre aceito.
+
+**Ausência de veículo próximo no momento:** se não havia veículo se aproximando e a autuação foi por "via iluminada", verifique se a via realmente tinha iluminação adequada no trecho e horário.
+
+**Descrição imprecisa:** o auto deve indicar claramente qual das duas hipóteses (via iluminada ou veículo se aproximando) motivou a autuação.
+
+## Recurso
+
+Fotografe a via no mesmo horário e local, se possível, para demonstrar as condições reais de iluminação — essa prova visual fortalece o recurso quando a alegação de "via iluminada" é discutível.
+    `
+  },
+  {
+    slug: "multa-crianca-sem-cadeirinha",
+    titulo: "Multa por Criança sem Cadeirinha: Regras e Recurso",
+    descricao: "O transporte inadequado de crianças é infração gravíssima. Entenda as regras por idade, os equipamentos exigidos e quando é possível contestar.",
+    categoria: "Segurança Infantil",
+    tempoLeitura: "5 min",
+    imagemEmoji: "👶",
+    imagemBg: "from-rose-500 to-pink-700",
+    palavrasChave: ["multa criança sem cadeirinha", "regras transporte infantil carro", "recurso multa cadeirinha bebê"],
+    conteudo: `
+## As regras de transporte infantil
+
+O Art. 64 do CTB e a Resolução CONTRAN nº 819/2021 estabelecem os equipamentos obrigatórios por faixa etária:
+
+- **Até 1 ano:** bebê conforto (voltado para trás)
+- **1 a 4 anos:** cadeirinha
+- **4 a 7 anos e meio:** assento de elevação (booster)
+- **Acima dessa idade e 1,45m:** cinto de segurança do veículo
+
+Descumprir é infração gravíssima — 7 pontos e multa de R$ 293,47.
+
+## Quando a multa pode ter vício
+
+**Erro na estimativa de idade:** se o agente presumiu a idade da criança sem confirmação e ela na verdade já estava na faixa etária correta para o equipamento usado, é argumento de defesa — apresente documento com data de nascimento.
+
+**Equipamento presente mas não observado:** se a criança estava temporariamente sem o equipamento (por exemplo, trocando de assento) mas o veículo possui e usa regularmente a cadeirinha, isso pode ser mencionado na defesa, embora as chances sejam limitadas — a infração é objetiva quanto ao momento observado.
+
+**Trajeto curtíssimo declarado:** não existe exceção legal para trajetos curtos — a exigência vale mesmo para distâncias pequenas.
+
+## Importância além da multa
+
+Essa é uma das infrações mais sérias do CTB por envolver segurança infantil direta. Mesmo contestando a multa, é fundamental manter o equipamento adequado sempre em uso.
+    `
+  },
+  {
+    slug: "multa-moto-sem-capacete-passageiro",
+    titulo: "Multa por Passageiro sem Capacete na Moto: Como Recorrer",
+    descricao: "Tanto o condutor quanto o passageiro da moto são obrigados a usar capacete. Entenda a responsabilidade em cada caso e como contestar.",
+    categoria: "Motocicletas",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏍️",
+    imagemBg: "from-red-600 to-orange-800",
+    palavrasChave: ["multa passageiro capacete moto", "recurso multa capacete garupa", "infração capacete motocicleta"],
+    conteudo: `
+## De quem é a responsabilidade da multa
+
+O Art. 244 do CTB exige capacete para condutor e passageiro (garupa) de motocicleta. A responsabilidade pela infração recai sobre o **condutor** — mesmo que o descumprimento seja do passageiro. É infração gravíssima — 7 pontos.
+
+## Argumentos de defesa possíveis
+
+**Capacete presente mas mal ajustado:** se o passageiro usava capacete mas a fivela estava solta e o agente considerou "sem capacete", vale contestar com a descrição correta do fato.
+
+**Passageiro colocou o capacete no momento errado:** situações de trajeto muito curto (empurrando a moto na garagem, por exemplo) podem gerar contestação, mas as chances são baixas — a exigência vale para qualquer via pública.
+
+**Vício formal no auto:** verifique se o auto identifica corretamente quem estava na garupa e a condição específica observada.
+
+## Consequência adicional
+
+Além da multa, o veículo pode ser retido até a regularização (uso correto do capacete) no momento da fiscalização.
+    `
+  },
+  {
+    slug: "multa-excesso-peso-carga",
+    titulo: "Multa por Excesso de Peso na Carga: Como Funciona",
+    descricao: "Veículos de carga com peso acima do permitido enfrentam multas pesadas. Entenda os limites, a fiscalização em balanças e as opções de recurso.",
+    categoria: "Veículos de Carga",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🚛",
+    imagemBg: "from-stone-700 to-neutral-900",
+    palavrasChave: ["multa excesso peso carga caminhão", "recurso multa balança rodoviária", "infração peso bruto total"],
+    conteudo: `
+## Como funciona a fiscalização de peso
+
+Postos de pesagem (balanças) na rodovia verificam o Peso Bruto Total (PBT) do veículo e comparam com o limite da CLA (Capacidade de Carga Autorizada) do veículo. A infração varia conforme o percentual de excesso (Art. 231 do CTB).
+
+## Faixas de excesso e penalidade
+
+- Até 10% de excesso: infração média
+- Acima de 10%: infração grave a gravíssima, com retenção do veículo até regularização da carga
+
+## Vícios técnicos que fundamentam recurso
+
+**Balança sem aferição INMETRO válida:** equipamentos de pesagem precisam de certificação técnica assim como radares.
+
+**Erro de identificação da CLA do veículo:** se o órgão usou um limite de capacidade incorreto para o modelo do seu veículo, a base de cálculo do excesso está errada.
+
+**Condições da pesagem:** piso irregular, vento forte ou vibração no momento da pesagem podem gerar leitura incorreta — em casos de contestação técnica robusta, é possível questionar a validade da medição.
+
+## Documentos importantes para o recurso
+
+- Nota fiscal da carga com peso declarado
+- Certificado de aferição da balança (solicitar ao órgão)
+- Especificação técnica do veículo (CLA)
+    `
+  },
+  {
+    slug: "multa-reboque-irregular",
+    titulo: "Multa por Reboque Irregular: O que Verificar Antes de Recorrer",
+    descricao: "Rebocar veículo ou carreta fora das especificações técnicas gera multa. Entenda os requisitos legais e como identificar vícios na autuação.",
+    categoria: "Veículos de Carga",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🔗",
+    imagemBg: "from-gray-700 to-zinc-900",
+    palavrasChave: ["multa reboque irregular recorrer", "infração engate carreta trânsito", "recurso multa reboque não licenciado"],
+    conteudo: `
+## Requisitos legais para reboque
+
+O reboque (trailer, carretinha, semirreboque) precisa estar devidamente licenciado, com placa própria e sistema de engate compatível com o veículo tracionador, além de equipamentos de sinalização (luzes, placa refletiva).
+
+Infrações comuns incluem reboque sem registro, sem sinalização adequada ou com sistema de engate inadequado.
+
+## Vícios formais a verificar
+
+**Documentação do reboque:** se o reboque possui CRLV válido e a multa foi por "sem licenciamento", há erro objetivo — apresente o documento.
+
+**Especificação técnica do engate:** a autuação deve descrever especificamente qual irregularidade foi observada no sistema de engate, não apenas "engate irregular" de forma genérica.
+
+**Sinalização presente mas não observada corretamente:** se o reboque tinha placa refletiva e luzes funcionando, mas o agente não os identificou corretamente (por exemplo, à luz do dia), vale contestar com fotos do equipamento.
+
+## Recomendação
+
+Sempre mantenha a documentação do reboque junto com a do veículo tracionador — a maior parte dos recursos bem-sucedidos nessa categoria se baseia em comprovar documentação já existente que não foi verificada corretamente pelo agente.
+    `
+  },
+  {
+    slug: "multa-escapamento-aberto",
+    titulo: "Multa por Escapamento Aberto ou Modificado: Como Recorrer",
+    descricao: "Alterar o sistema de escapamento do veículo é infração de segurança e ambiental. Entenda os critérios técnicos e quando contestar.",
+    categoria: "Equipamentos",
+    tempoLeitura: "3 min",
+    imagemEmoji: "💨",
+    imagemBg: "from-slate-600 to-gray-800",
+    palavrasChave: ["multa escapamento aberto recorrer", "infração escapamento modificado", "recurso multa poluição veicular escapamento"],
+    conteudo: `
+## Base legal
+
+O Art. 230, inciso XI do CTB proíbe conduzir veículo com equipamento obrigatório alterado ou em desacordo com as especificações do fabricante — incluindo o sistema de escapamento. É infração grave.
+
+## Como se diferencia da multa por poluição sonora
+
+Enquanto a multa de som alto (Art. 228) trata do volume, a multa de escapamento modificado (Art. 230) trata da **alteração física** do equipamento original — mesmo que o ruído não tenha sido medido tecnicamente.
+
+## Pontos de contestação
+
+**Falta de descrição técnica:** o auto deve especificar qual alteração foi identificada (remoção de catalisador, corte do escapamento, etc.). Descrição vaga é vício formal.
+
+**Equipamento original com desgaste natural:** escapamentos com furos por ferrugem ou desgaste natural (não modificação intencional) podem gerar discussão sobre a natureza da irregularidade.
+
+**Ausência de verificação técnica:** idealmente, a irregularidade deveria ser confirmada por vistoria técnica, não apenas percepção visual ou auditiva do agente.
+
+## Recomendação
+
+Se o escapamento foi de fato modificado, a melhor estratégia é regularizar o veículo rapidamente — a reincidência agrava as consequências, incluindo possível apreensão.
+    `
+  },
+  {
+    slug: "multa-estacionar-vaga-carga-descarga",
+    titulo: "Multa por Estacionar em Vaga de Carga e Descarga",
+    descricao: "Vagas de carga e descarga têm regras específicas de horário e uso. Entenda quando a multa é aplicada corretamente e como contestar.",
+    categoria: "Estacionamento",
+    tempoLeitura: "3 min",
+    imagemEmoji: "📦",
+    imagemBg: "from-orange-600 to-amber-800",
+    palavrasChave: ["multa vaga carga descarga recorrer", "infração estacionar local carga", "recurso multa parar vaga comercial"],
+    conteudo: `
+## O que são vagas de carga e descarga
+
+São espaços reservados para veículos comerciais realizarem operações de carga e descarga em horários específicos definidos pelo órgão municipal de trânsito, geralmente sinalizados com placas indicando o horário de restrição.
+
+## Quando a multa pode ser contestada
+
+**Fora do horário de restrição:** se você estacionou fora da janela horária sinalizada (por exemplo, a vaga só é exclusiva das 8h às 18h e você estacionou às 19h), a multa é indevida.
+
+**Sinalização ausente ou danificada:** se a placa indicando a restrição estava ausente, danificada ou ilegível, é vício formal que invalida a autuação.
+
+**Você estava de fato carregando/descarregando:** se seu veículo estava efetivamente em operação de carga/descarga (mesmo sem ser veículo comercial tradicional), documente com fotos e notas fiscais da mercadoria transportada.
+
+## Como contestar
+
+Fotografe a sinalização (ou ausência dela) no local, verifique o horário exato da autuação comparado com o horário de restrição sinalizado, e protocole o recurso no órgão municipal dentro do prazo.
+    `
+  },
+  {
+    slug: "multa-ultrapassagem-proibida",
+    titulo: "Multa por Ultrapassagem em Local Proibido: Como Recorrer",
+    descricao: "Ultrapassar em faixa contínua, curva ou local sinalizado como proibido é infração gravíssima. Saiba quando existe base para contestar.",
+    categoria: "Comportamento no Trânsito",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⛔",
+    imagemBg: "from-red-700 to-rose-900",
+    palavrasChave: ["multa ultrapassagem proibida recorrer", "infração ultrapassar faixa contínua", "recurso multa ultrapassagem curva"],
+    conteudo: `
+## O que caracteriza a infração
+
+O Art. 206 do CTB proíbe ultrapassar em locais com sinalização de proibição (faixa amarela contínua), em curvas, aclives sem visibilidade, cruzamentos e outras situações de risco. É infração gravíssima — 7 pontos.
+
+## Como essa multa costuma ser autuada
+
+Pode ser presenciada por agente ou registrada por câmera, dependendo da via. Multas por câmera exigem imagem clara mostrando o veículo cruzando a faixa contínua ou realizando a manobra proibida.
+
+## Pontos de contestação
+
+**Sinalização apagada ou ilegível:** faixas de solo desgastadas que não permitem identificação clara da proibição são argumento de defesa — a responsabilidade pela manutenção da sinalização é do órgão de trânsito.
+
+**Imagem que não comprova a manobra completa:** a foto ou vídeo deve mostrar claramente o veículo invadindo a faixa oposta durante a ultrapassagem, não apenas próximo dela.
+
+**Situação de emergência:** ultrapassagem para desviar de obstáculo repentino (animal, objeto na pista, veículo parado) pode ser justificada, mas exige prova (testemunha, boletim de ocorrência).
+
+## Gravidade da infração
+
+Por ser gravíssima e de alto risco, essa multa merece atenção redobrada — 7 pontos aproximam rapidamente do limite de suspensão da CNH.
+    `
+  },
+  {
+    slug: "multa-nao-respeitar-faixa-pedestre",
+    titulo: "Multa por Não Respeitar Faixa de Pedestre: Como Contestar",
+    descricao: "Não dar passagem a pedestres na faixa é infração gravíssima. Entenda os critérios de autuação e as situações que permitem recurso.",
+    categoria: "Comportamento no Trânsito",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🚶",
+    imagemBg: "from-blue-600 to-sky-800",
+    palavrasChave: ["multa faixa pedestre recorrer", "infração não dar passagem pedestre", "recurso multa atropelar faixa"],
+    conteudo: `
+## Base legal
+
+O Art. 214 do CTB exige que o condutor pare o veículo sempre que houver pedestre atravessando a via na faixa a ele destinada, mesmo que não haja sinalização semafórica. É infração gravíssima — 7 pontos.
+
+## Como a fiscalização identifica
+
+Geralmente é presenciada por agente, mas cidades com câmeras inteligentes de monitoramento de faixa também autuam automaticamente em locais específicos.
+
+## Situações de contestação
+
+**Pedestre ainda não estava na faixa:** se o pedestre se aproximava mas ainda não havia iniciado a travessia, não há obrigação legal de parada — vale verificar a descrição exata do momento no auto.
+
+**Faixa desgastada ou mal sinalizada:** se a pintura da faixa estava apagada a ponto de não ser identificável como faixa de pedestre, é argumento de vício na sinalização.
+
+**Semáforo específico para pedestres com sinal favorável ao veículo:** em locais com semáforo de pedestres, se o sinal estava favorável ao condutor no momento, a obrigação de parada não se aplica da mesma forma.
+
+## Importância de levar a sério
+
+Por envolver risco direto à vida de pedestres, essa é uma das infrações mais fiscalizadas e com menor tolerância dos órgãos julgadores — a contestação precisa ser bem fundamentada tecnicamente.
+    `
+  },
+  {
+    slug: "multa-cinto-seguranca-banco-traseiro",
+    titulo: "Multa por Não Usar Cinto no Banco Traseiro",
+    descricao: "A obrigatoriedade do cinto vale para todos os ocupantes do veículo, incluindo o banco de trás. Entenda a responsabilidade e como recorrer.",
+    categoria: "Segurança",
+    tempoLeitura: "3 min",
+    imagemEmoji: "🔒",
+    imagemBg: "from-blue-500 to-indigo-700",
+    palavrasChave: ["multa cinto banco traseiro recorrer", "infração cinto segurança passageiro trás", "recurso multa cinto obrigatório"],
+    conteudo: `
+## A regra vale para todos os bancos
+
+O Art. 65 do CTB exige uso de cinto de segurança para condutor e todos os passageiros, independente da posição no veículo. É infração grave — 5 pontos, aplicada ao condutor mesmo quando quem estava sem cinto era um passageiro do banco traseiro.
+
+## Responsabilidade da multa
+
+A multa recai sobre o **condutor**, não sobre o passageiro que estava sem cinto — princípio semelhante ao capacete em motocicletas.
+
+## Situações de contestação
+
+**Visibilidade do agente:** para verificar o cinto no banco traseiro, especialmente com vidros escurecidos dentro do limite legal, o agente precisa ter visão clara. Se a verificação foi feita em condições que dificultavam a visualização, é argumento de defesa.
+
+**Cinto quebrado no veículo:** se o veículo tinha cinto de segurança com defeito no banco traseiro, isso não isenta da infração, mas documentar o problema para reparo é recomendável.
+
+**Trajeto curtíssimo:** não existe exceção legal para trajetos curtos, mesmo dentro de condomínios ou estacionamentos privados quando em via de acesso comum.
+
+## Recurso
+
+A contestação nesse tipo de multa depende principalmente da descrição do auto — verifique se o agente especificou corretamente qual ocupante estava sem cinto e a posição exata.
+    `
+  },
+  {
+    slug: "multa-trafegar-acostamento",
+    titulo: "Multa por Trafegar no Acostamento: Quando Recorrer",
+    descricao: "Usar o acostamento para circular fora de situações de emergência é infração grave. Entenda as exceções legais e como contestar.",
+    categoria: "Comportamento no Trânsito",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🛣️",
+    imagemBg: "from-emerald-700 to-green-900",
+    palavrasChave: ["multa trafegar acostamento recorrer", "infração usar acostamento rodovia", "recurso multa acostamento emergência"],
+    conteudo: `
+## Regra geral do CTB
+
+O Art. 202 do CTB proíbe transitar pelo acostamento, exceto em situações específicas (baixa velocidade sinalizada, emergência, autorização de agente de trânsito, ou quando expressamente permitido por sinalização). É infração grave — 5 pontos.
+
+## Exceções legais reconhecidas
+
+- Emergência médica comprovada
+- Pane mecânica do veículo (com sinalização de segurança adequada)
+- Quando há sinalização expressa permitindo uso temporário do acostamento (obras, desvios)
+- Ônibus e determinados veículos em situações específicas autorizadas por lei local
+
+## Pontos de contestação
+
+**Situação de emergência documentada:** boletim de ocorrência, laudo médico ou nota fiscal de guincho/reparo próximos à data podem fundamentar a exceção de emergência.
+
+**Sinalização de desvio temporário:** se havia sinalização de obra ou desvio autorizando o uso do acostamento no trecho, isso deve ser verificado e pode anular a multa.
+
+**Localização incorreta:** verifique se o local descrito no auto realmente corresponde a um acostamento (e não a uma faixa adicional ou área de escape) — erro de classificação da via é vício formal.
+
+## Recomendação
+
+Se você usou o acostamento por necessidade real, reúna a documentação de prova (fotos do momento, boletim de ocorrência, contato de guincho) o quanto antes, pois esse tipo de prova se deteriora com o tempo.
+    `
+  },
+  {
+    slug: "multa-conversao-proibida",
+    titulo: "Multa por Conversão Proibida: Como Contestar",
+    descricao: "Fazer o retorno ou conversão em local não permitido é infração grave. Entenda os erros comuns de sinalização e como recorrer.",
+    categoria: "Comportamento no Trânsito",
+    tempoLeitura: "3 min",
+    imagemEmoji: "↪️",
+    imagemBg: "from-purple-600 to-violet-800",
+    palavrasChave: ["multa conversão proibida recorrer", "infração retorno proibido trânsito", "recurso multa converter local errado"],
+    conteudo: `
+## Base legal
+
+O Art. 187, inciso II do CTB proíbe realizar conversão ou retorno em locais sinalizados como proibidos, ou onde a manobra representa risco de acidente. É infração média — 4 pontos.
+
+## Como a fiscalização é feita
+
+Geralmente presenciada por agente, mas cruzamentos com câmeras de monitoramento também podem autuar automaticamente.
+
+## Pontos de contestação frequentes
+
+**Sinalização insuficiente ou ausente:** placas de proibição de conversão devem estar visíveis e bem posicionadas. Sinalização ausente, apagada ou obstruída por vegetação/veículos é vício da via, não do condutor.
+
+**Confusão entre "proibido converter à esquerda" e "proibido retornar":** são infrações e sinalizações diferentes — verifique se a descrição do auto corresponde exatamente à manobra realizada.
+
+**Semáforo com seta específica:** em cruzamentos com semáforo de seta própria para conversão, se a seta estava verde no momento, a conversão era permitida independente de placa genérica no local.
+
+## Como recorrer
+
+Fotografe o local (sinalização atual) e, se possível, verifique imagens históricas do Google Street View da data aproximada para demonstrar a condição da sinalização no momento da infração.
+    `
+  },
+  {
+    slug: "multa-nome-errado-como-corrigir",
+    titulo: "Multa Chegou com Nome Errado: Como Corrigir e Recorrer",
+    descricao: "Erros de identificação em notificações de multa acontecem mais do que parece. Saiba como corrigir e usar isso como argumento de defesa.",
+    categoria: "Dúvidas Frequentes",
+    tempoLeitura: "4 min",
+    imagemEmoji: "📝",
+    imagemBg: "from-blue-600 to-cyan-800",
+    palavrasChave: ["multa nome errado corrigir", "notificação multa dados incorretos", "recurso multa erro identificação"],
+    conteudo: `
+## Por que isso acontece
+
+Erros de nome, CPF ou endereço em notificações de multa geralmente decorrem de:
+- Cadastro desatualizado no DETRAN
+- Erro de digitação no sistema do órgão autuador
+- Veículo recém-transferido com dados do proprietário anterior ainda no sistema
+
+## Isso é motivo para anular a multa?
+
+Depende do tipo de erro. Erros irrelevantes (como acentuação do nome) geralmente não anulam a multa — o importante é a identificação correta do veículo (placa e RENAVAM). Mas erros substanciais podem ser vício formal.
+
+## Quando o erro é motivo de recurso
+
+**CPF completamente divergente:** se o CPF na notificação não corresponde ao seu, mas o veículo é seu, pode indicar erro sistêmico que merece correção — e possivelmente questionamento sobre a validade da notificação.
+
+**Nome de terceiro completamente diferente:** se a notificação chegou para você mas com nome de outra pessoa, sem relação com o veículo, há erro grave de identificação.
+
+## Como corrigir o cadastro
+
+1. Acesse o portal do DETRAN do seu estado
+2. Procure a opção de atualização cadastral
+3. Anexe documentos comprobatórios (CNH, comprovante de residência)
+4. Aguarde a atualização (pode levar alguns dias)
+
+## Recomendação
+
+Corrija o cadastro assim que identificar o erro — isso evita problemas em notificações futuras, mesmo que a multa atual não seja anulada apenas por essa divergência.
+    `
+  },
+  {
+    slug: "multa-veiculo-comprado-usado",
+    titulo: "Comprei Carro Usado com Multas Pendentes: O que Fazer?",
+    descricao: "Descobrir multas antigas após comprar um veículo usado é comum. Entenda de quem é a responsabilidade e como resolver a situação.",
+    categoria: "Compra e Venda",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🚗",
+    imagemBg: "from-teal-600 to-emerald-800",
+    palavrasChave: ["comprei carro com multa pendente", "multa veículo usado responsabilidade", "carro comprado multa anterior dono"],
+    conteudo: `
+## De quem é a responsabilidade pela multa antiga
+
+A regra geral: a multa em si (valor financeiro) acompanha o **veículo**, não a pessoa. Ou seja, ao comprar um carro com multas pendentes, você (novo proprietário) se torna responsável pelo pagamento — mesmo que a infração tenha ocorrido antes da compra.
+
+Já os **pontos** ficam com quem estava dirigindo no momento da infração (o antigo proprietário ou quem ele indicou como condutor).
+
+## O que verificar antes de comprar um veículo usado
+
+- Consulte o extrato completo de multas no DETRAN antes de fechar negócio
+- Verifique se há débitos em dívida ativa (mais graves, com juros)
+- Confirme a situação do licenciamento
+
+## Já comprei e descobri multas depois — o que fazer
+
+**Negocie com o vendedor:** se a venda foi recente e as multas eram anteriores à negociação, você pode (e deve) buscar ressarcimento do vendedor — idealmente isso deveria ter sido acertado no contrato de compra e venda.
+
+**Verifique se ainda dá para recorrer:** se as multas ainda estão dentro do prazo de defesa prévia ou JARI, você pode contestar como novo proprietário, desde que apresente a documentação de transferência.
+
+**Regularize o licenciamento:** multas em dívida ativa bloqueiam o licenciamento — mesmo não sendo sua culpa original, você precisa resolver para poder circular regularmente.
+
+## Prevenção para futuras compras
+
+Sempre inclua cláusula contratual específica sobre responsabilidade por multas anteriores à data de venda, e exija a atualização do RENAVAM logo após a compra.
+    `
+  },
+  {
+    slug: "multa-carro-alugado-locadora",
+    titulo: "Multa em Carro Alugado: Como Funciona a Cobrança",
+    descricao: "Locadoras de veículos têm processo específico para repassar multas aos locatários. Entenda seus direitos e como contestar cobranças indevidas.",
+    categoria: "Locação de Veículos",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🔑",
+    imagemBg: "from-indigo-600 to-blue-800",
+    palavrasChave: ["multa carro alugado locadora", "cobrança multa aluguel veículo", "recurso multa carro locação"],
+    conteudo: `
+## Como funciona o repasse de multas em locação
+
+Ao alugar um veículo, o locatário assume responsabilidade pelas infrações cometidas durante o período de uso. A locadora, como proprietária, recebe a notificação e repassa ao locatário — geralmente cobrando também uma taxa administrativa.
+
+## Prazo para a locadora identificar o condutor
+
+A locadora tem até **30 dias** da notificação para indicar o CPF do locatário responsável ao órgão de trânsito. Se perder esse prazo, a multa e os pontos ficam no nome da própria locadora.
+
+## Cobrança de taxa administrativa: é legal?
+
+Sim, é uma prática comum e legal, desde que prevista em contrato. O valor varia por empresa — geralmente entre R$ 40 e R$ 100 por infração, além do valor da multa em si.
+
+## Quando contestar a cobrança da locadora
+
+**Taxa não prevista em contrato:** se o contrato de locação não menciona cobrança de taxa administrativa, você pode questionar esse valor específico (não a multa em si).
+
+**Multa de período fora da locação:** verifique se a data e horário da infração correspondem exatamente ao período em que você estava com o veículo alugado.
+
+**Cobrança duplicada:** confira se a mesma multa não está sendo cobrada mais de uma vez.
+
+## Posso recorrer da multa mesmo sendo locatário?
+
+Sim. Assim que a locadora te indica como condutor, você recebe a notificação diretamente e pode apresentar sua própria defesa dentro do prazo — os mesmos direitos de qualquer condutor.
+    `
+  },
+  {
+    slug: "multa-chegou-apos-prazo-vencido",
+    titulo: "Notificação de Multa Chegou Depois do Prazo: E Agora?",
+    descricao: "Receber a notificação com o prazo de defesa já vencido acontece por falhas dos Correios ou do sistema. Saiba o que fazer nessa situação.",
+    categoria: "Processo de Recurso",
+    tempoLeitura: "4 min",
+    imagemEmoji: "📮",
+    imagemBg: "from-amber-600 to-orange-800",
+    palavrasChave: ["notificação multa chegou atrasada", "prazo defesa vencido multa recebida tarde", "recurso multa fora do prazo motivo justo"],
+    conteudo: `
+## O prazo conta a partir de quando?
+
+O prazo de 15 dias para defesa prévia conta a partir da data de **recebimento** da notificação, não da data de emissão. Mas na prática, o órgão considera a data registrada nos Correios ou no sistema eletrônico como referência.
+
+## Se a notificação chegou com o prazo já vencido
+
+Isso é um problema real e relativamente comum, especialmente com notificações por Correios. Nesses casos:
+
+**Documente a data real de recebimento:** guarde o envelope com o carimbo dos Correios, ou registre a data em que efetivamente recebeu (com foto do envelope, se possível).
+
+**Protocole o recurso mesmo assim, explicando o atraso:** apresente a defesa argumentando que o prazo deve ser contado da data real de recebimento, não da data do documento, anexando a prova do atraso na entrega.
+
+**Solicite reabertura de prazo:** alguns órgãos aceitam pedido de reabertura de prazo mediante comprovação de falha na entrega — não é garantido, mas vale tentar.
+
+## Prevenção: adira ao SNE
+
+O Sistema de Notificação Eletrônica elimina esse problema — a notificação chega instantaneamente por e-mail/portal, sem depender dos Correios, e você tem controle exato da data de recebimento.
+
+## E se eu simplesmente perdi o prazo por desatenção?
+
+Nesse caso, resta recorrer à JARI diretamente contestando o mérito, já que a defesa prévia não pode mais ser apresentada. O prazo da JARI só se aplica após indeferimento da defesa prévia — se você perdeu a primeira fase, verifique com o órgão qual o próximo passo cabível no seu caso específico.
+    `
+  },
+  {
+    slug: "multa-duplicada-mesma-infracao",
+    titulo: "Recebi Duas Multas pela Mesma Infração: Como Resolver",
+    descricao: "Erros de sistema podem gerar cobrança duplicada da mesma infração. Entenda como identificar e corrigir essa situação.",
+    categoria: "Dúvidas Frequentes",
+    tempoLeitura: "3 min",
+    imagemEmoji: "📑",
+    imagemBg: "from-red-600 to-pink-800",
+    palavrasChave: ["multa duplicada mesma infração", "duas multas iguais como resolver", "cobrança duplicada multa trânsito"],
+    conteudo: `
+## Como identificar uma multa duplicada
+
+Compare os dois autos de infração: se a data, horário, local e código da infração forem idênticos (ou muito próximos, dentro de segundos), é provável duplicação por falha técnica do sistema de fiscalização.
+
+## Causas comuns de duplicação
+
+- Falha em sistemas de câmera que registra o mesmo evento duas vezes
+- Erro de sincronização entre diferentes bases de dados do órgão
+- Multa aplicada tanto pelo órgão municipal quanto estadual para o mesmo fato (bitributação administrativa)
+
+## Como contestar
+
+**Identifique os dois números de auto:** anote ambos os números de infração para referenciar no recurso.
+
+**Protocole recurso citando a duplicidade:** no texto da defesa, cite expressamente os dois autos, demonstrando que se referem ao mesmo fato, mesma data, hora e local.
+
+**Solicite o cancelamento de um dos autos:** peça expressamente que apenas um dos registros seja mantido, com cancelamento do duplicado.
+
+## Isso afeta os pontos?
+
+Sim — pontos duplicados indevidamente contam em dobro no seu prontuário até a correção. Por isso, é importante contestar rapidamente para evitar impacto indevido na sua pontuação.
+
+## Onde reclamar se o órgão não corrigir
+
+Se o recurso administrativo não resolver, procure a Ouvidoria do órgão de trânsito ou o PROCON, já que cobrança duplicada indevida pode configurar prática abusiva.
+    `
+  },
+  {
+    slug: "multa-afeta-financiamento-veiculo",
+    titulo: "Multa Pendente Afeta o Financiamento do Veículo?",
+    descricao: "Débitos de multa podem gerar consequências para quem financia um carro. Entenda a relação entre multas, alienação fiduciária e financiamento.",
+    categoria: "Financeiro",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏦",
+    imagemBg: "from-emerald-700 to-teal-900",
+    palavrasChave: ["multa afeta financiamento carro", "débito multa veículo financiado", "multa impede quitação financiamento"],
+    conteudo: `
+## Multa impede a quitação do financiamento?
+
+Não diretamente. O financiamento é um contrato entre você e o banco/financeira — multas de trânsito não impedem o pagamento das parcelas nem a quitação do contrato em si.
+
+## Onde a multa realmente afeta
+
+**Licenciamento anual:** débitos de multa impedem o licenciamento do veículo. Isso não afeta o financiamento, mas impede você de circular regularmente com o carro.
+
+**Transferência após quitação:** ao quitar o financiamento, é necessário providenciar a baixa da alienação fiduciária junto ao DETRAN. Débitos de multa em aberto podem gerar bloqueios administrativos que dificultam esse processo, embora não impeçam legalmente a baixa da alienação em si.
+
+**Venda do veículo:** se você quiser vender o carro financiado (com anuência do banco), débitos de multa podem complicar a transferência para o novo comprador.
+
+## O banco pode ser responsabilizado por multas?
+
+Não, exceto em casos raros de veículos de locadoras com frota cativa. Em financiamento tradicional com alienação fiduciária, o devedor fiduciante (você) é o responsável pelo uso do veículo e por eventuais infrações.
+
+## Recomendação
+
+Mantenha as multas em dia ou em processo de recurso ativo para evitar acúmulo de dívida ativa, que complica processos futuros como transferência, licenciamento e revenda do veículo financiado.
+    `
+  },
+  {
+    slug: "relacao-multa-ipva-licenciamento",
+    titulo: "Multa, IPVA e Licenciamento: Entenda a Relação Entre Eles",
+    descricao: "Muitas pessoas confundem esses três débitos veiculares. Entenda como cada um funciona separadamente e como um pode bloquear o outro.",
+    categoria: "Dúvidas Frequentes",
+    tempoLeitura: "4 min",
+    imagemEmoji: "📊",
+    imagemBg: "from-blue-700 to-slate-900",
+    palavrasChave: ["multa IPVA licenciamento diferença", "débitos veiculares relação", "licenciamento bloqueado multa IPVA"],
+    conteudo: `
+## Três débitos diferentes, mesmo veículo
+
+**IPVA (Imposto sobre Propriedade de Veículos Automotores):** imposto estadual anual, calculado sobre o valor do veículo. Não tem relação com infrações de trânsito.
+
+**Multas de trânsito:** penalidades por infrações cometidas. Independentes do IPVA.
+
+**Licenciamento:** taxa anual obrigatória para circular legalmente, que resulta no CRLV (documento do veículo).
+
+## Como eles se relacionam
+
+O licenciamento anual só é emitido se **todos os débitos estiverem quitados** — IPVA, multas e taxas do próprio licenciamento. Ou seja, mesmo que você pague o IPVA em dia, uma multa pendente pode bloquear o licenciamento.
+
+## O que acontece sem o licenciamento em dia
+
+- O veículo fica irregular para circulação
+- Risco de apreensão em fiscalização
+- Impossibilidade de transferência ou venda regular
+- Multa adicional por circular com licenciamento vencido (infração gravíssima)
+
+## Recorrer da multa libera o licenciamento?
+
+Enquanto o recurso está em análise, alguns estados suspendem o bloqueio referente àquela multa específica para fins de licenciamento — mas isso varia por DETRAN. Consulte o órgão do seu estado para confirmar essa regra específica.
+
+## Estratégia recomendada
+
+Antes da época de licenciamento, consulte o extrato completo de débitos (IPVA, multas, taxas) no portal do DETRAN e resolva pendências com antecedência — inclusive protocolando recursos de multas que você pretende contestar, para não ser pego de surpresa.
+    `
+  },
+  {
+    slug: "multa-heranca-veiculo-falecido",
+    titulo: "Multa em Veículo de Pessoa Falecida: Como Proceder",
+    descricao: "Herdar um veículo com multas pendentes exige cuidados específicos no processo de inventário e transferência. Entenda o passo a passo.",
+    categoria: "Casos Especiais",
+    tempoLeitura: "4 min",
+    imagemEmoji: "📜",
+    imagemBg: "from-gray-600 to-slate-800",
+    palavrasChave: ["multa veículo pessoa falecida", "herança carro com multas", "transferência veículo inventário multa"],
+    conteudo: `
+## O que acontece com multas de veículo herdado
+
+As multas pendentes de um veículo não desaparecem com o falecimento do proprietário — elas passam a integrar o **espólio** (conjunto de bens e dívidas deixados) e devem ser quitadas antes ou durante o processo de transferência aos herdeiros.
+
+## O processo de transferência do veículo
+
+1. Inventário (judicial ou extrajudicial, dependendo da complexidade)
+2. Regularização de débitos do veículo (IPVA, multas, licenciamento)
+3. Transferência da propriedade no DETRAN para o herdeiro definido no inventário
+
+## Posso recorrer de multas do falecido?
+
+Sim. O espólio, representado pelo inventariante, tem legitimidade para apresentar defesa de multas recebidas antes ou mesmo após o falecimento, desde que dentro do prazo legal.
+
+Se a multa foi recebida quando a pessoa já havia falecido (erro do sistema, já que a notificação é gerada automaticamente), isso pode ser usado como argumento adicional, mas normalmente não anula a multa em si — apenas a responsabilidade de resposta muda para o espólio/herdeiros.
+
+## Dica prática
+
+Ao lidar com inventário envolvendo veículos, consulte o extrato completo de débitos assim que possível — isso evita surpresas na hora da transferência final e permite tempo hábil para contestar multas com vício formal antes de quitar tudo.
+    `
+  },
+  {
+    slug: "transferencia-veiculo-multas-pendentes",
+    titulo: "Posso Transferir Veículo com Multas Pendentes?",
+    descricao: "A transferência de propriedade tem regras específicas quando há débitos. Entenda o que é possível e os cuidados necessários na negociação.",
+    categoria: "Compra e Venda",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🔄",
+    imagemBg: "from-cyan-600 to-blue-800",
+    palavrasChave: ["transferir veículo multa pendente", "posso vender carro com multa", "transferência DETRAN débitos pendentes"],
+    conteudo: `
+## É possível transferir com multas em aberto?
+
+Sim, na maioria dos estados é possível transferir a propriedade do veículo mesmo com multas pendentes — a transferência de propriedade e a quitação de débitos são processos distintos.
+
+O que geralmente é **impedido** com débitos pendentes é o **licenciamento anual**, não a transferência de propriedade em si.
+
+## O que verificar antes de comprar ou vender
+
+**Vendedor:** informe claramente ao comprador sobre débitos existentes. Ocultar essa informação pode gerar problemas contratuais e até judiciais.
+
+**Comprador:** solicite o extrato completo de débitos do DETRAN antes de fechar negócio. Negocie o valor considerando as pendências, ou exija a quitação como condição da venda.
+
+## Como formalizar a responsabilidade pelas multas
+
+O ideal é incluir cláusula específica no contrato de compra e venda estabelecendo:
+- Data de corte (multas anteriores são responsabilidade do vendedor)
+- Compromisso do vendedor de quitar ou o valor sendo descontado do preço
+- Prazo para o comprador providenciar a transferência (geralmente 30 dias, conforme o CTB)
+
+## O prazo de 30 dias é obrigatório
+
+O Art. 123 do CTB exige que a transferência seja comunicada ao órgão de trânsito em até 30 dias da venda. Não fazer isso é infração e mantém o vendedor responsável por futuras multas até a comunicação de venda ser registrada.
+
+## Recomendação final
+
+Mesmo com débitos pendentes, formalize a transferência dentro do prazo legal — isso protege tanto vendedor quanto comprador de responsabilidades futuras indevidas.
+    `
+  },
+  {
+    slug: "multa-nao-transferida-comprador",
+    titulo: "Vendi o Carro e o Comprador Não Transferiu: O que Fazer",
+    descricao: "Multas continuam chegando no seu nome mesmo após vender o veículo? Saiba como se proteger legalmente e resolver a situação.",
+    categoria: "Compra e Venda",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⚠️",
+    imagemBg: "from-red-600 to-orange-800",
+    palavrasChave: ["comprador não transferiu carro multa", "vendi carro multas continuam meu nome", "comunicação venda veículo DETRAN"],
+    conteudo: `
+## Por que isso acontece
+
+Se o comprador não providenciou a transferência do veículo no DETRAN, o sistema continua identificando você como proprietário — e todas as notificações de multa continuam chegando no seu nome e endereço.
+
+## A solução legal: Comunicação de Venda
+
+O Art. 134 do CTB determina que, se o novo proprietário não transferir o veículo em até 30 dias, o **antigo proprietário tem o direito e o dever de comunicar a venda** ao órgão de trânsito para se eximir de responsabilidade futura.
+
+## Como fazer a Comunicação de Venda
+
+1. Acesse o portal do DETRAN do seu estado
+2. Procure a opção "Comunicação de Venda" ou "Comunicação de Transferência"
+3. Informe os dados do comprador (nome, CPF, endereço) — por isso é essencial guardar cópia do documento do comprador no momento da venda
+4. Anexe cópia do contrato de compra e venda (recibo assinado)
+5. Protocole a comunicação
+
+## A partir de quando cessa minha responsabilidade
+
+A partir da data de protocolo da Comunicação de Venda, novas infrações não são mais de sua responsabilidade — mesmo que o veículo continue registrado no seu nome no sistema.
+
+## E as multas que já chegaram antes da comunicação?
+
+Infrações cometidas após a data da venda (mesmo que notificadas antes da comunicação) podem ser contestadas apresentando o contrato de compra e venda como prova de que você não era mais o responsável pelo veículo naquela data.
+
+## Prevenção para vendas futuras
+
+Sempre faça um contrato de compra e venda com firma reconhecida ou assinatura eletrônica válida, e considere fazer a Comunicação de Venda imediatamente após a negociação, sem esperar os 30 dias — isso protege você mais rapidamente.
+    `
+  },
+  {
+    slug: "detran-rj-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN RJ: Passo a Passo",
+    descricao: "Guia completo para contestar multas no Rio de Janeiro. Sistema online, prazos e documentos necessários para o recurso.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-blue-700 to-cyan-900",
+    palavrasChave: ["recurso multa DETRAN RJ", "como recorrer multa Rio de Janeiro", "defesa prévia DETRAN RJ online"],
+    conteudo: `
+## Sistema do DETRAN RJ para recursos
+
+O DETRAN do Rio de Janeiro disponibiliza o portal **detran.rj.gov.br** para protocolo de defesa prévia e recursos de multa, além de atendimento presencial nos postos do estado.
+
+## Como identificar o órgão autuador no RJ
+
+No estado do Rio de Janeiro, além do DETRAN estadual, a cidade do Rio tem a CET-Rio para infrações municipais. Verifique no auto de infração qual órgão emitiu a autuação antes de escolher o portal correto.
+
+## Passo a passo no portal DETRAN RJ
+
+1. Acesse detran.rj.gov.br
+2. Localize a seção "Multas e Infrações" ou "Recursos"
+3. Faça login com CPF e senha (ou cadastre-se, se for o primeiro acesso)
+4. Informe o número do auto de infração ou a placa do veículo
+5. Selecione o tipo de recurso (defesa prévia ou recurso à JARI-RJ)
+6. Preencha ou anexe a petição de defesa
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Prazos no RJ
+
+Seguem o padrão nacional do CTB: 15 dias para defesa prévia, 30 dias para recurso à JARI após indeferimento.
+
+## Dica para o Rio de Janeiro
+
+O volume de multas por câmeras de monitoramento é alto na capital fluminense. Sempre verifique a homologação do equipamento e a qualidade da imagem antes de montar o recurso — são os vícios mais comuns identificados em autuações eletrônicas no estado.
+    `
+  },
+  {
+    slug: "detran-mg-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN MG: Passo a Passo",
+    descricao: "Guia completo para contestar multas em Minas Gerais. Sistema online, prazos e o que você precisa para protocolar o recurso.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-yellow-600 to-amber-800",
+    palavrasChave: ["recurso multa DETRAN MG", "como recorrer multa Minas Gerais", "defesa prévia DETRAN MG online"],
+    conteudo: `
+## Sistema do DETRAN MG para recursos
+
+O DETRAN de Minas Gerais disponibiliza o portal **detran.mg.gov.br** com área específica para consulta e contestação de infrações de trânsito.
+
+## Passo a passo para recorrer em MG
+
+1. Acesse detran.mg.gov.br
+2. Localize "Serviços Online" e depois "Infrações e Recursos"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pelo número do auto ou placa
+5. Escolha entre Defesa Prévia ou Recurso à JARI-MG
+6. Redija a petição ou anexe documento em PDF
+7. Envie os documentos de suporte necessários
+8. Finalize o protocolo e salve o comprovante
+
+## Peculiaridades de Minas Gerais
+
+Em Belo Horizonte, a BHTrans é responsável pelas infrações municipais, separada do DETRAN estadual. Verifique sempre o órgão autuador indicado no auto para usar o portal correto.
+
+## Prazos em MG
+
+Seguem o padrão do CTB: 15 dias para defesa prévia, 30 dias para recurso à JARI-MG após indeferimento.
+
+## Atendimento presencial
+
+Para quem tem dificuldade com o sistema online, o DETRAN MG mantém postos de atendimento em diversas cidades do estado — o protocolo presencial também é válido dentro do prazo legal.
+    `
+  },
+  {
+    slug: "detran-rs-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN RS: Passo a Passo",
+    descricao: "Guia completo para contestar multas no Rio Grande do Sul. Sistema online, prazos e documentos para o recurso administrativo.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-green-700 to-emerald-900",
+    palavrasChave: ["recurso multa DETRAN RS", "como recorrer multa Rio Grande do Sul", "defesa prévia DETRAN RS online"],
+    conteudo: `
+## Sistema do DETRAN RS
+
+O DETRAN do Rio Grande do Sul disponibiliza o portal **detran.rs.gov.br** para consulta e recurso de infrações de trânsito no estado.
+
+## Passo a passo no RS
+
+1. Acesse detran.rs.gov.br
+2. Procure a área "Multas" ou "Infrações de Trânsito"
+3. Faça login (CPF e senha, ou via Gov.br)
+4. Consulte pelo número do auto de infração
+5. Selecione a opção de Defesa Prévia ou Recurso JARI-RS
+6. Preencha o formulário de defesa ou anexe petição em PDF
+7. Envie documentos complementares
+8. Protocole e guarde o comprovante
+
+## Peculiaridade de Porto Alegre
+
+A capital gaúcha tem a EPTC (Empresa Pública de Transporte e Circulação) responsável por infrações municipais, separada do DETRAN estadual — verifique o órgão autuador no auto antes de escolher o portal.
+
+## Prazos no RS
+
+Seguem o padrão nacional: 15 dias para defesa prévia, 30 dias para recurso à JARI após indeferimento.
+
+## Dica regional
+
+O RS tem grande volume de fiscalização em rodovias estaduais (EGR) e federais (PRF), além das urbanas. Confirme sempre qual órgão emitiu o auto — DETRAN, EGR, PRF ou EPTC — pois cada um tem fluxo próprio de recurso.
+    `
+  },
+  {
+    slug: "detran-pr-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN PR: Passo a Passo",
+    descricao: "Guia completo para contestar multas no Paraná. Sistema online, prazos e o processo de defesa prévia e recurso.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-blue-600 to-indigo-800",
+    palavrasChave: ["recurso multa DETRAN PR", "como recorrer multa Paraná", "defesa prévia DETRAN PR online"],
+    conteudo: `
+## Sistema do DETRAN PR
+
+O DETRAN do Paraná disponibiliza o portal **detran.pr.gov.br** para consulta e contestação de multas de trânsito no estado.
+
+## Passo a passo no Paraná
+
+1. Acesse detran.pr.gov.br
+2. Localize a área de "Veículos" e depois "Infrações"
+3. Faça login com CPF (cadastro via Gov.br disponível)
+4. Consulte a infração pela placa ou número do auto
+5. Escolha Defesa Prévia ou Recurso à JARI-PR
+6. Preencha a petição diretamente no sistema ou anexe PDF
+7. Complemente com documentos de prova
+8. Protocole e salve o número de confirmação
+
+## Peculiaridade de Curitiba
+
+A capital paranaense tem a URBS (Urbanização de Curitiba) responsável por parte da fiscalização municipal. Confirme o órgão autuador no auto de infração.
+
+## Prazos no PR
+
+Padrão nacional do CTB: 15 dias para defesa prévia, 30 dias para JARI-PR após indeferimento.
+
+## Dica prática
+
+O Paraná tem forte fiscalização eletrônica em rodovias estaduais (DER-PR) e concessões privadas (pedágios). Para multas nessas vias, sempre verifique a homologação dos equipamentos utilizados.
+    `
+  },
+  {
+    slug: "detran-ba-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN BA: Passo a Passo",
+    descricao: "Guia completo para contestar multas na Bahia. Sistema online, prazos e o processo completo de recurso administrativo.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-orange-600 to-red-800",
+    palavrasChave: ["recurso multa DETRAN BA", "como recorrer multa Bahia", "defesa prévia DETRAN BA online"],
+    conteudo: `
+## Sistema do DETRAN BA
+
+O DETRAN da Bahia disponibiliza o portal **detran.ba.gov.br** para consulta e contestação de infrações de trânsito no estado.
+
+## Passo a passo na Bahia
+
+1. Acesse detran.ba.gov.br
+2. Localize "Serviços" e depois "Infrações/Multas"
+3. Faça login com CPF ou cadastre-se
+4. Consulte a infração pela placa ou número do auto
+5. Selecione Defesa Prévia ou Recurso à JARI-BA
+6. Preencha ou anexe a petição de defesa
+7. Anexe documentos comprobatórios
+8. Protocole e guarde o comprovante
+
+## Peculiaridade de Salvador
+
+A capital baiana tem a TRANSALVADOR responsável pela fiscalização municipal de trânsito, separada do DETRAN estadual — confirme sempre o órgão autuador no documento.
+
+## Prazos na BA
+
+Seguem o padrão do CTB: 15 dias para defesa prévia, 30 dias para JARI-BA após indeferimento.
+
+## Atendimento presencial
+
+Para regiões com dificuldade de acesso à internet, o DETRAN BA mantém postos físicos em diversas cidades do interior — o protocolo presencial dentro do prazo tem a mesma validade do processo online.
+    `
+  },
+  {
+    slug: "detran-df-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN DF: Passo a Passo",
+    descricao: "Guia completo para contestar multas no Distrito Federal. Sistema online, prazos e documentos necessários para o recurso.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-slate-700 to-gray-900",
+    palavrasChave: ["recurso multa DETRAN DF", "como recorrer multa Distrito Federal Brasília", "defesa prévia DETRAN DF online"],
+    conteudo: `
+## Sistema do DETRAN DF
+
+O DETRAN do Distrito Federal disponibiliza o portal **detran.df.gov.br** para consulta e contestação de multas de trânsito em Brasília e região.
+
+## Passo a passo no DF
+
+1. Acesse detran.df.gov.br
+2. Localize "Multas" na área de serviços
+3. Faça login com CPF (ou via Gov.br)
+4. Consulte pela placa ou número do auto de infração
+5. Escolha Defesa Prévia ou Recurso à JARI-DF
+6. Preencha o formulário ou anexe petição em PDF
+7. Envie documentos de suporte
+8. Protocole e salve o comprovante
+
+## Peculiaridade do DF
+
+Diferente de outros estados, o Distrito Federal não tem divisão entre órgão estadual e municipal — o DETRAN-DF concentra a maior parte da fiscalização de trânsito em toda a área do DF, o que simplifica identificar o órgão responsável.
+
+## Prazos no DF
+
+Padrão nacional do CTB: 15 dias para defesa prévia, 30 dias para JARI-DF após indeferimento.
+
+## Dica prática
+
+Brasília tem grande volume de vias expressas com radares fixos e sistemas de velocidade média (EPTG, EPIA, entre outras). Para essas vias, verifique atentamente a homologação dos equipamentos e a margem de erro aplicada.
+    `
+  },
+  {
+    slug: "multa-municipal-versus-estadual-diferenca",
+    titulo: "Multa Municipal x Estadual: Qual a Diferença na Prática",
+    descricao: "Entender quem autuou sua multa é o primeiro passo para saber onde recorrer. Veja as diferenças entre órgãos municipais e estaduais de trânsito.",
+    categoria: "Dúvidas Frequentes",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏛️",
+    imagemBg: "from-blue-600 to-slate-800",
+    palavrasChave: ["multa municipal estadual diferença", "qual órgão autuou minha multa", "DETRAN ou prefeitura multa trânsito"],
+    conteudo: `
+## Quem pode aplicar multa de trânsito
+
+No Brasil, diferentes órgãos têm competência para fiscalizar e autuar, dependendo da via e do tipo de infração:
+
+**Órgãos municipais:** prefeituras (via secretarias/empresas de trânsito como CET-SP, BHTrans, CET-Rio, EPTC) fiscalizam vias urbanas municipais.
+
+**Órgãos estaduais:** DETRAN e Polícia Militar Rodoviária fiscalizam rodovias estaduais e apoiam fiscalização geral.
+
+**Órgão federal:** PRF fiscaliza rodovias federais (BRs) e o DNIT tem competência complementar em algumas situações.
+
+## Como saber qual órgão autuou
+
+No auto de infração, procure o campo "órgão autuador" ou o cabeçalho do documento — geralmente identifica claramente (ex: "CET-SP", "PRF", "DETRAN-SP").
+
+## Por que isso importa para o recurso
+
+Cada órgão tem seu próprio portal e sistema de protocolo de defesa. Enviar o recurso ao órgão errado atrasa o processo e pode gerar perda de prazo, já que o sistema errado simplesmente não vai reconhecer a solicitação.
+
+## E se eu não tiver certeza de qual é o órgão?
+
+Ligue para a central de atendimento indicada no próprio auto de infração, ou consulte pela placa do veículo no portal do DETRAN estadual — geralmente ele consolida informações de todos os órgãos que emitiram multas para aquele veículo, mesmo que o processo de recurso precise ser feito no sistema específico de cada um.
+
+## Os pontos vão para o mesmo lugar independente do órgão?
+
+Sim. Independente de quem autuou (municipal, estadual ou federal), os pontos são sempre lançados no prontuário da CNH pelo sistema nacional (RENACH), de forma unificada.
+    `
+  },
+  {
+    slug: "cet-sp-como-funciona-multas",
+    titulo: "CET-SP: Como Funcionam as Multas da Companhia de Engenharia de Tráfego",
+    descricao: "A CET-SP é responsável por boa parte das multas na capital paulista. Entenda seu papel, principais infrações fiscalizadas e como recorrer.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🚦",
+    imagemBg: "from-slate-700 to-gray-900",
+    palavrasChave: ["CET SP multas como funciona", "recurso multa CET São Paulo", "companhia engenharia tráfego multa"],
+    conteudo: `
+## O que é a CET-SP
+
+A Companhia de Engenharia de Tráfego é o órgão municipal responsável pela gestão do trânsito na cidade de São Paulo, incluindo sinalização, semáforos, fiscalização eletrônica e aplicação de multas em vias municipais.
+
+## Principais tipos de infração fiscalizados pela CET
+
+- Rodízio municipal de veículos
+- Avanço de sinal vermelho (câmeras de semáforo)
+- Excesso de velocidade em vias municipais
+- Estacionamento irregular (zona azul, vagas proibidas)
+- Faixa exclusiva de ônibus/corredor
+
+## Como recorrer de multa da CET-SP
+
+1. Acesse **cetsp.com.br**
+2. Localize a área "Multas" ou "Recursos"
+3. Faça login ou consulte pela placa/número do auto
+4. Escolha Defesa Prévia ou Recurso à JARI Municipal
+5. Preencha ou anexe a petição
+6. Protocole dentro do prazo de 15 dias
+
+## Diferença entre CET e DETRAN-SP
+
+A CET fiscaliza vias **municipais** dentro da cidade de São Paulo. O DETRAN-SP atua em conjunto com a Polícia Militar em vias **estaduais**. Multas de rodovias como Anhanguera, Bandeirantes ou Marginais (dependendo do trecho) podem ser de responsabilidade estadual, não da CET.
+
+## Volume de fiscalização eletrônica
+
+São Paulo tem uma das maiores redes de câmeras de fiscalização do país. Isso significa maior volume de multas, mas também mais pontos técnicos passíveis de contestação — sempre verifique homologação de equipamento, sinalização prévia e qualidade da imagem antes de decidir se vale recorrer.
+    `
+  },
+  {
+    slug: "detran-pe-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN PE: Passo a Passo",
+    descricao: "Guia completo para contestar multas em Pernambuco. Sistema online, prazos e o processo de defesa administrativa.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-teal-600 to-cyan-800",
+    palavrasChave: ["recurso multa DETRAN PE", "como recorrer multa Pernambuco Recife", "defesa prévia DETRAN PE online"],
+    conteudo: `
+## Sistema do DETRAN PE
+
+O DETRAN de Pernambuco disponibiliza o portal **detran.pe.gov.br** para consulta e contestação de infrações de trânsito no estado.
+
+## Passo a passo em Pernambuco
+
+1. Acesse detran.pe.gov.br
+2. Localize "Multas e Infrações" nos serviços online
+3. Faça login com CPF ou cadastre-se
+4. Consulte pela placa ou número do auto
+5. Escolha Defesa Prévia ou Recurso à JARI-PE
+6. Preencha ou anexe a petição
+7. Envie documentos de apoio
+8. Protocole e guarde o comprovante
+
+## Peculiaridade de Recife
+
+A capital pernambucana tem a CTTU (Empresa de Manutenção e Limpeza Urbana / trânsito) responsável pela fiscalização municipal, separada do DETRAN estadual — verifique o órgão autuador indicado no auto.
+
+## Prazos em PE
+
+Padrão nacional do CTB: 15 dias para defesa prévia, 30 dias para JARI-PE após indeferimento.
+
+## Atendimento presencial
+
+O DETRAN PE mantém postos regionais para quem prefere ou precisa protocolar presencialmente, com a mesma validade legal do processo eletrônico dentro do prazo.
+    `
+  },
+  {
+    slug: "detran-ce-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN CE: Passo a Passo",
+    descricao: "Guia completo para contestar multas no Ceará. Sistema online, prazos e documentos necessários para protocolar o recurso.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-blue-600 to-teal-800",
+    palavrasChave: ["recurso multa DETRAN CE", "como recorrer multa Ceará Fortaleza", "defesa prévia DETRAN CE online"],
+    conteudo: `
+## Sistema do DETRAN CE
+
+O DETRAN do Ceará disponibiliza o portal **detran.ce.gov.br** para consulta e contestação de infrações de trânsito no estado.
+
+## Passo a passo no Ceará
+
+1. Acesse detran.ce.gov.br
+2. Localize "Serviços" e depois "Multas/Infrações"
+3. Faça login com CPF ou cadastre-se
+4. Consulte pela placa ou número do auto de infração
+5. Selecione Defesa Prévia ou Recurso à JARI-CE
+6. Preencha ou anexe a petição de defesa
+7. Anexe documentos comprobatórios
+8. Protocole e guarde o comprovante
+
+## Peculiaridade de Fortaleza
+
+A capital cearense tem a AMC (Autarquia Municipal de Trânsito, Serviços Públicos e Cidadania) responsável pela fiscalização municipal — separada do DETRAN estadual. Confirme sempre o órgão autuador no documento.
+
+## Prazos no CE
+
+Seguem o padrão nacional: 15 dias para defesa prévia, 30 dias para JARI-CE após indeferimento.
+
+## Dica regional
+
+O Ceará tem forte fiscalização em rodovias estaduais (DER-CE) além das urbanas. Para multas nessas vias, verifique a homologação dos equipamentos e a sinalização prévia adequada.
+    `
+  },
+  {
+    slug: "como-fotografar-multa-para-analise",
+    titulo: "Como Fotografar sua Multa para uma Análise Completa e Precisa",
+    descricao: "A qualidade da foto do auto de infração impacta diretamente a precisão da análise. Veja as dicas práticas para fotografar corretamente.",
+    categoria: "Guias Práticos",
+    tempoLeitura: "3 min",
+    imagemEmoji: "📸",
+    imagemBg: "from-emerald-600 to-green-800",
+    palavrasChave: ["como fotografar auto de infração", "foto multa para análise IA", "tirar foto multa trânsito corretamente"],
+    conteudo: `
+## Por que a qualidade da foto importa tanto
+
+Seja para análise manual ou por inteligência artificial, a leitura precisa de cada campo do auto de infração depende diretamente da nitidez e enquadramento da imagem. Uma foto ruim pode esconder justamente o detalhe que anularia sua multa.
+
+## Passo a passo para uma boa foto
+
+**1. Boa iluminação**
+Fotografe em local bem iluminado, de preferência luz natural indireta. Evite sombras cobrindo parte do documento.
+
+**2. Documento completo no enquadramento**
+Certifique-se de que todas as bordas do documento aparecem na foto — nada de cortar cantos ou margens.
+
+**3. Câmera paralela ao documento**
+Fotografe de cima, com o celular paralelo à folha, para evitar distorção de perspectiva que dificulta a leitura.
+
+**4. Foco nos campos críticos**
+Confirme que os seguintes campos estão legíveis: número do auto, placa, data, hora, local, código da infração, identificação do agente e do equipamento (se eletrônica).
+
+**5. Evite reflexos**
+Papéis plastificados ou impressões brilhantes podem gerar reflexo do flash. Desligue o flash e use luz ambiente sempre que possível.
+
+**6. Múltiplas páginas**
+Se o documento tiver mais de uma página (frente e verso, ou anexos), fotografe todas separadamente.
+
+## O que fazer se só tiver a notificação por SMS/e-mail
+
+Print da tela também funciona, desde que todos os campos estejam visíveis e legíveis — o importante é a informação completa, não o formato do arquivo.
+
+## Depois de fotografar
+
+Envie a imagem para análise o quanto antes — o prazo de defesa prévia é de apenas 15 dias, e quanto antes identificar um vício formal, mais tempo você tem para agir.
+    `
+  },
+  {
+    slug: "quanto-custa-advogado-transito",
+    titulo: "Quanto Custa um Advogado Especializado em Trânsito?",
+    descricao: "Entenda os valores praticados por advogados de trânsito no Brasil, o que influencia o preço e quando esse investimento realmente compensa.",
+    categoria: "Dúvidas Frequentes",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-slate-700 to-zinc-900",
+    palavrasChave: ["quanto custa advogado trânsito", "preço advogado multa CNH suspensa", "honorários advogado direito trânsito"],
+    conteudo: `
+## Faixas de preço no mercado
+
+Os valores variam conforme região, complexidade e experiência do profissional, mas as faixas médias praticadas no Brasil são:
+
+**Defesa prévia simples:** R$ 300 a R$ 800
+**Recurso à JARI:** R$ 500 a R$ 1.500
+**Processo de suspensão/cassação de CNH:** R$ 1.500 a R$ 4.000
+**Recurso judicial (mandado de segurança, ação anulatória):** R$ 2.000 a R$ 8.000+
+
+## O que influencia o preço
+
+**Complexidade do caso:** vício formal simples e objetivo custa menos que um caso que exige perícia técnica ou produção de provas.
+
+**Urgência:** processos com risco iminente de suspensão da CNH podem ter valor maior por exigirem atuação rápida.
+
+**Região:** advogados em capitais e grandes centros costumam cobrar mais que em cidades menores.
+
+**Modelo de cobrança:** alguns cobram valor fixo por serviço, outros cobram por hora, e alguns trabalham com honorários de êxito (só cobram se ganhar, geralmente uma porcentagem do valor economizado).
+
+## Quando vale a pena contratar
+
+- Risco real de suspensão ou cassação da CNH com impacto profissional
+- Multas de valor muito alto (excesso de peso, embriaguez)
+- Casos que já esgotaram instâncias administrativas e precisam ir ao Judiciário
+- Empresas com frotas grandes e volume alto de infrações
+
+## Quando não compensa
+
+Para multas de valor baixo (R$ 130 a R$ 300) com vício formal claro e objetivo, o custo de um advogado tradicional geralmente supera o benefício. Nesses casos, ferramentas de análise por IA ou o próprio condutor fazendo a defesa são alternativas mais econômicas.
+    `
+  },
+  {
+    slug: "multa-transito-direito-consumidor",
+    titulo: "Multa de Trânsito e Direito do Consumidor: Existe Relação?",
+    descricao: "Entenda em quais situações o Código de Defesa do Consumidor pode ser aplicado em conflitos envolvendo multas — como em estacionamentos privados.",
+    categoria: "Direitos do Motorista",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🛒",
+    imagemBg: "from-purple-600 to-fuchsia-800",
+    palavrasChave: ["multa trânsito código defesa consumidor", "CDC estacionamento privado multa", "direito consumidor multa trânsito"],
+    conteudo: `
+## Multa de trânsito NÃO é relação de consumo
+
+É importante deixar claro: multas aplicadas pelo Estado (DETRAN, PRF, prefeitura) são sanções administrativas — não seguem o Código de Defesa do Consumidor (CDC), pois não há relação de consumo entre o condutor e o órgão público.
+
+## Onde o CDC realmente se aplica
+
+**Estacionamentos privados:** se um estabelecimento privado (shopping, estacionamento pago) cobra "multa" por tempo excedido ou dano, essa cobrança é regida pelo CDC, não pelo CTB — e pode ser contestada com base em cláusulas abusivas, falta de informação clara ou cobrança desproporcional.
+
+**Locadoras de veículos:** a relação entre você e a locadora é de consumo. Taxas administrativas abusivas cobradas pela locadora ao repassar uma multa de trânsito podem ser questionadas com base no CDC, mesmo que a multa em si (do órgão público) siga as regras do CTB.
+
+**Aplicativos de transporte:** questões de cobrança indevida relacionada a multas em corridas de aplicativo também podem envolver CDC, dependendo do contexto.
+
+## Como usar o CDC nesses casos
+
+Se você identificar cobrança abusiva de um estabelecimento privado ou locadora relacionada (mas não idêntica) a uma multa de trânsito:
+
+1. Documente a cobrança e a ausência de informação clara sobre valores
+2. Registre reclamação formal com a empresa
+3. Se não resolvido, procure o PROCON ou plataformas de reclamação (Reclame Aqui, consumidor.gov.br)
+4. Em último caso, ação no Juizado Especial Cível
+
+## Resumindo
+
+CTB rege a relação entre Estado e condutor (multa oficial). CDC rege relações comerciais privadas relacionadas indiretamente a multas (locadoras, estacionamentos). São sistemas jurídicos diferentes que não se confundem.
+    `
+  },
+  {
+    slug: "multa-estacionamento-shopping-particular",
+    titulo: "Multa ou Cobrança em Estacionamento de Shopping: Seus Direitos",
+    descricao: "Estacionamentos privados não podem aplicar 'multas' no sentido do CTB, mas cobram taxas e penalidades contratuais. Entenda seus direitos.",
+    categoria: "Estacionamento",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏬",
+    imagemBg: "from-indigo-600 to-purple-800",
+    palavrasChave: ["multa estacionamento shopping direitos", "cobrança abusiva estacionamento particular", "taxa excedente estacionamento privado"],
+    conteudo: `
+## Estacionamento privado não aplica "multa" oficial
+
+Diferente da zona azul (pública), estacionamentos de shoppings, supermercados e edifícios são espaços **privados**. Eles não têm competência para aplicar multas de trânsito — o que cobram são taxas contratuais, regidas pelo Código de Defesa do Consumidor.
+
+## Cobranças comuns e sua legalidade
+
+**Taxa por tempo excedido:** legal, desde que informada claramente na entrada (placa visível com valores e regras).
+
+**Cobrança por "dano" sem comprovação:** o estabelecimento precisa provar o dano causado por você especificamente — cobrança genérica sem evidência é abusiva.
+
+**Taxa por perda de ticket:** deve ser razoável e informada previamente. Valores excessivos podem ser contestados.
+
+**"Multa" por mau estacionamento dentro do estacionamento privado:** não existe amparo legal para isso — o estabelecimento pode, no máximo, solicitar que você reposicione o veículo ou, em casos extremos, acionar guincho com aviso prévio adequado.
+
+## Como contestar cobranças abusivas
+
+1. Fotografe a sinalização de entrada (ou ausência de informação clara de valores)
+2. Guarde o ticket e qualquer recibo
+3. Solicite formalmente a justificativa da cobrança
+4. Se não resolvido amigavelmente, registre reclamação no PROCON
+
+## Estacionamento gratuito com "multa" por tempo
+
+Alguns estabelecimentos oferecem gratuidade limitada (ex: 2 horas grátis) com cobrança progressiva depois. Isso é legal desde que informado claramente — mas o valor cobrado deve ser proporcional e razoável, não punitivo de forma desproporcional.
+    `
+  },
+  {
+    slug: "multa-nao-pagar-consequencias-reais",
+    titulo: "O Que Realmente Acontece se Você Não Pagar uma Multa",
+    descricao: "Separamos o mito da realidade sobre as consequências de não pagar uma multa de trânsito — o que é verdade e o que é exagero.",
+    categoria: "Pagamento",
+    tempoLeitura: "4 min",
+    imagemEmoji: "❓",
+    imagemBg: "from-gray-700 to-slate-900",
+    palavrasChave: ["não pagar multa consequências reais", "o que acontece multa não paga", "multa trânsito vencida sem pagar"],
+    conteudo: `
+## O que REALMENTE acontece
+
+**Juros e correção monetária:** a dívida cresce com o tempo, geralmente 1% ao mês mais correção pelo índice oficial do estado.
+
+**Inscrição em dívida ativa:** após cerca de 30 a 60 dias sem pagamento, a multa vai para dívida ativa do estado/município.
+
+**Bloqueio do licenciamento:** você não consegue licenciar o veículo com débitos pendentes — isso é a consequência mais imediata e sentida.
+
+**Possível inscrição em cadastros de inadimplentes (CADIN):** alguns estados inscrevem débitos de trânsito no CADIN, o que pode dificultar acesso a crédito público.
+
+**Execução fiscal (casos extremos):** para débitos altos e antigos, o estado pode entrar com ação judicial de cobrança — mas isso é incomum para multas de valor baixo isoladas.
+
+## O que NÃO acontece
+
+**Não gera prisão.** Multa de trânsito não paga é dívida administrativa, não crime.
+
+**Não vai automaticamente para Serasa/SPC.** Diferente de dívidas privadas, esse tipo de inscrição não é automática (embora o CADIN tenha efeito parecido em alguns contextos).
+
+**Não impede a venda do veículo diretamente.** É possível transferir com débitos pendentes, mas o comprador assume a responsabilidade — e isso deve ser negociado no preço.
+
+## Os pontos continuam contando mesmo sem pagar?
+
+Sim — os pontos são lançados independentemente do pagamento, a partir do momento em que a multa transita em julgado administrativamente (ou seja, quando não cabe mais recurso).
+
+## Recomendação
+
+Se você decidiu não pagar por discordar da multa, o caminho correto é **recorrer formalmente**, não simplesmente ignorar. Ignorar apenas acumula juros sem gerar nenhuma chance de cancelamento.
+    `
+  },
+  {
+    slug: "multa-parcelamento-como-funciona",
+    titulo: "Parcelamento de Multas de Trânsito: Como Funciona",
+    descricao: "Vários estados oferecem parcelamento de débitos de multa. Entenda como funciona, quais as condições e como solicitar.",
+    categoria: "Pagamento",
+    tempoLeitura: "4 min",
+    imagemEmoji: "💳",
+    imagemBg: "from-emerald-600 to-teal-800",
+    palavrasChave: ["parcelamento multa trânsito", "como parcelar multa DETRAN", "dívida multa parcelas"],
+    conteudo: `
+## Multa pode ser parcelada?
+
+Sim, na maioria dos estados brasileiros é possível parcelar débitos de multa de trânsito, especialmente quando já estão em dívida ativa. As condições variam por DETRAN.
+
+## Condições gerais de parcelamento
+
+- Número de parcelas: geralmente de 12 a 60 vezes, dependendo do estado e do valor total da dívida
+- Valor mínimo de parcela: costuma haver um piso (ex: R$ 100 por parcela)
+- Juros: aplicados conforme índice do estado
+- Entrada: alguns estados exigem uma parcela inicial maior
+
+## Como solicitar parcelamento
+
+1. Acesse o portal do DETRAN do seu estado
+2. Consulte o total de débitos em dívida ativa
+3. Localize a opção "Parcelamento de Débitos" ou similar
+4. Simule o número de parcelas desejado
+5. Confirme e gere o boleto da primeira parcela
+
+## O que acontece se eu atrasar uma parcela
+
+Normalmente, o não pagamento de determinado número de parcelas consecutivas (geralmente 2 ou 3) cancela o parcelamento, tornando a dívida integral novamente exigível com todos os juros recalculados.
+
+## Parcelar impede o licenciamento?
+
+Depende do estado. Alguns liberam o licenciamento assim que o parcelamento é formalizado (mesmo antes de quitar tudo); outros exigem quitação total. Consulte a regra específica do DETRAN do seu estado.
+
+## Vale a pena parcelar em vez de recorrer?
+
+Só parcele multas que você já decidiu não contestar. Se ainda há prazo de recurso ou você identificou vício formal, sempre vale tentar o cancelamento antes de assumir o compromisso financeiro do parcelamento.
+
+## Campanhas de anistia
+
+Periodicamente, alguns estados lançam programas de anistia com desconto de até 100% em juros e multas de mora para quitação à vista ou parcelada — vale acompanhar o site do DETRAN local para aproveitar essas oportunidades.
+    `
+  },
+  {
+    slug: "cnh-definitiva-x-provisoria-multa",
+    titulo: "CNH Provisória e Multas: Regras Específicas para Novos Condutores",
+    descricao: "Quem tem CNH provisória (primeira habilitação) tem regras mais rígidas de pontuação. Entenda o que muda e os cuidados redobrados necessários.",
+    categoria: "CNH e Pontos",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🆕",
+    imagemBg: "from-cyan-600 to-blue-800",
+    palavrasChave: ["CNH provisória multa regras", "primeira habilitação pontos suspensão", "novo condutor multa cuidados"],
+    conteudo: `
+## O que é a CNH provisória
+
+Ao ser aprovado nos exames, o novo condutor recebe a **Permissão para Dirigir (PPD)**, popularmente chamada de CNH provisória, com validade de 1 ano. Após esse período, sem cometer infração grave ou gravíssima nem ser reincidente em infração média, o condutor recebe a CNH definitiva.
+
+## Regras mais rígidas para condutores provisórios
+
+Cometer **uma única infração grave ou gravíssima**, ou ser reincidente em infração média durante o período provisório, resulta na **não emissão da CNH definitiva** — o condutor precisa refazer o processo de habilitação completo (exames teóricos e práticos).
+
+Essa é uma consequência muito mais severa do que para quem já tem CNH definitiva.
+
+## Por que isso torna o recurso ainda mais importante
+
+Para condutores provisórios, uma multa contestável não é "só" questão de pontos e valor financeiro — pode significar ter que refazer todo o processo de habilitação, com custo de tempo e dinheiro significativamente maior.
+
+## Estratégia para novos condutores
+
+**Analise toda multa recebida durante o período provisório.** Mesmo infrações que pareceriam "não valer a pena" contestar para um condutor experiente merecem atenção redobrada nesse período.
+
+**Monitore o prazo dos 12 meses.** Saber exatamente quando termina o período provisório ajuda a entender o nível de risco de cada nova infração.
+
+**Priorize prevenção.** Já que as consequências são desproporcionalmente maiores, reforçar cuidado na condução durante esse primeiro ano é a melhor proteção.
+
+## E se eu perder a CNH definitiva por uma multa que era contestável mas não recorri a tempo?
+
+Infelizmente, não há como reverter depois — por isso a urgência em analisar e recorrer dentro do prazo de 15 dias é ainda mais crítica para quem está no período provisório.
+    `
+  },
+  {
+    slug: "multa-veiculo-oficial-blindado",
+    titulo: "Multas em Veículos com Placas Especiais: Oficiais, Diplomáticas e Blindados",
+    descricao: "Veículos com placas especiais seguem o mesmo CTB, mas com particularidades no processo de notificação e recurso. Entenda as diferenças.",
+    categoria: "Casos Especiais",
+    tempoLeitura: "3 min",
+    imagemEmoji: "🚔",
+    imagemBg: "from-slate-800 to-black",
+    palavrasChave: ["multa veículo oficial placa especial", "multa carro diplomático", "multa veículo blindado regras"],
+    conteudo: `
+## Placas especiais e o CTB
+
+Veículos oficiais (governo), diplomáticos e blindados seguem, em regra, as mesmas normas do CTB quanto a infrações — mas há particularidades processuais.
+
+## Veículos oficiais (placas oficiais)
+
+A multa é aplicada normalmente, mas a responsabilidade financeira pode recair sobre o órgão público proprietário, exigindo indicação do condutor responsável (servidor) para fins de pontuação na CNH — processo semelhante à indicação de condutor em frotas empresariais, mas com trâmite interno do órgão.
+
+## Veículos diplomáticos
+
+Por convenções internacionais (Convenção de Viena sobre Relações Diplomáticas), agentes diplomáticos têm imunidade de jurisdição em determinadas situações, o que pode limitar a aplicação coercitiva de algumas sanções — mas isso é uma exceção específica e não se aplica à generalidade dos casos, exigindo análise jurídica caso a caso.
+
+## Veículos blindados
+
+Não há regra especial de trânsito para veículos blindados — eles seguem exatamente as mesmas normas de qualquer veículo comum. A única diferença prática está em características técnicas (peso, dimensões) que podem ser relevantes para infrações específicas de excesso de peso ou dimensões, já que a blindagem altera essas características do veículo original.
+
+## Recurso para esses casos
+
+O processo de defesa prévia e recurso segue o mesmo caminho do CTB — não há tribunal ou instância especial para veículos com placas diferenciadas, exceto nas situações de imunidade diplomática expressamente previstas em tratados internacionais.
+    `
+  },
+  {
+    slug: "como-cancelar-pontos-curso-reciclagem",
+    titulo: "Curso de Reciclagem: O que É e Quando é Obrigatório",
+    descricao: "Muita gente confunde curso de reciclagem com forma de reduzir pontos. Entenda exatamente para que serve e quando você é obrigado a fazê-lo.",
+    categoria: "CNH e Pontos",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🎓",
+    imagemBg: "from-blue-600 to-indigo-800",
+    palavrasChave: ["curso reciclagem CNH obrigatório", "curso de reciclagem tira pontos", "quando fazer curso reciclagem trânsito"],
+    conteudo: `
+## O que é o curso de reciclagem
+
+É um curso teórico obrigatório previsto no Art. 268 do CTB, exigido em situações específicas relacionadas à recuperação do direito de dirigir após suspensão ou cassação da CNH — não é uma forma voluntária de "limpar" a pontuação.
+
+## Quando o curso é obrigatório
+
+**Após suspensão da CNH por pontuação:** ao final do período de suspensão (mínimo 6 meses), o condutor deve fazer o curso de reciclagem antes de reaver a habilitação.
+
+**Após cassação da CNH:** em casos mais graves (reincidência em suspensão dentro de 12 meses, ou infrações gravíssimas específicas), a CNH é cassada e o condutor precisa refazer todo o processo de habilitação, incluindo exames — o curso de reciclagem faz parte desse processo de reabilitação.
+
+## O curso de reciclagem tira pontos da CNH?
+
+**Não.** Esse é o mito mais comum sobre o assunto. O curso é uma exigência para reaver o direito de dirigir após suspensão — ele não interfere nos pontos, que continuam seguindo a regra normal de expiração em 12 meses ou cancelamento via recurso administrativo bem-sucedido.
+
+## Como funciona o curso
+
+- Carga horária definida pelo CONTRAN (geralmente em torno de 8h a 12h, variando por norma vigente)
+- Conteúdo sobre legislação de trânsito, direção defensiva e comportamento seguro
+- Avaliação final obrigatória
+- Oferecido por CFCs (Centros de Formação de Condutores) credenciados
+
+## Existe curso voluntário para melhorar comportamento no trânsito?
+
+Sim — cursos de direção defensiva oferecidos voluntariamente por CFCs ou empresas de treinamento são excelentes para segurança, mas **não têm nenhum efeito legal sobre pontos ou multas** — são puramente educacionais e voluntários.
+    `
+  },
+  {
+    slug: "multa-radar-educativo-nao-gera-multa",
+    titulo: "Radar Educativo: Por que Ele Não Gera Multa",
+    descricao: "Nem todo radar aplica multa. Entenda a diferença entre radares educativos (pedagógicos) e os de fiscalização com poder de autuação.",
+    categoria: "Velocidade",
+    tempoLeitura: "3 min",
+    imagemEmoji: "🚧",
+    imagemBg: "from-green-600 to-emerald-800",
+    palavrasChave: ["radar educativo não multa", "diferença radar pedagógico fiscalização", "painel velocidade não aplica multa"],
+    conteudo: `
+## O que é um radar educativo
+
+Também chamado de radar pedagógico, é um equipamento que mostra a velocidade do veículo em um painel luminoso, mas **não está integrado ao sistema de autuação** do órgão de trânsito — sua função é apenas informativa, incentivando o condutor a reduzir a velocidade voluntariamente.
+
+## Como diferenciar radar educativo de radar de fiscalização
+
+**Radar educativo:** geralmente exibe um painel com a velocidade em tempo real ("Você está a X km/h"), às vezes com carinha feliz/triste ou luz verde/vermelha. Não há cadastro oficial de autuação vinculado.
+
+**Radar de fiscalização:** não necessariamente exibe painel — funciona silenciosamente registrando a infração para posterior notificação por correio ou sistema eletrônico. Precisa estar cadastrado no órgão de trânsito com sinalização de "Fiscalização Eletrônica" prevista em lei.
+
+## Recebi multa mas achei que era radar educativo — o que fazer?
+
+Se você recebeu uma notificação de multa em local onde havia apenas um radar com painel educativo (sem sinalização de fiscalização eletrônica oficial), isso é forte argumento de defesa: a ausência de sinalização adequada de fiscalização (placa regulamentar específica) é vício formal conforme a Resolução CONTRAN nº 396.
+
+## Como confirmar a natureza do equipamento
+
+Consulte o cadastro de equipamentos de fiscalização eletrônica do órgão de trânsito responsável pela via — todo radar com poder de multa deve estar oficialmente cadastrado e ter número de série homologado pelo INMETRO, informação que deve constar no auto de infração.
+    `
+  },
+  {
+    slug: "diferenca-advertencia-multa-trânsito",
+    titulo: "Advertência por Escrito x Multa: Qual a Diferença",
+    descricao: "Algumas infrações leves podem resultar em advertência em vez de multa. Entenda quando isso se aplica e o que muda na prática.",
+    categoria: "Dúvidas Frequentes",
+    tempoLeitura: "3 min",
+    imagemEmoji: "📝",
+    imagemBg: "from-yellow-500 to-orange-700",
+    palavrasChave: ["diferença advertência multa trânsito", "advertência por escrito CTB", "quando recebo advertência em vez de multa"],
+    conteudo: `
+## O que é a advertência por escrito
+
+Prevista no Art. 267 do CTB, a advertência por escrito é uma penalidade alternativa aplicável a infrações de natureza **leve ou média**, quando o agente de trânsito, a critério da autoridade competente, opta por não aplicar a multa financeira diretamente.
+
+## Quando a advertência pode ser aplicada
+
+- Infração de natureza leve ou média
+- Não gera reincidência específica nos últimos 12 meses
+- A critério da autoridade de trânsito (não é automático nem um direito garantido em toda infração leve/média)
+
+## Diferenças práticas entre advertência e multa
+
+**Advertência:**
+- Não gera cobrança financeira
+- Não gera pontos na CNH
+- Fica registrada como histórico administrativo
+
+**Multa:**
+- Gera cobrança financeira
+- Gera pontos conforme a gravidade
+- Pode ser objeto de recurso administrativo (defesa prévia, JARI)
+
+## A advertência pode ser convertida em multa?
+
+Não há conversão automática — advertência e multa são categorizados no momento da autuação. Se você recebeu multa e acredita que caberia advertência no seu caso (infração leve, sem reincidência), você pode argumentar isso no recurso, mas é uma decisão discricionária do órgão, não um direito automático de conversão.
+
+## Posso recorrer de uma advertência?
+
+Tecnicamente sim, embora seja incomum, já que não há prejuízo financeiro ou de pontos. Recorrer faria sentido principalmente se você quisesse remover o registro do seu histórico por completo, mas na prática a maioria dos condutores não contesta advertências por não gerarem consequência prática relevante.
+    `
+  },
+  {
+    slug: "multa-transito-e-score-credito",
+    titulo: "Multa de Trânsito Afeta o Score de Crédito?",
+    descricao: "Existe relação entre débitos de multa e o score de crédito (Serasa, SPC)? Entenda como esses sistemas realmente funcionam.",
+    categoria: "Financeiro",
+    tempoLeitura: "3 min",
+    imagemEmoji: "📈",
+    imagemBg: "from-blue-700 to-indigo-900",
+    palavrasChave: ["multa afeta score crédito Serasa", "multa trânsito SPC negativado", "dívida multa impacta crédito"],
+    conteudo: `
+## Multa de trânsito vai para Serasa/SPC?
+
+Diretamente, **não**. Multas de trânsito são dívidas com o poder público (administrativas), diferentes de dívidas privadas (cartão de crédito, financiamentos, boletos comerciais) que são as que tradicionalmente alimentam Serasa e SPC.
+
+## Onde a multa realmente pode aparecer
+
+**CADIN (Cadastro Informativo de Créditos não Quitados do Setor Público):** alguns estados inscrevem débitos de trânsito em dívida ativa nesse cadastro, que é consultado por órgãos públicos, mas tem alcance mais restrito que Serasa/SPC — geralmente afeta acesso a créditos públicos, não financiamentos privados diretamente.
+
+**Score indireto:** ferramentas de score moderno (como o Serasa Score) usam dados de comportamento financeiro amplo, incluindo, em alguns modelos, informações públicas de protesto e dívida ativa — mas isso varia por metodologia e não é uma regra fixa aplicável a toda multa.
+
+## O que realmente prejudica seu crédito relacionado a multas
+
+O maior risco financeiro indireto é: débitos de multa em dívida ativa podem gerar **protesto em cartório**, dependendo da política do estado — e protesto sim afeta diretamente o score e aparece em consultas de crédito.
+
+## Como evitar esse risco
+
+- Não deixe multas acumularem sem solução — pague, parcele ou recorra
+- Se optar por não pagar por discordar, sempre formalize o recurso administrativo
+- Monitore se o estado onde o veículo está registrado tem política de protesto de dívida ativa de trânsito
+
+## Resumindo
+
+Multa isolada e recente não afeta diretamente seu score. O risco surge quando o débito se acumula, vai a protesto ou compromete significativamente seu histórico de dívidas públicas.
+    `
+  },
 ];
