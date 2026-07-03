@@ -2,6 +2,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ArrowLeft, Clock, ShieldCheck, ArrowRight, AlertTriangle } from "lucide-react";
 import { artigos } from "../data/artigos";
+import { getFaq } from "../data/faqs";
 
 // Hook para atualizar meta tags via DOM nativo
 const useMetaTags = (titulo: string, descricao: string, url: string, keywords: string) => {
@@ -236,6 +237,32 @@ export default function BlogPost() {
     artigo.palavrasChave.join(", ")
   );
 
+  // FAQ da categoria
+  const faq = getFaq(artigo.categoria);
+
+  // Schema FAQPage — injeta perguntas frequentes para o Google
+  useEffect(() => {
+    let faqScript = document.getElementById("faq-schema");
+    if (!faqScript) {
+      faqScript = document.createElement("script");
+      faqScript.setAttribute("type", "application/ld+json");
+      faqScript.setAttribute("id", "faq-schema");
+      document.head.appendChild(faqScript);
+    }
+    faqScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faq.map((f) => ({
+        "@type": "Question",
+        "name": f.pergunta,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": f.resposta
+        }
+      }))
+    });
+  }, [slug]);
+
   // Artigos relacionados: prioriza mesma categoria, completa com outros
   const mesmaCategoria = artigos.filter((a) => a.slug !== slug && a.categoria === artigo.categoria);
   const outrasCategorias = artigos.filter((a) => a.slug !== slug && a.categoria !== artigo.categoria);
@@ -368,6 +395,24 @@ export default function BlogPost() {
                 Analisar Minha Multa Grátis <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
+          </div>
+        </div>
+
+        {/* FAQ */}
+        <div className="mb-10">
+          <h2 className="text-xl font-black text-slate-900 mb-5">Perguntas frequentes</h2>
+          <div className="space-y-3">
+            {faq.map((f, i) => (
+              <details key={i} className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden group">
+                <summary className="px-5 py-4 font-black text-slate-800 text-sm cursor-pointer list-none flex items-center justify-between hover:text-blue-600 transition-colors">
+                  {f.pergunta}
+                  <span className="text-blue-600 text-lg group-open:rotate-45 transition-transform">+</span>
+                </summary>
+                <div className="px-5 pb-4 text-slate-600 text-sm font-medium leading-relaxed">
+                  {f.resposta}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
 
