@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { ArrowLeft, Clock, ShieldCheck, ArrowRight, AlertTriangle } from "lucide-react";
 import { artigos } from "../data/artigos";
 import { getFaq } from "../data/faqs";
+import { aplicarLinksInternos } from "../data/linksInternos";
 
 // Hook para atualizar meta tags via DOM nativo
 const useMetaTags = (titulo: string, descricao: string, url: string, keywords: string) => {
@@ -92,7 +93,7 @@ const useMetaTags = (titulo: string, descricao: string, url: string, keywords: s
   }, [titulo, descricao, url, keywords]);
 };
 
-const renderMarkdown = (texto: string) => {
+const renderMarkdown = (texto: string, slugAtual: string, jaUsados: Set<string>) => {
   const linhas = texto.trim().split("\n");
   const elementos: JSX.Element[] = [];
   let i = 0;
@@ -157,7 +158,7 @@ const renderMarkdown = (texto: string) => {
           {itens.map((item, ii) => (
             <li key={ii} className="flex items-start gap-2.5 text-slate-700 font-medium text-[15px]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0 mt-2" />
-              <span dangerouslySetInnerHTML={{ __html: formatarTexto(item) }} />
+              <span dangerouslySetInnerHTML={{ __html: formatarTexto(item, slugAtual, jaUsados) }} />
             </li>
           ))}
         </ul>
@@ -177,7 +178,7 @@ const renderMarkdown = (texto: string) => {
               <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-700 font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
                 {ii + 1}
               </span>
-              <span dangerouslySetInnerHTML={{ __html: formatarTexto(item) }} />
+              <span dangerouslySetInnerHTML={{ __html: formatarTexto(item, slugAtual, jaUsados) }} />
             </li>
           ))}
         </ol>
@@ -190,7 +191,7 @@ const renderMarkdown = (texto: string) => {
     else {
       elementos.push(
         <p key={i} className="text-slate-700 text-[15px] sm:text-base leading-relaxed font-medium my-3"
-          dangerouslySetInnerHTML={{ __html: formatarTexto(linha) }}
+          dangerouslySetInnerHTML={{ __html: formatarTexto(linha, slugAtual, jaUsados) }}
         />
       );
     }
@@ -200,10 +201,13 @@ const renderMarkdown = (texto: string) => {
   return elementos;
 };
 
-const formatarTexto = (texto: string): string => {
-  return texto
+const formatarTexto = (texto: string, slugAtual: string, jaUsados: Set<string>): string => {
+  let html = texto
     .replace(/\*\*(.*?)\*\*/g, '<strong class="text-slate-900 font-black">$1</strong>')
     .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
+  // Aplica links internos (só primeira ocorrência de cada artigo)
+  html = aplicarLinksInternos(html, slugAtual, jaUsados);
+  return html;
 };
 
 // Converte "CNH e Pontos" -> "cnh-e-pontos"
@@ -311,6 +315,9 @@ export default function BlogPost() {
   const conteudoParte1 = linhasConteudo.slice(0, corte).join("\n");
   const conteudoParte2 = linhasConteudo.slice(corte).join("\n");
 
+  // Set compartilhado para controlar links internos (não repetir o mesmo artigo)
+  const linksJaUsados = new Set<string>();
+
   return (
     <div className="min-h-screen bg-gray-50 font-sans">
 
@@ -393,7 +400,7 @@ export default function BlogPost() {
 
         {/* CONTEÚDO — Parte 1 */}
         <div className="bg-white rounded-t-3xl border border-b-0 border-slate-200 shadow-sm p-6 sm:p-10">
-          {renderMarkdown(conteudoParte1)}
+          {renderMarkdown(conteudoParte1, artigo.slug, linksJaUsados)}
         </div>
 
         {/* CTA MEIO */}
@@ -414,7 +421,7 @@ export default function BlogPost() {
 
         {/* CONTEÚDO — Parte 2 */}
         <div className="bg-white rounded-b-3xl border border-t-0 border-slate-200 shadow-sm p-6 sm:p-10 mb-8">
-          {renderMarkdown(conteudoParte2)}
+          {renderMarkdown(conteudoParte2, artigo.slug, linksJaUsados)}
         </div>
 
         {/* CTA INLINE */}
