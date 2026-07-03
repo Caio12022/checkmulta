@@ -4,6 +4,7 @@ import { ArrowLeft, Clock, ShieldCheck, ArrowRight, AlertTriangle } from "lucide
 import { artigos } from "../data/artigos";
 import { getFaq } from "../data/faqs";
 import { aplicarLinksInternos } from "../data/linksInternos";
+import { getCorSuave } from "../data/coresSuaves";
 
 // Hook para atualizar meta tags via DOM nativo
 const useMetaTags = (titulo: string, descricao: string, url: string, keywords: string) => {
@@ -254,6 +255,7 @@ export default function BlogPost() {
 
   // FAQ da categoria
   const faq = getFaq(artigo.categoria);
+  const cor = getCorSuave(artigo.imagemBg);
 
   // Schema FAQPage — injeta perguntas frequentes para o Google
   useEffect(() => {
@@ -319,7 +321,7 @@ export default function BlogPost() {
   const linksJaUsados = new Set<string>();
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="min-h-screen font-sans" style={{ backgroundColor: cor.fundoPagina }}>
 
       {/* HEADER */}
       <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-40">
@@ -352,16 +354,22 @@ export default function BlogPost() {
         </Link>
 
         {/* Cabeçalho */}
-        <div className={`bg-gradient-to-br ${artigo.imagemBg} rounded-3xl p-8 sm:p-10 mb-8 relative overflow-hidden`}>
-          <div className="absolute top-4 right-4 text-5xl opacity-30">{artigo.imagemEmoji}</div>
-          <span className="inline-block bg-white/20 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
+        <div
+          className="bg-white rounded-3xl p-8 sm:p-10 mb-8 relative overflow-hidden shadow-sm"
+          style={{ borderLeft: `5px solid ${cor.corPrincipal}`, border: `1px solid ${cor.borda}`, borderLeftWidth: "5px", borderLeftColor: cor.corPrincipal }}
+        >
+          <div className="absolute top-4 right-4 text-5xl opacity-20">{artigo.imagemEmoji}</div>
+          <span
+            className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4"
+            style={{ backgroundColor: cor.fundoBadge, color: cor.textoBadge }}
+          >
             {artigo.categoria}
           </span>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white leading-tight mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 leading-tight mb-4">
             {artigo.titulo}
           </h1>
-          <p className="text-white/80 text-base font-medium mb-6">{artigo.descricao}</p>
-          <div className="flex items-center gap-2 text-white/60 text-sm font-medium">
+          <p className="text-slate-600 text-base font-medium mb-6">{artigo.descricao}</p>
+          <div className="flex items-center gap-2 text-slate-400 text-sm font-medium">
             <Clock className="w-4 h-4" />
             <span>{artigo.tempoLeitura} de leitura</span>
           </div>
@@ -467,11 +475,13 @@ export default function BlogPost() {
         <div>
           <h2 className="text-xl font-black text-slate-900 mb-5">Continue lendo sobre {artigo.categoria}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {outrosArtigos.map((a) => (
+            {outrosArtigos.map((a) => {
+              const corA = getCorSuave(a.imagemBg);
+              return (
               <Link key={a.slug} to={`/blog/${a.slug}`} className="group block">
                 <div className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all overflow-hidden">
-                  <div className={`bg-gradient-to-br ${a.imagemBg} p-4 flex items-center justify-between`}>
-                    <span className="text-xs font-bold text-white/80 uppercase tracking-wider">{a.categoria}</span>
+                  <div className="p-4 flex items-center justify-between" style={{ backgroundColor: corA.fundoBadge, borderBottom: `3px solid ${corA.corPrincipal}` }}>
+                    <span className="text-xs font-bold uppercase tracking-wider" style={{ color: corA.textoBadge }}>{a.categoria}</span>
                     <span className="text-2xl">{a.imagemEmoji}</span>
                   </div>
                   <div className="p-4">
@@ -484,7 +494,8 @@ export default function BlogPost() {
                   </div>
                 </div>
               </Link>
-            ))}
+              );
+            })}
           </div>
           <div className="mt-6 text-center">
             <Link to="/blog" className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:gap-3 transition-all">
