@@ -78,7 +78,7 @@ const useMetaTags = (titulo: string, descricao: string, url: string, keywords: s
         "name": "CheckMulta",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://www.checkmulta.com.br/checkmulta-logo.webp"
+          "url": "https://checkmulta.com.br/checkmulta-logo.webp"
         }
       },
       "mainEntityOfPage": {
@@ -243,7 +243,7 @@ export default function BlogPost() {
 
   if (!artigo) return <Navigate to="/blog" replace />;
 
-  const url = `https://www.checkmulta.com.br/blog/${artigo.slug}`;
+  const url = `https://checkmulta.com.br/blog/${artigo.slug}`;
 
   useMetaTags(
     artigo.titulo,
@@ -291,8 +291,8 @@ export default function BlogPost() {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://www.checkmulta.com.br/" },
-        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.checkmulta.com.br/blog" },
+        { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://checkmulta.com.br/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://checkmulta.com.br/blog" },
         { "@type": "ListItem", "position": 3, "name": artigo.categoria, "item": url },
         { "@type": "ListItem", "position": 4, "name": artigo.titulo, "item": url }
       ]
