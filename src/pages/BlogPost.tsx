@@ -263,6 +263,27 @@ export default function BlogPost() {
     });
   }, [slug]);
 
+  // Schema BreadcrumbList — trilha de navegação para o Google
+  useEffect(() => {
+    let bcScript = document.getElementById("breadcrumb-schema");
+    if (!bcScript) {
+      bcScript = document.createElement("script");
+      bcScript.setAttribute("type", "application/ld+json");
+      bcScript.setAttribute("id", "breadcrumb-schema");
+      document.head.appendChild(bcScript);
+    }
+    bcScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://www.checkmulta.com.br/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://www.checkmulta.com.br/blog" },
+        { "@type": "ListItem", "position": 3, "name": artigo.categoria, "item": url },
+        { "@type": "ListItem", "position": 4, "name": artigo.titulo, "item": url }
+      ]
+    });
+  }, [slug]);
+
   // Artigos relacionados: prioriza mesma categoria, completa com outros
   const mesmaCategoria = artigos.filter((a) => a.slug !== slug && a.categoria === artigo.categoria);
   const outrasCategorias = artigos.filter((a) => a.slug !== slug && a.categoria !== artigo.categoria);
@@ -295,14 +316,22 @@ export default function BlogPost() {
 
       {/* BREADCRUMB */}
       <div className="max-w-3xl mx-auto px-4 pt-6">
-        <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-slate-500 font-medium hover:text-blue-600 transition-colors">
-          <ArrowLeft className="w-4 h-4" />
-          Voltar ao Blog
-        </Link>
+        <nav className="flex items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-500 flex-wrap">
+          <Link to="/" className="hover:text-blue-600 transition-colors">Início</Link>
+          <span className="text-slate-300">/</span>
+          <Link to="/blog" className="hover:text-blue-600 transition-colors">Blog</Link>
+          <span className="text-slate-300">/</span>
+          <span className="text-slate-700 font-bold">{artigo.categoria}</span>
+        </nav>
       </div>
 
       {/* ARTIGO */}
       <article className="max-w-3xl mx-auto px-4 pt-6 pb-16">
+        {/* Voltar ao Blog */}
+        <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-slate-500 font-medium hover:text-blue-600 transition-colors mb-6">
+          <ArrowLeft className="w-4 h-4" />
+          Voltar ao Blog
+        </Link>
 
         {/* Cabeçalho */}
         <div className={`bg-gradient-to-br ${artigo.imagemBg} rounded-3xl p-8 sm:p-10 mb-8 relative overflow-hidden`}>
