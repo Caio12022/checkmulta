@@ -358,7 +358,7 @@ export default function BlogPost() {
           className="bg-white rounded-3xl p-8 sm:p-10 mb-8 relative overflow-hidden shadow-sm"
           style={{ borderLeft: `5px solid ${cor.corPrincipal}`, border: `1px solid ${cor.borda}`, borderLeftWidth: "5px", borderLeftColor: cor.corPrincipal }}
         >
-          <div className="absolute top-4 right-4 text-5xl opacity-20">{artigo.imagemEmoji}</div>
+          <div className="absolute top-4 right-4 text-5xl opacity-60">{artigo.imagemEmoji}</div>
           <span
             className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4"
             style={{ backgroundColor: cor.fundoBadge, color: cor.textoBadge }}
