@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Clock, ShieldCheck, Search } from "lucide-react";
 import { artigos } from "../data/artigos";
+import { getCorSuave } from "../data/coresSuaves";
+
 export default function Blog() {
   const [busca, setBusca] = useState("");
 
@@ -71,15 +73,15 @@ export default function Blog() {
         <section className="max-w-4xl mx-auto px-4 -mt-6 mb-8">
           <Link to={"/blog/" + artigos[0].slug} className="block">
             <div className="bg-white rounded-3xl shadow-lg border border-slate-200 overflow-hidden hover:shadow-xl transition-shadow duration-300 group">
-              <div className={"bg-gradient-to-r " + artigos[0].imagemBg + " p-8 sm:p-10 flex items-center justify-between"}>
+              <div className="p-8 sm:p-10 flex items-center justify-between" style={{ backgroundColor: getCorSuave(artigos[0].imagemBg).fundoBadge, borderBottom: "4px solid " + getCorSuave(artigos[0].imagemBg).corPrincipal }}>
                 <div className="flex-1">
-                  <span className="inline-block bg-white/20 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3">
+                  <span className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-3" style={{ backgroundColor: "#ffffff", color: getCorSuave(artigos[0].imagemBg).textoBadge }}>
                     {artigos[0].categoria}
                   </span>
-                  <h2 className="text-2xl sm:text-3xl font-black text-white leading-tight mb-2 group-hover:underline">
+                  <h2 className="text-2xl sm:text-3xl font-black text-slate-900 leading-tight mb-2 group-hover:underline">
                     {artigos[0].titulo}
                   </h2>
-                  <p className="text-white/80 text-sm font-medium">{artigos[0].descricao}</p>
+                  <p className="text-slate-600 text-sm font-medium">{artigos[0].descricao}</p>
                 </div>
                 <div className="text-6xl ml-6 hidden sm:block">{artigos[0].imagemEmoji}</div>
               </div>
@@ -105,11 +107,13 @@ export default function Blog() {
           </p>
         )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {(busca ? artigosFiltrados : artigos.slice(1)).map((artigo) => (
+          {(busca ? artigosFiltrados : artigos.slice(1)).map((artigo) => {
+            const corC = getCorSuave(artigo.imagemBg);
+            return (
             <Link key={artigo.slug} to={"/blog/" + artigo.slug} className="group block">
               <div className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden h-full flex flex-col">
-                <div className={"bg-gradient-to-br " + artigo.imagemBg + " p-6 flex items-center justify-between"}>
-                  <span className="text-xs font-bold text-white/80 uppercase tracking-widest bg-white/10 px-2.5 py-1 rounded-full">
+                <div className="p-6 flex items-center justify-between" style={{ backgroundColor: corC.fundoBadge, borderBottom: "3px solid " + corC.corPrincipal }}>
+                  <span className="text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full" style={{ color: corC.textoBadge, backgroundColor: "#ffffff" }}>
                     {artigo.categoria}
                   </span>
                   <span className="text-3xl">{artigo.imagemEmoji}</span>
@@ -133,7 +137,8 @@ export default function Blog() {
                 </div>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
         {artigosFiltrados.length === 0 && busca && (
           <div className="text-center py-16">
