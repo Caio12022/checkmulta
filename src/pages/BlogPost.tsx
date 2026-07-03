@@ -52,6 +52,39 @@ const useMetaTags = (titulo: string, descricao: string, url: string, keywords: s
     setOG('og:url', url);
     setOG('og:type', 'article');
 
+    // Schema markup (JSON-LD) — tipo Article para o Google
+    let schemaScript = document.getElementById("article-schema");
+    if (!schemaScript) {
+      schemaScript = document.createElement("script");
+      schemaScript.setAttribute("type", "application/ld+json");
+      schemaScript.setAttribute("id", "article-schema");
+      document.head.appendChild(schemaScript);
+    }
+    schemaScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": titulo,
+      "description": descricao,
+      "keywords": keywords,
+      "url": url,
+      "author": {
+        "@type": "Organization",
+        "name": "CheckMulta"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "CheckMulta",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.checkmulta.com.br/checkmulta-logo.webp"
+        }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": url
+      }
+    });
+
     return () => {
       document.title = 'CheckMulta — Análise de Multas com IA';
     };
@@ -203,7 +236,10 @@ export default function BlogPost() {
     artigo.palavrasChave.join(", ")
   );
 
-  const outrosArtigos = artigos.filter((a) => a.slug !== slug).slice(0, 3);
+  // Artigos relacionados: prioriza mesma categoria, completa com outros
+  const mesmaCategoria = artigos.filter((a) => a.slug !== slug && a.categoria === artigo.categoria);
+  const outrasCategorias = artigos.filter((a) => a.slug !== slug && a.categoria !== artigo.categoria);
+  const outrosArtigos = [...mesmaCategoria, ...outrasCategorias].slice(0, 3);
 
   // Divide o conteúdo em duas metades para inserir CTA no meio
   const linhasConteudo = artigo.conteudo.trim().split("\n");
@@ -337,7 +373,7 @@ export default function BlogPost() {
 
         {/* OUTROS ARTIGOS */}
         <div>
-          <h2 className="text-xl font-black text-slate-900 mb-5">Outros artigos</h2>
+          <h2 className="text-xl font-black text-slate-900 mb-5">Continue lendo sobre {artigo.categoria}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {outrosArtigos.map((a) => (
               <Link key={a.slug} to={`/blog/${a.slug}`} className="group block">
@@ -357,6 +393,11 @@ export default function BlogPost() {
                 </div>
               </Link>
             ))}
+          </div>
+          <div className="mt-6 text-center">
+            <Link to="/blog" className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:gap-3 transition-all">
+              Ver todos os artigos <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </article>
