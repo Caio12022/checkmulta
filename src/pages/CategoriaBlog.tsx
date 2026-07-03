@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { ArrowRight, Clock, ShieldCheck, ArrowLeft } from "lucide-react";
 import { artigos } from "../data/artigos";
+import { getCorSuave } from "../data/coresSuaves";
 
 export default function CategoriaBlog() {
   const { categoria } = useParams<{ categoria: string }>();
@@ -12,6 +13,7 @@ export default function CategoriaBlog() {
   );
 
   const nomeCategoria = artigosFiltrados.length > 0 ? artigosFiltrados[0].categoria : "Categoria";
+  const cor = artigosFiltrados.length > 0 ? getCorSuave(artigosFiltrados[0].imagemBg) : getCorSuave("from-slate-700");
 
   useEffect(() => {
     document.title = `${nomeCategoria} — Blog CheckMulta`;
@@ -28,7 +30,7 @@ export default function CategoriaBlog() {
   }, [nomeCategoria]);
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="min-h-screen font-sans" style={{ backgroundColor: cor.fundoPagina }}>
 
       {/* HEADER */}
       <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-40">
@@ -71,11 +73,13 @@ export default function CategoriaBlog() {
       {/* GRID DE ARTIGOS */}
       <section className="max-w-4xl mx-auto px-4 py-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {artigosFiltrados.map((artigo) => (
+          {artigosFiltrados.map((artigo) => {
+            const corC = getCorSuave(artigo.imagemBg);
+            return (
             <Link key={artigo.slug} to={"/blog/" + artigo.slug} className="group block">
               <div className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 overflow-hidden h-full flex flex-col">
-                <div className={"bg-gradient-to-br " + artigo.imagemBg + " p-6 flex items-center justify-between"}>
-                  <span className="text-xs font-bold text-white/80 uppercase tracking-widest bg-white/10 px-2.5 py-1 rounded-full">
+                <div className="p-6 flex items-center justify-between" style={{ backgroundColor: corC.fundoBadge, borderBottom: "3px solid " + corC.corPrincipal }}>
+                  <span className="text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-full" style={{ color: corC.textoBadge, backgroundColor: "#ffffff" }}>
                     {artigo.categoria}
                   </span>
                   <span className="text-3xl">{artigo.imagemEmoji}</span>
@@ -99,7 +103,8 @@ export default function CategoriaBlog() {
                 </div>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
 
         {artigosFiltrados.length === 0 && (
