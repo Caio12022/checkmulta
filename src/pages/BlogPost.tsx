@@ -206,6 +206,17 @@ const formatarTexto = (texto: string): string => {
     .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
 };
 
+// Converte "CNH e Pontos" -> "cnh-e-pontos"
+function slugifyCategoria(texto: string): string {
+  return texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
 export default function BlogPost() {
   const { slug } = useParams<{ slug: string }>();
   const artigo = artigos.find((a) => a.slug === slug);
@@ -321,7 +332,7 @@ export default function BlogPost() {
           <span className="text-slate-300">/</span>
           <Link to="/blog" className="hover:text-blue-600 transition-colors">Blog</Link>
           <span className="text-slate-300">/</span>
-          <span className="text-slate-700 font-bold">{artigo.categoria}</span>
+          <Link to={`/blog/categoria/${slugifyCategoria(artigo.categoria)}`} className="text-slate-700 font-bold hover:text-blue-600 transition-colors">{artigo.categoria}</Link>
         </nav>
       </div>
 
