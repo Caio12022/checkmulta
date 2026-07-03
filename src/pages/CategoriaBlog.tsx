@@ -44,16 +44,16 @@ export default function CategoriaBlog() {
       </header>
 
       {/* HERO */}
-      <section className="w-full bg-gradient-to-br from-blue-900 to-slate-900 py-14 px-4">
+      <section className="w-full bg-white border-b border-slate-100 py-14 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-blue-800/50 border border-blue-700 rounded-full px-4 py-1.5 mb-6">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span className="text-xs font-bold text-emerald-300 uppercase tracking-widest">Categoria</span>
+          <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 rounded-full px-4 py-1.5 mb-6">
+            <ShieldCheck className="w-4 h-4 text-emerald-600" />
+            <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">Categoria</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight mb-4 tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 leading-tight mb-4 tracking-tight">
             {nomeCategoria}
           </h1>
-          <p className="text-slate-300 text-base sm:text-lg font-medium max-w-2xl mx-auto">
+          <p className="text-slate-500 text-base sm:text-lg font-medium max-w-2xl mx-auto">
             {artigosFiltrados.length} {artigosFiltrados.length === 1 ? "artigo" : "artigos"} sobre este tema
           </p>
         </div>
