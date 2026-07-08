@@ -1899,7 +1899,7 @@ Se você recebeu uma multa mas não tem certeza de qual órgão autuou, ligue pa
     tempoLeitura: "4 min",
     imagemEmoji: "✅",
     imagemBg: "from-teal-500 to-emerald-700",
-    palavrasChave: ["recorrer multa sem advogado", "recurso multa próprio", "preciso de advogado para contestar multa"],
+    palavrasChave: ["recorrer multa sem advogado", "para recorrer multa precisa de advogado", "precisa de advogado para recorrer multa", "recurso multa próprio", "preciso de advogado para contestar multa"],
     conteudo: `
 ## Você não precisa de advogado para recorrer de multa
 
@@ -3971,7 +3971,7 @@ Sempre faça um contrato de compra e venda com firma reconhecida ou assinatura e
     tempoLeitura: "4 min",
     imagemEmoji: "🏢",
     imagemBg: "from-blue-700 to-cyan-900",
-    palavrasChave: ["recurso multa DETRAN RJ", "como recorrer multa Rio de Janeiro", "defesa prévia DETRAN RJ online"],
+    palavrasChave: ["recurso multa DETRAN RJ", "como recorrer de multa detran rj", "recorrer multa detran rj online", "detran recorrer multa rj", "como recorrer multa Rio de Janeiro", "defesa prévia DETRAN RJ online"],
     conteudo: `
 ## Sistema do DETRAN RJ para recursos
 
@@ -4792,6 +4792,1190 @@ O maior risco financeiro indireto é: débitos de multa em dívida ativa podem g
 ## Resumindo
 
 Multa isolada e recente não afeta diretamente seu score. O risco surge quando o débito se acumula, vai a protesto ou compromete significativamente seu histórico de dívidas públicas.
+    `
+  },
+  {
+    slug: "detran-sc-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN SC (Santa Catarina): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Santa Catarina. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-blue-600 to-indigo-800",
+    palavrasChave: ["recurso multa DETRAN SC", "como recorrer multa Santa Catarina", "defesa prévia DETRAN SC online", "recorrer multa Florianópolis", "DETRAN SC multa"],
+    conteudo: `
+## Sistema do DETRAN SC para recursos
+
+O DETRAN do Santa Catarina disponibiliza o portal **detran.sc.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Santa Catarina
+
+1. Acesse detran.sc.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-SC
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Florianópolis
+
+Na capital Florianópolis, a fiscalização municipal de trânsito é feita pela SETUF/PMF, separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Santa Catarina
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN SC
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN SC mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN SC, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-go-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN GO (Goiás): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Goiás. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-yellow-600 to-amber-800",
+    palavrasChave: ["recurso multa DETRAN GO", "como recorrer multa Goiás", "defesa prévia DETRAN GO online", "recorrer multa Goiânia", "DETRAN GO multa"],
+    conteudo: `
+## Sistema do DETRAN GO para recursos
+
+O DETRAN do Goiás disponibiliza o portal **detran.go.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Goiás
+
+1. Acesse detran.go.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-GO
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Goiânia
+
+Na capital Goiânia, a fiscalização municipal de trânsito é feita pela SMM (Superintendência Municipal de Mobilidade), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Goiás
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN GO
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN GO mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN GO, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-es-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN ES (Espírito Santo): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Espírito Santo. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-teal-600 to-cyan-800",
+    palavrasChave: ["recurso multa DETRAN ES", "como recorrer multa Espírito Santo", "defesa prévia DETRAN ES online", "recorrer multa Vitória", "DETRAN ES multa"],
+    conteudo: `
+## Sistema do DETRAN ES para recursos
+
+O DETRAN do Espírito Santo disponibiliza o portal **detran.es.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Espírito Santo
+
+1. Acesse detran.es.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-ES
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Vitória
+
+Na capital Vitória, a fiscalização municipal de trânsito é feita pela Setran (Secretaria de Transportes), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Espírito Santo
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN ES
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN ES mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN ES, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-pa-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN PA (Pará): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Pará. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-green-700 to-emerald-900",
+    palavrasChave: ["recurso multa DETRAN PA", "como recorrer multa Pará", "defesa prévia DETRAN PA online", "recorrer multa Belém", "DETRAN PA multa"],
+    conteudo: `
+## Sistema do DETRAN PA para recursos
+
+O DETRAN do Pará disponibiliza o portal **detran.pa.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Pará
+
+1. Acesse detran.pa.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-PA
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Belém
+
+Na capital Belém, a fiscalização municipal de trânsito é feita pela SeMOB (Superintendência de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Pará
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN PA
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN PA mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN PA, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-am-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN AM (Amazonas): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Amazonas. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-green-600 to-teal-800",
+    palavrasChave: ["recurso multa DETRAN AM", "como recorrer multa Amazonas", "defesa prévia DETRAN AM online", "recorrer multa Manaus", "DETRAN AM multa"],
+    conteudo: `
+## Sistema do DETRAN AM para recursos
+
+O DETRAN do Amazonas disponibiliza o portal **detran.am.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Amazonas
+
+1. Acesse detran.am.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-AM
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Manaus
+
+Na capital Manaus, a fiscalização municipal de trânsito é feita pela IMMU (Instituto Municipal de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Amazonas
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN AM
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN AM mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN AM, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-ma-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN MA (Maranhão): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Maranhão. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-orange-600 to-red-800",
+    palavrasChave: ["recurso multa DETRAN MA", "como recorrer multa Maranhão", "defesa prévia DETRAN MA online", "recorrer multa São Luís", "DETRAN MA multa"],
+    conteudo: `
+## Sistema do DETRAN MA para recursos
+
+O DETRAN do Maranhão disponibiliza o portal **detran.ma.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Maranhão
+
+1. Acesse detran.ma.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-MA
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de São Luís
+
+Na capital São Luís, a fiscalização municipal de trânsito é feita pela SMTT (Secretaria Municipal de Trânsito e Transportes), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Maranhão
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN MA
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN MA mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN MA, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-mt-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN MT (Mato Grosso): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Mato Grosso. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-lime-600 to-green-800",
+    palavrasChave: ["recurso multa DETRAN MT", "como recorrer multa Mato Grosso", "defesa prévia DETRAN MT online", "recorrer multa Cuiabá", "DETRAN MT multa"],
+    conteudo: `
+## Sistema do DETRAN MT para recursos
+
+O DETRAN do Mato Grosso disponibiliza o portal **detran.mt.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Mato Grosso
+
+1. Acesse detran.mt.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-MT
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Cuiabá
+
+Na capital Cuiabá, a fiscalização municipal de trânsito é feita pela Semob (Secretaria de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Mato Grosso
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN MT
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN MT mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN MT, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-ms-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN MS (Mato Grosso do Sul): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Mato Grosso do Sul. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-cyan-600 to-blue-800",
+    palavrasChave: ["recurso multa DETRAN MS", "como recorrer multa Mato Grosso do Sul", "defesa prévia DETRAN MS online", "recorrer multa Campo Grande", "DETRAN MS multa"],
+    conteudo: `
+## Sistema do DETRAN MS para recursos
+
+O DETRAN do Mato Grosso do Sul disponibiliza o portal **detran.ms.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Mato Grosso do Sul
+
+1. Acesse detran.ms.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-MS
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Campo Grande
+
+Na capital Campo Grande, a fiscalização municipal de trânsito é feita pela Agetran (Agência Municipal de Transporte e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Mato Grosso do Sul
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN MS
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN MS mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN MS, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-pb-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN PB (Paraíba): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Paraíba. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-blue-700 to-slate-900",
+    palavrasChave: ["recurso multa DETRAN PB", "como recorrer multa Paraíba", "defesa prévia DETRAN PB online", "recorrer multa João Pessoa", "DETRAN PB multa"],
+    conteudo: `
+## Sistema do DETRAN PB para recursos
+
+O DETRAN do Paraíba disponibiliza o portal **detran.pb.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Paraíba
+
+1. Acesse detran.pb.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-PB
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de João Pessoa
+
+Na capital João Pessoa, a fiscalização municipal de trânsito é feita pela STTrans (Superintendência de Trânsito e Transporte), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Paraíba
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN PB
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN PB mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN PB, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-rn-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN RN (Rio Grande do Norte): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Rio Grande do Norte. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-sky-600 to-blue-800",
+    palavrasChave: ["recurso multa DETRAN RN", "como recorrer multa Rio Grande do Norte", "defesa prévia DETRAN RN online", "recorrer multa Natal", "DETRAN RN multa"],
+    conteudo: `
+## Sistema do DETRAN RN para recursos
+
+O DETRAN do Rio Grande do Norte disponibiliza o portal **detran.rn.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Rio Grande do Norte
+
+1. Acesse detran.rn.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-RN
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Natal
+
+Na capital Natal, a fiscalização municipal de trânsito é feita pela STTU (Secretaria de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Rio Grande do Norte
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN RN
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN RN mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN RN, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-al-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN AL (Alagoas): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Alagoas. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-indigo-600 to-blue-800",
+    palavrasChave: ["recurso multa DETRAN AL", "como recorrer multa Alagoas", "defesa prévia DETRAN AL online", "recorrer multa Maceió", "DETRAN AL multa"],
+    conteudo: `
+## Sistema do DETRAN AL para recursos
+
+O DETRAN do Alagoas disponibiliza o portal **detran.al.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Alagoas
+
+1. Acesse detran.al.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-AL
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Maceió
+
+Na capital Maceió, a fiscalização municipal de trânsito é feita pela SMTT (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Alagoas
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN AL
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN AL mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN AL, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-pi-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN PI (Piauí): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Piauí. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-amber-600 to-orange-800",
+    palavrasChave: ["recurso multa DETRAN PI", "como recorrer multa Piauí", "defesa prévia DETRAN PI online", "recorrer multa Teresina", "DETRAN PI multa"],
+    conteudo: `
+## Sistema do DETRAN PI para recursos
+
+O DETRAN do Piauí disponibiliza o portal **detran.pi.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Piauí
+
+1. Acesse detran.pi.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-PI
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Teresina
+
+Na capital Teresina, a fiscalização municipal de trânsito é feita pela Strans (Superintendência de Transporte e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Piauí
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN PI
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN PI mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN PI, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-se-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN SE (Sergipe): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Sergipe. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-teal-700 to-emerald-900",
+    palavrasChave: ["recurso multa DETRAN SE", "como recorrer multa Sergipe", "defesa prévia DETRAN SE online", "recorrer multa Aracaju", "DETRAN SE multa"],
+    conteudo: `
+## Sistema do DETRAN SE para recursos
+
+O DETRAN do Sergipe disponibiliza o portal **detran.se.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Sergipe
+
+1. Acesse detran.se.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-SE
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Aracaju
+
+Na capital Aracaju, a fiscalização municipal de trânsito é feita pela SMTT (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Sergipe
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN SE
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN SE mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN SE, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-ro-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN RO (Rondônia): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Rondônia. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-green-700 to-lime-900",
+    palavrasChave: ["recurso multa DETRAN RO", "como recorrer multa Rondônia", "defesa prévia DETRAN RO online", "recorrer multa Porto Velho", "DETRAN RO multa"],
+    conteudo: `
+## Sistema do DETRAN RO para recursos
+
+O DETRAN do Rondônia disponibiliza o portal **detran.ro.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Rondônia
+
+1. Acesse detran.ro.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-RO
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Porto Velho
+
+Na capital Porto Velho, a fiscalização municipal de trânsito é feita pela SEMTRAN (Secretaria Municipal de Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Rondônia
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN RO
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN RO mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN RO, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-to-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN TO (Tocantins): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Tocantins. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-yellow-700 to-amber-900",
+    palavrasChave: ["recurso multa DETRAN TO", "como recorrer multa Tocantins", "defesa prévia DETRAN TO online", "recorrer multa Palmas", "DETRAN TO multa"],
+    conteudo: `
+## Sistema do DETRAN TO para recursos
+
+O DETRAN do Tocantins disponibiliza o portal **detran.to.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Tocantins
+
+1. Acesse detran.to.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-TO
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Palmas
+
+Na capital Palmas, a fiscalização municipal de trânsito é feita pela ITT64 (Instituto de Trânsito e Transporte), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Tocantins
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN TO
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN TO mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN TO, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-ac-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN AC (Acre): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Acre. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-emerald-700 to-green-900",
+    palavrasChave: ["recurso multa DETRAN AC", "como recorrer multa Acre", "defesa prévia DETRAN AC online", "recorrer multa Rio Branco", "DETRAN AC multa"],
+    conteudo: `
+## Sistema do DETRAN AC para recursos
+
+O DETRAN do Acre disponibiliza o portal **detran.ac.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Acre
+
+1. Acesse detran.ac.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-AC
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Rio Branco
+
+Na capital Rio Branco, a fiscalização municipal de trânsito é feita pela RBTRANS (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Acre
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN AC
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN AC mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN AC, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-ap-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN AP (Amapá): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Amapá. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-cyan-700 to-teal-900",
+    palavrasChave: ["recurso multa DETRAN AP", "como recorrer multa Amapá", "defesa prévia DETRAN AP online", "recorrer multa Macapá", "DETRAN AP multa"],
+    conteudo: `
+## Sistema do DETRAN AP para recursos
+
+O DETRAN do Amapá disponibiliza o portal **detran.ap.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Amapá
+
+1. Acesse detran.ap.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-AP
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Macapá
+
+Na capital Macapá, a fiscalização municipal de trânsito é feita pela CTMAC (Coordenadoria de Trânsito de Macapá), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Amapá
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN AP
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN AP mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN AP, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "detran-rr-recurso-multa-passo-a-passo",
+    titulo: "Como Recorrer de Multa no DETRAN RR (Roraima): Passo a Passo",
+    descricao: "Guia completo para contestar multas no Roraima. Sistema online, prazos e documentos necessários. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "DETRAN",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🏢",
+    imagemBg: "from-blue-600 to-cyan-800",
+    palavrasChave: ["recurso multa DETRAN RR", "como recorrer multa Roraima", "defesa prévia DETRAN RR online", "recorrer multa Boa Vista", "DETRAN RR multa"],
+    conteudo: `
+## Sistema do DETRAN RR para recursos
+
+O DETRAN do Roraima disponibiliza o portal **detran.rr.gov.br** para consulta e contestação de infrações de trânsito no estado. Todo o processo de defesa prévia e recurso pode ser feito online.
+
+## Passo a passo para recorrer no Roraima
+
+1. Acesse detran.rr.gov.br
+2. Localize a área de "Multas" ou "Infrações de Trânsito"
+3. Faça login com CPF (ou cadastre-se via Gov.br)
+4. Consulte a infração pela placa do veículo ou número do auto
+5. Selecione o tipo de recurso: Defesa Prévia ou Recurso à JARI-RR
+6. Preencha a petição de defesa ou anexe em PDF
+7. Anexe documentos de suporte, se houver
+8. Protocole e guarde o número de confirmação
+
+## Peculiaridade de Boa Vista
+
+Na capital Boa Vista, a fiscalização municipal de trânsito é feita pela SMTT (Secretaria Municipal de Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+
+## Prazos no Roraima
+
+Os prazos seguem o padrão nacional do CTB:
+- **Defesa Prévia:** 15 dias a partir do recebimento da notificação de autuação
+- **Recurso à JARI:** 30 dias após o indeferimento da defesa prévia
+- **Recurso ao CETRAN:** 30 dias após indeferimento da JARI
+
+## O que verificar antes de recorrer
+
+Antes de montar seu recurso, confira se o auto de infração tem algum vício formal:
+
+- O local da infração está descrito completamente?
+- O agente está identificado com nome e matrícula?
+- Para multas eletrônicas: o equipamento tem aferição INMETRO válida?
+- A descrição da infração é específica?
+
+Qualquer falha nesses pontos, conforme o Art. 280 do CTB, pode anular a multa.
+
+## Atendimento presencial no DETRAN RR
+
+Para quem prefere ou tem dificuldade com o sistema online, o DETRAN RR mantém postos de atendimento presencial. O protocolo presencial dentro do prazo tem a mesma validade legal do processo online.
+
+## Nossa IA analisa seu auto de infração gratuitamente
+
+Antes de recorrer no DETRAN RR, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+    `
+  },
+  {
+    slug: "art-280-ctb-comentado-completo",
+    titulo: "Art. 280 do CTB Comentado: Todos os Incisos Explicados",
+    descricao: "Art. 280 do Código de Trânsito Brasileiro comentado inciso por inciso. Entenda cada requisito do auto de infração. Veja grátis se a sua multa tem erro que anula a multa.",
+    categoria: "Jurídico",
+    tempoLeitura: "7 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-slate-700 to-blue-900",
+    palavrasChave: ["art 280 ctb", "artigo 280 ctb comentado", "art 280 do ctb", "280 ctb", "art 280 3 ctb", "ctb art 280", "art. 280 do código de trânsito brasileiro", "artigo 280 código de trânsito brasileiro"],
+    conteudo: `
+## O que é o Art. 280 do CTB
+
+O **Art. 280 do Código de Trânsito Brasileiro (CTB)** define, de forma detalhada, todos os requisitos que um auto de infração precisa conter para ser considerado válido. É a base legal mais usada em recursos de multa, porque qualquer campo ausente, incorreto ou ilegível pode anular a autuação.
+
+Neste artigo, comentamos cada inciso do Art. 280 e explicamos como usá-lo no seu recurso.
+
+## Texto do Art. 280 do CTB
+
+O artigo determina que, ao verificar uma infração, o agente deve lavrar o auto contendo obrigatoriamente os elementos listados em seus incisos. Vamos comentar cada um.
+
+## Art. 280, inciso I — Tipificação da infração
+
+O auto deve conter a **tipificação da infração** — ou seja, a indicação precisa do artigo e inciso do CTB que foi violado, com a descrição do comportamento observado.
+
+**Comentário:** não basta escrever "infração de trânsito". O auto precisa especificar qual norma foi violada e o que exatamente o condutor fez. Descrição genérica é vício formal.
+
+## Art. 280, inciso II — Local, data e hora
+
+Deve constar o **local, a data e a hora** em que a infração foi cometida.
+
+**Comentário:** o local precisa ser completo (logradouro, número ou KM, bairro, município). "Av. Principal" sem mais detalhes é insuficiente. Data e hora imprecisas ou incompatíveis também são passíveis de contestação.
+
+## Art. 280, inciso III — Identificação do veículo
+
+O auto deve identificar o **veículo** — placa, marca, espécie e demais características que permitam sua identificação.
+
+**Comentário:** erro na placa ou em dados do veículo é vício formal direto. Se a placa registrada não corresponde exatamente à do seu veículo, a autuação pode ser anulada.
+
+## Art. 280, inciso IV — O órgão ou entidade autuadora
+
+Deve constar a identificação do **órgão ou entidade** responsável pela autuação.
+
+**Comentário:** o órgão autuador precisa estar claramente identificado — é ele que define para onde vai o recurso e se tinha competência para aquela fiscalização.
+
+## Art. 280, inciso V — Identificação do agente
+
+Deve constar o **prontuário do agente** da autoridade de trânsito ou, no caso de equipamento, a identificação do equipamento.
+
+**Comentário:** o agente precisa ser identificável (nome e matrícula/prontuário). Campo ilegível ou ausente é vício formal frequente e eficaz em recursos.
+
+## Art. 280, §§ — Equipamentos eletrônicos
+
+Nos casos de infração registrada por **equipamento** (radar, câmera, etc.), o auto deve identificar o equipamento utilizado, e este deve ter aferição válida do INMETRO.
+
+**Comentário:** aferição vencida ou ausência do número de série do equipamento invalida a autuação eletrônica. Esse é um dos argumentos mais fortes em multas de velocidade e semáforo.
+
+## Como o Art. 280 se conecta ao Art. 281
+
+O **Art. 281, parágrafo único, inciso I** do CTB determina que a autoridade de trânsito deve **arquivar o auto** e não aplicar a penalidade quando o auto for **inválido por não conter os dados do Art. 280**.
+
+Ou seja: o Art. 280 lista os requisitos, e o Art. 281 determina o arquivamento quando eles não são cumpridos. Os dois trabalham juntos na sua defesa.
+
+## Como usar o Art. 280 no recurso
+
+Na defesa prévia, cite o inciso específico que foi violado:
+
+*"O auto de infração nº [número] não preenche o requisito do Art. 280, inciso [X] do CTB, uma vez que [descreva o vício]. Nos termos do Art. 281, parágrafo único, inciso I, requer-se o arquivamento do presente auto."*
+
+## Nossa IA analisa seu auto com base no Art. 280
+
+Nossa Inteligência Artificial verifica automaticamente cada inciso do Art. 280 no seu auto de infração e identifica se há vício formal que fundamente o recurso — campo por campo, em segundos e de graça.
+    `
+  },
+  {
+    slug: "multa-293-47-desconto-40-como-pagar",
+    titulo: "Multa de R$ 293,47 com 40% de Desconto: Como Pagar",
+    descricao: "Saiba como pagar a multa de R$ 293,47 (infração gravíssima) com 40% de desconto pelo SNE. Ou veja grátis se a sua multa tem erro que permite cancelá-la sem pagar nada.",
+    categoria: "Pagamento",
+    tempoLeitura: "4 min",
+    imagemEmoji: "💰",
+    imagemBg: "from-green-500 to-emerald-700",
+    palavrasChave: ["293 47 com 40 de desconto", "multa 293 47 desconto", "como pagar multa com 40 de desconto", "pagar multa antecipada desconto", "vantagem pagar multa antecipadamente", "desconto multa gravíssima"],
+    conteudo: `
+## Por que a multa é de R$ 293,47
+
+O valor de **R$ 293,47** corresponde às infrações de natureza **gravíssima** no CTB — como avançar sinal vermelho, usar celular ao volante, excesso de velocidade acima de 50% e dirigir sem CNH. Além do valor, geram 7 pontos na CNH.
+
+## Como conseguir 40% de desconto
+
+O desconto de 40% está previsto no **Art. 284-A do CTB** e é concedido para quem aderiu ao **SNE (Sistema de Notificação Eletrônica)** e paga a multa dentro do prazo de 15 dias úteis do recebimento da notificação eletrônica.
+
+Com o desconto, a multa gravíssima de R$ 293,47 cai para **R$ 176,08**.
+
+## Qual a vantagem de pagar a multa antecipadamente?
+
+Pagar antecipadamente pelo SNE tem vantagens claras:
+
+- **Economia de 40%** no valor da multa
+- **Notificação imediata** (sem esperar os Correios)
+- **Controle transparente** dos prazos
+
+Mas atenção: pagar significa **assumir a infração**. Você abre mão do direito de recorrer. Por isso, só vale pagar com desconto se você já decidiu que **não vai contestar** a multa.
+
+## Como aderir ao SNE e pagar com desconto
+
+1. Acesse o portal **gov.br** ou o app Carteira Digital de Trânsito
+2. Adira ao Sistema de Notificação Eletrônica (SNE)
+3. Selecione os veículos que deseja incluir
+4. Ao receber uma notificação, pague dentro de 15 dias úteis
+5. O desconto de 40% é aplicado automaticamente no boleto
+
+## Pagar com desconto ou recorrer? Compare
+
+Para uma multa gravíssima de R$ 293,47:
+
+| Opção | Valor final | Pontos na CNH |
+|-------|-------------|---------------|
+| Pagar com desconto SNE | R$ 176,08 | 7 pontos |
+| Pagar sem desconto | R$ 293,47 | 7 pontos |
+| Recorrer e ganhar | R$ 0,00 | 0 pontos |
+
+## Antes de pagar, verifique se dá para cancelar
+
+O desconto de 40% é bom, mas cancelar a multa é ainda melhor — você não paga nada e não leva os pontos. Antes de aproveitar o desconto, vale conferir se o auto de infração tem algum vício formal que permita o recurso.
+
+Nossa IA analisa o seu auto de infração gratuitamente e diz, em segundos, se há base para contestar. Se não houver, aí sim o desconto de 40% é o caminho mais inteligente.
+    `
+  },
+  {
+    slug: "radar-educativo-pode-multar",
+    titulo: "Radar Educativo Pode Multar? Entenda a Diferença",
+    descricao: "Radar educativo pode aplicar multa? Entenda a diferença entre radar pedagógico e de fiscalização. Se você foi multado, veja grátis se a autuação tem erro que a anula.",
+    categoria: "Velocidade",
+    tempoLeitura: "3 min",
+    imagemEmoji: "🚧",
+    imagemBg: "from-green-600 to-emerald-800",
+    palavrasChave: ["radar educativo", "radar educativo multa", "radar educativo pode multar", "radar pedagógico multa", "painel velocidade multa"],
+    conteudo: `
+## Radar educativo pode multar?
+
+**Não.** O radar educativo (ou pedagógico) tem função exclusivamente informativa — ele mostra a sua velocidade em um painel luminoso para incentivar a redução voluntária, mas **não está integrado ao sistema de autuação** do órgão de trânsito.
+
+## Como reconhecer um radar educativo
+
+O radar educativo geralmente:
+- Exibe um painel visível com a velocidade em tempo real ("Você está a X km/h")
+- Às vezes mostra carinha feliz/triste ou luz verde/vermelha
+- Não tem sinalização de "Fiscalização Eletrônica"
+- Não está cadastrado como equipamento autuador
+
+## Como é o radar de fiscalização (esse sim multa)
+
+O radar que aplica multa:
+- Precisa de sinalização prévia informando "Fiscalização Eletrônica"
+- Está cadastrado oficialmente no órgão de trânsito
+- Tem número de série e aferição válida do INMETRO
+- Registra a infração silenciosamente para notificação posterior
+
+## Recebi multa mas achei que era radar educativo
+
+Se você recebeu uma notificação de multa em um local onde havia apenas um radar com painel educativo — sem a sinalização regulamentar de fiscalização eletrônica —, isso é um forte argumento de defesa.
+
+A **Resolução CONTRAN nº 396** exige sinalização específica antes de qualquer equipamento que aplique multa. A ausência dessa sinalização é vício formal que pode anular a autuação.
+
+## Como confirmar a natureza do equipamento
+
+1. Anote o número de série do equipamento no auto de infração
+2. Consulte o cadastro de equipamentos de fiscalização do órgão de trânsito
+3. Verifique se havia sinalização regulamentar no local
+4. Confira a aferição INMETRO do equipamento
+
+## Foi multado por um radar que parecia educativo?
+
+Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuação cumpre todos os requisitos legais — incluindo a sinalização e a homologação do equipamento. Em segundos, você descobre se há base para recorrer.
     `
   },
 ];
