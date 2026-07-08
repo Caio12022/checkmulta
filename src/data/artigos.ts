@@ -5978,4 +5978,444 @@ A **Resolução CONTRAN nº 396** exige sinalização específica antes de qualq
 Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuação cumpre todos os requisitos legais — incluindo a sinalização e a homologação do equipamento. Em segundos, você descobre se há base para recorrer.
     `
   },
+  {
+    slug: "quantos-pontos-suspende-cnh-2026",
+    titulo: "Quantos Pontos Suspende a CNH em 2026? Nova Regra Explicada",
+    descricao: "Nova regra de 2026: a CNH pode ser suspensa com 20, 30 ou 40 pontos conforme suas infrações gravíssimas. Analise sua multa grátis e veja se dá para cancelá-la.",
+    categoria: "CNH e Pontos",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚠️",
+    imagemBg: "from-red-600 to-orange-700",
+    palavrasChave: ["quantos pontos suspende CNH 2026", "CNH suspensa 20 pontos 2026", "nova regra pontos CNH 2026", "limite pontos CNH 2026", "suspensão CNH 20 30 40 pontos"],
+    conteudo: `
+## A regra dos pontos mudou em 2026
+
+Desde o início de 2026, com a aplicação prática da **Resolução nº 1.020/2025 do CONTRAN**, o limite de pontos para suspensão da CNH deixou de ser fixo. Agora ele é **escalonado**: pode ser 40, 30 ou 20 pontos, dependendo de quantas infrações gravíssimas você cometeu nos últimos 12 meses.
+
+Importante: a lei em si (Lei nº 14.071/2020) não mudou. O que mudou foi a forma como os DETRANs aplicam a regra na prática, de forma mais rigorosa e automática.
+
+## Os três limites de pontos em 2026
+
+**40 pontos** — para o motorista com "ficha limpa", ou seja, **nenhuma infração gravíssima** nos últimos 12 meses.
+
+**30 pontos** — se você tem **uma infração gravíssima** registrada no período. Basta uma gravíssima (como avançar sinal vermelho) para o limite cair de 40 para 30.
+
+**20 pontos** — se você tem **duas ou mais infrações gravíssimas** no período. O sistema trava nesse patamar e a suspensão chega muito mais cedo.
+
+## Como o sistema calcula automaticamente
+
+O DETRAN monitora seu CPF e ajusta o limite automaticamente a cada nova infração gravíssima registrada. Não existe mais a "margem garantida" de 40 pontos para todo mundo.
+
+Exemplo prático: você tem 27 pontos acumulados só de infrações leves e médias — ainda está dentro do limite de 40. Mas se cometer uma infração gravíssima, o teto cai para 30, e você fica muito perto da suspensão.
+
+## Exceção para motoristas profissionais (EAR)
+
+Motoristas com a observação **EAR (Exerce Atividade Remunerada)** na CNH — motoristas de aplicativo, taxistas e caminhoneiros — mantêm o limite fixo de **40 pontos**, independentemente do número de infrações gravíssimas. A medida existe para proteger o exercício da profissão.
+
+Atenção: isso vale apenas para suspensão por acúmulo de pontos. As infrações autossuspensivas ainda geram suspensão normalmente.
+
+## Infrações que suspendem a CNH na hora (sem depender de pontos)
+
+Algumas condutas geram processo de suspensão imediato, mesmo que você não tenha atingido o limite de pontos:
+
+- Dirigir sob efeito de álcool ou recusar o bafômetro
+- Participar de racha ou fazer manobras perigosas
+- Trafegar mais de 50% acima da velocidade máxima permitida
+- Ameaçar pedestres ou outros veículos
+
+## Como se proteger da suspensão
+
+**Recorrer das multas é a principal defesa.** Se você recorre de uma multa gravíssima e ganha, ela não conta no seu histórico — e o seu limite não cai para 30 ou 20 pontos.
+
+Por isso, cada infração gravíssima merece análise cuidadosa: cancelá-la protege não só o seu bolso, mas o seu limite de pontos inteiro.
+
+## Verifique se a sua multa tem erro que permite o recurso
+
+Nossa IA analisa o seu auto de infração gratuitamente e identifica, em segundos, se há vício formal que permita cancelar a multa. Cancelar uma gravíssima pode ser a diferença entre manter e perder a CNH em 2026.
+    `
+  },
+  {
+    slug: "multa-buzina-impaciencia-2026",
+    titulo: "Multa por Buzinar no Trânsito: A Nova Regra de 2026",
+    descricao: "Desde janeiro de 2026, buzinar por impaciência virou alvo prioritário de fiscalização (R$ 88,38). Entenda a regra e veja grátis se a sua multa tem erro que a anula.",
+    categoria: "Comportamento no Trânsito",
+    tempoLeitura: "3 min",
+    imagemEmoji: "📢",
+    imagemBg: "from-yellow-500 to-orange-600",
+    palavrasChave: ["multa buzina 2026", "multa por buzinar impaciência", "buzina multa trânsito", "buzinar local proibido multa", "nova regra buzina 2026"],
+    conteudo: `
+## O que mudou na fiscalização da buzina em 2026
+
+Desde **3 de janeiro de 2026**, o uso da buzina por impaciência ou irritação no trânsito tornou-se alvo prioritário da fiscalização. O que antes muitas vezes passava despercebido agora está no centro do monitoramento.
+
+## Quando buzinar é infração
+
+O CTB (Art. 227 e 228) trata do uso indevido da buzina. É infração usar a buzina:
+
+- Por impaciência ou irritação no trânsito
+- De forma prolongada ou repetida
+- Em locais e horários proibidos (próximo a hospitais, escolas, igrejas)
+- Entre as 22h e 6h em áreas residenciais
+
+A penalidade é multa de **R$ 88,38** e **3 pontos** na CNH (infração leve).
+
+## Quando buzinar é permitido
+
+A buzina existe para **alertar situações de perigo**. Você pode (e deve) usá-la:
+
+- Para avisar sobre risco iminente de acidente
+- Em toques breves para chamar atenção em situação de segurança
+
+O uso legítimo, breve e com finalidade de segurança não é infração.
+
+## Como contestar uma multa de buzina
+
+Por ser uma infração que depende da avaliação do agente, há espaço para recurso:
+
+**Descrição genérica:** o auto precisa descrever objetivamente a situação — quando, onde e como a buzina foi usada. "Uso indevido de buzina" sem detalhes é vício formal.
+
+**Finalidade de segurança:** se você buzinou para alertar sobre um perigo real, isso descaracteriza a infração. Vale explicar a circunstância na defesa.
+
+**Local e horário:** verifique se o local e horário descritos realmente correspondem a uma área de restrição.
+
+## Foi multado por buzinar? Verifique se a multa é válida
+
+Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuação cumpre os requisitos legais — incluindo a descrição adequada da conduta. Em segundos, você descobre se há base para recorrer.
+    `
+  },
+  {
+    slug: "multa-celular-volante-2026-lei-seca",
+    titulo: "Celular ao Volante em 2026: Equiparado à Lei Seca",
+    descricao: "Em 2026, usar celular dirigindo foi equiparado em gravidade a dirigir alcoolizado (7 pontos, R$ 293,47). Entenda a regra e veja grátis se sua multa tem erro que a anula.",
+    categoria: "Comportamento no Trânsito",
+    tempoLeitura: "4 min",
+    imagemEmoji: "📱",
+    imagemBg: "from-red-700 to-rose-900",
+    palavrasChave: ["multa celular volante 2026", "celular ao volante lei seca", "multa celular dirigindo 2026", "usar celular dirigindo multa", "celular volante gravíssima"],
+    conteudo: `
+## A mudança de 2026: celular equiparado ao álcool
+
+Em 2026, a fiscalização passou a tratar o uso de celular ao volante com a mesma gravidade de dirigir sob efeito de álcool. A punição se manteve como infração **gravíssima** — **7 pontos** na CNH e multa de **R$ 293,47** — mas o rigor da fiscalização aumentou drasticamente, com "tolerância zero".
+
+## O que a nova fiscalização detecta
+
+A grande novidade de 2026 é a tecnologia: **radares inteligentes** conseguem detectar automaticamente o uso de celular através de reconhecimento de imagem, sem precisar de um agente flagrando presencialmente.
+
+Isso significa muito mais autuações — e também mais pontos técnicos que podem ser questionados.
+
+## O que caracteriza a infração
+
+Segundo o CTB, é infração gravíssima dirigir:
+- Segurando ou manuseando o telefone celular
+- Digitando mensagens
+- Falando ao telefone sem sistema viva-voz
+
+Usar o celular como GPS em suporte fixo, sem manuseá-lo, não é infração — desde que você não interaja com a tela em movimento.
+
+## Como contestar multa de celular ao volante
+
+Com a fiscalização automática por imagem, os pontos de contestação são principalmente técnicos:
+
+**Qualidade da imagem:** a foto precisa mostrar claramente o condutor manuseando o celular. Imagem que não comprova inequivocamente o uso é contestável.
+
+**Reconhecimento automático:** sistemas de detecção por IA podem cometer erros — confundir outros objetos (documento, lanche, volante) com celular. Se a imagem não é clara, questione.
+
+**Homologação do equipamento:** os radares inteligentes também precisam de homologação INMETRO válida.
+
+**Identificação do condutor:** a imagem deve identificar quem estava dirigindo.
+
+## Foi multado por celular ao volante? Verifique a autuação
+
+Como essa multa agora é detectada por sistemas automáticos, a análise técnica da imagem e do equipamento é fundamental. Nossa IA verifica gratuitamente se o seu auto de infração cumpre todos os requisitos legais e se há base para recurso.
+    `
+  },
+  {
+    slug: "ciclomotor-cinquentinha-emplacamento-2026",
+    titulo: "Ciclomotor e Cinquentinha: Nova Regra de Emplacamento 2026",
+    descricao: "Desde janeiro de 2026, ciclomotores (cinquentinhas) precisam de registro no Renavam e placa. Circular irregular é gravíssima. Veja grátis se sua multa tem erro que a anula.",
+    categoria: "Casos Especiais",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🛵",
+    imagemBg: "from-blue-600 to-indigo-800",
+    palavrasChave: ["ciclomotor emplacamento 2026", "cinquentinha placa obrigatória", "multa ciclomotor sem placa", "registro renavam ciclomotor 2026", "cinquentinha nova regra"],
+    conteudo: `
+## A nova regra dos ciclomotores em 2026
+
+A partir de **1º de janeiro de 2026**, os ciclomotores — aquelas motos de pequeno porte com motor de até 50 cilindradas, popularmente chamadas de "cinquentinhas" — passaram a exigir **registro obrigatório no Renavam e emplacamento**.
+
+Antes dessa regra, muitos ciclomotores circulavam sem placa e sem registro formal. Agora, isso mudou.
+
+## O que é considerado ciclomotor
+
+Segundo o CTB, ciclomotor é o veículo de duas ou três rodas com motor de combustão interna de até 50 cc (ou motor elétrico equivalente), com velocidade máxima de fabricação limitada.
+
+Para conduzir um ciclomotor em via pública, é necessário ter a **ACC (Autorização para Conduzir Ciclomotor)** ou CNH categoria A.
+
+## As penalidades por irregularidade
+
+Circular com ciclomotor sem placa ou em locais proibidos (como calçadas e ciclovias) é infração **gravíssima**, com multa de **R$ 293,47** e 7 pontos.
+
+## Como regularizar seu ciclomotor
+
+1. Procure o DETRAN do seu estado
+2. Faça o registro do veículo no Renavam
+3. Providencie o emplacamento
+4. Garanta que você tem ACC ou CNH categoria A
+
+## Como contestar multa de ciclomotor
+
+Como a regra é nova (2026), há situações que podem gerar contestação:
+
+**Período de adaptação:** verifique se o seu estado estabeleceu prazo de adaptação ou tolerância para a regularização — alguns DETRANs deram prazos específicos.
+
+**Enquadramento incorreto:** confirme se o veículo é realmente classificado como ciclomotor (até 50 cc) e não como motocicleta, pois as regras diferem.
+
+**Vício formal no auto:** como toda autuação, o auto precisa cumprir os requisitos do Art. 280 do CTB.
+
+## Foi multado com sua cinquentinha? Verifique a autuação
+
+Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuação está correta, considerando as particularidades da nova regra de 2026 para ciclomotores. Em segundos, você descobre se há base para recorrer.
+    `
+  },
+  {
+    slug: "diferenca-entre-multa-e-infracao",
+    titulo: "Qual a Diferença Entre Multa e Infração de Trânsito?",
+    descricao: "Multa e infração não são a mesma coisa — entenda a diferença de forma simples. E se você foi multado, veja grátis se a sua multa tem erro que pode anulá-la.",
+    categoria: "Dúvidas Frequentes",
+    tempoLeitura: "3 min",
+    imagemEmoji: "❓",
+    imagemBg: "from-cyan-600 to-blue-800",
+    palavrasChave: ["diferença multa e infração", "multa é a mesma coisa que infração", "o que é infração de trânsito", "infração x multa trânsito", "multa e infração diferença"],
+    conteudo: `
+## Multa e infração são a mesma coisa? Não
+
+Essa é uma das dúvidas mais comuns entre motoristas — e a resposta é clara: **infração e multa são coisas diferentes**, embora relacionadas.
+
+## O que é infração de trânsito
+
+A **infração** é o ato de **violar** uma regra de trânsito. É o comportamento em si que desrespeita o Código de Trânsito Brasileiro (CTB), a legislação complementar ou as resoluções do CONTRAN.
+
+Exemplos de infração: avançar o sinal vermelho, estacionar em local proibido, dirigir acima da velocidade permitida.
+
+## O que é multa
+
+A **multa** é uma das **penalidades** aplicadas como consequência de uma infração. Ou seja: você comete a infração (o ato), e a multa é a punição financeira que vem depois.
+
+## A infração pode gerar mais de uma penalidade
+
+Um ponto importante: a multa não é a única penalidade possível. Uma mesma infração pode gerar:
+
+- **Multa** (penalidade financeira)
+- **Pontos** na CNH
+- **Suspensão** do direito de dirigir
+- **Apreensão** do veículo
+- **Cassação** da CNH
+- **Advertência** por escrito (em casos leves)
+- **Frequência obrigatória** em curso de reciclagem
+
+Exemplo: quem é flagrado na Lei Seca comete uma infração que gera multa, pontos, apreensão do veículo E processo de suspensão — várias penalidades de uma vez.
+
+## Por que essa diferença importa para o recurso
+
+Quando você recorre, está contestando a **infração** (o ato que foi atribuído a você) e/ou a validade do auto. Se você ganha o recurso, a infração é anulada — e todas as penalidades ligadas a ela (multa, pontos) caem junto.
+
+Por isso, entender que a infração é a origem de tudo ajuda a montar uma defesa mais eficaz.
+
+## Recebeu uma multa? Verifique se a infração foi bem caracterizada
+
+Nossa IA analisa o seu auto de infração gratuitamente e verifica se a infração foi corretamente descrita e se o auto cumpre todos os requisitos legais. Em segundos, você descobre se há base para recorrer.
+    `
+  },
+  {
+    slug: "multas-transito-mais-caras-desconhecidas",
+    titulo: "As Multas de Trânsito Mais Caras e Desconhecidas do Brasil",
+    descricao: "Existem multas que passam de R$ 100 mil e outras que quase ninguém conhece. Veja as mais caras e curiosas. E analise sua multa grátis para saber se ela tem erro que a anula.",
+    categoria: "Dúvidas Frequentes",
+    tempoLeitura: "5 min",
+    imagemEmoji: "💸",
+    imagemBg: "from-purple-600 to-red-800",
+    palavrasChave: ["multas mais caras trânsito", "multa mais cara do Brasil", "multas desconhecidas trânsito", "multa 100 mil reais", "multas curiosas trânsito"],
+    conteudo: `
+## Multas que vão muito além do valor comum
+
+Muitos motoristas acham que a multa mais cara é a gravíssima de R$ 293,47. Mas existem infrações que ultrapassam **R$ 100 mil** — e outras tão específicas que quase ninguém conhece.
+
+## As multas mais caras do Brasil
+
+**Transporte irregular de produtos perigosos:** dependendo da gravidade, reincidência e risco, essas multas podem ultrapassar valores extremamente altos, chegando à casa das dezenas ou centenas de milhares de reais.
+
+**Adulteração de placa ou chassi:** além de multa altíssima, configura crime, com consequências que vão muito além do administrativo.
+
+**Excesso de peso em veículos de carga:** calculado por faixa de excesso, pode se acumular a valores muito altos em cargas muito acima do limite.
+
+**Corridas ilegais (racha):** multa gravíssima com fator multiplicador, além de suspensão e apreensão.
+
+## Multas desconhecidas que pegam o motorista de surpresa
+
+**Deixar objeto sobre o veículo cair na via:** enquadrado como infração por criar risco.
+
+**Dirigir com o braço para fora do veículo:** é infração média (Art. 252 do CTB).
+
+**Usar calçado que não se firme nos pés:** dirigir com chinelo ou descalço de forma que comprometa o uso dos pedais é infração média.
+
+**Atirar lixo pela janela:** é infração e gera pontos.
+
+**Não dar seta ao mudar de faixa:** muitos esquecem que é infração média.
+
+## O que essas multas têm em comum
+
+Por serem menos comuns ou muito específicas, essas infrações frequentemente têm **autos mal preenchidos** — os agentes as aplicam com menos frequência, o que aumenta a chance de erros formais na descrição.
+
+## Recebeu uma multa incomum ou de valor alto?
+
+Justamente por serem menos rotineiras, essas autuações merecem análise cuidadosa. Nossa IA verifica gratuitamente se o seu auto de infração cumpre todos os requisitos do CTB e se há vício formal que permita o recurso — em segundos.
+    `
+  },
+  {
+    slug: "placas-sinalizacao-transito-multas",
+    titulo: "Placas de Sinalização e Multas: O Que Você Precisa Saber",
+    descricao: "Entender as placas de trânsito evita multas — e placas mal posicionadas podem anulá-las. Analise sua multa grátis e veja se a sinalização irregular pode cancelar a sua.",
+    categoria: "Sinalização",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🚸",
+    imagemBg: "from-yellow-600 to-amber-800",
+    palavrasChave: ["placas sinalização trânsito multa", "placa mal sinalizada multa", "sinalização irregular recurso", "tipos de placas trânsito", "placa proibido multa"],
+    conteudo: `
+## Por que entender as placas evita (e anula) multas
+
+Conhecer a sinalização de trânsito tem dois benefícios: evita que você cometa infrações e, quando a sinalização está irregular, pode ser a base para anular uma multa.
+
+## Os tipos de sinalização de trânsito
+
+**Placas de regulamentação:** determinam obrigações, proibições ou restrições (ex: "Proibido Estacionar", "Pare", velocidade máxima). Desrespeitá-las é infração.
+
+**Placas de advertência:** avisam sobre condições da via (curva, lombada, escola). Geralmente amarelas.
+
+**Placas de indicação:** informam sobre serviços, distâncias, direções.
+
+**Sinalização horizontal:** as marcas pintadas na pista (faixas, setas, faixa de pedestre).
+
+## Quando a sinalização irregular anula a multa
+
+A responsabilidade pela manutenção adequada da sinalização é do **órgão de trânsito**. Se a sinalização estava inadequada, a multa pode ser contestada:
+
+**Placa ausente ou removida:** se não havia placa indicando a proibição, não há como o condutor saber da restrição.
+
+**Placa obstruída:** placa escondida por vegetação, outra placa, poste ou veículo estacionado não cumpre sua função.
+
+**Sinalização apagada:** faixas de solo desgastadas que não são identificáveis.
+
+**Placa em local inadequado:** sinalização que não respeita a distância mínima de visualização para o condutor reagir.
+
+**Contradição entre placas:** quando há sinalização conflitante no mesmo trecho.
+
+## Como usar isso no recurso
+
+1. Volte ao local da infração (se possível) e fotografe a sinalização — ou a ausência dela
+2. Use o Google Street View para verificar a condição da sinalização em datas próximas
+3. Na defesa, cite a irregularidade da sinalização como vício que inviabiliza a autuação
+
+## Sua multa pode ter relação com sinalização irregular?
+
+Nossa IA analisa o seu auto de infração gratuitamente e ajuda a identificar se a autuação depende de uma sinalização que pode ser questionada. Em segundos, você descobre se há base para recorrer.
+    `
+  },
+  {
+    slug: "rodizio-sp-2026-como-funciona-multa",
+    titulo: "Rodízio de SP em 2026: Como Funciona e Como Recorrer da Multa",
+    descricao: "Entenda o rodízio de São Paulo em 2026, horários, isenções e o valor da multa. Analise sua multa de rodízio grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "Rodízio",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🔄",
+    imagemBg: "from-indigo-600 to-purple-800",
+    palavrasChave: ["rodízio SP 2026", "rodízio São Paulo horário 2026", "multa rodízio SP valor", "recorrer multa rodízio SP", "rodízio placa calendário"],
+    conteudo: `
+## Como funciona o rodízio de São Paulo
+
+O rodízio municipal de São Paulo restringe a circulação de veículos no Centro Expandido em determinados horários, conforme o final da placa. É fiscalizado pela CET-SP através de câmeras de leitura de placa.
+
+## Horários do rodízio
+
+O rodízio vale em dias úteis, nos seguintes horários de pico:
+- **Manhã:** das 7h às 10h
+- **Tarde/noite:** das 17h às 20h
+
+Fora desses horários e nos fins de semana e feriados, não há restrição.
+
+## Qual placa não pode circular em cada dia
+
+- **Segunda-feira:** finais 1 e 2
+- **Terça-feira:** finais 3 e 4
+- **Quarta-feira:** finais 5 e 6
+- **Quinta-feira:** finais 7 e 8
+- **Sexta-feira:** finais 9 e 0
+
+## Valor da multa de rodízio
+
+Furar o rodízio é infração média: **R$ 130,16** e 4 pontos na CNH.
+
+## Veículos isentos do rodízio
+
+Alguns veículos não estão sujeitos ao rodízio, incluendo (conforme a regulamentação municipal vigente): veículos elétricos e híbridos em certas condições, veículos de pessoas com deficiência, táxis, ambulâncias e veículos de utilidade pública.
+
+## Como recorrer da multa de rodízio
+
+**Veículo isento não reconhecido:** se o seu veículo tem isenção e foi multado, apresente o comprovante da isenção.
+
+**Erro na leitura da placa:** sistemas de câmera podem confundir caracteres. Se a placa registrada não é exatamente a sua, é vício de identificação.
+
+**Horário incorreto:** confirme se a autuação foi realmente dentro da janela de restrição.
+
+**Feriado ou ponto facultativo:** o rodízio não vale nesses dias — verifique o calendário oficial da data.
+
+## Foi multado no rodízio? Verifique se a multa é válida
+
+Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuação do rodízio cumpre todos os requisitos, incluindo a leitura correta da placa e o horário. Em segundos, você descobre se há base para recorrer.
+    `
+  },
+  {
+    slug: "multa-farol-baixo-rodovia-dia",
+    titulo: "Multa por Farol Baixo Apagado na Rodovia Durante o Dia",
+    descricao: "É obrigatório usar farol baixo nas rodovias mesmo de dia. Entenda a regra e as exceções. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    categoria: "Equipamentos",
+    tempoLeitura: "3 min",
+    imagemEmoji: "🔆",
+    imagemBg: "from-amber-500 to-yellow-700",
+    palavrasChave: ["multa farol baixo rodovia", "farol baixo dia obrigatório", "multa farol apagado rodovia", "lei farol baixo rodovia", "recurso multa farol dia"],
+    conteudo: `
+## A regra do farol baixo nas rodovias
+
+A **Lei nº 13.290/2016** tornou obrigatório o uso de farol baixo aceso nas rodovias, mesmo durante o dia. A regra existe para aumentar a visibilidade dos veículos e reduzir acidentes.
+
+## Onde e quando o farol é obrigatório
+
+**Rodovias (de pista simples ou dupla):** farol baixo obrigatório a qualquer hora, inclusive de dia.
+
+**Túneis:** obrigatório em qualquer via.
+
+**Vias urbanas:** durante a noite ou em condições de baixa visibilidade (chuva, neblina).
+
+Uma exceção importante: em veículos equipados com **luz de rodagem diurna (DRL)** de fábrica, ligada automaticamente, a exigência pode ser considerada cumprida em algumas situações — mas isso depende da regulamentação e do tipo de via.
+
+## A penalidade
+
+Circular sem o farol baixo aceso quando obrigatório é infração média: **R$ 130,16** e 4 pontos.
+
+## Como contestar
+
+**Veículo com DRL de fábrica:** se o seu veículo tem luz de rodagem diurna automática, isso pode ser argumento de defesa dependendo da via e da interpretação do órgão.
+
+**Classificação da via:** confirme se a via onde ocorreu a autuação é realmente classificada como rodovia. Vias urbanas de dia não exigem farol baixo.
+
+**Descrição do auto:** o auto deve especificar objetivamente a condição observada e a classificação da via.
+
+## Confundiu farol baixo com luz de posição?
+
+Muitos motoristas confundem o farol baixo (obrigatório) com a luz de posição/lanterna (de menor intensidade). Certifique-se de qual foi o objeto da autuação.
+
+## Foi multado por farol na rodovia? Verifique a autuação
+
+Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuação cumpre os requisitos legais, incluindo a classificação correta da via. Em segundos, você descobre se há base para recorrer.
+    `
+  },
 ];
