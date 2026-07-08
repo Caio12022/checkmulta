@@ -5,6 +5,7 @@ import { artigos } from "../data/artigos";
 import { getFaq } from "../data/faqs";
 import { aplicarLinksInternos } from "../data/linksInternos";
 import { getCorSuave } from "../data/coresSuaves";
+import { getCtaContextual } from "../data/ctasContextuais";
 
 // Hook para atualizar meta tags via DOM nativo
 const useMetaTags = (titulo: string, descricao: string, url: string, keywords: string) => {
@@ -411,19 +412,15 @@ export default function BlogPost() {
           {renderMarkdown(conteudoParte1, artigo.slug, linksJaUsados)}
         </div>
 
-        {/* CTA MEIO */}
-        <div className="bg-gradient-to-r from-blue-600 to-emerald-600 p-6 sm:p-7 border-x border-slate-200">
-          <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-            <div className="flex-1">
-              <p className="text-white font-black text-base sm:text-lg mb-1">Sua multa pode ter uma falha que a anula</p>
-              <p className="text-white/80 text-sm font-medium">Nossa IA cruza seu auto com o CTB e o MBFT. Se não achar erro, você não paga nada.</p>
-            </div>
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 bg-white text-emerald-700 font-black px-6 py-3 rounded-xl hover:bg-emerald-50 transition-colors text-sm flex-shrink-0 shadow-lg"
-            >
-              Analisar Minha Multa <ArrowRight className="w-4 h-4" />
-            </Link>
+        {/* CTA MEIO — discreto e contextual */}
+        <div className="bg-white border-x border-slate-200 px-6 sm:px-10 py-2">
+          <div className="border-l-4 pl-4 py-3 rounded-r-lg" style={{ borderColor: cor.corPrincipal, backgroundColor: cor.fundoPagina }}>
+            <p className="text-slate-700 text-sm font-medium leading-relaxed">
+              💡 {getCtaContextual(artigo.categoria)}{" "}
+              <Link to="/" className="font-bold hover:underline whitespace-nowrap" style={{ color: cor.textoBadge }}>
+                Verificar minha multa →
+              </Link>
+            </p>
           </div>
         </div>
 
