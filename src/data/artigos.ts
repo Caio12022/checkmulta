@@ -14,7 +14,7 @@ export const artigos: Artigo[] = [
   {
     slug: "como-recorrer-multa-transito-passo-a-passo",
     titulo: "Como Recorrer de Multa de Trânsito: Passo a Passo Completo",
-    descricao: "Guia completo para recorrer de multa de trânsito no Brasil. Saiba os prazos, como montar sua defesa e quais erros podem anular sua multa.",
+    descricao: "Guia completo para recorrer de multa de trânsito no Brasil. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Guia Completo",
     tempoLeitura: "8 min",
     imagemEmoji: "📋",
@@ -95,7 +95,7 @@ Nossa inteligência artificial analisa seu auto de infração gratuitamente e id
   {
     slug: "modelo-recurso-multa-velocidade-radar",
     titulo: "Modelo de Recurso de Multa de Velocidade — Radar e Lombada",
-    descricao: "Descubra como recorrer de multa de radar ou lombada eletrônica. Veja os erros mais comuns que anulam essas multas e o modelo de defesa correto.",
+    descricao: "Descubra como recorrer de multa de radar ou lombada eletrônica. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Multa de Radar",
     tempoLeitura: "6 min",
     imagemEmoji: "📷",
@@ -168,7 +168,7 @@ Uma defesa eficaz para multa de velocidade deve conter:
   {
     slug: "prazo-para-recorrer-de-multa",
     titulo: "Prazo para Recorrer de Multa: Tudo que Você Precisa Saber",
-    descricao: "Saiba exatamente qual o prazo para recorrer de multa de trânsito, como contar os dias e o que fazer quando o prazo está acabando.",
+    descricao: "Saiba exatamente qual o prazo para recorrer de multa de trânsito, como contar os dias e o que fazer quando o prazo está acabando. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Prazos e Direitos",
     tempoLeitura: "5 min",
     imagemEmoji: "⏱️",
@@ -242,7 +242,7 @@ Não existe prorrogação de prazo administrativo de trânsito. Age agora.
   {
     slug: "multa-estacionamento-como-cancelar",
     titulo: "Multa de Estacionamento: Como Cancelar e Quais Erros Anulam",
-    descricao: "Saiba como cancelar multa de estacionamento irregular ou proibido. Veja os erros mais comuns que tornam essas multas nulas e como montar seu recurso.",
+    descricao: "Saiba como cancelar multa de estacionamento irregular ou proibido. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Estacionamento",
     tempoLeitura: "5 min",
     imagemEmoji: "🅿️",
@@ -305,7 +305,7 @@ Foque sempre em **vícios formais do auto**, não em justificativas pessoais.
   {
     slug: "multa-celular-cinto-como-recorrer",
     titulo: "Multa de Celular ao Volante e Cinto de Segurança: Como Recorrer",
-    descricao: "É possível recorrer de multa por uso de celular ou falta de cinto? Saiba quando o recurso tem chance e quais erros formais podem anular essas autuações.",
+    descricao: "É possível recorrer de multa por uso de celular ou falta de cinto? Saiba quando o recurso tem chance e quais erros formais podem anular essas autuações. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Celular e Cinto",
     tempoLeitura: "5 min",
     imagemEmoji: "📱",
@@ -366,7 +366,7 @@ Nossa IA analisa seu auto gratuitamente e identifica se há vício formal que ju
   {
     slug: "quantos-pontos-perco-na-cnh-por-multa",
     titulo: "Quantos Pontos Perco na CNH por Multa? Tabela Completa 2025",
-    descricao: "Tabela completa de pontos por infração na CNH em 2025. Saiba quantos pontos cada multa tira, quando a CNH é suspensa e como recorrer para não perder pontos.",
+    descricao: "Tabela completa de pontos por infração na CNH em 2025. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "CNH e Pontos",
     tempoLeitura: "6 min",
     imagemEmoji: "🎯",
@@ -432,7 +432,7 @@ Sim. O curso de reciclagem pode reduzir até 2 pontos na CNH, desde que você n�
   {
     slug: "multa-sinal-vermelho-como-recorrer",
     titulo: "Multa por Avançar Sinal Vermelho: Como Recorrer",
-    descricao: "Saiba como recorrer de multa por avanço de sinal vermelho. Veja quais erros no auto podem anular a multa e como montar sua defesa corretamente.",
+    descricao: "Saiba como recorrer de multa por avanço de sinal vermelho. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Sinalização",
     tempoLeitura: "5 min",
     imagemEmoji: "🚦",
@@ -497,7 +497,7 @@ Com 7 pontos em jogo, qualquer argumento formal válido justifica o recurso.
   {
     slug: "defesa-previa-multa-o-que-e-como-fazer",
     titulo: "Defesa Prévia de Multa: O que É e Como Fazer Corretamente",
-    descricao: "Entenda o que é defesa prévia de multa de trânsito, quando usar, como escrever e onde protocolar para ter mais chances de cancelar a autuação.",
+    descricao: "Entenda o que é defesa prévia de multa de trânsito, quando usar, como escrever e onde protocolar para ter mais chances de cancelar a autuação. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Defesa Prévia",
     tempoLeitura: "7 min",
     imagemEmoji: "⚖️",
@@ -588,7 +588,7 @@ Nossa IA analisa o auto de infração, identifica os vícios formais e gera a pe
   {
     slug: "multa-injusta-o-que-fazer",
     titulo: "Levei uma Multa Injusta — O que Fazer Agora?",
-    descricao: "Tomou uma multa que não faz sentido? Antes de xingar o agente, leia isso. Tem coisa que você pode fazer — e pode funcionar.",
+    descricao: "Tomou uma multa que não faz sentido? Antes de xingar o agente, leia isso. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Direto ao Ponto",
     tempoLeitura: "4 min",
     imagemEmoji: "😤",
@@ -645,7 +645,7 @@ Nossa IA analisa seu auto gratuitamente em menos de 1 minuto e diz se há base f
   {
     slug: "artigo-280-ctb-o-que-e",
     titulo: "Artigo 280 do CTB: O que É e Por que É sua Maior Arma",
-    descricao: "O Art. 280 do CTB define o que um auto de infração precisa ter para ser válido. Entenda por que qualquer campo faltando pode anular sua multa.",
+    descricao: "O Art. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Jurídico",
     tempoLeitura: "6 min",
     imagemEmoji: "⚖️",
@@ -715,7 +715,7 @@ Nossa IA faz exatamente essa análise — campo por campo, baseada no Art. 280 �
   {
     slug: "multa-de-transito-suspende-cnh",
     titulo: "Quando a Multa Suspende a CNH? Guia Completo 2025",
-    descricao: "Entenda exatamente quando sua CNH pode ser suspensa por pontos, quais multas pesam mais e como evitar a suspensão recorrendo dentro do prazo.",
+    descricao: "Entenda exatamente quando sua CNH pode ser suspensa por pontos, quais multas pesam mais e como evitar a suspensão recorrendo dentro do prazo. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "CNH e Pontos",
     tempoLeitura: "5 min",
     imagemEmoji: "🚗",
@@ -785,7 +785,7 @@ Se você está próximo do limite, **qualquer nova multa é urgente** e deve ser
   {
     slug: "recurso-multa-prf-rodovia-federal",
     titulo: "Como Recorrer de Multa da PRF (Rodovia Federal)",
-    descricao: "Multa da Polícia Rodoviária Federal tem processo diferente dos outros órgãos. Saiba onde protocolar, qual sistema usar e como montar seu recurso.",
+    descricao: "Multa da Polícia Rodoviária Federal tem processo diferente dos outros órgãos. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "PRF",
     tempoLeitura: "5 min",
     imagemEmoji: "🛣️",
@@ -855,7 +855,7 @@ Por isso, o recurso deve ser feito na PRF, mas os efeitos (pontos e débito) apa
   {
     slug: "mbft-manual-fiscalizacao-transito",
     titulo: "O que é o MBFT e Por que Ele Pode Anular sua Multa",
-    descricao: "O Manual Brasileiro de Fiscalização de Trânsito define as regras que os agentes devem seguir ao autuar. Descubra como usá-lo a seu favor.",
+    descricao: "O Manual Brasileiro de Fiscalização de Trânsito define as regras que os agentes devem seguir ao autuar. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Jurídico",
     tempoLeitura: "6 min",
     imagemEmoji: "📖",
@@ -922,7 +922,7 @@ Em todos esses casos, o MBFT fornece a base técnica para anular a multa.
   {
     slug: "fui-multado-mas-nao-estava-dirigindo",
     titulo: "Fui Multado Mas Não Estava Dirigindo o Carro — O que Fazer?",
-    descricao: "Se você é proprietário do veículo mas não estava ao volante na hora da multa, existe um processo para transferir a responsabilidade. Veja como funciona.",
+    descricao: "Se você é proprietário do veículo mas não estava ao volante na hora da multa, existe um processo para transferir a responsabilidade. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Casos Especiais",
     tempoLeitura: "5 min",
     imagemEmoji: "🔄",
@@ -988,7 +988,7 @@ Nossa IA analisa o auto gratuitamente e te ajuda a decidir qual caminho é melho
   {
     slug: "multa-pedagio-como-recorrer",
     titulo: "Multa por Evasão de Pedágio: Como Recorrer e Cancelar",
-    descricao: "Passou pela cancela sem pagar ou recebeu multa de pedágio automático? Saiba seus direitos, os erros que anulam essas multas e como apresentar recurso.",
+    descricao: "Passou pela cancela sem pagar ou recebeu multa de pedágio automático? Saiba seus direitos, os erros que anulam essas multas e como apresentar recurso. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Pedágio",
     tempoLeitura: "5 min",
     imagemEmoji: "🛤️",
@@ -1047,7 +1047,7 @@ Se não houver erro formal, você pode tentar argumentar circunstâncias — fal
   {
     slug: "recurso-multa-deu-certo-o-que-esperar",
     titulo: "Recorri da Multa — Quanto Tempo Demora e O que Esperar?",
-    descricao: "Apresentou a defesa prévia ou recurso e agora está esperando? Entenda os prazos de resposta, o que cada resultado significa e o que fazer em cada caso.",
+    descricao: "Apresentou a defesa prévia ou recurso e agora está esperando? Entenda os prazos de resposta, o que cada resultado significa e o que fazer em cada caso. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Depois do Recurso",
     tempoLeitura: "4 min",
     imagemEmoji: "⏳",
@@ -1107,7 +1107,7 @@ Pelo mesmo sistema onde você protocolou — SIGER (PRF), portal do DETRAN estad
   {
     slug: "multa-alta-velocidade-como-recorrer",
     titulo: "Multa por Alta Velocidade: Como Recorrer e Quais São Suas Chances",
-    descricao: "Levou multa de radar por excesso de velocidade? Saiba quais erros técnicos podem anular a multa, como verificar a calibração do equipamento e como montar sua defesa.",
+    descricao: "Levou multa de radar por excesso de velocidade? Saiba quais erros técnicos podem anular a multa, como verificar a calibração do equipamento e como montar sua defesa. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Velocidade",
     tempoLeitura: "5 min",
     imagemEmoji: "🚨",
@@ -1165,7 +1165,7 @@ Nossa IA analisa o auto de infração e identifica automaticamente qual dessas e
   {
     slug: "pontuacao-cnh-como-funciona-sistema",
     titulo: "Sistema de Pontos da CNH: Tudo que Você Precisa Saber em 2025",
-    descricao: "Entenda como funciona o sistema de pontuação da CNH, quantos pontos cada infração gera, quando a carteira é suspensa e como limpar seu histórico.",
+    descricao: "Entenda como funciona o sistema de pontuação da CNH, quantos pontos cada infração gera, quando a carteira é suspensa e como limpar seu histórico. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "CNH e Pontos",
     tempoLeitura: "6 min",
     imagemEmoji: "📋",
@@ -1236,7 +1236,7 @@ Muitos condutores só descobrem que estão perto do limite quando já é tarde. 
   {
     slug: "multa-estacionamento-zona-azul",
     titulo: "Multa de Estacionamento em Zona Azul: Como Recorrer",
-    descricao: "Levou multa na zona azul ou área rotativa? Veja quais são os erros mais comuns nesse tipo de autuação e como contestar com boas chances de cancelamento.",
+    descricao: "Levou multa na zona azul ou área rotativa? Veja quais são os erros mais comuns nesse tipo de autuação e como contestar com boas chances de cancelamento. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Estacionamento",
     tempoLeitura: "4 min",
     imagemEmoji: "🅿️",
@@ -1286,7 +1286,7 @@ O prazo é de **15 dias** da notificação.
   {
     slug: "recurso-multa-câmera-semaforo",
     titulo: "Multa de Câmera de Semáforo: Como Contestar",
-    descricao: "Câmeras de semáforo geram milhares de multas por avanço de sinal vermelho. Saiba quais são os vícios técnicos mais comuns e como usar isso na sua defesa.",
+    descricao: "Câmeras de semáforo geram milhares de multas por avanço de sinal vermelho. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Semáforo",
     tempoLeitura: "5 min",
     imagemEmoji: "🚦",
@@ -1343,7 +1343,7 @@ Se houver qualquer dúvida técnica, a interpretação deve ser favorável ao co
   {
     slug: "multa-cnh-vencida-o-que-fazer",
     titulo: "Multa por CNH Vencida: Dá para Recorrer?",
-    descricao: "Dirigiu com a CNH vencida e levou multa? Entenda o que diz a lei, qual é a penalidade, quando dá para contestar e o que fazer para regularizar sua situação.",
+    descricao: "Dirigiu com a CNH vencida e levou multa? Entenda o que diz a lei, qual é a penalidade, quando dá para contestar e o que fazer para regularizar sua situação. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "CNH e Pontos",
     tempoLeitura: "4 min",
     imagemEmoji: "📄",
@@ -1401,7 +1401,7 @@ Durante esse período, guarde o protocolo de renovação — ele serve como docu
   {
     slug: "jari-o-que-e-como-funciona",
     titulo: "O que é a JARI e Como Recorrer a Ela Após Indeferimento",
-    descricao: "A JARI é a segunda instância do recurso de multa. Se sua defesa prévia foi negada, você ainda tem 30 dias para recorrer. Saiba como funciona e o que esperar.",
+    descricao: "A JARI é a segunda instância do recurso de multa. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Processo de Recurso",
     tempoLeitura: "5 min",
     imagemEmoji: "🏛️",
@@ -1469,7 +1469,7 @@ A única exceção é quando a infração é clara, não há vício formal e os 
   {
     slug: "multa-transito-afeta-seguro-auto",
     titulo: "Multa de Trânsito Afeta o Seguro do Carro?",
-    descricao: "Muitos motoristas não sabem que multas e pontos na CNH podem impactar o valor do seguro do veículo. Entenda como as seguradoras avaliam seu perfil de risco.",
+    descricao: "Muitos motoristas não sabem que multas e pontos na CNH podem impactar o valor do seguro do veículo. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Seguro e Financeiro",
     tempoLeitura: "4 min",
     imagemEmoji: "🛡️",
@@ -1525,7 +1525,7 @@ Nossa IA analisa o auto de infração gratuitamente e identifica se há base par
   {
     slug: "como-funciona-notificacao-multa-correios",
     titulo: "Como Funciona a Notificação de Multa pelos Correios",
-    descricao: "Entenda como o processo de notificação de multas funciona, o que acontece se não receber, qual é o prazo real para recorrer e como comprovar que foi notificado.",
+    descricao: "Entenda como o processo de notificação de multas funciona, o que acontece se não receber, qual é o prazo real para recorrer e como comprovar que foi notificado. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Processo de Recurso",
     tempoLeitura: "4 min",
     imagemEmoji: "📬",
@@ -1588,7 +1588,7 @@ Se você comprou um veículo usado e o vendedor não transferiu o documento, as 
   {
     slug: "multa-transito-como-pagar-com-desconto",
     titulo: "Como Pagar Multa de Trânsito com Desconto de 40%",
-    descricao: "Sabia que dá para pagar multa com até 40% de desconto? Entenda como funciona o SNE, quais multas têm desconto e como aproveitar antes do prazo acabar.",
+    descricao: "Sabia que dá para pagar multa com até 40% de desconto? Entenda como funciona o SNE, quais multas têm desconto e como aproveitar antes do prazo acabar. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Pagamento",
     tempoLeitura: "4 min",
     imagemEmoji: "💰",
@@ -1646,7 +1646,7 @@ Nossa IA analisa gratuitamente se há base para recurso. Se não houver, o desco
   {
     slug: "multa-transito-prescreve",
     titulo: "Multa de Trânsito Prescreve? Prazo e O que Acontece se Não Pagar",
-    descricao: "Multa de trânsito tem prazo de prescrição? O que acontece com multas antigas não pagas? Entenda as consequências reais e o que fazer com débitos antigos.",
+    descricao: "Multa de trânsito tem prazo de prescrição? O que acontece com multas antigas não pagas? Entenda as consequências reais e o que fazer com débitos antigos. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Dúvidas Frequentes",
     tempoLeitura: "5 min",
     imagemEmoji: "⏰",
@@ -1707,7 +1707,7 @@ Diversos estados permitem parcelar multas antigas em até 60 vezes. Consulte o D
   {
     slug: "como-tirar-pontos-cnh",
     titulo: "Como Tirar Pontos da CNH: O Que Funciona e O Que É Mito",
-    descricao: "Existem cursos, recursos e estratégias para reduzir pontos na CNH. Mas muito do que circula na internet é mito. Saiba o que realmente funciona.",
+    descricao: "Existem cursos, recursos e estratégias para reduzir pontos na CNH. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "CNH e Pontos",
     tempoLeitura: "5 min",
     imagemEmoji: "✂️",
@@ -1764,7 +1764,7 @@ Você pode acompanhar no extrato do DETRAN ou no app Carteira Digital de Trânsi
   {
     slug: "multa-lombada-eletronica-como-recorrer",
     titulo: "Multa de Lombada Eletrônica: Como Contestar",
-    descricao: "Lombadas eletrônicas geram muitas multas questionáveis. Saiba como verificar se o equipamento estava calibrado, se a sinalização era adequada e como montar seu recurso.",
+    descricao: "Lombadas eletrônicas geram muitas multas questionáveis. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Velocidade",
     tempoLeitura: "4 min",
     imagemEmoji: "🛑",
@@ -1824,7 +1824,7 @@ Para recorrer de multa por não respeitar lombada física, o processo é diferen
   {
     slug: "detran-sp-recurso-multa-como-fazer",
     titulo: "Como Recorrer de Multa no DETRAN SP: Passo a Passo",
-    descricao: "Guia completo para contestar multas pelo DETRAN de São Paulo. Sistema online, prazos, documentos necessários e o que esperar do julgamento.",
+    descricao: "Guia completo para contestar multas pelo DETRAN de São Paulo. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "DETRAN",
     tempoLeitura: "5 min",
     imagemEmoji: "🏢",
@@ -1894,7 +1894,7 @@ Se você recebeu uma multa mas não tem certeza de qual órgão autuou, ligue pa
   {
     slug: "multa-transito-recorrer-sem-advogado",
     titulo: "Dá Para Recorrer de Multa Sem Advogado?",
-    descricao: "A resposta é sim — e na maioria dos casos você não precisa de um. Entenda quando o recurso pode ser feito por você mesmo e quando vale contratar um advogado.",
+    descricao: "A resposta é sim — e na maioria dos casos você não precisa de um. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Dúvidas Frequentes",
     tempoLeitura: "4 min",
     imagemEmoji: "✅",
@@ -1957,7 +1957,7 @@ Nossa ferramenta combina o melhor dos dois mundos: análise jurídica de qualida
   {
     slug: "multa-transito-moto-como-recorrer",
     titulo: "Multa de Moto: Diferenças no Processo de Recurso",
-    descricao: "Motociclistas têm algumas particularidades no processo de recurso de multas. Entenda quais infrações são mais comuns para motos e como contestar de forma eficaz.",
+    descricao: "Motociclistas têm algumas particularidades no processo de recurso de multas. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Motocicletas",
     tempoLeitura: "5 min",
     imagemEmoji: "🏍️",
@@ -2013,7 +2013,7 @@ A descrição da infração precisa ser específica. "Conduzia de forma perigosa
   {
     slug: "blitz-policia-direitos-motorista",
     titulo: "Blitz Policial: Quais São Seus Direitos Como Motorista",
-    descricao: "Saber seus direitos em uma abordagem policial evita situações desnecessárias. Entenda o que a polícia pode e não pode fazer, o que você é obrigado a apresentar e como agir.",
+    descricao: "Saber seus direitos em uma abordagem policial evita situações desnecessárias. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Direitos do Motorista",
     tempoLeitura: "5 min",
     imagemEmoji: "🚔",
@@ -2089,7 +2089,7 @@ Sim. Filmar agentes públicos em exercício de função é legal no Brasil. A gr
   {
     slug: "multa-transito-recorrer-pelo-celular",
     titulo: "Como Recorrer de Multa Pelo Celular: Apps e Portais",
-    descricao: "Não precisa ir ao DETRAN pessoalmente. Saiba quais apps e portais permitem contestar multas pelo celular, como funciona e o que você precisa para protocolar.",
+    descricao: "Não precisa ir ao DETRAN pessoalmente. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Digital",
     tempoLeitura: "4 min",
     imagemEmoji: "📱",
@@ -2155,7 +2155,7 @@ Se o portal estiver fora do ar e o prazo estiver vencendo, vá presencialmente a
   {
     slug: "multa-velocidade-media-como-funciona",
     titulo: "Multa por Velocidade Média: Como Funciona e Como Recorrer",
-    descricao: "O sistema de velocidade média mede o tempo que você leva entre dois pontos. Entenda como funciona, quais são as margens de erro e como contestar esse tipo de multa.",
+    descricao: "O sistema de velocidade média mede o tempo que você leva entre dois pontos. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Velocidade",
     tempoLeitura: "5 min",
     imagemEmoji: "📍",
@@ -2227,7 +2227,7 @@ Para sistemas de velocidade média, a contestação mais eficaz é técnica:
   {
     slug: "recurso-multa-ganhar-chances-reais",
     titulo: "Recurso de Multa: Quais São as Chances Reais de Ganhar?",
-    descricao: "Muita gente desiste de recorrer achando que não vai adiantar. Mas os dados mostram que recursos bem fundamentados têm taxa de sucesso significativa. Entenda quando vale a pena.",
+    descricao: "Muita gente desiste de recorrer achando que não vai adiantar. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Estratégia",
     tempoLeitura: "5 min",
     imagemEmoji: "🎯",
@@ -2289,7 +2289,7 @@ A única situação em que não vale é quando a multa claramente não tem víci
   {
     slug: "multa-transito-dirigir-alcool",
     titulo: "Multa por Dirigir Sob Efeito de Álcool: O que Você Precisa Saber",
-    descricao: "A multa de bafômetro é uma das mais graves do CTB. Entenda as penalidades, quando é crime e não infração, e quais são as (poucas) opções de defesa.",
+    descricao: "A multa de bafômetro é uma das mais graves do CTB. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Infrações Graves",
     tempoLeitura: "5 min",
     imagemEmoji: "🍺",
@@ -2358,7 +2358,7 @@ Para multas de bafômetro, a análise jurídica especializada é mais importante
   {
     slug: "multa-transito-como-contestar-foto-ruim",
     titulo: "A Foto da Multa Está Ruim ou Ilegível? Saiba Como Usar Isso",
-    descricao: "Quando a imagem do radar ou câmera não identifica claramente o veículo ou a placa, você tem argumento para contestar. Entenda o que a lei exige da prova fotográfica.",
+    descricao: "Quando a imagem do radar ou câmera não identifica claramente o veículo ou a placa, você tem argumento para contestar. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Provas e Documentos",
     tempoLeitura: "4 min",
     imagemEmoji: "📷",
@@ -2417,7 +2417,7 @@ Anexe ao recurso uma cópia da imagem (obtida no portal do órgão) para demonst
   {
     slug: "multa-transito-empresas-frota",
     titulo: "Multas de Frota: Como Empresas Devem Gerenciar e Contestar",
-    descricao: "Empresas com frota de veículos enfrentam desafios específicos com multas. Saiba como indicar o condutor, organizar o processo de recurso e reduzir o impacto financeiro.",
+    descricao: "Empresas com frota de veículos enfrentam desafios específicos com multas. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Empresas e Frotas",
     tempoLeitura: "5 min",
     imagemEmoji: "🚛",
@@ -2479,7 +2479,7 @@ Além do valor da multa em si, empresas ignoram o custo do licenciamento bloquea
   {
     slug: "multa-transito-cnh-estrangeira",
     titulo: "Estrangeiro com CNH de Outro País Pode Ser Multado no Brasil?",
-    descricao: "Turistas e estrangeiros residentes têm regras específicas para dirigir no Brasil. Entenda quais CNHs são aceitas, por quanto tempo e o que acontece se você for multado.",
+    descricao: "Turistas e estrangeiros residentes têm regras específicas para dirigir no Brasil. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Casos Especiais",
     tempoLeitura: "4 min",
     imagemEmoji: "🌎",
@@ -2530,7 +2530,7 @@ Consulte o DETRAN do seu estado para verificar o acordo com o seu país.
   {
     slug: "aplicativo-contestar-multa-brasil",
     titulo: "Os Melhores Apps para Contestar e Acompanhar Multas no Brasil",
-    descricao: "Conheça os principais aplicativos e ferramentas digitais para consultar, contestar e acompanhar multas de trânsito sem sair de casa.",
+    descricao: "Conheça os principais aplicativos e ferramentas digitais para consultar, contestar e acompanhar multas de trânsito sem sair de casa. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Digital",
     tempoLeitura: "4 min",
     imagemEmoji: "📲",
@@ -2586,7 +2586,7 @@ Nenhum app substitui a análise do conteúdo da autuação. Consultar o saldo de
   {
     slug: "multa-transito-prescreve-como-verificar",
     titulo: "Como Verificar se Sua Multa Antiga Já Prescreveu",
-    descricao: "Multas antigas podem ter prescrito — mas verificar isso exige consulta específica. Saiba como checar o status de débitos antigos e o que fazer em cada caso.",
+    descricao: "Multas antigas podem ter prescrito — mas verificar isso exige consulta específica. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Dúvidas Frequentes",
     tempoLeitura: "4 min",
     imagemEmoji: "🔍",
@@ -2649,7 +2649,7 @@ Se a multa está há 3 a 4 anos em dívida ativa e o valor é significativo, ver
   {
     slug: "multa-radar-fixo-versus-portatil",
     titulo: "Radar Fixo vs Portátil: Diferenças e Como Contestar Cada Um",
-    descricao: "Radares fixos e portáteis têm regras diferentes de operação e fiscalização. Entenda as diferenças e saiba qual tipo de argumento usar em cada caso.",
+    descricao: "Radares fixos e portáteis têm regras diferentes de operação e fiscalização. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Velocidade",
     tempoLeitura: "5 min",
     imagemEmoji: "📡",
@@ -2715,7 +2715,7 @@ No auto de infração, o campo "equipamento" ou "instrumento de medição" deve 
   {
     slug: "multa-transito-motorista-profissional",
     titulo: "Motorista Profissional e Multa: Direitos e Cuidados Especiais",
-    descricao: "Para motoristas profissionais, uma multa grave pode significar perda do emprego. Entenda as regras específicas para CNH profissional e como proteger seu meio de vida.",
+    descricao: "Para motoristas profissionais, uma multa grave pode significar perda do emprego. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Motoristas Profissionais",
     tempoLeitura: "5 min",
     imagemEmoji: "👨‍✈️",
@@ -2771,7 +2771,7 @@ Por exemplo: se você tem 18 pontos e recebeu uma multa grave de 5 pontos, recor
   {
     slug: "multa-transito-idoso-deficiente",
     titulo: "Multa de Trânsito para Idosos e PcD: Regras Especiais",
-    descricao: "Idosos e pessoas com deficiência têm algumas regras específicas no CTB. Saiba quais são os direitos, isenções e como o sistema trata esse grupo de condutores.",
+    descricao: "Idosos e pessoas com deficiência têm algumas regras específicas no CTB. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Casos Especiais",
     tempoLeitura: "4 min",
     imagemEmoji: "♿",
@@ -2822,7 +2822,7 @@ Dirigir veículo não adaptado com CNH que exige adaptação é infração grave
   {
     slug: "multa-transito-uber-99-motorista-app",
     titulo: "Motorista de App (Uber, 99): Como Lidar com Multas no Trabalho",
-    descricao: "Motoristas de aplicativo têm situações específicas de multa que outros condutores não enfrentam. Saiba seus direitos, responsabilidades e como proteger sua conta no app.",
+    descricao: "Motoristas de aplicativo têm situações específicas de multa que outros condutores não enfrentam. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Motoristas Profissionais",
     tempoLeitura: "5 min",
     imagemEmoji: "🚗",
@@ -2875,7 +2875,7 @@ Embora os apps não tenham acesso direto ao seu histórico de infrações, recla
   {
     slug: "como-ler-auto-infracao",
     titulo: "Como Ler e Entender o Auto de Infração de Trânsito",
-    descricao: "O auto de infração parece complicado, mas tem uma estrutura padrão. Saiba o que cada campo significa, onde encontrar erros e o que fazer com essa informação.",
+    descricao: "O auto de infração parece complicado, mas tem uma estrutura padrão. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Guias Práticos",
     tempoLeitura: "5 min",
     imagemEmoji: "📋",
@@ -2936,7 +2936,7 @@ O resultado da análise indica especificamente qual campo está com problema e q
   {
     slug: "multa-transito-recorrer-segunda-vez",
     titulo: "Já Recorri e Perdi — Posso Tentar de Novo?",
-    descricao: "Teve a defesa prévia negada? Ainda existem outras instâncias. Entenda o sistema de recursos em três níveis e o que muda em cada uma delas.",
+    descricao: "Teve a defesa prévia negada? Ainda existem outras instâncias. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Processo de Recurso",
     tempoLeitura: "5 min",
     imagemEmoji: "🔄",
@@ -3006,7 +3006,7 @@ Sim. Os pontos permanecem suspensos durante todo o processo administrativo — d
   {
     slug: "multa-transito-acidente-sem-culpa",
     titulo: "Fui Multado Após Acidente Sem Ser o Culpado — O que Fazer?",
-    descricao: "Envolver-se em um acidente e ainda levar multa é uma situação frustrante. Entenda como funciona a autuação em acidentes e como contestar quando você não tinha culpa.",
+    descricao: "Envolver-se em um acidente e ainda levar multa é uma situação frustrante. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Casos Especiais",
     tempoLeitura: "5 min",
     imagemEmoji: "🚨",
@@ -3063,7 +3063,7 @@ Uma coisa é contestar a autuação administrativa. Outra é a responsabilidade 
   {
     slug: "multa-rodizio-municipal-como-recorrer",
     titulo: "Multa de Rodízio Municipal: Como Recorrer",
-    descricao: "Furou o rodízio sem perceber? Entenda como funciona a fiscalização, quais são os erros mais comuns nas câmeras de rodízio e como contestar.",
+    descricao: "Furou o rodízio sem perceber? Entenda como funciona a fiscalização, quais são os erros mais comuns nas câmeras de rodízio e como contestar. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Rodízio",
     tempoLeitura: "4 min",
     imagemEmoji: "🔄",
@@ -3094,7 +3094,7 @@ Verifique a foto da infração (disponível no portal da prefeitura ou CET), con
   {
     slug: "multa-farol-apagado-a-noite",
     titulo: "Multa por Farol Apagado à Noite: Vale a Pena Recorrer?",
-    descricao: "Dirigir sem faróis acesos à noite é infração grave. Entenda quando a multa é aplicada corretamente e quando existe espaço para contestação.",
+    descricao: "Dirigir sem faróis acesos à noite é infração grave. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Equipamentos",
     tempoLeitura: "3 min",
     imagemEmoji: "💡",
@@ -3121,7 +3121,7 @@ Verifique o horário exato registrado no auto e compare com o horário oficial d
   {
     slug: "multa-som-alto-poluicao-sonora",
     titulo: "Multa por Som Alto (Poluição Sonora): Como Funciona",
-    descricao: "Som automotivo em volume excessivo pode gerar multa de trânsito. Entenda os limites legais, como a fiscalização funciona e quando contestar.",
+    descricao: "Som automotivo em volume excessivo pode gerar multa de trânsito. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Equipamentos",
     tempoLeitura: "4 min",
     imagemEmoji: "🔊",
@@ -3152,7 +3152,7 @@ Sem registro técnico da medição, o auto tem vício formal significativo — a
   {
     slug: "multa-pneu-careca-como-recorrer",
     titulo: "Multa por Pneu Careca: Como Contestar",
-    descricao: "Rodar com pneu sem os sulcos mínimos é infração de segurança. Entenda os critérios técnicos e quando é possível recorrer dessa multa.",
+    descricao: "Rodar com pneu sem os sulcos mínimos é infração de segurança. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Equipamentos",
     tempoLeitura: "3 min",
     imagemEmoji: "🛞",
@@ -3179,7 +3179,7 @@ O agente deve medir a profundidade do sulco com instrumento apropriado (profund�
   {
     slug: "multa-vidro-fume-irregular",
     titulo: "Multa por Vidro Fumê Irregular: Limites e Como Recorrer",
-    descricao: "Aplicar película automotiva fora dos limites legais gera multa. Entenda os percentuais permitidos e quando a autuação pode ser contestada.",
+    descricao: "Aplicar película automotiva fora dos limites legais gera multa. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Equipamentos",
     tempoLeitura: "4 min",
     imagemEmoji: "🚙",
@@ -3216,7 +3216,7 @@ Se você usa película, verifique o certificado do fabricante que declara o perc
   {
     slug: "multa-nao-usar-seta",
     titulo: "Multa por Não Usar Seta: Quando Recorrer",
-    descricao: "Não sinalizar mudança de faixa ou conversão é infração média. Veja em quais situações essa multa pode ter vício formal e como contestar.",
+    descricao: "Não sinalizar mudança de faixa ou conversão é infração média. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Comportamento no Trânsito",
     tempoLeitura: "3 min",
     imagemEmoji: "↩️",
@@ -3243,7 +3243,7 @@ Diferente de multas eletrônicas, essa infração normalmente é presenciada por
   {
     slug: "multa-farol-alto-indevido",
     titulo: "Multa por Uso Indevido de Farol Alto: Como Recorrer",
-    descricao: "Usar farol alto em via com iluminação ou quando há veículos próximos é infração. Saiba quando a autuação é questionável.",
+    descricao: "Usar farol alto em via com iluminação ou quando há veículos próximos é infração. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Equipamentos",
     tempoLeitura: "3 min",
     imagemEmoji: "🔦",
@@ -3270,7 +3270,7 @@ Fotografe a via no mesmo horário e local, se possível, para demonstrar as cond
   {
     slug: "multa-crianca-sem-cadeirinha",
     titulo: "Multa por Criança sem Cadeirinha: Regras e Recurso",
-    descricao: "O transporte inadequado de crianças é infração gravíssima. Entenda as regras por idade, os equipamentos exigidos e quando é possível contestar.",
+    descricao: "O transporte inadequado de crianças é infração gravíssima. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Segurança Infantil",
     tempoLeitura: "5 min",
     imagemEmoji: "👶",
@@ -3304,7 +3304,7 @@ Essa é uma das infrações mais sérias do CTB por envolver segurança infantil
   {
     slug: "multa-moto-sem-capacete-passageiro",
     titulo: "Multa por Passageiro sem Capacete na Moto: Como Recorrer",
-    descricao: "Tanto o condutor quanto o passageiro da moto são obrigados a usar capacete. Entenda a responsabilidade em cada caso e como contestar.",
+    descricao: "Tanto o condutor quanto o passageiro da moto são obrigados a usar capacete. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Motocicletas",
     tempoLeitura: "4 min",
     imagemEmoji: "🏍️",
@@ -3331,7 +3331,7 @@ Além da multa, o veículo pode ser retido até a regularização (uso correto d
   {
     slug: "multa-excesso-peso-carga",
     titulo: "Multa por Excesso de Peso na Carga: Como Funciona",
-    descricao: "Veículos de carga com peso acima do permitido enfrentam multas pesadas. Entenda os limites, a fiscalização em balanças e as opções de recurso.",
+    descricao: "Veículos de carga com peso acima do permitido enfrentam multas pesadas. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Veículos de Carga",
     tempoLeitura: "5 min",
     imagemEmoji: "🚛",
@@ -3365,7 +3365,7 @@ Postos de pesagem (balanças) na rodovia verificam o Peso Bruto Total (PBT) do v
   {
     slug: "multa-reboque-irregular",
     titulo: "Multa por Reboque Irregular: O que Verificar Antes de Recorrer",
-    descricao: "Rebocar veículo ou carreta fora das especificações técnicas gera multa. Entenda os requisitos legais e como identificar vícios na autuação.",
+    descricao: "Rebocar veículo ou carreta fora das especificações técnicas gera multa. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Veículos de Carga",
     tempoLeitura: "4 min",
     imagemEmoji: "🔗",
@@ -3394,7 +3394,7 @@ Sempre mantenha a documentação do reboque junto com a do veículo tracionador 
   {
     slug: "multa-escapamento-aberto",
     titulo: "Multa por Escapamento Aberto ou Modificado: Como Recorrer",
-    descricao: "Alterar o sistema de escapamento do veículo é infração de segurança e ambiental. Entenda os critérios técnicos e quando contestar.",
+    descricao: "Alterar o sistema de escapamento do veículo é infração de segurança e ambiental. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Equipamentos",
     tempoLeitura: "3 min",
     imagemEmoji: "💨",
@@ -3425,7 +3425,7 @@ Se o escapamento foi de fato modificado, a melhor estratégia é regularizar o v
   {
     slug: "multa-estacionar-vaga-carga-descarga",
     titulo: "Multa por Estacionar em Vaga de Carga e Descarga",
-    descricao: "Vagas de carga e descarga têm regras específicas de horário e uso. Entenda quando a multa é aplicada corretamente e como contestar.",
+    descricao: "Vagas de carga e descarga têm regras específicas de horário e uso. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Estacionamento",
     tempoLeitura: "3 min",
     imagemEmoji: "📦",
@@ -3452,7 +3452,7 @@ Fotografe a sinalização (ou ausência dela) no local, verifique o horário exa
   {
     slug: "multa-ultrapassagem-proibida",
     titulo: "Multa por Ultrapassagem em Local Proibido: Como Recorrer",
-    descricao: "Ultrapassar em faixa contínua, curva ou local sinalizado como proibido é infração gravíssima. Saiba quando existe base para contestar.",
+    descricao: "Ultrapassar em faixa contínua, curva ou local sinalizado como proibido é infração gravíssima. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Comportamento no Trânsito",
     tempoLeitura: "4 min",
     imagemEmoji: "⛔",
@@ -3483,7 +3483,7 @@ Por ser gravíssima e de alto risco, essa multa merece atenção redobrada — 7
   {
     slug: "multa-nao-respeitar-faixa-pedestre",
     titulo: "Multa por Não Respeitar Faixa de Pedestre: Como Contestar",
-    descricao: "Não dar passagem a pedestres na faixa é infração gravíssima. Entenda os critérios de autuação e as situações que permitem recurso.",
+    descricao: "Não dar passagem a pedestres na faixa é infração gravíssima. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Comportamento no Trânsito",
     tempoLeitura: "4 min",
     imagemEmoji: "🚶",
@@ -3514,7 +3514,7 @@ Por envolver risco direto à vida de pedestres, essa é uma das infrações mais
   {
     slug: "multa-cinto-seguranca-banco-traseiro",
     titulo: "Multa por Não Usar Cinto no Banco Traseiro",
-    descricao: "A obrigatoriedade do cinto vale para todos os ocupantes do veículo, incluindo o banco de trás. Entenda a responsabilidade e como recorrer.",
+    descricao: "A obrigatoriedade do cinto vale para todos os ocupantes do veículo, incluindo o banco de trás. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Segurança",
     tempoLeitura: "3 min",
     imagemEmoji: "🔒",
@@ -3545,7 +3545,7 @@ A contestação nesse tipo de multa depende principalmente da descrição do aut
   {
     slug: "multa-trafegar-acostamento",
     titulo: "Multa por Trafegar no Acostamento: Quando Recorrer",
-    descricao: "Usar o acostamento para circular fora de situações de emergência é infração grave. Entenda as exceções legais e como contestar.",
+    descricao: "Usar o acostamento para circular fora de situações de emergência é infração grave. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Comportamento no Trânsito",
     tempoLeitura: "4 min",
     imagemEmoji: "🛣️",
@@ -3579,7 +3579,7 @@ Se você usou o acostamento por necessidade real, reúna a documentação de pro
   {
     slug: "multa-conversao-proibida",
     titulo: "Multa por Conversão Proibida: Como Contestar",
-    descricao: "Fazer o retorno ou conversão em local não permitido é infração grave. Entenda os erros comuns de sinalização e como recorrer.",
+    descricao: "Fazer o retorno ou conversão em local não permitido é infração grave. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Comportamento no Trânsito",
     tempoLeitura: "3 min",
     imagemEmoji: "↪️",
@@ -3610,7 +3610,7 @@ Fotografe o local (sinalização atual) e, se possível, verifique imagens hist�
   {
     slug: "multa-nome-errado-como-corrigir",
     titulo: "Multa Chegou com Nome Errado: Como Corrigir e Recorrer",
-    descricao: "Erros de identificação em notificações de multa acontecem mais do que parece. Saiba como corrigir e usar isso como argumento de defesa.",
+    descricao: "Erros de identificação em notificações de multa acontecem mais do que parece. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Dúvidas Frequentes",
     tempoLeitura: "4 min",
     imagemEmoji: "📝",
@@ -3649,7 +3649,7 @@ Corrija o cadastro assim que identificar o erro — isso evita problemas em noti
   {
     slug: "multa-veiculo-comprado-usado",
     titulo: "Comprei Carro Usado com Multas Pendentes: O que Fazer?",
-    descricao: "Descobrir multas antigas após comprar um veículo usado é comum. Entenda de quem é a responsabilidade e como resolver a situação.",
+    descricao: "Descobrir multas antigas após comprar um veículo usado é comum. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Compra e Venda",
     tempoLeitura: "5 min",
     imagemEmoji: "🚗",
@@ -3684,7 +3684,7 @@ Sempre inclua cláusula contratual específica sobre responsabilidade por multas
   {
     slug: "multa-carro-alugado-locadora",
     titulo: "Multa em Carro Alugado: Como Funciona a Cobrança",
-    descricao: "Locadoras de veículos têm processo específico para repassar multas aos locatários. Entenda seus direitos e como contestar cobranças indevidas.",
+    descricao: "Locadoras de veículos têm processo específico para repassar multas aos locatários. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Locação de Veículos",
     tempoLeitura: "4 min",
     imagemEmoji: "🔑",
@@ -3719,7 +3719,7 @@ Sim. Assim que a locadora te indica como condutor, você recebe a notificação 
   {
     slug: "multa-chegou-apos-prazo-vencido",
     titulo: "Notificação de Multa Chegou Depois do Prazo: E Agora?",
-    descricao: "Receber a notificação com o prazo de defesa já vencido acontece por falhas dos Correios ou do sistema. Saiba o que fazer nessa situação.",
+    descricao: "Receber a notificação com o prazo de defesa já vencido acontece por falhas dos Correios ou do sistema. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Processo de Recurso",
     tempoLeitura: "4 min",
     imagemEmoji: "📮",
@@ -3752,7 +3752,7 @@ Nesse caso, resta recorrer à JARI diretamente contestando o mérito, já que a 
   {
     slug: "multa-duplicada-mesma-infracao",
     titulo: "Recebi Duas Multas pela Mesma Infração: Como Resolver",
-    descricao: "Erros de sistema podem gerar cobrança duplicada da mesma infração. Entenda como identificar e corrigir essa situação.",
+    descricao: "Erros de sistema podem gerar cobrança duplicada da mesma infração. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Dúvidas Frequentes",
     tempoLeitura: "3 min",
     imagemEmoji: "📑",
@@ -3789,7 +3789,7 @@ Se o recurso administrativo não resolver, procure a Ouvidoria do órgão de tr�
   {
     slug: "multa-afeta-financiamento-veiculo",
     titulo: "Multa Pendente Afeta o Financiamento do Veículo?",
-    descricao: "Débitos de multa podem gerar consequências para quem financia um carro. Entenda a relação entre multas, alienação fiduciária e financiamento.",
+    descricao: "Débitos de multa podem gerar consequências para quem financia um carro. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Financeiro",
     tempoLeitura: "4 min",
     imagemEmoji: "🏦",
@@ -3820,7 +3820,7 @@ Mantenha as multas em dia ou em processo de recurso ativo para evitar acúmulo d
   {
     slug: "relacao-multa-ipva-licenciamento",
     titulo: "Multa, IPVA e Licenciamento: Entenda a Relação Entre Eles",
-    descricao: "Muitas pessoas confundem esses três débitos veiculares. Entenda como cada um funciona separadamente e como um pode bloquear o outro.",
+    descricao: "Muitas pessoas confundem esses três débitos veiculares. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Dúvidas Frequentes",
     tempoLeitura: "4 min",
     imagemEmoji: "📊",
@@ -3858,7 +3858,7 @@ Antes da época de licenciamento, consulte o extrato completo de débitos (IPVA,
   {
     slug: "multa-heranca-veiculo-falecido",
     titulo: "Multa em Veículo de Pessoa Falecida: Como Proceder",
-    descricao: "Herdar um veículo com multas pendentes exige cuidados específicos no processo de inventário e transferência. Entenda o passo a passo.",
+    descricao: "Herdar um veículo com multas pendentes exige cuidados específicos no processo de inventário e transferência. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Casos Especiais",
     tempoLeitura: "4 min",
     imagemEmoji: "📜",
@@ -3889,7 +3889,7 @@ Ao lidar com inventário envolvendo veículos, consulte o extrato completo de d�
   {
     slug: "transferencia-veiculo-multas-pendentes",
     titulo: "Posso Transferir Veículo com Multas Pendentes?",
-    descricao: "A transferência de propriedade tem regras específicas quando há débitos. Entenda o que é possível e os cuidados necessários na negociação.",
+    descricao: "A transferência de propriedade tem regras específicas quando há débitos. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Compra e Venda",
     tempoLeitura: "4 min",
     imagemEmoji: "🔄",
@@ -3927,7 +3927,7 @@ Mesmo com débitos pendentes, formalize a transferência dentro do prazo legal �
   {
     slug: "multa-nao-transferida-comprador",
     titulo: "Vendi o Carro e o Comprador Não Transferiu: O que Fazer",
-    descricao: "Multas continuam chegando no seu nome mesmo após vender o veículo? Saiba como se proteger legalmente e resolver a situação.",
+    descricao: "Multas continuam chegando no seu nome mesmo após vender o veículo? Saiba como se proteger legalmente e resolver a situação. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Compra e Venda",
     tempoLeitura: "4 min",
     imagemEmoji: "⚠️",
@@ -3966,7 +3966,7 @@ Sempre faça um contrato de compra e venda com firma reconhecida ou assinatura e
   {
     slug: "detran-rj-recurso-multa-passo-a-passo",
     titulo: "Como Recorrer de Multa no DETRAN RJ: Passo a Passo",
-    descricao: "Guia completo para contestar multas no Rio de Janeiro. Sistema online, prazos e documentos necessários para o recurso.",
+    descricao: "Guia completo para contestar multas no Rio de Janeiro. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "DETRAN",
     tempoLeitura: "4 min",
     imagemEmoji: "🏢",
@@ -4004,7 +4004,7 @@ O volume de multas por câmeras de monitoramento é alto na capital fluminense. 
   {
     slug: "detran-mg-recurso-multa-passo-a-passo",
     titulo: "Como Recorrer de Multa no DETRAN MG: Passo a Passo",
-    descricao: "Guia completo para contestar multas em Minas Gerais. Sistema online, prazos e o que você precisa para protocolar o recurso.",
+    descricao: "Guia completo para contestar multas em Minas Gerais. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "DETRAN",
     tempoLeitura: "4 min",
     imagemEmoji: "🏢",
@@ -4042,7 +4042,7 @@ Para quem tem dificuldade com o sistema online, o DETRAN MG mantém postos de at
   {
     slug: "detran-rs-recurso-multa-passo-a-passo",
     titulo: "Como Recorrer de Multa no DETRAN RS: Passo a Passo",
-    descricao: "Guia completo para contestar multas no Rio Grande do Sul. Sistema online, prazos e documentos para o recurso administrativo.",
+    descricao: "Guia completo para contestar multas no Rio Grande do Sul. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "DETRAN",
     tempoLeitura: "4 min",
     imagemEmoji: "🏢",
@@ -4080,7 +4080,7 @@ O RS tem grande volume de fiscalização em rodovias estaduais (EGR) e federais 
   {
     slug: "detran-pr-recurso-multa-passo-a-passo",
     titulo: "Como Recorrer de Multa no DETRAN PR: Passo a Passo",
-    descricao: "Guia completo para contestar multas no Paraná. Sistema online, prazos e o processo de defesa prévia e recurso.",
+    descricao: "Guia completo para contestar multas no Paraná. Sistema online, prazos e o processo de defesa prévia e recurso. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "DETRAN",
     tempoLeitura: "4 min",
     imagemEmoji: "🏢",
@@ -4118,7 +4118,7 @@ O Paraná tem forte fiscalização eletrônica em rodovias estaduais (DER-PR) e 
   {
     slug: "detran-ba-recurso-multa-passo-a-passo",
     titulo: "Como Recorrer de Multa no DETRAN BA: Passo a Passo",
-    descricao: "Guia completo para contestar multas na Bahia. Sistema online, prazos e o processo completo de recurso administrativo.",
+    descricao: "Guia completo para contestar multas na Bahia. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "DETRAN",
     tempoLeitura: "4 min",
     imagemEmoji: "🏢",
@@ -4156,7 +4156,7 @@ Para regiões com dificuldade de acesso à internet, o DETRAN BA mantém postos 
   {
     slug: "detran-df-recurso-multa-passo-a-passo",
     titulo: "Como Recorrer de Multa no DETRAN DF: Passo a Passo",
-    descricao: "Guia completo para contestar multas no Distrito Federal. Sistema online, prazos e documentos necessários para o recurso.",
+    descricao: "Guia completo para contestar multas no Distrito Federal. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "DETRAN",
     tempoLeitura: "4 min",
     imagemEmoji: "🏢",
@@ -4194,7 +4194,7 @@ Brasília tem grande volume de vias expressas com radares fixos e sistemas de ve
   {
     slug: "multa-municipal-versus-estadual-diferenca",
     titulo: "Multa Municipal x Estadual: Qual a Diferença na Prática",
-    descricao: "Entender quem autuou sua multa é o primeiro passo para saber onde recorrer. Veja as diferenças entre órgãos municipais e estaduais de trânsito.",
+    descricao: "Entender quem autuou sua multa é o primeiro passo para saber onde recorrer. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Dúvidas Frequentes",
     tempoLeitura: "4 min",
     imagemEmoji: "🏛️",
@@ -4231,7 +4231,7 @@ Sim. Independente de quem autuou (municipal, estadual ou federal), os pontos sã
   {
     slug: "cet-sp-como-funciona-multas",
     titulo: "CET-SP: Como Funcionam as Multas da Companhia de Engenharia de Tráfego",
-    descricao: "A CET-SP é responsável por boa parte das multas na capital paulista. Entenda seu papel, principais infrações fiscalizadas e como recorrer.",
+    descricao: "A CET-SP é responsável por boa parte das multas na capital paulista. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "DETRAN",
     tempoLeitura: "4 min",
     imagemEmoji: "🚦",
@@ -4271,7 +4271,7 @@ São Paulo tem uma das maiores redes de câmeras de fiscalização do país. Iss
   {
     slug: "detran-pe-recurso-multa-passo-a-passo",
     titulo: "Como Recorrer de Multa no DETRAN PE: Passo a Passo",
-    descricao: "Guia completo para contestar multas em Pernambuco. Sistema online, prazos e o processo de defesa administrativa.",
+    descricao: "Guia completo para contestar multas em Pernambuco. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "DETRAN",
     tempoLeitura: "4 min",
     imagemEmoji: "🏢",
@@ -4309,7 +4309,7 @@ O DETRAN PE mantém postos regionais para quem prefere ou precisa protocolar pre
   {
     slug: "detran-ce-recurso-multa-passo-a-passo",
     titulo: "Como Recorrer de Multa no DETRAN CE: Passo a Passo",
-    descricao: "Guia completo para contestar multas no Ceará. Sistema online, prazos e documentos necessários para protocolar o recurso.",
+    descricao: "Guia completo para contestar multas no Ceará. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "DETRAN",
     tempoLeitura: "4 min",
     imagemEmoji: "🏢",
@@ -4347,7 +4347,7 @@ O Ceará tem forte fiscalização em rodovias estaduais (DER-CE) além das urban
   {
     slug: "como-fotografar-multa-para-analise",
     titulo: "Como Fotografar sua Multa para uma Análise Completa e Precisa",
-    descricao: "A qualidade da foto do auto de infração impacta diretamente a precisão da análise. Veja as dicas práticas para fotografar corretamente.",
+    descricao: "A qualidade da foto do auto de infração impacta diretamente a precisão da análise. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Guias Práticos",
     tempoLeitura: "3 min",
     imagemEmoji: "📸",
@@ -4390,7 +4390,7 @@ Envie a imagem para análise o quanto antes — o prazo de defesa prévia é de 
   {
     slug: "quanto-custa-advogado-transito",
     titulo: "Quanto Custa um Advogado Especializado em Trânsito?",
-    descricao: "Entenda os valores praticados por advogados de trânsito no Brasil, o que influencia o preço e quando esse investimento realmente compensa.",
+    descricao: "Entenda os valores praticados por advogados de trânsito no Brasil, o que influencia o preço e quando esse investimento realmente compensa. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Dúvidas Frequentes",
     tempoLeitura: "4 min",
     imagemEmoji: "⚖️",
@@ -4431,7 +4431,7 @@ Para multas de valor baixo (R$ 130 a R$ 300) com vício formal claro e objetivo,
   {
     slug: "multa-transito-direito-consumidor",
     titulo: "Multa de Trânsito e Direito do Consumidor: Existe Relação?",
-    descricao: "Entenda em quais situações o Código de Defesa do Consumidor pode ser aplicado em conflitos envolvendo multas — como em estacionamentos privados.",
+    descricao: "Entenda em quais situações o Código de Defesa do Consumidor pode ser aplicado em conflitos envolvendo multas — como em estacionamentos privados. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Direitos do Motorista",
     tempoLeitura: "4 min",
     imagemEmoji: "🛒",
@@ -4467,7 +4467,7 @@ CTB rege a relação entre Estado e condutor (multa oficial). CDC rege relaçõe
   {
     slug: "multa-estacionamento-shopping-particular",
     titulo: "Multa ou Cobrança em Estacionamento de Shopping: Seus Direitos",
-    descricao: "Estacionamentos privados não podem aplicar 'multas' no sentido do CTB, mas cobram taxas e penalidades contratuais. Entenda seus direitos.",
+    descricao: "Estacionamentos privados não podem aplicar 'multas' no sentido do CTB, mas cobram taxas e penalidades contratuais. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Estacionamento",
     tempoLeitura: "4 min",
     imagemEmoji: "🏬",
@@ -4503,7 +4503,7 @@ Alguns estabelecimentos oferecem gratuidade limitada (ex: 2 horas grátis) com c
   {
     slug: "multa-nao-pagar-consequencias-reais",
     titulo: "O Que Realmente Acontece se Você Não Pagar uma Multa",
-    descricao: "Separamos o mito da realidade sobre as consequências de não pagar uma multa de trânsito — o que é verdade e o que é exagero.",
+    descricao: "Separamos o mito da realidade sobre as consequências de não pagar uma multa de trânsito — o que é verdade e o que é exagero. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Pagamento",
     tempoLeitura: "4 min",
     imagemEmoji: "❓",
@@ -4542,7 +4542,7 @@ Se você decidiu não pagar por discordar da multa, o caminho correto é **recor
   {
     slug: "multa-parcelamento-como-funciona",
     titulo: "Parcelamento de Multas de Trânsito: Como Funciona",
-    descricao: "Vários estados oferecem parcelamento de débitos de multa. Entenda como funciona, quais as condições e como solicitar.",
+    descricao: "Vários estados oferecem parcelamento de débitos de multa. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Pagamento",
     tempoLeitura: "4 min",
     imagemEmoji: "💳",
@@ -4588,7 +4588,7 @@ Periodicamente, alguns estados lançam programas de anistia com desconto de até
   {
     slug: "cnh-definitiva-x-provisoria-multa",
     titulo: "CNH Provisória e Multas: Regras Específicas para Novos Condutores",
-    descricao: "Quem tem CNH provisória (primeira habilitação) tem regras mais rígidas de pontuação. Entenda o que muda e os cuidados redobrados necessários.",
+    descricao: "Quem tem CNH provisória (primeira habilitação) tem regras mais rígidas de pontuação. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "CNH e Pontos",
     tempoLeitura: "4 min",
     imagemEmoji: "🆕",
@@ -4625,7 +4625,7 @@ Infelizmente, não há como reverter depois — por isso a urgência em analisar
   {
     slug: "multa-veiculo-oficial-blindado",
     titulo: "Multas em Veículos com Placas Especiais: Oficiais, Diplomáticas e Blindados",
-    descricao: "Veículos com placas especiais seguem o mesmo CTB, mas com particularidades no processo de notificação e recurso. Entenda as diferenças.",
+    descricao: "Veículos com placas especiais seguem o mesmo CTB, mas com particularidades no processo de notificação e recurso. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Casos Especiais",
     tempoLeitura: "3 min",
     imagemEmoji: "🚔",
@@ -4656,7 +4656,7 @@ O processo de defesa prévia e recurso segue o mesmo caminho do CTB — não há
   {
     slug: "como-cancelar-pontos-curso-reciclagem",
     titulo: "Curso de Reciclagem: O que É e Quando é Obrigatório",
-    descricao: "Muita gente confunde curso de reciclagem com forma de reduzir pontos. Entenda exatamente para que serve e quando você é obrigado a fazê-lo.",
+    descricao: "Muita gente confunde curso de reciclagem com forma de reduzir pontos. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "CNH e Pontos",
     tempoLeitura: "4 min",
     imagemEmoji: "🎓",
@@ -4692,7 +4692,7 @@ Sim — cursos de direção defensiva oferecidos voluntariamente por CFCs ou emp
   {
     slug: "multa-radar-educativo-nao-gera-multa",
     titulo: "Radar Educativo: Por que Ele Não Gera Multa",
-    descricao: "Nem todo radar aplica multa. Entenda a diferença entre radares educativos (pedagógicos) e os de fiscalização com poder de autuação.",
+    descricao: "Nem todo radar aplica multa. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Velocidade",
     tempoLeitura: "3 min",
     imagemEmoji: "🚧",
@@ -4721,7 +4721,7 @@ Consulte o cadastro de equipamentos de fiscalização eletrônica do órgão de 
   {
     slug: "diferenca-advertencia-multa-trânsito",
     titulo: "Advertência por Escrito x Multa: Qual a Diferença",
-    descricao: "Algumas infrações leves podem resultar em advertência em vez de multa. Entenda quando isso se aplica e o que muda na prática.",
+    descricao: "Algumas infrações leves podem resultar em advertência em vez de multa. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Dúvidas Frequentes",
     tempoLeitura: "3 min",
     imagemEmoji: "📝",
@@ -4762,7 +4762,7 @@ Tecnicamente sim, embora seja incomum, já que não há prejuízo financeiro ou 
   {
     slug: "multa-transito-e-score-credito",
     titulo: "Multa de Trânsito Afeta o Score de Crédito?",
-    descricao: "Existe relação entre débitos de multa e o score de crédito (Serasa, SPC)? Entenda como esses sistemas realmente funcionam.",
+    descricao: "Existe relação entre débitos de multa e o score de crédito (Serasa, SPC)? Entenda como esses sistemas realmente funcionam. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Financeiro",
     tempoLeitura: "3 min",
     imagemEmoji: "📈",
