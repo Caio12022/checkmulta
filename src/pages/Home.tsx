@@ -146,6 +146,16 @@ const VIOLATION_TYPES = [
   { id: "outras", name: "Outras infrações", subtitle: "qualquer artigo", icon: PlusCircle },
 ];
 
+// ─── GUIAS DO BLOG (links internos home → blog, passa autoridade) ──────────
+const BLOG_GUIAS = [
+  { titulo: "Direitos do motorista na blitz policial", slug: "blitz-policia-direitos-motorista" },
+  { titulo: "Multa de moto: como recorrer", slug: "multa-transito-moto-como-recorrer" },
+  { titulo: "CNH vencida: o que fazer", slug: "multa-cnh-vencida-o-que-fazer" },
+  { titulo: "Como recorrer de multa: passo a passo", slug: "como-recorrer-multa-transito-passo-a-passo" },
+  { titulo: "Artigo 280 do CTB: o que é", slug: "artigo-280-ctb-o-que-e" },
+  { titulo: "Multa de lombada eletrônica: como recorrer", slug: "multa-lombada-eletronica-como-recorrer" },
+];
+
 const AnimatedNumber = ({
   end, start = 0, duration = 2500, prefix = "", suffix = "",
 }: { end: number; start?: number; duration?: number; prefix?: string; suffix?: string }) => {
@@ -615,6 +625,7 @@ export default function App() {
           <a href="#inicio" className="hover:text-blue-600 transition-colors">Início</a>
           <a href="#como-funciona" className="hover:text-blue-600 transition-colors">Como Funciona</a>
           <a href="#seguranca" className="hover:text-blue-600 transition-colors">Segurança</a>
+         <a href="#guias" className="hover:text-blue-600 transition-colors">Guias</a>
          <a href="#faq-seo" className="hover:text-blue-600 transition-colors">Dúvidas</a>
               <a href="/blog" className="hover:text-blue-600 transition-colors">Blog</a>
           <button onClick={() => setActiveModal("suporte")} className="hover:text-blue-600 transition-colors font-bold flex items-center gap-1 text-blue-600">
@@ -639,7 +650,9 @@ export default function App() {
               <a href="#inicio" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Início</a>
               <a href="#como-funciona" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Como Funciona</a>
               <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Segurança</a>
+              <a href="#guias" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Guias</a>
               <a href="#faq-seo" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Dúvidas</a>
+              <a href="/blog" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Blog</a>
               <button
                 onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
                 className="px-3 py-3 text-left bg-blue-50 text-blue-700 font-bold rounded-xl transition-colors flex items-center justify-between"
@@ -683,10 +696,10 @@ export default function App() {
         {/* HERO */}
         <section id="inicio" className="mb-10 flex flex-col items-center text-center w-full max-w-3xl mx-auto">
           <h1 className="text-[34px] sm:text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] mb-5 tracking-tight mt-4">
-            Toda multa pode ter uma <span className="text-emerald-600">falha que a anula.</span><br className="hidden sm:block" /> Descubra em 60 segundos
+            Recorrer multa de trânsito online: descubra em 60s se a sua tem <span className="text-emerald-600">falha que anula</span>
           </h1>
           <p className="text-slate-600 text-sm sm:text-base md:text-lg font-medium max-w-2xl mx-auto mb-8 leading-relaxed">
-            Nossa IA cruza sua multa com o CTB e o MBFT, campo por campo, em busca do erro que pode anulá-la. Se não encontrar, você não paga nada por essa analise, é grátis.
+            Faça a análise gratuita da sua multa. Nossa inteligência artificial cruza o auto de infração com o Código de Trânsito Brasileiro (CTB) e o MBFT, campo por campo, em busca do erro formal que pode anular a autuação. Se não encontrar falha, você não paga nada — a análise é grátis e sem cadastro.
           </p>
 
           <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-[13px] sm:text-sm font-bold text-slate-700 mb-10">
@@ -980,39 +993,55 @@ export default function App() {
         </div>
       </section>
 
-      {/* SEO EXPANDÍVEL */}
-      <section className="w-full bg-slate-50 border-t border-slate-200 py-8 px-4 flex justify-center">
+      {/* GUIAS POR TIPO DE INFRAÇÃO — links internos home → blog */}
+      <section id="guias" className="w-full bg-white border-t border-slate-200 py-16 px-4 flex justify-center">
+        <div className="max-w-5xl w-full">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-3">Guias para recorrer de multa por tipo de infração</h2>
+            <p className="text-slate-600 font-medium max-w-2xl mx-auto">Além da análise automática, reunimos guias completos sobre como recorrer de cada tipo de multa de trânsito no Brasil. Escolha o seu caso:</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {BLOG_GUIAS.map((guia) => (
+              <a
+                key={guia.slug}
+                href={`/blog/${guia.slug}`}
+                className="group flex items-center gap-3 p-5 bg-slate-50 hover:bg-emerald-50 border border-slate-200 hover:border-emerald-300 rounded-2xl transition-all duration-200 shadow-sm hover:shadow"
+              >
+                <div className="w-10 h-10 bg-white group-hover:bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0 border border-slate-200 group-hover:border-emerald-200 transition-colors">
+                  <FileText className="w-5 h-5" />
+                </div>
+                <span className="text-sm font-bold text-slate-800 group-hover:text-emerald-800 leading-snug transition-colors">{guia.titulo}</span>
+              </a>
+            ))}
+          </div>
+
+          <div className="text-center mt-8">
+            <a href="/blog" className="inline-flex items-center gap-2 px-6 py-3 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl transition-colors shadow-sm">
+              Ver todos os guias no blog <ArrowDown className="w-4 h-4 -rotate-90" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTEÚDO SEO — sempre visível */}
+      <section className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-4xl w-full">
-          <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 transition-colors">
-            <button
-              onClick={() => setIsSeoOpen(!isSeoOpen)}
-              className="w-full flex items-center justify-between text-left gap-4 group focus:outline-none"
-            >
-              <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">Como recorrer de uma multa de trânsito no Brasil</h2>
-              <ArrowDown className={`w-6 h-6 text-slate-400 flex-shrink-0 transition-transform duration-300 ${isSeoOpen ? "rotate-180" : ""}`} />
-            </button>
-            <AnimatePresence>
-              {isSeoOpen && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  className="overflow-hidden"
-                >
-                  <div className="prose prose-slate max-w-none space-y-6 text-slate-600 text-sm sm:text-base leading-relaxed font-medium mt-6 pt-6 border-t border-slate-100">
-                    <p>Recorrer de uma multa de trânsito é um direito garantido pelo <strong className="text-slate-800">Código de Trânsito Brasileiro (CTB)</strong> a todo condutor que acredite ter sido autuado de forma irregular.</p>
-                    <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Qual o prazo para recorrer de uma multa?</h3>
-                    <p>O prazo para a <strong className="text-slate-800">defesa prévia</strong> é de <strong className="text-slate-800">15 dias corridos</strong> a partir do recebimento da notificação. Caso indeferida, você tem mais <strong className="text-slate-800">30 dias para recurso na JARI</strong>.</p>
-                    <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Quais erros em uma multa podem anulá-la?</h3>
-                    <p>O <strong className="text-slate-800">MBFT</strong> estabelece regras rígidas de preenchimento. Erros comuns incluem: identificação incorreta do veículo, descrição imprecisa da infração, equipamento sem certificação INMETRO, ausência de dados obrigatórios e sinalização irregular no local.</p>
-                    <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Vale a pena recorrer de multa de radar?</h3>
-                    <p>Sim. Multas de radar exigem <strong className="text-slate-800">aferição INMETRO vigente</strong>, identificação com placa informativa e dados técnicos completos no auto. Qualquer irregularidade pode fundamentar a anulação.</p>
-                    <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Recorrer suspende os pontos na CNH?</h3>
-                    <p>Sim. Enquanto a defesa estiver em análise, <strong className="text-slate-800">tanto o pagamento quanto a pontuação na CNH ficam suspensos</strong>.</p>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          <div className="bg-white p-6 sm:p-10 rounded-2xl shadow-sm border border-slate-200">
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-6">Como recorrer de uma multa de trânsito no Brasil</h2>
+            <div className="prose prose-slate max-w-none space-y-6 text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
+              <p>Recorrer de uma multa de trânsito é um direito garantido pelo <strong className="text-slate-800">Código de Trânsito Brasileiro (CTB)</strong> a todo condutor que acredite ter sido autuado de forma irregular. Muitas autuações contêm erros formais de preenchimento que passam despercebidos e que podem, sozinhos, anular a multa. É exatamente esse tipo de falha que a análise da CheckMulta procura no seu auto de infração.</p>
+              <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Qual o prazo para recorrer de uma multa?</h3>
+              <p>O prazo para a <strong className="text-slate-800">defesa prévia</strong> é de <strong className="text-slate-800">15 dias corridos</strong> a partir do recebimento da notificação da autuação. Caso a defesa seja indeferida, você ainda tem mais <strong className="text-slate-800">30 dias para apresentar recurso na JARI</strong> (Junta Administrativa de Recursos de Infrações). Respeitar esses prazos é fundamental: uma multa com prazo vencido não pode mais ser contestada administrativamente.</p>
+              <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Quais erros em uma multa podem anulá-la?</h3>
+              <p>O <strong className="text-slate-800">Manual Brasileiro de Fiscalização de Trânsito (MBFT)</strong> estabelece regras rígidas de preenchimento do auto de infração. Erros comuns que podem fundamentar a anulação incluem: identificação incorreta do veículo, descrição imprecisa da infração, equipamento (radar) sem certificação INMETRO vigente, ausência de dados obrigatórios do agente autuador e sinalização irregular no local da autuação.</p>
+              <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Vale a pena recorrer de multa de radar?</h3>
+              <p>Sim. Multas de radar e lombada eletrônica exigem <strong className="text-slate-800">aferição INMETRO vigente</strong>, identificação com placa informativa no local e dados técnicos completos no auto de infração. Qualquer irregularidade nesses requisitos pode fundamentar um recurso de anulação da multa.</p>
+              <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Recorrer suspende os pontos na CNH?</h3>
+              <p>Sim. Enquanto a defesa ou o recurso estiverem em análise pelo órgão de trânsito, <strong className="text-slate-800">tanto a cobrança do valor quanto a pontuação na CNH ficam suspensos</strong>. Ou seja, apresentar recurso é sempre vantajoso: você adia a cobrança e ganha a chance real de anular a autuação.</p>
+              <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Como a CheckMulta ajuda a recorrer da multa?</h3>
+              <p>A CheckMulta usa inteligência artificial para analisar gratuitamente o seu auto de infração e apontar se existe uma falha formal que possa anular a multa. Se houver viabilidade, geramos uma <strong className="text-slate-800">petição de defesa prévia completa e fundamentada no CTB</strong>, pronta para você preencher e protocolar no órgão autuador — sem precisar de advogado e sem cadastro.</p>
+            </div>
           </div>
         </div>
       </section>
