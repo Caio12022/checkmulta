@@ -1,8 +1,10 @@
 import express from "express";
 import path from "path";
+import fs from "fs";
 import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import { MercadoPagoConfig, Payment } from "mercadopago";
+import { artigos } from "./src/data/artigos";
 
 let aiClient: GoogleGenAI | null = null;
 function getAIClient() {
@@ -19,6 +21,97 @@ const mpClient = new MercadoPagoConfig({
   accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN || "",
 });
 const paymentClient = new Payment(mpClient);
+
+// ==========================================
+// SEO SERVER-SIDE: meta tags corretas por rota
+// ==========================================
+const BASE_URL = "https://checkmulta.com.br";
+
+function esc(texto: string): string {
+  return texto.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function slugifyCategoria(texto: string): string {
+  return texto
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
+interface MetaInfo {
+  title: string;
+  description: string;
+  url: string;
+}
+
+function getMetaParaRota(pathname: string): MetaInfo {
+  // Home (padrão)
+  const home: MetaInfo = {
+    title: "Foi Multado? Consulta Gratuita de Multas | CheckMulta",
+    description: "Faça a consulta gratuita da sua multa. Nossa Inteligência Artificial acha o erro na infração e cria seu recurso na hora. Consulte grátis!",
+    url: `${BASE_URL}/`,
+  };
+
+  if (pathname === "/" || pathname === "") return home;
+
+  // Blog (listagem)
+  if (pathname === "/blog" || pathname === "/blog/") {
+    return {
+      title: "Blog CheckMulta — Tudo sobre Multas de Trânsito",
+      description: "Guias práticos sobre como recorrer de multas, prazos, pontos na CNH e seus direitos como condutor. Analise sua multa grátis com nossa IA.",
+      url: `${BASE_URL}/blog`,
+    };
+  }
+
+  // Página de categoria: /blog/categoria/:categoria
+  const matchCategoria = pathname.match(/^\/blog\/categoria\/([^/]+)\/?$/);
+  if (matchCategoria) {
+    const slugCat = matchCategoria[1];
+    const artigoDaCat = artigos.find((a) => slugifyCategoria(a.categoria) === slugCat);
+    const nomeCat = artigoDaCat ? artigoDaCat.categoria : "Categoria";
+    return {
+      title: `${nomeCat} — Blog CheckMulta`,
+      description: `Artigos sobre ${nomeCat}: guias práticos sobre multas de trânsito, recursos e seus direitos. Analise sua multa grátis com nossa IA.`,
+      url: `${BASE_URL}/blog/categoria/${slugCat}`,
+    };
+  }
+
+  // Artigo: /blog/:slug
+  const matchArtigo = pathname.match(/^\/blog\/([^/]+)\/?$/);
+  if (matchArtigo) {
+    const slug = matchArtigo[1];
+    const artigo = artigos.find((a) => a.slug === slug);
+    if (artigo) {
+      return {
+        title: `${artigo.titulo} | CheckMulta`,
+        description: artigo.descricao,
+        url: `${BASE_URL}/blog/${artigo.slug}`,
+      };
+    }
+  }
+
+  // Rota desconhecida: usa a home
+  return home;
+}
+
+function injetarMeta(html: string, meta: MetaInfo): string {
+  const title = esc(meta.title);
+  const desc = esc(meta.description);
+  const url = meta.url;
+
+  return html
+    .replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`)
+    .replace(/<meta name="description" content="[^"]*"/, `<meta name="description" content="${desc}"`)
+    .replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="${url}"`)
+    .replace(/<meta property="og:title" content="[^"]*"/, `<meta property="og:title" content="${title}"`)
+    .replace(/<meta property="og:description" content="[^"]*"/, `<meta property="og:description" content="${desc}"`)
+    .replace(/<meta property="og:url" content="[^"]*"/, `<meta property="og:url" content="${url}"`)
+    .replace(/<meta name="twitter:title" content="[^"]*"/, `<meta name="twitter:title" content="${title}"`)
+    .replace(/<meta name="twitter:description" content="[^"]*"/, `<meta name="twitter:description" content="${desc}"`);
+}
 
 async function startServer() {
   const app = express();
@@ -235,9 +328,27 @@ Requerente`;
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), "dist");
-    app.use(express.static(distPath));
+
+    // Carrega o index.html uma vez na memória
+    const indexHtmlPath = path.join(distPath, "index.html");
+    let indexHtml = "";
+    try {
+      indexHtml = fs.readFileSync(indexHtmlPath, "utf-8");
+    } catch (e) {
+      console.error("Não foi possível ler dist/index.html:", e);
+    }
+
+    app.use(express.static(distPath, { index: false }));
+
+    // SEO: injeta meta tags corretas por rota antes de enviar o HTML
     app.get("*", (req, res) => {
-      res.sendFile(path.join(distPath, "index.html"));
+      if (!indexHtml) {
+        return res.sendFile(indexHtmlPath);
+      }
+      const meta = getMetaParaRota(req.path);
+      const html = injetarMeta(indexHtml, meta);
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      res.send(html);
     });
   }
 
