@@ -12,6 +12,61 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "recurso-de-multa-indeferido-o-que-fazer-agora",
+    titulo: "Recurso de Multa Indeferido: O que fazer agora?",
+    descricao: "Recebeu uma negativa sem fundamentos claros do Detran? Saiba como reagir legalmente e quais passos seguir para reverter o resultado. Analise sua multa grátis.",
+    categoria: "Processo de Recurso",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-red-600 to-red-800",
+    conteudo: `## O que fazer quando o recurso é indeferido sem justificativa clara
+
+Receber uma notificação de indeferimento de recurso é sempre frustrante, especialmente quando o órgão de trânsito ignora os argumentos técnicos apresentados. Em 2026, com a digitalização dos processos via CDT e portais dos órgãos estaduais, é comum que decisões automatizadas ou genéricas gerem revolta. Mas atenção: o silêncio ou a falta de fundamentação legal é uma falha grave do processo administrativo.
+
+## O dever de motivar a decisão
+
+A Constituição Federal, em seu artigo 93, inciso IX, estabelece que todas as decisões dos órgãos públicos devem ser fundamentadas. No âmbito administrativo, a Lei 9.784/1999 reforça que os atos administrativos precisam de motivação clara e precisa. Quando o órgão apenas nega o pedido sem rebater os pontos da sua defesa, ele comete um vício de nulidade.
+
+## Passo 1: Analise a decisão com rigor
+
+Não entre em pânico. O primeiro passo é ler o documento de indeferimento linha por linha. Verifique se o órgão:
+
+* Citou os artigos do Código de Trânsito Brasileiro (CTB) pertinentes.
+* Respondeu aos questionamentos técnicos levantados na sua peça de defesa.
+* Apresentou justificativa para o descarte de provas, como fotos, laudos ou documentos anexados.
+
+Se a decisão for genérica, como um texto padrão que apenas diz 'recurso indeferido por falta de elementos', você tem um forte argumento para a próxima instância.
+
+## Passo 2: Recorra para a próxima instância
+
+Se o seu recurso foi indeferido na JARI (Junta Administrativa de Recursos de Infrações), você ainda tem a segunda instância: o CETRAN (para órgãos estaduais/municipais) ou o CONTRAN/Colegiado (para órgãos federais como o DNIT ou PRF).
+
+No novo recurso, o foco deve ser a nulidade da decisão anterior. Utilize argumentos como:
+
+1. **Cerceamento de defesa**: argumente que o indeferimento genérico impediu o contraditório.
+2. **Ausência de motivação**: aponte que a autoridade não cumpriu o dever de fundamentar o ato, conforme a Lei 9.784/99.
+3. **Reiteração de mérito**: reforce os pontos principais da sua defesa original que não foram sequer lidos pelo julgador da primeira instância.
+
+## Passo 3: Considere a via judicial
+
+Esgotadas as instâncias administrativas, ainda existe o Poder Judiciário. Se houve uma violação clara ao devido processo legal ou erro administrativo evidente que resultou na punição, um advogado ou uma análise técnica especializada pode identificar se uma ação anulatória de débito fiscal é o caminho viável. No Judiciário, o juiz possui competência para anular atos administrativos que carecem de fundamentação.
+
+## O que evitar
+
+* **Não perca prazos**: o indeferimento na primeira instância inicia a contagem para o recurso na segunda instância. Verifique a notificação de indeferimento para saber o prazo exato.
+* **Não subestime a técnica**: ao recorrer novamente, evite textos emotivos. Mantenha a formalidade jurídica e o foco exclusivo nos vícios do processo e na falha da autoridade em motivar a decisão.
+
+## Como garantir que seu próximo recurso seja eficaz?
+
+O erro mais comum é o condutor tentar redigir sua própria defesa usando modelos genéricos da internet, que raramente endereçam as particularidades da infração e os erros formais do agente autuador. Se o seu primeiro recurso foi indeferido, é sinal de que a sua argumentação precisa ser mais técnica, personalizada e embasada na legislação atualizada de 2026.
+
+Na CheckMulta, nós transformamos a sua defesa em um documento jurídico robusto, analisando cada detalhe do auto de infração e da decisão anterior. Não deixe sua CNH em risco por uma decisão mal fundamentada.
+
+Quer saber se a sua multa pode ser anulada? **Clique aqui e analise sua multa grátis agora com o time do CheckMulta.**`,
+    palavrasChave: ["recurso de multa indeferido", "defesa de trânsito", "multa sem justificativa", "processo administrativo"],
+  },
+
+  {
     slug: "como-recorrer-multa-transito-passo-a-passo",
     titulo: "Como Recorrer de Multa de Trânsito: Passo a Passo Completo",
     descricao: "Guia completo para recorrer de multa de trânsito no Brasil. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
