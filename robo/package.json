@@ -1,1 +1,13 @@
-
+{
+  "name": "agente-checkmulta",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "tsx agente.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^2.13.0",
+    "tsx": "^4.19.2"
+  }
+}
