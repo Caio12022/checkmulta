@@ -1,1 +1,35 @@
+name: Robo de Artigos
 
+# Quando roda:
+on:
+  schedule:
+    - cron: "0 12 * * *"   # todo dia às 12:00 UTC (09:00 no horário de Brasília)
+  workflow_dispatch: {}     # permite rodar na mão pelo botão "Run workflow"
+
+# Permissões que o robô precisa para abrir Pull Request
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  gerar-artigo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      - name: Preparar o Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Instalar dependências
+        working-directory: robo
+        run: npm install
+
+      - name: Rodar o robô
+        working-directory: robo
+        run: npm start
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
