@@ -691,21 +691,23 @@ export default function App() {
       </AnimatePresence>
 
       {/* CONTEÚDO PRINCIPAL */}
-      <div className="w-full max-w-4xl flex-1 px-4 py-8 md:py-12 mx-auto">
+      <div className="w-full max-w-4xl flex-1 px-4 py-4 md:py-6 mx-auto">
 
         {/* HERO */}
         <section id="inicio" className="mb-10 flex flex-col items-center text-center w-full max-w-3xl mx-auto">
-          <h1 className="text-[34px] sm:text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] mb-5 tracking-tight mt-4">
+          <h1 className="text-[34px] sm:text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] mb-5 tracking-tight mt-2">
             Consulta de multa de trânsito online: descubra se a sua dá pra recorrer, <span className="text-emerald-600">grátis</span>
           </h1>
           <p className="text-slate-600 text-sm sm:text-base md:text-lg font-medium max-w-2xl mx-auto mb-8 leading-relaxed">
             Faça a análise gratuita da sua multa. Nossa inteligência artificial cruza o auto de infração com o Código de Trânsito Brasileiro (CTB) e o MBFT, campo por campo, em busca do erro formal que pode anular a autuação. Se não encontrar falha, você não paga nada — a análise é grátis e sem cadastro.
           </p>
 
-          <div className="flex flex-wrap justify-center items-center gap-2.5 sm:gap-3 mb-10">
-            <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm sm:text-base font-bold shadow-sm"><ShieldCheck className="w-5 h-5 text-emerald-600" /> Análise gratuita</div>
-            <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm sm:text-base font-bold shadow-sm"><Lock className="w-5 h-5 text-emerald-600" /> Sem cadastro</div>
-            <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm sm:text-base font-bold shadow-sm"><Timer className="w-5 h-5 text-emerald-600" /> Resultado imediato</div>
+          <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-[13px] sm:text-sm font-bold text-slate-700 mb-10">
+            <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-600" /> Análise gratuita</div>
+            <div className="hidden sm:block w-px h-4 bg-slate-300" />
+            <div className="flex items-center gap-2"><Lock className="w-4 h-4 text-emerald-600" /> Sem cadastro</div>
+            <div className="hidden sm:block w-px h-4 bg-slate-300" />
+            <div className="flex items-center gap-2"><Timer className="w-4 h-4 text-emerald-600" /> Resultado imediato</div>
           </div>
         </section>
 
@@ -779,22 +781,6 @@ export default function App() {
                     </div>
                   </button>
                 ))}
-              </div>
-
-              {/* ESTATÍSTICAS — reforço de confiança, abaixo dos cards */}
-              <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-0 border border-slate-200 rounded-2xl bg-white shadow-sm mt-10 divide-y sm:divide-y-0 sm:divide-x divide-slate-200 overflow-hidden">
-                <div className="py-5 px-4 flex flex-col items-center justify-center">
-                  <span className="text-lg sm:text-xl font-black text-slate-900">Sem cadastro</span>
-                  <span className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase mt-1 tracking-wider">direto ao ponto</span>
-                </div>
-                <div className="py-5 px-4 flex flex-col items-center justify-center bg-emerald-50/80">
-                  <span className="text-lg sm:text-xl font-black text-emerald-700">Grátis</span>
-                  <span className="text-[10px] sm:text-[11px] font-bold text-emerald-600 uppercase mt-1 tracking-wider">análise sem custo</span>
-                </div>
-                <div className="py-5 px-4 flex flex-col items-center justify-center">
-                  <span className="text-lg sm:text-xl font-black text-slate-900">Art. 280</span>
-                  <span className="text-[10px] sm:text-[11px] font-bold text-slate-500 uppercase mt-1 tracking-wider">baseado no CTB</span>
-                </div>
               </div>
             </div>
           )}
