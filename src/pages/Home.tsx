@@ -694,7 +694,7 @@ export default function App() {
       <div className="w-full max-w-4xl flex-1 px-4 py-4 md:py-6 mx-auto">
 
         {/* HERO */}
-        <section id="inicio" className="mb-10 flex flex-col items-center text-center w-full max-w-3xl mx-auto">
+        <section id="inicio" className="mb-4 flex flex-col items-center text-center w-full max-w-3xl mx-auto">
           <h1 className="text-[34px] sm:text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] mb-5 tracking-tight mt-2">
             Consulta de multa de trânsito online: descubra se a sua dá pra recorrer, <span className="text-emerald-600">grátis</span>
           </h1>
@@ -702,7 +702,7 @@ export default function App() {
             Faça a análise gratuita da sua multa. Nossa inteligência artificial cruza o auto de infração com o Código de Trânsito Brasileiro (CTB) e o MBFT, campo por campo, em busca do erro formal que pode anular a autuação. Se não encontrar falha, você não paga nada — a análise é grátis e sem cadastro.
           </p>
 
-          <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-[13px] sm:text-sm font-bold text-slate-700 mb-10">
+          <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-[13px] sm:text-sm font-bold text-slate-700 mb-6">
             <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-600" /> Análise gratuita</div>
             <div className="hidden sm:block w-px h-4 bg-slate-300" />
             <div className="flex items-center gap-2"><Lock className="w-4 h-4 text-emerald-600" /> Sem cadastro</div>
@@ -762,9 +762,9 @@ export default function App() {
               </motion.div>
             </div>
           ) : (
-            <div className="text-center mt-6">
+            <div className="text-center mt-0">
               <div className="mb-6 sm:mb-8">
-                <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-2 tracking-tight">Descubra agora se sua multa pode ser anulada</h2>
+                <h2 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Descubra agora se sua multa pode ser anulada</h2>
                 <p className="text-sm sm:text-base text-slate-600 font-medium">Selecione o tipo de infração para iniciar a análise gratuita:</p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
