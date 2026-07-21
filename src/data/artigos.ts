@@ -12,6 +12,53 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "recurso-de-multa-por-excesso-de-velocidade-veja-como-recorrer",
+    titulo: "Recurso de multa por excesso de velocidade: veja como recorrer",
+    descricao: "Recebeu uma multa por excesso de velocidade em rodovia? Entenda seus direitos e como estruturar sua defesa. Acesse o CheckMulta e analise sua multa grátis.",
+    categoria: "Velocidade",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🚗",
+    imagemBg: "from-red-600 to-red-800",
+    conteudo: `## Entendendo a multa por excesso de velocidade em rodovias
+
+O excesso de velocidade é uma das infrações mais comuns nas rodovias brasileiras. Com a tecnologia de monitoramento cada vez mais presente, muitos condutores acabam sendo autuados por ultrapassarem os limites permitidos em trechos específicos. No entanto, receber a notificação de autuação não significa que o processo está encerrado ou que a penalidade é definitiva. Todo condutor tem o direito constitucional à ampla defesa.
+
+## Por que recorrer de uma multa de velocidade?
+
+Muitos motoristas acreditam que o radar é infalível, mas o procedimento de fiscalização envolve diversas etapas que podem apresentar erros. Falhas na sinalização da via, equipamentos com aferição vencida pelo órgão responsável ou erros no preenchimento do auto de infração são causas frequentes de anulação de multas. Quando você contesta uma autuação, está exigindo que a administração pública comprove, com rigor legal, que a infração foi cometida dentro de todos os parâmetros exigidos pelo Código de Trânsito Brasileiro.
+
+## O que analisar antes de montar seu recurso
+
+Ao receber a notificação, o primeiro passo é a calma. Observe os seguintes pontos críticos:
+
+* **Sinalização do local:** A via estava devidamente sinalizada? As placas de limite de velocidade devem estar visíveis e em condições de leitura para o condutor.
+* **Dados do veículo:** O modelo, a placa e a cor conferem com o registro do seu veículo? Qualquer divergência pode ser um ponto importante para o sucesso da defesa.
+* **Equipamento de fiscalização:** Verifique se o documento da infração menciona as informações sobre o equipamento utilizado. O aparelho deve estar com a certificação de verificação periódica dentro da validade exigida pela legislação.
+* **Localização e data:** Confira se o local da infração realmente existe e se a data e o horário são compatíveis com o trajeto que você realizou.
+
+## Estruturando sua defesa administrativa
+
+O processo de recurso é dividido em fases. Primeiro, temos a Defesa Prévia, enviada ao órgão autuador. Se negada, o condutor pode recorrer às instâncias superiores, como a JARI e, posteriormente, ao órgão estadual competente. Para ter sucesso, sua defesa precisa ser baseada em argumentos técnicos e não apenas em justificativas subjetivas.
+
+Evite escrever textos baseados em reclamações pessoais ou sentimentos. A autoridade de trânsito analisa documentos e fatos previstos na legislação vigente. Argumentos como emergências médicas precisam ser comprovados com documentos oficiais, caso contrário, tendem a ser indeferidos.
+
+## Erros comuns que devem ser evitados
+
+1. **Perder os prazos:** Cada fase do recurso possui um prazo estabelecido pela legislação. Se você perder o prazo da Defesa Prévia, terá menos chances de questionar o mérito da autuação nas instâncias superiores.
+2. **Falta de provas:** Não basta dizer que não cometeu a infração. Se houver erro na sinalização ou no equipamento, anexe fotos ou documentos que comprovem sua tese.
+3. **Identificação do condutor:** Caso você não estivesse dirigindo o veículo, é fundamental realizar a indicação do real condutor dentro do prazo legal, caso contrário, o proprietário do veículo será responsabilizado pela infração.
+
+## A importância da estratégia jurídica
+
+O Direito de Trânsito brasileiro é complexo e as normas administrativas mudam com frequência. Uma defesa bem escrita, citando as normas corretas e apontando falhas formais no documento, aumenta consideravelmente as chances de sucesso. Muitas autuações são canceladas justamente por erros na formalização do processo administrativo por parte dos órgãos de fiscalização.
+
+Não tome decisões precipitadas nem aceite a penalidade apenas por achar que é impossível reverter a situação. A tecnologia e a legislação existem tanto para garantir a segurança no trânsito quanto para proteger o cidadão contra arbitrariedades ou falhas processuais.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Nossa plataforma ajuda você a identificar os caminhos mais eficazes para proteger seu direito de dirigir.`,
+    palavrasChave: ["recurso de multa", "excesso de velocidade", "multa rodovia", "defesa de trânsito"],
+  },
+
+  {
     slug: "recurso-de-multa-indeferido-o-que-fazer-agora",
     titulo: "Recurso de Multa Indeferido: O que fazer agora?",
     descricao: "Recebeu uma negativa sem fundamentos claros do Detran? Saiba como reagir legalmente e quais passos seguir para reverter o resultado. Analise sua multa grátis.",
