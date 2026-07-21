@@ -139,10 +139,20 @@ Responda APENAS com um objeto JSON válido, sem markdown, sem crases, sem texto 
   "imagemEmoji": "um único emoji relacionado",
   "imagemBg": "um gradiente Tailwind no formato 'from-COR-600 to-COR-800' (ex: from-blue-600 to-blue-800)",
   "palavrasChave": ["3 a 5 palavras-chave de busca"],
-  "conteudo": "artigo em MARKDOWN, 600-900 palavras, com títulos ## , listas, negrito. Use linguagem clara. NÃO use aspas duplas dentro do texto (use aspas simples se precisar). Termine com uma seção convidando a analisar a multa grátis no CheckMulta."
+  "conteudo": "artigo em MARKDOWN, 600-900 palavras, com títulos ## , listas, negrito. Use linguagem clara. NÃO use aspas duplas dentro do texto (use aspas simples se precisar)."
 }
 
-Regras do conteúdo: seja preciso juridicamente, cite o CTB quando fizer sentido, não invente números de artigos. O texto deve ser útil e original.`;
+REGRAS JURÍDICAS (muito importante, para evitar erros):
+- SÓ cite um número específico de artigo do CTB, de lei ou de resolução se tiver CERTEZA absoluta de que está correto. Na dúvida, NÃO cite o número: use expressões gerais como 'o Código de Trânsito Brasileiro prevê', 'a legislação de trânsito estabelece', 'as normas administrativas determinam'.
+- É melhor um texto sem número de artigo do que um texto com número errado.
+- NÃO invente prazos exatos, valores de multa em reais, ou quantidade de pontos se não tiver certeza. Fale de forma geral.
+- NÃO invente nomes de leis, resoluções ou jurisprudência.
+- Mantenha o texto correto, coerente e útil, mesmo que mais genérico.
+
+REGRA DO CHAMADO FINAL (CTA):
+- Termine o artigo com um parágrafo curto convidando o leitor a analisar a multa gratuitamente no CheckMulta.
+- NUNCA escreva 'clique aqui', 'clique no botão', 'clique no link' ou similares. O site já tem os botões próprios.
+- Escreva de forma natural, por exemplo: 'No CheckMulta, você pode enviar o auto de infração e receber uma análise gratuita que aponta se há falhas capazes de anular a multa.'`;
 
   const resp = await ai.models.generateContent({
     model: "gemini-3.1-flash-lite",
@@ -155,6 +165,39 @@ Regras do conteúdo: seja preciso juridicamente, cite o CTB quando fizer sentido
 
   const obj = JSON.parse(texto);
   return obj;
+}
+
+// ============================================================
+// PASSO B2: revisão jurídica - o modelo relê o próprio artigo
+// procurando erros de fato (artigos, leis, prazos, valores) e
+// corrige, deixando o texto mais seguro. Também remove "clique aqui".
+// Reduz erros, mas não garante 100% - a revisão humana continua importante.
+// ============================================================
+async function revisarArtigo(conteudo: string): Promise<string> {
+  const prompt = `Você é um revisor jurídico sênior de Direito de Trânsito brasileiro. Abaixo está um artigo de blog. Sua tarefa é revisá-lo e devolver a versão CORRIGIDA.
+
+Faça o seguinte:
+1. Verifique TODA citação de número de artigo, lei, resolução, prazo, valor em reais ou quantidade de pontos. Se algo estiver errado OU se você não tiver certeza de que está correto, REMOVA o número específico e substitua por uma expressão geral (ex: 'a legislação prevê', 'o Código de Trânsito Brasileiro estabelece', 'dentro do prazo legal'). É melhor genérico e correto do que específico e errado.
+2. Corrija qualquer afirmação juridicamente incorreta ou contraditória.
+3. Remova qualquer 'clique aqui', 'clique no botão' ou similar, reescrevendo a frase de forma natural.
+4. Mantenha o tom, o tamanho, a estrutura em markdown (títulos ##, listas, negrito) e o sentido geral do artigo.
+5. NÃO use aspas duplas dentro do texto (use aspas simples se precisar).
+
+Responda APENAS com o texto do artigo revisado em markdown, sem comentários, sem explicações, sem crases, sem nada antes ou depois.
+
+ARTIGO PARA REVISAR:
+${conteudo}`;
+
+  const resp = await ai.models.generateContent({
+    model: "gemini-3.1-flash-lite",
+    contents: prompt,
+  });
+
+  let texto = resp.text?.trim() || "";
+  texto = texto.replace(/^```markdown\s*/i, "").replace(/^```\s*/i, "").replace(/```\s*$/i, "").trim();
+  // se a revisão vier vazia ou muito curta, mantém o original (segurança)
+  if (texto.length < 200) return conteudo;
+  return texto;
 }
 
 // ============================================================
@@ -280,6 +323,11 @@ async function main() {
       throw new Error(`Campo obrigatório vazio: ${campo}`);
     }
   }
+
+  // 4.5 revisão jurídica: o modelo relê e corrige o próprio artigo
+  console.log("Revisando artigo (checagem jurídica)...");
+  artigo.conteudo = await revisarArtigo(String(artigo.conteudo));
+  console.log("Revisão concluída.");
 
   // 5. monta o bloco e insere
   const bloco = montarBloco(artigo, slug);
