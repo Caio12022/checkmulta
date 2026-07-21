@@ -12,6 +12,53 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "faixa-da-esquerda-quando-trafegar-nela-da-multa",
+    titulo: "Faixa da esquerda: quando trafegar nela dá multa?",
+    descricao: "Sabe se pode transitar na faixa da esquerda sem ultrapassar? Entenda o que diz o CTB e evite multas. Clique e analise sua multa grátis no CheckMulta.",
+    categoria: "Comportamento no Trânsito",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🚗",
+    imagemBg: "from-red-600 to-red-800",
+    conteudo: `## A regra de ouro das rodovias: a faixa da esquerda
+
+No cotidiano das rodovias brasileiras em 2026, uma dúvida persiste entre muitos motoristas: afinal, posso seguir pela faixa da esquerda se eu estiver na velocidade máxima permitida da via? A resposta curta é não. De acordo com o Código de Trânsito Brasileiro (CTB), a faixa da esquerda é reservada exclusivamente para ultrapassagens e para veículos que pretendam virar à esquerda.
+
+## O que o CTB determina?
+
+O Artigo 29, inciso IV do CTB é claro ao estabelecer que, quando uma via possui várias faixas de circulação no mesmo sentido, as da direita são destinadas ao deslocamento dos veículos mais lentos e de maior porte, enquanto a faixa da esquerda é destinada à ultrapassagem e ao deslocamento dos veículos de maior velocidade.
+
+Muitos condutores acreditam erroneamente que, por estarem dirigindo no limite de velocidade da via, possuem o direito de ocupar a faixa da esquerda permanentemente. No entanto, o Código não faz essa distinção. Se você não está realizando uma manobra de ultrapassagem, você deve retornar à faixa da direita assim que possível.
+
+## A infração e as penalidades
+
+Permanecer na faixa da esquerda sem efetuar a ultrapassagem configura infração de trânsito prevista no Artigo 184, inciso I, do CTB (em casos de vias com faixas exclusivas) ou, mais comumente, por descumprimento das normas gerais de circulação, gerando uma multa de natureza média, com a soma de pontos na Carteira Nacional de Habilitação (CNH).
+
+Além da questão punitiva, essa conduta causa um efeito cascata no trânsito:
+
+* **Retenção de fluxo:** Obriga outros condutores a realizarem ultrapassagens perigosas pela direita.
+* **Aumento do estresse:** Cria situações de conflito e proximidade excessiva entre veículos.
+* **Risco de acidentes:** Aumenta drasticamente a chance de colisões traseiras e saídas de pista.
+
+## Como agir corretamente?
+
+Para dirigir com segurança e dentro da lei, siga estas orientações práticas:
+
+1. **Use a faixa da esquerda apenas para o que ela foi feita:** Ultrapassagens.
+2. **Sinalize sempre:** Utilize a seta com antecedência para indicar sua intenção de ultrapassar e, logo após concluir, sinalize para retornar à faixa da direita.
+3. **Mantenha a distância:** Respeite a distância segura do veículo à frente, mesmo durante a ultrapassagem.
+4. **Facilite a passagem:** Se um veículo mais rápido se aproximar por trás na faixa da esquerda, dê passagem. Não cabe ao motorista julgar se o condutor de trás está ou não acima da velocidade permitida.
+
+## Recebeu uma multa indevida?
+
+Às vezes, a interpretação do agente de trânsito pode ser subjetiva ou a notificação pode conter erros formais que invalidam a penalidade. Trafegar na faixa da esquerda envolve o contexto da via e a percepção do agente, o que abre margem para defesa em diversas situações.
+
+Não aceite uma pontuação em sua CNH sem antes verificar se seus direitos foram respeitados. O CheckMulta utiliza tecnologia de ponta para analisar a sua notificação e identificar os melhores argumentos técnicos para o seu recurso.
+
+**Quer saber se a sua multa tem chances de ser cancelada?** Acesse nossa plataforma agora mesmo, envie os dados da sua autuação e conte com a nossa análise especializada para recorrer sem burocracia. O CheckMulta analisa sua multa grátis e te orienta no melhor caminho.`,
+    palavrasChave: ["multa faixa da esquerda", "ultrapassagem CTB", "infrações de trânsito 2026", "regras de circulação"],
+  },
+
+  {
     slug: "como-recorrer-multa-transito-passo-a-passo",
     titulo: "Como Recorrer de Multa de Trânsito: Passo a Passo Completo",
     descricao: "Guia completo para recorrer de multa de trânsito no Brasil. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
