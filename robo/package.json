@@ -1,10 +1,10 @@
 {
-  "name": "agente-checkmulta",
+  "name": "robo-checkmulta",
   "version": "1.0.0",
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "tsx agente.ts"
+    "start": "tsx robo.ts"
   },
   "dependencies": {
     "@google/genai": "^2.13.0",
