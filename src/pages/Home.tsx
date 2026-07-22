@@ -762,9 +762,9 @@ export default function App() {
               </motion.div>
             </div>
           ) : (
-            <div className="text-center mt-0">
+            <div className="text-center mt-6">
               <div className="mb-6 sm:mb-8">
-                <h2 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Descubra agora se sua multa pode ser anulada</h2>
+                <h2 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Descubra <span className="text-emerald-600">agora</span> se sua multa pode ser anulada</h2>
                 <p className="text-sm sm:text-base text-slate-600 font-medium">Selecione o tipo de infração para iniciar a análise gratuita:</p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
@@ -853,7 +853,7 @@ export default function App() {
       {/* COMO FUNCIONA */}
       <section id="como-funciona" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-5xl w-full">
-          <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Como funciona a análise?</h2>
+          <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Como funciona a <span className="text-emerald-600">análise</span>?</h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
             <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
@@ -915,7 +915,7 @@ export default function App() {
       {/* SEGURANÇA */}
       <section id="seguranca" className="w-full bg-white border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-5xl w-full">
-          <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Seus Dados 100% Seguros</h2>
+          <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Seus Dados <span className="text-emerald-600">100% Seguros</span></h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
               <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6"><Lock className="w-8 h-8" /></div>
@@ -940,7 +940,7 @@ export default function App() {
       <section id="faq-seo" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-4xl w-full space-y-12">
           <div className="text-center">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Dúvidas Frequentes</h2>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Dúvidas <span className="text-emerald-600">Frequentes</span></h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 transition-colors">
@@ -971,7 +971,7 @@ export default function App() {
       <section id="guias" className="w-full bg-white border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-5xl w-full">
           <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-3">Guias para recorrer de multa por tipo de infração</h2>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-3">Guias para recorrer de multa por tipo de <span className="text-emerald-600">infração</span></h2>
             <p className="text-slate-600 font-medium max-w-2xl mx-auto">Além da análise automática, reunimos guias completos sobre como recorrer de cada tipo de multa de trânsito no Brasil. Escolha o seu caso:</p>
           </div>
 
@@ -1002,7 +1002,7 @@ export default function App() {
       <section className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-4xl w-full">
           <div className="bg-white p-6 sm:p-10 rounded-2xl shadow-sm border border-slate-200">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-6">Como recorrer de uma multa de trânsito no Brasil</h2>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-6">Como recorrer de uma multa de trânsito <span className="text-emerald-600">no Brasil</span></h2>
             <div className="prose prose-slate max-w-none space-y-6 text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
               <p>Recorrer de uma multa de trânsito é um direito garantido pelo <strong className="text-slate-800">Código de Trânsito Brasileiro (CTB)</strong> a todo condutor que acredite ter sido autuado de forma irregular. Muitas autuações contêm erros formais de preenchimento que passam despercebidos e que podem, sozinhos, anular a multa. É exatamente esse tipo de falha que a análise da CheckMulta procura no seu auto de infração.</p>
               <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Qual o prazo para recorrer de uma multa?</h3>
