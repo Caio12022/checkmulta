@@ -777,7 +777,7 @@ export default function App() {
                     <v.icon className="w-8 h-8 text-slate-400 group-hover:text-blue-500 transition-colors mb-1" />
                     <div className="text-center">
                       <span className="block text-sm sm:text-[15px] font-bold leading-tight">{v.name}</span>
-                      <span className="block text-[11px] sm:text-xs text-slate-500 font-medium mt-1">{v.subtitle}</span>
+                      <span className="block text-sm text-slate-500 font-medium mt-1">{v.subtitle}</span>
                     </div>
                   </button>
                 ))}
