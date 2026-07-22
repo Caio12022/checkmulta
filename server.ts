@@ -50,8 +50,8 @@ interface MetaInfo {
 function getMetaParaRota(pathname: string): MetaInfo {
   // Home (padrão)
   const home: MetaInfo = {
-    title: "Foi Multado? Consulta Gratuita de Multas | CheckMulta",
-    description: "Faça a consulta gratuita da sua multa. Nossa Inteligência Artificial acha o erro na infração e cria seu recurso na hora. Consulte grátis!",
+    title: "Sua multa dá pra recorrer? Descubra grátis com IA | CheckMulta",
+    description: "Sua multa pode ter um erro formal que abre margem pra recurso. Nossa IA verifica grátis em 60s e entrega a petição pronta. Sem cadastro, sem advogado.",
     url: `${BASE_URL}/`,
   };
 
