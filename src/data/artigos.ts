@@ -12,6 +12,54 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "multa-por-triangulo-ou-extintor-como-proceder-em-2026",
+    titulo: "Multa por Triângulo ou Extintor: Como proceder em 2026",
+    descricao: "Foi multado pela falta ou mau estado do triângulo ou extintor? Entenda o que diz a legislação vigente em 2026 e como analisar sua multa grátis.",
+    categoria: "Equipamentos",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⚠️",
+    imagemBg: "from-amber-600 to-amber-800",
+    conteudo: `## Equipamentos obrigatórios e a fiscalização atual
+
+Manter o veículo em perfeitas condições de uso é um dever de todo condutor brasileiro. Entre os itens fundamentais para a segurança estão os equipamentos de emergência. A ausência, o mau funcionamento ou o estado de conservação inadequado desses itens pode resultar em autuações que pesam no bolso e geram pontos na carteira. É comum surgirem dúvidas sobre o que realmente é obrigatório e como contestar uma autuação desse tipo.
+
+## O caso do triângulo de sinalização
+
+O triângulo é um item de segurança indispensável. A legislação de trânsito determina que todo veículo deve possuir esse equipamento em condições de uso. A falta do triângulo ou a apresentação de um modelo danificado, que não cumpra sua função de alertar outros motoristas em situações de emergência, pode configurar uma infração administrativa.
+
+É importante lembrar que a fiscalização não busca apenas a presença do item, mas a sua eficácia. Se o equipamento estiver guardado, mas impossibilitado de ser montado ou sem visibilidade adequada, o agente de trânsito pode entender que o veículo está irregular.
+
+## A polêmica do extintor de incêndio
+
+Muito se discutiu nos últimos anos sobre a obrigatoriedade do extintor de incêndio em veículos de passeio. Atualmente, para a maioria dos carros de passeio, o uso do extintor é facultativo, conforme as normas vigentes. No entanto, para veículos de transporte de passageiros, transporte de produtos perigosos e veículos pesados, o equipamento permanece como item obrigatório e essencial.
+
+Se o seu veículo se enquadra nas categorias onde o extintor é obrigatório, a atenção deve ser redobrada quanto à validade do item. Extintores vencidos são equiparados a equipamentos inexistentes, pois o agente de fiscalização considera que, em um momento de necessidade, o item não garantirá a segurança necessária. Verifique sempre se o manômetro indica carga e se a data de validade está em dia.
+
+## O que fazer ao receber a autuação?
+
+Se você foi multado por irregularidades nesses equipamentos, saiba que o direito à defesa é garantido. Nem toda autuação é infalível. Existem diversos pontos que podem ser questionados em um processo administrativo, tais como:
+
+* **Erros formais:** Dados incorretos no auto de infração, como placa, modelo do veículo ou local da abordagem.
+* **Descrição imprecisa:** A descrição do agente deve ser clara e detalhada sobre a real situação do equipamento.
+* **Abordagem indevida:** Em muitos casos, a fiscalização deve ser acompanhada de uma vistoria técnica clara, garantindo que o condutor tenha ciência do motivo da infração.
+
+## Dicas para evitar problemas
+
+Para transitar com tranquilidade, siga estas recomendações:
+
+1. **Check-list periódico:** Periodicamente, verifique se o triângulo está no porta-malas e se não está quebrado.
+2. **Validade:** Caso seu veículo necessite de extintor, anote a data de validade em um local visível ou no seu celular.
+3. **Mantenha a calma:** Em caso de abordagem, seja educado e verifique se as informações anotadas pelo agente coincidem com a realidade do seu veículo.
+
+## Como recorrer de forma inteligente
+
+Recorrer de uma multa por equipamentos não significa apenas discordar da autuação, mas apontar falhas técnicas no documento lavrado pelo agente ou no procedimento adotado. Muitos motoristas conseguem anular autuações quando comprovam que o equipamento estava presente ou que houve um erro na interpretação da norma pelo fiscal.
+
+Se você recebeu uma multa relacionada a equipamentos e acredita que houve uma falha na aplicação da norma, saiba que não está sozinho. No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Utilize a tecnologia a seu favor para proteger sua carteira de habilitação.`,
+    palavrasChave: ["multa triângulo", "extintor vencido", "equipamentos obrigatórios", "recurso de multa"],
+  },
+
+  {
     slug: "recurso-de-multa-por-excesso-de-velocidade-veja-como-recorrer",
     titulo: "Recurso de multa por excesso de velocidade: veja como recorrer",
     descricao: "Recebeu uma multa por excesso de velocidade em rodovia? Entenda seus direitos e como estruturar sua defesa. Acesse o CheckMulta e analise sua multa grátis.",
