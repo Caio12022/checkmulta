@@ -853,21 +853,21 @@ export default function App() {
       {/* COMO FUNCIONA */}
       <section id="como-funciona" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-5xl w-full">
-          <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Como funciona a <span className="text-emerald-600">análise</span>?</h2>
+          <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Como funciona a <span className="text-emerald-600">análise?</span></h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-5"><UploadCloud className="w-7 h-7" /></div>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-4"><UploadCloud className="w-6 h-6" /></div>
               <h3 className="text-base font-bold text-slate-900 mb-2">1. Envie a foto</h3>
               <p className="text-slate-500 text-sm font-medium leading-relaxed">Tire uma foto ou suba o PDF do auto de infração. Nenhum dado é armazenado.</p>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-5"><Search className="w-7 h-7" /></div>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-4"><Search className="w-6 h-6" /></div>
               <h3 className="text-base font-bold text-slate-900 mb-2">2. A IA audita</h3>
               <p className="text-slate-500 text-sm font-medium leading-relaxed">Cruzamos cada campo com o CTB e o Manual Brasileiro de Fiscalização (MBFT).</p>
             </div>
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
-              <div className="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-5"><FileText className="w-7 h-7" /></div>
+            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
+              <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-4"><FileText className="w-6 h-6" /></div>
               <h3 className="text-base font-bold text-slate-900 mb-2">3. Diagnóstico grátis</h3>
               <p className="text-slate-500 text-sm font-medium leading-relaxed">Revelamos a falha encontrada e o nível de viabilidade do seu recurso.</p>
             </div>
@@ -916,21 +916,21 @@ export default function App() {
       <section id="seguranca" className="w-full bg-white border-t border-slate-200 py-16 px-4 flex justify-center">
         <div className="max-w-5xl w-full">
           <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Seus Dados <span className="text-emerald-600">100% Seguros</span></h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-6"><Lock className="w-8 h-8" /></div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Zero Armazenamento</h3>
-              <p className="text-slate-600 font-medium leading-relaxed">Não guardamos a foto do seu documento. A imagem é processada na memória do servidor e imediatamente deletada.</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
+              <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-4"><Lock className="w-6 h-6" /></div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">Zero Armazenamento</h3>
+              <p className="text-slate-600 text-sm font-medium leading-relaxed">Não guardamos a foto do seu documento. A imagem é processada na memória do servidor e imediatamente deletada.</p>
             </div>
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-6"><UserX className="w-8 h-8" /></div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Sem Cadastro</h3>
-              <p className="text-slate-600 font-medium leading-relaxed">Você não precisa criar conta, colocar e-mail ou senha para auditar a sua multa. É direto ao ponto.</p>
+            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
+              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-4"><UserX className="w-6 h-6" /></div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">Sem Cadastro</h3>
+              <p className="text-slate-600 text-sm font-medium leading-relaxed">Você não precisa criar conta, colocar e-mail ou senha para auditar a sua multa. É direto ao ponto.</p>
             </div>
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-              <div className="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-6"><Route className="w-8 h-8" /></div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Total Transparência</h3>
-              <p className="text-slate-600 font-medium leading-relaxed">Atuamos como uma ferramenta tecnológica baseada no CTB. Nós criamos a tese, mas a decisão final é do órgão julgador.</p>
+            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
+              <div className="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-4"><Route className="w-6 h-6" /></div>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">Total Transparência</h3>
+              <p className="text-slate-600 text-sm font-medium leading-relaxed">Atuamos como uma ferramenta tecnológica baseada no CTB. Nós criamos a tese, mas a decisão final é do órgão julgador.</p>
             </div>
           </div>
         </div>
