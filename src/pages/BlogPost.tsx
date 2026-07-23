@@ -105,14 +105,14 @@ const renderMarkdown = (texto: string, slugAtual: string, jaUsados: Set<string>)
 
     if (linha.startsWith("## ")) {
       elementos.push(
-        <h2 key={i} className="text-xl sm:text-2xl font-black text-slate-900 mt-10 mb-4 leading-tight">
+        <h2 key={i} className="text-xl sm:text-2xl font-bold text-slate-900 mt-10 mb-4 leading-tight">
           {linha.replace("## ", "")}
         </h2>
       );
     }
     else if (linha.startsWith("### ")) {
       elementos.push(
-        <h3 key={i} className="text-lg font-black text-slate-800 mt-6 mb-3 leading-tight">
+        <h3 key={i} className="text-lg font-bold text-slate-800 mt-6 mb-3 leading-tight">
           {linha.replace("### ", "")}
         </h3>
       );
@@ -177,7 +177,7 @@ const renderMarkdown = (texto: string, slugAtual: string, jaUsados: Set<string>)
         <ol key={i} className="space-y-2 my-4 pl-2">
           {itens.map((item, ii) => (
             <li key={ii} className="flex items-start gap-3 text-slate-700 font-medium text-[15px]">
-              <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-700 font-black text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
                 {ii + 1}
               </span>
               <span dangerouslySetInnerHTML={{ __html: formatarTexto(item, slugAtual, jaUsados) }} />
@@ -192,7 +192,7 @@ const renderMarkdown = (texto: string, slugAtual: string, jaUsados: Set<string>)
     }
     else {
       elementos.push(
-        <p key={i} className="text-slate-700 text-[15px] sm:text-base leading-relaxed font-medium my-3"
+        <p key={i} className="text-slate-700 text-[16.5px] leading-[1.75] my-4"
           dangerouslySetInnerHTML={{ __html: formatarTexto(linha, slugAtual, jaUsados) }}
         />
       );
@@ -205,7 +205,7 @@ const renderMarkdown = (texto: string, slugAtual: string, jaUsados: Set<string>)
 
 const formatarTexto = (texto: string, slugAtual: string, jaUsados: Set<string>): string => {
   let html = texto
-    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-slate-900 font-black">$1</strong>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-slate-900 font-bold">$1</strong>')
     .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
   // Aplica links internos (só primeira ocorrência de cada artigo)
   html = aplicarLinksInternos(html, slugAtual, jaUsados);
@@ -366,7 +366,7 @@ export default function BlogPost() {
           >
             {artigo.categoria}
           </span>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 leading-tight mb-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-4">
             {artigo.titulo}
           </h1>
           <p className="text-slate-600 text-base font-medium mb-6">{artigo.descricao}</p>
@@ -395,7 +395,7 @@ export default function BlogPost() {
               <ShieldCheck className="w-5 h-5 text-emerald-600" />
             </div>
             <div className="flex-1">
-              <p className="text-slate-900 font-black text-base mb-1">Descubra em 60 segundos se sua multa tem erro</p>
+              <p className="text-slate-900 font-bold text-base mb-1">Descubra em 60 segundos se sua multa tem erro</p>
               <p className="text-slate-500 text-sm font-medium">Mais de 400 multas já analisadas. Grátis e sem cadastro.</p>
             </div>
             <Link
@@ -436,7 +436,7 @@ export default function BlogPost() {
               <ShieldCheck className="w-6 h-6 text-emerald-600" />
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-black text-slate-900 mb-2">Tem uma multa para analisar?</h3>
+              <h3 className="text-lg font-bold text-slate-900 mb-2">Tem uma multa para analisar?</h3>
               <p className="text-slate-600 font-medium text-sm mb-4">
                 Mais de 400 multas já analisadas. Nossa IA encontra erros formais que podem anular a sua. Se não houver falha, você não paga nada.
               </p>
@@ -452,11 +452,11 @@ export default function BlogPost() {
 
         {/* FAQ */}
         <div className="mb-10">
-          <h2 className="text-xl font-black text-slate-900 mb-5">Perguntas frequentes</h2>
+          <h2 className="text-xl font-bold text-slate-900 mb-5">Perguntas frequentes</h2>
           <div className="space-y-3">
             {faq.map((f, i) => (
               <details key={i} className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden group">
-                <summary className="px-5 py-4 font-black text-slate-800 text-sm cursor-pointer list-none flex items-center justify-between hover:text-blue-600 transition-colors">
+                <summary className="px-5 py-4 font-bold text-slate-800 text-sm cursor-pointer list-none flex items-center justify-between hover:text-blue-600 transition-colors">
                   {f.pergunta}
                   <span className="text-blue-600 text-lg group-open:rotate-45 transition-transform">+</span>
                 </summary>
@@ -470,7 +470,7 @@ export default function BlogPost() {
 
         {/* OUTROS ARTIGOS */}
         <div>
-          <h2 className="text-xl font-black text-slate-900 mb-5">Continue lendo sobre {artigo.categoria}</h2>
+          <h2 className="text-xl font-bold text-slate-900 mb-5">Continue lendo sobre {artigo.categoria}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {outrosArtigos.map((a) => {
               const corA = getCorSuave(a.imagemBg);
@@ -482,7 +482,7 @@ export default function BlogPost() {
                     <span className="text-2xl">{a.imagemEmoji}</span>
                   </div>
                   <div className="p-4">
-                    <h3 className="text-sm font-black text-slate-900 leading-snug group-hover:text-blue-600 transition-colors mb-1">
+                    <h3 className="text-sm font-bold text-slate-900 leading-snug group-hover:text-blue-600 transition-colors mb-1">
                       {a.titulo}
                     </h3>
                     <span className="text-xs text-slate-400 font-medium flex items-center gap-1">
@@ -510,7 +510,7 @@ export default function BlogPost() {
       >
         <Link
           to="/"
-          className="flex items-center justify-center gap-2 bg-emerald-600 text-white font-black px-6 py-4 rounded-2xl shadow-2xl hover:bg-emerald-700 transition-colors"
+          className="flex items-center justify-center gap-2 bg-emerald-600 text-white font-bold px-6 py-4 rounded-2xl shadow-2xl hover:bg-emerald-700 transition-colors"
         >
           <ShieldCheck className="w-5 h-5" />
           Analisar Minha Multa Grátis
