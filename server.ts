@@ -359,7 +359,7 @@ Antes de qualquer análise, verifique se o documento é REALMENTE um auto de inf
 
 RETORNE APENAS a string "documento_invalido", sem mais nada, se o documento for QUALQUER UMA destas coisas:
 - Foto aleatória, paisagem, pessoa, tela preta, print de conversa, nota fiscal, contrato
-- AUTO DE INFRAÇÃO DE TRÂNSITO (DETRAN, DEMUTRAN, CET, PRF, multa de veículo, radar, AIT, placa, RENAVAM, CTB)
+- AUTO DE INFRAÇÃO DE TRÂNSITO (DETRAN, DEMUTRAN, CET, PRF, radar, AIT, placa, RENAVAM, CTB, condutor, velocidade)
 - Auto da VIGILÂNCIA SANITÁRIA
 - Auto AMBIENTAL (IBAMA, secretaria de meio ambiente)
 - Auto do CORPO DE BOMBEIROS (AVCB)
@@ -398,7 +398,7 @@ VÍCIOS A PROCURAR — 16 pontos
 NOTIFICAÇÃO
 1. Notificação por edital sem esgotamento de diligências (empresa com endereço certo). Art. 42, §2º, Dec. 2.181/97. CRÍTICO.
 2. Ausência de notificação pessoal do julgamento (decisão só em diário oficial havendo endereço conhecido). CRÍTICO.
-3. Prazo de defesa concedido inferior ao previsto na norma aplicável** — auto que concede prazo menor que o previsto. ATENÇÃO ESPECIAL: o art. 42 do Decreto 2.181/97 prevê 20 dias. Se o auto conceder prazo MENOR que 20 dias (ex: 10 ou 15 dias), você DEVE apontar este vício, copiando o trecho onde o prazo aparece. Não trate o prazo curto como legítimo só porque está escrito no documento — o prazo escrito no auto é justamente o que se questiona. Exceção: se o auto for de Procon do Estado de São Paulo, o prazo de 15 dias tem base na Lei Estadual 10.177/98 e NÃO é vício; nesse caso, aponte apenas se for menor que 15. Gravidade: crítico.
+3. Prazo de defesa concedido inferior ao previsto na norma aplicável. ATENÇÃO ESPECIAL: o art. 42 do Decreto 2.181/97 prevê 20 dias. Se o auto conceder prazo MENOR que 20 dias (ex: 10 ou 15 dias), você DEVE apontar este vício, copiando o trecho onde o prazo aparece. Não trate o prazo curto como legítimo só porque está escrito no documento — o prazo escrito no auto é justamente o que se questiona. Exceção: se o auto for de Procon do Estado de São Paulo, o prazo de 15 dias tem base na Lei Estadual 10.177/98 e NÃO é vício; nesse caso, aponte apenas se for menor que 15. CRÍTICO.
 
 COMPETÊNCIA
 4. Órgão ou agente sem atribuição (Procon fora da competência territorial ou material). Art. 5º, Dec. 2.181/97. CRÍTICO.
@@ -436,7 +436,8 @@ Responda APENAS com um objeto JSON válido, sem texto antes ou depois, sem marca
 {
   "resumo": "Uma a duas frases sobre o estado geral do auto analisado.",
   "orgao_emissor": "Nome do Procon que emitiu, extraído do documento.",
-  "numero_processo": "Número do processo ou auto, extraído do documento.",
+  "numero_auto": "Número do AUTO DE INFRAÇÃO, extraído do documento. Atenção: é diferente do número do processo administrativo. Normalmente aparece no título, no formato 000000/ANO. Se não houver, use string vazia.",
+  "numero_processo": "Número do PROCESSO ADMINISTRATIVO, extraído do documento. Atenção: é diferente do número do auto de infração. Se não houver, use string vazia.",
   "empresa_autuada": "Razão social da empresa, extraída do documento.",
   "prazo_identificado": "O prazo copiado do documento, ou a orientação padrão da REGRA 2.",
   "achados": [
@@ -459,7 +460,8 @@ Regras do JSON:
 - Se não encontrar nenhum vício: "achados" vazio, "houve_achado": false, e explique no resumo que não foram identificados vícios formais entre os pontos verificados.
 - Todo achado DEVE ter "trecho_documento" preenchido com texto real do documento.
 - Os contadores devem corresponder à quantidade real de achados de cada gravidade.
-- Campos não encontrados no documento: use string vazia "".`;
+- Campos não encontrados no documento: use string vazia "".
+- NUNCA confunda "numero_auto" com "numero_processo". São campos distintos do documento. Se só um deles existir, preencha esse e deixe o outro vazio.`;
 
       const response = await ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
@@ -535,6 +537,7 @@ ${dados}
 2. Para cada vício, cite o trecho do documento que consta no campo "trecho_documento" e a base legal indicada.
 3. Use linguagem de possibilidade e requerimento, nunca de garantia de resultado.
 4. Mantenha entre colchetes os dados que não constam na análise: [CNPJ], [ENDEREÇO COMPLETO], [NOME DO REPRESENTANTE LEGAL], [CARGO], [CIDADE].
+6. NÚMEROS: use o campo "numero_auto" sempre que a peça se referir ao Auto de Infração, e o campo "numero_processo" apenas no cabeçalho do processo administrativo. NUNCA use o número do processo no lugar do número do auto. Se "numero_auto" estiver vazio, escreva [NÚMERO DO AUTO] entre colchetes.
 5. NÃO afirme prazo específico. Use a informação do campo "prazo_identificado".
 
 --- ESTRUTURA DA PEÇA ---
