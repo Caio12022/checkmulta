@@ -1,62 +1,55 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { ArrowLeft, Clock, ShieldCheck, ArrowRight, AlertTriangle } from "lucide-react";
+import { useEffect, useState, type ReactElement } from "react";
+import { ArrowLeft, Clock, ArrowRight, ChevronRight, ShieldCheck } from "lucide-react";
 import { artigos } from "../data/artigos";
 import { getFaq } from "../data/faqs";
 import { aplicarLinksInternos } from "../data/linksInternos";
 import { getCorSuave } from "../data/coresSuaves";
-import { getCtaContextual } from "../data/ctasContextuais";
 
 // Hook para atualizar meta tags via DOM nativo
 const useMetaTags = (titulo: string, descricao: string, url: string, keywords: string) => {
   useEffect(() => {
-    // Título
     document.title = `${titulo} | CheckMulta`;
 
-    // Description
     let metaDesc = document.querySelector('meta[name="description"]');
     if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.setAttribute('name', 'description');
+      metaDesc = document.createElement("meta");
+      metaDesc.setAttribute("name", "description");
       document.head.appendChild(metaDesc);
     }
-    metaDesc.setAttribute('content', descricao);
+    metaDesc.setAttribute("content", descricao);
 
-    // Keywords
     let metaKey = document.querySelector('meta[name="keywords"]');
     if (!metaKey) {
-      metaKey = document.createElement('meta');
-      metaKey.setAttribute('name', 'keywords');
+      metaKey = document.createElement("meta");
+      metaKey.setAttribute("name", "keywords");
       document.head.appendChild(metaKey);
     }
-    metaKey.setAttribute('content', keywords);
+    metaKey.setAttribute("content", keywords);
 
-    // Canonical
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute('href', url);
+    canonical.setAttribute("href", url);
 
-    // OG tags
     const setOG = (property: string, content: string) => {
       let tag = document.querySelector(`meta[property="${property}"]`);
       if (!tag) {
-        tag = document.createElement('meta');
-        tag.setAttribute('property', property);
+        tag = document.createElement("meta");
+        tag.setAttribute("property", property);
         document.head.appendChild(tag);
       }
-      tag.setAttribute('content', content);
+      tag.setAttribute("content", content);
     };
 
-    setOG('og:title', `${titulo} | CheckMulta`);
-    setOG('og:description', descricao);
-    setOG('og:url', url);
-    setOG('og:type', 'article');
+    setOG("og:title", `${titulo} | CheckMulta`);
+    setOG("og:description", descricao);
+    setOG("og:url", url);
+    setOG("og:type", "article");
 
-    // Schema markup (JSON-LD) — tipo Article para o Google
     let schemaScript = document.getElementById("article-schema");
     if (!schemaScript) {
       schemaScript = document.createElement("script");
@@ -67,37 +60,50 @@ const useMetaTags = (titulo: string, descricao: string, url: string, keywords: s
     schemaScript.textContent = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": titulo,
-      "description": descricao,
-      "keywords": keywords,
-      "url": url,
-      "author": {
+      headline: titulo,
+      description: descricao,
+      keywords: keywords,
+      url: url,
+      author: {
         "@type": "Organization",
-        "name": "CheckMulta"
+        name: "CheckMulta",
       },
-      "publisher": {
+      publisher: {
         "@type": "Organization",
-        "name": "CheckMulta",
-        "logo": {
+        name: "CheckMulta",
+        logo: {
           "@type": "ImageObject",
-          "url": "https://checkmulta.com.br/checkmulta-logo.webp"
-        }
+          url: "https://checkmulta.com.br/checkmulta-logo.webp",
+        },
       },
-      "mainEntityOfPage": {
+      mainEntityOfPage: {
         "@type": "WebPage",
-        "@id": url
-      }
+        "@id": url,
+      },
     });
 
     return () => {
-      document.title = 'CheckMulta — Análise de Multas com IA';
+      document.title = "CheckMulta — Análise de Multas com IA";
     };
   }, [titulo, descricao, url, keywords]);
 };
 
-const renderMarkdown = (texto: string, slugAtual: string, jaUsados: Set<string>) => {
+const formatarTexto = (texto: string, slugAtual: string, jaUsados: Set<string>): string => {
+  let html = texto
+    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-slate-900">$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
+  html = aplicarLinksInternos(html, slugAtual, jaUsados);
+  return html;
+};
+
+const renderMarkdown = (
+  texto: string,
+  slugAtual: string,
+  jaUsados: Set<string>,
+  corPrincipal: string
+) => {
   const linhas = texto.trim().split("\n");
-  const elementos: JSX.Element[] = [];
+  const elementos: ReactElement[] = [];
   let i = 0;
 
   while (i < linhas.length) {
@@ -105,42 +111,59 @@ const renderMarkdown = (texto: string, slugAtual: string, jaUsados: Set<string>)
 
     if (linha.startsWith("## ")) {
       elementos.push(
-        <h2 key={i} className="text-xl sm:text-2xl font-bold text-slate-900 mt-10 mb-4 leading-tight">
+        <h2
+          key={i}
+          className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]"
+        >
           {linha.replace("## ", "")}
         </h2>
       );
-    }
-    else if (linha.startsWith("### ")) {
+    } else if (linha.startsWith("### ")) {
       elementos.push(
-        <h3 key={i} className="text-lg font-bold text-slate-800 mt-6 mb-3 leading-tight">
+        <h3 key={i} className="mb-2 mt-7 text-lg font-bold text-slate-900">
           {linha.replace("### ", "")}
         </h3>
       );
-    }
-    else if (linha.includes("|") && linha.trim().startsWith("|")) {
+    } else if (linha.includes("|") && linha.trim().startsWith("|")) {
       const linhasTabela: string[] = [];
       while (i < linhas.length && linhas[i].includes("|")) {
         if (!linhas[i].includes("---")) linhasTabela.push(linhas[i]);
         i++;
       }
       const [cabecalho, ...corpo] = linhasTabela;
-      const cols = cabecalho.split("|").filter(c => c.trim());
+      const cols = cabecalho.split("|").filter((c) => c.trim());
       elementos.push(
-        <div key={i} className="overflow-x-auto my-6 rounded-xl border border-slate-200 shadow-sm">
+        <div
+          key={i}
+          className="my-6 overflow-x-auto rounded-xl border border-slate-200"
+        >
           <table className="w-full text-sm">
             <thead>
-              <tr className="bg-slate-100">
+              <tr className="bg-slate-50">
                 {cols.map((col, ci) => (
-                  <th key={ci} className="px-4 py-3 text-left font-bold text-slate-700">{col.trim()}</th>
+                  <th
+                    key={ci}
+                    className="px-4 py-3 text-left font-semibold text-slate-700"
+                  >
+                    {col.trim()}
+                  </th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {corpo.map((row, ri) => (
-                <tr key={ri} className={ri % 2 === 0 ? "bg-white" : "bg-slate-50"}>
-                  {row.split("|").filter(c => c.trim()).map((cell, ci) => (
-                    <td key={ci} className="px-4 py-3 text-slate-600 font-medium">{cell.trim()}</td>
-                  ))}
+                <tr
+                  key={ri}
+                  className={ri % 2 === 0 ? "bg-white" : "bg-slate-50/60"}
+                >
+                  {row
+                    .split("|")
+                    .filter((c) => c.trim())
+                    .map((cell, ci) => (
+                      <td key={ci} className="px-4 py-3 text-slate-600">
+                        {cell.trim()}
+                      </td>
+                    ))}
                 </tr>
               ))}
             </tbody>
@@ -148,52 +171,66 @@ const renderMarkdown = (texto: string, slugAtual: string, jaUsados: Set<string>)
         </div>
       );
       continue;
-    }
-    else if (linha.startsWith("- ")) {
+    } else if (linha.startsWith("- ")) {
       const itens: string[] = [];
       while (i < linhas.length && linhas[i].startsWith("- ")) {
         itens.push(linhas[i].replace("- ", ""));
         i++;
       }
       elementos.push(
-        <ul key={i} className="space-y-2 my-4 pl-2">
+        <ul
+          key={i}
+          className="my-5 ml-1 space-y-2 border-l-2 pl-5"
+          style={{ borderColor: corPrincipal }}
+        >
           {itens.map((item, ii) => (
-            <li key={ii} className="flex items-start gap-2.5 text-slate-700 font-medium text-[15px]">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0 mt-2" />
-              <span dangerouslySetInnerHTML={{ __html: formatarTexto(item, slugAtual, jaUsados) }} />
-            </li>
+            <li
+              key={ii}
+              className="text-[16.5px] leading-relaxed text-slate-700"
+              dangerouslySetInnerHTML={{
+                __html: formatarTexto(item, slugAtual, jaUsados),
+              }}
+            />
           ))}
         </ul>
       );
       continue;
-    }
-    else if (/^\d+\.\s/.test(linha)) {
+    } else if (/^\d+\.\s/.test(linha)) {
       const itens: string[] = [];
       while (i < linhas.length && /^\d+\.\s/.test(linhas[i])) {
         itens.push(linhas[i].replace(/^\d+\.\s/, ""));
         i++;
       }
       elementos.push(
-        <ol key={i} className="space-y-2 my-4 pl-2">
+        <ol key={i} className="my-5 space-y-3">
           {itens.map((item, ii) => (
-            <li key={ii} className="flex items-start gap-3 text-slate-700 font-medium text-[15px]">
-              <span className="w-6 h-6 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5">
+            <li
+              key={ii}
+              className="flex items-start gap-3 text-[16.5px] leading-relaxed text-slate-700"
+            >
+              <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-100 text-xs font-semibold text-slate-600">
                 {ii + 1}
               </span>
-              <span dangerouslySetInnerHTML={{ __html: formatarTexto(item, slugAtual, jaUsados) }} />
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: formatarTexto(item, slugAtual, jaUsados),
+                }}
+              />
             </li>
           ))}
         </ol>
       );
       continue;
-    }
-    else if (linha.trim() === "") {
+    } else if (linha.trim() === "") {
       // ignora
-    }
-    else {
+    } else {
       elementos.push(
-        <p key={i} className="text-slate-700 text-[16.5px] leading-[1.75] my-4"
-          dangerouslySetInnerHTML={{ __html: formatarTexto(linha, slugAtual, jaUsados) }}
+        <p
+          key={i}
+          className="mb-4 text-[16.5px] leading-[1.75] text-slate-700"
+          dangerouslySetInnerHTML={{
+            __html: formatarTexto(linha, slugAtual, jaUsados),
+          }}
         />
       );
     }
@@ -201,15 +238,6 @@ const renderMarkdown = (texto: string, slugAtual: string, jaUsados: Set<string>)
   }
 
   return elementos;
-};
-
-const formatarTexto = (texto: string, slugAtual: string, jaUsados: Set<string>): string => {
-  let html = texto
-    .replace(/\*\*(.*?)\*\*/g, '<strong class="text-slate-900 font-bold">$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
-  // Aplica links internos (só primeira ocorrência de cada artigo)
-  html = aplicarLinksInternos(html, slugAtual, jaUsados);
-  return html;
 };
 
 // Converte "CNH e Pontos" -> "cnh-e-pontos"
@@ -247,18 +275,12 @@ export default function BlogPost() {
 
   const url = `https://checkmulta.com.br/blog/${artigo.slug}`;
 
-  useMetaTags(
-    artigo.titulo,
-    artigo.descricao,
-    url,
-    artigo.palavrasChave.join(", ")
-  );
+  useMetaTags(artigo.titulo, artigo.descricao, url, artigo.palavrasChave.join(", "));
 
-  // FAQ da categoria
   const faq = getFaq(artigo.categoria);
   const cor = getCorSuave(artigo.imagemBg);
 
-  // Schema FAQPage — injeta perguntas frequentes para o Google
+  // Schema FAQPage
   useEffect(() => {
     let faqScript = document.getElementById("faq-schema");
     if (!faqScript) {
@@ -270,18 +292,18 @@ export default function BlogPost() {
     faqScript.textContent = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      "mainEntity": faq.map((f) => ({
+      mainEntity: faq.map((f) => ({
         "@type": "Question",
-        "name": f.pergunta,
-        "acceptedAnswer": {
+        name: f.pergunta,
+        acceptedAnswer: {
           "@type": "Answer",
-          "text": f.resposta
-        }
-      }))
+          text: f.resposta,
+        },
+      })),
     });
   }, [slug]);
 
-  // Schema BreadcrumbList — trilha de navegação para o Google
+  // Schema BreadcrumbList
   useEffect(() => {
     let bcScript = document.getElementById("breadcrumb-schema");
     if (!bcScript) {
@@ -293,239 +315,280 @@ export default function BlogPost() {
     bcScript.textContent = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Início", "item": "https://checkmulta.com.br/" },
-        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://checkmulta.com.br/blog" },
-        { "@type": "ListItem", "position": 3, "name": artigo.categoria, "item": url },
-        { "@type": "ListItem", "position": 4, "name": artigo.titulo, "item": url }
-      ]
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Início",
+          item: "https://checkmulta.com.br/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Blog",
+          item: "https://checkmulta.com.br/blog",
+        },
+        { "@type": "ListItem", position: 3, name: artigo.categoria, item: url },
+        { "@type": "ListItem", position: 4, name: artigo.titulo, item: url },
+      ],
     });
   }, [slug]);
 
   // Artigos relacionados: prioriza mesma categoria, completa com outros
-  const mesmaCategoria = artigos.filter((a) => a.slug !== slug && a.categoria === artigo.categoria);
-  const outrasCategorias = artigos.filter((a) => a.slug !== slug && a.categoria !== artigo.categoria);
+  const mesmaCategoria = artigos.filter(
+    (a) => a.slug !== slug && a.categoria === artigo.categoria
+  );
+  const outrasCategorias = artigos.filter(
+    (a) => a.slug !== slug && a.categoria !== artigo.categoria
+  );
   const outrosArtigos = [...mesmaCategoria, ...outrasCategorias].slice(0, 3);
-
-  // Divide o conteúdo em duas metades para inserir CTA no meio
-  const linhasConteudo = artigo.conteudo.trim().split("\n");
-  const meio = Math.floor(linhasConteudo.length / 2);
-  // Ajusta o ponto de corte para não quebrar no meio de uma seção (procura um título ## próximo)
-  let corte = meio;
-  for (let i = meio; i < linhasConteudo.length; i++) {
-    if (linhasConteudo[i].startsWith("## ")) { corte = i; break; }
-  }
-  const conteudoParte1 = linhasConteudo.slice(0, corte).join("\n");
-  const conteudoParte2 = linhasConteudo.slice(corte).join("\n");
 
   // Set compartilhado para controlar links internos (não repetir o mesmo artigo)
   const linksJaUsados = new Set<string>();
 
   return (
-    <div className="min-h-screen font-sans" style={{ backgroundColor: cor.fundoPagina }}>
-
+    <div className="min-h-screen bg-white">
       {/* HEADER */}
-      <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-40">
-        <Link to="/" className="flex items-center h-full w-[180px] md:w-[240px]">
-          <img src="/checkmulta-logo.webp" alt="CheckMulta Logo" width="240" height="64" className="w-full h-auto object-contain scale-[1.3] md:scale-[1.5] origin-left translate-y-1" />
-        </Link>
-        <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-600 items-center">
-          <Link to="/" className="hover:text-blue-600 transition-colors">Início</Link>
-          <Link to="/blog" className="text-blue-600 font-bold">Blog</Link>
-        </nav>
+      <header className="border-b border-slate-200 bg-white">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+          <Link to="/" className="flex h-full w-[180px] items-center md:w-[220px]">
+            <img
+              src="/checkmulta-logo.webp"
+              alt="CheckMulta"
+              width="240"
+              height="64"
+              className="h-auto w-full origin-left scale-[1.25] object-contain md:scale-[1.35]"
+            />
+          </Link>
+
+          <nav className="flex items-center gap-5 text-sm font-medium text-slate-600">
+            <Link to="/" className="hover:text-emerald-600">
+              Início
+            </Link>
+            <Link to="/blog" className="text-emerald-600">
+              Blog
+            </Link>
+          </nav>
+        </div>
       </header>
 
-      {/* BREADCRUMB */}
-      <div className="max-w-3xl mx-auto px-4 pt-6">
-        <nav className="flex items-center gap-1.5 text-xs sm:text-sm font-medium text-slate-500 flex-wrap">
-          <Link to="/" className="hover:text-blue-600 transition-colors">Início</Link>
-          <span className="text-slate-300">/</span>
-          <Link to="/blog" className="hover:text-blue-600 transition-colors">Blog</Link>
-          <span className="text-slate-300">/</span>
-          <Link to={`/blog/categoria/${slugifyCategoria(artigo.categoria)}`} className="text-slate-700 font-bold hover:text-blue-600 transition-colors">{artigo.categoria}</Link>
-        </nav>
+      {/* BARRA DE URGÊNCIA */}
+      <div className="border-b border-emerald-100 bg-emerald-50">
+        <div className="mx-auto max-w-3xl px-4 py-2.5 text-center text-[13px] text-emerald-800">
+          O prazo para recorrer é curto.{" "}
+          <Link to="/" className="font-semibold underline">
+            Analise sua multa grátis agora
+          </Link>
+        </div>
       </div>
 
-      {/* ARTIGO */}
-      <article className="max-w-3xl mx-auto px-4 pt-6 pb-16">
-        {/* Voltar ao Blog */}
-        <Link to="/blog" className="inline-flex items-center gap-2 text-sm text-slate-500 font-medium hover:text-blue-600 transition-colors mb-6">
-          <ArrowLeft className="w-4 h-4" />
-          Voltar ao Blog
-        </Link>
+      <article className="mx-auto max-w-3xl px-4 pb-4 pt-8">
+        {/* BREADCRUMB */}
+        <nav className="mb-6 flex flex-wrap items-center gap-1 text-xs text-slate-500">
+          <Link to="/" className="hover:text-emerald-600">
+            Início
+          </Link>
+          <ChevronRight className="h-3 w-3" />
+          <Link to="/blog" className="hover:text-emerald-600">
+            Blog
+          </Link>
+          <ChevronRight className="h-3 w-3" />
+          <Link
+            to={`/blog/categoria/${slugifyCategoria(artigo.categoria)}`}
+            className="text-slate-400 hover:text-emerald-600"
+          >
+            {artigo.categoria}
+          </Link>
+        </nav>
 
-        {/* Cabeçalho */}
+        {/* CABEÇALHO DO ARTIGO */}
         <div
-          className="bg-white rounded-3xl p-8 sm:p-10 mb-8 relative overflow-hidden shadow-sm"
-          style={{ borderLeft: `5px solid ${cor.corPrincipal}`, border: `1px solid ${cor.borda}`, borderLeftWidth: "5px", borderLeftColor: cor.corPrincipal }}
+          className="mb-8 border-l-4 pl-5"
+          style={{ borderColor: cor.corPrincipal }}
         >
-          <div className="absolute top-4 right-4 text-5xl opacity-60">{artigo.imagemEmoji}</div>
           <span
-            className="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4"
-            style={{ backgroundColor: cor.fundoBadge, color: cor.textoBadge }}
+            className="mb-2 block text-[11px] font-semibold uppercase tracking-wide"
+            style={{ color: cor.textoBadge }}
           >
             {artigo.categoria}
           </span>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 leading-tight mb-4">
+
+          <h1 className="mb-3 text-2xl font-bold leading-tight text-slate-900 sm:text-[32px] sm:leading-[1.2]">
             {artigo.titulo}
           </h1>
-          <p className="text-slate-600 text-base font-medium mb-6">{artigo.descricao}</p>
-          <div className="flex items-center gap-2 text-slate-400 text-sm font-medium">
-            <Clock className="w-4 h-4" />
-            <span>{artigo.tempoLeitura} de leitura</span>
+
+          <p className="mb-4 text-base leading-relaxed text-slate-600">
+            {artigo.descricao}
+          </p>
+
+          <div className="flex items-center gap-1.5 text-xs text-slate-400">
+            <Clock className="h-3.5 w-3.5" />
+            {artigo.tempoLeitura} de leitura
           </div>
         </div>
 
-
-        {/* BARRA DE URGÊNCIA */}
-        <Link to="/" className="block mb-6">
-          <div className="bg-amber-50 border border-amber-200 rounded-2xl px-4 py-3 flex items-center gap-3 hover:bg-amber-100 transition-colors">
-            <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0" />
-            <p className="text-sm font-bold text-amber-800 flex-1">
-              O prazo para recorrer é curto. Analise sua multa grátis agora
-            </p>
-            <ArrowRight className="w-4 h-4 text-amber-600 flex-shrink-0" />
-          </div>
-        </Link>
-
-        {/* CTA TOPO — antes do conteúdo */}
-        <div className="bg-gradient-to-r from-emerald-50 to-blue-50 border border-emerald-200 rounded-3xl p-5 sm:p-6 mb-6">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
-              <ShieldCheck className="w-5 h-5 text-emerald-600" />
-            </div>
-            <div className="flex-1">
-              <p className="text-slate-900 font-bold text-base mb-1">Descubra em 60 segundos se sua multa tem erro</p>
-              <p className="text-slate-500 text-sm font-medium">Mais de 400 multas já analisadas. Grátis e sem cadastro.</p>
-            </div>
-            <Link
-              to="/"
-              className="inline-flex items-center gap-1.5 bg-emerald-600 text-white font-bold px-4 py-2.5 rounded-xl hover:bg-emerald-700 transition-colors text-sm flex-shrink-0"
-            >
-              Analisar Grátis <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          </div>
+        {/* CTA TOPO */}
+        <div
+          className="mb-9 rounded-xl border p-5"
+          style={{ borderColor: cor.borda, backgroundColor: cor.fundoPagina }}
+        >
+          <p className="mb-3 text-sm leading-relaxed text-slate-700">
+            <strong className="font-semibold text-slate-900">
+              Tem uma multa para analisar?
+            </strong>{" "}
+            Nossa IA verifica grátis se há erro formal no auto de infração. Mais
+            de 400 multas já analisadas, sem cadastro.
+          </p>
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+          >
+            Analisar grátis
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
 
-        {/* CONTEÚDO — Parte 1 */}
-        <div className="bg-white rounded-t-3xl border border-b-0 border-slate-200 shadow-sm p-6 sm:p-10">
-          {renderMarkdown(conteudoParte1, artigo.slug, linksJaUsados)}
+        {/* CONTEÚDO */}
+        <div className="max-w-none">
+          {renderMarkdown(
+            artigo.conteudo,
+            artigo.slug,
+            linksJaUsados,
+            cor.corPrincipal
+          )}
         </div>
 
-        {/* CTA MEIO — discreto e contextual */}
-        <div className="bg-white border-x border-slate-200 px-6 sm:px-10 py-2">
-          <div className="border-l-4 pl-4 py-3 rounded-r-lg" style={{ borderColor: cor.corPrincipal, backgroundColor: cor.fundoPagina }}>
-            <p className="text-slate-700 text-sm font-medium leading-relaxed">
-              💡 {getCtaContextual(artigo.categoria)}{" "}
-              <Link to="/" className="font-bold hover:underline whitespace-nowrap" style={{ color: cor.textoBadge }}>
-                Verificar minha multa →
-              </Link>
-            </p>
-          </div>
-        </div>
-
-        {/* CONTEÚDO — Parte 2 */}
-        <div className="bg-white rounded-b-3xl border border-t-0 border-slate-200 shadow-sm p-6 sm:p-10 mb-8">
-          {renderMarkdown(conteudoParte2, artigo.slug, linksJaUsados)}
-        </div>
-
-        {/* CTA INLINE */}
-        <div className="bg-gradient-to-r from-emerald-50 to-blue-50 border border-emerald-200 rounded-3xl p-6 sm:p-8 mb-8">
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-emerald-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-              <ShieldCheck className="w-6 h-6 text-emerald-600" />
-            </div>
-            <div className="flex-1">
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Tem uma multa para analisar?</h3>
-              <p className="text-slate-600 font-medium text-sm mb-4">
-                Mais de 400 multas já analisadas. Nossa IA encontra erros formais que podem anular a sua. Se não houver falha, você não paga nada.
-              </p>
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 bg-emerald-600 text-white font-bold px-6 py-3 rounded-xl hover:bg-emerald-700 transition-colors text-sm"
-              >
-                Analisar Minha Multa Grátis <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
+        {/* CTA FINAL */}
+        <div className="mt-12 rounded-xl border border-slate-200 bg-slate-50 p-6 text-center">
+          <h2 className="mb-2 text-lg font-bold text-slate-900">
+            Descubra grátis se sua multa tem erro
+          </h2>
+          <p className="mx-auto mb-5 max-w-xl text-sm leading-relaxed text-slate-600">
+            Nossa IA encontra erros formais que podem anular a autuação. Se não
+            houver falha, você não paga nada.
+          </p>
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
+          >
+            Analisar minha multa grátis
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
 
         {/* FAQ */}
-        <div className="mb-10">
-          <h2 className="text-xl font-bold text-slate-900 mb-5">Perguntas frequentes</h2>
+        <div className="mt-12">
+          <h2 className="mb-5 text-lg font-bold text-slate-900">
+            Perguntas frequentes
+          </h2>
           <div className="space-y-3">
             {faq.map((f, i) => (
-              <details key={i} className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden group">
-                <summary className="px-5 py-4 font-bold text-slate-800 text-sm cursor-pointer list-none flex items-center justify-between hover:text-blue-600 transition-colors">
+              <details
+                key={i}
+                className="group overflow-hidden rounded-xl border border-slate-200 bg-white"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 text-sm font-semibold text-slate-800 hover:text-emerald-700">
                   {f.pergunta}
-                  <span className="text-blue-600 text-lg group-open:rotate-45 transition-transform">+</span>
+                  <span className="text-lg text-emerald-600 transition-transform group-open:rotate-45">
+                    +
+                  </span>
                 </summary>
-                <div className="px-5 pb-4 text-slate-600 text-sm font-medium leading-relaxed">
+                <div className="px-5 pb-4 text-sm leading-relaxed text-slate-600">
                   {f.resposta}
                 </div>
               </details>
             ))}
           </div>
         </div>
+      </article>
 
-        {/* OUTROS ARTIGOS */}
-        <div>
-          <h2 className="text-xl font-bold text-slate-900 mb-5">Continue lendo sobre {artigo.categoria}</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {outrosArtigos.map((a) => {
-              const corA = getCorSuave(a.imagemBg);
-              return (
-              <Link key={a.slug} to={`/blog/${a.slug}`} className="group block">
-                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all overflow-hidden">
-                  <div className="p-4 flex items-center justify-between" style={{ backgroundColor: corA.fundoBadge, borderBottom: `3px solid ${corA.corPrincipal}` }}>
-                    <span className="text-xs font-bold uppercase tracking-wider" style={{ color: corA.textoBadge }}>{a.categoria}</span>
-                    <span className="text-2xl">{a.imagemEmoji}</span>
+      {/* CONTINUE LENDO */}
+      {outrosArtigos.length > 0 && (
+        <section className="border-t border-slate-100 bg-slate-50/60">
+          <div className="mx-auto max-w-5xl px-4 py-12">
+            <h2 className="mb-6 text-lg font-bold text-slate-900">
+              Continue lendo sobre {artigo.categoria}
+            </h2>
+
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {outrosArtigos.map((a) => (
+                <Link
+                  key={a.slug}
+                  to={`/blog/${a.slug}`}
+                  className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
+                >
+                  <div
+                    className={`flex h-24 items-center justify-center bg-gradient-to-br ${a.imagemBg}`}
+                  >
+                    <span className="text-3xl opacity-60">{a.imagemEmoji}</span>
                   </div>
-                  <div className="p-4">
-                    <h3 className="text-sm font-bold text-slate-900 leading-snug group-hover:text-blue-600 transition-colors mb-1">
+
+                  <div className="flex flex-1 flex-col p-4">
+                    <span
+                      className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide"
+                      style={{ color: getCorSuave(a.imagemBg).textoBadge }}
+                    >
+                      {a.categoria}
+                    </span>
+                    <h3 className="mb-2 text-sm font-bold leading-snug text-slate-900 group-hover:text-emerald-700">
                       {a.titulo}
                     </h3>
-                    <span className="text-xs text-slate-400 font-medium flex items-center gap-1">
-                      <Clock className="w-3 h-3" /> {a.tempoLeitura}
+                    <span className="mt-auto flex items-center gap-1 text-xs text-slate-400">
+                      <Clock className="h-3 w-3" /> {a.tempoLeitura}
                     </span>
                   </div>
-                </div>
+                </Link>
+              ))}
+            </div>
+
+            <div className="mt-7 text-center">
+              <Link
+                to="/blog"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-emerald-600 hover:gap-3"
+              >
+                Ver todos os artigos <ArrowRight className="h-4 w-4" />
               </Link>
-              );
-            })}
+            </div>
           </div>
-          <div className="mt-6 text-center">
-            <Link to="/blog" className="inline-flex items-center gap-2 text-blue-600 font-bold text-sm hover:gap-3 transition-all">
-              Ver todos os artigos <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </article>
+        </section>
+      )}
 
       {/* BOTÃO FLUTUANTE */}
       <div
-        className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 px-4 w-full max-w-md ${
-          mostrarFlutuante ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16 pointer-events-none"
+        className={`fixed bottom-4 left-1/2 z-50 w-full max-w-md -translate-x-1/2 px-4 transition-all duration-300 ${
+          mostrarFlutuante
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-16 opacity-0"
         }`}
       >
         <Link
           to="/"
-          className="flex items-center justify-center gap-2 bg-emerald-600 text-white font-bold px-6 py-4 rounded-2xl shadow-2xl hover:bg-emerald-700 transition-colors"
+          className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:bg-emerald-700"
         >
-          <ShieldCheck className="w-5 h-5" />
-          Analisar Minha Multa Grátis
-          <ArrowRight className="w-4 h-4" />
+          <ShieldCheck className="h-4 w-4" />
+          Analisar minha multa grátis
+          <ArrowRight className="h-4 w-4" />
         </Link>
       </div>
 
       {/* FOOTER */}
-      <footer className="w-full text-center px-6 py-6 border-t border-gray-200 bg-gray-100">
-        <p className="text-xs text-slate-500 font-medium">
-          CheckMulta Tecnologia · CNPJ 63.524.338/0001-62
-        </p>
-        <Link to="/" className="text-xs text-blue-600 font-bold hover:underline mt-1 inline-block">
-          ← Voltar ao site
-        </Link>
+      <footer className="border-t border-slate-200 bg-white">
+        <div className="mx-auto max-w-5xl px-4 py-8">
+          <Link
+            to="/blog"
+            className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-emerald-600"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Ver todos os artigos
+          </Link>
+
+          <p className="mt-6 text-xs text-slate-400">
+            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+          </p>
+        </div>
+
+        {/* Respiro para o botão flutuante não cobrir o rodapé */}
+        <div className="h-20" />
       </footer>
     </div>
   );
