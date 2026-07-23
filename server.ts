@@ -57,6 +57,15 @@ function getMetaParaRota(pathname: string): MetaInfo {
 
   if (pathname === "/" || pathname === "") return home;
 
+  // Procon (landing da vertical B2B)
+  if (pathname === "/procon" || pathname === "/procon/") {
+    return {
+      title: "Auto de infração do Procon: analise grátis os vícios da autuação | CheckMulta",
+      description: "Sua empresa foi autuada pelo Procon? Nossa IA verifica grátis se o auto tem vício formal e entrega a defesa administrativa fundamentada no CDC e no Decreto 2.181/97.",
+      url: `${BASE_URL}/procon`,
+    };
+  }
+
   // Blog (listagem)
   if (pathname === "/blog" || pathname === "/blog/") {
     return {
@@ -121,17 +130,24 @@ async function startServer() {
 
   // ==========================================
   // ROTA: GERAR PIX (MERCADO PAGO)
+  // Aceita valor variável. Padrão 19.90 (CheckMulta trânsito).
+  // Procon usa 99.00, enviado pelo front.
   // ==========================================
   app.post("/api/create-payment", async (req, res) => {
     try {
       if (!process.env.MERCADO_PAGO_ACCESS_TOKEN) {
         return res.status(500).json({ error: "MERCADO_PAGO_ACCESS_TOKEN não configurado." });
       }
-      const { email } = req.body;
+      const { email, valor, descricao } = req.body;
+
+      // Valores permitidos (trava de segurança: impede manipulação pelo cliente)
+      const VALORES_PERMITIDOS = [19.90, 99.00];
+      const valorFinal = VALORES_PERMITIDOS.includes(Number(valor)) ? Number(valor) : 19.90;
+
       const paymentData = {
         body: {
-          transaction_amount: 19.90,
-          description: "Criação de Recurso - CheckMulta",
+          transaction_amount: valorFinal,
+          description: descricao || "Criação de Recurso - CheckMulta",
           payment_method_id: "pix",
           payer: { email: email || "cliente@checkmulta.com.br" },
         },
@@ -313,6 +329,254 @@ Requerente`;
       res.json({ result: resultText.trim() });
     } catch (err: any) {
       console.error("API Error in generate-defense:", err);
+      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+        return res.status(429).json({ error: "SERVER_BUSY" });
+      }
+      res.status(500).json({ error: err.message || "Internal server error" });
+    }
+  });
+
+  // ==========================================
+  // ROTA: ANALISAR AUTO DE INFRAÇÃO DO PROCON (GRÁTIS)
+  // Aceita PDF ou imagem. Retorna JSON com os vícios encontrados.
+  // Regra central: só aponta vício se copiar o trecho do documento.
+  // ==========================================
+  app.post("/api/analyze-procon", async (req, res) => {
+    try {
+      const { fileBase64, mimeType = "application/pdf" } = req.body;
+      if (!fileBase64) return res.status(400).json({ error: "Documento ausente." });
+
+      const ai = getAIClient();
+
+      const prompt = `Você é um analista especializado em processo administrativo sancionador do Sistema Nacional de Defesa do Consumidor. Sua função é ler o auto de infração do Procon enviado por uma empresa autuada e identificar vícios formais e materiais que possam ser arguidos em defesa administrativa.
+
+Base normativa: Lei 8.078/90 (CDC) e Decreto 2.181/97, com as alterações do Decreto 10.887/2021.
+ANO ATUAL: 2026.
+
+===========================================================
+VALIDAÇÃO DO DOCUMENTO
+- Se o documento NÃO for um auto de infração, notificação ou decisão do Procon (ex: foto aleatória, outro tipo de documento), retorne APENAS a string: documento_invalido
+- Se for um documento do Procon mas estiver ilegível, retorne APENAS: documento_ilegivel
+
+===========================================================
+REGRA ABSOLUTA 1 — CITAÇÃO OBRIGATÓRIA
+Você SÓ pode apontar um vício se conseguir copiar, palavra por palavra, o trecho exato do documento que o demonstra.
+- Se não encontrar trecho que sustente o vício, NÃO aponte o vício.
+- É PROIBIDO citar norma, artigo ou conclusão sem antes ter um trecho real copiado do documento.
+- A ausência de um elemento também é vício (ex: auto sem capitulação legal). Nesse caso, copie o trecho da seção onde o elemento deveria constar e explique o que falta. Nunca afirme ausência sem ter lido o documento inteiro.
+- Se um campo ESTÁ preenchido, você está PROIBIDO de dizer que falta.
+- NUNCA invente vício para gerar resultado positivo. É violação grave.
+- Na dúvida entre apontar e não apontar, NÃO aponte.
+
+REGRA ABSOLUTA 2 — PRAZO
+Você NUNCA informa prazo de defesa por conta própria. O prazo varia conforme o Procon emissor:
+- Decreto federal 2.181/97, art. 42: 20 dias.
+- Procons estaduais podem adotar prazo próprio. O Procon-SP adota 15 dias (Lei Estadual 10.177/98).
+Procedimento:
+1. Procure o prazo indicado no documento. Se encontrar, informe exatamente o que está escrito.
+2. Se NÃO encontrar, escreva: "Confira o prazo de defesa indicado no seu auto de infração ou junto ao Procon emissor. O Decreto federal 2.181/97 prevê 20 dias, mas há Procons estaduais com prazo próprio — o Procon-SP, por exemplo, adota 15 dias."
+3. NUNCA afirme prazo específico que não esteja escrito no documento.
+
+===========================================================
+VÍCIOS A PROCURAR — 16 pontos
+
+NOTIFICAÇÃO
+1. Notificação por edital sem esgotamento de diligências (empresa com endereço certo). Art. 42, §2º, Dec. 2.181/97. CRÍTICO.
+2. Ausência de notificação pessoal do julgamento (decisão só em diário oficial havendo endereço conhecido). CRÍTICO.
+3. Prazo de defesa concedido inferior ao previsto na norma aplicável. CRÍTICO.
+
+COMPETÊNCIA
+4. Órgão ou agente sem atribuição (Procon fora da competência territorial ou material). Art. 5º, Dec. 2.181/97. CRÍTICO.
+5. Ausência de identificação ou assinatura do agente autuante. ATENÇÃO.
+
+DESCRIÇÃO DA CONDUTA
+6. Conduta descrita de forma genérica (não indica prática, consumidor, data ou circunstância). CRÍTICO.
+7. Ausência de capitulação legal (não indica qual dispositivo do CDC foi violado). CRÍTICO.
+8. Divergência entre conduta descrita e dispositivo capitulado. CRÍTICO.
+
+DOSIMETRIA
+9. Multa sem fundamentação dos critérios legais (gravidade, vantagem auferida, condição econômica). Art. 57, CDC + arts. 24 a 28, Dec. 2.181/97. CRÍTICO.
+10. Desconsideração do porte da empresa (ME/EPP sem tratamento diferenciado, Dec. 10.887/2021). ATENÇÃO.
+11. Multa desproporcional à lesão (art. 33, §4º, Dec. 2.181/97). ATENÇÃO.
+12. Estimativa incorreta da condição econômica (faturamento presumido sem base documental; impugnável com documentos contábeis). ATENÇÃO.
+
+PROCESSO
+13. Ausência de investigação preliminar quando cabível (art. 33, §1º). VERIFICAR.
+14. Cerceamento do contraditório (provas negadas sem motivação, documentos não juntados). CRÍTICO.
+15. Decisão sem motivação expressa. CRÍTICO.
+16. Vícios formais do auto (ausência de data, local, número de processo, qualificação do autuado, rasuras não ressalvadas). ATENÇÃO.
+
+===========================================================
+COMO ESCREVER
+- Registro profissional e sóbrio. A leitora é uma empresa autuada, não um advogado.
+- Explique o vício em linguagem clara e só depois cite a base normativa.
+- Linguagem de POSSIBILIDADE, nunca de garantia. Escreva "há indício de vício que pode ser arguido em defesa". JAMAIS escreva "sua multa será anulada" ou "você vai ganhar".
+- Não prometa resultado. Não estime probabilidade de êxito.
+- Você informa e instrumentaliza. Não representa ninguém juridicamente.
+
+===========================================================
+FORMATO DA RESPOSTA
+Responda APENAS com um objeto JSON válido, sem texto antes ou depois, sem marcação de código:
+
+{
+  "resumo": "Uma a duas frases sobre o estado geral do auto analisado.",
+  "orgao_emissor": "Nome do Procon que emitiu, extraído do documento.",
+  "numero_processo": "Número do processo ou auto, extraído do documento.",
+  "empresa_autuada": "Razão social da empresa, extraída do documento.",
+  "prazo_identificado": "O prazo copiado do documento, ou a orientação padrão da REGRA 2.",
+  "achados": [
+    {
+      "titulo": "Nome curto do vício",
+      "gravidade": "critico",
+      "trecho_documento": "Trecho copiado palavra por palavra. OBRIGATÓRIO, não pode ser vazio.",
+      "explicacao": "Explicação clara do vício e por que pode ser arguido.",
+      "base_legal": "Ex: Art. 42, §2º, do Decreto 2.181/97"
+    }
+  ],
+  "quantidade_criticos": 0,
+  "quantidade_atencao": 0,
+  "quantidade_verificar": 0,
+  "houve_achado": true
+}
+
+Regras do JSON:
+- "gravidade" só aceita: "critico", "atencao" ou "verificar".
+- Se não encontrar nenhum vício: "achados" vazio, "houve_achado": false, e explique no resumo que não foram identificados vícios formais entre os pontos verificados.
+- Todo achado DEVE ter "trecho_documento" preenchido com texto real do documento.
+- Os contadores devem corresponder à quantidade real de achados de cada gravidade.
+- Campos não encontrados no documento: use string vazia "".`;
+
+      const response = await ai.models.generateContent({
+        model: "gemini-3.1-flash-lite",
+        contents: [
+          { role: "user", parts: [{ inlineData: { data: fileBase64, mimeType: mimeType } }, { text: prompt }] }
+        ],
+        config: { temperature: 0.0 }
+      });
+
+      let resultText = (response.text || "").trim();
+
+      // Casos de rejeição direta
+      if (resultText === "documento_invalido" || resultText === "documento_ilegivel") {
+        return res.json({ result: resultText });
+      }
+
+      // Limpa possíveis cercas de código
+      resultText = resultText.replace(/```json/gi, "").replace(/```/g, "").trim();
+
+      let parsed: any;
+      try {
+        parsed = JSON.parse(resultText);
+      } catch {
+        console.error("Falha ao parsear JSON do Procon:", resultText.slice(0, 500));
+        return res.status(500).json({ error: "Falha ao processar a análise. Tente novamente." });
+      }
+
+      // TRAVA DE SEGURANÇA: descarta qualquer achado sem trecho copiado do documento.
+      // É a aplicação prática da regra de citação obrigatória.
+      if (Array.isArray(parsed.achados)) {
+        parsed.achados = parsed.achados.filter(
+          (a: any) => a && typeof a.trecho_documento === "string" && a.trecho_documento.trim().length > 0
+        );
+      } else {
+        parsed.achados = [];
+      }
+
+      // Recalcula os contadores no servidor (não confia no que o modelo devolveu)
+      parsed.quantidade_criticos = parsed.achados.filter((a: any) => a.gravidade === "critico").length;
+      parsed.quantidade_atencao = parsed.achados.filter((a: any) => a.gravidade === "atencao").length;
+      parsed.quantidade_verificar = parsed.achados.filter((a: any) => a.gravidade === "verificar").length;
+      parsed.houve_achado = parsed.achados.length > 0;
+
+      res.json({ result: parsed });
+    } catch (err: any) {
+      console.error("API Error in analyze-procon:", err);
+      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+        return res.status(429).json({ error: "SERVER_BUSY" });
+      }
+      res.status(500).json({ error: err.message || "Internal server error" });
+    }
+  });
+
+  // ==========================================
+  // ROTA: GERAR DEFESA ADMINISTRATIVA DO PROCON (PAGO)
+  // ==========================================
+  app.post("/api/generate-defense-procon", async (req, res) => {
+    try {
+      const { analise } = req.body;
+      if (!analise) return res.status(400).json({ error: "analise ausente." });
+
+      const ai = getAIClient();
+
+      const dados = typeof analise === "string" ? analise : JSON.stringify(analise, null, 2);
+
+      const prompt = `Você é um redator especializado em defesa administrativa perante órgãos de proteção e defesa do consumidor. Redija uma DEFESA ADMINISTRATIVA formal a partir da análise fornecida.
+
+--- ANÁLISE DO AUTO DE INFRAÇÃO ---
+${dados}
+
+--- REGRAS OBRIGATÓRIAS ---
+1. Fundamente APENAS nos vícios listados na análise. É PROIBIDO inventar vício que não conste ali.
+2. Para cada vício, cite o trecho do documento que consta no campo "trecho_documento" e a base legal indicada.
+3. Use linguagem de possibilidade e requerimento, nunca de garantia de resultado.
+4. Mantenha entre colchetes os dados que não constam na análise: [CNPJ], [ENDEREÇO COMPLETO], [NOME DO REPRESENTANTE LEGAL], [CARGO], [CIDADE].
+5. NÃO afirme prazo específico. Use a informação do campo "prazo_identificado".
+
+--- ESTRUTURA DA PEÇA ---
+
+ILUSTRÍSSIMO(A) SENHOR(A) DIRETOR(A) DO [ÓRGÃO EMISSOR]
+
+Processo Administrativo nº [NÚMERO DO PROCESSO]
+
+[RAZÃO SOCIAL DA EMPRESA], pessoa jurídica de direito privado, inscrita no CNPJ sob o nº [CNPJ], com sede em [ENDEREÇO COMPLETO], neste ato representada por [NOME DO REPRESENTANTE LEGAL], [CARGO], vem, respeitosamente, perante Vossa Senhoria, apresentar
+
+DEFESA ADMINISTRATIVA
+
+em face do Auto de Infração nº [NÚMERO], pelas razões de fato e de direito a seguir expostas.
+
+I — DA TEMPESTIVIDADE
+[Parágrafo sobre a apresentação da defesa dentro do prazo, referindo-se ao prazo indicado no auto de infração e ao art. 42 do Decreto 2.181/97, sem afirmar número de dias que não conste no documento.]
+
+II — DOS FATOS
+[Resumo objetivo da autuação conforme descrita no auto.]
+
+III — DAS PRELIMINARES
+[Para cada vício de gravidade "critico" da análise, redija uma subseção numerada. Cada subseção deve: nomear o vício, transcrever entre aspas o trecho do documento, explicar tecnicamente por que configura vício, e citar a base legal. Requerer ao final a nulidade do auto.]
+
+IV — DO MÉRITO
+[Para cada vício de gravidade "atencao" ou "verificar", redija uma subseção. Mesma estrutura: trecho, explicação, base legal. Inclua aqui os argumentos de dosimetria, requerendo subsidiariamente a redução da penalidade.]
+
+V — DOS PEDIDOS
+Ante o exposto, requer:
+a) O acolhimento das preliminares arguidas, com a declaração de nulidade do Auto de Infração nº [NÚMERO] e o consequente arquivamento do processo administrativo;
+b) Subsidiariamente, caso superadas as preliminares, o acolhimento das razões de mérito para afastar a penalidade aplicada;
+c) Subsidiariamente, a redução do valor da multa, em observância aos critérios do art. 57 da Lei 8.078/90 e dos arts. 24 a 28 do Decreto 2.181/97, considerando a condição econômica da autuada e a proporcionalidade da sanção;
+d) A produção de prova documental superveniente, bem como a juntada de cópia integral do processo administrativo, sob pena de cerceamento de defesa;
+e) Que todas as intimações sejam dirigidas ao endereço constante desta peça.
+
+Nestes termos, pede deferimento.
+
+[CIDADE], [DATA].
+
+_______________________________________
+[RAZÃO SOCIAL DA EMPRESA]
+[NOME DO REPRESENTANTE LEGAL] — [CARGO]
+
+---
+
+AVISO IMPORTANTE
+Este documento é material informativo produzido por inteligência artificial a partir do auto de infração enviado. Não constitui consultoria jurídica nem representação processual. Confira o prazo e a forma de protocolo junto ao Procon emissor antes de apresentar sua defesa — alguns órgãos exigem protocolo presencial ou por via postal e não aceitam envio eletrônico. Para casos de maior complexidade ou valor, recomenda-se a consulta a um advogado.`;
+
+      const response = await ai.models.generateContent({
+        model: "gemini-3.1-flash-lite",
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+        config: { temperature: 0.0 }
+      });
+
+      const resultText = response.text || "";
+      res.json({ result: resultText.trim() });
+    } catch (err: any) {
+      console.error("API Error in generate-defense-procon:", err);
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
