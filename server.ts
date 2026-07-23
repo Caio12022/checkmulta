@@ -398,7 +398,7 @@ VÍCIOS A PROCURAR — 16 pontos
 NOTIFICAÇÃO
 1. Notificação por edital sem esgotamento de diligências (empresa com endereço certo). Art. 42, §2º, Dec. 2.181/97. CRÍTICO.
 2. Ausência de notificação pessoal do julgamento (decisão só em diário oficial havendo endereço conhecido). CRÍTICO.
-3. Prazo de defesa concedido inferior ao previsto na norma aplicável. CRÍTICO.
+3. Prazo de defesa concedido inferior ao previsto na norma aplicável** — auto que concede prazo menor que o previsto. ATENÇÃO ESPECIAL: o art. 42 do Decreto 2.181/97 prevê 20 dias. Se o auto conceder prazo MENOR que 20 dias (ex: 10 ou 15 dias), você DEVE apontar este vício, copiando o trecho onde o prazo aparece. Não trate o prazo curto como legítimo só porque está escrito no documento — o prazo escrito no auto é justamente o que se questiona. Exceção: se o auto for de Procon do Estado de São Paulo, o prazo de 15 dias tem base na Lei Estadual 10.177/98 e NÃO é vício; nesse caso, aponte apenas se for menor que 15. Gravidade: crítico.
 
 COMPETÊNCIA
 4. Órgão ou agente sem atribuição (Procon fora da competência territorial ou material). Art. 5º, Dec. 2.181/97. CRÍTICO.
