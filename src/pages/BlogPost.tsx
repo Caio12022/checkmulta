@@ -520,24 +520,28 @@ export default function BlogPost() {
                     className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
                   >
                     <div
-                      className="flex h-24 items-center justify-center"
+                      className="flex h-32 items-center justify-center"
                       style={{ backgroundColor: corA.fundoBadge }}
                     >
-                      <span className="text-3xl opacity-60">{a.imagemEmoji}</span>
+                      <span className="text-4xl opacity-60">{a.imagemEmoji}</span>
                     </div>
 
-                    <div className="flex flex-1 flex-col p-4">
+                    <div className="flex flex-1 flex-col p-5">
                       <span
-                        className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide"
+                        className="mb-2 text-[11px] font-semibold uppercase tracking-wide"
                         style={{ color: corA.textoBadge }}
                       >
                         {a.categoria}
                       </span>
-                      <h3 className="mb-2 text-[15px] font-bold leading-snug text-slate-900 group-hover:text-emerald-700">
+                      <h3 className="mb-2 text-base font-bold leading-snug text-slate-900 group-hover:text-emerald-700">
                         {a.titulo}
                       </h3>
-                      <span className="mt-auto flex items-center gap-1 text-xs text-slate-400">
-                        <Clock className="h-3 w-3" /> {a.tempoLeitura}
+                      <p className="mb-4 flex-1 text-sm leading-relaxed text-slate-600">
+                        {a.descricao}
+                      </p>
+                      <span className="flex items-center gap-1.5 text-xs text-slate-400">
+                        <Clock className="h-3.5 w-3.5" /> {a.tempoLeitura} de
+                        leitura
                       </span>
                     </div>
                   </Link>
