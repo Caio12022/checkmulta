@@ -6,6 +6,8 @@ import { getCorSuave } from "../data/coresSuaves";
 
 export default function Blog() {
   const [busca, setBusca] = useState("");
+  const [categoriaAtiva, setCategoriaAtiva] = useState<string | null>(null);
+  const [mostrarTodasCategorias, setMostrarTodasCategorias] = useState(false);
 
   useEffect(() => {
     document.title = "Blog CheckMulta — Guias sobre Multas de Trânsito no Brasil";
@@ -26,12 +28,27 @@ export default function Blog() {
     };
   }, []);
 
-  const artigosFiltrados = artigos.filter(
-    (a) =>
+  // Categorias ordenadas por quantidade de artigos
+  const categorias = Array.from(new Set(artigos.map((a) => a.categoria))).sort(
+    (a, b) =>
+      artigos.filter((x) => x.categoria === b).length -
+      artigos.filter((x) => x.categoria === a).length
+  );
+
+  const artigosFiltrados = artigos.filter((a) => {
+    const casaBusca =
+      busca === "" ||
       a.titulo.toLowerCase().includes(busca.toLowerCase()) ||
       a.descricao.toLowerCase().includes(busca.toLowerCase()) ||
-      a.categoria.toLowerCase().includes(busca.toLowerCase())
-  );
+      a.categoria.toLowerCase().includes(busca.toLowerCase());
+
+    const casaCategoria =
+      categoriaAtiva === null || a.categoria === categoriaAtiva;
+
+    return casaBusca && casaCategoria;
+  });
+
+  const filtroAtivo = busca !== "" || categoriaAtiva !== null;
 
   const destaque = artigos[0];
   const corDestaque = getCorSuave(destaque.imagemBg);
@@ -90,11 +107,54 @@ export default function Blog() {
               className="w-full rounded-lg border border-slate-200 bg-white py-3 pl-11 pr-4 text-[15px] text-slate-800 placeholder:text-slate-400 focus:border-emerald-400 focus:outline-none focus:ring-1 focus:ring-emerald-400"
             />
           </div>
+
+          {/* FILTRO POR CATEGORIA */}
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-2">
+            <button
+              onClick={() => setCategoriaAtiva(null)}
+              className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
+                categoriaAtiva === null
+                  ? "bg-slate-900 text-white"
+                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+              }`}
+            >
+              Todos os artigos
+            </button>
+
+            {(mostrarTodasCategorias ? categorias : categorias.slice(0, 7)).map(
+              (cat) => (
+                <button
+                  key={cat}
+                  onClick={() =>
+                    setCategoriaAtiva(categoriaAtiva === cat ? null : cat)
+                  }
+                  className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
+                    categoriaAtiva === cat
+                      ? "bg-slate-900 text-white"
+                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                  }`}
+                >
+                  {cat}
+                </button>
+              )
+            )}
+
+            {categorias.length > 7 && (
+              <button
+                onClick={() => setMostrarTodasCategorias(!mostrarTodasCategorias)}
+                className="rounded-full px-4 py-1.5 text-sm font-medium text-emerald-600 transition hover:bg-emerald-50"
+              >
+                {mostrarTodasCategorias
+                  ? "Mostrar menos"
+                  : `+${categorias.length - 7} categorias`}
+              </button>
+            )}
+          </div>
         </div>
       </section>
 
       {/* ARTIGO DESTAQUE */}
-      {!busca && (
+      {!filtroAtivo && (
         <section className="mx-auto max-w-5xl px-4 pt-10">
           <Link
             to={`/blog/${destaque.slug}`}
@@ -138,16 +198,17 @@ export default function Blog() {
 
       {/* GRID */}
       <section className="mx-auto max-w-5xl px-4 py-10">
-        {busca && (
+        {filtroAtivo && (
           <p className="mb-6 text-sm text-slate-500">
             {artigosFiltrados.length}{" "}
-            {artigosFiltrados.length === 1 ? "resultado" : "resultados"} para "
-            {busca}"
+            {artigosFiltrados.length === 1 ? "artigo" : "artigos"}
+            {categoriaAtiva && ` em ${categoriaAtiva}`}
+            {busca && ` para "${busca}"`}
           </p>
         )}
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {(busca ? artigosFiltrados : artigos.slice(1)).map((artigo) => {
+          {(filtroAtivo ? artigosFiltrados : artigos.slice(1)).map((artigo) => {
             const corC = getCorSuave(artigo.imagemBg);
             return (
               <Link
@@ -190,16 +251,17 @@ export default function Blog() {
           })}
         </div>
 
-        {artigosFiltrados.length === 0 && busca && (
+        {artigosFiltrados.length === 0 && filtroAtivo && (
           <div className="py-16 text-center">
-            <p className="text-slate-500">
-              Nenhum artigo encontrado para "{busca}"
-            </p>
+            <p className="text-slate-500">Nenhum artigo encontrado.</p>
             <button
-              onClick={() => setBusca("")}
+              onClick={() => {
+                setBusca("");
+                setCategoriaAtiva(null);
+              }}
               className="mt-4 text-sm font-semibold text-emerald-600 hover:underline"
             >
-              Limpar busca
+              Limpar filtros
             </button>
           </div>
         )}
