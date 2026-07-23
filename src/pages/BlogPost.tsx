@@ -577,22 +577,22 @@ export default function BlogPost() {
 
       {/* FOOTER */}
       <footer className="border-t border-slate-200 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-8">
+        <div className="mx-auto max-w-5xl px-4 py-10 text-center">
           <Link
-            to="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-emerald-600"
+            to="/"
+            className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 transition hover:text-emerald-600"
           >
             <ArrowLeft className="h-4 w-4" />
-            Ver todos os artigos
+            Voltar ao início
           </Link>
 
-          <p className="mt-6 text-xs text-slate-400">
+          <p className="mt-5 text-xs text-slate-400">
             CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
           </p>
         </div>
 
         {/* Respiro para o botão flutuante não cobrir o rodapé */}
-        <div className="h-20" />
+        <div className="h-16" />
       </footer>
     </div>
   );
