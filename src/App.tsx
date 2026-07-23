@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import CategoriaBlog from "./pages/CategoriaBlog";
+import Procon from "./pages/Procon";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -29,6 +30,7 @@ export default function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/procon" element={<Procon />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/categoria/:categoria" element={<CategoriaWrapper />} />
         <Route path="/blog/:slug" element={<BlogPostWrapper />} />
