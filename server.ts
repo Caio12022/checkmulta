@@ -5,6 +5,7 @@ import { createServer as createViteServer } from "vite";
 import { GoogleGenAI } from "@google/genai";
 import { MercadoPagoConfig, Payment } from "mercadopago";
 import { artigos } from "./src/data/artigos";
+import { artigosProcon } from "./src/data/artigosProcon";
 
 let aiClient: GoogleGenAI | null = null;
 function getAIClient() {
@@ -64,6 +65,29 @@ function getMetaParaRota(pathname: string): MetaInfo {
       description: "Sua empresa foi autuada pelo Procon? Nossa IA verifica grátis se o auto tem vício formal e entrega a defesa administrativa fundamentada no CDC e no Decreto 2.181/97.",
       url: `${BASE_URL}/procon`,
     };
+  }
+
+  // Blog Procon (listagem)
+  if (pathname === "/procon/blog" || pathname === "/procon/blog/") {
+    return {
+      title: "Blog Procon — Defesa de auto de infração para empresas | CheckMulta",
+      description: "Guias sobre auto de infração do Procon: prazos, vícios formais, defesa administrativa e direitos da empresa autuada. Fundamentado no CDC e no Decreto 2.181/97.",
+      url: `${BASE_URL}/procon/blog`,
+    };
+  }
+
+  // Artigo do Procon: /procon/blog/:slug
+  const matchArtigoProcon = pathname.match(/^\/procon\/blog\/([^/]+)\/?$/);
+  if (matchArtigoProcon) {
+    const slugProcon = matchArtigoProcon[1];
+    const artigoProcon = artigosProcon.find((a) => a.slug === slugProcon);
+    if (artigoProcon) {
+      return {
+        title: `${artigoProcon.titulo} | CheckMulta Procon`,
+        description: artigoProcon.descricao,
+        url: `${BASE_URL}/procon/blog/${artigoProcon.slug}`,
+      };
+    }
   }
 
   // Blog (listagem)
