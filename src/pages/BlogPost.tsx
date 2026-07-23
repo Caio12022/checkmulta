@@ -478,7 +478,7 @@ export default function BlogPost() {
 
         {/* FAQ */}
         <div className="mt-12">
-          <h2 className="mb-5 text-lg font-bold text-slate-900">
+          <h2 className="mb-5 text-xl font-bold text-slate-900 sm:text-[22px]">
             Perguntas frequentes
           </h2>
           <div className="space-y-3">
@@ -487,13 +487,13 @@ export default function BlogPost() {
                 key={i}
                 className="group overflow-hidden rounded-xl border border-slate-200 bg-white"
               >
-                <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 text-sm font-semibold text-slate-800 hover:text-emerald-700">
+                <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 text-[15.5px] font-semibold text-slate-800 hover:text-emerald-700">
                   {f.pergunta}
-                  <span className="text-lg text-emerald-600 transition-transform group-open:rotate-45">
+                  <span className="ml-3 flex-shrink-0 text-lg text-emerald-600 transition-transform group-open:rotate-45">
                     +
                   </span>
                 </summary>
-                <div className="px-5 pb-4 text-sm leading-relaxed text-slate-600">
+                <div className="px-5 pb-4 text-[15.5px] leading-relaxed text-slate-600">
                   {f.resposta}
                 </div>
               </details>
@@ -506,39 +506,43 @@ export default function BlogPost() {
       {outrosArtigos.length > 0 && (
         <section className="border-t border-slate-100 bg-slate-50/60">
           <div className="mx-auto max-w-5xl px-4 py-12">
-            <h2 className="mb-6 text-lg font-bold text-slate-900">
+            <h2 className="mb-6 text-xl font-bold text-slate-900 sm:text-[22px]">
               Continue lendo sobre {artigo.categoria}
             </h2>
 
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {outrosArtigos.map((a) => (
-                <Link
-                  key={a.slug}
-                  to={`/blog/${a.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
-                >
-                  <div
-                    className={`flex h-24 items-center justify-center bg-gradient-to-br ${a.imagemBg}`}
+              {outrosArtigos.map((a) => {
+                const corA = getCorSuave(a.imagemBg);
+                return (
+                  <Link
+                    key={a.slug}
+                    to={`/blog/${a.slug}`}
+                    className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
                   >
-                    <span className="text-3xl opacity-60">{a.imagemEmoji}</span>
-                  </div>
-
-                  <div className="flex flex-1 flex-col p-4">
-                    <span
-                      className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide"
-                      style={{ color: getCorSuave(a.imagemBg).textoBadge }}
+                    <div
+                      className="flex h-24 items-center justify-center"
+                      style={{ backgroundColor: corA.fundoBadge }}
                     >
-                      {a.categoria}
-                    </span>
-                    <h3 className="mb-2 text-sm font-bold leading-snug text-slate-900 group-hover:text-emerald-700">
-                      {a.titulo}
-                    </h3>
-                    <span className="mt-auto flex items-center gap-1 text-xs text-slate-400">
-                      <Clock className="h-3 w-3" /> {a.tempoLeitura}
-                    </span>
-                  </div>
-                </Link>
-              ))}
+                      <span className="text-3xl opacity-60">{a.imagemEmoji}</span>
+                    </div>
+
+                    <div className="flex flex-1 flex-col p-4">
+                      <span
+                        className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide"
+                        style={{ color: corA.textoBadge }}
+                      >
+                        {a.categoria}
+                      </span>
+                      <h3 className="mb-2 text-[15px] font-bold leading-snug text-slate-900 group-hover:text-emerald-700">
+                        {a.titulo}
+                      </h3>
+                      <span className="mt-auto flex items-center gap-1 text-xs text-slate-400">
+                        <Clock className="h-3 w-3" /> {a.tempoLeitura}
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
             </div>
 
             <div className="mt-7 text-center">
