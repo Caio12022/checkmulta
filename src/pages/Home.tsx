@@ -1624,6 +1624,26 @@ if (!v) return null;
                         })()}
                       </div>
 
+
+                      {/* AVISO DE TRANSPARÊNCIA — só quando a viabilidade é baixa */}
+                      {extractViabilidade(result)?.nivel === "Baixa" && (
+                        <div className="rounded-lg border border-amber-200 bg-amber-50/60 p-5 text-left">
+                          <h3 className="mb-2 text-base font-bold text-slate-900">
+                            Encontramos um ponto para arguir — e queremos ser claros sobre ele
+                          </h3>
+                          <p className="text-sm leading-relaxed text-slate-700">
+                            A falha identificada é de natureza formal e pode ser arguida em recurso,
+                            mas não é do tipo que costuma levar à anulação direta. Ainda assim,
+                            recorrer tem valor: enquanto o recurso é analisado, a cobrança e a
+                            pontuação ficam suspensas, e o órgão precisa se manifestar de forma
+                            fundamentada.
+                          </p>
+                          <p className="mt-2.5 text-sm leading-relaxed text-slate-600">
+                            A decisão é sua. Se preferir, consulte um advogado antes de seguir.
+                          </p>
+                        </div>
+                      )}
+
                       <div className="rounded-lg border border-emerald-200 bg-emerald-50/50 p-5 text-left">
                         <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-slate-900 sm:text-lg">
                           <Scale className="h-5 w-5 text-emerald-600" /> O que você recebe por R$ 19,90
