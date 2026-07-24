@@ -282,6 +282,9 @@ export default function CategoriaBlog() {
             <Link to="/procon" className="text-slate-600 transition hover:text-emerald-600">
               Procon
             </Link>
+            <Link to="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
+              Vigilância Sanitária
+            </Link>
           </nav>
 
           <p className="text-xs text-slate-400">
