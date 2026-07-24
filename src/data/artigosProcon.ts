@@ -12,6 +12,95 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "entenda-como-o-procon-calcula-o-valor-da-multa-administrativa",
+    titulo: "Entenda como o Procon calcula o valor da multa administrativa",
+    descricao: "Recebeu um auto de infração? Entenda os critérios de dosimetria que o Procon utiliza para fixar o valor da multa e saiba como avaliar o documento.",
+    categoria: "Dosimetria da Multa",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["valor multa Procon", "dosimetria multa Procon", "auto de infração empresa", "defesa processo administrativo"],
+    conteudo: `## A estrutura da sanção administrativa no Procon
+
+Quando uma empresa recebe um auto de infração do Procon, o primeiro questionamento costuma ser sobre o montante financeiro envolvido. A definição do valor da multa, tecnicamente chamada de dosimetria, não é um processo aleatório. Ela segue critérios estabelecidos pela legislação consumerista e pelo sistema de proteção ao consumidor, visando garantir que a sanção seja proporcional à gravidade da conduta praticada.
+
+A dosimetria da multa é pautada, fundamentalmente, pela análise de critérios que norteiam a administração pública em processos sancionatórios: a gravidade da infração, a vantagem auferida pela empresa e a condição econômica do infrator. Compreender esses critérios é essencial para qualquer gestão que busca assegurar o direito ao contraditório e à ampla defesa.
+
+## Os critérios da dosimetria
+
+O Poder Público, ao calcular a penalidade, deve observar os parâmetros estabelecidos pelo Código de Defesa do Consumidor e pelos decretos regulamentadores. Entre os fatores mais relevantes que podem elevar ou reduzir o valor da multa, destacam-se:
+
+- Gravidade da infração: Analisa-se o impacto da conduta no mercado de consumo e os danos causados aos consumidores. Infrações que colocam em risco a segurança ou a saúde possuem um peso considerável.
+- Vantagem auferida: O Procon verifica se a prática irregular trouxe um ganho financeiro direto ou indireto para o estabelecimento, buscando desestimular o benefício obtido através da infração.
+- Condição econômica da empresa: A multa deve ter caráter pedagógico e punitivo, mas não pode inviabilizar a continuidade da atividade empresarial. O porte da empresa, o faturamento e a abrangência da atuação são levados em conta nesse cálculo.
+- Reincidência: A existência de autuações anteriores pelo mesmo motivo ou natureza de infração é um fator agravante que tende a majorar o valor final da penalidade.
+- Atenuantes e agravantes: Fatores como a reparação espontânea do dano ao consumidor, a confissão do erro ou a cooperação com o órgão fiscalizador podem atuar como atenuantes. Por outro lado, a má-fé ou a tentativa de ocultar informações funcionam como agravantes.
+
+## A importância da fundamentação técnica
+
+É dever da autoridade administrativa fundamentar o valor da multa aplicada. Caso a empresa identifique que o órgão não apresentou uma memória de cálculo clara ou não justificou a gradação utilizada na dosimetria, esse ponto pode ser objeto de questionamento na peça de defesa. A ausência de motivação adequada em um ato administrativo é um vício que pode comprometer a validade da sanção imposta.
+
+Além disso, o processo administrativo deve respeitar os princípios da razoabilidade e da proporcionalidade. Se o valor fixado mostrar-se desmedido em relação aos fatos narrados no auto de infração, há margem para argumentação jurídica buscando a revisão da penalidade.
+
+## Como proceder ao receber um auto de infração
+
+Diante de uma autuação, o gestor deve, em primeiro lugar, atentar-se ao prazo para apresentação de defesa, que consta expressamente no documento recebido. É imprescindível conferir esse prazo no próprio auto, pois ele pode variar conforme a esfera (municipal, estadual ou federal) e a legislação local aplicável.
+
+Não se recomenda ignorar o auto, pois o silêncio da empresa pode levar à revelia e à presunção de veracidade dos fatos apontados pelos fiscais. A preparação de uma defesa fundamentada, que exponha os fatos de forma técnica e apresente os argumentos documentais necessários, é o caminho adequado para o exercício da ampla defesa garantida pela Constituição.
+
+É possível enviar o auto de infração do Procon para análise técnica, visando verificar se a autuação apresenta algum vício formal que permita questionar sua validade.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "recebeu-uma-notificacao-do-procon-saiba-como-agir",
+    titulo: "Recebeu uma notificação do Procon? Saiba como agir",
+    descricao: "Entenda os procedimentos fundamentais ao receber uma reclamação do Procon. Evite a autuação com estratégias preventivas. Confira o seu caso no CheckMulta.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["reclamacao procon", "processo administrativo procon", "defesa empresa procon", "notificacao procon"],
+    conteudo: `## A importância da resposta técnica ao Procon
+
+Receber uma notificação de reclamação do Procon não significa, necessariamente, que a empresa será multada. Trata-se de uma fase preliminar, na qual o órgão de proteção ao consumidor busca a conciliação entre as partes envolvidas. No entanto, a forma como a empresa responde a esse chamado pode ser o fator determinante para evitar a abertura de um processo administrativo sancionador que possa culminar em uma autuação e posterior aplicação de multa.
+
+O erro mais comum é o descaso ou a resposta genérica. Quando a empresa ignora uma solicitação de esclarecimentos ou envia uma resposta que não atende ao questionamento específico do consumidor, ela fornece elementos que podem fundamentar o entendimento de que houve infração às normas de consumo. O objetivo, nesta etapa, é demonstrar boa-fé e apresentar uma solução técnica para o problema apontado.
+
+## Primeiras providências ao receber a notificação
+
+Ao receber o documento do Procon, a gestão administrativa deve agir com agilidade e critério. Seguem os passos recomendados:
+
+- Verificação de autenticidade: Certifique-se de que a notificação é oficial e endereçada à sua empresa, checando os dados de contato do órgão emissor.
+- Leitura minuciosa da reclamação: Identifique exatamente qual é a queixa do consumidor. Muitas vezes, a reclamação é baseada em um mal-entendido ou na falta de informação clara sobre um serviço ou produto.
+- Respeito aos prazos: O documento recebido indicará o prazo para resposta, que varia conforme o órgão e a legislação aplicável. É vital não perder esse período. Caso haja necessidade de mais tempo para reunir documentos, verifique a possibilidade de solicitar dilação de prazo antes do vencimento, se o regulamento do Procon específico permitir.
+- Organização documental: Reúna todos os contratos, ordens de serviço, registros de atendimento e evidências da relação comercial. A prova documental é a espinha dorsal de qualquer resposta ao Procon.
+
+## Construindo uma resposta eficaz
+
+Uma boa resposta ao Procon deve ser direta, fundamentada e, acima de tudo, profissional. Evite textos informais ou evasivos. O foco deve ser a resolução do problema ou a justificativa técnica fundamentada nas normas de defesa do consumidor.
+
+Se a reclamação do consumidor tiver procedência, a melhor alternativa é buscar a composição. Oferecer a substituição do produto, o estorno ou uma solução que satisfaça o cliente demonstra cooperação com o órgão fiscalizador. Se a reclamação for improcedente, a resposta deve explicar, de forma clara e técnica, por que a conduta da empresa está em conformidade com o Código de Defesa do Consumidor e com a legislação aplicável.
+
+## A transição para o processo administrativo
+
+Caso a empresa não responda ou a resposta não seja considerada suficiente pelo órgão, o processo pode evoluir para a lavratura de um auto de infração. Neste momento, a situação se torna mais complexa, pois já existe uma acusação formal de conduta infratora. A administração pública, ao exercer seu poder de polícia, busca verificar se houve desrespeito às normas consumeristas. Se o auto de infração for lavrado, inicia-se um rito administrativo próprio, com regras rígidas e prazos específicos que devem ser observados para a apresentação de defesa.
+
+É fundamental compreender que o processo administrativo sancionador exige formalismo. Qualquer vício, seja na notificação, na descrição dos fatos ou na própria dosimetria da multa, pode ser objeto de questionamento. Por isso, a análise detalhada de cada etapa desde a reclamação inicial é o que protege os interesses do negócio a longo prazo.
+
+## Como proceder diante do cenário atual
+
+A gestão proativa é o melhor caminho para empresas que desejam manter sua regularidade perante o mercado e os órgãos de controle. Se a empresa já recebeu um auto de infração após o trâmite da reclamação, a atenção deve ser redobrada para a análise das nulidades formais e da fundamentação do mérito.
+
+No CheckMulta, é possível enviar o auto de infração do Procon para receber uma análise que aponta a existência de possíveis vícios formais na autuação.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "recebeu-reclamacao-no-procon-como-agir-antes-da-autuacao",
     titulo: "Recebeu reclamação no Procon? Como agir antes da autuação",
     descricao: "Recebeu uma notificação do Procon? Saiba como organizar sua defesa e evitar o agravamento para um auto de infração. Analise seu caso no CheckMulta.",
