@@ -1,0 +1,27 @@
+name: Robo de Artigos Procon
+"on":
+  workflow_dispatch:
+  schedule:
+    - cron: "0 15 * * *"
+permissions:
+  contents: write
+  pull-requests: write
+jobs:
+  gerar-artigo-procon:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o codigo
+        uses: actions/checkout@v4
+      - name: Preparar o Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Instalar dependencias
+        working-directory: robo-procon
+        run: npm install
+      - name: Rodar o robo
+        working-directory: robo-procon
+        run: npm start
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
