@@ -12,6 +12,124 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "como-recorrer-multa-detran-guia-estados",
+    titulo: "Como recorrer de multa no DETRAN: guia completo por estado",
+    descricao: "Guia definitivo do recurso de multa no Brasil: prazos, as três fases, o que realmente anula uma autuação e o passo a passo do DETRAN de cada estado. Analise sua multa grátis.",
+    categoria: "Guia Completo",
+    tempoLeitura: "9 min",
+    imagemEmoji: "🇧🇷",
+    imagemBg: "from-emerald-600 to-emerald-800",
+    conteudo: `Recorrer de uma multa de trânsito é um direito garantido a todo condutor pelo Código de Trânsito Brasileiro. O procedimento, no entanto, não é idêntico em todo o país: cada estado tem seu próprio DETRAN, com sistema eletrônico, formulários e formas de protocolo diferentes.
+
+Este guia reúne o essencial do processo — que é comum a todos os estados — e leva você diretamente ao passo a passo do seu DETRAN.
+
+## As três fases do recurso, válidas em todo o Brasil
+
+Independentemente do estado, o processo administrativo de contestação de multa tem a mesma estrutura, definida pelo Código de Trânsito Brasileiro.
+
+**1. Defesa da autuação (ou defesa prévia).** É a primeira oportunidade de contestar. Acontece depois que você recebe a Notificação de Autuação e antes de a multa ser efetivamente aplicada. É a fase mais vantajosa, porque nela a penalidade ainda não se consolidou.
+
+**2. Recurso à JARI.** Se a defesa for indeferida, você recebe a Notificação de Penalidade e pode recorrer à Junta Administrativa de Recursos de Infrações. A JARI é um colegiado que analisa o caso de forma independente.
+
+**3. Recurso ao CETRAN.** Última instância administrativa. Se a JARI negar, cabe recurso ao Conselho Estadual de Trânsito. Depois disso, só a via judicial.
+
+Vale saber de algo que muitos condutores desconhecem: **enquanto o recurso está em análise, a exigibilidade da multa e a contagem dos pontos ficam suspensas**. Ou seja, apresentar defesa é vantajoso mesmo quando a chance de anulação não é alta.
+
+## Prazos: o ponto que mais elimina recursos
+
+O prazo é a causa mais comum de perda do direito de recorrer — não por falta de argumento, mas por perda de data.
+
+- **Defesa da autuação:** o prazo consta na própria Notificação de Autuação recebida. Confira a data limite impressa no documento.
+- **Recurso à JARI:** o prazo consta na Notificação de Penalidade.
+
+Os prazos correm a partir do recebimento da notificação, não da data da infração. Se a notificação chegou com atraso, esse é um ponto que pode ser questionado.
+
+## O que realmente anula uma multa
+
+Recursos baseados apenas em justificativa pessoal — pressa, desconhecimento da sinalização, emergência — raramente prosperam. O que costuma funcionar é a **falha formal no auto de infração**.
+
+O Código de Trânsito Brasileiro estabelece requisitos obrigatórios para a lavratura do auto. O Manual Brasileiro de Fiscalização de Trânsito detalha como cada campo deve ser preenchido. Quando algo ali não é observado, abre-se margem concreta para anulação.
+
+Entre as falhas mais frequentes:
+
+- Placa, marca ou modelo do veículo registrados de forma incorreta
+- Descrição da infração genérica ou incompatível com o dispositivo indicado
+- Ausência de dados obrigatórios do agente autuador
+- Campo de observações em branco quando a situação exigiria justificativa
+- Equipamento de medição sem comprovação de aferição vigente
+- Local da infração descrito de forma imprecisa
+- Notificação expedida fora do prazo legal
+
+Essas falhas não aparecem para quem não sabe o que procurar — e é exatamente por isso que muita gente desiste de recorrer achando que não tem argumento.
+
+## O procedimento no seu estado
+
+Abaixo, o passo a passo específico de cada DETRAN: onde protocolar, quais documentos anexar e como acompanhar o andamento.
+
+### Norte
+
+- [Recurso de multa no DETRAN AC (Acre)](/blog/detran-ac-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN AP (Amapá)](/blog/detran-ap-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN AM (Amazonas)](/blog/detran-am-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN PA (Pará)](/blog/detran-pa-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN RO (Rondônia)](/blog/detran-ro-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN RR (Roraima)](/blog/detran-rr-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN TO (Tocantins)](/blog/detran-to-recurso-multa-passo-a-passo)
+
+### Nordeste
+
+- [Recurso de multa no DETRAN AL (Alagoas)](/blog/detran-al-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN BA (Bahia)](/blog/detran-ba-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN CE (Ceará)](/blog/detran-ce-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN MA (Maranhão)](/blog/detran-ma-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN PB (Paraíba)](/blog/detran-pb-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN PE (Pernambuco)](/blog/detran-pe-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN PI (Piauí)](/blog/detran-pi-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN RN (Rio Grande do Norte)](/blog/detran-rn-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN SE (Sergipe)](/blog/detran-se-recurso-multa-passo-a-passo)
+
+### Centro-Oeste
+
+- [Recurso de multa no DETRAN DF (Distrito Federal)](/blog/detran-df-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN GO (Goiás)](/blog/detran-go-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN MT (Mato Grosso)](/blog/detran-mt-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN MS (Mato Grosso do Sul)](/blog/detran-ms-recurso-multa-passo-a-passo)
+
+### Sudeste
+
+- [Recurso de multa no DETRAN ES (Espírito Santo)](/blog/detran-es-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN MG (Minas Gerais)](/blog/detran-mg-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN RJ (Rio de Janeiro)](/blog/detran-rj-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN SP (São Paulo)](/blog/detran-sp-recurso-multa-passo-a-passo)
+
+### Sul
+
+- [Recurso de multa no DETRAN PR (Paraná)](/blog/detran-pr-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN RS (Rio Grande do Sul)](/blog/detran-rs-recurso-multa-passo-a-passo)
+- [Recurso de multa no DETRAN SC (Santa Catarina)](/blog/detran-sc-recurso-multa-passo-a-passo)
+
+
+## Documentos necessários (comuns a todos os estados)
+
+Independentemente do DETRAN, o recurso normalmente exige:
+
+- Formulário de defesa ou requerimento próprio do órgão
+- Cópia da notificação recebida
+- Cópia da CNH do condutor
+- Cópia do documento do veículo (CRLV)
+- Cópia de documento de identificação do proprietário
+- As provas que sustentam o seu argumento
+
+Se o condutor no momento da infração não era o proprietário, há ainda a **indicação de condutor**, procedimento distinto e com prazo próprio, que transfere a pontuação a quem de fato dirigia.
+
+## Como saber se vale a pena recorrer
+
+A resposta honesta: depende de existir falha real no seu auto de infração. Um recurso sem fundamento consome tempo e tende a ser indeferido.
+
+No CheckMulta, você pode enviar a foto do seu auto de infração e receber uma análise gratuita que verifica campo por campo, com base no CTB e no Manual Brasileiro de Fiscalização, e aponta se há falha formal capaz de fundamentar a anulação. Se não encontrarmos nada, informamos com franqueza — e não há cobrança.`,
+    palavrasChave: ["como recorrer de multa detran", "recurso de multa por estado", "detran recurso multa", "prazo recurso multa detran", "guia recurso multa transito"],
+  },
+  {
     slug: "como-acompanhar-o-seu-recurso-de-multa-em-2026",
     titulo: "Como acompanhar o seu recurso de multa em 2026",
     descricao: "Aprenda como verificar o status do seu recurso de trânsito de forma simples e eficiente. Acesse o CheckMulta para uma análise gratuita da sua multa.",
