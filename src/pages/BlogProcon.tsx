@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Building2, Clock, ArrowRight, ArrowLeft, ShieldCheck } from "lucide-react";
+import { Building2, Clock, ArrowRight } from "lucide-react";
 import {
   artigosProcon,
   getCategoriasProcon,
@@ -81,17 +81,15 @@ export default function BlogProcon() {
     <div className="min-h-screen bg-white">
       {/* Cabeçalho */}
       <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-          <Link to="/procon" className="flex items-center gap-2">
-            <ShieldCheck className="h-7 w-7 text-emerald-600" strokeWidth={2} />
-            <div className="leading-tight">
-              <span className="block text-lg font-bold text-slate-900">
-                CheckMulta
-              </span>
-              <span className="block text-[10px] font-medium uppercase tracking-wide text-slate-500">
-                Procon
-              </span>
-            </div>
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+          <Link to="/procon" className="flex items-center">
+            <img
+              src="/checkmulta-logo.webp"
+              alt="CheckMulta"
+              width="600"
+              height="200"
+              className="h-14 w-auto object-contain md:h-20"
+            />
           </Link>
 
           <nav className="flex items-center gap-5 text-sm font-medium text-slate-600">
@@ -129,7 +127,7 @@ export default function BlogProcon() {
             to="/procon"
             className="mt-7 inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
-            Analisar meu auto de infração grátis
+            Ver se dá para recorrer da minha multa
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
@@ -213,11 +211,12 @@ export default function BlogProcon() {
       <section className="border-t border-slate-100 bg-slate-50">
         <div className="mx-auto max-w-3xl px-4 py-14 text-center">
           <h2 className="mb-3 text-2xl font-bold text-slate-900">
-            Sua empresa foi autuada pelo Procon?
+            Sua empresa foi multada pelo Procon?
           </h2>
           <p className="mb-6 text-base leading-relaxed text-slate-600">
-            Envie o auto de infração e receba, gratuitamente, a verificação de
-            vícios formais na autuação. Se não houver vício, você não paga nada.
+            Envie o auto de infração e receba, gratuitamente, a análise que
+            aponta se há falha que permite recorrer. Se não houver, você não paga
+            nada.
           </p>
           <Link
             to="/procon"
@@ -231,23 +230,34 @@ export default function BlogProcon() {
 
       {/* Rodapé */}
       <footer className="border-t border-slate-200 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-8">
-          <Link
-            to="/procon"
-            className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-emerald-600"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Voltar para a análise do Procon
-          </Link>
+        <div className="mx-auto max-w-4xl px-4 py-10 text-center">
+          <div className="mb-6 flex items-center justify-center">
+            <img
+              src="/checkmulta-logo.webp"
+              alt="CheckMulta"
+              width="600"
+              height="200"
+              className="h-12 w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-16"
+            />
+          </div>
 
-          <p className="mt-6 text-xs leading-relaxed text-slate-400">
+          <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
+            <Link to="/" className="text-slate-600 transition hover:text-emerald-600">
+              Multas de trânsito
+            </Link>
+            <Link to="/procon" className="text-slate-600 transition hover:text-emerald-600">
+              Procon
+            </Link>
+          </nav>
+
+          <p className="mx-auto max-w-3xl text-xs leading-relaxed text-slate-500">
             O conteúdo deste blog tem caráter informativo e não constitui
             consultoria jurídica. O CheckMulta não representa clientes
             juridicamente. Para orientação sobre o seu caso concreto, consulte um
             advogado.
           </p>
 
-          <p className="mt-3 text-xs text-slate-400">
+          <p className="mt-4 text-xs text-slate-400">
             CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
           </p>
         </div>
