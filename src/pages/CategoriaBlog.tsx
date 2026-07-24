@@ -114,7 +114,7 @@ export default function CategoriaBlog() {
               alt="CheckMulta"
               width="600"
               height="200"
-              className="h-10 w-auto object-contain md:h-12"
+              className="h-12 w-auto object-contain md:h-16"
             />
           </Link>
 
