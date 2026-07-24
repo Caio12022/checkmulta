@@ -515,13 +515,13 @@ export default function Procon() {
       {/* HEADER */}
       <header className="sticky top-0 z-40 border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-          <a href="/" className="flex h-full w-[180px] items-center md:w-[220px]">
+          <a href="/" className="flex items-center">
             <img
               src="/checkmulta-logo.webp"
               alt="CheckMulta"
-              width="240"
-              height="64"
-              className="h-auto w-full origin-left scale-[1.25] object-contain md:scale-[1.35]"
+              width="600"
+              height="200"
+              className="h-10 w-auto object-contain md:h-12"
             />
           </a>
 
@@ -580,17 +580,17 @@ export default function Procon() {
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
-            className="fixed bottom-0 left-0 z-30 flex w-full flex-col items-center justify-center gap-4 border-t border-red-500 bg-red-600 p-4 text-white shadow-[0_-10px_40px_-15px_rgba(220,38,38,0.5)] sm:flex-row"
+            className="fixed bottom-0 left-0 z-30 flex w-full flex-col items-center justify-center gap-4 border-t border-amber-300 bg-amber-50 p-4 shadow-[0_-4px_20px_-8px_rgba(0,0,0,0.15)] sm:flex-row"
           >
             <div className="flex items-center gap-3 text-center sm:text-left">
-              <AlertCircle className="hidden h-6 w-6 animate-pulse sm:block" />
-              <p className="text-sm sm:text-base">
-                <strong className="font-semibold">Atenção:</strong> Sua análise foi concluída. O prazo de defesa está correndo.
+              <AlertCircle className="hidden h-5 w-5 flex-shrink-0 text-amber-600 sm:block" />
+              <p className="text-sm text-amber-900 sm:text-base">
+                <strong className="font-semibold">Análise concluída.</strong> O prazo de defesa está correndo.
               </p>
             </div>
             <button
               onClick={() => { setShowFomoBanner(false); setIsResultModalOpen(true); }}
-              className="w-full whitespace-nowrap rounded-lg bg-white px-6 py-2.5 font-semibold text-red-700 transition hover:bg-red-50 sm:w-auto"
+              className="w-full whitespace-nowrap rounded-lg bg-emerald-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 sm:w-auto"
             >
               Ver resultado
             </button>
@@ -607,15 +607,16 @@ export default function Procon() {
           </div>
 
           <h1 className="mb-4 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
-            Auto de infração do Procon: descubra se o seu tem vício formal,{" "}
+            Sua empresa foi multada pelo Procon? Veja se dá para recorrer,{" "}
             <span className="text-emerald-600">grátis</span>
           </h1>
 
           <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-slate-600">
-            Sua empresa foi autuada pelo Procon? Nossa inteligência artificial verifica 16 pontos do
-            processo administrativo sancionador, com base no Código de Defesa do Consumidor e no
-            Decreto 2.181/97. Se não encontrar vício, você não paga nada — a análise é grátis e sem
-            cadastro.
+            Faça a análise gratuita do auto de infração. Nossa inteligência
+            artificial verifica 16 pontos do processo, com base no Código de
+            Defesa do Consumidor e no Decreto 2.181/97, em busca da falha que
+            permite recorrer. Se não encontrar nada, você não paga — a análise é
+            grátis e sem cadastro.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600 sm:gap-6">
@@ -690,7 +691,8 @@ export default function Procon() {
           <div className="text-center">
             <div className="mb-8">
               <h2 className="mb-2 text-2xl font-bold text-slate-900 sm:text-3xl">
-                Verifique <span className="text-emerald-600">agora</span> se o auto tem vício
+                Descubra <span className="text-emerald-600">agora</span> se dá
+                para recorrer
               </h2>
               <p className="text-base text-slate-600">
                 Selecione o tipo de autuação para iniciar a análise gratuita:
@@ -752,7 +754,7 @@ export default function Procon() {
               </div>
               <h3 className="mb-2 text-base font-bold text-slate-900">3. Diagnóstico grátis</h3>
               <p className="text-sm leading-relaxed text-slate-600">
-                Mostramos os vícios encontrados, com o trecho exato do documento, e o nível de viabilidade.
+                Mostramos as falhas encontradas, com o trecho exato do documento, e se dá para recorrer.
               </p>
             </div>
           </div>
@@ -775,7 +777,7 @@ export default function Procon() {
                     Viabilidade alta
                   </span>
                   <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                    Vício formal grave identificado. Fundamento consistente para arguir a nulidade.
+                    Falha grave encontrada no auto. Fundamento consistente para pedir a anulação.
                   </p>
                 </div>
               </div>
@@ -820,8 +822,9 @@ export default function Procon() {
               O que verificamos no seu <span className="text-emerald-600">auto de infração</span>
             </h2>
             <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600">
-              A análise percorre os principais pontos que podem tornar a autuação questionável,
-              conforme o Decreto 2.181/97 e o Código de Defesa do Consumidor.
+              A análise percorre os principais pontos que podem abrir margem para
+              recurso, conforme o Decreto 2.181/97 e o Código de Defesa do
+              Consumidor.
             </p>
           </div>
 
@@ -1049,8 +1052,8 @@ export default function Procon() {
             <img
               src="/checkmulta-logo.webp"
               alt="CheckMulta"
-              width="240"
-              height="64"
+              width="600"
+              height="200"
               className="h-[40px] w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-[46px]"
             />
           </div>
@@ -1085,50 +1088,50 @@ export default function Procon() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.96, y: 16 }}
                 transition={{ duration: 0.2 }}
-                className="relative w-full max-w-sm bg-white rounded-2xl shadow-2xl overflow-hidden"
+                className="relative w-full max-w-sm overflow-hidden rounded-xl bg-white shadow-xl"
               >
-                <div className="bg-blue-900 px-5 py-4 flex items-center justify-between">
+                <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
                   <div>
-                    <p className="text-[10px] font-bold text-blue-300 uppercase tracking-widest mb-0.5">Análise gratuita</p>
-                    <h3 className="text-base font-black text-white leading-tight">{selectedTipo}</h3>
+                    <p className="mb-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-600">Análise gratuita</p>
+                    <h3 className="text-base font-bold leading-tight text-slate-900">{selectedTipo}</h3>
                   </div>
-                  <button onClick={() => setIsUploadModalOpen(false)} className="p-1.5 text-blue-300 hover:text-white hover:bg-blue-800 rounded-lg transition-colors">
-                    <X className="w-5 h-5" />
+                  <button onClick={() => setIsUploadModalOpen(false)} className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
+                    <X className="h-5 w-5" />
                   </button>
                 </div>
 
-                <div className="p-5 space-y-4">
-                  <div className="flex items-start gap-2.5 bg-amber-50 border border-amber-200 rounded-xl p-3">
-                    <AlertCircle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
-                    <p className="text-xs text-amber-800 font-medium leading-relaxed">
-                      Envie o <strong>PDF original</strong> sempre que possível. Se for foto, deixe o texto completo e legível.
+                <div className="space-y-4 p-5">
+                  <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3">
+                    <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-500" />
+                    <p className="text-xs leading-relaxed text-amber-800">
+                      Envie o <strong className="font-semibold">PDF original</strong> sempre que possível. Se for foto, deixe o texto completo e legível.
                     </p>
                   </div>
 
-                  <div className="relative group rounded-xl transition-all duration-200 text-center border-2 border-dashed border-emerald-300 hover:border-emerald-500 hover:bg-emerald-50/40 bg-emerald-50/20 cursor-pointer">
+                  <div className="group relative cursor-pointer rounded-lg border-2 border-dashed border-emerald-300 bg-emerald-50/30 text-center transition hover:border-emerald-500 hover:bg-emerald-50/60">
                     <input
                       type="file"
                       ref={fileInputRef}
                       onChange={handleFileSelect}
                       accept="image/*,application/pdf"
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer disabled:cursor-not-allowed z-10"
+                      className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
                       disabled={isAnalyzing || isPaid}
                       title="Clique para enviar o documento"
                     />
-                    <div className="flex flex-col items-center justify-center py-7 space-y-3 pointer-events-none">
-                      <div className="w-14 h-14 bg-emerald-600 text-white rounded-full flex items-center justify-center group-hover:scale-105 transition-transform duration-200 shadow-md">
-                        <UploadCloud className="w-7 h-7" />
+                    <div className="pointer-events-none flex flex-col items-center justify-center space-y-3 py-8">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white transition duration-200 group-hover:scale-105">
+                        <UploadCloud className="h-7 w-7" />
                       </div>
                       <div>
-                        <p className="text-sm font-black text-slate-800">Auto de Infração do Procon</p>
-                        <p className="text-slate-500 text-xs font-medium mt-0.5">PDF, JPG ou PNG — documento completo</p>
+                        <p className="text-sm font-bold text-slate-900">Auto de infração do Procon</p>
+                        <p className="mt-0.5 text-xs text-slate-500">PDF, JPG ou PNG — documento completo</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="flex items-center justify-center gap-1.5 text-slate-400">
-                    <Lock className="w-3 h-3" />
-                    <p className="text-[11px] font-medium">Documento deletado imediatamente após a análise</p>
+                    <Lock className="h-3 w-3" />
+                    <p className="text-[11px]">Documento deletado imediatamente após a análise</p>
                   </div>
                 </div>
               </motion.div>
@@ -1146,40 +1149,40 @@ export default function Procon() {
                 initial={{ opacity: 0, scale: 0.95, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                className="bg-white/95 backdrop-blur-md rounded-2xl p-6 sm:p-8 max-w-md w-full shadow-lg flex flex-col relative"
+                className="relative flex w-full max-w-md flex-col rounded-xl bg-white p-6 shadow-xl sm:p-8"
                 onClick={(e) => e.stopPropagation()}
               >
-                <button onClick={() => setActiveModal(null)} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-colors z-10">
-                  <X className="w-6 h-6" />
+                <button onClick={() => setActiveModal(null)} className="absolute right-4 top-4 z-10 rounded-full p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
+                  <X className="h-5 w-5" />
                 </button>
                 <div className="mb-4 pr-8">
-                  {activeModal === "aviso" && <h3 className="text-xl font-bold text-slate-800">Aviso Jurídico</h3>}
-                  {activeModal === "termos" && <h3 className="text-xl font-bold text-slate-800">Termos de Uso</h3>}
-                  {activeModal === "privacidade" && <h3 className="text-xl font-bold text-slate-800">Políticas de Privacidade</h3>}
-                  {activeModal === "suporte" && <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2"><span>💬</span> Central de Suporte</h3>}
+                  {activeModal === "aviso" && <h3 className="text-lg font-bold text-slate-900">Aviso jurídico</h3>}
+                  {activeModal === "termos" && <h3 className="text-lg font-bold text-slate-900">Termos de uso</h3>}
+                  {activeModal === "privacidade" && <h3 className="text-lg font-bold text-slate-900">Política de privacidade</h3>}
+                  {activeModal === "suporte" && <h3 className="text-lg font-bold text-slate-900">Central de suporte</h3>}
                 </div>
-                <div className="text-sm text-slate-600 leading-relaxed space-y-3 font-medium">
-                  {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente por inteligência artificial e não constitui consultoria jurídica. Não somos um escritório de advocacia e não representamos a empresa juridicamente. <strong>A decisão final do processo administrativo é de exclusiva competência do órgão julgador.</strong> Confira sempre o prazo e a forma de protocolo junto ao Procon emissor.</p>}
+                <div className="space-y-3 text-[15px] leading-relaxed text-slate-600">
+                  {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente por inteligência artificial e não constitui consultoria jurídica. Não somos um escritório de advocacia e não representamos a empresa juridicamente. <strong className="font-semibold text-slate-900">A decisão final do processo administrativo é de exclusiva competência do órgão julgador.</strong> Confira sempre o prazo e a forma de protocolo junto ao Procon emissor.</p>}
                   {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial para formulação de teses administrativas. Não nos responsabilizamos por prazos excedidos, inserção de dados incorretos pelo usuário, forma de protocolo inadequada ou resultado das decisões proferidas pelo órgão julgador. Para casos de maior complexidade ou valor elevado, recomendamos a consulta a um advogado.</p>}
                   {activeModal === "privacidade" && <p>Sua privacidade é absoluta. Não possuímos banco de dados, nem realizamos registros do auto de infração enviado, dados da empresa ou da defesa gerada. O processamento é de caráter transitório para elaboração do documento, que é imediatamente apagado após o fechamento da página.</p>}
                   {activeModal === "suporte" && (
-                    <div className="space-y-5 pt-2">
-                      <p className="text-sm text-slate-600 font-medium">Selecione o canal de atendimento para falar com o nosso time técnico:</p>
+                    <div className="space-y-5 pt-1">
+                      <p className="text-[15px] text-slate-600">Selecione o canal de atendimento para falar com o nosso time:</p>
                       <div className="flex flex-col gap-3">
-                        <a href="https://wa.me/5513996485501?text=Olá!%20Preciso%20de%20ajuda%20com%20a%20análise%20do%20Procon." target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 w-full p-4 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl text-emerald-900 transition-colors text-left">
-                          <MessageSquare className="w-6 h-6 text-emerald-600 flex-shrink-0" />
-                          <div><strong className="block text-sm font-bold">Atendimento via WhatsApp</strong><span className="text-xs text-emerald-700 font-medium">Fale direto com um analista</span></div>
+                        <a href="https://wa.me/5513996485501?text=Olá!%20Preciso%20de%20ajuda%20com%20a%20análise%20do%20Procon." target="_blank" rel="noopener noreferrer" className="flex w-full items-center gap-3 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-left text-emerald-900 transition hover:bg-emerald-100">
+                          <MessageSquare className="h-5 w-5 flex-shrink-0 text-emerald-600" />
+                          <div><strong className="block text-sm font-semibold">Atendimento via WhatsApp</strong><span className="text-xs text-emerald-700">Fale direto com um analista</span></div>
                         </a>
-                        <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 w-full p-4 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-xl text-blue-900 transition-colors text-left">
-                          <ClipboardList className="w-6 h-6 text-blue-600 flex-shrink-0" />
-                          <div><strong className="block text-sm font-bold">Abrir Chamado Técnico</strong><span className="text-xs text-blue-700 font-medium">Reembolsos ou falhas</span></div>
+                        <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" className="flex w-full items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-left text-slate-900 transition hover:bg-slate-100">
+                          <ClipboardList className="h-5 w-5 flex-shrink-0 text-slate-500" />
+                          <div><strong className="block text-sm font-semibold">Abrir chamado técnico</strong><span className="text-xs text-slate-600">Reembolsos ou falhas</span></div>
                         </a>
                       </div>
                     </div>
                   )}
                 </div>
                 {activeModal !== "suporte" && (
-                  <button onClick={() => setActiveModal(null)} className="mt-8 w-full py-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-colors">Entendi e concordo</button>
+                  <button onClick={() => setActiveModal(null)} className="mt-7 w-full rounded-lg bg-slate-900 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Entendi</button>
                 )}
               </motion.div>
             </div>
@@ -1196,72 +1199,72 @@ export default function Procon() {
                 initial={{ opacity: 0, scale: 0.95, y: 10 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 10 }}
-                className={`max-w-3xl w-full flex flex-col relative rounded-3xl shadow-2xl ${error ? "bg-red-50/95 border border-red-200 p-8" : "bg-white/95 backdrop-blur-md p-6 sm:p-10"}`}
+                className={`relative flex w-full max-w-3xl flex-col rounded-xl shadow-xl ${error ? "border border-red-200 bg-white p-8" : "bg-white p-6 sm:p-10"}`}
                 onClick={(e) => e.stopPropagation()}
               >
-                <button onClick={closeResultModal} className={`absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full transition-colors z-10 ${error ? "hover:bg-red-100" : "hover:bg-slate-100"}`}>
-                  <X className="w-6 h-6" />
+                <button onClick={closeResultModal} className="absolute right-4 top-4 z-10 rounded-full p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
+                  <X className="h-5 w-5" />
                 </button>
 
-                <div className="w-full mt-4 space-y-6">
+                <div className="mt-4 w-full space-y-6">
 
                   {/* LOADING DA ANÁLISE */}
                   {isAnalyzing && (
-                    <div className="flex flex-col items-center justify-center p-6 space-y-6 max-w-md mx-auto">
-                      <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-2 shadow-inner">
-                        <Search className="w-10 h-10 animate-pulse" />
+                    <div className="mx-auto flex max-w-md flex-col items-center justify-center space-y-6 p-6">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                        <Search className="h-10 w-10 animate-pulse" />
                       </div>
-                      <h3 className="text-xl font-black text-slate-800 text-center">Processando Documento</h3>
-                      <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
-                        <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-blue-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                      <h3 className="text-center text-xl font-bold text-slate-900">Processando documento</h3>
+                      <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+                        <motion.div className="absolute left-0 top-0 h-full w-1/2 rounded-full bg-emerald-600" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
                       </div>
-                      <div className="min-h-[60px] flex items-center justify-center">
+                      <div className="flex min-h-[60px] items-center justify-center">
                         <AnimatePresence mode="wait">
-                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="font-bold text-blue-700 text-center text-lg">
+                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="text-center text-base font-semibold text-emerald-700">
                             {LOADER_MESSAGES[loaderIndex]}
                           </motion.p>
                         </AnimatePresence>
                       </div>
-                      <p className="text-sm text-slate-500 font-medium text-center bg-slate-50 p-3 rounded-lg border border-slate-200">
-                        A IA está lendo o documento em alta resolução. <strong>Isso pode levar cerca de 1 minuto.</strong> Não feche a tela.
+                      <p className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-center text-sm leading-relaxed text-slate-600">
+                        A IA está lendo o documento em alta resolução. <strong className="font-semibold text-slate-900">Isso pode levar cerca de 1 minuto.</strong> Não feche a tela.
                       </p>
                     </div>
                   )}
 
                   {/* ERRO */}
                   {error && (
-                    <div className="flex flex-col items-center text-center space-y-4">
-                      <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
-                        <AlertCircle className="w-8 h-8" />
+                    <div className="flex flex-col items-center space-y-4 text-center">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-50 text-red-600">
+                        <AlertCircle className="h-8 w-8" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-red-800 mb-2">Análise Indisponível</h3>
-                        <p className="text-red-700 font-medium leading-relaxed">{error}</p>
+                        <h3 className="mb-2 text-lg font-bold text-slate-900">Análise indisponível</h3>
+                        <p className="leading-relaxed text-slate-600">{error}</p>
                       </div>
                     </div>
                   )}
 
                   {/* REJEIÇÃO: SEM VÍCIO */}
                   {!error && !isAnalyzing && rejeicaoInfo && rejeicaoInfo.tipo === "sem_vicio" && (
-                    <div className="flex flex-col items-center text-center space-y-5 max-w-md mx-auto py-4">
-                      <div className="w-20 h-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center">
-                        <ShieldCheck className="w-11 h-11" />
+                    <div className="mx-auto flex max-w-md flex-col items-center space-y-5 py-4 text-center">
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                        <ShieldCheck className="h-10 w-10" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-black text-slate-800 mb-2">Auto sem vício formal identificado</h3>
-                        <p className="text-slate-600 font-medium leading-relaxed">
-                          Analisamos o auto de infração ponto por ponto e <strong>não identificamos vício formal</strong> entre os 16 itens verificados. O documento aparenta observar as formalidades do CDC e do Decreto 2.181/97.
+                        <h3 className="mb-2 text-lg font-bold text-slate-900">Não encontramos falha para recorrer</h3>
+                        <p className="leading-relaxed text-slate-600">
+                          Analisamos o auto de infração ponto por ponto e <strong className="font-semibold text-slate-900">não encontramos falha</strong> entre os 16 itens verificados. O documento aparenta seguir as formalidades exigidas pelo CDC e pelo Decreto 2.181/97.
                         </p>
-                        <p className="text-slate-500 text-sm mt-3 font-medium">
+                        <p className="mt-3 text-sm leading-relaxed text-slate-500">
                           Como não encontramos irregularidade, não há cobrança. Optamos por informá-lo com franqueza, em vez de elaborar uma defesa sem fundamento real. Esse é o critério que aplicamos em toda análise.
                         </p>
                       </div>
-                      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-left w-full">
-                        <p className="text-sm text-blue-800 font-medium">
-                          <strong>Importante:</strong> isso não significa que a autuação seja necessariamente procedente. Significa que os vícios formais que analisamos não foram identificados. Se a empresa discorda do mérito da autuação, recomendamos a consulta a um advogado.
+                      <div className="w-full rounded-lg border border-slate-200 bg-slate-50 p-4 text-left">
+                        <p className="text-sm leading-relaxed text-slate-600">
+                          <strong className="font-semibold text-slate-900">Importante:</strong> isso não significa que a autuação seja necessariamente procedente. Significa que as falhas que analisamos não foram encontradas. Se a empresa discorda do mérito da autuação, recomendamos a consulta a um advogado.
                         </p>
                       </div>
-                      <button onClick={handleNovaAnalise} className="mt-2 px-6 py-3 bg-slate-800 text-white font-bold rounded-xl hover:bg-slate-700 transition-colors">
+                      <button onClick={handleNovaAnalise} className="mt-2 rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
                         Analisar outro auto
                       </button>
                     </div>
@@ -1273,44 +1276,44 @@ export default function Procon() {
 
                       {/* Dados do processo */}
                       {(analise.empresa_autuada || analise.orgao_emissor || analise.numero_processo) && (
-                        <div className="bg-gradient-to-r from-blue-50 to-slate-50 border border-blue-200 rounded-2xl p-5 shadow-sm">
-                          <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-4">Auto de Infração Analisado</p>
-                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+                          <p className="mb-4 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Auto de infração analisado</p>
+                          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                             {analise.empresa_autuada && (
                               <div className="flex items-start gap-2.5">
-                                <Building2 className="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                                <Building2 className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" />
                                 <div>
-                                  <p className="text-slate-500 font-bold uppercase text-[10px] tracking-wider">Empresa</p>
-                                  <p className="font-black text-slate-900 text-[13px] leading-snug">{analise.empresa_autuada}</p>
+                                  <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Empresa</p>
+                                  <p className="text-[13px] font-bold leading-snug text-slate-900">{analise.empresa_autuada}</p>
                                 </div>
                               </div>
                             )}
                             {analise.orgao_emissor && (
                               <div className="flex items-start gap-2.5">
-                                <Scale className="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                                <Scale className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" />
                                 <div>
-                                  <p className="text-slate-500 font-bold uppercase text-[10px] tracking-wider">Órgão</p>
-                                  <p className="font-black text-slate-900 text-[13px] leading-snug">{analise.orgao_emissor}</p>
+                                  <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Órgão</p>
+                                  <p className="text-[13px] font-bold leading-snug text-slate-900">{analise.orgao_emissor}</p>
                                 </div>
                               </div>
                             )}
                             {analise.numero_processo && (
                               <div className="flex items-start gap-2.5">
-                                <FileText className="w-4 h-4 text-blue-600 flex-shrink-0 mt-1" />
+                                <FileText className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" />
                                 <div>
-                                  <p className="text-slate-500 font-bold uppercase text-[10px] tracking-wider">Processo</p>
-                                  <p className="font-black text-slate-900 text-[13px] leading-snug">{analise.numero_processo}</p>
+                                  <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Processo</p>
+                                  <p className="text-[13px] font-bold leading-snug text-slate-900">{analise.numero_processo}</p>
                                 </div>
                               </div>
                             )}
                           </div>
 
                           {analise.prazo_identificado && (
-                            <div className="mt-4 pt-4 border-t border-blue-200/60 flex items-start gap-3">
-                              <Clock className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+                            <div className="mt-4 flex items-start gap-3 border-t border-slate-200 pt-4">
+                              <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
                               <div>
-                                <p className="text-slate-500 font-bold uppercase text-[10px] tracking-wider">Prazo para defesa</p>
-                                <p className="text-slate-800 text-[13px] font-medium leading-relaxed mt-0.5">{analise.prazo_identificado}</p>
+                                <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Prazo para defesa</p>
+                                <p className="mt-0.5 text-[13px] leading-relaxed text-slate-700">{analise.prazo_identificado}</p>
                               </div>
                             </div>
                           )}
@@ -1319,194 +1322,193 @@ export default function Procon() {
 
                       {/* Título com viabilidade */}
                       <div className="flex items-start space-x-4">
-                        <CheckCircle2 className={`w-8 h-8 flex-shrink-0 mt-1 ${viabilidade?.nivel === "Baixa" ? "text-amber-500" : "text-emerald-600"}`} />
+                        <CheckCircle2 className={`mt-1 h-7 w-7 flex-shrink-0 ${viabilidade?.nivel === "Baixa" ? "text-amber-500" : "text-emerald-600"}`} />
                         <div>
-                          <h2 className="text-xl sm:text-2xl font-black text-slate-900 mb-2 leading-tight">
+                          <h2 className="mb-2 text-xl font-bold leading-tight text-slate-900 sm:text-2xl">
                             {viabilidade?.nivel === "Baixa" ? (
                               <>Analisamos o auto e há um <span className="text-amber-600">ângulo possível</span></>
                             ) : (
-                              <>Identificamos <span className="text-emerald-600">vício formal</span> neste auto</>
+                              <>Encontramos <span className="text-emerald-600">falha</span> neste auto</>
                             )}
                           </h2>
-                          <p className="text-slate-600 font-medium leading-relaxed">{analise.resumo}</p>
+                          <p className="leading-relaxed text-slate-600">{analise.resumo}</p>
                         </div>
                       </div>
 
                       {/* Contadores */}
                       <div className="flex flex-wrap gap-2.5">
                         {analise.quantidade_criticos > 0 && (
-                          <span className="px-3.5 py-1.5 rounded-xl bg-red-50 text-red-700 text-xs font-bold border border-red-200">
+                          <span className="rounded-lg border border-red-200 bg-red-50 px-3.5 py-1.5 text-xs font-semibold text-red-700">
                             {analise.quantidade_criticos} crítico(s)
                           </span>
                         )}
                         {analise.quantidade_atencao > 0 && (
-                          <span className="px-3.5 py-1.5 rounded-xl bg-amber-50 text-amber-700 text-xs font-bold border border-amber-200">
+                          <span className="rounded-lg border border-amber-200 bg-amber-50 px-3.5 py-1.5 text-xs font-semibold text-amber-700">
                             {analise.quantidade_atencao} de atenção
                           </span>
                         )}
                         {analise.quantidade_verificar > 0 && (
-                          <span className="px-3.5 py-1.5 rounded-xl bg-sky-50 text-sky-700 text-xs font-bold border border-sky-200">
+                          <span className="rounded-lg border border-sky-200 bg-sky-50 px-3.5 py-1.5 text-xs font-semibold text-sky-700">
                             {analise.quantidade_verificar} a verificar
                           </span>
                         )}
                       </div>
 
                       {/* Achados */}
-                      <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-left space-y-4">
-                        <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">O que a IA encontrou no seu auto</p>
+                      <div className="space-y-4 rounded-lg border border-slate-200 bg-slate-50 p-5 text-left">
+                        <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">O que a análise encontrou no seu auto</p>
                         {analise.achados.map((achado, i) => {
                           const est = ESTILOS_GRAVIDADE[achado.gravidade] || ESTILOS_GRAVIDADE.verificar;
                           return (
-                            <div key={i} className={`border-l-4 ${est.borda} ${est.fundo} rounded-r-xl p-4`}>
-                              <div className="flex items-start gap-2.5 mb-2.5">
-                                <AlertCircle className={`w-5 h-5 flex-shrink-0 mt-0.5 ${est.corIcone}`} />
+                            <div key={i} className={`rounded-r-lg border-l-4 bg-white p-4 ${est.borda}`}>
+                              <div className="mb-2.5 flex items-start gap-2.5">
+                                <AlertCircle className={`mt-0.5 h-5 w-5 flex-shrink-0 ${est.corIcone}`} />
                                 <div>
-                                  <h3 className="font-bold text-slate-900 text-[15px] leading-snug">{achado.titulo}</h3>
-                                  <span className={`text-[10px] font-black uppercase tracking-wider ${est.texto}`}>{est.rotulo}</span>
+                                  <h3 className="text-[15px] font-bold leading-snug text-slate-900">{achado.titulo}</h3>
+                                  <span className={`text-[10px] font-semibold uppercase tracking-wide ${est.texto}`}>{est.rotulo}</span>
                                 </div>
                               </div>
                               <div className="mb-2.5 pl-7">
-                                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Trecho do documento</p>
-                                <p className="text-[13px] text-slate-700 italic border-l-2 border-slate-300 pl-3 leading-relaxed">
+                                <p className="mb-1 text-[10px] font-semibold uppercase tracking-wide text-slate-400">Trecho do documento</p>
+                                <p className="border-l-2 border-slate-200 pl-3 text-[13px] italic leading-relaxed text-slate-600">
                                   {achado.trecho_documento}
                                 </p>
                               </div>
-                              <p className="text-[13px] sm:text-sm text-slate-700 leading-relaxed pl-7 font-medium">{achado.explicacao}</p>
+                              <p className="pl-7 text-[13px] leading-relaxed text-slate-700 sm:text-sm">{achado.explicacao}</p>
                               {achado.base_legal && (
-                                <p className="text-[11px] text-slate-500 pl-7 mt-1.5 font-medium">{achado.base_legal}</p>
+                                <p className="mt-1.5 pl-7 text-[11px] text-slate-500">{achado.base_legal}</p>
                               )}
                             </div>
                           );
                         })}
 
                         {viabilidade && (
-                          <div className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl border ${viabilidade.bg} ${viabilidade.borda}`}>
-                            <ShieldCheck className={`w-4 h-4 ${viabilidade.cor}`} />
-                            <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Viabilidade da defesa:</span>
-                            <span className={`text-sm font-black uppercase ${viabilidade.cor}`}>{viabilidade.nivel}</span>
+                          <div className={`inline-flex items-center gap-2 rounded-lg border px-3.5 py-2 ${viabilidade.bg} ${viabilidade.borda}`}>
+                            <ShieldCheck className={`h-4 w-4 ${viabilidade.cor}`} />
+                            <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Chance de recorrer:</span>
+                            <span className={`text-sm font-bold uppercase ${viabilidade.cor}`}>{viabilidade.nivel}</span>
                           </div>
                         )}
                       </div>
 
                       {/* Oferta */}
-                      <div className="bg-blue-50/50 border border-blue-200 rounded-2xl p-5 text-left relative overflow-hidden">
-                        <div className="absolute top-0 left-0 w-1.5 h-full bg-blue-500 rounded-l-2xl" />
-                        <h3 className="text-slate-900 font-black text-base sm:text-lg mb-4 flex items-center gap-2 pl-2">
-                          <Scale className="w-5 h-5 text-blue-600" /> O que você recebe por R$ 99,00:
+                      <div className="rounded-lg border border-emerald-200 bg-emerald-50/50 p-5 text-left">
+                        <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-slate-900 sm:text-lg">
+                          <Scale className="h-5 w-5 text-emerald-600" /> O que você recebe por R$ 99,00
                         </h3>
-                        <ul className="space-y-3 text-[13px] sm:text-[15px] text-slate-700 font-medium pl-2">
+                        <ul className="space-y-3 text-[13px] text-slate-700 sm:text-[15px]">
                           <li className="flex items-start gap-3">
-                            <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
                             <span>Defesa administrativa completa, estruturada em preliminares, mérito e pedidos</span>
                           </li>
                           <li className="flex items-start gap-3">
-                            <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                            <span>Cada vício fundamentado no CDC e no Decreto 2.181/97, com o trecho do seu documento</span>
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <span>Cada ponto fundamentado no CDC e no Decreto 2.181/97, com o trecho do seu documento</span>
                           </li>
                           <li className="flex items-start gap-3">
-                            <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
                             <span>Pedido subsidiário de redução da multa com base nos critérios do art. 57 do CDC</span>
                           </li>
                           <li className="flex items-start gap-3">
-                            <Check className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
                             <span>Entrega imediata após o pagamento — pronta para preencher e protocolar</span>
                           </li>
                         </ul>
                       </div>
 
-                      <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 flex items-start gap-2.5">
-                        <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
-                        <p className="text-[11px] sm:text-xs text-amber-800 font-medium leading-relaxed">
-                          <strong>Por que vale a pena:</strong> a elaboração de uma defesa administrativa por advogado costuma custar a partir de R$ 800. Aqui, são R$ 99,00 — e apenas quando identificamos vício concreto. A peça é fundamentada no CDC e no Decreto 2.181/97; a decisão final cabe ao órgão julgador. Confira o prazo e a forma de protocolo junto ao Procon emissor.
+                      <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
+                        <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
+                        <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
+                          <strong className="font-semibold">Por que vale a pena:</strong> a elaboração de uma defesa administrativa por advogado costuma custar a partir de R$ 800. Aqui, são R$ 99,00 — e apenas quando encontramos falha concreta. A peça é fundamentada no CDC e no Decreto 2.181/97; a decisão final cabe ao órgão julgador. Confira o prazo e a forma de protocolo junto ao Procon emissor.
                         </p>
                       </div>
 
                       {checkoutError && (
-                        <div className="bg-red-50 border border-red-200 text-red-700 p-3.5 rounded-xl flex items-start gap-2.5 shadow-sm">
-                          <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                          <p className="text-sm font-bold">{checkoutError}</p>
+                        <div className="flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 p-3.5 text-red-700">
+                          <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0" />
+                          <p className="text-sm font-semibold">{checkoutError}</p>
                         </div>
                       )}
 
                       <button
                         onClick={handleCheckout}
                         disabled={isCheckoutLoading}
-                        className="w-full flex flex-col items-center justify-center py-4 px-4 bg-emerald-600 text-white rounded-2xl hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-600/20 disabled:opacity-75 disabled:cursor-not-allowed font-bold"
+                        className="flex w-full flex-col items-center justify-center rounded-lg bg-emerald-600 px-4 py-4 font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-75"
                       >
-                        <div className="flex flex-row items-center justify-center gap-2 text-lg text-center leading-tight">
-                          {isCheckoutLoading ? <Loader2 className="w-6 h-6 animate-spin flex-shrink-0" /> : <Scale className="w-6 h-6 flex-shrink-0" />}
-                          <span>{isCheckoutLoading ? "Gerando PIX..." : "Gerar Minha Defesa Agora"}</span>
+                        <div className="flex flex-row items-center justify-center gap-2 text-center text-lg leading-tight">
+                          {isCheckoutLoading ? <Loader2 className="h-6 w-6 flex-shrink-0 animate-spin" /> : <Scale className="h-6 w-6 flex-shrink-0" />}
+                          <span>{isCheckoutLoading ? "Gerando PIX..." : "Gerar minha defesa agora"}</span>
                         </div>
-                        <span className="text-sm font-medium text-emerald-100 mt-1">Pagamento único · R$ 99,00 · Entrega imediata</span>
+                        <span className="mt-1 text-sm font-normal text-emerald-50">Pagamento único · R$ 99,00 · Entrega imediata</span>
                       </button>
-                      <p className="text-center text-[11px] text-slate-400 font-medium mt-2">CheckMulta Tecnologia · CNPJ 63.524.338/0001-62</p>
+                      <p className="mt-2 text-center text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
                     </div>
                   )}
 
                   {/* LOADING DA GERAÇÃO */}
                   {isGeneratingDefense && (
-                    <div className="flex flex-col items-center justify-center p-8 space-y-6 max-w-md mx-auto">
-                      <div className="w-20 h-20 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mb-2 shadow-inner">
-                        <FileText className="w-10 h-10 animate-bounce" />
+                    <div className="mx-auto flex max-w-md flex-col items-center justify-center space-y-6 p-8">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                        <FileText className="h-10 w-10 animate-bounce" />
                       </div>
-                      <h3 className="text-xl font-black text-slate-800 text-center">Redigindo sua Defesa</h3>
-                      <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden relative shadow-inner">
-                        <motion.div className="absolute top-0 left-0 h-full w-1/2 bg-emerald-600 rounded-full" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                      <h3 className="text-center text-xl font-bold text-slate-900">Redigindo sua defesa</h3>
+                      <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+                        <motion.div className="absolute left-0 top-0 h-full w-1/2 rounded-full bg-emerald-600" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
                       </div>
-                      <div className="min-h-[60px] flex items-center justify-center">
+                      <div className="flex min-h-[60px] items-center justify-center">
                         <AnimatePresence mode="wait">
-                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="font-bold text-emerald-700 text-center text-lg">
+                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="text-center text-base font-semibold text-emerald-700">
                             {LOADER_MESSAGES[loaderIndex]}
                           </motion.p>
                         </AnimatePresence>
                       </div>
-                      <div className="bg-emerald-50 border border-emerald-200 p-4 rounded-xl w-full">
-                        <p className="text-base md:text-lg text-emerald-800 font-black text-center flex items-center justify-center gap-2">
-                          <ShieldCheck className="w-5 h-5" /> Pagamento confirmado!
+                      <div className="w-full rounded-lg border border-emerald-200 bg-emerald-50 p-4">
+                        <p className="flex items-center justify-center gap-2 text-center text-base font-bold text-emerald-800">
+                          <ShieldCheck className="h-5 w-5" /> Pagamento confirmado
                         </p>
-                        <p className="text-sm text-emerald-600 font-medium text-center mt-1">Por favor, aguarde e não feche esta janela.</p>
+                        <p className="mt-1 text-center text-sm text-emerald-700">Por favor, aguarde e não feche esta janela.</p>
                       </div>
                     </div>
                   )}
 
                   {/* ERRO NA GERAÇÃO */}
                   {defenseError && (
-                    <div className="flex flex-col items-center text-center space-y-4 p-8 bg-red-50 border border-red-200 rounded-2xl">
-                      <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
-                        <AlertCircle className="w-8 h-8" />
+                    <div className="flex flex-col items-center space-y-4 rounded-lg border border-red-200 bg-red-50 p-8 text-center">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-red-600">
+                        <AlertCircle className="h-8 w-8" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-red-800 mb-2">Falha na Geração da Defesa</h3>
-                        <p className="text-red-700 font-medium leading-relaxed">
-                          Ocorreu uma instabilidade, mas <strong>o seu pagamento está seguro.</strong> Clique abaixo para receber seu arquivo pelo suporte.
+                        <h3 className="mb-2 text-lg font-bold text-slate-900">Falha na geração da defesa</h3>
+                        <p className="leading-relaxed text-slate-700">
+                          Ocorreu uma instabilidade, mas <strong className="font-semibold text-slate-900">o seu pagamento está seguro.</strong> Use o botão abaixo para receber seu arquivo pelo suporte.
                         </p>
                       </div>
-                      <a href="https://wa.me/5513996485501?text=Olá!%20Eu%20paguei%20pela%20defesa%20do%20Procon%20mas%20a%20tela%20deu%20erro%20ao%20carregar.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl transition-colors flex items-center gap-2">
-                        <MessageSquare className="w-5 h-5" /> Contatar Suporte no WhatsApp
+                      <a href="https://wa.me/5513996485501?text=Olá!%20Eu%20paguei%20pela%20defesa%20do%20Procon%20mas%20a%20tela%20deu%20erro%20ao%20carregar.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700">
+                        <MessageSquare className="h-5 w-5" /> Falar com o suporte no WhatsApp
                       </a>
                     </div>
                   )}
 
                   {/* TELA DE SUCESSO */}
                   {defenseResult && showSuccessMessage && (
-                    <div className="flex flex-col items-center text-center space-y-5 sm:space-y-6 p-4 sm:p-10 w-full max-w-md mx-auto">
-                      <div className="w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-2">
-                        <CheckCircle2 className="w-14 h-14" />
+                    <div className="mx-auto flex w-full max-w-md flex-col items-center space-y-5 p-4 text-center sm:space-y-6 sm:p-10">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                        <CheckCircle2 className="h-12 w-12" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-black text-slate-800 mb-3">Defesa pronta!</h3>
-                        <p className="text-slate-600 text-lg font-medium leading-relaxed">
-                          Sua defesa administrativa foi gerada com sucesso. Na próxima tela, copie o texto ou baixe o arquivo.
+                        <h3 className="mb-3 text-2xl font-bold text-slate-900">Defesa pronta</h3>
+                        <p className="text-base leading-relaxed text-slate-600">
+                          Sua defesa administrativa foi gerada. Na próxima tela, copie o texto ou baixe o arquivo.
                         </p>
                       </div>
-                      <div className="w-full flex flex-col items-center gap-3 sm:gap-4 mt-4 sm:mt-6">
+                      <div className="mt-4 flex w-full flex-col items-center gap-3 sm:mt-6 sm:gap-4">
                         <button
                           onClick={() => setShowSuccessMessage(false)}
-                          className="w-full py-3.5 sm:py-4 px-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-colors font-bold text-base sm:text-lg shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                          className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-3.5 text-base font-semibold text-white transition hover:bg-emerald-700"
                         >
-                          Ver Minha Defesa <Check className="w-5 h-5" />
+                          Ver minha defesa <Check className="h-5 w-5" />
                         </button>
-                        <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 hover:text-blue-600 transition-colors font-medium flex items-center gap-1">
+                        <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-emerald-600">
                           Precisa de ajuda? Fale com o suporte.
                         </button>
                       </div>
@@ -1517,27 +1519,27 @@ export default function Procon() {
                   {defenseResult && !showSuccessMessage && (
                     <div className="flex flex-col space-y-6">
                       <div className="flex items-center justify-center space-x-3 border-b border-slate-200 pb-4">
-                        <Scale className="w-6 h-6 text-slate-800" />
-                        <h2 className="text-xl font-bold text-slate-800 text-center">Sua Defesa Administrativa</h2>
+                        <Scale className="h-6 w-6 text-slate-700" />
+                        <h2 className="text-center text-xl font-bold text-slate-900">Sua defesa administrativa</h2>
                       </div>
-                      <div className="bg-amber-50 border-l-4 border-amber-400 p-4 mt-2 mb-4 rounded-r-xl">
-                        <p className="text-sm text-amber-800 font-medium">
-                          <strong>Atenção:</strong> Revise o documento e substitua todos os campos em{" "}
-                          <span className="text-red-600 font-bold bg-red-100 px-1 rounded">vermelho</span> pelos dados reais da empresa antes de protocolar. Confirme o prazo e a forma de protocolo junto ao Procon emissor.
+                      <div className="mb-4 mt-2 rounded-r-lg border-l-4 border-amber-400 bg-amber-50 p-4">
+                        <p className="text-sm leading-relaxed text-amber-800">
+                          <strong className="font-semibold">Atenção:</strong> revise o documento e substitua todos os campos em{" "}
+                          <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos dados reais da empresa antes de protocolar. Confirme o prazo e a forma de protocolo junto ao Procon emissor.
                         </p>
                       </div>
-                      <div className="text-slate-800 p-4 sm:p-8 mx-auto bg-slate-50 rounded-2xl font-serif border border-slate-200 w-full shadow-inner">
-                        <div className="whitespace-pre-wrap text-left text-[15px] md:text-base leading-relaxed font-medium">
+                      <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">
+                        <div className="whitespace-pre-wrap text-left text-[15px] leading-relaxed md:text-base">
                           {formatDocumentText(defenseResult)}
                         </div>
                       </div>
-                      <div className="flex flex-col items-center gap-4 pt-6 border-t border-slate-200">
-                        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full">
-                          <button onClick={handleCopy} className="flex items-center justify-center space-x-2 px-8 py-4 bg-white text-slate-800 border border-slate-300 rounded-xl hover:bg-slate-50 transition-colors font-bold text-lg w-full sm:w-auto shadow-sm">
-                            {isCopied ? <><Check className="w-5 h-5 text-emerald-600" /><span className="text-emerald-600">Copiado!</span></> : <><Copy className="w-5 h-5 text-slate-600" /><span>Copiar Defesa</span></>}
+                      <div className="flex flex-col items-center gap-4 border-t border-slate-200 pt-6">
+                        <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
+                          <button onClick={handleCopy} className="flex w-full items-center justify-center space-x-2 rounded-lg border border-slate-300 bg-white px-8 py-3.5 text-base font-semibold text-slate-800 transition hover:bg-slate-50 sm:w-auto">
+                            {isCopied ? <><Check className="h-5 w-5 text-emerald-600" /><span className="text-emerald-600">Copiado</span></> : <><Copy className="h-5 w-5 text-slate-500" /><span>Copiar defesa</span></>}
                           </button>
-                          <button onClick={handleDownload} className="flex items-center justify-center space-x-2 px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors shadow-md font-bold text-lg w-full sm:w-auto">
-                            <Download className="w-5 h-5" /><span>Baixar .txt</span>
+                          <button onClick={handleDownload} className="flex w-full items-center justify-center space-x-2 rounded-lg bg-emerald-600 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-emerald-700 sm:w-auto">
+                            <Download className="h-5 w-5" /><span>Baixar .txt</span>
                           </button>
                         </div>
                       </div>
@@ -1560,14 +1562,14 @@ export default function Procon() {
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                className="relative w-11/12 max-w-sm bg-white rounded-3xl shadow-2xl p-6"
+                className="relative w-11/12 max-w-sm rounded-xl bg-white p-6 shadow-xl"
               >
-                <button onClick={() => setIsPixModalOpen(false)} className="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors">
-                  <X className="w-5 h-5" />
+                <button onClick={() => setIsPixModalOpen(false)} className="absolute right-4 top-4 rounded-full p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
+                  <X className="h-5 w-5" />
                 </button>
-                <div className="text-center space-y-5">
+                <div className="space-y-5 text-center">
                   <div
-                    className="flex items-center justify-center gap-2 py-2 cursor-pointer"
+                    className="flex cursor-pointer items-center justify-center gap-2 py-2"
                     onClick={() => {
                       setSecretClickCount((prev) => {
                         if (prev + 1 >= 5) { simulateApprovedPayment(); return 0; }
@@ -1575,50 +1577,50 @@ export default function Procon() {
                       });
                     }}
                   >
-                    <Lock className="w-3.5 h-3.5 text-slate-400" />
-                    <span className="text-xs font-medium text-slate-400">Pagamento seguro · Criptografia SSL</span>
+                    <Lock className="h-3.5 w-3.5 text-slate-400" />
+                    <span className="text-xs text-slate-400">Pagamento seguro · Criptografia SSL</span>
                   </div>
                   <div>
-                    <h3 className="text-3xl font-black text-slate-900 tracking-tight">R$ 99,00</h3>
-                    <p className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mt-1">Defesa Administrativa (IA)</p>
-                    <p className="text-[11px] text-slate-400 font-medium mt-1.5">CheckMulta Tecnologia · CNPJ 63.524.338/0001-62</p>
+                    <h3 className="text-3xl font-bold tracking-tight text-slate-900">R$ 99,00</h3>
+                    <p className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500">Defesa administrativa</p>
+                    <p className="mt-1.5 text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
                   </div>
-                  <div className="flex items-center justify-center gap-2 text-red-700 font-bold bg-red-50 py-2.5 rounded-xl border border-red-100">
-                    <Timer className="w-5 h-5 animate-pulse" />
+                  <div className="flex items-center justify-center gap-2 rounded-lg border border-amber-200 bg-amber-50 py-2.5 font-semibold text-amber-700">
+                    <Timer className="h-5 w-5" />
                     <span className="text-sm">Expira em {formatTime(pixTimeLeft)}</span>
                   </div>
                   <div className="flex justify-center py-2">
-                    <div className="w-48 h-48 bg-white rounded-2xl flex items-center justify-center border-2 border-slate-200 shadow-sm">
+                    <div className="flex h-48 w-48 items-center justify-center rounded-lg border-2 border-slate-200 bg-white">
                       {qrCodeBase64 ? (
-                        <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" width="192" height="192" className="w-full h-full p-2 object-contain rounded-xl" />
+                        <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" width="192" height="192" className="h-full w-full rounded-lg object-contain p-2" />
                       ) : (
-                        <QrCode className="w-24 h-24 text-slate-200 animate-pulse" />
+                        <QrCode className="h-24 w-24 animate-pulse text-slate-200" />
                       )}
                     </div>
                   </div>
                   <div className="space-y-3">
-                    <div className="flex items-center space-x-2 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
-                      <p className="text-sm text-slate-500 font-mono truncate flex-1 text-left px-2">{qrCode || "Gerando Pix..."}</p>
-                      <button onClick={handleCopyPix} className="bg-white text-slate-700 hover:text-emerald-600 hover:border-emerald-300 p-2.5 rounded-lg transition-colors border border-slate-200 shadow-sm">
-                        {isPixCopied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                    <div className="flex items-center space-x-2 rounded-lg border border-slate-200 bg-slate-50 p-2.5">
+                      <p className="flex-1 truncate px-2 text-left font-mono text-sm text-slate-500">{qrCode || "Gerando Pix..."}</p>
+                      <button onClick={handleCopyPix} className="rounded-lg border border-slate-200 bg-white p-2.5 text-slate-700 transition hover:border-emerald-300 hover:text-emerald-600">
+                        {isPixCopied ? <Check className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />}
                       </button>
                     </div>
-                    <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 flex items-start gap-2.5 text-left">
-                      <ShieldCheck className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                      <p className="text-[11px] leading-relaxed font-medium text-emerald-900">
-                        <strong>Garantia Técnica:</strong> Se a defesa não for liberada em 10 segundos após o pagamento, garantimos reembolso via PIX.
+                    <div className="flex items-start gap-2.5 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-left">
+                      <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                      <p className="text-[11px] leading-relaxed text-emerald-900">
+                        <strong className="font-semibold">Garantia técnica:</strong> se a defesa não for liberada em 10 segundos após o pagamento, garantimos reembolso via PIX.
                       </p>
                     </div>
-                    <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex items-start gap-2.5 text-left">
-                      <Lock className="w-4 h-4 text-slate-500 flex-shrink-0 mt-0.5" />
-                      <p className="text-[10px] leading-relaxed font-medium text-slate-600">
-                        O recebedor identificado no seu aplicativo bancário será <strong>CheckMulta Tecnologia</strong> — CNPJ 63.524.338/0001-62.
+                    <div className="flex items-start gap-2.5 rounded-lg border border-slate-200 bg-slate-50 p-3 text-left">
+                      <Lock className="mt-0.5 h-4 w-4 flex-shrink-0 text-slate-500" />
+                      <p className="text-[10px] leading-relaxed text-slate-600">
+                        O recebedor identificado no seu aplicativo bancário será <strong className="font-semibold text-slate-900">CheckMulta Tecnologia</strong> — CNPJ 63.524.338/0001-62.
                       </p>
                     </div>
                   </div>
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-sm text-slate-500 font-bold">
-                    <RefreshCcw className="w-4 h-4 animate-spin text-emerald-600" />
-                    Aguardando PIX no banco...
+                  <div className="flex items-center justify-center gap-2 border-t border-slate-100 pt-4 text-sm font-medium text-slate-500">
+                    <RefreshCcw className="h-4 w-4 animate-spin text-emerald-600" />
+                    Aguardando o pagamento...
                   </div>
                 </div>
               </motion.div>
