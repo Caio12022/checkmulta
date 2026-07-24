@@ -350,14 +350,14 @@ export default function BlogPost() {
     <div className="min-h-screen bg-white">
       {/* HEADER */}
       <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <Link to="/" className="flex items-center">
             <img
               src="/checkmulta-logo.webp"
               alt="CheckMulta"
               width="600"
               height="200"
-              className="h-12 w-auto object-contain md:h-16"
+              className="h-14 w-auto object-contain md:h-20"
             />
           </Link>
 
