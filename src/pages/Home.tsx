@@ -614,6 +614,7 @@ export default function App() {
             <a href="#faq-seo" className="transition hover:text-emerald-600">Dúvidas</a>
             <a href="/blog" className="transition hover:text-emerald-600">Blog</a>
             <a href="/procon" className="transition hover:text-emerald-600">Procon</a>
+            <a href="/vigilancia-sanitaria" className="transition hover:text-emerald-600">Vigilância</a>
             <button
               onClick={() => setActiveModal("suporte")}
               className="font-semibold text-emerald-600 transition hover:text-emerald-700"
@@ -645,6 +646,10 @@ export default function App() {
                 <a href="/blog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Blog</a>
                 <a href="/procon" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-between rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">
                   <span>Procon — para empresas</span>
+                  <Building2 className="h-4 w-4 text-slate-400" />
+                </a>
+                <a href="/vigilancia-sanitaria" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-between rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">
+                  <span>Vigilância Sanitária</span>
                   <Building2 className="h-4 w-4 text-slate-400" />
                 </a>
                 <button
@@ -1212,6 +1217,9 @@ export default function App() {
             </a>
             <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
               Procon
+            </a>
+            <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
+              Vigilância Sanitária
             </a>
           </nav>
 
