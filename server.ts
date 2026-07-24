@@ -6,6 +6,7 @@ import { GoogleGenAI } from "@google/genai";
 import { MercadoPagoConfig, Payment } from "mercadopago";
 import { artigos } from "./src/data/artigos";
 import { artigosProcon } from "./src/data/artigosProcon";
+import { artigosVigilancia } from "./src/data/artigosVigilancia";
 
 let aiClient: GoogleGenAI | null = null;
 function getAIClient() {
@@ -65,6 +66,38 @@ function getMetaParaRota(pathname: string): MetaInfo {
       description: "Sua empresa foi autuada pelo Procon? Nossa IA verifica grátis se o auto tem vício formal e entrega a defesa administrativa fundamentada no CDC e no Decreto 2.181/97.",
       url: `${BASE_URL}/procon`,
     };
+  }
+
+  // Vigilância Sanitária (landing)
+  if (pathname === "/vigilancia-sanitaria" || pathname === "/vigilancia-sanitaria/") {
+    return {
+      title: "Auto de infração da Vigilância Sanitária: veja se dá para recorrer | CheckMulta",
+      description: "Seu estabelecimento foi autuado pela Vigilância Sanitária? Nossa IA verifica grátis se o auto tem falha e entrega a defesa administrativa pronta para protocolo.",
+      url: `${BASE_URL}/vigilancia-sanitaria`,
+    };
+  }
+
+  // Blog Vigilância Sanitária (listagem)
+  if (pathname === "/vigilancia-sanitaria/blog" || pathname === "/vigilancia-sanitaria/blog/") {
+    return {
+      title: "Blog Vigilância Sanitária — Defesa de auto de infração | CheckMulta",
+      description: "Guias sobre auto de infração da Vigilância Sanitária: prazos, interdição, defesa administrativa e direitos do estabelecimento autuado.",
+      url: `${BASE_URL}/vigilancia-sanitaria/blog`,
+    };
+  }
+
+  // Artigo da Vigilância: /vigilancia-sanitaria/blog/:slug
+  const matchArtigoVig = pathname.match(/^\/vigilancia-sanitaria\/blog\/([^/]+)\/?$/);
+  if (matchArtigoVig) {
+    const slugVig = matchArtigoVig[1];
+    const artigoVig = artigosVigilancia.find((a) => a.slug === slugVig);
+    if (artigoVig) {
+      return {
+        title: `${artigoVig.titulo} | CheckMulta`,
+        description: artigoVig.descricao,
+        url: `${BASE_URL}/vigilancia-sanitaria/blog/${artigoVig.slug}`,
+      };
+    }
   }
 
   // Blog Procon (listagem)
@@ -159,9 +192,13 @@ function gerarSitemap(): string {
   urls.push({ loc: `${BASE_URL}/`, priority: "1.0", changefreq: "weekly" });
   urls.push({ loc: `${BASE_URL}/procon`, priority: "0.9", changefreq: "weekly" });
 
+  urls.push({ loc: `${BASE_URL}/vigilancia-sanitaria`, priority: "0.9", changefreq: "weekly" });
+
   // Listagens de blog
   urls.push({ loc: `${BASE_URL}/blog`, priority: "0.8", changefreq: "daily" });
   urls.push({ loc: `${BASE_URL}/procon/blog`, priority: "0.8", changefreq: "daily" });
+
+  urls.push({ loc: `${BASE_URL}/vigilancia-sanitaria/blog`, priority: "0.8", changefreq: "daily" });
 
   // Categorias do blog de trânsito (sem repetir)
   const categorias = new Set(artigos.map((a) => slugifyCategoria(a.categoria)));
@@ -186,6 +223,15 @@ function gerarSitemap(): string {
   artigosProcon.forEach((a) => {
     urls.push({
       loc: `${BASE_URL}/procon/blog/${a.slug}`,
+      priority: "0.7",
+      changefreq: "monthly",
+    });
+  });
+
+  // Artigos da Vigilância Sanitária
+  artigosVigilancia.forEach((a) => {
+    urls.push({
+      loc: `${BASE_URL}/vigilancia-sanitaria/blog/${a.slug}`,
       priority: "0.7",
       changefreq: "monthly",
     });
@@ -235,7 +281,7 @@ async function startServer() {
       const { email, valor, descricao } = req.body;
 
       // Valores permitidos (trava de segurança: impede manipulação pelo cliente)
-      const VALORES_PERMITIDOS = [19.90, 99.00];
+      const VALORES_PERMITIDOS = [19.90, 79.00, 99.00];
       const valorFinal = VALORES_PERMITIDOS.includes(Number(valor)) ? Number(valor) : 19.90;
 
       const paymentData = {
@@ -689,6 +735,288 @@ Este documento é material informativo produzido por inteligência artificial a 
       res.json({ result: resultText.trim() });
     } catch (err: any) {
       console.error("API Error in generate-defense-procon:", err);
+      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+        return res.status(429).json({ error: "SERVER_BUSY" });
+      }
+      res.status(500).json({ error: err.message || "Internal server error" });
+    }
+  });
+
+
+  // ==========================================
+  // ROTA: ANALISAR AUTO DA VIGILÂNCIA SANITÁRIA (GRÁTIS)
+  // Aceita PDF ou imagem. Retorna JSON com as falhas encontradas.
+  // Regra central: só aponta falha se copiar o trecho do documento.
+  // ==========================================
+  app.post("/api/analyze-vigilancia", async (req, res) => {
+    try {
+      const { fileBase64, mimeType = "application/pdf" } = req.body;
+      if (!fileBase64) return res.status(400).json({ error: "Documento ausente." });
+
+      const ai = getAIClient();
+
+      const prompt = `Você é um analista especializado em processo administrativo sanitário brasileiro. Sua função é ler o auto de infração da Vigilância Sanitária enviado por um estabelecimento autuado e identificar falhas formais que possam ser arguidas em defesa administrativa.
+
+Base normativa: Lei Federal nº 6.437/77 e princípios gerais do processo administrativo.
+ANO ATUAL: 2026.
+
+===========================================================
+REGRA DE OURO 1 — VALIDAÇÃO ABSOLUTA DO DOCUMENTO
+Antes de qualquer análise, verifique se o documento é REALMENTE um auto de infração, termo de intimação, termo de interdição ou decisão emitida por órgão de VIGILÂNCIA SANITÁRIA (municipal, estadual ou ANVISA).
+
+RETORNE APENAS a string "documento_invalido", sem mais nada, se o documento for QUALQUER UMA destas coisas:
+- Foto aleatória, paisagem, pessoa, tela preta, print de conversa, nota fiscal, contrato, cardápio
+- AUTO DE INFRAÇÃO DE TRÂNSITO (DETRAN, radar, AIT, placa, RENAVAM, CTB, condutor, velocidade)
+- Auto do PROCON ou de órgão de defesa do consumidor
+- Auto AMBIENTAL (IBAMA, secretaria de meio ambiente)
+- Auto do CORPO DE BOMBEIROS (AVCB)
+- Auto TRABALHISTA (Ministério do Trabalho)
+- Auto de FISCALIZAÇÃO TRIBUTÁRIA ou de posturas municipais sem natureza sanitária
+- Alvará, licença ou certificado (documento que NÃO é autuação)
+- Qualquer autuação de órgão que NÃO seja de vigilância sanitária
+
+ATENÇÃO: o simples fato de ser um "auto de infração" NÃO basta. Ele PRECISA ser sanitário. Se o documento cita CTB, placa de veículo, RENAVAM, condutor ou radar, é de TRÂNSITO — retorne documento_invalido. Se cita relação de consumo, CDC ou Decreto 2.181/97, é do PROCON — retorne documento_invalido.
+
+Se você não tiver CERTEZA de que o documento é de vigilância sanitária, retorne documento_invalido. Na dúvida, rejeite.
+
+- Se for sanitário mas estiver ilegível, retorne APENAS: documento_ilegivel
+
+===========================================================
+REGRA ABSOLUTA 1 — CITAÇÃO OBRIGATÓRIA
+Você SÓ pode apontar uma falha se conseguir copiar, palavra por palavra, o trecho exato do documento que a demonstra.
+- Se não encontrar trecho que sustente a falha, NÃO aponte a falha.
+- É PROIBIDO citar norma, artigo ou conclusão sem antes ter um trecho real copiado do documento.
+- A ausência de um elemento também é falha (ex: auto sem indicação da norma violada). Nesse caso, copie o trecho da seção onde o elemento deveria constar e explique o que falta. Nunca afirme ausência sem ter lido o documento inteiro.
+- Se um campo ESTÁ preenchido, você está PROIBIDO de dizer que falta.
+- NUNCA invente falha para gerar resultado positivo. É violação grave.
+- Na dúvida entre apontar e não apontar, NÃO aponte.
+
+REGRA ABSOLUTA 2 — PRAZO
+Você NUNCA informa prazo de defesa por conta própria. A legislação sanitária brasileira é FRAGMENTADA: a Lei Federal 6.437/77 rege as infrações sanitárias federais, mas cada estado e cada município possui código sanitário próprio, com prazos que variam.
+Procedimento:
+1. Procure o prazo indicado no documento. Se encontrar, informe exatamente o que está escrito.
+2. Se NÃO encontrar, escreva: "Confira o prazo de defesa indicado no seu auto de infração ou junto ao órgão de vigilância sanitária emissor. A legislação sanitária varia entre União, estados e municípios."
+3. NUNCA afirme prazo específico que não esteja escrito no documento.
+
+REGRA ABSOLUTA 3 — CITAÇÃO DE NORMAS
+A legislação sanitária é fragmentada e você NÃO tem como saber qual código municipal ou estadual se aplica.
+- Você PODE citar a Lei Federal nº 6.437/77 quando pertinente.
+- Você PODE citar princípios gerais do processo administrativo (legalidade, motivação, proporcionalidade, contraditório, ampla defesa).
+- Você NÃO PODE citar códigos sanitários estaduais ou municipais específicos, salvo se o número da norma estiver escrito no próprio documento analisado.
+- Você NÃO PODE citar RDC da ANVISA por número, salvo se estiver escrita no documento.
+- Na dúvida sobre qual norma citar, use expressão geral: "a legislação sanitária aplicável exige", "os princípios do processo administrativo determinam".
+
+===========================================================
+FALHAS A PROCURAR
+
+INTIMAÇÃO E NOTIFICAÇÃO
+1. Intimação entregue a pessoa sem poderes de representação do estabelecimento. CRÍTICO.
+2. Intimação enviada a endereço divergente do cadastro, sem comprovação de recebimento. CRÍTICO.
+3. Ausência de notificação da decisão, havendo endereço conhecido. CRÍTICO.
+4. Prazo de defesa concedido inferior ao previsto na norma indicada no próprio documento. CRÍTICO.
+
+COMPETÊNCIA E IDENTIFICAÇÃO
+5. Ausência de identificação ou assinatura do agente fiscalizador. ATENÇÃO.
+6. Atuação de órgão fora de sua competência territorial. CRÍTICO.
+
+DESCRIÇÃO DA IRREGULARIDADE
+7. Irregularidade descrita de forma genérica, sem indicar o que foi concretamente constatado (ex: apenas "condições inadequadas de higiene" sem detalhar). CRÍTICO.
+8. Ausência de indicação da norma sanitária violada. CRÍTICO.
+9. Divergência entre a irregularidade descrita e a norma indicada. CRÍTICO.
+10. Ausência de registro fotográfico ou de coleta de amostra quando o auto se refere a produto ou condição que exigiria comprovação. ATENÇÃO.
+
+PROPORCIONALIDADE E DOSIMETRIA
+11. Interdição total quando a interdição parcial (de setor, equipamento ou lote) seria suficiente, sem justificativa para a medida ampla. CRÍTICO.
+12. Ausência de fundamentação dos critérios que levaram ao valor da multa ou à escolha da penalidade. CRÍTICO.
+13. Desconsideração do porte do estabelecimento na dosimetria. ATENÇÃO.
+14. Penalidade manifestamente desproporcional à irregularidade descrita. ATENÇÃO.
+
+PROCEDIMENTO
+15. Autuação direta quando o documento indica que havia previsão de termo de intimação com prazo prévio para regularização. ATENÇÃO.
+16. Cerceamento do contraditório: provas negadas sem motivação, ausência de documentos essenciais no processo. CRÍTICO.
+17. Decisão sem motivação expressa. CRÍTICO.
+18. Falhas formais do auto: ausência de data, hora, local, número do processo, qualificação completa do autuado, ou rasuras não ressalvadas. ATENÇÃO.
+
+===========================================================
+COMO ESCREVER
+- Registro profissional e sóbrio. A leitora é uma empresa autuada, não um advogado.
+- Explique a falha em linguagem clara e só depois cite a base normativa.
+- Linguagem de POSSIBILIDADE, nunca de garantia. Escreva "há indício de falha que pode ser arguida em defesa". JAMAIS escreva "o auto será anulado" ou "você vai ganhar".
+- Não prometa resultado. Não estime probabilidade de êxito.
+- Você informa e instrumentaliza. Não representa ninguém juridicamente.
+- ATENÇÃO ESPECIAL: em casos de interdição, NUNCA sugira que o estabelecimento volte a operar antes da liberação oficial. Isso poderia causar dano à saúde pública e responsabilização criminal do autuado.
+
+===========================================================
+FORMATO DA RESPOSTA
+Responda APENAS com um objeto JSON válido, sem texto antes ou depois, sem marcação de código:
+
+{
+  "resumo": "Uma a duas frases sobre o estado geral do auto analisado.",
+  "orgao_emissor": "Nome do órgão de vigilância sanitária que emitiu, extraído do documento.",
+  "numero_auto": "Número do AUTO DE INFRAÇÃO, extraído do documento. Se não houver, use string vazia.",
+  "numero_processo": "Número do PROCESSO ADMINISTRATIVO, extraído do documento. É diferente do número do auto. Se não houver, use string vazia.",
+  "empresa_autuada": "Razão social ou nome do estabelecimento, extraído do documento.",
+  "prazo_identificado": "O prazo copiado do documento, ou a orientação padrão da REGRA 2.",
+  "achados": [
+    {
+      "titulo": "Nome curto da falha",
+      "gravidade": "critico",
+      "trecho_documento": "Trecho copiado palavra por palavra. OBRIGATÓRIO, não pode ser vazio.",
+      "explicacao": "Explicação clara da falha e por que pode ser arguida.",
+      "base_legal": "Ex: Lei 6.437/77 ou 'princípio da motivação do ato administrativo'. Se não tiver certeza da norma, use o princípio geral."
+    }
+  ],
+  "quantidade_criticos": 0,
+  "quantidade_atencao": 0,
+  "quantidade_verificar": 0,
+  "houve_achado": true
+}
+
+Regras do JSON:
+- "gravidade" só aceita: "critico", "atencao" ou "verificar".
+- Se não encontrar nenhuma falha: "achados" vazio, "houve_achado": false, e explique no resumo que não foram identificadas falhas formais entre os pontos verificados.
+- Todo achado DEVE ter "trecho_documento" preenchido com texto real do documento.
+- Os contadores devem corresponder à quantidade real de achados de cada gravidade.
+- Campos não encontrados no documento: use string vazia "".
+- NUNCA confunda "numero_auto" com "numero_processo".`;
+
+      const response = await ai.models.generateContent({
+        model: "gemini-3.1-flash-lite",
+        contents: [
+          { role: "user", parts: [{ inlineData: { data: fileBase64, mimeType: mimeType } }, { text: prompt }] }
+        ],
+        config: { temperature: 0.0 }
+      });
+
+      let resultText = (response.text || "").trim();
+
+      // Casos de rejeição direta
+      if (resultText === "documento_invalido" || resultText === "documento_ilegivel") {
+        return res.json({ result: resultText });
+      }
+
+      // Limpa possíveis cercas de código
+      resultText = resultText.replace(/```json/gi, "").replace(/```/g, "").trim();
+
+      let parsed: any;
+      try {
+        parsed = JSON.parse(resultText);
+      } catch {
+        console.error("Falha ao parsear JSON da Vigilância:", resultText.slice(0, 500));
+        return res.status(500).json({ error: "Falha ao processar a análise. Tente novamente." });
+      }
+
+      // TRAVA DE SEGURANÇA: descarta qualquer achado sem trecho copiado do documento.
+      if (Array.isArray(parsed.achados)) {
+        parsed.achados = parsed.achados.filter(
+          (a: any) => a && typeof a.trecho_documento === "string" && a.trecho_documento.trim().length > 0
+        );
+      } else {
+        parsed.achados = [];
+      }
+
+      // Recalcula os contadores no servidor (não confia no que o modelo devolveu)
+      parsed.quantidade_criticos = parsed.achados.filter((a: any) => a.gravidade === "critico").length;
+      parsed.quantidade_atencao = parsed.achados.filter((a: any) => a.gravidade === "atencao").length;
+      parsed.quantidade_verificar = parsed.achados.filter((a: any) => a.gravidade === "verificar").length;
+      parsed.houve_achado = parsed.achados.length > 0;
+
+      res.json({ result: parsed });
+    } catch (err: any) {
+      console.error("API Error in analyze-vigilancia:", err);
+      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+        return res.status(429).json({ error: "SERVER_BUSY" });
+      }
+      res.status(500).json({ error: err.message || "Internal server error" });
+    }
+  });
+
+  // ==========================================
+  // ROTA: GERAR DEFESA DA VIGILÂNCIA SANITÁRIA (PAGO)
+  // ==========================================
+  app.post("/api/generate-defense-vigilancia", async (req, res) => {
+    try {
+      const { analise } = req.body;
+      if (!analise) return res.status(400).json({ error: "analise ausente." });
+
+      const ai = getAIClient();
+
+      const dados = typeof analise === "string" ? analise : JSON.stringify(analise, null, 2);
+
+      const prompt = `Você é um redator especializado em defesa administrativa perante órgãos de vigilância sanitária. Redija uma DEFESA ADMINISTRATIVA formal a partir da análise fornecida.
+
+--- ANÁLISE DO AUTO DE INFRAÇÃO ---
+${dados}
+
+--- REGRAS OBRIGATÓRIAS ---
+1. Fundamente APENAS nas falhas listadas na análise. É PROIBIDO inventar falha que não conste ali.
+2. Para cada falha, cite o trecho do documento que consta no campo "trecho_documento" e a base legal indicada.
+3. Use linguagem de possibilidade e requerimento, nunca de garantia de resultado.
+4. Mantenha entre colchetes os dados que não constam na análise: [CNPJ], [ENDEREÇO COMPLETO], [NOME DO REPRESENTANTE LEGAL], [CARGO], [CIDADE].
+5. NÃO afirme prazo específico. Use a informação do campo "prazo_identificado".
+6. NÚMEROS: use "numero_auto" ao se referir ao Auto de Infração e "numero_processo" apenas no cabeçalho do processo administrativo. Se "numero_auto" estiver vazio, escreva [NÚMERO DO AUTO].
+7. CITAÇÃO DE NORMAS: você pode citar a Lei Federal 6.437/77 e princípios gerais do processo administrativo. NÃO invente números de códigos sanitários estaduais ou municipais, nem RDC da ANVISA — salvo se constarem na análise fornecida.
+8. Se a análise mencionar interdição, a peça NUNCA deve sugerir retomada da operação antes da liberação oficial pelo órgão.
+
+--- ESTRUTURA DA PEÇA ---
+
+ILUSTRÍSSIMO(A) SENHOR(A) AUTORIDADE SANITÁRIA DO [ÓRGÃO EMISSOR]
+
+Processo Administrativo nº [NÚMERO DO PROCESSO]
+
+[RAZÃO SOCIAL DO ESTABELECIMENTO], pessoa jurídica de direito privado, inscrita no CNPJ sob o nº [CNPJ], com sede em [ENDEREÇO COMPLETO], neste ato representada por [NOME DO REPRESENTANTE LEGAL], [CARGO], vem, respeitosamente, perante Vossa Senhoria, apresentar
+
+DEFESA ADMINISTRATIVA
+
+em face do Auto de Infração nº [NÚMERO], pelas razões de fato e de direito a seguir expostas.
+
+I — DA TEMPESTIVIDADE
+[Parágrafo sobre a apresentação da defesa dentro do prazo, referindo-se ao prazo indicado no auto de infração, sem afirmar número de dias que não conste no documento.]
+
+II — DOS FATOS
+[Resumo objetivo da autuação conforme descrita no auto.]
+
+III — DAS PRELIMINARES
+[Para cada falha de gravidade "critico" da análise, redija uma subseção numerada. Cada subseção deve: nomear a falha, transcrever entre aspas o trecho do documento, explicar tecnicamente por que configura vício do ato administrativo, e citar a base legal ou o princípio aplicável. Requerer ao final a nulidade do auto.]
+
+IV — DO MÉRITO
+[Para cada falha de gravidade "atencao" ou "verificar", redija uma subseção. Mesma estrutura: trecho, explicação, base legal. Inclua aqui os argumentos de proporcionalidade e dosimetria, requerendo subsidiariamente a redução ou substituição da penalidade.]
+
+V — DAS PROVIDÊNCIAS ADOTADAS
+[Seção com espaço para o estabelecimento descrever as correções já realizadas. Use marcadores entre colchetes para o autuado preencher, por exemplo: [DESCREVER AS CORREÇÕES REALIZADAS E ANEXAR COMPROVANTES: notas fiscais de reforma, laudos de dedetização, registros fotográficos, certificados de limpeza de reservatório].]
+
+VI — DOS PEDIDOS
+Ante o exposto, requer:
+a) O acolhimento das preliminares arguidas, com a declaração de nulidade do Auto de Infração nº [NÚMERO] e o consequente arquivamento do processo administrativo;
+b) Subsidiariamente, caso superadas as preliminares, o acolhimento das razões de mérito para afastar a penalidade aplicada;
+c) Subsidiariamente, a substituição ou redução da penalidade, em observância aos princípios da proporcionalidade e da razoabilidade, considerando as providências já adotadas pelo estabelecimento;
+d) A realização de reinspeção, a fim de que seja constatada a regularização das condições apontadas;
+e) A produção de prova documental superveniente, bem como a juntada de cópia integral do processo administrativo, sob pena de cerceamento de defesa;
+f) Que todas as intimações sejam dirigidas ao endereço constante desta peça.
+
+Nestes termos, pede deferimento.
+
+[CIDADE], [DATA].
+
+_______________________________________
+[RAZÃO SOCIAL DO ESTABELECIMENTO]
+[NOME DO REPRESENTANTE LEGAL] — [CARGO]
+
+---
+
+AVISO IMPORTANTE
+Este documento é material informativo produzido por inteligência artificial a partir do auto de infração enviado. Não constitui consultoria jurídica nem representação processual. Confira o prazo e a forma de protocolo junto ao órgão de vigilância sanitária emissor antes de apresentar sua defesa. Em caso de interdição, não retome a operação antes da liberação oficial do órgão. Para casos de maior complexidade, risco de cancelamento de licença ou valor elevado, recomenda-se a consulta a um advogado.`;
+
+      const response = await ai.models.generateContent({
+        model: "gemini-3.1-flash-lite",
+        contents: [{ role: "user", parts: [{ text: prompt }] }],
+        config: { temperature: 0.0 }
+      });
+
+      const resultText = response.text || "";
+      res.json({ result: resultText.trim() });
+    } catch (err: any) {
+      console.error("API Error in generate-defense-vigilancia:", err);
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
