@@ -142,7 +142,7 @@ const VIOLATION_TYPES = [
   { id: "sinal", name: "Avanço de sinal", subtitle: "semáforo vermelho", icon: TrafficCone },
   { id: "estacionamento", name: "Estacionamento", subtitle: "irregular ou proibido", icon: Car },
   { id: "celular", name: "Celular ou cinto", subtitle: "uso e restrição", icon: Smartphone },
-  { id: "pedagio", name: "Evasão de pedágio", subtitle: "cancelamento", icon: Map },
+  { id: "pedagio", name: "Evasão de pedágio", subtitle: "exceto free flow", icon: Map },
   { id: "outras", name: "Outras infrações", subtitle: "qualquer artigo", icon: PlusCircle },
 ];
 
@@ -1441,7 +1441,49 @@ export default function App() {
                         </>
                       )}
 
-                      {rejeicaoInfo.tipo === "fora_escopo" && (
+                      {rejeicaoInfo.tipo === "fora_escopo" && rejeicaoInfo.motivo.toLowerCase().includes("free flow") && (
+                        <>
+                          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                            <ShieldCheck className="h-10 w-10" />
+                          </div>
+                          <div>
+                            <h3 className="mb-2 text-lg font-bold text-slate-900">
+                              Boa notícia: você não precisa recorrer
+                            </h3>
+                            <p className="leading-relaxed text-slate-600">
+                              Esta é uma multa por <strong className="font-semibold text-slate-900">evasão de pedágio em sistema free flow</strong> (pedágio sem cancela).
+                            </p>
+                            <p className="mt-3 text-sm leading-relaxed text-slate-500">
+                              O CONTRAN suspendeu esse tipo de multa e abriu um prazo excepcional
+                              para regularização. Enquanto o prazo estiver aberto, basta pagar a
+                              tarifa de pedágio em atraso — a multa e os pontos na CNH são
+                              cancelados, sem necessidade de recurso.
+                            </p>
+                          </div>
+                          <div className="w-full rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-left">
+                            <p className="mb-2 text-sm font-semibold text-emerald-900">O que fazer agora</p>
+                            <p className="text-sm leading-relaxed text-emerald-900">
+                              Consulte os débitos de pedágio da sua placa junto à concessionária
+                              da rodovia ou na plataforma oficial do governo, e pague a tarifa
+                              dentro do prazo. Confirme a data limite vigente, pois o prazo é
+                              por tempo determinado.
+                            </p>
+                          </div>
+                          <div className="w-full rounded-lg border border-slate-200 bg-slate-50 p-4 text-left">
+                            <p className="text-sm leading-relaxed text-slate-600">
+                              <strong className="font-semibold text-slate-900">Por que não cobramos por isso:</strong> não
+                              faria sentido vender um recurso que você não precisa. Se depois do
+                              prazo a multa continuar em aberto, aí sim volte aqui — nesse cenário
+                              a análise passa a fazer sentido.
+                            </p>
+                          </div>
+                          <button onClick={handleNovaAnalise} className="mt-2 rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+                            Analisar outra multa
+                          </button>
+                        </>
+                      )}
+
+                      {rejeicaoInfo.tipo === "fora_escopo" && !rejeicaoInfo.motivo.toLowerCase().includes("free flow") && (
                         <>
                           <div className="flex h-20 w-20 items-center justify-center rounded-full bg-amber-50 text-amber-600">
                             <AlertCircle className="h-10 w-10" />
