@@ -204,6 +204,64 @@ export default function App() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // ─── EFEITOS ─────────────────────────────────────────────────────────────
+  // ─── SCHEMA FAQPage — faz a IA e o Google entenderem as perguntas de baixo ──
+  useEffect(() => {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qual o prazo para recorrer de uma multa de trânsito?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O prazo para apresentar a defesa prévia é de 30 dias corridos, contados a partir da data indicada na Notificação da Autuação. Caso a defesa seja indeferida, o condutor ainda pode recorrer à JARI em até 30 dias após a Notificação da Penalidade. Uma multa com prazo vencido não pode mais ser contestada na esfera administrativa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quais erros em uma multa de trânsito podem anulá-la?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Os erros que mais anulam multas são falhas formais no auto de infração previstas no Manual Brasileiro de Fiscalização de Trânsito (MBFT): identificação incorreta do veículo ou da placa, descrição imprecisa da infração, radar sem aferição INMETRO vigente, ausência de dados obrigatórios do agente autuador e sinalização irregular no local."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Vale a pena recorrer de multa de radar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim, vale a pena recorrer de multa de radar sempre que houver falha técnica. O radar exige aferição do INMETRO dentro da validade, placa informativa visível no local e dados técnicos completos no auto de infração. A ausência de qualquer um desses requisitos é motivo válido para anular a multa de velocidade."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Recorrer da multa suspende os pontos na CNH?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Enquanto a defesa ou o recurso estiverem em análise pelo órgão de trânsito, tanto a cobrança do valor quanto a pontuação na CNH ficam suspensas. Por isso apresentar recurso é sempre vantajoso."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como a CheckMulta ajuda a recorrer da multa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A CheckMulta usa inteligência artificial para analisar gratuitamente o auto de infração e apontar se existe falha formal capaz de anular a multa. Se houver viabilidade, gera uma petição de defesa prévia completa e fundamentada no CTB, pronta para protocolar, sem advogado e sem cadastro, por R$ 19,90."
+          }
+        }
+      ]
+    };
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "faq-schema-home";
+    script.text = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+    return () => {
+      const existing = document.getElementById("faq-schema-home");
+      if (existing) existing.remove();
+    };
+  }, []);
   useEffect(() => {
     const savedResult = localStorage.getItem("checkmulta_saved_result");
     const savedPaidStatus = localStorage.getItem("checkmulta_paid_status");
@@ -1098,102 +1156,120 @@ export default function App() {
         </div>
       </section>
 
-      {/* CONTEÚDO SEO */}
+     {/* CONTEÚDO SEO */}
       <section className="border-t border-slate-100 bg-white">
         <div className="mx-auto max-w-3xl px-4 py-16">
-          <h2 className="mb-8 text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">
+          <h2 className="mb-3 text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">
             Como recorrer de uma multa de trânsito{" "}
             <span className="text-emerald-600">no Brasil</span>
           </h2>
+          <p className="mb-10 text-[16.5px] leading-[1.75] text-slate-600">
+            Recorrer de uma multa é um direito garantido pelo Código de Trânsito
+            Brasileiro (CTB). Muitas autuações contêm erros formais que podem, sozinhos,
+            anular a multa — e é essa falha que a análise gratuita da CheckMulta procura
+            no seu auto de infração.
+          </p>
 
-          <div className="max-w-none">
-            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
-              Recorrer de uma multa de trânsito é um direito garantido pelo{" "}
-              <strong className="font-semibold text-slate-900">
-                Código de Trânsito Brasileiro (CTB)
-              </strong>{" "}
-              a todo condutor que acredite ter sido autuado de forma irregular.
-              Muitas autuações contêm erros formais de preenchimento que passam
-              despercebidos e que podem, sozinhos, anular a multa. É exatamente
-              esse tipo de falha que a análise da CheckMulta procura no seu auto de
-              infração.
-            </p>
+          <div className="space-y-5">
+            {/* Bloco 1 */}
+            <div className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
+              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <Timer className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900">
+                  Qual o prazo para recorrer de uma multa de trânsito?
+                </h3>
+                <p className="text-[16.5px] leading-[1.75] text-slate-700">
+                  O prazo para apresentar a{" "}
+                  <strong className="font-semibold text-slate-900">defesa prévia é de 30 dias corridos</strong>,
+                  contados a partir da data indicada na Notificação da Autuação. Caso a defesa
+                  seja indeferida, você ainda pode recorrer à{" "}
+                  <strong className="font-semibold text-slate-900">JARI em até 30 dias</strong>{" "}
+                  após a Notificação da Penalidade. Uma multa com prazo vencido não pode mais
+                  ser contestada na esfera administrativa.
+                </p>
+              </div>
+            </div>
 
-            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
-              Qual o prazo para recorrer de uma multa?
-            </h3>
-            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
-              O prazo para a{" "}
-              <strong className="font-semibold text-slate-900">defesa prévia</strong>{" "}
-              é de{" "}
-              <strong className="font-semibold text-slate-900">
-                15 dias corridos
-              </strong>{" "}
-              a partir do recebimento da notificação da autuação. Caso a defesa
-              seja indeferida, você ainda tem mais{" "}
-              <strong className="font-semibold text-slate-900">
-                30 dias para apresentar recurso na JARI
-              </strong>{" "}
-              (Junta Administrativa de Recursos de Infrações). Respeitar esses
-              prazos é fundamental: uma multa com prazo vencido não pode mais ser
-              contestada administrativamente.
-            </p>
+            {/* Bloco 2 */}
+            <div className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
+              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <FileText className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900">
+                  Quais erros em uma multa de trânsito podem anulá-la?
+                </h3>
+                <p className="text-[16.5px] leading-[1.75] text-slate-700">
+                  Os erros que mais anulam multas são{" "}
+                  <strong className="font-semibold text-slate-900">falhas formais no auto de infração</strong>{" "}
+                  previstas no Manual Brasileiro de Fiscalização de Trânsito (MBFT): identificação
+                  incorreta do veículo ou da placa, descrição imprecisa da infração, radar sem
+                  aferição INMETRO vigente, ausência de dados obrigatórios do agente autuador e
+                  sinalização irregular no local. Qualquer uma dessas falhas pode fundamentar
+                  sozinha um pedido de anulação.
+                </p>
+              </div>
+            </div>
 
-            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
-              Quais erros em uma multa podem anulá-la?
-            </h3>
-            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
-              O{" "}
-              <strong className="font-semibold text-slate-900">
-                Manual Brasileiro de Fiscalização de Trânsito (MBFT)
-              </strong>{" "}
-              estabelece regras rígidas de preenchimento do auto de infração. Erros
-              comuns que podem fundamentar a anulação incluem: identificação
-              incorreta do veículo, descrição imprecisa da infração, equipamento
-              (radar) sem certificação INMETRO vigente, ausência de dados
-              obrigatórios do agente autuador e sinalização irregular no local da
-              autuação.
-            </p>
+            {/* Bloco 3 */}
+            <div className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
+              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <Camera className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900">
+                  Vale a pena recorrer de multa de radar?
+                </h3>
+                <p className="text-[16.5px] leading-[1.75] text-slate-700">
+                  <strong className="font-semibold text-slate-900">Sim, vale a pena recorrer de multa de radar</strong>{" "}
+                  sempre que houver falha técnica. O radar (fixo, móvel ou lombada eletrônica) exige
+                  aferição do INMETRO dentro da validade, placa informativa visível no local e dados
+                  técnicos completos no auto de infração. A ausência de qualquer um desses requisitos
+                  é motivo válido para anular a multa de velocidade.
+                </p>
+              </div>
+            </div>
 
-            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
-              Vale a pena recorrer de multa de radar?
-            </h3>
-            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
-              Sim. Multas de radar e lombada eletrônica exigem{" "}
-              <strong className="font-semibold text-slate-900">
-                aferição INMETRO vigente
-              </strong>
-              , identificação com placa informativa no local e dados técnicos
-              completos no auto de infração. Qualquer irregularidade nesses
-              requisitos pode fundamentar um recurso de anulação da multa.
-            </p>
+            {/* Bloco 4 */}
+            <div className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
+              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <ShieldCheck className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900">
+                  Recorrer da multa suspende os pontos na CNH?
+                </h3>
+                <p className="text-[16.5px] leading-[1.75] text-slate-700">
+                  <strong className="font-semibold text-slate-900">Sim.</strong> Enquanto a defesa
+                  ou o recurso estiverem em análise pelo órgão de trânsito, tanto a cobrança do valor
+                  quanto a pontuação na CNH ficam suspensas. Por isso apresentar recurso é sempre
+                  vantajoso: você adia a cobrança, evita a pontuação imediata e ainda ganha a chance
+                  real de anular a autuação.
+                </p>
+              </div>
+            </div>
 
-            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
-              Recorrer suspende os pontos na CNH?
-            </h3>
-            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
-              Sim. Enquanto a defesa ou o recurso estiverem em análise pelo órgão
-              de trânsito,{" "}
-              <strong className="font-semibold text-slate-900">
-                tanto a cobrança do valor quanto a pontuação na CNH ficam suspensos
-              </strong>
-              . Ou seja, apresentar recurso é sempre vantajoso: você adia a
-              cobrança e ganha a chance real de anular a autuação.
-            </p>
-
-            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
-              Como a CheckMulta ajuda a recorrer da multa?
-            </h3>
-            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
-              A CheckMulta usa inteligência artificial para analisar gratuitamente
-              o seu auto de infração e apontar se existe uma falha formal que possa
-              anular a multa. Se houver viabilidade, geramos uma{" "}
-              <strong className="font-semibold text-slate-900">
-                petição de defesa prévia completa e fundamentada no CTB
-              </strong>
-              , pronta para você preencher e protocolar no órgão autuador — sem
-              precisar de advogado e sem cadastro.
-            </p>
+            {/* Bloco 5 */}
+            <div className="flex gap-4 rounded-xl border border-emerald-200 bg-emerald-50/40 p-6 sm:gap-5 sm:p-7">
+              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+                <Scale className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900">
+                  Como a CheckMulta ajuda a recorrer da multa?
+                </h3>
+                <p className="text-[16.5px] leading-[1.75] text-slate-700">
+                  A CheckMulta usa inteligência artificial para{" "}
+                  <strong className="font-semibold text-slate-900">analisar gratuitamente o seu auto de infração</strong>{" "}
+                  e apontar se existe uma falha formal capaz de anular a multa. Se houver viabilidade,
+                  o sistema gera uma petição de defesa prévia completa e fundamentada no CTB, pronta
+                  para você preencher e protocolar no órgão autuador — sem advogado e sem cadastro,
+                  por R$ 19,90.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
