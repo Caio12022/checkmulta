@@ -8,6 +8,9 @@ import CategoriaBlog from "./pages/CategoriaBlog";
 import Procon from "./pages/Procon";
 import BlogProcon from "./pages/BlogProcon";
 import BlogPostProcon from "./pages/BlogPostProcon";
+import Vigilancia from "./pages/Vigilancia";
+import BlogVigilancia from "./pages/BlogVigilancia";
+import BlogPostVigilancia from "./pages/BlogPostVigilancia";
 
 /* Sobe a página ao trocar de rota */
 function ScrollToTop() {
@@ -36,6 +39,11 @@ function BlogPostProconWrapper() {
   return <BlogPostProcon key={slug} />;
 }
 
+function BlogPostVigilanciaWrapper() {
+  const { slug } = useParams<{ slug: string }>();
+  return <BlogPostVigilancia key={slug} />;
+}
+
 export default function App() {
   return (
     <>
@@ -52,6 +60,14 @@ export default function App() {
         <Route path="/procon" element={<Procon />} />
         <Route path="/procon/blog" element={<BlogProcon />} />
         <Route path="/procon/blog/:slug" element={<BlogPostProconWrapper />} />
+
+        {/* CheckMulta — Vigilância Sanitária */}
+        <Route path="/vigilancia-sanitaria" element={<Vigilancia />} />
+        <Route path="/vigilancia-sanitaria/blog" element={<BlogVigilancia />} />
+        <Route
+          path="/vigilancia-sanitaria/blog/:slug"
+          element={<BlogPostVigilanciaWrapper />}
+        />
       </Routes>
     </>
   );
