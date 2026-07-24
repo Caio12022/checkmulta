@@ -1,6 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { useEffect, useState, type ReactElement } from "react";
-import { ArrowLeft, Clock, ArrowRight, ChevronRight, ShieldCheck } from "lucide-react";
+import { Clock, ArrowRight, ChevronRight, ShieldCheck } from "lucide-react";
 import { artigos } from "../data/artigos";
 import { getFaq } from "../data/faqs";
 import { aplicarLinksInternos } from "../data/linksInternos";
@@ -581,16 +581,27 @@ export default function BlogPost() {
 
       {/* FOOTER */}
       <footer className="border-t border-slate-200 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-10 text-center">
-          <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 transition hover:text-emerald-600"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            Voltar ao início
-          </Link>
+        <div className="mx-auto max-w-4xl px-4 py-10 text-center">
+          <div className="mb-6 flex items-center justify-center">
+            <img
+              src="/checkmulta-logo.webp"
+              alt="CheckMulta"
+              width="600"
+              height="200"
+              className="h-12 w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-16"
+            />
+          </div>
 
-          <p className="mt-5 text-xs text-slate-400">
+          <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
+            <Link to="/" className="text-slate-600 transition hover:text-emerald-600">
+              Multas de trânsito
+            </Link>
+            <Link to="/procon" className="text-slate-600 transition hover:text-emerald-600">
+              Procon
+            </Link>
+          </nav>
+
+          <p className="text-xs text-slate-400">
             CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
           </p>
         </div>
