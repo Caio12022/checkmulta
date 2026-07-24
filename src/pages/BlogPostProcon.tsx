@@ -431,6 +431,9 @@ export default function BlogPostProcon() {
             <Link to="/procon" className="text-slate-600 transition hover:text-emerald-600">
               Procon
             </Link>
+            <Link to="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
+              Vigilância Sanitária
+            </Link>
           </nav>
 
           <p className="mx-auto max-w-3xl text-xs leading-relaxed text-slate-500">
