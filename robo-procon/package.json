@@ -1,1 +1,13 @@
-
+{
+  "name": "robo-procon-checkmulta",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "tsx robo-procon.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^2.13.0",
+    "tsx": "^4.19.2"
+  }
+}
