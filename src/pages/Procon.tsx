@@ -1065,6 +1065,9 @@ export default function Procon() {
             <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
               Procon
             </a>
+            <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
+              Vigilância Sanitária
+            </a>
           </nav>
 
           <p className="mx-auto max-w-3xl text-xs leading-relaxed text-slate-500">
