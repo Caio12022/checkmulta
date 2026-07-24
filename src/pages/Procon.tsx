@@ -521,7 +521,7 @@ export default function Procon() {
               alt="CheckMulta"
               width="600"
               height="200"
-              className="h-10 w-auto object-contain md:h-12"
+              className="h-12 w-auto object-contain md:h-16"
             />
           </a>
 
@@ -1054,7 +1054,7 @@ export default function Procon() {
               alt="CheckMulta"
               width="600"
               height="200"
-              className="h-[40px] w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-[46px]"
+              className="h-11 w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-14"
             />
           </div>
 
