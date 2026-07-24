@@ -92,6 +92,18 @@ const formatarTexto = (texto: string, slugAtual: string, jaUsados: Set<string>):
   let html = texto
     .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-slate-900">$1</strong>')
     .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
+
+  // Links markdown [texto](url) -> <a>. Precisa vir ANTES de aplicarLinksInternos,
+  // senão o texto dentro dos colchetes pode virar link automático e quebrar a sintaxe.
+  html = html.replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    (_m, rotulo, url) => {
+      const externo = /^https?:\/\//i.test(url);
+      const extras = externo ? ' target="_blank" rel="noopener noreferrer"' : "";
+      return `<a href="${url}"${extras} class="font-medium text-emerald-600 underline decoration-emerald-200 underline-offset-2 transition hover:text-emerald-700 hover:decoration-emerald-400">${rotulo}</a>`;
+    }
+  );
+
   html = aplicarLinksInternos(html, slugAtual, jaUsados);
   return html;
 };
