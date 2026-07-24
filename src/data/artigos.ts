@@ -12,6 +12,45 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "como-acompanhar-o-seu-recurso-de-multa-em-2026",
+    titulo: "Como acompanhar o seu recurso de multa em 2026",
+    descricao: "Aprenda como verificar o status do seu recurso de trânsito de forma simples e eficiente. Acesse o CheckMulta para uma análise gratuita da sua multa.",
+    categoria: "Processo de Recurso",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🔍",
+    imagemBg: "from-blue-600 to-blue-800",
+    conteudo: `## Acompanhando o seu recurso: entenda o processo
+
+Após apresentar uma defesa contra uma infração de trânsito, o motorista entra em uma fase de espera que gera bastante ansiedade. Atualmente, a digitalização dos serviços públicos facilitou esse caminho, mas ainda é comum que muitos condutores fiquem perdidos sem saber onde verificar a situação atual do seu processo.
+
+Saber o status do recurso é fundamental para garantir que você não perca prazos caso precise recorrer a instâncias superiores ou para saber se a penalidade foi finalmente cancelada. Acompanhar a movimentação não exige que você saia de casa, bastando ter em mãos os dados do veículo e da notificação.
+
+## Onde verificar o andamento do processo
+
+O primeiro passo para o acompanhamento é identificar o órgão autuador. A maioria dos órgãos de trânsito estaduais e municipais possui um portal oficial na internet com uma área específica para o acesso a processos administrativos. Veja como proceder:
+
+1. **Acesse o site do órgão responsável:** Verifique na notificação qual órgão emitiu a multa. Pode ser o DETRAN do seu estado, o órgão municipal de trânsito ou o órgão federal.
+2. **Busque pela opção de Consulta de Processos:** Geralmente, nos menus principais dos portais de trânsito, existe uma aba chamada 'Consultas', 'Processos' ou 'Acompanhamento de Recurso'.
+3. **Tenha em mãos o número da placa e o RENAVAM:** Estes são os dados básicos necessários para acessar o prontuário do veículo e verificar se existe algum processo em aberto vinculado àquela placa.
+4. **Verifique o status:** O sistema exibirá se o recurso está em análise, se foi deferido ou indeferido. Se houver necessidade de complementação de documentos, o sistema também indicará a pendência.
+
+## Dicas importantes para não se perder
+
+Nem sempre a atualização no site ocorre no mesmo dia da decisão. É importante ter paciência e realizar a consulta periodicamente, especialmente se o prazo previsto na legislação para o julgamento estiver próximo do fim.
+
+* **Mantenha seus contatos atualizados:** Sempre verifique se o seu cadastro junto ao órgão de trânsito está com o endereço e o e-mail corretos. Muitas notificações importantes sobre o andamento do recurso são enviadas via sistema eletrônico ou correspondência.
+* **Guarde o protocolo:** Ao protocolar a defesa, você sempre receberá um número de protocolo. Guarde esse número com cuidado, pois é ele que permite realizar pesquisas mais precisas junto aos balcões de atendimento ou canais de suporte dos órgãos de trânsito.
+* **Fique atento às instâncias:** Caso a defesa seja indeferida, o Código de Trânsito Brasileiro permite que você recorra às instâncias superiores. O acompanhamento do status é essencial para saber exatamente quando a decisão foi publicada, dando início à contagem do prazo para o próximo recurso.
+
+## Por que a análise técnica faz a diferença?
+
+Muitas vezes, o recurso é indeferido não por falta de direito do condutor, mas por falhas na argumentação ou na apresentação das provas. A legislação brasileira é complexa e exige que o condutor saiba identificar vícios formais no auto de infração que possam levar ao cancelamento da penalidade.
+
+Se você está em dúvida sobre como prosseguir ou quer aumentar suas chances de sucesso, contar com uma análise profissional é o caminho mais seguro. No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Utilize essa ferramenta para entender seus direitos e proteger sua carteira de motorista.`,
+    palavrasChave: ["recurso de multa", "processo administrativo de trânsito", "acompanhar recurso", "DETRAN"],
+  },
+
+  {
     slug: "recurso-de-multa-por-excesso-de-velocidade-veja-como-recorrer",
     titulo: "Recurso de multa por excesso de velocidade: veja como recorrer",
     descricao: "Recebeu uma multa por excesso de velocidade em rodovia? Entenda seus direitos e como estruturar sua defesa. Acesse o CheckMulta e analise sua multa grátis.",
