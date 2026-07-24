@@ -1058,6 +1058,15 @@ export default function Procon() {
             />
           </div>
 
+          <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
+            <a href="/" className="text-slate-600 transition hover:text-emerald-600">
+              Multas de trânsito
+            </a>
+            <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
+              Procon
+            </a>
+          </nav>
+
           <p className="mx-auto max-w-3xl text-xs leading-relaxed text-slate-500">
             <strong className="font-semibold text-slate-700">Transparência e privacidade:</strong>{" "}
             nosso sistema atua como organizador tecnológico com base no Código de Defesa do Consumidor
