@@ -1,10 +1,14 @@
 /**
- * AGENTE DE ARTIGOS - CheckMulta
+ * AGENTE DE ARTIGOS - CheckMulta (TRÂNSITO)
  * ------------------------------------------------------------
- * Roda 1x por dia (Cron Job na Render).
- * Fluxo: Gemini gera artigo -> valida slug -> valida sintaxe -> abre Pull Request no GitHub.
- * Nunca commita direto na main. Nunca reescreve os artigos existentes.
- * Se algo falhar, ele para e avisa no log. O site nunca é afetado.
+ * Roda 1x por dia (GitHub Actions) e gera 1 artigo por execução.
+ *
+ * SEGURANÇA: antes de publicar, o arquivo montado é validado com esbuild.
+ * - Se compilar     -> commit direto na main (o site atualiza sozinho).
+ * - Se NÃO compilar -> abre Pull Request e marca a execução como falha.
+ *                      Nada vai para a main. O site nunca sai do ar.
+ *
+ * Escreve em src/data/artigos.ts (separado do blog do Procon).
  */
 
 import { GoogleGenAI } from "@google/genai";
@@ -12,6 +16,7 @@ import { writeFileSync, unlinkSync } from "fs";
 import { execSync } from "child_process";
 import { tmpdir } from "os";
 import { join } from "path";
+
 // ============================================================
 // CONFIGURAÇÃO - você pode ajustar estas listas quando quiser
 // ============================================================
@@ -21,6 +26,9 @@ const GITHUB_OWNER = "Caio12022";
 const GITHUB_REPO = "checkmulta";
 const GITHUB_BRANCH_BASE = "main";
 const CAMINHO_ARTIGOS = "src/data/artigos.ts";
+
+// Quantos artigos gerar por execução
+const ARTIGOS_POR_EXECUCAO = 1;
 
 // Cada item liga uma categoria REAL do site a temas que combinam com ela.
 // O agente sorteia uma dupla (categoria + tema) desta lista.
@@ -57,7 +65,7 @@ const PAUTAS: { categoria: string; tema: string }[] = [
 ];
 
 // ============================================================
-// CHAVES (vêm das variáveis de ambiente da Render - NÃO escreva aqui)
+// CHAVES (vêm das variáveis de ambiente - NÃO escreva aqui)
 // ============================================================
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 // Dentro do GitHub Actions, o próprio GitHub injeta um GITHUB_TOKEN automático.
@@ -103,8 +111,14 @@ async function github(path: string, method: string, body?: object) {
   return res.json();
 }
 
+// Pausa entre chamadas, para não estourar a cota da API
+function esperar(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 // ============================================================
-// VALIDAÇÃO DE SINTAXE — trava de segurança
+// VALIDAÇÃO DE SINTAXE — a trava de segurança
+// Compila o arquivo montado com esbuild. Se falhar, não commita.
 // ============================================================
 function validarSintaxe(conteudo: string): { ok: boolean; erro?: string } {
   const caminhoTemp = join(tmpdir(), `validar-artigos-${Date.now()}.ts`);
@@ -125,21 +139,6 @@ function validarSintaxe(conteudo: string): { ok: boolean; erro?: string } {
   }
 }
 
-// ============================================================
-// COMMIT DIRETO NA MAIN (quando a validação passa)
-// ============================================================
-async function commitarNaMain(novoConteudo: string, sha: string, titulo: string) {
-  await github(
-    `/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${CAMINHO_ARTIGOS}`,
-    "PUT",
-    {
-      message: `Novo artigo: ${titulo}`.slice(0, 240),
-      content: Buffer.from(novoConteudo, "utf-8").toString("base64"),
-      sha,
-      branch: GITHUB_BRANCH_BASE,
-    }
-  );
-}
 // ============================================================
 // PASSO A: pega o arquivo artigos.ts atual do GitHub
 // ============================================================
@@ -201,7 +200,11 @@ REGRA DO CHAMADO FINAL (CTA):
 
   let texto = resp.text?.trim() || "";
   // remove crases de markdown se o modelo colocar
-  texto = texto.replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/```\s*$/i, "").trim();
+  texto = texto
+    .replace(/^```json\s*/i, "")
+    .replace(/^```\s*/i, "")
+    .replace(/```\s*$/i, "")
+    .trim();
 
   const obj = JSON.parse(texto);
   return obj;
@@ -234,7 +237,11 @@ ${conteudo}`;
   });
 
   let texto = resp.text?.trim() || "";
-  texto = texto.replace(/^```markdown\s*/i, "").replace(/^```\s*/i, "").replace(/```\s*$/i, "").trim();
+  texto = texto
+    .replace(/^```markdown\s*/i, "")
+    .replace(/^```\s*/i, "")
+    .replace(/```\s*$/i, "")
+    .trim();
   // se a revisão vier vazia ou muito curta, mantém o original (segurança)
   if (texto.length < 200) return conteudo;
   return texto;
@@ -275,7 +282,8 @@ function montarBloco(artigo: any, slug: string): string {
 function inserirArtigo(conteudoArquivo: string, bloco: string): string {
   const marcador = "export const artigos: Artigo[] = [";
   const pos = conteudoArquivo.indexOf(marcador);
-  if (pos === -1) throw new Error("Marcador de início do array não encontrado no arquivo.");
+  if (pos === -1)
+    throw new Error("Marcador de início do array não encontrado no arquivo.");
   const insercao = pos + marcador.length;
   return (
     conteudoArquivo.slice(0, insercao) +
@@ -286,111 +294,179 @@ function inserirArtigo(conteudoArquivo: string, bloco: string): string {
 }
 
 // ============================================================
-// PASSO E: cria branch + arquivo novo + Pull Request
+// PASSO E1: commit direto na main (caminho normal, se a validação passou)
 // ============================================================
-async function abrirPR(slug: string, novoConteudo: string, sha: string, titulo: string) {
-  // pega o SHA do topo da main
+async function commitarNaMain(
+  novoConteudo: string,
+  sha: string,
+  titulos: string[]
+) {
+  const mensagem =
+    titulos.length === 1
+      ? `Novo artigo: ${titulos[0]}`
+      : `Novos artigos (${titulos.length})`;
+
+  await github(
+    `/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${CAMINHO_ARTIGOS}`,
+    "PUT",
+    {
+      message: mensagem.slice(0, 240),
+      content: Buffer.from(novoConteudo, "utf-8").toString("base64"),
+      sha,
+      branch: GITHUB_BRANCH_BASE,
+    }
+  );
+}
+
+// ============================================================
+// PASSO E2: abre PR (fallback, só quando a validação falha)
+// ============================================================
+async function abrirPRdeRevisao(
+  novoConteudo: string,
+  sha: string,
+  titulos: string[],
+  motivo: string
+) {
   const ref = await github(
     `/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/ref/heads/${GITHUB_BRANCH_BASE}`,
     "GET"
   );
   const baseSha = ref.object.sha;
+  const nomeBranch = `artigos-revisar-${Date.now()}`;
 
-  const nomeBranch = `artigo-${slug}-${Date.now()}`;
-
-  // cria a branch nova
   await github(`/repos/${GITHUB_OWNER}/${GITHUB_REPO}/git/refs`, "POST", {
     ref: `refs/heads/${nomeBranch}`,
     sha: baseSha,
   });
 
-  // atualiza o arquivo na branch nova
   await github(
     `/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${CAMINHO_ARTIGOS}`,
     "PUT",
     {
-      message: `Novo artigo: ${titulo}`,
+      message: "Artigos aguardando revisao manual",
       content: Buffer.from(novoConteudo, "utf-8").toString("base64"),
       sha,
       branch: nomeBranch,
     }
   );
 
-  // abre o Pull Request
   const pr = await github(`/repos/${GITHUB_OWNER}/${GITHUB_REPO}/pulls`, "POST", {
-    title: `Novo artigo: ${titulo}`,
+    title: "ATENCAO: artigos nao passaram na validacao",
     head: nomeBranch,
     base: GITHUB_BRANCH_BASE,
-    body: `Artigo gerado automaticamente pelo agente.\n\nSlug: \`${slug}\`\n\nRevise e faça merge se estiver bom.`,
+    body:
+      "O robo gerou os artigos abaixo, mas o arquivo montado NAO passou na validacao de sintaxe. Por seguranca, nada foi enviado para a main.\n\nArtigos: " +
+      titulos.join(", ") +
+      "\n\nMotivo:\n```\n" +
+      motivo +
+      "\n```\n\nRevise antes de fazer merge.",
   });
 
   return pr.html_url;
 }
 
 // ============================================================
+// Produz UM artigo completo (geração + revisão) e devolve o bloco
+// ============================================================
+async function produzirArtigo(
+  existentes: Set<string>
+): Promise<{ bloco: string; slug: string; titulo: string } | null> {
+  const pauta = PAUTAS[Math.floor(Math.random() * PAUTAS.length)];
+  console.log(`  Tema: ${pauta.tema}`);
+  console.log(`  Categoria: ${pauta.categoria}`);
+
+  let artigo: any = null;
+  let slug = "";
+
+  for (let tentativa = 1; tentativa <= 3; tentativa++) {
+    artigo = await gerarArtigo(pauta.tema, pauta.categoria);
+    artigo.categoria = pauta.categoria; // garante categoria válida
+    slug = slugify(artigo.titulo);
+    if (slug && !existentes.has(slug)) break;
+    console.log(
+      `  Tentativa ${tentativa}: slug repetido ou vazio (${slug}). Tentando de novo.`
+    );
+    slug = "";
+  }
+
+  if (!slug) {
+    console.log("  Nao consegui slug inedito em 3 tentativas. Pulando este artigo.");
+    return null;
+  }
+
+  for (const campo of ["titulo", "descricao", "conteudo", "imagemBg", "imagemEmoji"]) {
+    if (!artigo[campo] || String(artigo[campo]).trim() === "") {
+      console.log(`  Campo obrigatorio vazio (${campo}). Pulando este artigo.`);
+      return null;
+    }
+  }
+
+  console.log("  Revisando (checagem juridica)...");
+  artigo.conteudo = await revisarArtigo(String(artigo.conteudo));
+
+  return { bloco: montarBloco(artigo, slug), slug, titulo: artigo.titulo };
+}
+
+// ============================================================
 // EXECUÇÃO PRINCIPAL
 // ============================================================
 async function main() {
-  console.log("Agente iniciado.");
+  console.log(`Agente iniciado. Meta: ${ARTIGOS_POR_EXECUCAO} artigo(s).`);
 
   // 1. baixa o arquivo atual
   const { conteudo, sha } = await baixarArtigos();
   const existentes = slugsExistentes(conteudo);
   console.log(`Artigos existentes: ${existentes.size}`);
 
-  // 2. escolhe uma pauta (categoria + tema) aleatória
-  const pauta = PAUTAS[Math.floor(Math.random() * PAUTAS.length)];
-  const tema = pauta.tema;
-  const categoria = pauta.categoria;
-  console.log(`Tema: ${tema} | Categoria: ${categoria}`);
+  let conteudoAcumulado = conteudo;
+  const titulosGerados: string[] = [];
 
-  // 3. tenta gerar um artigo com slug inédito (até 3 tentativas)
-  let artigo: any = null;
-  let slug = "";
-  for (let tentativa = 1; tentativa <= 3; tentativa++) {
-    artigo = await gerarArtigo(tema, categoria);
-    artigo.categoria = categoria; // garante categoria válida
-    slug = slugify(artigo.titulo);
-    if (slug && !existentes.has(slug)) break;
-    console.log(`Tentativa ${tentativa}: slug repetido ou vazio (${slug}). Tentando de novo.`);
-    slug = "";
-  }
-  if (!slug) throw new Error("Não consegui gerar um slug inédito em 3 tentativas.");
+  // 2. gera os artigos
+  for (let i = 1; i <= ARTIGOS_POR_EXECUCAO; i++) {
+    console.log(`\n--- Artigo ${i} de ${ARTIGOS_POR_EXECUCAO} ---`);
+    try {
+      const resultado = await produzirArtigo(existentes);
+      if (!resultado) continue;
 
-  // 4. valida campos essenciais
-  for (const campo of ["titulo", "descricao", "conteudo", "imagemBg", "imagemEmoji"]) {
-    if (!artigo[campo] || String(artigo[campo]).trim() === "") {
-      throw new Error(`Campo obrigatório vazio: ${campo}`);
+      conteudoAcumulado = inserirArtigo(conteudoAcumulado, resultado.bloco);
+      existentes.add(resultado.slug);
+      titulosGerados.push(resultado.titulo);
+      console.log(`  OK: ${resultado.titulo}`);
+    } catch (err: any) {
+      console.error(`  Falhou: ${err.message}. Seguindo para o proximo.`);
     }
+
+    if (i < ARTIGOS_POR_EXECUCAO) await esperar(4000);
   }
 
-  // 4.5 revisão jurídica: o modelo relê e corrige o próprio artigo
-  console.log("Revisando artigo (checagem jurídica)...");
-  artigo.conteudo = await revisarArtigo(String(artigo.conteudo));
-  console.log("Revisão concluída.");
+  if (titulosGerados.length === 0) {
+    throw new Error("Nenhum artigo foi gerado com sucesso nesta execucao.");
+  }
 
-  // 5. monta o bloco e insere
-  const bloco = montarBloco(artigo, slug);
-  const novoConteudo = inserirArtigo(conteudo, bloco);
-
-  // 6. abre o Pull Request
- // 6. valida a sintaxe antes de publicar
-  console.log("Validando sintaxe do arquivo...");
-  const validacao = validarSintaxe(novoConteudo);
+  // 3. valida a sintaxe antes de publicar
+  console.log(`\n${titulosGerados.length} artigo(s) montado(s). Validando sintaxe...`);
+  const validacao = validarSintaxe(conteudoAcumulado);
 
   if (validacao.ok) {
     console.log("Validacao OK. Commitando direto na main...");
-    await commitarNaMain(novoConteudo, sha, artigo.titulo);
-    console.log(`Artigo publicado automaticamente: ${artigo.titulo}`);
+    await commitarNaMain(conteudoAcumulado, sha, titulosGerados);
+    console.log(`Publicado(s) automaticamente ${titulosGerados.length} artigo(s):`);
+    titulosGerados.forEach((t) => console.log(`   - ${t}`));
   } else {
     console.error("VALIDACAO FALHOU. Nada foi enviado para a main.");
     console.error(validacao.erro);
-    const url = await abrirPR(slug, novoConteudo, sha, artigo.titulo);
+    const url = await abrirPRdeRevisao(
+      conteudoAcumulado,
+      sha,
+      titulosGerados,
+      validacao.erro || ""
+    );
     console.log(`Pull Request aberto para revisao manual: ${url}`);
     process.exit(1);
   }
+}
 
 main().catch((err) => {
-  console.error("❌ Agente falhou:", err.message);
+  console.error("Agente falhou:", err.message);
   process.exit(1);
 });
