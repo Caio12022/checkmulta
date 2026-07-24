@@ -12,6 +12,160 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "como-contar-o-prazo-de-defesa-apos-uma-autuacao-sanitaria",
+    titulo: "Como contar o prazo de defesa após uma autuação sanitária",
+    descricao: "Entenda como identificar corretamente o prazo para apresentar sua defesa administrativa e evitar a perda do direito ao contraditório. Analise seu auto agora.",
+    categoria: "Prazos e Procedimento",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⏳",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["prazo defesa vigilância sanitária", "auto de infração sanitária", "processo administrativo sanitário", "defesa sanitária"],
+    conteudo: `## A importância da contagem correta do prazo
+
+Receber um auto de infração da Vigilância Sanitária gera um impacto imediato na gestão de qualquer estabelecimento. Seja em restaurantes, farmácias, clínicas ou comércios, a notificação marca o início de um processo administrativo que exige atenção rigorosa quanto aos prazos. A perda de um prazo fatal pode encerrar precocemente a oportunidade de apresentar argumentos técnicos e corrigir irregularidades, tornando definitiva a sanção imposta pelo órgão fiscalizador.
+
+O procedimento administrativo é regido por princípios fundamentais que garantem ao administrado o direito de se defender. Entre eles, destacam-se o contraditório e a ampla defesa, elementos essenciais do devido processo legal. Para que esses direitos sejam plenamente exercidos, é indispensável que o responsável pelo estabelecimento compreenda como o tempo é contabilizado a partir do momento da intimação.
+
+## Onde encontrar o prazo correto
+
+É um equívoco comum acreditar que existe um prazo único para todos os estabelecimentos no Brasil. A legislação sanitária é descentralizada. Enquanto a Lei 6.437/77 estabelece diretrizes gerais sobre infrações à legislação sanitária federal (arts. 2º, 3º, 4º, 10, 31, 33), a execução da fiscalização ocorre de forma descentralizada entre municípios e estados, observando normas locais de procedimento administrativo.
+
+Por essa razão, o primeiro passo ao receber o auto de infração é a leitura minuciosa do documento. O prazo para a apresentação da defesa deve constar expressamente no próprio auto ou no documento de notificação que o acompanha. Não utilize prazos sugeridos por terceiros ou baseados em experiências anteriores com outros órgãos; foque exclusivamente nas orientações contidas no auto recebido. Em caso de dúvida sobre a contagem ou sobre a natureza do prazo, entre em contato diretamente com o órgão emissor da autuação.
+
+## A aplicação subsidiária da norma federal
+
+O processo administrativo é balizado por princípios que devem ser observados em todas as instâncias. A Lei 9.784/99, aplicável subsidiariamente, reforça a necessidade de motivação nas decisões administrativas, conforme seu art. 50. Isso significa que, ao autuar um estabelecimento, o agente fiscal deve descrever com clareza os fatos e os fundamentos legais que levaram àquela penalidade (art. 2º da referida lei, aplicável subsidiariamente).
+
+Quando o estabelecimento prepara sua defesa, ele está exercendo o seu direito de contrapor a fundamentação apresentada pelo órgão. O princípio da proporcionalidade e o princípio da razoabilidade são essenciais neste momento. Se a penalidade imposta parecer desproporcional à falha apontada, ou se houver erro no procedimento de fiscalização, a defesa pode estruturar esses pontos com base na técnica e na legislação aplicável, visando a possibilidade de revisão da sanção.
+
+## Como proceder em caso de irregularidades
+
+Se o auto de infração apontar irregularidades que exigem intervenção imediata, a prioridade do estabelecimento deve ser a regularização. Caso o local tenha sido interditado, é fundamental compreender que a operação não deve ser retomada sob hipótese alguma sem a liberação formal do órgão fiscalizador. O descumprimento de uma interdição configura infração grave e pode acarretar medidas ainda mais severas.
+
+Ao corrigir as pendências, documente todo o processo. Fotografias, notas fiscais de compra de insumos, contratos de manutenção, laudos técnicos e comprovantes de limpeza são peças fundamentais. Essa documentação comprova a boa-fé e a proatividade do estabelecimento, servindo de suporte para solicitar uma reinspeção que poderá resultar na desinterdição.
+
+## O que observar no preenchimento do auto
+
+Conforme a Lei 6.437/77, o auto de infração deve descrever com clareza a infração cometida (arts. 31 e 33). Caso haja omissões, descrições genéricas ou falta de clareza sobre o dispositivo legal infringido, esses pontos podem ser questionados dentro do prazo estabelecido. A observância aos princípios da legalidade e da motivação é o que confere validade ao ato administrativo. O foco da defesa deve ser sempre a verificação da conformidade entre a ação fiscal e a norma, garantindo que o direito do estabelecimento tenha sido respeitado durante toda a diligência.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "controle-de-temperatura-como-evitar-autuacoes-da-vigilancia-sanitaria",
+    titulo: "Controle de Temperatura: Como evitar autuações da Vigilância Sanitária",
+    descricao: "Saiba como a gestão correta do controle de temperatura protege seu negócio. Evite infrações sanitárias com registros adequados. Analise seu auto conosco.",
+    categoria: "Boas Práticas",
+    tempoLeitura: "6 min",
+    imagemEmoji: "🌡️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["controle de temperatura vigilância sanitária", "auto de infração vigilância sanitária", "boas práticas sanitárias", "registro de temperatura", "defesa administrativa sanitária"],
+    conteudo: `## A Importância do Controle de Temperatura nas Boas Práticas
+
+A manutenção da temperatura adequada em equipamentos de refrigeração e conservação térmica é um dos pilares fundamentais das boas práticas sanitárias. Para estabelecimentos como restaurantes, farmácias e clínicas, o rigor no monitoramento não é apenas uma questão de conservação de produtos, mas uma exigência técnica cujas falhas frequentemente resultam em autuações.
+
+A Vigilância Sanitária fiscaliza se o estabelecimento possui métodos eficazes para impedir o crescimento de microrganismos ou a deterioração de insumos. A ausência de um sistema documentado de controle de temperatura é interpretada pela autoridade sanitária como risco à saúde pública, o que pode levar à lavratura de um auto de infração, conforme previsto nas hipóteses da Lei Federal nº 6.437/77, especificamente em seu art. 10.
+
+## Por que a documentação é essencial
+
+No processo administrativo sanitário, a prova documental é a principal defesa do estabelecimento. Muitas vezes, o proprietário alega que o equipamento funciona corretamente, mas não possui os registros diários que comprovem essa afirmação. Sem o registro, a fiscalização baseia-se apenas no estado visual do momento da inspeção.
+
+Para evitar autuações, o estabelecimento deve implementar planilhas ou sistemas digitais de monitoramento que contenham:
+
+- Identificação clara do equipamento (freezer, geladeira, estufa).
+- Horários precisos da aferição.
+- Temperatura observada.
+- Ação corretiva tomada caso o equipamento apresente desvio.
+- Assinatura ou identificação do responsável pela medição.
+
+## O Processo Administrativo e a Motivação do Ato
+
+Quando uma infração é lavrada, o agente sanitário deve observar princípios fundamentais como a motivação e o devido processo legal. A Lei Federal nº 9.784/99, aplicável subsidiariamente ao processo administrativo, estabelece no seu art. 50 que os atos administrativos deverão ser motivados com a indicação dos fatos e dos fundamentos jurídicos.
+
+Isso significa que o auto de infração não pode ser genérico. Se a fiscalização apontou irregularidade no controle de temperatura, o documento deve descrever com precisão qual falha foi detectada. Se o fiscal não demonstrar de forma clara onde houve o erro, pode haver espaço para questionar a validade da sanção sob o prisma do princípio da motivação.
+
+## Como proceder após a autuação
+
+Se o seu estabelecimento foi autuado por falhas no controle de temperatura, a primeira etapa é não ignorar o auto. O prazo para apresentação de defesa administrativa varia conforme a legislação local, sendo indispensável conferir a data limite constante no documento recebido ou solicitar esclarecimentos diretamente ao órgão que emitiu a notificação.
+
+Para a regularização e o pedido de reinspeção, é fundamental documentar todas as correções realizadas. Isso inclui:
+
+- Registro fotográfico dos novos termômetros instalados.
+- Planilhas de monitoramento preenchidas desde a adequação.
+- Notas fiscais de serviços de manutenção preventiva nos equipamentos.
+- Laudos técnicos que comprovem a eficiência da refrigeração.
+
+Caso o estabelecimento tenha sido interditado, o retorno às atividades depende exclusivamente da liberação formal pela autoridade sanitária competente, após a comprovação de que os riscos à saúde foram eliminados.
+
+Essas provas são fundamentais para demonstrar à autoridade sanitária que o estabelecimento adotou as medidas necessárias para mitigar os riscos à saúde, respeitando o princípio da razoabilidade e da proporcionalidade ao solicitar a revisão de uma eventual interdição ou a redução da penalidade.
+
+## O contraditório e a ampla defesa
+
+O ordenamento jurídico brasileiro garante a todos o direito ao contraditório e à ampla defesa. Portanto, ao receber um auto de infração, o proprietário tem o direito de apresentar os fatos e documentos que contraponham a autuação. A Lei Federal nº 6.437/77 (arts. 2º, 3º, 4º, 31, 33), e a Lei Federal nº 9.784/99 (art. 2º, aplicável subsidiariamente), preveem mecanismos para que o autuado se defenda, permitindo que a administração reavalie a legalidade e a adequação da sanção aplicada.
+
+A análise técnica do auto é um passo relevante. É preciso verificar se o agente sanitário observou as formalidades legais e se os fatos narrados configuram, de forma fundamentada, uma infração sanitária. Falhas na redação do auto ou a aplicação de penalidades que não condizem com a gravidade da situação são pontos que podem ser arguidos em sede de recurso.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "interdicao-cautelar-vs-interdicao-como-penalidade-entenda-a-diferenca",
+    titulo: "Interdição cautelar vs. interdição como penalidade: entenda a diferença",
+    descricao: "Recebeu uma autuação com interdição? Entenda a diferença jurídica entre a medida cautelar e a penalidade. Envie seu auto para análise gratuita no CheckMulta.",
+    categoria: "Penalidades",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["interdição vigilância sanitária", "auto de infração defesa", "processo administrativo sanitário", "interdição cautelar funcionamento"],
+    conteudo: `## A distinção fundamental no processo sanitário
+
+Ao receber um auto de infração que resulta na suspensão das atividades de um estabelecimento, é comum que o proprietário se sinta perdido diante da terminologia técnica utilizada pelos agentes sanitários. Um dos pontos de maior confusão é a diferença entre a interdição cautelar e a interdição aplicada como penalidade. Compreender essa distinção é essencial para que o estabelecimento adote a estratégia adequada de defesa e regularização.
+
+## O que é a interdição cautelar?
+
+A interdição cautelar possui natureza preventiva e provisória. Conforme previsto no art. 3º da Lei Federal nº 6.437/77, esta medida é adotada quando há risco iminente à saúde pública. O objetivo não é punir o estabelecimento de imediato, mas sim cessar uma situação de perigo enquanto o processo administrativo segue seu curso regular.
+
+Algumas características marcantes da interdição cautelar incluem:
+
+- Finalidade preventiva: visa evitar danos à coletividade antes que o mérito da infração seja julgado.
+- Provisoriedade: a medida deve durar apenas o tempo necessário para que a irregularidade seja sanada.
+- Ausência de condenação definitiva: a medida não pressupõe que o estabelecimento já foi considerado culpado, mas sim que a situação exige cautela imediata por parte do poder público, conforme os dispositivos gerais da Lei Federal nº 6.437/77 (arts. 2º e 4º).
+
+## O que é a interdição como penalidade?
+
+Diferente da medida cautelar, a interdição como penalidade possui caráter sancionatório. Ela ocorre ao final do processo administrativo, quando, após assegurado o contraditório e a ampla defesa, o órgão competente conclui pela existência da infração e pela necessidade de punição, conforme preveem os dispositivos sancionatórios contidos na Lei Federal nº 6.437/77 (arts. 10, 31 e 33).
+
+Principais pontos sobre a natureza da penalidade:
+
+- Resultado de processo: deriva de uma decisão motivada após a análise do auto de infração e da defesa apresentada, observando o art. 50 da Lei Federal nº 9.784/99, aplicável subsidiariamente.
+- Caráter punitivo: é a resposta do Estado frente à constatação de descumprimento das normas vigentes.
+- Devido processo legal: a aplicação desta penalidade exige que o estabelecimento tenha tido todas as oportunidades de se manifestar e produzir provas ao longo do rito administrativo.
+
+## O papel dos princípios fundamentais
+
+Independentemente da modalidade de interdição, a administração pública deve sempre se pautar pelos princípios da legalidade, da motivação, da proporcionalidade e da razoabilidade. Segundo o art. 2º da Lei Federal nº 9.784/99, aplicável subsidiariamente, a atuação administrativa deve atender ao interesse público, vedada a imposição de obrigações ou restrições em medida superior àquelas estritamente necessárias ao atendimento do interesse público.
+
+Isso significa que, mesmo na interdição cautelar, a autoridade deve justificar de forma clara por que aquela medida foi a única capaz de proteger a saúde da população. Caso a interdição seja desproporcional ou não esteja devidamente motivada, esses pontos podem ser questionados dentro da estratégia de defesa administrativa.
+
+## Como proceder diante de uma interdição?
+
+Se o seu estabelecimento sofreu uma interdição, o passo mais importante é a regularização das pendências apontadas pelo agente fiscal. É indispensável documentar todo o processo de correção. Reúna notas fiscais de novos equipamentos, registros fotográficos do ambiente após as adequações, laudos técnicos e comprovantes de limpeza ou desinfecção.
+
+Esses documentos servem de base para o pedido de reinspeção. Lembre-se de verificar o prazo indicado no auto de infração para a interposição de defesa ou para o pedido de reinspeção. Como os prazos variam conforme a legislação de cada ente federativo, consulte atentamente o documento entregue pelo fiscal e, em caso de dúvida, entre em contato diretamente com o órgão sanitário emissor.
+
+Importante: jamais retome as atividades antes da autorização formal do órgão fiscalizador. O descumprimento de uma interdição pode agravar a situação jurídica do estabelecimento e acarretar sanções adicionais previstas na legislação vigente.
+
+## Busque análise técnica para sua defesa
+
+A análise de um auto de infração exige atenção a detalhes técnicos e jurídicos. É recomendável o envio do auto de infração da Vigilância Sanitária para uma análise profissional, a fim de identificar se a autuação apresenta falhas que possam fundamentar uma defesa administrativa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "auto-infracao-vigilancia-sanitaria-o-que-fazer",
     titulo: "Recebi um auto de infração da Vigilância Sanitária: o que fazer agora",
     descricao:
