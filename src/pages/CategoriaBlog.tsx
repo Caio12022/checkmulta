@@ -108,13 +108,13 @@ export default function CategoriaBlog() {
       {/* HEADER */}
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-          <Link to="/" className="flex h-full w-[180px] items-center md:w-[220px]">
+          <Link to="/" className="flex items-center">
             <img
               src="/checkmulta-logo.webp"
               alt="CheckMulta"
-              width="240"
-              height="64"
-              className="h-auto w-full origin-left scale-[1.25] object-contain md:scale-[1.35]"
+              width="600"
+              height="200"
+              className="h-10 w-auto object-contain md:h-12"
             />
           </Link>
 
