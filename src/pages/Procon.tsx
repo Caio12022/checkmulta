@@ -514,14 +514,14 @@ export default function Procon() {
 
       {/* HEADER */}
       <header className="sticky top-0 z-40 border-b border-slate-200 bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <a href="/" className="flex items-center">
             <img
               src="/checkmulta-logo.webp"
               alt="CheckMulta"
               width="600"
               height="200"
-              className="h-12 w-auto object-contain md:h-16"
+              className="h-14 w-auto object-contain md:h-20"
             />
           </a>
 
@@ -1054,7 +1054,7 @@ export default function Procon() {
               alt="CheckMulta"
               width="600"
               height="200"
-              className="h-11 w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-14"
+              className="h-12 w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-16"
             />
           </div>
 
