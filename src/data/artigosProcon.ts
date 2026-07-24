@@ -12,6 +12,148 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "recebeu-reclamacao-no-procon-como-agir-antes-da-autuacao",
+    titulo: "Recebeu reclamação no Procon? Como agir antes da autuação",
+    descricao: "Recebeu uma notificação do Procon? Saiba como organizar sua defesa e evitar o agravamento para um auto de infração. Analise seu caso no CheckMulta.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "6 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["reclamacao Procon empresa", "processo administrativo Procon", "defesa Procon empresa", "notificacao Procon o que fazer"],
+    conteudo: `## A importância da fase pré-autuação no Procon
+
+Receber uma notificação do Procon é um momento de atenção para qualquer gestor. Muitas empresas, ao serem comunicadas de uma reclamação, cometem o equívoco de ignorar o chamado ou responder de forma genérica. É fundamental compreender que a fase de atendimento preliminar representa uma oportunidade de resolver um conflito antes que o órgão instale um processo administrativo sancionador formal, que pode culminar em sanções pecuniárias.
+
+O Código de Defesa do Consumidor e a legislação que rege os procedimentos administrativos nos órgãos de proteção ao consumidor incentivam a autocomposição. Resolver o problema do cliente diretamente, neste estágio inicial, costuma ser o caminho mais eficiente para evitar a lavratura de um auto de infração, que é um ato administrativo mais gravoso.
+
+## Primeiros passos ao receber uma notificação
+
+Ao ser notificado, o primeiro passo é a verificação detalhada do teor da reclamação. O Procon enviará um documento contendo o prazo para resposta. A partir disso, as seguintes etapas devem ser observadas:
+
+- Identificação do reclamante: Verifique se os dados do consumidor coincidem com os registros internos da sua empresa.
+- Análise da fundamentação: Leia com atenção o relato do consumidor. Quais normas ele alega que foram violadas? O fato realmente ocorreu conforme descrito?
+- Levantamento de provas: Reúna todos os documentos pertinentes, como notas fiscais, contratos, registros de atendimento, comprovantes de entrega ou histórico de conversas. Ter os fatos documentados é o pilar de qualquer resposta administrativa.
+- Verificação de prazos: O prazo para resposta é definido pelo órgão notificante. Nunca perca a data limite indicada no próprio documento de notificação, pois os prazos variam conforme a legislação local ou estadual específica do órgão. A perda de prazo pode ser interpretada como desinteresse da empresa ou gerar revelia, o que fragiliza sua posição.
+
+## Como formular a resposta à notificação
+
+A resposta enviada ao Procon deve ser pautada pelo profissionalismo e pela objetividade. Evite tom defensivo ou agressivo. O foco deve ser esclarecer os fatos sob o prisma da legalidade.
+
+- Seja claro e direto: Explique a situação sem rodeios. Se houve uma falha por parte da empresa, avalie a possibilidade de reparação imediata. Se a reclamação for improcedente, demonstre com base na legislação e nas provas reunidas por que o pleito do consumidor não se sustenta.
+- Proponha soluções: Caso a responsabilidade da empresa seja identificada, apresentar uma solução antes da autuação demonstra boa-fé e pode ser um fator considerado na análise de eventual penalidade.
+- Mantenha a formalidade: Utilize documentos timbrados, com a identificação clara da empresa e de seu representante legal. A clareza na exposição dos fatos auxilia o servidor público que irá analisar o processo.
+
+## O risco da inércia ou do despreparo
+
+O processo administrativo do Procon não se encerra apenas com o contato do consumidor. Caso a empresa não responda, ou caso a resposta seja insuficiente, o órgão pode concluir pela existência de uma infração ao Código de Defesa do Consumidor e lavrar um auto de infração. Neste ponto, o cenário muda: a empresa passa a figurar como autuada, e o procedimento torna-se uma disputa administrativa formal, que exige defesa técnica e obediência a ritos rigorosos.
+
+Lembre-se que cada Procon estadual ou municipal possui autonomia para estabelecer procedimentos internos específicos. Por isso, a leitura atenta de cada notificação recebida é indispensável. O que é aceito em um órgão local pode variar em termos de prazos e ritos procedimentais em comparação com outros órgãos de defesa do consumidor.
+
+## Busque orientação técnica
+
+Se a situação escalar e você receber um auto de infração formal, o processo exige uma análise técnica cuidadosa. Vícios formais na lavratura do auto, ausência de fundamentação legal adequada ou erros processuais podem ser explorados em uma defesa administrativa bem estruturada. O objetivo é assegurar que a empresa exerça seu direito constitucional ao contraditório e à ampla defesa.
+
+Caso deseje uma análise técnica, é possível buscar especialistas para verificar se o auto de infração apresenta vícios formais ou outros pontos de atenção necessários para a composição da sua defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "erro-na-identificacao-da-empresa-autuada-pelo-procon-como-proceder",
+    titulo: "Erro na identificação da empresa autuada pelo Procon: Como proceder",
+    descricao: "Recebeu uma autuação do Procon com dados da empresa incorretos? Entenda como o vício de identificação pode afetar a validade do processo administrativo.",
+    categoria: "Vícios e Nulidades",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["erro identificação autuação Procon", "auto de infração incorreto", "defesa administrativa Procon", "nulidade processo administrativo"],
+    conteudo: `## A importância da correta qualificação da empresa autuada
+
+No âmbito do processo administrativo instaurado pelo Procon, a precisão das informações contidas no auto de infração não é apenas uma formalidade burocrática, mas um requisito fundamental para a validade do procedimento. Entre os erros mais comuns que podem fragilizar uma autuação está a identificação incorreta da empresa autuada.
+
+Quando um agente fiscal lavra um auto de infração, ele está formalizando uma acusação que pode culminar na aplicação de penalidades, incluindo multas administrativas. Para que esse ato tenha eficácia jurídica, é indispensável que o documento indique com precisão quem é o sujeito passivo da sanção, ou seja, a pessoa jurídica responsável pelo suposto descumprimento das normas de defesa do consumidor.
+
+## O que constitui o erro de identificação?
+
+O erro de identificação ocorre quando o Procon indica uma razão social, nome fantasia ou número de inscrição cadastral que não corresponde à realidade da operação ou da empresa fiscalizada. Exemplos frequentes incluem:
+
+- Incorreção na Razão Social: Quando o auto cita um nome empresarial diferente daquele registrado nos órgãos competentes.
+- Erro no número de registro: A indicação de um cadastro que pertence a outra filial, a outra unidade do grupo econômico ou a uma empresa completamente diversa.
+- Confusão entre Matriz e Filial: A autuação de uma unidade que não realizou a operação objeto da reclamação ou a identificação genérica de uma rede inteira quando o fato é restrito a um ponto de venda específico.
+- Erro de endereço ou qualificação dos sócios: Dados cadastrais desatualizados que impedem a correta localização e notificação da empresa.
+
+## As implicações jurídicas na defesa administrativa
+
+Sob a ótica do Direito Administrativo, o processo instaurado pelo Procon deve observar o devido processo legal, o contraditório e a ampla defesa. Se a entidade autuada não foi corretamente identificada, ocorre um vício de natureza formal que compromete a legitimidade do ato administrativo.
+
+A identificação correta é pressuposto para que a empresa possa exercer o seu direito de defesa de forma plena. Se o órgão notifica uma entidade que sequer participou do evento em questão, ou se a autuação falha ao qualificar a pessoa jurídica, há fundamento para questionar a continuidade do processo. A legislação estabelece que o ato administrativo deve conter requisitos essenciais de validade; a ausência ou o erro grosseiro em elementos de identificação pode fundamentar pedidos de revisão da penalidade.
+
+## Como proceder ao identificar um erro no auto?
+
+Ao receber um auto de infração, a primeira providência do responsável administrativo deve ser a conferência minuciosa de todos os dados descritos no documento. Caso seja constatada uma divergência na identificação da empresa, é necessário avaliar a estratégia de defesa. O vício deve ser arguido logo na peça de defesa inicial, expondo claramente a falha documental e comprovando a real qualificação da empresa autuada através de documentos oficiais.
+
+É importante lembrar que os prazos para apresentação de defesa não são uniformes. Embora exista uma previsão em normas federais, muitos Procons estaduais e municipais possuem legislação própria que estabelece prazos distintos. Portanto, consulte sempre o documento recebido para verificar a data limite para protocolar a sua manifestação.
+
+## Considerações sobre a análise técnica
+
+Identificar vícios formais, como erros na qualificação da empresa, exige atenção aos detalhes e conhecimento das normas que regem o processo administrativo sancionador. Uma defesa bem estruturada, que aponta falhas procedimentais, é uma ferramenta essencial para assegurar que a empresa busque resguardar seus direitos diante de eventuais equívocos do órgão fiscalizador.
+
+Caso deseje, é possível encaminhar o auto de infração do Procon para uma análise técnica que avalie se a autuação apresenta vício formal, permitindo que a empresa tome decisões mais informadas sobre como prosseguir com a defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "recebeu-um-auto-de-infracao-do-procon-por-que-nao-pagar-imediatamente",
+    titulo: "Recebeu um auto de infração do Procon? Por que não pagar imediatamente",
+    descricao: "Receber uma multa do Procon gera preocupação, mas o pagamento imediato pode ser um erro estratégico. Entenda como analisar o auto antes de qualquer decisão.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["auto de infração procon", "defesa administrativa procon", "multa procon empresa", "como recorrer multa procon"],
+    conteudo: `## A chegada do auto de infração
+
+O recebimento de um auto de infração do Procon é um momento de tensão para qualquer gestor. A notificação de uma autuação, muitas vezes acompanhada de uma penalidade pecuniária expressiva, gera um impulso imediato de resolver a pendência financeira para encerrar o assunto. Contudo, do ponto de vista jurídico e administrativo, realizar o pagamento imediato do valor estipulado sem uma análise técnica prévia pode representar o abandono de direitos fundamentais da sua empresa.
+
+## O risco da precipitação
+
+Ao pagar uma multa administrativa sem questionar o seu conteúdo ou a forma como foi emitida, a empresa pode estar declarando, tacitamente, que aceita a validade de todos os pontos ali apontados. O processo administrativo sancionador, regido pelo Código de Defesa do Consumidor e pela legislação federal pertinente, possui ritos rigorosos que a autoridade fiscalizadora deve seguir à risca. Caso esses ritos não sejam observados, o ato administrativo pode conter vícios que permitam buscar a sua anulação ou, no mínimo, a redução da sanção aplicada.
+
+O pagamento imediato encerra precocemente qualquer possibilidade de discussão administrativa. Uma vez pago, torna-se complexo reaver os valores ou questionar os motivos que levaram à autuação.
+
+## O que deve ser analisado antes de qualquer pagamento
+
+Antes de considerar o desembolso, a empresa deve realizar uma triagem detalhada do documento recebido. Abaixo, destacamos pontos cruciais que podem ser verificados:
+
+- Descrição clara da conduta: O fiscal descreveu de forma inequívoca qual foi a suposta irregularidade? Autuações genéricas, que não indicam exatamente o dispositivo legal infringido ou a conduta específica da empresa, podem ser contestadas por cerceamento de defesa.
+- Observância aos prazos: Verifique qual é o prazo concedido para a apresentação da defesa administrativa. Este prazo varia conforme a legislação e o órgão de proteção ao consumidor que expediu a autuação. É imprescindível conferir o prazo impresso no seu documento, pois a perda deste marco temporal impede que qualquer argumentação seja apresentada.
+- Competência e formalidade: Verifique se o documento contém os requisitos formais necessários, como a identificação correta do autuado, a assinatura do agente fiscalizador e a fundamentação legal da infração.
+- Proporcionalidade da multa: A legislação estabelece que a penalidade deve ser aplicada considerando a gravidade da infração, a vantagem auferida e a condição econômica do infrator. Se o valor fixado não observar esses critérios, ele pode ser questionado tecnicamente.
+
+## A importância da defesa administrativa
+
+O processo administrativo é o momento oportuno para a empresa expor a sua versão dos fatos e apresentar provas. Argumentar que a empresa está em conformidade com as normas, ou que a interpretação da autoridade foi excessiva, é um direito garantido pelo contraditório e pela ampla defesa. Muitas autuações são revertidas ou têm suas sanções mitigadas quando a empresa demonstra tecnicamente que não houve a irregularidade apontada, ou que os fatos foram distorcidos no momento da lavratura do auto.
+
+## Consequências do pagamento versus a estratégia de defesa
+
+Ao optar por analisar o auto, a empresa ganha tempo para organizar documentos, relatórios e evidências que comprovem a sua regularidade. A pressa, nestes casos, pode resultar em prejuízo financeiro desnecessário. O entendimento das normas de proteção ao consumidor e dos princípios que regem a administração pública permite que a empresa avalie se a autuação é legítima ou se carece de base legal sólida.
+
+Lembre-se que o processo administrativo possui ritos específicos. Cada etapa deve ser respeitada, e o envio de uma peça de defesa bem fundamentada é um direito legítimo de qualquer organização que identifique erros formais no documento recebido.
+
+## O primeiro passo para a sua segurança jurídica
+
+Se você recebeu um auto de infração, o momento ideal é o da cautela técnica. Analisar se o documento apresenta vícios, se a fundamentação é adequada e se existem argumentos de defesa é a estratégia recomendada para avaliar a viabilidade de contestar a cobrança.
+
+Na plataforma, é possível enviar o auto de infração do Procon para receber uma análise preliminar que aponta se a autuação apresenta vício formal ou outros pontos passíveis de contestação administrativa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "prazo-defesa-auto-infracao-procon",
     titulo: "Prazo para apresentar defesa em auto de infração do Procon: quantos dias a empresa tem",
     descricao:
