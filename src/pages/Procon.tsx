@@ -510,53 +510,67 @@ export default function Procon() {
 
   // ─── RENDER ───────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center text-gray-900 font-sans selection:bg-blue-100 selection:text-blue-900 w-full scroll-smooth">
+    <div className="min-h-screen w-full bg-white text-slate-900">
 
       {/* HEADER */}
-      <header className="w-full bg-white border-b border-gray-200 px-4 md:px-6 h-16 md:h-20 flex items-center justify-between shadow-sm sticky top-0 z-40 overflow-visible">
-        <a href="/" className="flex items-center h-full w-[180px] md:w-[240px]">
-          <img src="/checkmulta-logo.webp" alt="CheckMulta Logo" width="240" height="64" className="w-full h-auto object-contain scale-[1.3] md:scale-[1.5] origin-left translate-y-1" />
-        </a>
-        <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-600 items-center">
-          <a href="/" className="hover:text-blue-600 transition-colors">Multas de trânsito</a>
-          <a href="#como-funciona" className="hover:text-blue-600 transition-colors">Como Funciona</a>
-          <a href="#seguranca" className="hover:text-blue-600 transition-colors">Segurança</a>
-          <a href="#faq-procon" className="hover:text-blue-600 transition-colors">Dúvidas</a>
-          <a href="/blog" className="hover:text-blue-600 transition-colors">Blog</a>
-          <button onClick={() => setActiveModal("suporte")} className="hover:text-blue-600 transition-colors font-bold flex items-center gap-1 text-blue-600">
-            Suporte
-          </button>
-        </nav>
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="flex md:hidden p-2 text-slate-600 hover:text-blue-600 transition-colors rounded-lg hover:bg-slate-50"
-          aria-label="Menu"
-        >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="absolute top-16 left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col p-4 space-y-3 md:hidden z-50"
+      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
+          <a href="/" className="flex h-full w-[180px] items-center md:w-[220px]">
+            <img
+              src="/checkmulta-logo.webp"
+              alt="CheckMulta"
+              width="240"
+              height="64"
+              className="h-auto w-full origin-left scale-[1.25] object-contain md:scale-[1.35]"
+            />
+          </a>
+
+          <nav className="hidden items-center gap-5 text-sm font-medium text-slate-600 md:flex">
+            <a href="/" className="transition hover:text-emerald-600">Multas de trânsito</a>
+            <a href="#como-funciona" className="transition hover:text-emerald-600">Como funciona</a>
+            <a href="#seguranca" className="transition hover:text-emerald-600">Segurança</a>
+            <a href="#faq-procon" className="transition hover:text-emerald-600">Dúvidas</a>
+            <a href="/procon/blog" className="transition hover:text-emerald-600">Blog</a>
+            <button
+              onClick={() => setActiveModal("suporte")}
+              className="font-semibold text-emerald-600 transition hover:text-emerald-700"
             >
-              <a href="/" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Multas de trânsito</a>
-              <a href="#como-funciona" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Como Funciona</a>
-              <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Segurança</a>
-              <a href="#faq-procon" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Dúvidas</a>
-              <a href="/blog" onClick={() => setIsMobileMenuOpen(false)} className="px-3 py-2.5 text-slate-700 font-medium hover:bg-slate-50 rounded-xl transition-colors">Blog</a>
-              <button
-                onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
-                className="px-3 py-3 text-left bg-blue-50 text-blue-700 font-bold rounded-xl transition-colors flex items-center justify-between"
+              Suporte
+            </button>
+          </nav>
+
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="flex rounded-lg p-2 text-slate-600 transition hover:bg-slate-50 hover:text-emerald-600 md:hidden"
+            aria-label="Menu"
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="absolute left-0 top-full z-50 flex w-full flex-col space-y-2 border-b border-slate-200 bg-white p-4 shadow-lg md:hidden"
               >
-                <span>Central de Suporte</span>
-                <MessageSquare className="w-4 h-4" />
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                <a href="/" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Multas de trânsito</a>
+                <a href="#como-funciona" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Como funciona</a>
+                <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Segurança</a>
+                <a href="#faq-procon" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Dúvidas</a>
+                <a href="/procon/blog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Blog</a>
+                <button
+                  onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
+                  className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-3 text-left font-semibold text-emerald-700 transition"
+                >
+                  <span>Central de suporte</span>
+                  <MessageSquare className="h-4 w-4" />
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </header>
 
       {/* FOMO BANNER */}
@@ -566,115 +580,500 @@ export default function Procon() {
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
-            className="fixed bottom-0 left-0 w-full bg-red-600 text-white p-4 shadow-[0_-10px_40px_-15px_rgba(220,38,38,0.5)] z-30 flex flex-col sm:flex-row items-center justify-center gap-4 border-t border-red-500"
+            className="fixed bottom-0 left-0 z-30 flex w-full flex-col items-center justify-center gap-4 border-t border-red-500 bg-red-600 p-4 text-white shadow-[0_-10px_40px_-15px_rgba(220,38,38,0.5)] sm:flex-row"
           >
             <div className="flex items-center gap-3 text-center sm:text-left">
-              <AlertCircle className="w-6 h-6 animate-pulse hidden sm:block" />
-              <p className="text-sm sm:text-base font-medium">
-                <strong>Atenção:</strong> Sua análise foi concluída. O prazo de defesa está correndo.
+              <AlertCircle className="hidden h-6 w-6 animate-pulse sm:block" />
+              <p className="text-sm sm:text-base">
+                <strong className="font-semibold">Atenção:</strong> Sua análise foi concluída. O prazo de defesa está correndo.
               </p>
             </div>
             <button
               onClick={() => { setShowFomoBanner(false); setIsResultModalOpen(true); }}
-              className="px-6 py-2.5 bg-white text-red-700 font-bold rounded-xl hover:bg-red-50 transition-colors shadow-sm whitespace-nowrap w-full sm:w-auto"
+              className="w-full whitespace-nowrap rounded-lg bg-white px-6 py-2.5 font-semibold text-red-700 transition hover:bg-red-50 sm:w-auto"
             >
-              Ver Resultado
+              Ver resultado
             </button>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* CONTEÚDO PRINCIPAL */}
-      <div className="w-full max-w-4xl flex-1 px-4 py-4 md:py-6 mx-auto">
-
-        {/* HERO */}
-        <section id="inicio" className="mb-4 flex flex-col items-center text-center w-full max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 text-blue-700 text-xs font-bold mb-4 mt-2">
-            <Building2 className="w-3.5 h-3.5" />
-            PARA EMPRESAS AUTUADAS
+      {/* HERO */}
+      <section id="inicio" className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
+        <div className="mx-auto max-w-4xl px-4 py-14 text-center">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-emerald-700">
+            <Building2 className="h-3.5 w-3.5" />
+            Para empresas autuadas
           </div>
-          <h1 className="text-[34px] sm:text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] mb-5 tracking-tight">
-            Auto de infração do Procon: descubra se o seu tem vício formal, <span className="text-emerald-600">grátis</span>
+
+          <h1 className="mb-4 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
+            Auto de infração do Procon: descubra se o seu tem vício formal,{" "}
+            <span className="text-emerald-600">grátis</span>
           </h1>
-          <p className="text-slate-600 text-sm sm:text-base md:text-lg font-medium max-w-2xl mx-auto mb-8 leading-relaxed">
-            Sua empresa foi autuada pelo Procon? Nossa inteligência artificial verifica 16 pontos do processo administrativo sancionador, com base no Código de Defesa do Consumidor e no Decreto 2.181/97. Se não encontrar vício, você não paga nada — a análise é grátis e sem cadastro.
+
+          <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-slate-600">
+            Sua empresa foi autuada pelo Procon? Nossa inteligência artificial verifica 16 pontos do
+            processo administrativo sancionador, com base no Código de Defesa do Consumidor e no
+            Decreto 2.181/97. Se não encontrar vício, você não paga nada — a análise é grátis e sem
+            cadastro.
           </p>
 
-          <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-[13px] sm:text-sm font-bold text-slate-700 mb-6">
-            <div className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 text-emerald-600" /> Análise gratuita</div>
-            <div className="hidden sm:block w-px h-4 bg-slate-300" />
-            <div className="flex items-center gap-2"><Lock className="w-4 h-4 text-emerald-600" /> Sem cadastro</div>
-            <div className="hidden sm:block w-px h-4 bg-slate-300" />
-            <div className="flex items-center gap-2"><Timer className="w-4 h-4 text-emerald-600" /> Resultado imediato</div>
+          <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600 sm:gap-6">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
+            </div>
+            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
+            <div className="flex items-center gap-2">
+              <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
+            </div>
+            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
+            <div className="flex items-center gap-2">
+              <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* ÁREA PRINCIPAL */}
-        <main className="w-full max-w-3xl mx-auto">
-          {previewUrl ? (
-            <div className="bg-white p-8 sm:p-12 rounded-3xl shadow-sm border border-slate-200 transition-all duration-200 ease-in-out text-center mt-6">
-              <motion.div key="preview" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="space-y-4">
-                <div className="relative mx-auto rounded-2xl overflow-hidden max-w-xs flex justify-center">
-                  {imageFile?.type === "application/pdf" ? (
-                    <div className="w-32 h-32 bg-slate-50 flex items-center justify-center rounded-xl border border-slate-200">
-                      <FileText className="w-16 h-16 text-blue-600" />
-                    </div>
-                  ) : (
-                    <img src={previewUrl} alt="Preview do auto" className="w-full h-auto object-cover max-h-48" />
-                  )}
-                </div>
-                <p className="text-sm font-medium text-slate-600">{imageFile?.name}</p>
-                {!isAnalyzing && !hasAnalyzed && (
-                  <button onClick={clearImage} className="relative z-10 text-sm font-medium text-slate-500 hover:text-red-500 underline decoration-slate-300 hover:decoration-red-300 underline-offset-4 transition-colors" type="button">
-                    Excluir ou enviar outro documento
-                  </button>
-                )}
-                {!isAnalyzing && hasAnalyzed && (
-                  <div className="relative z-10 flex flex-row items-center justify-center gap-3 mt-4 w-full">
-                    <button
-                      onClick={() => {
-                        if (analise || error) {
-                          setIsResultModalOpen(true);
-                          setShowFomoBanner(false);
-                        }
-                      }}
-                      className="px-5 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 transition-colors whitespace-nowrap"
-                      type="button"
-                    >
-                      Ver Resultado Novamente
-                    </button>
-                    <button onClick={clearImage} className="px-5 py-2 rounded-lg text-sm font-medium text-white bg-slate-800 hover:bg-slate-700 transition-colors shadow-sm whitespace-nowrap" type="button">
-                      Novo Auto
-                    </button>
+      {/* ÁREA PRINCIPAL */}
+      <section className="mx-auto max-w-3xl px-4 py-12">
+        {previewUrl ? (
+          <div className="rounded-xl border border-slate-200 bg-white p-8 text-center sm:p-10">
+            <motion.div key="preview" initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} className="space-y-4">
+              <div className="relative mx-auto flex max-w-xs justify-center overflow-hidden rounded-xl">
+                {imageFile?.type === "application/pdf" ? (
+                  <div className="flex h-32 w-32 items-center justify-center rounded-xl border border-slate-200 bg-slate-50">
+                    <FileText className="h-14 w-14 text-emerald-600" />
                   </div>
+                ) : (
+                  <img src={previewUrl} alt="Preview do auto" className="h-auto max-h-48 w-full object-cover" />
                 )}
-              </motion.div>
-            </div>
-          ) : (
-            <div className="text-center mt-6">
-              <div className="mb-6 sm:mb-8">
-                <h2 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Verifique <span className="text-emerald-600">agora</span> se o auto tem vício</h2>
-                <p className="text-sm sm:text-base text-slate-600 font-medium">Selecione o tipo de autuação para iniciar a análise gratuita:</p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                {TIPOS_AUTUACAO.map((t) => (
+
+              <p className="text-sm text-slate-600">{imageFile?.name}</p>
+
+              {!isAnalyzing && !hasAnalyzed && (
+                <button
+                  onClick={clearImage}
+                  className="relative z-10 text-sm text-slate-500 underline decoration-slate-300 underline-offset-4 transition hover:text-red-500"
+                  type="button"
+                >
+                  Excluir ou enviar outro documento
+                </button>
+              )}
+
+              {!isAnalyzing && hasAnalyzed && (
+                <div className="relative z-10 mt-4 flex w-full flex-row items-center justify-center gap-3">
                   <button
-                    key={t.id}
-                    onClick={() => handleTipoSelect(t.name)}
-                    className="flex flex-col items-center justify-center gap-2.5 p-5 bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 rounded-2xl transition-all duration-200 group text-slate-800 hover:text-blue-800 shadow-sm hover:shadow"
+                    onClick={() => {
+                      if (analise || error) {
+                        setIsResultModalOpen(true);
+                        setShowFomoBanner(false);
+                      }
+                    }}
+                    className="whitespace-nowrap rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                    type="button"
                   >
-                    <t.icon className="w-8 h-8 text-slate-400 group-hover:text-blue-500 transition-colors mb-1" />
-                    <div className="text-center">
-                      <span className="block text-sm sm:text-[15px] font-bold leading-tight">{t.name}</span>
-                      <span className="block text-sm text-slate-500 font-medium mt-1">{t.subtitle}</span>
-                    </div>
+                    Ver resultado novamente
                   </button>
-                ))}
+                  <button
+                    onClick={clearImage}
+                    className="whitespace-nowrap rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
+                    type="button"
+                  >
+                    Novo auto
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          </div>
+        ) : (
+          <div className="text-center">
+            <div className="mb-8">
+              <h2 className="mb-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                Verifique <span className="text-emerald-600">agora</span> se o auto tem vício
+              </h2>
+              <p className="text-base text-slate-600">
+                Selecione o tipo de autuação para iniciar a análise gratuita:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {TIPOS_AUTUACAO.map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => handleTipoSelect(t.name)}
+                  className="group flex flex-col items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-white p-6 text-slate-800 transition hover:border-emerald-300 hover:shadow-md"
+                >
+                  <t.icon className="mb-1 h-8 w-8 text-slate-400 transition group-hover:text-emerald-600" />
+                  <div className="text-center">
+                    <span className="block text-[15px] font-bold leading-tight text-slate-900 group-hover:text-emerald-700">
+                      {t.name}
+                    </span>
+                    <span className="mt-1 block text-sm text-slate-500">{t.subtitle}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* COMO FUNCIONA */}
+      <section id="como-funciona" className="border-t border-slate-100 bg-slate-50">
+        <div className="mx-auto max-w-5xl px-4 py-16">
+          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+            Como funciona a <span className="text-emerald-600">análise</span>
+          </h2>
+
+          <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <UploadCloud className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">1. Envie o auto</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Suba o PDF ou a foto do auto de infração recebido do Procon. Nenhum dado é armazenado.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <Search className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">2. A IA audita</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Verificamos 16 pontos do processo administrativo com base no CDC e no Decreto 2.181/97.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <FileText className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">3. Diagnóstico grátis</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Mostramos os vícios encontrados, com o trecho exato do documento, e o nível de viabilidade.
+              </p>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+            <div className="flex items-center gap-2.5 border-b border-slate-100 px-6 pb-4 pt-5">
+              <ShieldCheck className="h-4 w-4 flex-shrink-0 text-slate-400" />
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                O que o diagnóstico pode revelar
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 divide-y divide-slate-100 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+              <div className="flex items-start gap-4 p-6">
+                <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50">
+                  <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+                </div>
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
+                    Viabilidade alta
+                  </span>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                    Vício formal grave identificado. Fundamento consistente para arguir a nulidade.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-6">
+                <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-amber-50">
+                  <AlertCircle className="h-5 w-5 text-amber-500" />
+                </div>
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wide text-amber-600">
+                    Viabilidade média
+                  </span>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                    Há pontos questionáveis, especialmente na dosimetria. Argumento possível, não garantido.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-6">
+                <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-red-50">
+                  <AlertCircle className="h-5 w-5 text-red-400" />
+                </div>
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wide text-red-500">
+                    Viabilidade baixa
+                  </span>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                    Caso mais limitado. Ainda possível arguir — a decisão é da empresa.
+                  </p>
+                </div>
               </div>
             </div>
-          )}
-        </main>
-      </div>
+          </div>
+        </div>
+      </section>
+
+      {/* O QUE VERIFICAMOS */}
+      <section className="border-t border-slate-100 bg-white">
+        <div className="mx-auto max-w-5xl px-4 py-16">
+          <div className="mb-10 text-center">
+            <h2 className="mb-3 text-2xl font-bold text-slate-900 sm:text-3xl">
+              O que verificamos no seu <span className="text-emerald-600">auto de infração</span>
+            </h2>
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600">
+              A análise percorre os principais pontos que podem tornar a autuação questionável,
+              conforme o Decreto 2.181/97 e o Código de Defesa do Consumidor.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {[
+              { t: "Vícios de notificação", d: "Notificação por edital sem esgotamento de diligências, ausência de intimação pessoal do julgamento e prazo de defesa concedido abaixo do previsto." },
+              { t: "Vícios de competência", d: "Atuação de órgão fora de sua atribuição territorial ou material e ausência de identificação do agente autuante." },
+              { t: "Descrição da conduta", d: "Conduta narrada de forma genérica, ausência de capitulação legal e divergência entre o fato descrito e o dispositivo indicado." },
+              { t: "Dosimetria da multa", d: "Ausência de fundamentação dos critérios do art. 57 do CDC, desconsideração do porte da empresa e estimativa de faturamento sem base documental." },
+              { t: "Regularidade do processo", d: "Cerceamento do contraditório, decisão sem motivação expressa e ausência de investigação preliminar quando cabível." },
+              { t: "Vícios formais do auto", d: "Ausência de data, local, número de processo, qualificação completa da autuada ou rasuras não ressalvadas." },
+            ].map((item) => (
+              <div key={item.t} className="rounded-xl border border-slate-200 bg-slate-50/60 p-5">
+                <h3 className="mb-1.5 font-bold text-slate-900">{item.t}</h3>
+                <p className="text-sm leading-relaxed text-slate-600">{item.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEGURANÇA */}
+      <section id="seguranca" className="border-t border-slate-100 bg-slate-50">
+        <div className="mx-auto max-w-5xl px-4 py-16">
+          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+            Seus dados <span className="text-emerald-600">100% seguros</span>
+          </h2>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <Lock className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">Zero armazenamento</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Não guardamos o auto de infração da sua empresa. O documento é processado na memória
+                do servidor e imediatamente deletado.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
+                <UserX className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">Sem cadastro</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Você não precisa criar conta nem informar dados da empresa para verificar o auto.
+                É direto ao ponto.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
+                <Route className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">Total transparência</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Atuamos como ferramenta tecnológica baseada no CDC e no Decreto 2.181/97. A decisão
+                final é do órgão julgador.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq-procon" className="border-t border-slate-100 bg-white">
+        <div className="mx-auto max-w-4xl px-4 py-16">
+          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+            Dúvidas <span className="text-emerald-600">frequentes</span>
+          </h2>
+
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                Qual o prazo para apresentar defesa no Procon?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                O Decreto federal 2.181/97 prevê 20 dias, mas há Procons estaduais com prazo próprio —
+                o Procon-SP, por exemplo, adota 15 dias. Confira sempre o prazo indicado no seu auto
+                de infração.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                O que acontece se a empresa não apresentar defesa?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                O processo é julgado sem a manifestação da empresa e a multa é fixada. Não recolhido
+                o valor no prazo, o débito pode ser inscrito em dívida ativa e cobrado judicialmente.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                Que tipo de vício pode anular o auto?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                Conduta descrita de forma genérica, ausência de capitulação legal, notificação
+                irregular, incompetência do órgão e falta de fundamentação da multa são exemplos
+                tratados no Decreto 2.181/97.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                É possível reduzir o valor da multa?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                Sim. O art. 57 do CDC exige que a multa considere gravidade, vantagem auferida e
+                condição econômica. Se a estimativa de faturamento estiver equivocada, ela pode ser
+                impugnada com documentos contábeis.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 md:col-span-2">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                Preciso de advogado para apresentar defesa administrativa?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                Não é obrigatório na esfera administrativa — a empresa pode apresentar defesa por meio
+                de seu representante legal. Para casos de maior complexidade ou valor elevado, a
+                consulta a um advogado é recomendável.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTEÚDO SEO */}
+      <section className="border-t border-slate-100 bg-slate-50">
+        <div className="mx-auto max-w-3xl px-4 py-16">
+          <h2 className="mb-8 text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">
+            Como apresentar defesa administrativa no{" "}
+            <span className="text-emerald-600">Procon</span>
+          </h2>
+
+          <div className="max-w-none">
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              Quando uma empresa é autuada pelo Procon, instaura-se um{" "}
+              <strong className="font-semibold text-slate-900">processo administrativo sancionador</strong>,
+              disciplinado pela Lei 8.078/90 (Código de Defesa do Consumidor) e pelo Decreto 2.181/97.
+              Nesse processo, a empresa tem direito ao contraditório e à ampla defesa antes que
+              qualquer penalidade se torne definitiva.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              O que é o auto de infração do Procon
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              O auto de infração é o documento que formaliza a acusação. Ele deve descrever a conduta
+              com precisão, indicar o dispositivo legal violado, identificar o agente autuante e
+              observar as formalidades previstas na legislação. A ausência desses elementos pode
+              comprometer a validade da autuação.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              Qual o prazo para defesa
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              O <strong className="font-semibold text-slate-900">artigo 42 do Decreto 2.181/97</strong>,
+              com a redação dada pelo Decreto 10.887/2021, prevê o prazo de 20 dias contados do
+              recebimento da notificação. Alguns Procons estaduais adotam prazo próprio — o Procon-SP,
+              por exemplo, trabalha com 15 dias, com base na Lei Estadual 10.177/98. Por isso, é
+              fundamental conferir o prazo indicado no próprio auto de infração e, em caso de dúvida,
+              confirmar junto ao órgão emissor.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              Como é calculado o valor da multa
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              O <strong className="font-semibold text-slate-900">artigo 57 do CDC</strong> determina
+              que a multa seja graduada de acordo com a gravidade da infração, a vantagem auferida e a
+              condição econômica do fornecedor. Quando o auto não demonstra essa análise, ou quando
+              estima o faturamento da empresa sem base documental, abre-se espaço para requerer a
+              redução do valor — inclusive apresentando a declaração de faturamento real.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              Tratamento diferenciado para ME e EPP
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              Microempresas e empresas de pequeno porte têm tratamento diferenciado previsto na Lei
+              Complementar 123/2006, incorporado ao processo do Procon pelo Decreto 10.887/2021. Se o
+              auto desconsiderou o porte da empresa na dosimetria, esse é um ponto que pode ser
+              arguido na defesa.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              Onde protocolar a defesa
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              A forma de protocolo varia conforme o órgão. Alguns Procons aceitam envio eletrônico;
+              outros{" "}
+              <strong className="font-semibold text-slate-900">
+                exigem protocolo presencial ou por via postal
+              </strong>{" "}
+              e não consideram documentos enviados por e-mail. Confirme sempre a forma de protocolo
+              junto ao Procon emissor antes do vencimento do prazo.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              Como o CheckMulta ajuda
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              O CheckMulta analisa gratuitamente o auto de infração e aponta os vícios encontrados,
+              sempre citando o trecho exato do documento que fundamenta cada apontamento. Se houver
+              vício, geramos uma{" "}
+              <strong className="font-semibold text-slate-900">
+                defesa administrativa completa, estruturada em preliminares, mérito e pedidos
+              </strong>
+              , pronta para a empresa preencher e protocolar. Nossa ferramenta informa e
+              instrumentaliza — não presta consultoria jurídica nem representação processual.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t border-slate-200 bg-white">
+        <div className="mx-auto max-w-4xl px-4 py-10 text-center">
+          <div className="mb-6 flex items-center justify-center">
+            <img
+              src="/checkmulta-logo.webp"
+              alt="CheckMulta"
+              width="240"
+              height="64"
+              className="h-[40px] w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-[46px]"
+            />
+          </div>
+
+          <p className="mx-auto max-w-3xl text-xs leading-relaxed text-slate-500">
+            <strong className="font-semibold text-slate-700">Transparência e privacidade:</strong>{" "}
+            nosso sistema atua como organizador tecnológico com base no Código de Defesa do Consumidor
+            e no Decreto 2.181/97. Não prestamos consultoria jurídica nem representação processual. A
+            decisão final é do órgão julgador. Não exigimos cadastro e não armazenamos o seu documento.
+          </p>
+
+          <p className="mt-4 text-xs text-slate-400">
+            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+          </p>
+
+          <div className="mt-5 flex justify-center gap-6 text-xs font-medium text-slate-400">
+            <button onClick={() => setActiveModal("termos")} className="transition hover:text-slate-600">Termos</button>
+            <button onClick={() => setActiveModal("privacidade")} className="transition hover:text-slate-600">Privacidade</button>
+            <button onClick={() => setActiveModal("aviso")} className="transition hover:text-slate-600">Legal</button>
+            <button onClick={() => setActiveModal("suporte")} className="text-emerald-600 transition hover:text-emerald-700">Suporte</button>
+          </div>
+        </div>
+      </footer>
 
       {/* MODAL DE UPLOAD */}
       <AnimatePresence>
@@ -737,197 +1136,6 @@ export default function Procon() {
           </div>
         )}
       </AnimatePresence>
-
-      {/* COMO FUNCIONA */}
-      <section id="como-funciona" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
-        <div className="max-w-5xl w-full">
-          <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Como funciona a <span className="text-emerald-600">análise?</span></h2>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-4"><UploadCloud className="w-6 h-6" /></div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">1. Envie o auto</h3>
-              <p className="text-slate-500 text-sm font-medium leading-relaxed">Suba o PDF ou a foto do auto de infração recebido do Procon. Nenhum dado é armazenado.</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-4"><Search className="w-6 h-6" /></div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">2. A IA audita</h3>
-              <p className="text-slate-500 text-sm font-medium leading-relaxed">Verificamos 16 pontos do processo administrativo com base no CDC e no Decreto 2.181/97.</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-4"><FileText className="w-6 h-6" /></div>
-              <h3 className="text-base font-bold text-slate-900 mb-2">3. Diagnóstico grátis</h3>
-              <p className="text-slate-500 text-sm font-medium leading-relaxed">Mostramos os vícios encontrados, com o trecho exato do documento, e o nível de viabilidade.</p>
-            </div>
-          </div>
-
-          <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
-            <div className="px-6 pt-5 pb-4 border-b border-slate-100 flex items-center gap-2.5">
-              <ShieldCheck className="w-4 h-4 text-slate-400 flex-shrink-0" />
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">O que o diagnóstico pode revelar</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
-              <div className="flex items-start gap-4 p-6">
-                <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-                </div>
-                <div>
-                  <span className="text-xs font-black text-emerald-700 uppercase tracking-wider">Viabilidade Alta</span>
-                  <p className="text-sm text-slate-500 font-medium mt-1 leading-relaxed">Vício formal grave identificado. Fundamento consistente para arguir a nulidade.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4 p-6">
-                <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <AlertCircle className="w-5 h-5 text-amber-500" />
-                </div>
-                <div>
-                  <span className="text-xs font-black text-amber-600 uppercase tracking-wider">Viabilidade Média</span>
-                  <p className="text-sm text-slate-500 font-medium mt-1 leading-relaxed">Há pontos questionáveis, especialmente na dosimetria. Argumento possível, não garantido.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4 p-6">
-                <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <AlertCircle className="w-5 h-5 text-red-400" />
-                </div>
-                <div>
-                  <span className="text-xs font-black text-red-500 uppercase tracking-wider">Viabilidade Baixa</span>
-                  <p className="text-sm text-slate-500 font-medium mt-1 leading-relaxed">Caso mais limitado. Ainda possível arguir — a decisão é da empresa.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* O QUE VERIFICAMOS */}
-      <section className="w-full bg-white border-t border-slate-200 py-16 px-4 flex justify-center">
-        <div className="max-w-5xl w-full">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-3">O que verificamos no seu <span className="text-emerald-600">auto de infração</span></h2>
-            <p className="text-slate-600 font-medium max-w-2xl mx-auto">A análise percorre os principais pontos que podem tornar a autuação questionável, conforme o Decreto 2.181/97 e o Código de Defesa do Consumidor.</p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              { t: "Vícios de notificação", d: "Notificação por edital sem esgotamento de diligências, ausência de intimação pessoal do julgamento e prazo de defesa concedido abaixo do previsto." },
-              { t: "Vícios de competência", d: "Atuação de órgão fora de sua atribuição territorial ou material e ausência de identificação do agente autuante." },
-              { t: "Descrição da conduta", d: "Conduta narrada de forma genérica, ausência de capitulação legal e divergência entre o fato descrito e o dispositivo indicado." },
-              { t: "Dosimetria da multa", d: "Ausência de fundamentação dos critérios do art. 57 do CDC, desconsideração do porte da empresa e estimativa de faturamento sem base documental." },
-              { t: "Regularidade do processo", d: "Cerceamento do contraditório, decisão sem motivação expressa e ausência de investigação preliminar quando cabível." },
-              { t: "Vícios formais do auto", d: "Ausência de data, local, número de processo, qualificação completa da autuada ou rasuras não ressalvadas." },
-            ].map((item) => (
-              <div key={item.t} className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
-                <h3 className="font-bold text-slate-900 mb-1.5">{item.t}</h3>
-                <p className="text-sm text-slate-600 leading-relaxed font-medium">{item.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SEGURANÇA */}
-      <section id="seguranca" className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
-        <div className="max-w-5xl w-full">
-          <h2 className="text-3xl font-black text-center text-slate-900 mb-12 tracking-tight">Seus Dados <span className="text-emerald-600">100% Seguros</span></h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-              <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-4"><Lock className="w-6 h-6" /></div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Zero Armazenamento</h3>
-              <p className="text-slate-600 text-sm font-medium leading-relaxed">Não guardamos o auto de infração da sua empresa. O documento é processado na memória do servidor e imediatamente deletado.</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center mb-4"><UserX className="w-6 h-6" /></div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Sem Cadastro</h3>
-              <p className="text-slate-600 text-sm font-medium leading-relaxed">Você não precisa criar conta nem informar dados da empresa para verificar o auto. É direto ao ponto.</p>
-            </div>
-            <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center text-center">
-              <div className="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-4"><Route className="w-6 h-6" /></div>
-              <h3 className="text-lg font-bold text-slate-900 mb-2">Total Transparência</h3>
-              <p className="text-slate-600 text-sm font-medium leading-relaxed">Atuamos como ferramenta tecnológica baseada no CDC e no Decreto 2.181/97. A decisão final é do órgão julgador.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section id="faq-procon" className="w-full bg-white border-t border-slate-200 py-16 px-4 flex justify-center">
-        <div className="max-w-4xl w-full space-y-12">
-          <div className="text-center">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Dúvidas <span className="text-emerald-600">Frequentes</span></h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            <div className="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 transition-colors">
-              <h2 className="text-base sm:text-lg font-bold text-slate-900 mb-2">Qual o prazo para apresentar defesa no Procon?</h2>
-              <p className="text-slate-600 text-sm leading-relaxed font-medium">O Decreto federal 2.181/97 prevê 20 dias, mas há Procons estaduais com prazo próprio — o Procon-SP, por exemplo, adota 15 dias. Confira sempre o prazo indicado no seu auto de infração.</p>
-            </div>
-            <div className="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 transition-colors">
-              <h2 className="text-base sm:text-lg font-bold text-slate-900 mb-2">O que acontece se a empresa não apresentar defesa?</h2>
-              <p className="text-slate-600 text-sm leading-relaxed font-medium">O processo é julgado sem a manifestação da empresa e a multa é fixada. Não recolhido o valor no prazo, o débito pode ser inscrito em dívida ativa e cobrado judicialmente.</p>
-            </div>
-            <div className="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 transition-colors">
-              <h2 className="text-base sm:text-lg font-bold text-slate-900 mb-2">Que tipo de vício pode anular o auto?</h2>
-              <p className="text-slate-600 text-sm leading-relaxed font-medium">Conduta descrita de forma genérica, ausência de capitulação legal, notificação irregular, incompetência do órgão e falta de fundamentação da multa são exemplos tratados no Decreto 2.181/97.</p>
-            </div>
-            <div className="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 transition-colors">
-              <h2 className="text-base sm:text-lg font-bold text-slate-900 mb-2">É possível reduzir o valor da multa?</h2>
-              <p className="text-slate-600 text-sm leading-relaxed font-medium">Sim. O art. 57 do CDC exige que a multa considere gravidade, vantagem auferida e condição econômica. Se a estimativa de faturamento estiver equivocada, ela pode ser impugnada com documentos contábeis.</p>
-            </div>
-            <div className="bg-slate-50 p-6 rounded-2xl shadow-sm border border-slate-200 hover:border-slate-300 md:col-span-2 transition-colors">
-              <h2 className="text-base sm:text-lg font-bold text-slate-900 mb-2">Preciso de advogado para apresentar defesa administrativa?</h2>
-              <p className="text-slate-600 text-sm leading-relaxed font-medium">Não é obrigatório na esfera administrativa — a empresa pode apresentar defesa por meio de seu representante legal. Para casos de maior complexidade ou valor elevado, a consulta a um advogado é recomendável.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CONTEÚDO SEO */}
-      <section className="w-full bg-slate-50 border-t border-slate-200 py-16 px-4 flex justify-center">
-        <div className="max-w-4xl w-full">
-          <div className="bg-white p-6 sm:p-10 rounded-2xl shadow-sm border border-slate-200">
-            <h2 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mb-6">Como apresentar defesa administrativa no <span className="text-emerald-600">Procon</span></h2>
-            <div className="prose prose-slate max-w-none space-y-6 text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
-              <p>Quando uma empresa é autuada pelo Procon, instaura-se um <strong className="text-slate-800">processo administrativo sancionador</strong>, disciplinado pela Lei 8.078/90 (Código de Defesa do Consumidor) e pelo Decreto 2.181/97. Nesse processo, a empresa tem direito ao contraditório e à ampla defesa antes que qualquer penalidade se torne definitiva.</p>
-
-              <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">O que é o auto de infração do Procon</h3>
-              <p>O auto de infração é o documento que formaliza a acusação. Ele deve descrever a conduta com precisão, indicar o dispositivo legal violado, identificar o agente autuante e observar as formalidades previstas na legislação. A ausência desses elementos pode comprometer a validade da autuação.</p>
-
-              <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Qual o prazo para defesa</h3>
-              <p>O <strong className="text-slate-800">artigo 42 do Decreto 2.181/97</strong>, com a redação dada pelo Decreto 10.887/2021, prevê o prazo de 20 dias contados do recebimento da notificação. Alguns Procons estaduais adotam prazo próprio — o Procon-SP, por exemplo, trabalha com 15 dias, com base na Lei Estadual 10.177/98. Por isso, é fundamental conferir o prazo indicado no próprio auto de infração e, em caso de dúvida, confirmar junto ao órgão emissor.</p>
-
-              <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Como é calculado o valor da multa</h3>
-              <p>O <strong className="text-slate-800">artigo 57 do CDC</strong> determina que a multa seja graduada de acordo com a gravidade da infração, a vantagem auferida e a condição econômica do fornecedor. Quando o auto não demonstra essa análise, ou quando estima o faturamento da empresa sem base documental, abre-se espaço para requerer a redução do valor — inclusive apresentando a declaração de faturamento real.</p>
-
-              <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Tratamento diferenciado para ME e EPP</h3>
-              <p>Microempresas e empresas de pequeno porte têm tratamento diferenciado previsto na Lei Complementar 123/2006, incorporado ao processo do Procon pelo Decreto 10.887/2021. Se o auto desconsiderou o porte da empresa na dosimetria, esse é um ponto que pode ser arguido na defesa.</p>
-
-              <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Onde protocolar a defesa</h3>
-              <p>A forma de protocolo varia conforme o órgão. Alguns Procons aceitam envio eletrônico; outros <strong className="text-slate-800">exigem protocolo presencial ou por via postal</strong> e não consideram documentos enviados por e-mail. Confirme sempre a forma de protocolo junto ao Procon emissor antes do vencimento do prazo.</p>
-
-              <h3 className="text-lg sm:text-xl font-black text-slate-900 mt-8 mb-3">Como o CheckMulta ajuda</h3>
-              <p>O CheckMulta analisa gratuitamente o auto de infração e aponta os vícios encontrados, sempre citando o trecho exato do documento que fundamenta cada apontamento. Se houver vício, geramos uma <strong className="text-slate-800">defesa administrativa completa, estruturada em preliminares, mérito e pedidos</strong>, pronta para a empresa preencher e protocolar. Nossa ferramenta informa e instrumentaliza — não presta consultoria jurídica nem representação processual.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="w-full text-center px-6 py-8 border-t border-gray-200 bg-gray-100 mt-auto">
-        <div className="flex flex-col items-center justify-center mb-6">
-          <img src="/checkmulta-logo.webp" alt="CheckMulta Logo" width="240" height="64" className="h-[40px] md:h-[48px] w-auto object-contain opacity-75 grayscale hover:grayscale-0 transition-all duration-300" />
-        </div>
-        <p className="text-xs text-slate-500 max-w-3xl mx-auto leading-relaxed font-medium">
-          🛡️ <strong className="font-bold text-slate-700">Transparência e Privacidade:</strong> Nosso sistema atua como organizador tecnológico com base no Código de Defesa do Consumidor e no Decreto 2.181/97. Não prestamos consultoria jurídica nem representação processual. A decisão final é do órgão julgador. Não exigimos cadastro e não armazenamos o seu documento.
-        </p>
-        <p className="text-xs text-slate-700 font-medium mt-3">
-          CheckMulta Tecnologia · CNPJ 63.524.338/0001-62
-        </p>
-        <div className="flex justify-center space-x-6 mt-4 text-[11px] sm:text-xs font-bold text-slate-400 uppercase tracking-wide">
-          <button onClick={() => setActiveModal("termos")} className="hover:text-slate-600 transition-colors">Termos</button>
-          <button onClick={() => setActiveModal("privacidade")} className="hover:text-slate-600 transition-colors">Privacidade</button>
-          <button onClick={() => setActiveModal("aviso")} className="hover:text-slate-600 transition-colors">Legal</button>
-          <button onClick={() => setActiveModal("suporte")} className="hover:text-blue-600 text-blue-500 transition-colors">Suporte</button>
-        </div>
-      </footer>
 
       {/* MODAIS LEGAIS E SUPORTE */}
       <AnimatePresence>
