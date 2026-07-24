@@ -521,7 +521,7 @@ export default function Procon() {
               alt="CheckMulta"
               width="240"
               height="64"
-              className="h-9 w-auto object-contain md:h-11"
+              className="h-auto w-full origin-left scale-[1.25] object-contain md:scale-[1.35]"
             />
           </a>
 
