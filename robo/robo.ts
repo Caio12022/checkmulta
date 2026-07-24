@@ -8,7 +8,10 @@
  */
 
 import { GoogleGenAI } from "@google/genai";
-
+import { writeFileSync, unlinkSync } from "fs";
+import { execSync } from "child_process";
+import { tmpdir } from "os";
+import { join } from "path";
 // ============================================================
 // CONFIGURAÇÃO - você pode ajustar estas listas quando quiser
 // ============================================================
@@ -100,6 +103,43 @@ async function github(path: string, method: string, body?: object) {
   return res.json();
 }
 
+// ============================================================
+// VALIDAÇÃO DE SINTAXE — trava de segurança
+// ============================================================
+function validarSintaxe(conteudo: string): { ok: boolean; erro?: string } {
+  const caminhoTemp = join(tmpdir(), `validar-artigos-${Date.now()}.ts`);
+  try {
+    writeFileSync(caminhoTemp, conteudo, "utf-8");
+    execSync(`npx --yes esbuild "${caminhoTemp}" --outfile=/dev/null`, {
+      stdio: "pipe",
+      timeout: 90000,
+    });
+    return { ok: true };
+  } catch (err: any) {
+    const saida = err.stderr ? err.stderr.toString() : String(err.message || err);
+    return { ok: false, erro: saida.slice(0, 800) };
+  } finally {
+    try {
+      unlinkSync(caminhoTemp);
+    } catch {}
+  }
+}
+
+// ============================================================
+// COMMIT DIRETO NA MAIN (quando a validação passa)
+// ============================================================
+async function commitarNaMain(novoConteudo: string, sha: string, titulo: string) {
+  await github(
+    `/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${CAMINHO_ARTIGOS}`,
+    "PUT",
+    {
+      message: `Novo artigo: ${titulo}`.slice(0, 240),
+      content: Buffer.from(novoConteudo, "utf-8").toString("base64"),
+      sha,
+      branch: GITHUB_BRANCH_BASE,
+    }
+  );
+}
 // ============================================================
 // PASSO A: pega o arquivo artigos.ts atual do GitHub
 // ============================================================
@@ -334,9 +374,21 @@ async function main() {
   const novoConteudo = inserirArtigo(conteudo, bloco);
 
   // 6. abre o Pull Request
-  const url = await abrirPR(slug, novoConteudo, sha, artigo.titulo);
-  console.log(`✅ Pull Request criado com sucesso: ${url}`);
-}
+ // 6. valida a sintaxe antes de publicar
+  console.log("Validando sintaxe do arquivo...");
+  const validacao = validarSintaxe(novoConteudo);
+
+  if (validacao.ok) {
+    console.log("Validacao OK. Commitando direto na main...");
+    await commitarNaMain(novoConteudo, sha, artigo.titulo);
+    console.log(`Artigo publicado automaticamente: ${artigo.titulo}`);
+  } else {
+    console.error("VALIDACAO FALHOU. Nada foi enviado para a main.");
+    console.error(validacao.erro);
+    const url = await abrirPR(slug, novoConteudo, sha, artigo.titulo);
+    console.log(`Pull Request aberto para revisao manual: ${url}`);
+    process.exit(1);
+  }
 
 main().catch((err) => {
   console.error("❌ Agente falhou:", err.message);
