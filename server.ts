@@ -146,11 +146,81 @@ function injetarMeta(html: string, meta: MetaInfo): string {
     .replace(/<meta name="twitter:description" content="[^"]*"/, `<meta name="twitter:description" content="${desc}"`);
 }
 
+// ==========================================
+// SITEMAP DINÂMICO
+// Gerado a partir dos artigos reais, a cada requisição.
+// Nunca desatualiza: quando os robôs publicam, o sitemap já reflete.
+// ==========================================
+function gerarSitemap(): string {
+  const hoje = new Date().toISOString().split("T")[0];
+  const urls: { loc: string; priority: string; changefreq: string }[] = [];
+
+  // Home e landings
+  urls.push({ loc: `${BASE_URL}/`, priority: "1.0", changefreq: "weekly" });
+  urls.push({ loc: `${BASE_URL}/procon`, priority: "0.9", changefreq: "weekly" });
+
+  // Listagens de blog
+  urls.push({ loc: `${BASE_URL}/blog`, priority: "0.8", changefreq: "daily" });
+  urls.push({ loc: `${BASE_URL}/procon/blog`, priority: "0.8", changefreq: "daily" });
+
+  // Categorias do blog de trânsito (sem repetir)
+  const categorias = new Set(artigos.map((a) => slugifyCategoria(a.categoria)));
+  categorias.forEach((slug) => {
+    urls.push({
+      loc: `${BASE_URL}/blog/categoria/${slug}`,
+      priority: "0.6",
+      changefreq: "weekly",
+    });
+  });
+
+  // Artigos de trânsito
+  artigos.forEach((a) => {
+    urls.push({
+      loc: `${BASE_URL}/blog/${a.slug}`,
+      priority: "0.7",
+      changefreq: "monthly",
+    });
+  });
+
+  // Artigos do Procon
+  artigosProcon.forEach((a) => {
+    urls.push({
+      loc: `${BASE_URL}/procon/blog/${a.slug}`,
+      priority: "0.7",
+      changefreq: "monthly",
+    });
+  });
+
+  const corpo = urls
+    .map(
+      (u) =>
+        `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${hoje}</lastmod>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`
+    )
+    .join("\n");
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${corpo}\n</urlset>`;
+}
+
 async function startServer() {
   const app = express();
   const PORT = parseInt(process.env.PORT || "3000", 10);
 
   app.use(express.json({ limit: "50mb" }));
+
+  // ==========================================
+  // SITEMAP E ROBOTS (dinâmicos)
+  // Declarados antes do static, para terem prioridade sobre arquivos em /public
+  // ==========================================
+  app.get("/sitemap.xml", (_req, res) => {
+    res.setHeader("Content-Type", "application/xml; charset=utf-8");
+    res.setHeader("Cache-Control", "public, max-age=3600");
+    res.send(gerarSitemap());
+  });
+
+  app.get("/robots.txt", (_req, res) => {
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.send(`User-agent: *\nAllow: /\n\nSitemap: ${BASE_URL}/sitemap.xml\n`);
+  });
 
   // ==========================================
   // ROTA: GERAR PIX (MERCADO PAGO)
