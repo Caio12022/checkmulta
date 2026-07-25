@@ -1,7 +1,7 @@
 /**
  * AGENTE DE ARTIGOS - CheckMulta VIGILÂNCIA SANITÁRIA
  * ------------------------------------------------------------
- * Roda 1x por dia (GitHub Actions) e gera 3 artigos por execução.
+ * Roda 1x por dia (GitHub Actions) e gera 1 artigo por execução.
  *
  * SEGURANÇA: antes de commitar, o arquivo montado é validado com esbuild.
  * - Se compilar     -> commit direto na main (site atualiza sozinho).
@@ -27,7 +27,7 @@ const GITHUB_BRANCH_BASE = "main";
 const CAMINHO_ARTIGOS = "src/data/artigosVigilancia.ts";
 
 // Quantos artigos gerar por execução
-const ARTIGOS_POR_EXECUCAO = 3;
+const ARTIGOS_POR_EXECUCAO = 1;
 
 // Categorias reais do blog Vigilancia + temas que combinam com cada uma.
 // Para adicionar pauta nova, basta acrescentar uma linha aqui.
