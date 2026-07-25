@@ -12,6 +12,55 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "perdeu-a-notificacao-saiba-como-emitir-2-via-da-multa",
+    titulo: "Perdeu a notificação? Saiba como emitir 2ª via da multa",
+    descricao: "Esqueceu de pagar ou perdeu o boleto de trânsito? Aprenda o passo a passo para emitir a segunda via de multas online e evite juros. Analise sua multa grátis.",
+    categoria: "Pagamento",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🎫",
+    imagemBg: "from-red-600 to-red-800",
+    conteudo: `## Perdeu o prazo de pagamento da sua multa de trânsito?
+
+Receber uma notificação de infração nunca é uma situação agradável, mas o problema pode piorar se o boleto original for perdido ou o prazo de vencimento expirar. Muitos motoristas entram em pânico ao notar que a guia de pagamento sumiu, temendo o aumento da dívida ou problemas no licenciamento do veículo. No entanto, o sistema de trânsito atual oferece caminhos digitais simples para resolver essa pendência sem sair de casa.
+
+Neste guia, vamos explicar como você pode emitir a segunda via do boleto de forma rápida e segura, mantendo seu veículo em dia com as normas de trânsito vigentes.
+
+## Onde buscar a segunda via?
+
+O primeiro ponto importante é saber que a emissão de guias de pagamento de multas é centralizada pelos órgãos de trânsito. Dependendo de quem aplicou a penalidade, o portal onde você buscará a segunda via muda:
+
+* **DETRAN do seu Estado:** A maioria das multas aplicadas em âmbito estadual ou municipal pode ser consultada e emitida diretamente no portal oficial do DETRAN onde o veículo está registrado.
+* **SENATRAN (Sistema de Notificação Eletrônica):** Se você é um condutor cadastrado, é possível acessar o histórico de infrações e emitir os boletos, conforme as opções disponíveis na plataforma.
+* **Órgãos Municipais:** Se a multa foi aplicada em uma via urbana monitorada pelo município, verifique o site do órgão executivo de trânsito da sua cidade.
+
+## Passo a passo para a emissão online
+
+Para facilitar o processo, siga este roteiro básico que se aplica à maioria dos portais dos órgãos de trânsito:
+
+1. **Acesse o portal oficial:** Sempre utilize sites que terminem em .gov.br ou .detran.br para garantir que está em um ambiente seguro.
+2. **Localize o menu de veículos:** Geralmente, os sites possuem uma aba específica chamada 'Veículos' ou 'Consultas de Infrações'.
+3. **Informe os dados:** Você precisará ter em mãos a placa do veículo e o número de registro do veículo. Algumas plataformas também solicitam o CPF ou CNPJ do proprietário.
+4. **Selecione a guia de pagamento:** Após acessar o extrato de débitos, o sistema listará as multas pendentes. Basta selecionar a infração desejada e solicitar a emissão da guia ou do código de barras para pagamento bancário.
+
+## Cuidados essenciais ao emitir boletos
+
+Vivemos em um período de atenção redobrada contra fraudes. Ao emitir a segunda via da sua multa, observe sempre estes detalhes:
+
+* **Verifique o beneficiário:** No momento de confirmar o pagamento no seu aplicativo de banco, confira se o nome do órgão emissor aparece corretamente na tela.
+* **Evite intermediários:** Desconfie de sites de terceiros que cobram taxas para emitir guias de pagamento. O serviço de emissão de segunda via nos portais oficiais dos órgãos de trânsito é gratuito.
+* **Cuidado com boletos falsos:** Nunca insira dados de pagamento em links recebidos por aplicativos de mensagens ou e-mails de remetentes desconhecidos. Apenas utilize os portais oficiais dos órgãos públicos.
+
+## Posso recorrer mesmo após emitir a segunda via?
+
+Sim. A emissão do boleto ou até mesmo o pagamento da multa não retira o seu direito de recorrer. A legislação de trânsito garante a ampla defesa ao cidadão. Muitas vezes, o erro na notificação ou a falta de clareza na sinalização são pontos que podem ser questionados administrativamente dentro do prazo legal.
+
+Se você pagou a multa, mas entende que houve alguma injustiça ou falha no procedimento de autuação, saiba que o valor pago é restituído caso o seu recurso seja deferido e a multa cancelada.
+
+O CheckMulta permite que você envie o auto de infração para uma análise sobre a existência de falhas capazes de anular a penalidade. Utilize essa ferramenta para entender se o seu caso possui chances reais de sucesso antes de aceitar a autuação.`,
+    palavrasChave: ["segunda via multa", "pagar multa de trânsito", "boleto DETRAN", "consulta de multas"],
+  },
+
+  {
     slug: "como-recorrer-multa-detran-guia-estados",
     titulo: "Como recorrer de multa no DETRAN: guia completo por estado",
     descricao: "Guia definitivo do recurso de multa no Brasil: prazos, as três fases, o que realmente anula uma autuação e o passo a passo do DETRAN de cada estado. Analise sua multa grátis.",
