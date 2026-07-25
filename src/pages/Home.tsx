@@ -21,11 +21,57 @@ declare global {
   }
 }
 
+// ─── GOOGLE ADS — CONVERSÃO DE COMPRA ──────────────────────────────────────
+// Cole aqui o rótulo da conversão criada no Google Ads.
+// Formato correto: "AW-3277250868/AbC-D_efGh12_34-567"
+// Enquanto estiver com o texto padrão abaixo, a conversão do Ads NÃO dispara
+// (o purchase do GA4 continua funcionando normalmente).
+const ADS_CONVERSION_ID = "AW-3277250868/COLE_SEU_ROTULO_AQUI";
+
+const PRECO_DEFESA = 19.9;
+
 // Helper: dispara evento no Clarity (se disponível) e no gtag simultaneamente
 const track = (gtagEvent: string, clarityEvent: string, params?: Record<string, any>) => {
   if (typeof window === "undefined") return;
   if (window.gtag) window.gtag("event", gtagEvent, params || {});
   if (window.clarity) window.clarity("event", clarityEvent);
+};
+
+// ─── DISPARO DA VENDA ──────────────────────────────────────────────────────
+// Envia purchase (GA4) + conversion (Google Ads) uma única vez por pagamento.
+// A trava por transaction_id evita contagem dupla em recarga de página.
+const fireCompra = (transactionId: string, valor: number) => {
+  if (typeof window === "undefined") return;
+
+  const chave = `checkmulta_purchase_${transactionId}`;
+  try {
+    if (localStorage.getItem(chave)) return;
+    localStorage.setItem(chave, "1");
+  } catch {
+    // localStorage indisponível (aba anônima): segue e dispara mesmo assim
+  }
+
+  if (window.gtag) {
+    window.gtag("event", "purchase", {
+      transaction_id: transactionId,
+      value: valor,
+      currency: "BRL",
+      items: [
+        { item_id: "defesa_ia", item_name: "Defesa de Multa - IA", price: valor, quantity: 1 },
+      ],
+    });
+
+    if (!ADS_CONVERSION_ID.includes("COLE_SEU_ROTULO")) {
+      window.gtag("event", "conversion", {
+        send_to: ADS_CONVERSION_ID,
+        value: valor,
+        currency: "BRL",
+        transaction_id: transactionId,
+      });
+    }
+  }
+
+  if (window.clarity) window.clarity("event", "funil_5_pagamento_confirmado");
 };
 
 interface ExtractedMultaData {
@@ -307,12 +353,7 @@ export default function App() {
           setIsPixModalOpen(false);
           setIsPaid(true);
           localStorage.setItem("checkmulta_paid_status", "true");
-          track("purchase", "funil_5_pagamento_confirmado", {
-              transaction_id: paymentId.toString(),
-              value: 19.9,
-              currency: "BRL",
-              items: [{ item_id: "defesa_ia", item_name: "Defesa de Multa - IA", price: 19.9, quantity: 1 }],
-            });
+          fireCompra(paymentId.toString(), PRECO_DEFESA);
         }
       } catch (err) {
         console.error("Erro no radar do PIX", err);
@@ -551,7 +592,7 @@ export default function App() {
       }
       const data = await response.json();
       if (response.ok && data.qr_code) {
-        track("begin_checkout", "funil_4_checkout_iniciado", { value: 19.9, currency: "BRL" });
+        track("begin_checkout", "funil_4_checkout_iniciado", { value: PRECO_DEFESA, currency: "BRL" });
         setPaymentId(data.id);
         setQrCode(data.qr_code);
         setQrCodeBase64(data.qr_code_base64);
