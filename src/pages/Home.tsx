@@ -374,7 +374,7 @@ export default function App() {
     let intervalId: NodeJS.Timeout;
     let timeoutId: NodeJS.Timeout;
     const checkPaymentStatus = async () => {
-      if (!paymentId || !isPixModalOpen) return;
+      if (!paymentId) return;
       try {
         const res = await fetch(`/api/check-payment/${paymentId}`);
         const data = await res.json();
@@ -384,21 +384,56 @@ export default function App() {
           setIsPixModalOpen(false);
           setIsPaid(true);
           localStorage.setItem("checkmulta_paid_status", "true");
+          localStorage.removeItem("checkmulta_pending_payment");
           fireCompra(paymentId.toString(), precoDefesa);
+          // Se o pagamento foi retomado numa página "limpa" (recarga/aba nova),
+          // o result em memória pode estar vazio: recupera do localStorage
+          // para que a defesa seja gerada.
+          if (!result) {
+            const salvo = localStorage.getItem("checkmulta_saved_result");
+            if (salvo) {
+              setResult(salvo);
+              setIsResultModalOpen(true);
+            }
+          }
         }
       } catch (err) {
         console.error("Erro no radar do PIX", err);
       }
     };
-    if (isPixModalOpen && paymentId) {
+    // Roda enquanto houver um pagamento pendente — mesmo com o modal FECHADO.
+    // É isso que detecta o pagamento de quem saiu para pagar no app do banco.
+    if (paymentId && !isPaid) {
+      checkPaymentStatus(); // checa uma vez já ao montar (caso de volta após recarga)
       intervalId = setInterval(checkPaymentStatus, 3000);
-      timeoutId = setTimeout(() => clearInterval(intervalId), 600000);
+      timeoutId = setTimeout(() => clearInterval(intervalId), 900000); // 15 min
     }
     return () => {
       if (intervalId) clearInterval(intervalId);
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [isPixModalOpen, paymentId]);
+  }, [paymentId, isPaid]);
+
+  // Ao carregar a página: se houver pagamento pendente salvo, retoma a verificação.
+  // Cobre recarga da página, fechar/reabrir a aba e volta do app do banco.
+  useEffect(() => {
+    if (paymentId) return; // já há um pagamento ativo em memória
+    try {
+      const pendente = localStorage.getItem("checkmulta_pending_payment");
+      const jaPago = localStorage.getItem("checkmulta_paid_status") === "true";
+      if (!pendente || jaPago) return;
+      const dados = JSON.parse(pendente);
+      // Descarta pendências antigas (mais de 30 min): o PIX já teria expirado.
+      if (!dados?.id || Date.now() - (dados.ts || 0) > 30 * 60 * 1000) {
+        localStorage.removeItem("checkmulta_pending_payment");
+        return;
+      }
+      if (typeof dados.valor === "number") setPrecoDefesa(dados.valor);
+      setPaymentId(dados.id); // dispara o efeito de polling acima
+    } catch {
+      localStorage.removeItem("checkmulta_pending_payment");
+    }
+  }, []);
 
   useEffect(() => {
     if (isPaid && result && !defenseResult && !isGeneratingDefense) {
@@ -449,6 +484,7 @@ export default function App() {
     setPrecoDefesa(PRECO_BAIXO);
     localStorage.removeItem("checkmulta_saved_result");
     localStorage.removeItem("checkmulta_paid_status");
+    localStorage.removeItem("checkmulta_pending_payment");
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
@@ -631,6 +667,15 @@ export default function App() {
       if (response.ok && data.qr_code) {
         track("begin_checkout", "funil_4_checkout_iniciado", { value: precoDefesa, currency: "BRL" });
         setPaymentId(data.id);
+        // Salva o pagamento pendente. Se a pessoa recarregar, fechar a aba
+        // ou voltar do app do banco, o site retoma a verificação sozinho.
+        try {
+          localStorage.setItem("checkmulta_pending_payment", JSON.stringify({
+            id: data.id,
+            valor: precoDefesa,
+            ts: Date.now(),
+          }));
+        } catch {}
         setQrCode(data.qr_code);
         setQrCodeBase64(data.qr_code_base64);
         setIsPixModalOpen(true);
@@ -679,6 +724,7 @@ export default function App() {
       setShowFomoBanner(false);
       localStorage.removeItem("checkmulta_saved_result");
       localStorage.removeItem("checkmulta_paid_status");
+      localStorage.removeItem("checkmulta_pending_payment");
     } catch (err: any) {
       clearTimeout(timeoutId);
       if (err.name === "AbortError") setDefenseError("TIMEOUT");
