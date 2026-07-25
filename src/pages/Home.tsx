@@ -28,7 +28,34 @@ declare global {
 // (o purchase do GA4 continua funcionando normalmente).
 const ADS_CONVERSION_ID = "AW-3277250868/COLE_SEU_ROTULO_AQUI";
 
-const PRECO_DEFESA = 19.9;
+// ─── PREÇO VARIÁVEL PELO VALOR DA MULTA ────────────────────────────────────
+// Multa até R$ 150,00  -> R$ 19,90
+// Multa acima de R$ 150 -> R$ 39,90
+// Sem valor legível     -> R$ 19,90 (menor, para nunca cobrar a mais na dúvida)
+// A trava real está no server.ts (VALORES_PERMITIDOS). Aqui é só a escolha da faixa.
+const PRECO_BAIXO = 19.9;
+const PRECO_ALTO = 39.9;
+const CORTE_VALOR_MULTA = 150;
+
+// Converte "1.234,56" ou "293,47" (formato BR) em número. Retorna null se não der.
+const parseValorMulta = (valorStr: string | undefined): number | null => {
+  if (!valorStr) return null;
+  const limpo = valorStr
+    .replace(/[^\d.,]/g, "")   // tira "R$", espaços, etc.
+    .replace(/\./g, "")         // remove pontos de milhar
+    .replace(",", ".");         // vírgula decimal -> ponto
+  const n = parseFloat(limpo);
+  return isNaN(n) ? null : n;
+};
+
+// Decide o preço a partir do texto do resultado da análise.
+const definirPreco = (result: string | null): number => {
+  if (!result) return PRECO_BAIXO;
+  const m = result.match(/Valor:\s*R\$\s*([\d.,]+)/i);
+  const valor = parseValorMulta(m ? m[1] : undefined);
+  if (valor === null) return PRECO_BAIXO;          // sem valor legível -> menor
+  return valor > CORTE_VALOR_MULTA ? PRECO_ALTO : PRECO_BAIXO;
+};
 
 // Helper: dispara evento no Clarity (se disponível) e no gtag simultaneamente
 const track = (gtagEvent: string, clarityEvent: string, params?: Record<string, any>) => {
@@ -238,6 +265,9 @@ export default function App() {
   const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
+  // Preço desta análise (definido quando o resultado da IA fica pronto)
+  const [precoDefesa, setPrecoDefesa] = useState(PRECO_BAIXO);
+
   const [isPixModalOpen, setIsPixModalOpen] = useState(false);
   const [pixTimeLeft, setPixTimeLeft] = useState(600);
 
@@ -313,6 +343,7 @@ export default function App() {
     const savedPaidStatus = localStorage.getItem("checkmulta_paid_status");
     if (savedResult && savedPaidStatus === "true" && !defenseResult && !isGeneratingDefense) {
       setResult(savedResult);
+      setPrecoDefesa(definirPreco(savedResult));
       setIsPaid(true);
       setIsResultModalOpen(true);
       generateDefense(savedResult);
@@ -353,7 +384,7 @@ export default function App() {
           setIsPixModalOpen(false);
           setIsPaid(true);
           localStorage.setItem("checkmulta_paid_status", "true");
-          fireCompra(paymentId.toString(), PRECO_DEFESA);
+          fireCompra(paymentId.toString(), precoDefesa);
         }
       } catch (err) {
         console.error("Erro no radar do PIX", err);
@@ -415,6 +446,7 @@ export default function App() {
     setShowFomoBanner(false);
     setSelectedViolation(null);
     setIsUploadModalOpen(false);
+    setPrecoDefesa(PRECO_BAIXO);
     localStorage.removeItem("checkmulta_saved_result");
     localStorage.removeItem("checkmulta_paid_status");
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -555,6 +587,7 @@ export default function App() {
       setExpiredDate(expDate);
       setResult(finalResult);
       if (finalResult) {
+        setPrecoDefesa(definirPreco(finalResult));
         track("ia_analise_viavel", "funil_3_paywall_exibido");
         setHasAnalyzed(true);
         localStorage.setItem("checkmulta_saved_result", finalResult);
@@ -584,7 +617,11 @@ export default function App() {
       const response = await fetch("/api/create-payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: "comprador@checkmulta.com.br" }),
+        body: JSON.stringify({
+          email: "comprador@checkmulta.com.br",
+          valor: precoDefesa,
+          descricao: "Petição de Defesa de Multa - CheckMulta",
+        }),
       });
       const contentType = response.headers.get("content-type");
       if (!contentType || !contentType.includes("application/json")) {
@@ -592,7 +629,7 @@ export default function App() {
       }
       const data = await response.json();
       if (response.ok && data.qr_code) {
-        track("begin_checkout", "funil_4_checkout_iniciado", { value: PRECO_DEFESA, currency: "BRL" });
+        track("begin_checkout", "funil_4_checkout_iniciado", { value: precoDefesa, currency: "BRL" });
         setPaymentId(data.id);
         setQrCode(data.qr_code);
         setQrCodeBase64(data.qr_code_base64);
@@ -1805,7 +1842,7 @@ if (!v) return null;
 
                       <div className="rounded-lg border border-emerald-200 bg-emerald-50/50 p-5 text-left">
                         <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-slate-900 sm:text-lg">
-                          <Scale className="h-5 w-5 text-emerald-600" /> O que você recebe por R$ 19,90
+                          <Scale className="h-5 w-5 text-emerald-600" /> O que você recebe por R$ {precoDefesa.toFixed(2).replace(".", ",")}
                         </h3>
                         <ul className="space-y-3 text-[13px] text-slate-700 sm:text-[15px]">
                           <li className="flex items-start gap-3">
@@ -1846,7 +1883,7 @@ if (!v) return null;
                           {isCheckoutLoading ? <Loader2 className="h-6 w-6 flex-shrink-0 animate-spin" /> : <Scale className="h-6 w-6 flex-shrink-0" />}
                           <span>{isCheckoutLoading ? "Gerando PIX..." : "Gerar minha petição agora"}</span>
                         </div>
-                        <span className="mt-1 text-sm font-normal text-emerald-50">Pagamento único · R$ 19,90 · Entrega imediata</span>
+                        <span className="mt-1 text-sm font-normal text-emerald-50">Pagamento único · R$ {precoDefesa.toFixed(2).replace(".", ",")} · Entrega imediata</span>
                       </button>
                       <p className="mt-2 text-center text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
                     </div>
@@ -1988,7 +2025,7 @@ if (!v) return null;
                     <span className="text-xs text-slate-400">Pagamento seguro · Criptografia SSL</span>
                   </div>
                   <div>
-                    <h3 className="text-3xl font-bold tracking-tight text-slate-900">R$ 19,90</h3>
+                    <h3 className="text-3xl font-bold tracking-tight text-slate-900">R$ {precoDefesa.toFixed(2).replace(".", ",")}</h3>
                     <p className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500">Petição estruturada</p>
                     <p className="mt-1.5 text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
                   </div>
