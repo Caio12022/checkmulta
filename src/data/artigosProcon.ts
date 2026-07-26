@@ -12,6 +12,100 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "erro-na-identificacao-do-autuado-vicio-que-anula-o-auto-de-infracao",
+    titulo: "Erro na Identificação do Autuado: Vício que Anula o Auto de Infração",
+    descricao: "Recebeu uma autuação do Procon com erro nos dados da sua empresa? Entenda como este vício formal pode ser questionado em sua defesa administrativa.",
+    categoria: "Vícios e Nulidades",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["erro no auto de infração Procon", "defesa administrativa Procon", "identificação incorreta empresa", "vício formal auto de infração"],
+    conteudo: `## A importância da correta identificação do infrator no processo administrativo
+
+No âmbito do processo administrativo sancionador instaurado pelos órgãos de proteção ao consumidor, a precisão formal é um pilar de sustentação para a validade do procedimento. Entre os requisitos essenciais para a lavratura de um auto de infração, a correta identificação da empresa autuada ocupa lugar de destaque. Quando o Procon comete equívocos ao indicar o sujeito passivo da sanção, abre-se uma oportunidade para questionamentos sobre a legalidade do ato.
+
+## O que constitui o erro de identificação?
+
+O erro de identificação ocorre quando o agente fiscal, no momento da lavratura do auto, qualifica incorretamente a pessoa jurídica. Exemplos comuns incluem:
+
+- Incorreção na Razão Social ou nome fantasia da empresa.
+- Erro no número do CNPJ ou inscrição estadual.
+- Autuação direcionada a uma filial, quando a irregularidade deveria ser imputada à matriz (ou vice-versa).
+- Inclusão de sócios no polo passivo da autuação, quando a responsabilidade deve recair sobre a pessoa jurídica.
+
+Estes equívocos, à primeira vista simples, comprometem a segurança jurídica e a capacidade de defesa da empresa. A Constituição Federal e as normas que regem o processo administrativo exigem que o administrado seja identificado de forma inequívoca para que possa exercer o seu direito ao contraditório e à ampla defesa.
+
+## Por que este vício é relevante para a sua defesa?
+
+O auto de infração é um documento dotado de presunção de veracidade e legitimidade. Contudo, essa presunção não é absoluta e depende do preenchimento estrito dos requisitos formais previstos na legislação de regência, incluindo o Código de Defesa do Consumidor e as normas específicas de processo administrativo.
+
+Quando a identificação está incorreta, entende-se que houve um vício formal. O vício formal é aquele que atinge a estrutura e a validade do próprio documento, independentemente do mérito da suposta infração cometida. Em muitos casos, a ausência de correlação entre o agente autuado e a conduta descrita impossibilita que a empresa compreenda exatamente o que está sendo cobrado ou contra quem a penalidade está sendo direcionada, o que pode favorecer a declaração de nulidade do auto.
+
+## O que fazer ao detectar um erro?
+
+Ao receber um auto de infração, a primeira etapa do gestor deve ser a conferência minuciosa de todos os dados descritos pelo fiscal. Caso identifique uma divergência na identificação da sua empresa, esse ponto deve ser priorizado na argumentação da sua peça de defesa.
+
+É fundamental destacar que o prazo para apresentação da defesa administrativa varia conforme o órgão e a legislação estadual ou municipal aplicável. Nunca presuma que o prazo é o mesmo para todos os Procons. Verifique sempre a data limite expressa no documento recebido. A perda do prazo fatal pode inviabilizar a discussão sobre eventuais erros formais, tornando definitiva a sanção.
+
+## A busca pela regularidade processual
+
+A administração pública tem o dever de conduzir seus atos com zelo e correção. Se o Procon falha em identificar quem ele está punindo, a própria finalidade da punição pode ser colocada em xeque. Questionar esse erro em defesa administrativa pode servir como base para pleitear a nulidade da autuação, exigindo que o devido processo legal seja respeitado integralmente.
+
+Lembre-se que cada caso possui particularidades. A presença de um erro de identificação pode ser um argumento relevante, mas deve ser articulada dentro de uma estratégia de defesa técnica, que considere também outros aspectos formais e materiais do auto de infração.
+
+Caso deseje uma análise profissional, é possível encaminhar o auto de infração para uma avaliação especializada, que aponte se a autuação apresenta vício formal, como falhas na identificação da empresa ou outros erros processuais que merecem atenção.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "recebeu-uma-reclamacao-no-procon-saiba-como-agir",
+    titulo: "Recebeu uma reclamação no Procon? Saiba como agir",
+    descricao: "Recebeu uma reclamação no Procon e teme uma autuação? Aprenda os primeiros passos para gerir o processo administrativo e evitar multas. Verifique seu caso.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "6 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["reclamação Procon", "processo administrativo Procon", "defesa empresa Procon", "notificação Procon"],
+    conteudo: `## A importância da resposta inicial ao Procon
+
+Receber uma notificação de reclamação do Procon costuma gerar apreensão nos gestores e proprietários de empresas. Diferente do que muitos pensam, o momento em que a notificação chega à empresa é a etapa mais crítica para prevenir o agravamento da situação. Agir com estratégia e rapidez pode auxiliar na mitigação dos riscos de que um atendimento insatisfatório de consumidor se transforme em um processo administrativo sancionador, que poderá resultar na aplicação de multas.
+
+O procedimento administrativo junto aos órgãos de proteção ao consumidor é regido por normas que garantem o contraditório e a ampla defesa. Por isso, a forma como a empresa responde à reclamação inicial é fundamental. Uma resposta técnica, embasada e respeitosa aos prazos pode encerrar a demanda de forma consensual, favorecendo a dispensa da necessidade de um auto de infração.
+
+## Primeiras ações ao receber a notificação
+
+Ao ser notificado, o primeiro passo deve ser a organização interna. O setor responsável pelo atendimento ao consumidor ou o departamento jurídico deve reunir todas as evidências possíveis sobre a relação de consumo em questão. Seguem recomendações essenciais:
+
+- Verificação de autenticidade: Certifique-se de que a notificação provém oficialmente de um órgão de proteção ao consumidor. Verifique os dados constantes no documento para garantir que a empresa autuada é a correta.
+- Atenção ao prazo: O prazo para resposta é a regra de ouro do processo administrativo. Ele não é padrão nacional, variando conforme a legislação estadual ou municipal que rege o Procon específico que emitiu a notificação. Nunca presuma o prazo. Consulte a data limite expressa no documento oficial recebido.
+- Levantamento de fatos: Reúna histórico de conversas, e-mails, registros de pedidos, comprovantes de entrega, termos de garantia e qualquer documento que comprove a execução correta da prestação de serviço ou venda do produto.
+- Análise técnica da reclamação: Identifique qual é a falha alegada pelo consumidor e verifique se ela procede. Se houve erro da empresa, é necessário avaliar a possibilidade de solução imediata, como a reparação do dano ou o reembolso, o que pode demonstrar boa-fé perante o órgão.
+
+## A condução do processo administrativo
+
+Caso a reclamação não seja solucionada na fase preliminar, o Procon poderá instaurar um processo administrativo. É nesta fase que a empresa deve estar atenta à fundamentação legal. O Código de Defesa do Consumidor e as normas processuais aplicáveis estabelecem direitos e deveres para ambas as partes.
+
+Um erro comum é ignorar as notificações por considerar que o valor da causa é baixo ou que o problema é pequeno. Essa postura pode resultar em revelia ou na presunção de veracidade das alegações do consumidor, levando o órgão a concluir pela infração sem sequer ouvir o lado da empresa. Além disso, as autuações podem gerar sanções que vão além da multa, como a inclusão do nome da empresa no Cadastro de Reclamações Fundamentadas, o que pode impactar a reputação da marca.
+
+## Pontos de atenção na defesa
+
+Ao elaborar uma resposta ou defesa, é preciso ser objetivo e técnico. Evite argumentos genéricos ou carregados de emoção. Focar em pontos como a ausência de vício no produto, a entrega dentro do prazo contratado ou a inexistência de publicidade enganosa são caminhos comuns. Caso o Procon tenha emitido um auto de infração, é fundamental revisar se o documento preenche os requisitos formais necessários, como a descrição clara da conduta infratora e o embasamento legal da autuação.
+
+Se o auto de infração apresentar vícios, como a falta de clareza sobre qual regra foi descumprida, essa questão pode ser arguida em defesa. A legislação federal estabelece diretrizes para a fiscalização, mas o rito processual é detalhado pelas normas estaduais e pelo normativo federal que rege o Sistema Nacional de Defesa do Consumidor. A interpretação correta dessas normas pode abrir margem para o arquivamento ou a atenuação de eventuais penalidades.
+
+## Conclusão e apoio especializado
+
+A gestão de uma notificação do Procon exige cautela e conhecimento das normas consumeristas. Resolver o problema na raiz, atendendo o consumidor quando possível ou apresentando uma defesa técnica sólida quando necessário, é a melhor estratégia para proteger o patrimônio e a imagem da empresa.
+
+No CheckMulta, é possível enviar o auto de infração do Procon para obter uma análise que aponta se a autuação apresenta possibilidade de vício formal.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "auto-de-infracao-sem-capitulacao-legal-como-contestar",
     titulo: "Auto de infração sem capitulação legal: como contestar",
     descricao: "Recebeu uma multa do Procon mas falta a indicação clara da lei violada? Entenda por que a ausência de capitulação legal pode anular seu auto de infração.",
