@@ -12,6 +12,48 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "presuncao-de-legitimidade-o-que-significa-para-sua-multa",
+    titulo: "Presunção de Legitimidade: O que significa para sua multa?",
+    descricao: "Entenda como funciona a presunção de legitimidade dos autos de infração de trânsito e como você pode contestar multas injustas. Analise sua multa grátis.",
+    categoria: "Jurídico",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-indigo-600 to-indigo-800",
+    conteudo: `## O que é a presunção de legitimidade?
+
+No Direito Administrativo brasileiro, um dos pilares mais importantes é o atributo da presunção de legitimidade e veracidade dos atos administrativos. Quando falamos especificamente sobre o trânsito, isso significa que um auto de infração lavrado por um agente de trânsito possui, a princípio, fé pública. Ou seja, presume-se que o que está escrito no documento é a verdade e que o agente agiu dentro dos ditames da legislação.
+
+Essa presunção não é um privilégio do agente, mas uma necessidade para a fluidez e a organização do trânsito. Se cada multa aplicada precisasse de uma prova documental absoluta e imediata para ser validada, o sistema administrativo entraria em colapso. Por isso, a legislação confere ao agente de trânsito a prerrogativa de que sua palavra e seu registro tenham valor probatório inicial.
+
+## Essa presunção é absoluta?
+
+É aqui que muitos motoristas se equivocam. Existe a ideia popular de que, se o guarda multou, a multa está correta e não há nada a fazer. Isso é um erro. A presunção de legitimidade é apenas **relativa** (ou, no juridiquês, 'juris tantum').
+
+Isso significa que ela admite prova em contrário. O ônus de provar que houve um erro, uma inconsistência técnica ou uma falha procedimental recai sobre o condutor ou proprietário do veículo que deseja recorrer. Em outras palavras: o ato administrativo é considerado correto até que se prove o contrário.
+
+## Como combater a presunção de legitimidade?
+
+Para derrubar essa presunção, o motorista não deve apenas dizer que não cometeu a infração. O agente público goza de fé pública, então a palavra do condutor isolada raramente é suficiente. O segredo para uma defesa de sucesso reside em apontar falhas técnicas ou formais no próprio auto de infração:
+
+* **Erros formais:** Dados do veículo incorretos, placa errada, modelo divergente ou ausência de informações obrigatórias exigidas pela legislação.
+* **Falhas procedimentais:** O agente deixou de realizar uma abordagem necessária, o local da infração não estava sinalizado conforme as normas ou o equipamento de fiscalização estava sem a aferição dentro do prazo legal.
+* **Inconsistências no relato:** Quando a descrição da conduta não condiz com a natureza da infração ou com a realidade física do local.
+
+## O papel do recurso administrativo
+
+O processo administrativo de recurso é exatamente o momento onde você apresenta os seus argumentos e as provas que contradizem a presunção inicial. É nesse espaço que o julgador irá analisar se o auto de infração seguiu todos os requisitos legais. Se houver qualquer falha, o auto pode ser considerado nulo, e a multa, cancelada.
+
+É importante lembrar que a legislação de trânsito exige rigor técnico na lavratura das infrações. Pequenos deslizes na redação do auto ou no cumprimento do rito de fiscalização podem ser o suficiente para que a administração pública reconheça o erro e anule a penalidade.
+
+## Conclusão
+
+Não se sinta impotente diante de uma multa apenas por acreditar que o ato administrativo é inquestionável. Embora a presunção de legitimidade exista, ela é um convite para que você verifique minuciosamente se o seu direito foi respeitado. Conhecer a legislação e identificar erros no documento é o seu maior trunfo para buscar a justiça no trânsito.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa.`,
+    palavrasChave: ["recurso de multa", "presunção de legitimidade", "multa de trânsito", "defesa de trânsito"],
+  },
+
+  {
     slug: "perdeu-a-notificacao-saiba-como-emitir-2-via-da-multa",
     titulo: "Perdeu a notificação? Saiba como emitir 2ª via da multa",
     descricao: "Esqueceu de pagar ou perdeu o boleto de trânsito? Aprenda o passo a passo para emitir a segunda via de multas online e evite juros. Analise sua multa grátis.",
