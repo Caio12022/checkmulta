@@ -12,6 +12,49 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "presuncao-de-legitimidade-a-multa-e-sempre-verdade",
+    titulo: "Presunção de Legitimidade: A Multa é sempre verdade?",
+    descricao: "Entenda o que é o principio da presunção de legitimidade no trânsito e como ele impacta sua defesa. Analise sua multa gratuitamente no CheckMulta hoje.",
+    categoria: "Jurídico",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-red-600 to-red-800",
+    conteudo: `## O que é a Presunção de Legitimidade?
+
+No Direito Administrativo brasileiro, os atos praticados por agentes públicos gozam de um atributo fundamental chamado presunção de legitimidade ou veracidade. Quando falamos especificamente de trânsito, isso significa que, no momento em que um agente de autoridade de trânsito lavra um auto de infração, presume-se que ele agiu de acordo com a lei e que os fatos narrados no documento ocorreram conforme o relato oficial.
+
+Na prática, esse princípio inverte o ônus da prova. O Estado não precisa provar, num primeiro momento, que você cometeu a infração; o documento lavrado pelo agente já tem, por si só, valor probatório para justificar a abertura do processo administrativo e a aplicação da penalidade.
+
+## Isso significa que a multa é imbatível?
+
+De forma alguma. É fundamental compreender que a presunção de legitimidade é relativa. Isso quer dizer que, embora o auto de infração possua essa fé pública inicial, ela não é absoluta. O ordenamento jurídico brasileiro garante ao cidadão o direito à ampla defesa e ao contraditório. Ou seja, você tem o direito constitucional de contestar o relato do agente e provar que ele está equivocado, incompleto ou que houve vício no procedimento.
+
+Para derrubar essa presunção, você precisa apresentar elementos que contradigam o que foi registrado. A simples alegação de que 'eu não fiz' raramente é suficiente. A defesa precisa ser técnica e baseada em fatos, documentos ou evidências concretas.
+
+## Como combater a presunção de legitimidade?
+
+Para contestar com eficácia, o condutor deve observar os seguintes aspectos:
+
+* **Erros formais:** Verifique se todos os campos obrigatórios do documento foram preenchidos corretamente, como o local, a data, a hora e a identificação do veículo.
+* **Falhas procedimentais:** O agente seguiu exatamente o que a legislação de trânsito determina para aquele tipo de abordagem ou autuação? Qualquer descumprimento de norma técnica fragiliza a presunção de veracidade.
+* **Inconsistência de fatos:** Se o relato do agente for contraditório com as provas que você possui (como fotos, vídeos ou documentos que comprovem a impossibilidade de ter cometido a infração), o peso da presunção diminui drasticamente.
+* **Equipamentos:** No caso de autuações por sensores ou radares, é preciso verificar se o equipamento estava aferido e em condições regulares de operação, conforme as normas vigentes.
+
+## A importância da estratégia na defesa
+
+Entender esse conceito jurídico é o primeiro passo para não se desesperar ao receber uma autuação. O sistema de trânsito brasileiro permite que a presunção de legitimidade seja confrontada. Contudo, defesas baseadas apenas em reclamações genéricas tendem a ser indeferidas pelas instâncias julgadoras administrativas.
+
+Uma defesa eficaz é aquela que aponta uma falha específica no preenchimento do auto ou um erro grave no procedimento do agente. Quando você consegue demonstrar que o ato administrativo foi irregular, a presunção de legitimidade cai, e o órgão de trânsito é obrigado a cancelar a penalidade.
+
+## Conclusão
+
+Não aceite uma multa apenas porque o agente a registrou. A presunção de legitimidade é apenas o ponto de partida do processo, não o veredito final. Com a fundamentação correta e a análise técnica dos fatos, é perfeitamente possível reverter muitas situações que pareciam definitivas.
+
+No CheckMulta, você pode enviar o auto de infração para obter uma análise que aponta se há falhas capazes de anular a multa.`,
+    palavrasChave: ["multa de trânsito", "presunção de legitimidade", "defesa de multa", "direito de trânsito"],
+  },
+
+  {
     slug: "presuncao-de-legitimidade-o-que-significa-para-sua-multa",
     titulo: "Presunção de Legitimidade: O que significa para sua multa?",
     descricao: "Entenda como funciona a presunção de legitimidade dos autos de infração de trânsito e como você pode contestar multas injustas. Analise sua multa grátis.",
