@@ -12,6 +12,153 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "audiencia-de-conciliacao-no-procon-o-guia-completo-para-empresas",
+    titulo: "Audiência de Conciliação no Procon: O Guia Completo para Empresas",
+    descricao: "Recebeu uma notificação do Procon? Entenda o que é a audiência de conciliação, como se preparar adequadamente e os próximos passos para sua empresa.",
+    categoria: "Direitos da Empresa",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["audiência conciliação procon", "defesa administrativa procon", "auto de infração empresa", "notificação procon"],
+    conteudo: `## O papel da audiência de conciliação no processo administrativo
+
+A audiência de conciliação no Procon é uma etapa fundamental dentro do processo administrativo instaurado contra uma empresa. Diferente do que muitos gestores acreditam, este momento não é o julgamento final do caso, mas sim uma oportunidade para que o órgão de proteção ao consumidor e o fornecedor tentem resolver o conflito de forma célere, buscando o encerramento da reclamação antes que ela avance para fases mais complexas do processo sancionador.
+
+Quando uma empresa é notificada para comparecer a uma audiência, o objetivo primário do Procon é a autocomposição. Isso significa verificar se existe a possibilidade de resolver a demanda do consumidor por meio de um acordo. Do ponto de vista da empresa, esta audiência é uma ferramenta estratégica que pode auxiliar a evitar o prosseguimento de um processo administrativo que, futuramente, poderia resultar na aplicação de sanções.
+
+## Como se preparar para o comparecimento
+
+A preparação para uma audiência no Procon exige organização e domínio dos fatos. Não basta comparecer; é necessário que o representante da empresa tenha condições de decidir sobre possíveis propostas de acordo e que possua clareza técnica sobre o ocorrido.
+
+- Analise detalhadamente a reclamação: Antes da data marcada, estude o histórico da relação de consumo que gerou a queixa. Identifique se houve falha na prestação do serviço ou no fornecimento do produto.
+- Documentação completa: Leve todos os documentos que comprovam a postura da empresa, como ordens de serviço, comprovantes de entrega, registros de atendimento ao cliente e contratos assinados.
+- Poderes de representação: A empresa deve se fazer representar por pessoa com capacidade para firmar acordos. Caso o representante não possua autonomia, o processo pode sofrer atrasos ou resultar em prejuízos na condução da negociação.
+- Política interna de resolução: Defina previamente os limites de concessão que a empresa está disposta a oferecer. Estabeleça margens de negociação, prazos para reposição ou troca de produtos, de modo que o representante saiba exatamente até onde pode negociar.
+
+## A natureza jurídica da audiência
+
+É importante esclarecer que o comparecimento à audiência não implica, necessariamente, na confissão de culpa. O Procon atua como um facilitador do diálogo, balizado pelas normas do Código de Defesa do Consumidor e pela legislação vigente. Contudo, as informações prestadas durante a audiência são registradas em ata. Por isso, a postura deve ser técnica, cordial e pautada na transparência.
+
+Caso não haja consenso entre as partes, o processo administrativo seguirá o seu curso normal. Nesse cenário, o Procon dará continuidade à análise do auto de infração, onde serão avaliados os argumentos de defesa da empresa e as provas apresentadas. É nesta fase que a estratégia de defesa administrativa torna-se relevante para demonstrar a regularidade da conduta empresarial e, quando cabível, questionar vícios formais na autuação.
+
+## Prazos e procedimentos
+
+Cada unidade do Procon pode seguir normas procedimentais específicas, desde que respeitem a legislação nacional. Por isso, é imprescindível verificar no próprio documento recebido qual é o prazo para a apresentação de defesa escrita, caso o acordo não seja celebrado ou caso a empresa opte por contestar as alegações da fiscalização. Nunca presuma que o prazo de um órgão é o mesmo de outro; verifique sempre a notificação específica enviada ao seu estabelecimento.
+
+## A importância do suporte técnico
+
+Muitas vezes, a autuação no Procon decorre de falhas de comunicação ou de procedimentos administrativos que podem ser corrigidos ou justificados tecnicamente. O êxito no processo administrativo depende da capacidade da empresa em apresentar contra-argumentos fundamentados e organizados, demonstrando boa-fé e conformidade com as normas consumeristas.
+
+No CheckMulta, é possível enviar o auto de infração do Procon para receber uma análise que aponta se a autuação apresenta vício formal ou elementos que merecem ser contestados em sua defesa administrativa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "micro-e-pequena-empresa-tratamento-diferenciado-no-procon",
+    titulo: "Micro e Pequena Empresa: Tratamento Diferenciado no Procon",
+    descricao: "Entenda como o porte da sua empresa pode influenciar o cálculo da multa em processos do Procon e a importância de alegar o porte na defesa administrativa.",
+    categoria: "Dosimetria da Multa",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["multa Procon empresa", "defesa administrativa Procon", "dosimetria multa Procon", "tratamento diferenciado ME EPP"],
+    conteudo: `## A importância da dosimetria para micro e pequenas empresas
+
+Receber um auto de infração do Procon gera preocupação imediata em qualquer empresário. No entanto, para microempresas e empresas de pequeno porte, o impacto financeiro de uma penalidade pecuniária pode ser desproporcional à capacidade de pagamento do negócio. A legislação brasileira e as normas que regem o processo administrativo sancionador no âmbito do Direito do Consumidor estabelecem critérios claros para que a penalidade seja proporcional à infração cometida.
+
+A dosimetria da multa é o procedimento técnico pelo qual o agente fiscal ou a autoridade julgadora define o valor da sanção. Não se trata de um cálculo arbitrário, mas de um processo que deve observar princípios constitucionais, como a razoabilidade e a proporcionalidade. Para as empresas de menor porte, essa etapa é fundamental, pois a correta aplicação das normas de tratamento diferenciado pode viabilizar uma revisão no valor final da multa aplicada.
+
+## O tratamento diferenciado como pilar jurídico
+
+A legislação voltada ao consumidor prevê que a autoridade, ao graduar a pena, considere diversos fatores, dentre eles a condição econômica do fornecedor. O tratamento diferenciado para micro e pequenas empresas não é apenas uma faculdade do órgão, mas uma diretriz que visa garantir a sustentabilidade do negócio enquanto se busca a correção da prática infratora.
+
+Ao estruturar uma defesa administrativa, é imperativo que a empresa comprove sua condição de enquadramento. Este fato não serve para justificar a infração, mas para garantir que a autoridade julgadora utilize os parâmetros adequados de dosimetria, evitando que a aplicação da multa inviabilize a operação da empresa.
+
+## Fatores que influenciam a dosimetria
+
+Além do porte da empresa, o cálculo da multa leva em conta outros elementos. Entre os principais pontos que podem ser objeto de análise em uma defesa administrativa, destacam-se:
+
+- A gravidade da conduta: se o comportamento causou dano direto ao consumidor ou se é apenas uma infração formal.
+- A vantagem auferida: o ganho financeiro obtido pela empresa com a prática infratora.
+- A reincidência: o histórico de autuações anteriores do mesmo fornecedor.
+- A cooperação: se a empresa demonstrou boa-fé ao tentar solucionar o conflito antes da finalização do processo.
+- A capacidade econômica: critério onde o porte da empresa se torna decisivo.
+
+É importante notar que, caso o Procon não considere o porte da empresa no cálculo da multa, a decisão pode ser questionada em sede de recurso administrativo. A ausência de fundamentação sobre os critérios utilizados na dosimetria é, frequentemente, um dos pontos abordados em defesas técnicas.
+
+## O que observar no auto de infração
+
+O primeiro passo após receber o auto de infração é conferir a descrição da irregularidade e os fundamentos legais citados. O prazo para apresentação da defesa varia conforme o órgão estadual ou municipal responsável pela autuação. Verifique sempre o prazo específico indicado no documento recebido, pois a perda deste período impede a apresentação da defesa e a discussão sobre a dosimetria da multa.
+
+Não ignore a notificação. A inércia da empresa é interpretada como revelia, o que pode levar ao julgamento antecipado do processo, com a aplicação da multa, sem a análise dos atenuantes que poderiam beneficiar uma micro ou pequena empresa.
+
+## A defesa administrativa eficaz
+
+Uma defesa administrativa bem estruturada deve ir além de negar a infração. Ela deve focar na legalidade do procedimento, na correta capitulação dos fatos e na proporcionalidade da sanção. Ao detalhar o porte do negócio e a realidade fática da operação, a empresa fornece elementos necessários para que a autoridade julgadora revise a dosimetria, caso esta tenha sido aplicada de forma genérica.
+
+Na plataforma CheckMulta, é possível enviar o auto de infração do Procon para obter uma análise que aponta se a autuação apresenta vício formal ou possibilidades de defesa baseadas na dosimetria da multa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "o-tratamento-diferenciado-para-me-e-epp-na-dosimetria-da-multa",
+    titulo: "O tratamento diferenciado para ME e EPP na dosimetria da multa",
+    descricao: "Entenda como o porte da sua empresa pode influenciar a dosimetria da multa do Procon. Conheça seus direitos e como analisar o seu auto de infração.",
+    categoria: "Dosimetria da Multa",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["multa Procon", "dosimetria multa", "defesa administrativa Procon", "microempresa Procon"],
+    conteudo: `## A importância do porte empresarial no processo sancionador
+
+Receber um auto de infração do Procon gera preocupação imediata em qualquer empresário. Contudo, para microempresas e empresas de pequeno porte, o cenário exige uma análise específica, especialmente no que tange à dosimetria da sanção pecuniária. A legislação brasileira de defesa do consumidor reconhece a necessidade de um tratamento diferenciado para esses empreendimentos, visando garantir que a penalidade não inviabilize a continuidade da atividade econômica.
+
+## O conceito de dosimetria da multa
+
+A dosimetria é o procedimento técnico pelo qual o órgão de proteção ao consumidor calcula o valor da multa a ser aplicada. Este cálculo não é aleatório; ele deve seguir critérios objetivos previstos no Código de Defesa do Consumidor e em decretos regulamentadores. Os pilares fundamentais para essa definição são:
+
+- A gravidade da infração cometida.
+- A vantagem auferida pelo fornecedor com a irregularidade.
+- A condição econômica do fornecedor autuado.
+
+É justamente no terceiro ponto, a condição econômica, que reside o direito ao tratamento diferenciado para microempresas e empresas de pequeno porte. O Procon tem o dever legal de considerar que o porte da empresa atua como um limitador para a capacidade de pagamento da penalidade.
+
+## O tratamento diferenciado na prática
+
+Quando a autoridade administrativa ignora o porte da empresa durante a fixação do valor da multa, há um desvio de finalidade na dosimetria. O objetivo da sanção administrativa é pedagógico e punitivo, visando corrigir condutas e evitar a reincidência, e não levar o negócio à falência. A aplicação de uma multa desproporcional ao faturamento ou ao porte da empresa pode ser objeto de questionamento em sede de defesa administrativa, permitindo, por vezes, a revisão do montante fixado.
+
+Para que o tratamento diferenciado seja efetivo, a empresa autuada deve demonstrar sua condição de microempresa ou empresa de pequeno porte. A apresentação de documentos como o comprovante de enquadramento pode ser fundamental para que o agente fiscalizador ou a autoridade julgadora tenha os elementos necessários para ponderar o valor da sanção.
+
+## Pontos de atenção na defesa administrativa
+
+Ao elaborar a sua peça de defesa, é essencial observar se o auto de infração ou a decisão administrativa fundamentaram adequadamente a escolha do valor da multa. Caso a decisão apresente apenas um cálculo genérico, sem considerar as particularidades do porte da empresa, abre-se uma margem para questionar a fundamentação do ato administrativo.
+
+Além disso, lembre-se de verificar o prazo para a apresentação da sua defesa. Este período varia de acordo com a legislação específica do órgão autuante e consta obrigatoriamente no documento recebido. Perder o prazo significa abrir mão da possibilidade de discutir a dosimetria da multa administrativamente.
+
+Principais tópicos que podem ser abordados em uma análise de defesa:
+
+- Inobservância da capacidade econômica do infrator pelo órgão fiscalizador.
+- Ausência de motivação específica quanto ao porte da empresa na decisão que fixou a multa.
+- Desproporcionalidade do valor final frente à realidade financeira do negócio.
+- Verificação de vícios formais no auto de infração que possam comprometer a validade da sanção.
+
+## A busca por equidade no processo administrativo
+
+O procedimento administrativo sancionador deve ser pautado pela legalidade e pelo princípio da razoabilidade. Para uma empresa de menor porte, o impacto financeiro de uma multa mal dosada é muito mais severo do que para grandes corporações. Portanto, a discussão sobre a capacidade econômica deve ser central em qualquer defesa que busque a adequação do valor de uma penalidade pecuniária.
+
+É recomendável que o gestor reúna todas as provas que atestem a boa-fé da empresa e a ausência de intenção de lesar o consumidor, além do comprovante do porte empresarial. Esses elementos, quando bem articulados, compõem uma linha de defesa técnica que foca na correção da dosimetria e na aplicação justa da norma.
+
+No CheckMulta, você pode enviar o auto de infração do Procon para que a documentação passe por uma análise técnica, verificando se a autuação apresenta vício formal ou margem para discussão sobre a dosimetria da multa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "o-direito-de-acesso-integral-ao-processo-administrativo-no-procon",
     titulo: "O direito de acesso integral ao processo administrativo no Procon",
     descricao: "Entenda por que ter acesso aos documentos do processo administrativo do Procon é essencial para sua defesa. Confira o seu auto de infração gratuitamente.",
