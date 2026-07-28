@@ -12,6 +12,50 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "multa-de-radar-na-chuva-e-possivel-recorrer",
+    titulo: "Multa de radar na chuva: é possível recorrer?",
+    descricao: "Recebeu multa por excesso de velocidade em pista molhada? Entenda se as condições climáticas anulam a autuação e como recorrer. Analise sua multa grátis.",
+    categoria: "Velocidade",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🌧️",
+    imagemBg: "from-indigo-600 to-indigo-800",
+    conteudo: `## Multa de radar em dia de chuva: o que diz a lei?
+
+Dirigir sob chuva intensa é um desafio para qualquer motorista. Além da visibilidade reduzida e do risco de aquaplanagem, surge uma dúvida frequente: o radar pode multar se a velocidade registrada for considerada perigosa para as condições climáticas, mesmo que abaixo do limite da via? Ou, inversamente, a chuva torna a multa inválida?
+
+É importante esclarecer que, no ordenamento jurídico brasileiro, a infração por excesso de velocidade é uma infração de natureza objetiva. Isso significa que o que conta, primariamente, é o dado captado pelo equipamento medidor de velocidade. Se o sensor registrou que o veículo ultrapassou o limite estabelecido para aquele trecho, a autuação é gerada automaticamente pelo sistema.
+
+## A falácia da nulidade automática pela chuva
+
+Muitos condutores acreditam que a presença de chuva ou pista molhada é um argumento automático para anular multas de trânsito. Na prática, a legislação não prevê que o mau tempo invalide a medição do radar. Pelo contrário, o Código de Trânsito Brasileiro estabelece que o motorista deve sempre adaptar a velocidade às condições de segurança da via. Em dias de tempestade, o dever de cuidado aumenta, e a velocidade deve ser reduzida para evitar acidentes.
+
+Entretanto, existem cenários onde a autuação pode ser questionada. A validade de uma multa depende estritamente do cumprimento de requisitos técnicos exigidos pelos órgãos de controle de trânsito. Entre eles, destacam-se:
+
+* A sinalização do radar deve estar clara e visível, conforme as normas vigentes.
+* O equipamento deve possuir certificado de verificação válido pelo órgão de metrologia oficial.
+* O auto de infração deve conter todas as informações obrigatórias para ser considerado legal.
+
+## Quando a contestação é válida?
+
+Embora o clima não anule a multa por si só, falhas operacionais no momento da autuação são motivos comuns para o deferimento de recursos. Se o radar estava com a calibração vencida ou se o auto de infração apresenta erros de digitação, placas divergentes ou local incorreto, há margem para argumentação jurídica.
+
+Além disso, se a velocidade registrada foi muito próxima da margem de erro técnica do radar, é essencial verificar se o equipamento seguiu o procedimento de aferição obrigatório. Erros na montagem do conjunto eletrônico ou falhas na leitura da placa do veículo também são pontos que um especialista em defesa de trânsito deve analisar com rigor.
+
+## Como proceder ao receber a notificação
+
+Ao ser notificado, o primeiro passo é manter a calma e não realizar o pagamento imediato. O pagamento da multa não impede o direito ao recurso, mas é importante atentar-se aos prazos constantes na notificação. O processo de defesa é um direito garantido a todos os cidadãos, e cada caso deve ser analisado conforme as evidências disponíveis.
+
+Para construir uma defesa sólida, não basta apenas alegar que estava chovendo. É preciso identificar se houve algum erro formal no documento ou se o equipamento de medição não cumpriu as exigências de manutenção que a legislação impõe. A busca por erros técnicos é a estratégia mais eficaz para evitar a pontuação na carteira e o desembolso financeiro desnecessário.
+
+## Analise seu caso com especialistas
+
+Recorrer de uma multa exige conhecimento técnico sobre o processo administrativo de trânsito. Muitas vezes, detalhes que passam despercebidos pelo condutor comum são os argumentos decisivos para o sucesso de um recurso.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Nossa plataforma utiliza expertise jurídica para avaliar as chances reais de sucesso na sua defesa, garantindo que você tenha o melhor suporte antes de iniciar o processo junto aos órgãos competentes.`,
+    palavrasChave: ["multa radar chuva", "recurso multa velocidade", "radar pista molhada", "defesa infração trânsito"],
+  },
+
+  {
     slug: "presuncao-de-legitimidade-a-multa-e-sempre-verdade",
     titulo: "Presunção de Legitimidade: A Multa é sempre verdade?",
     descricao: "Entenda o que é o principio da presunção de legitimidade no trânsito e como ele impacta sua defesa. Analise sua multa gratuitamente no CheckMulta hoje.",
