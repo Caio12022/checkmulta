@@ -12,6 +12,150 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "documentacao-sanitaria-o-que-seu-estabelecimento-deve-ter-em-dia",
+    titulo: "Documentação sanitária: o que seu estabelecimento deve ter em dia",
+    descricao: "Saiba quais documentos são essenciais para evitar autuações da Vigilância Sanitária e como se preparar para inspeções. Analise seu auto gratuitamente.",
+    categoria: "Boas Práticas",
+    tempoLeitura: "6 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-emerald-50 to-teal-50",
+    palavrasChave: ["auto de infração vigilância sanitária", "regularização sanitária", "defesa administrativa sanitária", "documentação sanitária"],
+    conteudo: `## A importância da organização documental na rotina sanitária
+
+A conformidade de um estabelecimento junto à Vigilância Sanitária não se resume apenas às condições físicas ou ao manuseio adequado de produtos. A regularidade é comprovada, essencialmente, por meio de documentos que atestam a boa-fé e o controle dos processos operacionais. A fiscalização é rigorosa quanto à rastreabilidade e à gestão de riscos.
+
+Receber um auto de infração pode causar insegurança, mas é fundamental compreender que o processo administrativo é regido por princípios que garantem a segurança jurídica do administrado. Conforme a Lei Federal 6.437/77, o poder de polícia sanitária deve ser exercido com cautela, observando sempre os limites legais, conforme o art. 2º, art. 3º e art. 4º da referida lei.
+
+## Documentos essenciais para o dia a dia
+
+Independentemente do ramo de atividade, alguns registros são exigidos para demonstrar que o estabelecimento opera dentro das normas técnicas vigentes. É recomendável manter uma pasta ou sistema digital organizado com:
+
+- Alvará ou licença sanitária atualizada: O documento que autoriza o funcionamento deve estar visível e vigente.
+- Manual de Boas Práticas: Este documento deve descrever os procedimentos de higiene e controle de riscos específicos de cada estabelecimento.
+- Registros de monitoramento: Documentação que comprove a limpeza, o controle de temperatura de equipamentos e o controle de pragas.
+- Certificados de capacitação: Comprovação de que os colaboradores receberam treinamento sobre manipulação e normas sanitárias.
+- Notas fiscais de compra: Essenciais para provar a origem dos produtos e garantir a rastreabilidade exigida pelo art. 10 da Lei Federal 6.437/77.
+
+## O processo administrativo após a autuação
+
+Caso o estabelecimento seja autuado, o documento recebido marca o início de um processo administrativo. É importante lembrar que a administração pública deve pautar seus atos nos princípios da legalidade, da motivação, da razoabilidade e da proporcionalidade. No que diz respeito ao rito processual, a Lei Federal 9.784/99, aplicável subsidiariamente, destaca em seu art. 2º e art. 50 a necessidade de motivação clara e explícita dos atos administrativos, especialmente quando implicarem restrição de direitos.
+
+Se o estabelecimento recebeu uma penalidade ou notificação, o contraditório e a ampla defesa são garantias que permitem ao proprietário expor fatos e apresentar provas documentais que justifiquem a conduta ou demonstrem a correção de eventuais irregularidades. A defesa pode apresentar os elementos técnicos que contradizem os termos do auto de infração.
+
+## Como proceder em caso de irregularidades constatadas
+
+Se a fiscalização apontou uma inconformidade, o primeiro passo é a correção técnica. Documentar essa regularização é um dever de quem busca a conformidade. Utilize registros fotográficos, notas fiscais, contratos de manutenção e laudos técnicos.
+
+Se houver a interdição do local, esta deve ser tratada com absoluta seriedade. É proibida a retomada das operações antes de obter a liberação oficial da autoridade sanitária competente. O procedimento correto consiste em realizar todas as correções apontadas, protocolar o pedido de reinspeção junto ao órgão e aguardar a verificação in loco. O art. 31 da Lei Federal 6.437/77 prevê os ritos de fiscalização e o exercício do poder de polícia, devendo o administrado colaborar, mas sempre exigindo que o órgão atue dentro dos limites previstos pelo art. 33 da mesma lei.
+
+## Prazos e cautelas importantes
+
+É comum que proprietários de estabelecimentos se confundam quanto aos prazos para defesa. A legislação sanitária é fragmentada e varia conforme a esfera federativa. Portanto, verifique sempre o prazo específico indicado no próprio auto de infração ou na notificação recebida. Caso tenha dúvidas, dirija-se ao órgão emissor para obter a confirmação do prazo legal aplicável.
+
+Ao preparar sua defesa, foque em fatos comprováveis. Se o fiscal entendeu que um produto estava irregular, a sua defesa deve ser fundamentada em documentos técnicos que provem a conformidade. O processo administrativo visa a verdade dos fatos, e o devido processo legal deve ser respeitado em todas as suas etapas.
+
+É possível enviar o auto de infração da Vigilância Sanitária para análise técnica, visando verificar se a autuação apresenta inconsistências que possam fundamentar um recurso administrativo.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "como-contar-o-prazo-de-defesa-em-um-auto-de-infracao-sanitaria",
+    titulo: "Como contar o prazo de defesa em um auto de infração sanitária",
+    descricao: "Recebeu um auto da Vigilância Sanitária? Entenda como realizar a contagem correta dos prazos processuais e a importância da formalidade. Analise seu auto.",
+    categoria: "Prazos e Procedimento",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["prazo defesa vigilancia sanitaria", "auto de infração como recorrer", "processo administrativo sanitario", "defesa vigilancia sanitaria"],
+    conteudo: `## O recebimento do auto de infração e o início da contagem
+
+O momento em que o proprietário ou o responsável técnico recebe um auto de infração da Vigilância Sanitária marca o início de uma contagem de tempo fundamental para o exercício do direito de defesa. O processo administrativo sanitário é regido por normas que garantem o contraditório e a ampla defesa, princípios constitucionais fundamentais que asseguram ao estabelecimento a oportunidade de contestar os fatos e as penalidades apontadas pelo agente público, conforme diretrizes da Lei 6.437/77 (arts. 2º, 3º e 4º).
+
+Contudo, uma dúvida comum recai sobre a forma de contagem do prazo para apresentação da defesa escrita. É essencial compreender que o processo administrativo, quando aplicado subsidiariamente a partir da Lei 9.784/99 (arts. 2º e 50, aplicável subsidiariamente), exige que os atos da administração pública sejam pautados pela clareza e pela publicidade. O prazo começa a ser contado, via de regra, a partir da intimação formal, observando-se as regras específicas do rito processual vigente no órgão autuante.
+
+## Atenção à diversidade de prazos
+
+Um ponto que gera confusão em muitos empresários é a crença de que existe um prazo único e padronizado para todo o Brasil. Na prática administrativa sanitária, a realidade é distinta. A legislação é fragmentada e, embora a Lei 6.437/77 estabeleça diretrizes gerais para o funcionamento da fiscalização, cada ente federativo possui autonomia para instituir seus próprios regulamentos de processo administrativo.
+
+Por essa razão, não existe um número fixo de dias que se aplique universalmente a todos os estabelecimentos. O prazo para a apresentação da defesa administrativa está expressamente indicado no próprio auto de infração ou no documento de intimação entregue pelo fiscal. O responsável pelo estabelecimento deve ler atentamente o texto contido no documento, pois ignorar essa indicação pode resultar na preclusão do direito de defesa.
+
+## Princípios que norteiam o processo administrativo
+
+Ao estruturar uma defesa, é indispensável observar os princípios que regem a atuação da administração pública:
+
+- Legalidade: A atuação da Vigilância Sanitária deve estar estritamente vinculada ao que a legislação sanitária permite.
+- Motivação: O ato de autuar deve ser fundamentado, conforme previsto no art. 50 da Lei 9.784/99 (aplicável subsidiariamente), detalhando as razões de fato e de direito que levaram àquela penalidade.
+- Proporcionalidade e Razoabilidade: As medidas adotadas pela fiscalização devem ser adequadas e necessárias, evitando excessos, conforme previsto no art. 2º da Lei 9.784/99 (aplicável subsidiariamente).
+- Devido processo legal: Garante que todas as etapas do processo administrativo ocorram de forma a respeitar as normas vigentes, assegurando ao autuado o direito à ampla defesa.
+
+## Como proceder em casos de interdição ou irregularidades
+
+Se o estabelecimento sofreu uma medida cautelar, como a interdição, é importante reiterar que o foco imediato deve ser a regularização das condições sanitárias. Em hipótese alguma o estabelecimento deve retomar suas atividades antes da liberação oficial e expressa pelo órgão competente. O descumprimento de uma interdição configura infração grave e pode agravar severamente a situação jurídica e administrativa da empresa.
+
+Para o pedido de reinspeção, a documentação é o caminho mais adequado. Reúna notas fiscais de compra de insumos, registros fotográficos que demonstrem as adequações feitas no ambiente, laudos de controle de pragas ou comprovantes de manutenção preventiva de equipamentos. Esses documentos constituem o suporte probatório para demonstrar que o estabelecimento sanou as falhas, conforme os critérios de fiscalização previstos na Lei 6.437/77 (arts. 31 e 33).
+
+## A importância da análise técnica
+
+O auto de infração é a peça inicial que descreve a suposta infração sanitária. A análise técnica cuidadosa desse documento permite verificar se houve falhas formais na sua lavratura ou se a descrição dos fatos guarda relação com as infrações previstas na Lei 6.437/77 (art. 10). A fundamentação técnica é o que pode auxiliar na estruturação de uma contestação administrativa eficaz.
+
+Caso necessário, busque auxílio para analisar se a autuação apresenta elementos que possam fundamentar a defesa ou o recurso administrativo.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "manual-de-boas-praticas-o-que-a-vigilancia-sanitaria-exige",
+    titulo: "Manual de Boas Práticas: O Que a Vigilância Sanitária Exige",
+    descricao: "Entenda a importância do Manual de Boas Práticas para o seu negócio e como a documentação correta é a sua melhor defesa. Envie seu auto para análise.",
+    categoria: "Boas Práticas",
+    tempoLeitura: "6 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-emerald-50 to-teal-50",
+    palavrasChave: ["Manual de Boas Práticas", "Auto de Infração", "Defesa Administrativa", "Vigilância Sanitária"],
+    conteudo: `## O Papel do Manual de Boas Práticas na Segurança Sanitária
+
+O Manual de Boas Práticas é um documento fundamental para qualquer estabelecimento que lida com produtos ou serviços de interesse da saúde. Ele funciona como um guia operacional, descrevendo os procedimentos que garantem a segurança, a qualidade e a higiene das atividades exercidas. Mais do que uma exigência formal, ele representa a prova documental de que o estabelecimento possui controle sobre os riscos que sua atividade oferece.
+
+Quando um fiscal da Vigilância Sanitária realiza uma inspeção, a ausência ou a incompletude deste documento costuma ser um dos pontos levantados. A autuação baseia-se no entendimento de que a falta de diretrizes escritas fragiliza o controle de qualidade, podendo levar a riscos à saúde coletiva, conforme previsto em termos gerais pela Lei 6.437/77, que define as infrações à legislação sanitária em seus artigos 2º, 3º, 4º e 10.
+
+## O que deve compor a documentação obrigatória
+
+Embora cada setor possua particularidades, a organização documental mínima exigida para a conformidade sanitária inclui:
+
+- O Manual de Boas Práticas atualizado e acessível a todos os funcionários;
+- Procedimentos Operacionais Padronizados, que detalham o passo a passo das rotinas de higienização, controle de temperatura e manuseio de insumos;
+- Registros de monitoramento, como planilhas de controle de estoque, validade de produtos e temperaturas de equipamentos de refrigeração;
+- Certificados de capacitação dos colaboradores, que demonstram o treinamento periódico das equipes;
+- Laudos técnicos e notas fiscais que comprovem a procedência dos itens utilizados na operação.
+
+## A importância do procedimento administrativo
+
+Caso o estabelecimento receba um auto de infração, é fundamental observar os princípios do contraditório e da ampla defesa. O processo administrativo deve ser conduzido respeitando o devido processo legal e a motivação das decisões. Conforme a Lei 9.784/99, aplicável subsidiariamente, os atos administrativos devem ser motivados, com indicação dos fatos e fundamentos jurídicos, conforme os artigos 2º e 50.
+
+O princípio da razoabilidade e da proporcionalidade também deve ser observado pela autoridade sanitária. Caso haja irregularidades, o estabelecimento tem o direito de ser notificado formalmente, sendo-lhe oportunizada a regularização conforme as normas técnicas aplicáveis. Se o estabelecimento for autuado, é necessário avaliar se a descrição dos fatos no auto de infração condiz com a realidade documentada no Manual de Boas Práticas da empresa, sendo possível questionar inconsistências técnicas.
+
+## Como proceder após o recebimento de uma autuação
+
+Receber um auto de infração gera preocupação, mas o foco deve ser a regularização e a organização da defesa. Primeiramente, é imprescindível verificar o prazo indicado no documento recebido. Como a legislação é fragmentada e varia conforme o ente federativo, não existe um prazo único, sendo imperativo conferir a data limite fixada pelo órgão emissor específico no próprio auto.
+
+Se o auto mencionar a ausência de documentação, o primeiro passo é reunir os registros existentes e providenciar a correção das falhas apontadas. Documente a correção com registros fotográficos, notas fiscais e relatórios técnicos. Essa prova documental pode ser essencial tanto para o pedido de reinspeção quanto para subsidiar argumentos em uma defesa administrativa.
+
+Em situações de interdição, a recomendação técnica é a regularização imediata e integral. Nunca retome as atividades antes da liberação oficial do órgão competente, pois o descumprimento pode agravar as sanções previstas na Lei 6.437/77, nos termos dos artigos 10, 31 e 33, gerando maiores prejuízos e riscos ao negócio.
+
+## Análise técnica do seu auto
+
+O processo administrativo sanitário exige atenção aos detalhes e ao cumprimento dos princípios da legalidade e do devido processo legal. A correta interpretação da norma aplicada ao caso concreto pode ser o ponto de partida para a estruturação de uma defesa que busque a regularidade do estabelecimento.
+
+No CheckMulta, é possível enviar o auto de infração da Vigilância Sanitária e receber uma análise que auxilia na identificação de pontos passíveis de recurso administrativo.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "ausencia-de-norma-violada-como-isso-afeta-o-seu-auto-de-infracao",
     titulo: "Ausência de norma violada: como isso afeta o seu auto de infração",
     descricao: "Recebeu um auto de infração da Vigilância Sanitária sem a indicação da norma violada? Entenda por que este erro pode ser um ponto crucial em sua defesa.",
