@@ -12,6 +12,49 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "presuncao-de-legitimidade-o-que-e-e-como-recorrer",
+    titulo: "Presunção de Legitimidade: O que é e como recorrer",
+    descricao: "Entenda o conceito jurídico da presunção de legitimidade das multas de trânsito e descubra se é possível contestar. Analise sua multa grátis no CheckMulta.",
+    categoria: "Jurídico",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-amber-600 to-amber-800",
+    conteudo: `## O que é a presunção de legitimidade?
+
+Quando um agente de trânsito lavra um auto de infração, nasce um documento que, aos olhos da lei, possui fé pública. Isso significa que o Estado assume que aquele registro é verdadeiro e que os fatos descritos pelo agente ocorreram exatamente conforme narrado. Este conceito é conhecido no Direito Administrativo como o princípio da presunção de legitimidade e veracidade dos atos administrativos.
+
+Na prática, isso quer dizer que, para o órgão autuador, o auto de infração é considerado válido até que se prove o contrário. É por essa razão que, ao receber uma notificação, o condutor sente que a batalha já está perdida. No entanto, é fundamental compreender que essa presunção não é absoluta, mas sim relativa.
+
+## Por que a presunção é relativa?
+
+O Direito brasileiro não permite que o cidadão fique indefeso diante de um erro do Estado. A presunção de legitimidade existe para dar agilidade à fiscalização, mas ela pode e deve ser derrubada quando houver indícios de irregularidades. A legislação de trânsito estabelece os requisitos para que um auto de infração seja considerado legal e, caso esses requisitos sejam desrespeitados, a multa perde a sua presunção de veracidade.
+
+## Quando podemos questionar a multa?
+
+Existem diversos pontos onde a presunção de legitimidade pode ser contestada. Como redatores especialistas, analisamos diariamente casos onde falhas formais invalidam o documento. Podemos destacar algumas situações comuns:
+
+* **Erros no preenchimento:** Dados divergentes do veículo, local da infração impreciso ou falta de informações obrigatórias sobre o equipamento de medição.
+* **Ausência de clareza:** O relato do agente é vago ou contraditório, não descrevendo com precisão o comportamento que teria motivado a infração.
+* **Equipamentos irregulares:** Falhas na sinalização ou ausência de manutenção aferida nos radares de velocidade.
+* **Desvio de finalidade:** Quando o auto é utilizado para um fim diferente daquele previsto pela norma, ou quando há abuso de autoridade na aplicação da penalidade.
+
+## O papel do contraditório e da ampla defesa
+
+O motorista possui o direito constitucional de se defender. O processo administrativo de trânsito é o momento de apresentar as provas necessárias para confrontar o que foi registrado no auto. Quando você entra com um recurso, o seu objetivo principal é quebrar essa presunção de legitimidade, apresentando fatos, fotos, documentos ou argumentos jurídicos que demonstrem que a autuação não deveria ter ocorrido.
+
+Não se trata de desqualificar o trabalho do agente, mas sim de garantir que a lei seja aplicada de forma justa. Se o Estado tem a máquina pública a seu favor, o cidadão tem o direito de utilizar o processo administrativo para equilibrar essa balança.
+
+## Como proceder diante de uma autuação?
+
+Muitos condutores pagam a multa imediatamente por acreditarem que não têm chances de reversão. Esse é um equívoco que muitas vezes resulta em prejuízo financeiro e pontuação desnecessária na carteira de habilitação. Antes de realizar o pagamento, o ideal é realizar uma análise técnica do auto de infração. Pequenos detalhes ignorados por quem não conhece as nuances da legislação podem ser a chave para o sucesso do seu recurso.
+
+Lembre-se: o auto de infração é apenas o início do processo, não o veredito final. A presunção de legitimidade é um escudo para o agente de trânsito, mas esse escudo possui frestas que podem ser encontradas por quem domina o procedimento administrativo.
+
+No CheckMulta, você pode enviar o auto de infração para receber uma análise que aponta se há falhas capazes de anular a multa.`,
+    palavrasChave: ["multa de trânsito", "recurso de multa", "presunção de legitimidade", "defesa de trânsito"],
+  },
+
+  {
     slug: "multa-de-radar-na-chuva-e-possivel-recorrer",
     titulo: "Multa de radar na chuva: é possível recorrer?",
     descricao: "Recebeu multa por excesso de velocidade em pista molhada? Entenda se as condições climáticas anulam a autuação e como recorrer. Analise sua multa grátis.",
