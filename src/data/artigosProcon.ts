@@ -12,6 +12,144 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "decisao-do-procon-sem-motivacao-como-questionar-essa-nulidade",
+    titulo: "Decisão do Procon sem motivação: como questionar essa nulidade",
+    descricao: "Recebeu uma decisão do Procon sem justificativa clara? Entenda por que a motivação é obrigatória e como questionar esse vício formal. Avalie seu caso.",
+    categoria: "Vícios e Nulidades",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["decisão Procon sem fundamento", "nulidade processo administrativo", "defesa multa Procon", "vício formal auto de infração"],
+    conteudo: `## A importância da motivação nas decisões administrativas
+
+No âmbito dos processos administrativos conduzidos pelo Procon, um dos princípios fundamentais que regem a atuação estatal é o dever de motivação. Quando uma empresa é autuada, ela não apenas tem o direito de ser informada sobre a infração, mas também de compreender, de maneira inequívoca, os fundamentos fáticos e jurídicos que levaram à imposição de uma sanção. Uma decisão administrativa despida de motivação expressa, clara e coerente é, por definição, um ato que pode padecer de vício de legalidade.
+
+A motivação é a exteriorização das razões que conduziram o julgador a determinada conclusão. Não se trata de uma formalidade burocrática, mas de uma garantia essencial do exercício do contraditório e da ampla defesa. Se a autoridade administrativa aplica uma multa ou impõe uma penalidade sem explicar por que a conduta da empresa configura violação à legislação consumerista, o autuado fica impossibilitado de exercer sua defesa de forma plena, pois não conhece precisamente quais argumentos precisa refutar.
+
+## O que caracteriza a falta de motivação
+
+Muitas vezes, as empresas recebem decisões que utilizam termos genéricos, citações superficiais de leis ou que simplesmente ignoram os argumentos apresentados pela defesa na fase anterior do processo. Esse comportamento configura o que, no Direito Administrativo, denominamos decisão padronizada ou clichê, que não analisa as particularidades do caso concreto.
+
+Para ser válida, a decisão deve conter:
+- A descrição precisa dos fatos que motivaram a autuação.
+- A indicação expressa dos dispositivos legais que teriam sido infringidos.
+- A análise fundamentada das provas apresentadas pela empresa.
+- A demonstração lógica de como os fatos se enquadram na norma jurídica aplicada.
+- A justificativa para a fixação do valor da multa, considerando a legislação e a gravidade da infração.
+
+Quando o Procon emite um despacho que se limita a transcrever o texto da lei ou a dizer que a defesa não foi suficiente sem explicar o porquê, a decisão pode carecer de fundamento. Tal falha constitui um vício formal que pode comprometer a validade do ato.
+
+## Impactos e possibilidades de defesa
+
+A ausência de motivação é um vício que pode levar ao questionamento da validade do ato administrativo. O processo sancionador, regido pelas normas do Código de Defesa do Consumidor e pelos regulamentos que disciplinam os procedimentos administrativos no âmbito do Sistema Nacional de Defesa do Consumidor, exige transparência. Quando a autoridade pública falha nesse dever, abre-se uma possibilidade para questionar a higidez da decisão em instâncias recursais administrativas.
+
+É importante ressaltar que a empresa deve estar atenta aos prazos estipulados para a apresentação de recursos. O prazo varia conforme o órgão e a jurisdição, sendo imprescindível conferir a data limite constante no próprio auto de infração ou na notificação recebida, observando as normas locais de cada Procon. Ignorar uma decisão, mesmo que ela pareça mal fundamentada, pode resultar na perda da oportunidade de questionar a punição.
+
+## Como proceder diante de um ato viciado
+
+Ao identificar uma decisão carente de fundamentação, o foco da estratégia de defesa deve ser a demonstração técnica desse vício. Argumentar que a decisão é genérica e que não enfrentou os pontos cruciais da defesa anterior é um caminho para buscar a reforma do ato. A análise do processo deve ser minuciosa, comparando o que foi alegado pela empresa com o que foi efetivamente respondido pelo órgão julgador.
+
+O objetivo de apontar esse vício é exigir que o Estado cumpra o seu dever de fundamentar suas decisões, garantindo o devido processo legal a todos os envolvidos. O uso de modelos prontos de resposta por parte dos órgãos públicos é um desafio constante para o setor privado, e a detecção precoce dessas falhas é fundamental para o sucesso de uma estratégia de defesa administrativa.
+
+No CheckMulta, é possível enviar o auto de infração do Procon para obter uma análise sobre a presença de vícios formais na autuação. Nossa ferramenta auxilia gestores a entenderem a situação do processo e identificarem se há margem para questionar tecnicamente a decisão recebida.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "contagem-de-prazo-de-defesa-em-autuacoes-do-procon-guia-pratico",
+    titulo: "Contagem de prazo de defesa em autuações do Procon: Guia Prático",
+    descricao: "Recebeu uma autuação do Procon? Entenda como realizar a contagem correta do prazo para sua defesa administrativa e evite a revelia. Analise seu auto agora.",
+    categoria: "Prazos e Procedimento",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["prazo defesa Procon", "auto de infração Procon", "processo administrativo Procon", "como responder multa Procon"],
+    conteudo: `## A importância da tempestividade no processo administrativo
+
+Receber um auto de infração de um órgão de proteção ao consumidor gera apreensão em qualquer gestor ou proprietário de empresa. No entanto, o primeiro passo após o susto inicial não é o desespero, mas a organização do calendário administrativo. A tempestividade, ou seja, a entrega da defesa dentro do prazo estabelecido, é o requisito essencial para que os argumentos da empresa sejam apreciados pela autoridade julgadora.
+
+A perda de um prazo administrativo pode resultar na decretação da revelia. Em termos práticos, isso significa que a autoridade administrativa pode considerar como verdadeiros os fatos narrados no auto de infração, limitando a capacidade da empresa de apresentar suas provas ou contestar a narrativa da fiscalização. Portanto, compreender como realizar a contagem correta do prazo é a estratégia mais básica e eficaz para proteger o direito de defesa do seu negócio.
+
+## Onde encontrar o prazo correto
+
+A legislação que rege o processo administrativo sancionador no âmbito consumerista possui abrangência federal, mas permite que legislações estaduais e municipais estabeleçam ritos próprios. Por essa razão, existe uma variação significativa no prazo concedido para a apresentação da defesa escrita.
+
+O Código de Defesa do Consumidor e a legislação federal aplicável estabelecem diretrizes gerais para o processo, contudo, é indispensável observar que Procons estaduais e municipais, por possuírem autonomia em temas de processo administrativo, frequentemente determinam prazos diversos.
+
+Regra fundamental: Não presuma o prazo com base em informações de terceiros ou experiências anteriores em outros estados. O número exato de dias para a apresentação da sua defesa estará impresso no próprio auto de infração ou na notificação enviada pelo órgão. Este é o documento oficial que define o seu cronograma.
+
+## Como realizar a contagem dos dias
+
+No direito administrativo, a regra geral para a contagem de prazos processuais costuma excluir o dia do começo e incluir o dia do vencimento. Isso significa que, se a notificação foi formalizada em determinada data, este dia geralmente não é contabilizado no prazo, iniciando-se a contagem no primeiro dia útil subsequente.
+
+Outro ponto relevante diz respeito à forma de contagem: dias corridos ou dias úteis. A legislação federal opera de forma específica, mas a leitura atenta do auto de infração e da norma local aplicada pelo órgão é obrigatória para verificar qual critério deve ser adotado. Se o prazo terminar em um final de semana ou feriado, a regra padrão costuma prever a prorrogação até o primeiro dia útil seguinte, mas esta interpretação pode variar conforme o regimento interno do órgão autuador.
+
+## Pontos de atenção no recebimento da notificação
+
+- Data da juntada: Em muitos casos, o prazo não começa necessariamente na data em que a correspondência foi entregue na sua empresa, mas sim na data em que o aviso de recebimento ou o comprovante de entrega é juntado aos autos do processo. Verifique sempre o portal oficial do Procon onde o processo tramita para confirmar a data de início da contagem oficial.
+- Endereço desatualizado: Caso a notificação tenha sido enviada para um endereço antigo e a empresa não tenha realizado a atualização cadastral, o Procon pode considerar a notificação válida. Isso reforça a necessidade de manter o cadastro da empresa sempre em dia junto aos órgãos competentes.
+- Dias úteis vs corridos: Verifique se o órgão utiliza normas de processo civil de forma subsidiária para a contagem de prazos em dias úteis ou se mantém a regra de dias corridos própria do procedimento administrativo específico.
+
+## Estratégia de defesa
+
+A análise do prazo é apenas o início do trabalho. Uma vez identificado o tempo disponível, a empresa deve focar na estruturação dos argumentos de fato e de direito. A defesa administrativa é o momento oportuno para questionar a adequação da sanção, a existência de vícios formais no preenchimento do auto de infração ou a fundamentação da penalidade aplicada.
+
+No CheckMulta, é possível enviar o auto de infração do Procon para obter uma análise que auxilie a identificar se a autuação apresenta vícios formais ou outros elementos que podem ser arguidos em sede de defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "erro-na-identificacao-da-empresa-autuada-como-agir-no-processo",
+    titulo: "Erro na identificação da empresa autuada: como agir no processo",
+    descricao: "Recebeu um auto de infração do Procon com dados incorretos? Entenda como o vício na identificação da empresa pode impactar a sua defesa administrativa.",
+    categoria: "Vícios e Nulidades",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["erro no auto de infração", "defesa Procon empresa", "nulidade processo administrativo", "notificação Procon incorreta"],
+    conteudo: `## A importância da correta identificação no processo administrativo
+
+O processo administrativo sancionador, instaurado pelo Procon para apurar supostas violações às normas consumeristas, é regido por princípios fundamentais que garantem a segurança jurídica tanto do órgão fiscalizador quanto da empresa autuada. Dentre esses requisitos essenciais, a correta identificação do sujeito passivo — a empresa autuada — ocupa posição de destaque. A emissão de um auto de infração que contenha erros na qualificação da pessoa jurídica não é apenas um detalhe administrativo; trata-se de um ponto que pode comprometer a validade do procedimento desde a sua origem.
+
+Quando um agente fiscalizador preenche um auto de infração, a precisão das informações é mandatória. O documento deve indicar com clareza a razão social, o CNPJ e o endereço correto do estabelecimento fiscalizado. Se esses dados apresentam divergências significativas, é possível sustentar que o ato administrativo está maculado por um vício formal.
+
+## Natureza do vício na identificação
+
+A legislação que rege o processo administrativo no âmbito do direito do consumidor impõe que o auto de infração contenha elementos específicos para garantir o pleno exercício da ampla defesa e do contraditório. Se a empresa autuada é identificada erroneamente — seja por erro no nome empresarial ou por indicação de CNPJ pertencente a outra unidade ou empresa distinta — a notificação perde o seu objeto primário: comunicar o alvo correto sobre a existência de uma acusação.
+
+Em termos técnicos, esse erro pode ser classificado como um vício de competência ou um defeito na notificação. Se a empresa não foi devidamente identificada, há uma falha no fluxo processual. Sem a correta qualificação da pessoa jurídica, o Procon não consegue estabelecer o nexo de causalidade entre a conduta infracional e o agente que deve responder por ela perante o órgão.
+
+## Como proceder diante da incorreção
+
+Ao receber um auto de infração, o primeiro passo do responsável pela empresa deve ser uma leitura minuciosa de todos os campos preenchidos. Se for constatado que o nome ou o CNPJ não correspondem à sua operação, essa questão deve ser trazida à tona logo na fase de defesa administrativa. Os principais pontos a considerar incluem:
+
+- Verificação da consistência dos dados do CNPJ com o cadastro na Receita Federal.
+- Análise se o erro na identificação impossibilita a correta identificação do local ou da prática da infração.
+- Identificação de possíveis prejuízos ao exercício da ampla defesa em razão da dubiedade sobre qual unidade ou entidade está sendo processada.
+
+É fundamental destacar que nem todo erro gera, de forma automática, a nulidade de todo o processo. Contudo, em diversas situações, falhas graves de qualificação abrem margem para questionar a higidez do auto de infração. A autoridade administrativa, ao analisar a defesa, deverá verificar se o erro é sanável ou se a falha é tão grave que compromete a própria existência da relação processual.
+
+## Prazos e cautelas importantes
+
+Independentemente da existência de erros no auto, é vital que a empresa observe rigorosamente o prazo de defesa indicado no documento recebido. A legislação prevê parâmetros gerais, mas cada Procon estadual ou municipal pode ter regras específicas sobre o prazo de contestação. Jamais presuma um prazo genérico; verifique a informação constante no próprio auto de infração ou na notificação anexa.
+
+A ausência de resposta dentro do prazo estabelecido pode resultar na revelia e no prosseguimento do processo, o que pode agravar a situação, independentemente de o erro de identificação ser crasso ou não. O questionamento sobre a qualificação deve ser feito dentro da manifestação formal encaminhada ao Procon, preferencialmente com o suporte de uma análise técnica que verifique se outros vícios também não estão presentes.
+
+## O papel da defesa administrativa
+
+A defesa em um processo administrativo não se limita a negar a infração. Ela engloba a verificação da legalidade de todo o rito, desde a lavratura do auto até a tramitação interna no órgão. Argumentar sobre o erro na identificação é uma estratégia que pode demonstrar que o processo não atende aos requisitos formais exigidos pela legislação vigente, reforçando que a Administração Pública deve agir dentro da mais estrita legalidade.
+
+No CheckMulta, é possível enviar o auto de infração do Procon para obter uma análise técnica que aponta se a autuação apresenta vício formal, incluindo erros de qualificação e identificação da empresa autuada.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "audiencia-de-conciliacao-no-procon-o-guia-completo-para-empresas",
     titulo: "Audiência de Conciliação no Procon: O Guia Completo para Empresas",
     descricao: "Recebeu uma notificação do Procon? Entenda o que é a audiência de conciliação, como se preparar adequadamente e os próximos passos para sua empresa.",
