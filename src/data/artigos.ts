@@ -12,6 +12,58 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "como-acompanhar-o-andamento-de-um-recurso-de-multa-em-2026",
+    titulo: "Como acompanhar o andamento de um recurso de multa em 2026",
+    descricao: "Entenda o passo a passo para consultar o status do seu recurso de trânsito e saber se sua defesa foi aceita. Analise sua multa gratuitamente no CheckMulta.",
+    categoria: "Processo de Recurso",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🔍",
+    imagemBg: "from-sky-600 to-sky-800",
+    conteudo: `## Como acompanhar o andamento de um recurso de multa
+
+Receber uma notificação de infração de trânsito é uma situação estressante para qualquer motorista. Após protocolar a defesa ou o recurso, a ansiedade em saber o resultado é natural. Com a digitalização dos serviços públicos, o processo de acompanhamento tornou-se muito mais acessível, mas ainda exige atenção aos canais oficiais.
+
+Neste artigo, explicamos como você pode monitorar o seu processo sem cair em golpes e de forma totalmente segura.
+
+## Por onde começar o acompanhamento
+
+O primeiro passo para saber em que fase está o seu recurso é identificar o órgão autuador. A multa foi aplicada pelo Detran, por uma prefeitura ou pelo órgão rodoviário federal? Essa informação é crucial, pois cada órgão mantém seu próprio sistema de consulta.
+
+A maioria dos estados brasileiros unificou o acesso através de portais de serviços digitais. Ao acessar o site oficial do Detran do seu estado ou o portal nacional de serviços de trânsito, você encontrará uma área específica dedicada ao Acompanhamento de Processos ou Consultar Infrações.
+
+## O passo a passo para a consulta
+
+Para consultar o status do seu recurso, você geralmente precisará dos seguintes dados em mãos:
+
+* Número do auto de infração ou da notificação.
+* Número da placa do veículo.
+* Número do Renavam.
+* Número do processo administrativo (se já tiver sido gerado).
+
+Ao inserir esses dados nos campos indicados, o sistema retornará o status atual da sua solicitação. Os termos mais comuns que você pode encontrar são:
+
+- **Em análise:** O órgão de trânsito ainda está avaliando as suas alegações e os documentos anexados.
+- **Deferido:** A sua defesa foi aceita e a multa será cancelada, com a pontuação sendo removida do prontuário.
+- **Indeferido:** O recurso foi negado. Neste caso, é importante verificar se ainda existe a possibilidade de recorrer a uma instância superior, conforme previsto na legislação.
+- **Em diligência:** O órgão solicitou mais informações ou documentos para prosseguir com a análise.
+
+## Dicas importantes para não perder prazos
+
+O processo administrativo de trânsito é rigoroso quanto aos prazos. Mesmo que você esteja acompanhando o recurso, é fundamental ficar atento a:
+
+1. **Notificações por correspondência:** Nem todos os órgãos atualizaram seus sistemas para avisar via e-mail ou SMS. Fique atento ao endereço cadastrado no órgão de trânsito.
+2. **Acesso aos sistemas oficiais:** Utilize apenas o site oficial do governo ou os sites dos órgãos estaduais de trânsito. Evite sites de terceiros que solicitam documentos pessoais sem transparência.
+3. **Mudança de instância:** Caso o recurso na primeira instância seja indeferido, não desanime. A legislação garante o direito de recorrer a outras instâncias administrativas antes de encerrar o processo. Observe o prazo estabelecido na comunicação oficial para apresentar o novo recurso.
+
+## Quando buscar ajuda especializada?
+
+Muitas vezes, a complexidade dos argumentos jurídicos ou a falta de clareza sobre erros formais no auto de infração dificultam o sucesso do recurso. Se você sente que a sua defesa não foi bem elaborada ou se a notificação apresenta vícios, buscar uma análise técnica pode ser o diferencial para evitar pontos na carteira e gastos desnecessários com multas.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. O acompanhamento contínuo e a base técnica correta são os melhores aliados para proteger o seu direito de dirigir.`,
+    palavrasChave: ["recurso de multa", "consulta de processos", "Detran", "defesa de trânsito"],
+  },
+
+  {
     slug: "presuncao-de-legitimidade-o-que-e-e-como-recorrer",
     titulo: "Presunção de Legitimidade: O que é e como recorrer",
     descricao: "Entenda o conceito jurídico da presunção de legitimidade das multas de trânsito e descubra se é possível contestar. Analise sua multa grátis no CheckMulta.",
