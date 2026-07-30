@@ -1,0 +1,13 @@
+{
+  "name": "robo-reddit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Robô monitor de backlinks do CheckMulta — busca perguntas sobre multas no Reddit e abre issue no GitHub com rascunhos.",
+  "scripts": {
+    "start": "tsx robo-reddit.ts"
+  },
+  "dependencies": {
+    "tsx": "^4.19.2"
+  }
+}
