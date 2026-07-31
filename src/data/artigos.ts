@@ -12,6 +12,55 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "como-acompanhar-o-andamento-do-seu-recurso-de-multa-em-2026",
+    titulo: "Como acompanhar o andamento do seu recurso de multa em 2026",
+    descricao: "Entenda como monitorar o status do seu recurso de multa de trânsito em 2026 e saiba como verificar o resultado do processo. Analise sua multa grátis.",
+    categoria: "Processo de Recurso",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🔍",
+    imagemBg: "from-blue-600 to-blue-800",
+    conteudo: `## Acompanhando o seu recurso: o que você precisa saber
+
+Receber uma autuação de trânsito gera muitas dúvidas, e a ansiedade sobre o resultado de um recurso é perfeitamente compreensível. Os processos administrativos de trânsito estão cada vez mais digitais, o que facilita o acesso às informações, mas também exige atenção a detalhes importantes. Se você entrou com um recurso contra uma multa, saiba que acompanhar o andamento é fundamental para garantir seus direitos.
+
+## Por onde começar o monitoramento?
+
+A forma mais rápida de verificar o status do seu processo é por meio dos canais oficiais do órgão autuador. Seja o DETRAN do seu estado, a Polícia Rodoviária Federal ou órgãos municipais de trânsito, a maioria disponibiliza uma área específica chamada 'Consulta de Processos' ou 'Acompanhamento de Recursos' em seus portais oficiais.
+
+Para acessar, geralmente você precisará de:
+
+* O número do auto de infração ou da placa do veículo;
+* O número do documento de habilitação ou RENAVAM;
+* A senha do portal gov.br, que centraliza muitos dos serviços públicos federais e estaduais.
+
+## Etapas do julgamento administrativo
+
+O processo de defesa costuma seguir uma lógica hierárquica. Primeiro, o recurso é encaminhado para a JARI (Junta Administrativa de Recursos de Infrações). Se não houver sucesso nessa fase, ainda cabe recurso ao órgão julgador de segunda instância, dependendo da esfera da autuação. Durante o acompanhamento, você encontrará status variados, como:
+
+* **Em análise:** seu recurso foi recebido e está aguardando a vez na fila dos julgadores.
+* **Em diligência:** o órgão solicitou informações extras ou documentos complementares.
+* **Deferido:** a defesa foi aceita e a multa será cancelada ou os pontos não serão computados.
+* **Indeferido:** o recurso foi negado. Neste caso, observe se ainda há instâncias superiores para recorrer.
+
+## Por que a notificação é essencial?
+
+Embora o sistema online seja a melhor forma de monitorar, o órgão de trânsito tem o dever legal de informar o resultado das decisões por meio de notificações oficiais. Elas podem chegar pelo correio, no endereço cadastrado no sistema, ou eletronicamente, caso você utilize o sistema de notificação eletrônica. É vital que seu cadastro esteja sempre atualizado junto ao DETRAN para não perder prazos por falta de comunicação.
+
+## O que fazer se o recurso demorar?
+
+A legislação de trânsito prevê que os processos devem ser julgados dentro de prazos razoáveis. Entretanto, o volume de recursos pode gerar morosidade. Caso o processo fique parado por um tempo excessivo, sem qualquer atualização, é importante verificar se não houve alguma falha na entrega da notificação ou se o processo está em alguma etapa específica de tramitação interna.
+
+## Atenção aos detalhes técnicos
+
+Muitas vezes, a demora no julgamento ou o indeferimento ocorrem devido a falhas na fundamentação da defesa. O sucesso de um recurso não depende apenas de esperar, mas de apresentar argumentos técnicos sólidos, baseados nas falhas formais contidas no próprio auto de infração. Erros na marcação da hora, local incorreto ou ausência de dados obrigatórios são pontos que os julgadores avaliam com rigor.
+
+O acompanhamento constante evita que você seja surpreendido pela cobrança da multa ou pela pontuação indevida na CNH enquanto o processo ainda está em discussão. Mantenha sempre o protocolo de entrega do seu recurso guardado; ele é a sua maior prova de que você exerceu o direito à ampla defesa dentro do prazo legal.
+
+Se você deseja saber se o seu auto de infração possui falhas técnicas que podem ser exploradas em um recurso, conheça o CheckMulta. No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa, garantindo que sua defesa seja muito mais assertiva desde o primeiro passo.`,
+    palavrasChave: ["recurso de multa", "acompanhar recurso", "DETRAN", "defesa de trânsito"],
+  },
+
+  {
     slug: "como-acompanhar-o-andamento-de-um-recurso-de-multa-em-2026",
     titulo: "Como acompanhar o andamento de um recurso de multa em 2026",
     descricao: "Entenda o passo a passo para consultar o status do seu recurso de trânsito e saber se sua defesa foi aceita. Analise sua multa gratuitamente no CheckMulta.",
