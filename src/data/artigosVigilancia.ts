@@ -12,6 +12,161 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "documentacao-sanitaria-o-que-todo-estabelecimento-deve-manter",
+    titulo: "Documentação sanitária: o que todo estabelecimento deve manter",
+    descricao: "Saiba quais documentos são essenciais para evitar autuações da Vigilância Sanitária e como se organizar. Analise seu auto de infração gratuitamente.",
+    categoria: "Boas Práticas",
+    tempoLeitura: "5 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-emerald-50 to-teal-50",
+    palavrasChave: ["auto de infração vigilância sanitária", "documentos exigidos vigilância sanitária", "regularização sanitária", "defesa administrativa sanitária"],
+    conteudo: `## A importância da organização documental na rotina sanitária
+
+A operação de estabelecimentos que lidam com a saúde pública, como restaurantes, farmácias e clínicas, está intrinsecamente ligada à manutenção de um conjunto probatório documental. A Vigilância Sanitária atua com base no poder de polícia administrativa, visando a proteção do interesse coletivo. Nesse contexto, a ausência ou desatualização de registros não é apenas uma falha administrativa, mas um risco direto à conformidade do seu negócio diante da fiscalização.
+
+## Documentos fundamentais para a regularidade
+
+Embora cada jurisdição possua competências específicas, a base documental exigida segue uma lógica de controle de processos e rastreabilidade. Para qualquer estabelecimento, é fundamental manter organizados:
+
+- Licença ou Alvará Sanitário vigente: O documento que atesta que o local atende às exigências mínimas para o funcionamento.
+- Manuais de Boas Práticas: Documento descritivo das rotinas operacionais e dos procedimentos de higiene.
+- Procedimentos Operacionais Padronizados: Registros que detalham o passo a passo de atividades críticas, como a higienização de instalações e o manejo de resíduos.
+- Registros de monitoramento: Planilhas de temperatura de equipamentos de refrigeração, controle de pragas e registros de limpeza.
+- Documentação de pessoal: Comprovação de capacitação técnica dos funcionários e registros de saúde ocupacional.
+
+## O papel da Lei Federal 6.437/77
+
+A Lei 6.437/77 estabelece as normas para a apuração de infrações à legislação sanitária. Conforme o seu art. 2º, a autoridade sanitária deve observar rigorosamente os preceitos legais ao autuar um estabelecimento. Caso o auto de infração não descreva com clareza o fato ou o fundamento legal violado, podem surgir questionamentos baseados nos princípios da motivação e da legalidade.
+
+## O processo administrativo e o direito de defesa
+
+Ao receber um auto de infração, o estabelecimento passa a figurar em um processo administrativo. É fundamental observar o que estabelece a Lei 9.784/99, aplicável subsidiariamente, que garante ao administrado o direito ao contraditório e à ampla defesa. O art. 2º e o art. 50 desta lei, aplicáveis subsidiariamente, reforçam que a Administração Pública deve obedecer aos princípios da razoabilidade e da proporcionalidade, o que significa que a penalidade imposta deve ser adequada ao dano ou ao risco causado.
+
+## Como proceder diante de um auto de infração
+
+Caso o seu estabelecimento seja autuado, o primeiro passo é verificar o documento recebido e identificar o prazo para apresentação de defesa, que varia conforme a legislação local. Nunca ignore a notificação. 
+
+Se houver exigência de adequação ou, em casos mais graves, interdição, a postura correta é realizar as correções necessárias imediatamente. Documente todo o processo de regularização: tire fotos, guarde notas fiscais de serviços de limpeza ou manutenção e obtenha laudos técnicos. Esta documentação será a base para requerer a reinspeção pelo órgão fiscalizador. É imprescindível destacar que a retomada das atividades após uma interdição somente pode ocorrer mediante autorização formal da autoridade sanitária competente.
+
+## A análise técnica da autuação
+
+Nem todo auto de infração é irrefutável. Falhas na descrição dos fatos, ausência de motivação adequada ou a aplicação de penalidade desproporcional à gravidade da situação, conforme arts. 3º, 4º, 10, 31 e 33 da Lei 6.437/77, podem ser fundamentos para a elaboração de uma defesa administrativa. O princípio do devido processo legal assegura que o responsável pelo estabelecimento possa apresentar seus argumentos antes que qualquer sanção definitiva seja consolidada.
+
+O envio do auto de infração da Vigilância Sanitária para análise técnica pode auxiliar na identificação de eventuais irregularidades no procedimento fiscalizatório, o que pode servir de base para a construção de um recurso administrativo.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "como-realizar-a-contagem-do-prazo-de-defesa-em-autos-de-infracao",
+    titulo: "Como realizar a contagem do prazo de defesa em autos de infração",
+    descricao: "Entenda a importância de identificar o prazo correto para a apresentação de defesa administrativa em casos de autuação pela Vigilância Sanitária.",
+    categoria: "Prazos e Procedimento",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["prazo defesa vigilância sanitária", "auto de infração processo administrativo", "como recorrer multa sanitária", "prazo recurso vigilância"],
+    conteudo: `## A importância da contagem de prazos no processo administrativo
+
+Receber um auto de infração da Vigilância Sanitária gera um impacto imediato na rotina de qualquer estabelecimento. Seja uma padaria, um salão de beleza ou uma clínica, a notificação de uma irregularidade impõe a necessidade de uma resposta técnica e tempestiva. O cumprimento dos prazos processuais não é apenas uma formalidade, mas um dos pilares que garantem o exercício do contraditório e da ampla defesa.
+
+O processo administrativo, que rege a relação entre o Estado e o estabelecimento autuado, deve observar o devido processo legal. Nesse cenário, o prazo para a apresentação de defesa é o período em que o responsável legal ou o técnico possui para reunir evidências, verificar a conformidade com as normas sanitárias vigentes e protocolar a sua peça de defesa. O descumprimento desse período pode levar à perda da oportunidade de questionar os fatos e os fundamentos jurídicos da autuação.
+
+## A fragmentação normativa e a identificação do prazo
+
+Um ponto que gera frequentes dúvidas entre os empresários é a diversidade de normas existentes. No âmbito federal, a Lei 6.437/77 (arts. 2º, 3º, 4º, 10, 31 e 33) estabelece as normas para infrações à legislação sanitária. No entanto, é fundamental compreender que cada ente federativo — estados e municípios — possui autonomia para legislar sobre suas próprias estruturas de fiscalização e prazos administrativos.
+
+Como o procedimento varia conforme a legislação sanitária local aplicável, não existe uma regra única de contagem que se aplique universalmente a todos os estabelecimentos do país. Por esse motivo, o primeiro passo após o recebimento de um auto de infração é a leitura minuciosa do documento recebido. O prazo para defesa é, invariavelmente, indicado pelo próprio órgão fiscalizador no momento da autuação ou em notificação subsequente.
+
+Se o documento não estiver claro quanto ao prazo, ou se houver divergências interpretativas, é prudente contatar o órgão emissor da autuação para esclarecimentos. A segurança jurídica do seu negócio depende dessa conferência precisa junto ao órgão competente.
+
+## Princípios aplicáveis ao processo administrativo
+
+Ao estruturar uma defesa, deve-se sempre observar o que está previsto na Lei 9.784/99 (arts. 2º e 50, aplicáveis subsidiariamente), que traz diretrizes fundamentais para os processos administrativos. Entre elas, destacam-se os princípios da:
+
+- Legalidade: a atuação da vigilância deve estar estritamente vinculada ao que a lei permite.
+- Motivação: todo ato administrativo deve ser fundamentado, expondo as razões de fato e de direito que levaram à autuação.
+- Proporcionalidade e Razoabilidade: a penalidade aplicada deve ser compatível com a gravidade da infração cometida, observando o que determina a Lei 6.437/77.
+
+Estes princípios são balizadores para qualquer manifestação apresentada pela defesa. O processo deve ser conduzido de modo que a Administração Pública atue com eficiência e respeito aos direitos dos administrados.
+
+## O que fazer ao receber um auto de infração
+
+Independentemente do prazo, algumas ações devem ser imediatas. Se a autuação envolver uma ordem de interdição ou suspensão de atividade, o estabelecimento deve, obrigatoriamente, manter as atividades paralisadas até a obtenção da liberação oficial do órgão sanitário. O descumprimento desta ordem é uma infração grave, podendo resultar em novas penalidades e no agravamento da situação jurídica do estabelecimento.
+
+Em casos onde irregularidades foram apontadas, o estabelecimento deve iniciar o processo de correção. A prova documental é o alicerce para uma solicitação de reinspeção ou para embasar uma defesa administrativa:
+
+- Registros fotográficos do antes e depois da regularização.
+- Notas fiscais de compra de insumos, equipamentos ou serviços de controle de pragas.
+- Laudos técnicos emitidos por profissionais habilitados.
+- Manuais de boas práticas e registros de treinamento de equipe.
+
+Estes documentos, quando organizados e apresentados de forma coerente, auxiliam na comprovação de que o estabelecimento está empenhado em atender às exigências sanitárias, o que pode favorecer a análise da autoridade competente.
+
+## A busca por orientação especializada
+
+O processo administrativo é técnico e exige atenção aos detalhes. A forma como os argumentos são construídos pode influenciar a análise da autoridade sanitária. Questões como a possível nulidade do auto por vício de forma ou a desproporcionalidade da multa aplicada podem ser arguidas em defesa, sempre respeitando os prazos legais impostos pela autoridade.
+
+A análise técnica de um auto de infração pode auxiliar na identificação de falhas processuais que eventualmente fundamentem um recurso administrativo, aumentando as possibilidades de uma revisão favorável na esfera competente.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "cancelamento-de-licenca-sanitaria-como-reagir-e-reverter-a-situacao",
+    titulo: "Cancelamento de licença sanitária: como reagir e reverter a situação",
+    descricao: "Recebeu um cancelamento de licença sanitária? Entenda os fundamentos legais para recorrer e como organizar sua defesa técnica. Verifique seu auto gratuitamente.",
+    categoria: "Penalidades",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-amber-50 to-orange-50",
+    palavrasChave: ["cancelamento de licença sanitária", "recurso Vigilância Sanitária", "defesa processo administrativo sanitário", "regularização alvará sanitário"],
+    conteudo: `## Compreendendo o cancelamento da licença sanitária
+
+O cancelamento da licença ou do alvará sanitário é uma das medidas mais severas que um estabelecimento pode enfrentar no âmbito da fiscalização sanitária. Quando o órgão competente decide por esta penalidade, o impacto operacional é imediato, forçando a interrupção das atividades. Compreender o que fundamenta essa decisão e como estruturar uma defesa técnica é um passo relevante para buscar o restabelecimento da conformidade.
+
+A penalidade de cancelamento de licença é o desdobramento de um processo administrativo sanitário. A Lei nº 6.437/77 (arts. 2º, 3º, 4º, 10, 31, 33) estabelece as bases para as infrações à legislação sanitária e determina os procedimentos para a aplicação de penalidades, servindo como referência estrutural para a administração pública em diversas esferas.
+
+## A importância dos princípios administrativos
+
+Para que o cancelamento de uma licença seja considerado válido, ele deve estar alinhado com princípios fundamentais do direito. A administração pública, ao exercer seu poder de polícia, está vinculada aos seguintes conceitos:
+
+- Princípio da Legalidade: A autoridade sanitária deve observar os limites impostos pela legislação. Se não houver previsão legal específica que justifique o cancelamento para aquela irregularidade, o ato pode ser questionado.
+- Princípio da Motivação: Conforme o art. 50 da Lei nº 9.784/99 (aplicável subsidiariamente), todo ato administrativo que negue, limite ou afete direitos deve ser fundamentado. O órgão deve expor com clareza os fatos e a norma que levou ao cancelamento.
+- Princípio da Proporcionalidade e Razoabilidade: A penalidade aplicada deve ser compatível com a gravidade da infração. Se a irregularidade for sanável, o cancelamento definitivo da licença pode ser objeto de discussão quanto à sua adequação.
+- Princípio do Devido Processo Legal: O estabelecimento tem o direito de ser ouvido antes que uma penalidade definitiva seja imposta.
+- Princípios do Contraditório e Ampla Defesa: É direito do autuado apresentar provas e argumentos que contraponham a decisão da fiscalização.
+
+## Como iniciar o processo de reversão
+
+Ao receber o auto de infração que comunica o cancelamento da licença, a primeira providência é identificar o prazo para apresentação de defesa ou recurso. Este prazo não é universal, pois varia conforme as normas aplicáveis na localidade do estabelecimento. Consulte sempre o próprio documento de autuação para verificar o prazo estipulado pelo órgão emissor.
+
+Para estruturar uma defesa, é recomendável reunir provas técnicas que demonstrem que a situação que motivou a penalidade foi corrigida ou que a decisão administrativa merece revisão. Documente as adequações realizadas:
+
+- Registros fotográficos do antes e depois das correções feitas no estabelecimento.
+- Notas fiscais de compra de materiais, equipamentos ou insumos necessários para a regularização.
+- Laudos técnicos emitidos por profissionais capacitados que comprovem a conformidade sanitária atual.
+- Manuais de boas práticas atualizados e evidências de treinamento de pessoal.
+
+## A fase de reinspeção e regularização
+
+É fundamental destacar que, em situações de interdição ou cassação de licença, o estabelecimento não deve retomar suas atividades sem a devida autorização ou levantamento oficial da medida. A operação sem a licença vigente pode gerar novas autuações e agravar a situação jurídica do negócio. O caminho adequado é protocolar o pedido de reinspeção junto ao órgão sanitário, acompanhado de toda a documentação comprobatória das melhorias. A regularização é um passo indispensável para o levantamento de qualquer restrição administrativa.
+
+O art. 2º da Lei nº 6.437/77 enfatiza que a autoridade sanitária deve atuar de forma a garantir a saúde pública, o que pressupõe uma análise técnica sobre o risco oferecido pelo estabelecimento. Se o risco foi mitigado, o pedido de reconsideração ou recurso pode ser fundamentado na demonstração dessa nova realidade.
+
+## Quando buscar suporte técnico
+
+O processo administrativo é um rito técnico. Muitas vezes, a autuação pode apresentar vícios formais, como a falta de descrição clara da irregularidade ou a ausência de base legal fundamentada no ato da infração. Analisar a autuação sob a ótica da Lei nº 9.784/99 (aplicável subsidiariamente) permite identificar se o processo seguiu a forma correta e se a decisão respeitou os princípios da administração pública.
+
+A busca por suporte especializado pode auxiliar na análise do auto de infração da Vigilância Sanitária para verificar se a autuação apresenta elementos que fundamentem um recurso administrativo.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "interdicao-cautelar-vs-penalidade-entenda-a-diferenca-na-pratica",
     titulo: "Interdição Cautelar vs. Penalidade: Entenda a Diferença na Prática",
     descricao: "Recebeu uma interdição da Vigilância Sanitária? Entenda a diferença entre a medida cautelar e a penalidade definitiva e como agir. Analise seu auto grátis.",
