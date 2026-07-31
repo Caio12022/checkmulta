@@ -12,6 +12,137 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "auto-de-infracao-do-procon-por-que-nao-pagar-imediatamente",
+    titulo: "Auto de infração do Procon: por que não pagar imediatamente",
+    descricao: "Recebeu uma multa do Procon? Entenda os riscos de realizar o pagamento antes de uma análise técnica detalhada do seu processo administrativo. Saiba mais aqui.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["multa Procon", "defesa administrativa Procon", "auto de infração empresa", "processo administrativo Procon"],
+    conteudo: `## A importância de analisar o auto de infração antes de qualquer medida
+
+Receber um auto de infração do Procon é uma situação que exige atenção imediata, mas não necessariamente uma reação impulsiva. Muitos gestores, ao se depararem com a notificação, tendem a realizar o pagamento antecipado sob a premissa de que isso encerra o problema ou reduz custos. No entanto, o pagamento do valor integral sem a devida contestação pode significar a perda de uma oportunidade estratégica de defesa e a aceitação tácita de uma penalidade que, muitas vezes, pode apresentar vícios formais ou materiais.
+
+## O pagamento como reconhecimento da infração
+
+Do ponto de vista jurídico, o pagamento da multa imposta em um processo administrativo sancionador pode ser interpretado como o reconhecimento da responsabilidade pela conduta apontada pelo órgão. Ao quitar o débito sem questionar os fundamentos do auto de infração, a empresa pode encerrar a discussão sobre a legalidade daquela autuação.
+
+É fundamental compreender que o Procon, ao instaurar um processo administrativo, deve seguir ritos processuais rigorosos definidos pelo Código de Defesa do Consumidor e pela legislação que regulamenta a fiscalização das relações de consumo. Se o auto de infração contiver erros técnicos, falhas na descrição da conduta ou desproporcionalidade na aplicação da pena, esses pontos podem ser questionados antes de qualquer recolhimento de valores.
+
+## Riscos comuns em autos de infração
+
+Nem sempre a autuação está em plena conformidade com a legislação. O processo administrativo é um instrumento de garantia da legalidade, e a defesa administrativa serve justamente para apontar eventuais desvios. Entre as questões frequentemente levantadas em defesas técnicas, destacam-se:
+
+- Inconsistência na descrição dos fatos que geraram a autuação.
+- Falta de fundamentação legal clara para a aplicação da penalidade.
+- Inobservância dos princípios da razoabilidade e da proporcionalidade no cálculo da multa.
+- Erros na notificação ou na condução do procedimento administrativo pelo agente fiscalizador.
+
+Ao pagar o boleto imediatamente, a empresa pode descartar a possibilidade de arguir esses pontos perante a autoridade administrativa, perdendo a chance de buscar a anulação do auto ou, no mínimo, a redução do impacto financeiro da penalidade.
+
+## Atenção aos prazos processuais
+
+Um dos erros mais comuns das empresas é a desatenção quanto aos prazos para a apresentação da defesa. Diferente de outras esferas, os prazos administrativos no âmbito dos Procons variam conforme a legislação estadual ou municipal aplicável. É imprescindível que o gestor verifique o prazo indicado diretamente no corpo do auto de infração recebido. Ignorar esse prazo por acreditar que o pagamento é a única saída pode levar à revelia, fazendo com que a multa se torne definitiva sem que a empresa tenha exercido o seu direito constitucional ao contraditório e à ampla defesa.
+
+## A estratégia correta para lidar com a notificação
+
+O procedimento mais seguro após receber uma autuação é realizar uma análise técnica do documento. O objetivo é verificar se o auto possui os requisitos formais necessários para sua validade e se os fatos relatados possuem o respaldo jurídico adequado. A defesa administrativa é o momento oportuno para confrontar a fiscalização, apresentando argumentos fundamentados que podem levar ao arquivamento do processo ou à mitigação da sanção aplicada.
+
+Em vez de priorizar o pagamento imediato, a empresa deve focar em entender a natureza da autuação. Caso não possua expertise jurídica interna para avaliar esses documentos, o uso de serviços especializados pode auxiliar na identificação de pontos vulneráveis no auto de infração, permitindo que a empresa tome uma decisão fundamentada sobre seguir com a defesa ou buscar outras vias de solução.
+
+O interessado pode buscar análise especializada para verificar se a autuação apresenta vício formal ou outros pontos de atenção que merecem ser considerados antes de qualquer pagamento.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "cerceamento-de-defesa-no-processo-administrativo-do-procon",
+    titulo: "Cerceamento de defesa no processo administrativo do Procon",
+    descricao: "Entenda o que é o cerceamento de defesa no processo administrativo do Procon e como identificar vícios formais que podem invalidar uma autuação.",
+    categoria: "Vícios e Nulidades",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["auto de infração procon", "defesa administrativa procon", "nulo processo administrativo", "cerceamento de defesa procon"],
+    conteudo: `## O que configura o cerceamento de defesa no processo administrativo
+
+Quando uma empresa recebe um auto de infração do Procon, inicia-se um procedimento administrativo sancionador. Este rito não é uma mera formalidade burocrática, mas sim um processo que deve respeitar princípios constitucionais fundamentais, sendo o contraditório e a ampla defesa os pilares que garantem o equilíbrio entre a fiscalização do Estado e os direitos do empreendedor.
+
+O cerceamento de defesa ocorre sempre que o Procon, durante a tramitação do processo, impede ou dificulta que a empresa autuada exerça plenamente o seu direito de apresentar provas, esclarecer fatos ou questionar os argumentos que fundamentam a autuação. Em outras palavras, quando a autoridade administrativa obsta a produção de meios legítimos de defesa, o ato pode tornar-se viciado.
+
+## Exemplos comuns de falhas processuais
+
+Existem diversas situações que podem configurar cerceamento de defesa. É importante notar que o processo administrativo é regido pelo Código de Defesa do Consumidor e por normativas específicas que estabelecem diretrizes para a condução desses procedimentos. Dentre os pontos que frequentemente geram questionamentos sobre nulidade, destacam-se:
+
+- Negativa de acesso aos documentos: O impedimento de que a empresa consulte a integralidade dos autos ou documentos que serviram de base para a lavratura da infração.
+- Indeferimento injustificado de provas: Quando o órgão recusa a produção de provas relevantes, como depoimentos ou documentos necessários para esclarecer a realidade dos fatos, sem uma justificativa fundamentada.
+- Falta de notificação regular: Se a empresa não é comunicada formalmente sobre atos processuais importantes ou sobre o teor da decisão, privando-a da oportunidade de reagir.
+- Desrespeito aos prazos: A inobservância dos prazos estabelecidos para a apresentação de defesa, que devem ser rigorosamente respeitados conforme a legislação aplicável e a notificação recebida.
+
+## A importância do rito formal
+
+O processo administrativo sancionador exige que a administração pública siga um rito organizado. Quando esse rito é atropelado ou ignorado, surge a possibilidade de nulidade. Não se trata apenas de discutir o mérito da infração, mas de verificar se o Estado agiu dentro das balizas legais. Se o procedimento apresentar vícios graves, as sanções decorrentes, como multas, podem perder o fundamento jurídico.
+
+Vale ressaltar que os Procons, por serem órgãos de proteção ao consumidor, possuem autonomia para conduzir seus processos, mas essa autonomia não é absoluta. Eles devem obedecer às normas processuais vigentes. A análise detalhada do auto de infração é o primeiro passo para identificar se houve algum desvio procedimental que prejudicou a empresa.
+
+## Como proceder ao receber uma autuação
+
+O primeiro passo após o recebimento de uma autuação é verificar atentamente o prazo concedido para a apresentação da defesa no próprio documento. Este prazo varia significativamente conforme o Procon responsável (seja ele municipal ou estadual) e a legislação local aplicável. Ignorar o prazo ou apresentar uma defesa genérica sem considerar possíveis vícios formais pode resultar na perda de uma oportunidade estratégica para contestar a penalidade.
+
+É recomendável que o gestor examine se todos os requisitos formais do auto foram preenchidos, se a descrição da infração é clara o suficiente para permitir uma defesa eficaz e se houve qualquer comportamento do órgão que limitou a participação da empresa no processo.
+
+Caso deseje, é possível encaminhar o auto de infração do Procon para uma análise profissional, buscando identificar se a autuação apresenta vício formal ou indícios de cerceamento de defesa que justifiquem um questionamento administrativo.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "como-o-procon-calcula-o-valor-da-multa-administrativa-em-2026",
+    titulo: "Como o Procon calcula o valor da multa administrativa em 2026",
+    descricao: "Entenda os critérios de dosimetria da multa do Procon, desde a gravidade até o porte da empresa. Analise seu auto de infração gratuitamente no CheckMulta.",
+    categoria: "Dosimetria da Multa",
+    tempoLeitura: "6 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["multa Procon cálculo", "defesa administrativa Procon", "valor multa infração consumidor", "dosimetria multa"],
+    conteudo: `## A metodologia de cálculo das multas aplicadas pelo Procon
+
+Receber um auto de infração do Procon gera incerteza imediata sobre o impacto financeiro para a empresa. Um dos pontos mais críticos, e que frequentemente causa confusão aos gestores, é o método pelo qual a autoridade administrativa define o valor final da sanção. Este processo, tecnicamente chamado de dosimetria da multa, não é arbitrário; ele deve seguir diretrizes estabelecidas pelo Código de Defesa do Consumidor e pelo sistema regulamentar brasileiro.
+
+## Os pilares da dosimetria
+
+Para chegar ao valor da multa, o Procon deve considerar variáveis principais, conforme a legislação vigente e o entendimento consolidado nas normas de proteção ao consumidor. São elas:
+
+- A gravidade da infração: Analisa-se o potencial de dano ao consumidor ou à coletividade, bem como a extensão da lesão provocada pelo comportamento da empresa.
+- A vantagem auferida: Verifica-se se a conduta praticada trouxe algum proveito econômico direto à empresa autuada.
+- A condição econômica do fornecedor: Este ponto é fundamental. O valor da multa deve ser proporcional ao porte da empresa, considerando o seu faturamento e a sua capacidade financeira. A ideia central é que a penalidade seja pedagógica, buscando desestimular a reincidência sem inviabilizar a atividade econômica.
+
+## O papel do histórico da empresa
+
+Além dos pilares citados, o órgão fiscalizador avalia o histórico da empresa. O conceito de reincidência é frequentemente aplicado para elevar o valor da multa. Caso a empresa já tenha sido autuada por infrações da mesma natureza anteriormente, a autoridade administrativa tende a considerar que a conduta anterior não foi corrigida, o que pode justificar o agravamento da penalidade aplicada.
+
+## Atenuação e agravamento da penalidade
+
+O processo administrativo prevê etapas onde é possível argumentar pela redução do valor da multa, desde que existam fundamentos legais para tal. Fatores como a reparação voluntária do dano, o reconhecimento da falha ou a colaboração plena com o órgão de proteção ao consumidor podem ser considerados como atenuantes. Por outro lado, a omissão ou a má-fé durante o processo administrativo tendem a ser vistas como agravantes.
+
+## A importância do procedimento administrativo
+
+É importante esclarecer que o cálculo da multa não ocorre no momento da lavratura do auto de infração. O auto é apenas a constatação do fato que, em tese, descumpre a norma. O valor final da penalidade é definido ao término do processo, após o período destinado à apresentação de defesa. Por isso, a argumentação técnica apresentada nesta fase é essencial para contestar não apenas a validade da autuação, mas também a proporcionalidade do valor proposto.
+
+## Verifique o seu auto de infração
+
+Ao receber um auto de infração, o primeiro passo deve ser a leitura atenta do documento para identificar o prazo limite para a apresentação da defesa administrativa. Este prazo varia conforme o órgão autuador e deve ser rigorosamente respeitado, sob pena de revelia. A análise técnica do documento pode revelar erros formais, ausência de fundamentação clara ou desproporcionalidade na estimativa da sanção.
+
+Empresas autuadas podem buscar uma análise especializada do auto de infração para identificar se a autuação apresenta vício formal ou outros pontos passíveis de contestação jurídica, permitindo que a organização exerça seu direito constitucional à ampla defesa com base técnica.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "contraditorio-e-ampla-defesa-no-processo-do-procon",
     titulo: "Contraditório e Ampla Defesa no Processo do Procon",
     descricao: "Entenda como exercer o contraditório e a ampla defesa após receber um auto de infração do Procon. Conheça seus direitos e avalie seu auto gratuitamente.",
