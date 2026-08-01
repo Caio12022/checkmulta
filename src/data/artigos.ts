@@ -12,6 +12,49 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "radar-em-dia-de-chuva-a-multa-e-sempre-valida",
+    titulo: "Radar em dia de chuva: a multa é sempre válida?",
+    descricao: "Recebeu uma multa de radar em dia de chuva? Entenda se as condições climáticas influenciam a validade da autuação e como recorrer no CheckMulta agora.",
+    categoria: "Velocidade",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🌧️",
+    imagemBg: "from-slate-600 to-slate-800",
+    conteudo: `## A chuva pode anular uma multa de radar?
+
+Dirigir sob chuva exige atenção redobrada, mas o que acontece quando o sensor eletrônico registra uma velocidade acima da permitida justamente durante um temporal? Muitos condutores acreditam que a pista molhada ou a visibilidade reduzida impedem a fiscalização, ou que tornam a autuação nula automaticamente. No entanto, a realidade jurídica é mais complexa.
+
+O Código de Trânsito Brasileiro estabelece que a obrigação de respeitar os limites de velocidade permanece válida independentemente das condições meteorológicas. A sinalização instalada nas vias já considera, em teoria, as margens de segurança necessárias para o fluxo veicular. Portanto, a chuva, por si só, não invalida a autuação.
+
+## O funcionamento dos equipamentos de fiscalização
+
+Os radares passam por verificações periódicas rigorosas realizadas pelo órgão metrológico oficial. Esses aparelhos são projetados para operar com precisão mesmo em condições adversas de clima. A tecnologia de detecção de velocidade não depende exclusivamente da visibilidade do condutor, mas de sensores eletrônicos que não sofrem alteração direta por conta de gotículas de água ou nebulosidade leve.
+
+Contudo, a fiscalização deve seguir normas técnicas rígidas. Se o equipamento não estiver operando dentro das especificações de manutenção ou se a sinalização da via estiver encoberta ou danificada, a situação muda de figura.
+
+## Quando a multa pode ser contestada?
+
+Embora o clima não seja uma justificativa para o excesso de velocidade, existem falhas administrativas que podem tornar a multa passível de anulação. Confira alguns pontos de atenção:
+
+* **Sinalização deficiente:** Se a placa que indica o limite de velocidade estava escondida por galhos de árvores ou danificada devido ao temporal, a autuação pode ser contestada.
+* **Equipamento sem aferição:** Todo radar deve estar com a verificação em dia, conforme estabelece a legislação. Se o certificado de verificação estiver vencido, o registro perde sua validade legal.
+* **Erros no auto de infração:** Erros no preenchimento do auto, como divergência na marca, modelo do veículo, cor ou local da infração, são motivos frequentes para o cancelamento de multas.
+* **Localização inadequada:** Existem regras específicas sobre a instalação de medidores de velocidade. Se o equipamento estiver posicionado em desacordo com as normas técnicas de visibilidade ou distância, a multa pode ser questionada.
+
+## O perigo da pista molhada
+
+Vale lembrar que o limite de velocidade é o teto máximo permitido em condições ideais de pista seca e boa visibilidade. Em dias de chuva, a legislação reforça que o condutor deve reduzir a velocidade para garantir a própria segurança e a dos demais. Dirigir na velocidade limite permitida durante uma chuva intensa pode, inclusive, configurar uma conduta imprudente, dependendo da situação específica.
+
+O objetivo dos radares é a redução de acidentes. No entanto, quando a notificação chega, é um direito do proprietário do veículo verificar se o procedimento administrativo foi impecável. A administração pública deve seguir rigorosamente o rito processual para que a punição tenha validade.
+
+## Como proceder diante de uma autuação?
+
+Ao receber uma notificação de excesso de velocidade, mantenha a calma. A primeira etapa é conferir todos os dados presentes no documento. Qualquer inconsistência pode ser a chave para um recurso bem-sucedido. Não aceite a penalidade automaticamente se você suspeita que houve algum erro ou falha técnica no registro.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Nossa plataforma especializada identifica inconsistências técnicas que muitas vezes passam despercebidas, oferecendo o suporte necessário para que você exerça seu direito de defesa de forma segura e eficiente.`,
+    palavrasChave: ["multa de radar", "pista molhada", "excesso de velocidade", "recurso de multa"],
+  },
+
+  {
     slug: "como-acompanhar-o-andamento-do-seu-recurso-de-multa-em-2026",
     titulo: "Como acompanhar o andamento do seu recurso de multa em 2026",
     descricao: "Entenda como monitorar o status do seu recurso de multa de trânsito em 2026 e saiba como verificar o resultado do processo. Analise sua multa grátis.",
