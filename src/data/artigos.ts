@@ -12,6 +12,53 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "multa-em-rotatoria-como-evitar-e-recorrer-com-seguranca",
+    titulo: "Multa em rotatória: como evitar e recorrer com segurança",
+    descricao: "Recebeu uma multa por não dar preferência em rotatória? Entenda as regras, como funciona a sinalização e veja como analisar sua infração no CheckMulta.",
+    categoria: "Comportamento no Trânsito",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🚗",
+    imagemBg: "from-amber-600 to-amber-800",
+    conteudo: `## Entendendo a preferência nas rotatórias
+
+A circulação em rotatórias é um dos pontos que mais gera dúvidas e conflitos no trânsito brasileiro. Com o aumento da frota e a maior fiscalização eletrônica, entender quem tem a prioridade de passagem tornou-se indispensável para evitar infrações e, acima de tudo, prevenir acidentes.
+
+Muitos condutores acreditam que a regra de preferência é sempre do veículo que já está circulando na rotatória. Embora essa seja uma conduta de direção defensiva recomendada e observada em grande parte das situações, a legislação de trânsito é clara: a sinalização sempre prevalece sobre as normas gerais.
+
+## O que a legislação estabelece?
+
+De acordo com as normas vigentes, a prioridade de passagem em uma rotatória é definida, prioritariamente, pela sinalização vertical e horizontal. Isso significa que:
+
+* Se houver uma placa de 'Dê a Preferência' ou uma linha de retenção pintada no solo na sua via de acesso, você é obrigado a aguardar a passagem dos veículos que seguem pela via principal.
+* Caso a rotatória não possua sinalização específica, a regra geral indica que o veículo que já está em circulação dentro do dispositivo tem a preferência sobre quem está tentando entrar.
+
+É fundamental destacar que o desrespeito a essas orientações configura infração. O agente de trânsito, ao observar uma manobra que interrompe o fluxo de quem possui a prioridade, pode lavrar o auto de infração por falta de atenção às regras de circulação, sujeitando o condutor às penalidades previstas no Código de Trânsito Brasileiro.
+
+## Por que a multa acontece?
+
+O erro mais comum ocorre pela pressa ou pela falta de observação da sinalização de solo. Muitas vezes, o condutor entra na rotatória acreditando que terá tempo suficiente para realizar a manobra, mas acaba forçando a freada do condutor que já estava na via. Essa ação é interpretada pela fiscalização como uma invasão de preferência, resultando na autuação.
+
+Além da multa, essa conduta eleva o risco de colisões laterais, que são frequentes em cruzamentos circulares. O comportamento preventivo é o seu maior aliado: sempre reduza a velocidade ao se aproximar de uma rotatória, independentemente de haver outros veículos por perto.
+
+## Como proceder se você foi autuado?
+
+Receber uma notificação de autuação não significa, necessariamente, que a punição é definitiva. Existem diversos aspectos técnicos que podem ser verificados em um processo administrativo de trânsito. Entre os pontos que podem ser analisados em uma defesa, destacam-se:
+
+* **Falhas no auto de infração:** Erros no preenchimento, como placa errada, local incorreto ou ausência de informações obrigatórias, podem invalidar a multa.
+* **Sinalização deficiente:** Se a rotatória não estiver adequadamente sinalizada, com placas encobertas por vegetação ou pintura apagada no solo, o condutor não pode ser penalizado por uma proibição que não estava claramente visível.
+* **Descrição do fato:** O relato do agente deve ser coerente e detalhado. Se a descrição for genérica ou insuficiente para provar a infração, é possível questionar a validade da penalidade.
+
+## A importância da defesa técnica
+
+O processo de recurso exige atenção aos prazos legais e argumentação baseada em fundamentos jurídicos sólidos. Não se trata de negar o ocorrido, mas de verificar se a autoridade de trânsito seguiu todos os trâmites e se a sinalização era suficiente para garantir a segurança e a clareza da norma imposta.
+
+Lembre-se que cada caso possui particularidades. A análise criteriosa de documentos e fotos da via pode ser a diferença entre o pagamento de uma multa injusta ou o seu arquivamento.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Utilize essa ferramenta para entender melhor sua situação e tomar a decisão mais assertiva para o seu caso.`,
+    palavrasChave: ["multa rotatória", "preferência no trânsito", "recurso de multa", "direção defensiva"],
+  },
+
+  {
     slug: "radar-em-dia-de-chuva-a-multa-e-sempre-valida",
     titulo: "Radar em dia de chuva: a multa é sempre válida?",
     descricao: "Recebeu uma multa de radar em dia de chuva? Entenda se as condições climáticas influenciam a validade da autuação e como recorrer no CheckMulta agora.",
