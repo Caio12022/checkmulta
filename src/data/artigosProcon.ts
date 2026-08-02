@@ -12,6 +12,144 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "como-o-procon-calcula-o-valor-da-multa-aplicada-a-empresa",
+    titulo: "Como o Procon calcula o valor da multa aplicada à empresa",
+    descricao: "Entenda os critérios de dosimetria que definem o valor da multa do Procon. Conheça os fatores que impactam a sanção e analise seu auto no CheckMulta.",
+    categoria: "Dosimetria da Multa",
+    tempoLeitura: "6 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["multa Procon", "dosimetria da multa", "defesa administrativa Procon", "cálculo multa consumidor"],
+    conteudo: `## A complexidade do cálculo da multa administrativa
+
+Receber um auto de infração do Procon gera incertezas imediatas, sendo o valor da penalidade financeira a preocupação mais comum entre gestores. Diferente de uma tarifa fixa, o valor da multa aplicada pelo Procon não é arbitrário. Ele resulta de um processo técnico denominado dosimetria, que busca ajustar a sanção à gravidade do fato e às características do infrator.
+
+Compreender como esse cálculo é estruturado é o primeiro passo para organizar uma defesa administrativa consistente. O objetivo da legislação não é apenas punir, mas garantir que a penalidade seja proporcional ao dano causado e ao porte econômico da empresa autuada.
+
+## Os três pilares da dosimetria
+
+O Código de Defesa do Consumidor estabelece que o valor da multa deve ser graduado com base em critérios objetivos. Esses critérios permitem que a autoridade administrativa realize uma análise individualizada de cada caso. De forma geral, os três elementos que compõem o cálculo são:
+
+- A gravidade da infração: Analisa-se se a conduta atingiu direitos básicos do consumidor ou se colocou em risco a saúde e segurança, por exemplo.
+- A vantagem auferida: Verifica-se se a empresa obteve benefício econômico direto com a prática considerada irregular.
+- A condição econômica do fornecedor: O porte da empresa é fator determinante para que a multa tenha efeito pedagógico sem inviabilizar a continuidade da operação comercial.
+
+## A análise dos fatores atenuantes e agravantes
+
+Além dos pilares citados, o processo administrativo prevê a análise de circunstâncias que podem elevar ou reduzir o montante final. A verificação dessas condições é um ponto sensível da defesa, pois equívocos na valoração desses fatos podem levar a uma multa desproporcional.
+
+Entre as circunstâncias que o órgão costuma avaliar, destacam-se:
+
+- Reincidência: A existência de autuações anteriores sobre a mesma infração pode agravar significativamente a penalidade.
+- Cooperação: A demonstração de boa-fé, como a reparação imediata do dano ao consumidor ou a adoção de medidas para evitar novas ocorrências, pode ser considerada um fator atenuante.
+- Ações corretivas: A comprovação de que a empresa tomou providências para cessar a conduta infratora logo após ser notificada é um elemento que deve ser destacado no processo.
+
+## A importância da fundamentação no auto de infração
+
+A autoridade administrativa tem o dever de justificar os critérios utilizados para chegar ao valor final. Quando um auto de infração apresenta um valor sem a devida fundamentação técnica, ou quando a dosimetria ignora fatos que poderiam atenuar a pena, abre-se uma margem jurídica para questionamento. A defesa administrativa deve focar em apontar eventuais vícios no cálculo ou a desproporcionalidade da multa frente aos parâmetros legais.
+
+É importante lembrar que o valor não deve ser aplicado apenas com o intuito de arrecadação, mas deve observar a razoabilidade. O questionamento técnico sobre a dosimetria pode possibilitar a revisão ou redução do valor da multa, desde que apresentadas as provas e argumentos que sustentem esse pedido.
+
+## O prazo para manifestação
+
+Todo auto de infração contém um prazo específico para a apresentação de defesa administrativa. É imprescindível que o responsável pela empresa verifique atentamente o documento recebido, pois os prazos variam conforme a legislação estadual ou municipal do órgão que realizou a autuação. A perda do prazo indicado no auto impede a discussão do mérito e o questionamento da dosimetria aplicada, tornando a decisão definitiva.
+
+Caso precise de apoio para analisar o seu documento, é possível buscar suporte especializado para verificar se a autuação apresenta vício formal ou elementos que permitam a contestação dos valores arbitrados.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "como-o-procon-calcula-o-valor-da-multa-aplicada-a-sua-empresa",
+    titulo: "Como o Procon calcula o valor da multa aplicada a sua empresa",
+    descricao: "Entenda os critérios de dosimetria da multa no processo administrativo do Procon e como a legislação regula o cálculo. Analise seu auto no CheckMulta.",
+    categoria: "Dosimetria da Multa",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["valor multa Procon", "dosimetria multa Procon", "auto de infração Procon", "cálculo multa consumidor"],
+    conteudo: `## A complexidade por trás do cálculo da multa
+
+Receber um auto de infração do Procon gera uma preocupação imediata em empresários e gestores: o impacto financeiro da penalidade. Muitos gestores questionam como a autoridade administrativa chega ao valor final cobrado. É fundamental compreender que a fixação da multa não é arbitrária, mas deve seguir critérios técnicos e legais previstos na legislação consumerista e nas normas do processo administrativo sancionador.
+
+O cálculo, tecnicamente chamado de dosimetria da pena, é uma operação que busca equilibrar a natureza da infração, a capacidade econômica do infrator e a gravidade do fato. Compreender esses parâmetros é o primeiro passo para uma estratégia de defesa técnica e fundamentada.
+
+## Os critérios básicos da dosimetria
+
+A legislação estabelece critérios fundamentais para a gradação da sanção. Esses fatores permitem que o agente fiscal ou a autoridade administrativa competente realize uma análise individualizada de cada caso. Os principais critérios são:
+
+- Gravidade da infração: Analisa-se o potencial ofensivo da conduta ao mercado de consumo e os danos causados aos consumidores envolvidos.
+- Vantagem auferida: Avalia-se se a prática infratora trouxe um ganho econômico direto ou indireto para a empresa.
+- Condição econômica do infrator: Considera-se o porte da empresa, sendo que empresas de maior faturamento podem sofrer multas mais elevadas que micro ou pequenas empresas, visando garantir que a sanção tenha um caráter pedagógico e punitivo.
+
+Além desses pontos, o histórico da empresa também possui peso significativo. A reincidência, ou seja, o cometimento de nova infração da mesma natureza após uma condenação definitiva anterior, costuma ser considerada fator de agravamento no cálculo do valor final da multa.
+
+## O processo administrativo como garantia
+
+É indispensável compreender que a multa é o resultado de um processo administrativo. O auto de infração é apenas o marco inicial. A empresa autuada possui o direito constitucional ao contraditório e à ampla defesa. Durante essa fase, é possível contestar não apenas a existência da infração, mas também a forma como a dosimetria foi aplicada. Se a autoridade fixou um valor desproporcional ou se desconsiderou atenuantes previstas na legislação, esses pontos podem ser objeto de questionamento formal.
+
+Existem situações em que a defesa técnica consegue demonstrar vícios formais na autuação ou a ausência de má-fé, elementos que podem viabilizar a redução do valor da multa ou a revisão da penalidade, dependendo das particularidades de cada caso.
+
+## Atenção aos detalhes do documento
+
+Cada Procon possui autonomia regulamentar para conduzir seus processos, respeitando sempre as normas gerais. Por isso, é vital que o gestor se atente aos prazos descritos especificamente no auto de infração recebido. O prazo para apresentação de defesa administrativa varia conforme a jurisdição do órgão autuante, e o descumprimento pode gerar a revelia, resultando na perda do direito de se defender e na possível confirmação da penalidade.
+
+Ao receber a notificação, verifique a descrição dos fatos, o fundamento legal apontado e os prazos concedidos para a apresentação de defesa. A conferência minuciosa destes elementos é um procedimento indispensável para a gestão do risco administrativo.
+
+## Avaliação profissional do seu auto de infração
+
+Diante de um auto de infração, a precisão na análise é o fator determinante para decidir os próximos passos. Uma defesa estruturada deve atacar os pontos de vulnerabilidade do processo, seja na formalidade da notificação ou na própria dosimetria aplicada. O gestor pode buscar auxílio especializado para analisar o auto de infração e identificar se a autuação apresenta algum vício formal que possa ser arguido em sua defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "estimativa-de-faturamento-pelo-procon-sem-base-como-se-defender",
+    titulo: "Estimativa de faturamento pelo Procon sem base: como se defender",
+    descricao: "Recebeu uma multa baseada em faturamento estimado? Entenda como o Procon deve calcular sanções e como questionar estimativas sem suporte documental.",
+    categoria: "Dosimetria da Multa",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["multa Procon", "valor da multa Procon", "dosimetria da multa", "defesa administrativa Procon"],
+    conteudo: `## A importância da prova na dosimetria da multa
+
+Quando uma empresa recebe um auto de infração do Procon, um dos aspectos que mais gera preocupação é o valor da multa imposta. A legislação de proteção ao consumidor estabelece que a penalidade deve levar em conta a gravidade da infração, a vantagem auferida e a condição econômica do infrator. No entanto, é comum que a autoridade administrativa, na ausência de declarações de rendimentos ou documentos contábeis apresentados pela empresa, recorra à estimativa de faturamento para definir o patamar da multa.
+
+O problema surge quando essa estimativa não possui qualquer base fática ou documental. O processo administrativo sancionador exige que os atos da administração pública sejam motivados e fundamentados em elementos concretos. Arbitrar valores baseados em suposições ou cálculos genéricos pode comprometer a legalidade da sanção e abrir margem para a contestação administrativa.
+
+## O que a lei exige para o cálculo da multa
+
+O sistema de dosimetria da multa no âmbito das relações de consumo não é um exercício de livre arbítrio da autoridade fiscalizadora. A legislação federal que regulamenta o Código de Defesa do Consumidor estabelece critérios claros para a gradação da pena. A capacidade econômica é um desses pilares.
+
+Para que a administração pública determine o valor base da multa, ela deve, idealmente, buscar dados reais sobre o porte da empresa, como o enquadramento tributário ou informações oficiais declaradas aos órgãos de controle. Quando o Procon presume um faturamento astronômico ou incompatível com a realidade do negócio sem trazer aos autos qualquer prova ou critério de cálculo, pode ocorrer o que chamamos de vício na fundamentação do ato administrativo.
+
+## Argumentos para a defesa administrativa
+
+Ao preparar uma defesa contra uma multa baseada em estimativa sem suporte, o foco não deve ser apenas a negação da infração, mas o questionamento do método de cálculo. Alguns pontos podem ser explorados:
+
+- Ausência de motivação: O agente público deve demonstrar de onde tirou os dados que fundamentam o faturamento estimado. Se a decisão não indica a fonte, a sanção pode ser considerada desproporcional.
+- Desproporcionalidade: A multa deve guardar uma relação de razoabilidade com o porte da empresa. Uma estimativa que ignora a realidade contábil do autuado pode ferir os princípios constitucionais da razoabilidade e da proporcionalidade.
+- Inversão do ônus da prova: Embora o processo administrativo sancionador possua suas especificidades, a administração deve instruir o processo com provas mínimas antes de aplicar uma penalidade que impacte o patrimônio do administrado.
+- Dever de fundamentação: Todo ato que impõe sanção precisa ser fundamentado. A falta de base documental para o cálculo do faturamento é um vício formal que pode ser arguido para pleitear a revisão ou a anulação da multa aplicada.
+
+## Como proceder ao receber o auto de infração
+
+O primeiro passo após o recebimento da notificação é verificar o prazo para apresentação de defesa, que consta expressamente no documento recebido. É fundamental observar que prazos variam conforme o Procon que emitiu o auto, seja ele municipal, estadual ou do Distrito Federal, devendo o autuado conferir rigorosamente o período indicado no documento. Jamais ignore esse prazo, pois a perda dele pode levar à revelia e à aceitação tácita da autuação imposta pela autoridade.
+
+Ao analisar o auto, identifique se houve menção a balanços, declarações de imposto de renda ou outros documentos fiscais. Caso a autoridade tenha apenas citado estimativa sem anexar memória de cálculo detalhada, esse ponto deve ser atacado na peça de defesa. A apresentação de documentos contábeis reais, como o extrato de faturamento dos últimos meses, pode ser utilizada para demonstrar a desproporcionalidade da estimativa feita pelo órgão.
+
+O objetivo da defesa administrativa é assegurar que o processo siga os ditames legais e que a punição seja justa e fundamentada. A falta de transparência no cálculo da multa é uma falha que o ordenamento jurídico brasileiro permite questionar.
+
+No CheckMulta, você pode enviar o auto de infração do Procon para obter uma análise técnica que aponta se a autuação apresenta vício formal ou se a dosimetria da multa está desamparada de base documental. O serviço auxilia o empresário a identificar pontos críticos e a estruturar argumentos para a sua defesa administrativa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "o-direito-da-empresa-ao-acesso-integral-ao-processo-do-procon",
     titulo: "O direito da empresa ao acesso integral ao processo do Procon",
     descricao: "Saiba como solicitar a cópia integral do processo administrativo do Procon para assegurar o seu direito de ampla defesa. Analise seu auto de infração hoje.",
