@@ -185,7 +185,7 @@ function injetarMeta(html: string, meta: MetaInfo): string {
 // Nunca desatualiza: quando os robôs publicam, o sitemap já reflete.
 // ==========================================
 function gerarSitemap(): string {
-  const hoje = new Date().toISOString().split("T")[0];
+ 
   const urls: { loc: string; priority: string; changefreq: string }[] = [];
 
   // Home e landings
@@ -240,7 +240,7 @@ function gerarSitemap(): string {
   const corpo = urls
     .map(
       (u) =>
-        `  <url>\n    <loc>${u.loc}</loc>\n    <lastmod>${hoje}</lastmod>\n    <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`
+        `  <url>\n    <loc>${u.loc}</loc>\n        <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`
     )
     .join("\n");
 
