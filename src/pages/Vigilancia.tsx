@@ -1111,11 +1111,23 @@ useEffect(() => {
 <a href="/" className="text-slate-600 transition hover:text-emerald-600">
               Multas de trânsito
             </a>
+            <a href="/infracao" className="text-slate-600 transition hover:text-emerald-600">
+              Consulta de códigos
+            </a>
+            <a href="/simulador-pontos" className="text-slate-600 transition hover:text-emerald-600">
+              Simulador de pontos
+            </a>
+            <a href="/blog" className="text-slate-600 transition hover:text-emerald-600">
+              Blog de trânsito
+            </a>
             <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
               Procon
             </a>
             <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
               Vigilância Sanitária
+            </a>
+            <a href="/vigilancia-sanitaria/blog" className="text-slate-600 transition hover:text-emerald-600">
+              Blog Vigilância
             </a>
           </nav>
 
