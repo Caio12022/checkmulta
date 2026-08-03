@@ -12,6 +12,60 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "recebeu-uma-intimacao-da-vigilancia-sanitaria-saiba-como-proceder",
+    titulo: "Recebeu uma intimação da Vigilância Sanitária? Saiba como proceder",
+    descricao: "Entenda os passos fundamentais ao receber um termo de intimação da Vigilância Sanitária. Proteja seu negócio com uma análise técnica do auto de infração.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "5 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["intimação vigilância sanitária", "auto de infração sanitária", "como recorrer multa sanitária", "defesa administrativa vigilância"],
+    conteudo: `## A chegada da notificação: o primeiro passo
+
+Receber um termo de intimação ou um auto de infração da Vigilância Sanitária é uma situação que exige atenção imediata e, acima de tudo, serenidade. O documento emitido pelo agente fiscal representa o início de um procedimento administrativo destinado a apurar eventuais irregularidades no funcionamento de um estabelecimento. O objetivo deste artigo é orientar os responsáveis pelo negócio sobre a conduta adequada para garantir o exercício de seus direitos fundamentais.
+
+## Analise o documento com cautela
+
+O primeiro passo não é o desespero, mas a leitura atenta. Ao receber o documento, verifique os seguintes pontos:
+
+- O relato dos fatos: observe se a descrição da infração corresponde à realidade observada durante a fiscalização.
+- A tipificação legal: verifique quais dispositivos foram citados como fundamento para a autuação.
+- O prazo estabelecido: este é um ponto crítico. Nunca presuma prazos com base em informações genéricas. A legislação sanitária é fragmentada e varia entre União, estados e municípios, sendo que cada órgão possui normas próprias que determinam o tempo disponível para a apresentação de defesa. Verifique o prazo estritamente indicado no próprio auto de infração. Em caso de omissão ou dúvida, entre em contato diretamente com o órgão emissor para esclarecer a data limite.
+
+## O devido processo legal e a ampla defesa
+
+Todo estabelecimento tem o direito ao contraditório e à ampla defesa. Conforme preceitua a Lei 9.784/99 (aplicável subsidiariamente), a administração pública deve pautar seus atos pelo princípio da motivação. Isso significa que qualquer autuação deve ser fundamentada de maneira clara e lógica.
+
+Na esfera das infrações à legislação sanitária, a Lei 6.437/77 estabelece as bases para a apuração de irregularidades (arts. 2º, 3º e 4º). É importante compreender que a autoridade sanitária deve observar os princípios da legalidade, proporcionalidade e razoabilidade ao impor sanções. Se um auto de infração carece de fundamentação clara ou apresenta vício na descrição do fato, existem fundamentos técnicos que podem ser arguidos em defesa administrativa, o que pode favorecer a revisão da sanção.
+
+## Procedimento em caso de interdição
+
+Se o termo de intimação envolver a interdição do estabelecimento, a regra de ouro é a conformidade. É imprescindível aguardar a liberação formal e oficial do órgão competente antes de retomar as operações. A operação irregular sob interdição pode agravar a situação administrativa e jurídica do estabelecimento. O caminho correto é realizar a correção imediata das irregularidades apontadas e protocolar o pedido de reinspeção junto à autoridade sanitária.
+
+## A importância da documentação
+
+Para qualquer resposta ao órgão, a prova documental é essencial. Se o fiscal apontou uma irregularidade, o estabelecimento deve comprovar que ela foi sanada. Reúna:
+
+- Registros fotográficos do antes e depois da adequação.
+- Notas fiscais de compra de produtos, serviços de manutenção ou limpeza especializada.
+- Laudos técnicos emitidos por profissionais habilitados, caso a infração envolva questões estruturais ou de equipamentos.
+- Relatórios internos que demonstram o controle de processos que foram questionados pelo fiscal.
+
+Esses documentos não apenas fundamentam o pedido de reinspeção, mas também compõem o conjunto probatório necessário para uma defesa administrativa bem estruturada, respeitando o devido processo legal.
+
+## Como proceder na fase de defesa
+
+Ao elaborar a defesa, é preciso focar na técnica. Argumentos genéricos, como alegações de dificuldades financeiras ou desconhecimento da norma, raramente possuem eficácia jurídica. O foco deve ser a demonstração de falhas no auto de infração ou a comprovação de que as exigências legais foram, na verdade, cumpridas. Com base no art. 50 da Lei 9.784/99 (aplicável subsidiariamente), o ato administrativo deve ser motivado com a indicação dos fatos e fundamentos jurídicos. Caso o auto de infração omita esses elementos, a peça de defesa pode questionar a validade da sanção aplicada.
+
+Lembre-se que o processo administrativo é a oportunidade de levar ao conhecimento da autoridade fatos que podem atenuar ou até descaracterizar a infração apontada inicialmente, sempre à luz da Lei 6.437/77 (arts. 31 e 33).
+
+Aqueles que receberam um auto de infração podem buscar a análise técnica do documento para verificar se a autuação apresenta falha capaz de fundamentar um recurso administrativo.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "manual-de-boas-praticas-o-que-o-estabelecimento-precisa-manter",
     titulo: "Manual de Boas Práticas: O que o estabelecimento precisa manter",
     descricao: "Saiba como organizar o Manual de Boas Práticas para evitar autuações. Entenda as exigências sanitárias e analise seu auto de infração gratuitamente.",
