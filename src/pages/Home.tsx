@@ -793,6 +793,8 @@ export default function App() {
             <a href="#como-funciona" className="transition hover:text-emerald-600">Como funciona</a>
             <a href="#seguranca" className="transition hover:text-emerald-600">Segurança</a>
             <a href="#guias" className="transition hover:text-emerald-600">Guias</a>
+            <a href="/simulador-pontos" className="transition hover:text-emerald-600">Simulador</a>
+            <a href="/infracao" className="transition hover:text-emerald-600">Códigos</a>
             <a href="#faq-seo" className="transition hover:text-emerald-600">Dúvidas</a>
             <a href="/blog" className="transition hover:text-emerald-600">Blog</a>
             <a href="/procon" className="transition hover:text-emerald-600">Procon</a>
@@ -824,6 +826,8 @@ export default function App() {
                 <a href="#como-funciona" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Como funciona</a>
                 <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Segurança</a>
                 <a href="#guias" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Guias</a>
+                <a href="/simulador-pontos" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Simulador de pontos</a>
+                <a href="/infracao" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Consulta de códigos</a>
                 <a href="#faq-seo" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Dúvidas</a>
                 <a href="/blog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Blog</a>
                 <a href="/procon" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-between rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">
@@ -1202,6 +1206,47 @@ export default function App() {
           </div>
         </div>
       </section>
+      {/* FERRAMENTAS GRATUITAS */}
+      <section id="ferramentas" className="border-t border-slate-100 bg-white">
+        <div className="mx-auto max-w-5xl px-4 py-16">
+          <div className="mb-10 text-center">
+            <h2 className="mb-3 text-2xl font-bold text-slate-900 sm:text-3xl">
+              Ferramentas <span className="text-emerald-600">gratuitas</span>
+            </h2>
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600">
+              Consulte, calcule e entenda sua situação antes mesmo de enviar o documento.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <a href="/simulador-pontos" className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-emerald-300 hover:shadow-md">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <Scale className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 transition group-hover:text-emerald-700">
+                Simulador de pontos na CNH
+              </h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Some suas multas dos últimos 12 meses e veja quantos pontos faltam para a
+                suspensão. O limite muda conforme as infrações gravíssimas: 20, 30 ou 40.
+              </p>
+            </a>
+
+            <a href="/infracao" className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-emerald-300 hover:shadow-md">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <FileText className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 transition group-hover:text-emerald-700">
+                Consulta de código de infração
+              </h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Digite o código que aparece no auto e veja valor, pontos na CNH, gravidade e
+                o artigo do CTB. São 258 infrações da tabela oficial.
+              </p>
+            </a>
+          </div>
+        </div>
+      </section>
 
       {/* GUIAS POR TIPO DE INFRAÇÃO — links internos home → blog */}
       <section id="guias" className="border-t border-slate-100 bg-white">
@@ -1414,6 +1459,12 @@ export default function App() {
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
             <a href="/" className="text-slate-600 transition hover:text-emerald-600">
               Multas de trânsito
+            </a>
+            <a href="/simulador-pontos" className="text-slate-600 transition hover:text-emerald-600">
+              Simulador de pontos
+            </a>
+            <a href="/infracao" className="text-slate-600 transition hover:text-emerald-600">
+              Consulta de códigos
             </a>
             <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
               Procon
