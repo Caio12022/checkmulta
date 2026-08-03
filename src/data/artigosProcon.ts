@@ -12,6 +12,144 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "como-contar-o-prazo-de-defesa-em-um-auto-de-infracao-do-procon",
+    titulo: "Como contar o prazo de defesa em um auto de infração do Procon",
+    descricao: "Entenda como realizar a contagem correta dos prazos administrativos após receber uma autuação do Procon. Evite perdas de prazo. Analise seu auto gratuitamente.",
+    categoria: "Prazos e Procedimento",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["prazo defesa Procon", "auto de infração empresa", "processo administrativo Procon", "contagem de prazos Procon"],
+    conteudo: `## A importância da contagem correta do prazo
+
+Receber um auto de infração do Procon gera uma preocupação imediata para gestores e proprietários de empresas. Diante do impacto financeiro que uma penalidade pode causar, a gestão do tempo para apresentar a defesa administrativa torna-se um dos fatores mais críticos para garantir o exercício do contraditório e da ampla defesa. O erro na contagem do prazo, ou a sua perda, pode levar ao julgamento à revelia, prejudicando a possibilidade de a empresa apresentar seus argumentos antes que a decisão final seja proferida.
+
+## Onde encontrar a informação sobre o prazo
+
+É fundamental compreender que não existe um padrão único de prazo para todo o território nacional. Embora a legislação federal que regula o sistema nacional de defesa do consumidor estabeleça diretrizes gerais, diversos Procons estaduais e municipais possuem autonomia para definir prazos específicos por meio de suas próprias normas locais.
+
+Por essa razão, a primeira e mais importante orientação para qualquer empresa autuada é verificar a notificação recebida. O prazo para apresentação da defesa está obrigatoriamente indicado no auto de infração ou no documento de notificação encaminhado pelo órgão. Nunca presuma que o prazo é o mesmo de outros processos administrativos que você possa ter acompanhado anteriormente, pois normas municipais ou estaduais podem divergir significativamente.
+
+## Como iniciar a contagem dos dias
+
+No processo administrativo sancionador, a contagem do prazo segue regras específicas estabelecidas pelas normas procedimentais de cada ente da federação e, subsidiariamente, por normas gerais de processo administrativo. Em regra, a contagem inicia-se no primeiro dia útil seguinte à data da notificação efetiva.
+
+- Data da notificação: É o dia em que a empresa recebe o documento formal, seja por carta com aviso de recebimento, intimação pessoal ou via sistema eletrônico oficial.
+- Início da contagem: A contagem não se inicia no dia do recebimento, mas sim no dia útil imediatamente posterior.
+- Suspensão e interrupção: Caso o último dia do prazo coincida com um feriado ou final de semana, o prazo costuma ser prorrogado para o próximo dia útil, desde que não haja regra específica em sentido contrário no regulamento local do órgão autuador.
+
+## Atenção aos dias úteis e corridos
+
+Uma confusão comum no meio empresarial é considerar o prazo em dias corridos. No âmbito administrativo, é muito frequente que a legislação preveja a contagem em dias úteis. Contudo, essa regra não é absoluta. Algumas legislações locais determinam a contagem em dias corridos. Verificar o que diz a notificação e a legislação local citada nela é essencial. Se o documento for omisso ou gerar dúvida, a cautela deve prevalecer e o envio da defesa deve ser planejado de forma a respeitar a interpretação mais conservadora, garantindo que o protocolo ocorra dentro do período previsto.
+
+## Riscos da perda de prazo
+
+A perda do prazo de defesa implica a presunção de veracidade dos fatos narrados pelo agente fiscalizador. Quando a empresa não apresenta sua versão dos fatos, o processo segue para a fase de julgamento com base apenas no relato da autuação. Isso reduz drasticamente as chances de a empresa demonstrar que a infração não ocorreu, que houve uma interpretação equivocada da norma ou que a penalidade sugerida é desproporcional à gravidade do fato.
+
+## Prepare a sua defesa com clareza
+
+Além de observar o prazo, a qualidade da defesa é determinante. O processo administrativo no Procon exige fundamentação técnica e o cumprimento de requisitos formais. Identificar possíveis vícios no auto de infração, como descrições genéricas, falta de tipificação clara da conduta ou ausência de documentos necessários à constituição do processo, pode servir de base para os argumentos da defesa.
+
+No CheckMulta, é possível enviar o auto de infração do Procon para receber uma análise que aponta se a autuação apresenta vício formal.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "documentos-essenciais-para-a-defesa-administrativa-no-procon",
+    titulo: "Documentos essenciais para a defesa administrativa no Procon",
+    descricao: "Recebeu um auto de infração do Procon? Saiba quais documentos reunir para construir sua defesa administrativa de forma técnica. Analise seu auto gratuitamente.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "5 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["defesa procon", "auto de infração empresa", "processo administrativo procon", "como responder procon"],
+    conteudo: `## A importância da organização documental
+
+Receber um auto de infração do Procon gera preocupação imediata em gestores e proprietários de empresas. O processo administrativo sancionador, entretanto, é uma etapa técnica que exige clareza, objetividade e, acima de tudo, o suporte probatório adequado. A defesa não se sustenta apenas em argumentos verbais ou alegações genéricas; ela precisa ser lastreada em documentos que comprovem a regularidade da conduta da empresa ou que apontem eventuais vícios no procedimento fiscalizatório.
+
+O objetivo deste guia é orientar os responsáveis pela empresa sobre quais documentos são indispensáveis para compor o dossiê de defesa, permitindo que a resposta ao órgão fiscalizador seja fundamentada e técnica.
+
+## Documentação de qualificação da empresa
+
+O primeiro passo em qualquer defesa é a correta identificação das partes. É comum que o erro no preenchimento do auto de infração ou a falta de atualização dos dados cadastrais gere confusão processual. Para a defesa, reúna:
+
+- Contrato Social e última alteração consolidada: para comprovar quem detém poderes de gerência e representação legal da empresa.
+- Cartão CNPJ atualizado: para confirmar o endereço de notificação, a atividade econômica e o enquadramento da empresa.
+- Comprovante de endereço da unidade autuada: essencial caso a fiscalização tenha ocorrido em local diverso da sede administrativa.
+
+## Provas relacionadas ao fato apontado
+
+O cerne da defesa reside nos documentos que provam o cumprimento das normas do Código de Defesa do Consumidor. A depender da infração apontada, os documentos variam, mas alguns são essenciais:
+
+- Notas fiscais e registros de venda: comprovam o histórico da relação de consumo com o cliente específico que motivou a reclamação ou a fiscalização.
+- Política de troca e devolução: documento interno que demonstra a orientação dada aos funcionários e a conformidade com as normas vigentes.
+- Relatórios de atendimento ao consumidor: histórico de conversas, e-mails ou registros em sistemas de gestão que demonstrem a tentativa da empresa em resolver o conflito antes da intervenção do Procon.
+- Contratos de adesão e termos de uso: documentos que regem a relação com o cliente e que devem estar em conformidade com o que a legislação estabelece.
+- Fotos e registros do estabelecimento: se a autuação refere-se a problemas físicos, registros fotográficos da data e hora da fiscalização podem servir como elementos probatórios de que as exigências estavam sendo cumpridas.
+
+## Analisando o auto de infração
+
+Antes de protocolar qualquer resposta, é imperativo observar os detalhes contidos no auto. Verifique se o documento aponta claramente qual dispositivo legal foi violado. A ausência de clareza na descrição da conduta ou a falta de fundamentos jurídicos adequados pode configurar um vício formal, o que pode ser arguido em defesa para questionar a validade da sanção.
+
+Lembre-se de conferir o prazo para a apresentação da defesa diretamente no documento recebido. Os prazos variam conforme a legislação estadual ou municipal do Procon que expediu a autuação, não existindo um prazo universal. O não cumprimento do prazo pode resultar na perda da oportunidade de se defender administrativamente, tornando a multa definitiva.
+
+## O papel da organização no processo administrativo
+
+Manter uma rotina organizada facilita a celeridade do processo. Quando a empresa apresenta uma defesa estruturada, acompanhada de documentos que comprovam a boa-fé e a conformidade com as normas, as possibilidades de uma revisão favorável da penalidade tornam-se mais concretas. A administração pública, ao analisar os documentos, deve considerar o princípio da proporcionalidade e a realidade dos fatos apresentados.
+
+Se houver dúvida sobre como estruturar a defesa ou se o auto de infração apresenta vícios formais que possam ser questionados, é recomendável buscar uma análise especializada. O auxílio jurídico qualificado permite avaliar se a autuação apresenta irregularidades que possibilitem a redução ou o cancelamento da penalidade.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "recebeu-uma-notificacao-do-procon-saiba-como-agir-antes-da-autuacao",
+    titulo: "Recebeu uma notificação do Procon? Saiba como agir antes da autuação",
+    descricao: "Recebeu uma reclamação no Procon e teme a autuação? Entenda os passos essenciais para responder corretamente e proteger a sua empresa. Confira seu caso.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "6 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["reclamacao procon", "defesa administrativa procon", "notificacao preliminar", "processo administrativo consumidor"],
+    conteudo: `## A importância da etapa preliminar no Procon
+
+Quando uma empresa recebe uma notificação do Procon, o primeiro impulso pode ser de preocupação. No entanto, é fundamental compreender que nem toda reclamação recebida evolui automaticamente para um processo administrativo sancionador. Existe uma etapa anterior, frequentemente chamada de fase de atendimento preliminar ou notificação para esclarecimentos, que serve para que o órgão verifique se houve, de fato, uma infração às normas de consumo.
+
+Atuar de forma estratégica neste momento é vital. Uma resposta bem estruturada, pautada na legislação vigente, pode resolver a pendência com o consumidor de forma extrajudicial, auxiliando na mitigação de riscos de um processo administrativo que, futuramente, poderia resultar em penalidades.
+
+## Primeiros passos ao receber a notificação
+
+Ao ser notificado pelo Procon, o responsável administrativo da empresa deve adotar uma postura técnica e organizada. A pressa ou o desleixo na resposta podem ser prejudiciais, fornecendo subsídios ao órgão para instaurar um auto de infração.
+
+- Analise o teor da reclamação: Verifique detalhadamente qual é a queixa do consumidor. O problema é de vício no produto, falha na prestação de serviço, cobrança indevida ou descumprimento de oferta?
+- Identifique o prazo estabelecido: A notificação traz um prazo para a apresentação de esclarecimentos. Este período deve ser rigorosamente respeitado. Como os prazos variam conforme a legislação estadual ou municipal do Procon que expediu o documento, consulte sempre a data limite constante na notificação recebida.
+- Reúna provas documentais: Organize todas as evidências que comprovem a posição da empresa. Contratos, registros de atendimento prévio, fotos, notas fiscais e histórico de conversas são fundamentais. A prova documental é o pilar de qualquer manifestação perante órgãos de proteção ao consumidor.
+- Verifique a veracidade dos fatos: Antes de responder, certifique-se internamente sobre o que realmente ocorreu. Muitas vezes, falhas de comunicação interna levam a empresa a responder de forma equivocada ao Procon, o que pode agravar a situação.
+
+## Como estruturar a resposta aos esclarecimentos
+
+Ao elaborar a resposta, mantenha o foco na clareza e na objetividade. O agente público que analisa o caso precisa entender a posição da empresa sem ambiguidades. Utilize uma linguagem profissional e evite adjetivos desnecessários ou tom confrontador.
+
+Se a empresa identificar que houve uma falha, pode ser interessante propor uma solução ao consumidor dentro da própria resposta. O Procon preza pela conciliação. Demonstrar boa-fé na resolução do problema é um fator que pode ser considerado favorável à empresa.
+
+Caso o problema não seja de responsabilidade da empresa, ou se a reclamação for infundada, apresente os fatos de maneira lógica, fundamentando-se nas normas do Código de Defesa do Consumidor e nos princípios que regem as relações de consumo, como a transparência e o dever de informação.
+
+## A prevenção contra a autuação
+
+Se a resposta aos esclarecimentos não for satisfatória para o Procon, ou se o consumidor insistir na demanda, o órgão pode dar seguimento ao processo e emitir um auto de infração. Este é um documento técnico que formaliza a acusação de desrespeito às normas consumeristas. É exatamente neste momento que a análise detalhada dos aspectos formais e materiais do auto se torna necessária.
+
+Nem todo auto de infração é imune a questionamentos. Existem requisitos legais que devem ser cumpridos pelo órgão fiscalizador. Vícios na notificação, descrições genéricas da conduta infracional ou desproporcionalidade na aplicação de medidas podem abrir margem para argumentos defensivos em uma peça de defesa administrativa robusta.
+
+Para zelar pelos interesses da empresa, é recomendável analisar se o procedimento instaurado pelo Procon respeita as garantias do devido processo legal e se as alegações contra a empresa possuem respaldo sólido na legislação. A estratégia de defesa deve ser montada caso a caso, observando as particularidades de cada notificação ou autuação recebida.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "como-o-procon-calcula-o-valor-da-multa-aplicada-a-empresa",
     titulo: "Como o Procon calcula o valor da multa aplicada à empresa",
     descricao: "Entenda os critérios de dosimetria que definem o valor da multa do Procon. Conheça os fatores que impactam a sanção e analise seu auto no CheckMulta.",
