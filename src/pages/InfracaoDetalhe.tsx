@@ -352,7 +352,7 @@ export default function InfracaoDetalhe() {
             onClick={() => rastrearCTA("ficha", infracao.codigo)}
             className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
-            Analisar meu auto grátis
+            Analisar minha multa grátis
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
