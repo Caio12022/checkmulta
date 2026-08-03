@@ -54,6 +54,16 @@ function tituloCurtoInfracao(descricao: string): string {
   return corte.length > 90 ? corte.slice(0, 90).trim() + "…" : corte;
 }
 
+function metaSimulador(pathname: string): MetaInfo | null {
+  if (pathname !== "/simulador-pontos" && pathname !== "/simulador-pontos/") return null;
+  return {
+    title: "Simulador de pontos na CNH: veja se você está perto da suspensão | CheckMulta",
+    description:
+      "Some suas multas dos últimos 12 meses e descubra quantos pontos faltam para a suspensão da CNH. O limite muda conforme as infrações gravíssimas: 20, 30 ou 40 pontos. Simulação gratuita.",
+    url: `${BASE_URL}/simulador-pontos`,
+  };
+}
+
 function metaInfracao(pathname: string): MetaInfo | null {
   if (pathname === "/infracao" || pathname === "/infracao/") {
     return {
@@ -104,6 +114,8 @@ function getMetaParaRota(pathname: string): MetaInfo {
   if (pathname === "/" || pathname === "") return home;
   const metaInfra = metaInfracao(pathname);
   if (metaInfra) return metaInfra;
+  const metaSim = metaSimulador(pathname);
+  if (metaSim) return metaSim;
 
   // Procon (landing da vertical B2B)
   if (pathname === "/procon" || pathname === "/procon/") {
@@ -246,6 +258,9 @@ function gerarSitemap(): string {
 
   urls.push({ loc: `${BASE_URL}/vigilancia-sanitaria/blog`, priority: "0.8", changefreq: "daily" });
 
+// Simulador de pontos
+  urls.push({ loc: `${BASE_URL}/simulador-pontos`, priority: "0.9", changefreq: "monthly" });
+  
   // Consulta de infrações
   urls.push({ loc: `${BASE_URL}/infracao`, priority: "0.9", changefreq: "monthly" });
   infracoes.forEach((i) => {
