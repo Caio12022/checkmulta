@@ -416,9 +416,15 @@ export default function BlogPost() {
             />
           </Link>
 
-          <nav className="flex items-center gap-5 text-sm font-medium text-slate-600">
+          <nav className="flex items-center gap-4 text-sm font-medium text-slate-600 sm:gap-5">
             <Link to="/" className="hover:text-emerald-600">
               Início
+            </Link>
+            <Link to="/infracao" className="hover:text-emerald-600">
+              Infrações
+            </Link>
+            <Link to="/simulador-pontos" className="hidden hover:text-emerald-600 sm:inline">
+              Simulador
             </Link>
             <Link to="/blog" className="text-emerald-600">
               Blog
@@ -516,6 +522,35 @@ export default function BlogPost() {
             linksJaUsados,
             cor.corPrincipal
           )}
+        </div>
+
+        {/* FERRAMENTAS */}
+        <div className="mt-12 grid gap-3 sm:grid-cols-2">
+          <Link
+            to="/simulador-pontos"
+            onClick={() => cta("ferramenta_simulador")}
+            className="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-emerald-300 hover:shadow-sm"
+          >
+            <span className="mb-1 block text-[15px] font-bold text-slate-900 group-hover:text-emerald-700">
+              Simulador de pontos na CNH
+            </span>
+            <span className="block text-sm leading-relaxed text-slate-600">
+              Some suas multas e veja quantos pontos faltam para a suspensão.
+            </span>
+          </Link>
+
+          <Link
+            to="/infracao"
+            onClick={() => cta("ferramenta_infracao")}
+            className="group rounded-xl border border-slate-200 bg-white p-5 transition hover:border-emerald-300 hover:shadow-sm"
+          >
+            <span className="mb-1 block text-[15px] font-bold text-slate-900 group-hover:text-emerald-700">
+              Consulta de código de infração
+            </span>
+            <span className="block text-sm leading-relaxed text-slate-600">
+              Digite o código do auto e veja valor, pontos e artigo do CTB.
+            </span>
+          </Link>
         </div>
 
         {/* CTA FINAL */}
@@ -657,6 +692,15 @@ export default function BlogPost() {
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
             <Link to="/" className="text-slate-600 transition hover:text-emerald-600">
               Multas de trânsito
+            </Link>
+            <Link to="/infracao" className="text-slate-600 transition hover:text-emerald-600">
+              Consulta de infrações
+            </Link>
+            <Link
+              to="/simulador-pontos"
+              className="text-slate-600 transition hover:text-emerald-600"
+            >
+              Simulador de pontos
             </Link>
             <Link to="/procon" className="text-slate-600 transition hover:text-emerald-600">
               Procon
