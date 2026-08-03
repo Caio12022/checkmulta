@@ -12,6 +12,7 @@ import {
   PackageX, Receipt, PlusCircle, Clock, UploadCloud
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import CarrosselServicos from "../components/CarrosselServicos";
 
 declare global {
   interface Window {
@@ -1044,7 +1045,10 @@ export default function Procon() {
           </div>
         </div>
       </section>
-
+      
+{/* CARROSSEL DE SERVIÇOS */}
+      <CarrosselServicos excluir={["procon"]} />
+      
       {/* FOOTER */}
       <footer className="border-t border-slate-200 bg-white">
         <div className="mx-auto max-w-4xl px-4 py-10 text-center">
@@ -1059,11 +1063,23 @@ export default function Procon() {
           </div>
 
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
-            <a href="/" className="text-slate-600 transition hover:text-emerald-600">
+           <a href="/" className="text-slate-600 transition hover:text-emerald-600">
               Multas de trânsito
+            </a>
+            <a href="/infracao" className="text-slate-600 transition hover:text-emerald-600">
+              Consulta de códigos
+            </a>
+            <a href="/simulador-pontos" className="text-slate-600 transition hover:text-emerald-600">
+              Simulador de pontos
+            </a>
+            <a href="/blog" className="text-slate-600 transition hover:text-emerald-600">
+              Blog de trânsito
             </a>
             <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
               Procon
+            </a>
+            <a href="/procon/blog" className="text-slate-600 transition hover:text-emerald-600">
+              Blog Procon
             </a>
             <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
               Vigilância Sanitária
