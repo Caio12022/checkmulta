@@ -889,8 +889,7 @@ export default function App() {
             Faça a análise gratuita da sua multa. Nossa inteligência artificial
             cruza o auto de infração com o Código de Trânsito Brasileiro (CTB) e o
             MBFT, campo por campo, em busca do erro formal que pode anular a
-            autuação. Se não encontrar falha, você não paga nada. A análise é grátis e sem 
-            cadastro.
+            autuação. Se não encontrar falha, você não paga nada. A análise é grátis e sem cadastro.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600 sm:gap-6">
