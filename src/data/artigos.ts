@@ -12,6 +12,47 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "recurso-de-multa-negado-sem-justificativa-o-que-fazer",
+    titulo: "Recurso de Multa Negado sem Justificativa: O Que Fazer?",
+    descricao: "Recebeu uma negativa vaga no recurso de trânsito? Saiba como identificar falhas administrativas e garantir seu direito à defesa. Analise sua multa grátis.",
+    categoria: "Processo de Recurso",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-red-600 to-red-800",
+    conteudo: `## A frustração do indeferimento genérico
+
+Receber uma notificação de que o seu recurso contra uma multa de trânsito foi indeferido já é uma situação estressante. No entanto, o problema ganha contornos ainda mais graves quando a decisão do órgão julgador não apresenta uma justificativa clara, limitando-se a frases prontas ou decisões padronizadas. No Direito Administrativo, essa ausência de motivação adequada é um vício que pode comprometer a validade do ato.
+
+Todo órgão público, ao negar um pedido, tem o dever constitucional e administrativo de explicar os motivos pelos quais os argumentos do condutor foram rejeitados. Quando isso não ocorre, a autoridade de trânsito viola o princípio da motivação, essencial para o exercício do contraditório e da ampla defesa.
+
+## Por que a motivação é essencial?
+
+A motivação não é apenas uma formalidade burocrática. É através dela que o cidadão entende quais pontos do seu recurso não foram aceitos e pode preparar uma estratégia superior para as instâncias seguintes. Decisões genéricas, como aquelas que apenas repetem o texto da infração sem rebater as teses jurídicas apresentadas, são consideradas nulas pela doutrina e pela jurisprudência administrativa por falta de fundamentação.
+
+## Passos para agir diante de uma decisão vazia
+
+Se você se encontra nesta situação, não desanime. Existem caminhos para contestar essa falha procedimental:
+
+1. **Analise a notificação:** Leia atentamente o documento de indeferimento. Verifique se a autoridade mencionou os seus argumentos ou se usou um texto padrão, conhecido popularmente como decisão espelho.
+2. **Identifique a omissão:** Em sua próxima etapa recursal, destaque que o órgão falhou ao não enfrentar os pontos levantados na defesa anterior.
+3. **Reforce os fatos:** Reitere os argumentos que não foram analisados, tratando a ausência de resposta como um cerceamento de defesa.
+4. **Busque a instância superior:** O processo administrativo de trânsito possui etapas recursais previstas na legislação. Se o recurso foi negado de forma inadequada na fase inicial, a instância superior deve ser provocada a rever não apenas o mérito da infração, mas também a legalidade da decisão recorrida.
+
+## O que a legislação exige do órgão de trânsito
+
+As normas de trânsito e os princípios gerais do Direito Brasileiro determinam que qualquer penalidade imposta deve ser precedida de um processo administrativo hígido. Quando um órgão julgador ignora os fatos apresentados pelo recorrente, ele descumpre o dever de clareza e transparência. Vale lembrar que o condutor não precisa apenas provar sua inocência; ele precisa que o Estado cumpra o rito legal de forma correta. Se o rito é falho, o ato administrativo perde sua sustentação jurídica.
+
+## Como fortalecer seu próximo recurso
+
+Para evitar que uma resposta vaga se repita, é fundamental que o próximo recurso seja mais técnico e direto. Utilize documentos, fotos e, se possível, aponte erros formais no auto de infração, como dados incorretos do veículo ou falhas na sinalização do local. Quando a defesa aponta erros materiais claros, fica muito mais difícil para o órgão julgador manter uma postura genérica e evasiva.
+
+Não aceite uma negativa sem antes verificar se o órgão realmente analisou o que foi pedido. A recorribilidade é um direito seu e não deve ser tolhida por decisões superficiais que ignoram o trabalho realizado na montagem da sua defesa.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa, garantindo que o seu recurso tenha o embasamento necessário para enfrentar eventuais decisões omissas.`,
+    palavrasChave: ["recurso de multa", "indeferimento de recurso", "multa de trânsito", "defesa de trânsito"],
+  },
+
+  {
     slug: "multa-em-rotatoria-como-evitar-e-recorrer-com-seguranca",
     titulo: "Multa em rotatória: como evitar e recorrer com segurança",
     descricao: "Recebeu uma multa por não dar preferência em rotatória? Entenda as regras, como funciona a sinalização e veja como analisar sua infração no CheckMulta.",
