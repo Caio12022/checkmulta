@@ -7,6 +7,7 @@ import { MercadoPagoConfig, Payment } from "mercadopago";
 import { artigos } from "./src/data/artigos";
 import { artigosProcon } from "./src/data/artigosProcon";
 import { artigosVigilancia } from "./src/data/artigosVigilancia";
+import { infracoes, calcularValor, formatarReal, NOMES_GRAVIDADE } from "./src/data/infracoes";
 
 let aiClient: GoogleGenAI | null = null;
 function getAIClient() {
@@ -48,6 +49,49 @@ interface MetaInfo {
   description: string;
   url: string;
 }
+function tituloCurtoInfracao(descricao: string): string {
+  const corte = descricao.split(/\s+-\s+|\s+e\s+(?=[A-ZÀ-Ú])/)[0].trim();
+  return corte.length > 90 ? corte.slice(0, 90).trim() + "…" : corte;
+}
+
+function metaInfracao(pathname: string): MetaInfo | null {
+  if (pathname === "/infracao" || pathname === "/infracao/") {
+    return {
+      title: "Consulta de código de infração de trânsito: valor e pontos | CheckMulta",
+      description:
+        "Digite o código do seu auto de infração e veja na hora o valor da multa, os pontos na CNH, a gravidade e o artigo do CTB. Tabela oficial da SENATRAN, consulta gratuita.",
+      url: `${BASE_URL}/infracao`,
+    };
+  }
+
+  const m = pathname.match(/^\/infracao\/([^/]+)\/?$/);
+  if (!m) return null;
+
+  const param = decodeURIComponent(m[1]).toLowerCase();
+  const infracao =
+    infracoes.find((i) => i.slug === param) ||
+    infracoes.find((i) => i.codigoUrl === param) ||
+    infracoes.find((i) => i.codigo === param.replace(/-.*$/, ""));
+
+  if (!infracao) return null;
+
+  const titulo = tituloCurtoInfracao(infracao.descricao);
+  const valor = calcularValor(infracao);
+  const descricao =
+    valor !== null
+      ? `Código ${infracao.codigo}: ${titulo}. Infração ${NOMES_GRAVIDADE[
+          infracao.gravidade
+        ].toLowerCase()}, multa de ${formatarReal(valor)} e ${infracao.pontos} ponto${
+          infracao.pontos === 1 ? "" : "s"
+        } na CNH. Veja se o auto tem erro formal e analise grátis.`
+      : `Código ${infracao.codigo}: ${titulo}. Entenda o enquadramento no art. ${infracao.amparoLegal} do CTB e analise seu auto de infração grátis.`;
+
+  return {
+    title: `Código ${infracao.codigo} — ${titulo} | CheckMulta`,
+    description: descricao,
+    url: `${BASE_URL}/infracao/${infracao.slug}`,
+  };
+}
 
 function getMetaParaRota(pathname: string): MetaInfo {
   // Home (padrão)
@@ -58,6 +102,8 @@ function getMetaParaRota(pathname: string): MetaInfo {
   };
 
   if (pathname === "/" || pathname === "") return home;
+  const metaInfra = metaInfracao(pathname);
+  if (metaInfra) return metaInfra;
 
   // Procon (landing da vertical B2B)
   if (pathname === "/procon" || pathname === "/procon/") {
@@ -200,6 +246,16 @@ function gerarSitemap(): string {
 
   urls.push({ loc: `${BASE_URL}/vigilancia-sanitaria/blog`, priority: "0.8", changefreq: "daily" });
 
+  // Consulta de infrações
+  urls.push({ loc: `${BASE_URL}/infracao`, priority: "0.9", changefreq: "monthly" });
+  infracoes.forEach((i) => {
+    urls.push({
+      loc: `${BASE_URL}/infracao/${i.slug}`,
+      priority: "0.6",
+      changefreq: "yearly",
+    });
+  });
+  
   // Categorias do blog de trânsito (sem repetir)
   const categorias = new Set(artigos.map((a) => slugifyCategoria(a.categoria)));
   categorias.forEach((slug) => {
