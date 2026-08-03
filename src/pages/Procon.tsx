@@ -29,7 +29,24 @@ const track = (gtagEvent: string, clarityEvent: string, params?: Record<string, 
   if (window.gtag) window.gtag("event", gtagEvent, params || {});
   if (window.clarity) window.clarity("event", clarityEvent);
 };
-
+// ─── DISPARO DA VENDA ──────────────────────────────────────────────────────
+// A trava por transaction_id evita contagem dupla em recarga de página.
+const fireCompraProcon = (transactionId: string) => {
+  if (typeof window === "undefined") return;
+  const chave = `procon_purchase_${transactionId}`;
+  try {
+    if (localStorage.getItem(chave)) return;
+    localStorage.setItem(chave, "1");
+  } catch {
+    // localStorage indisponível (aba anônima): segue e dispara mesmo assim
+  }
+  track("purchase", "procon_5_pagamento_confirmado", {
+    transaction_id: transactionId,
+    value: PRECO,
+    currency: "BRL",
+    items: [{ item_id: "defesa_procon", item_name: "Defesa Administrativa Procon", price: PRECO, quantity: 1 }],
+  });
+};
 // ─── TIPOS ─────────────────────────────────────────────────────────────────
 interface Achado {
   titulo: string;
@@ -169,6 +186,8 @@ export default function Procon() {
       } catch {
         localStorage.removeItem("procon_saved_result");
         localStorage.removeItem("procon_paid_status");
+        localStorage.removeItem("procon_pending_payment");
+        
       }
     }
   }, []);
@@ -193,11 +212,11 @@ export default function Procon() {
     return () => clearInterval(timer);
   }, [isPixModalOpen, pixTimeLeft]);
 
-  useEffect(() => {
+ useEffect(() => {
     let intervalId: NodeJS.Timeout;
     let timeoutId: NodeJS.Timeout;
     const checkPaymentStatus = async () => {
-      if (!paymentId || !isPixModalOpen) return;
+      if (!paymentId) return;
       try {
         const res = await fetch(`/api/check-payment/${paymentId}`);
         const data = await res.json();
@@ -207,32 +226,56 @@ export default function Procon() {
           setIsPixModalOpen(false);
           setIsPaid(true);
           localStorage.setItem("procon_paid_status", "true");
-          track("purchase", "procon_5_pagamento_confirmado", {
-            transaction_id: paymentId.toString(),
-            value: PRECO,
-            currency: "BRL",
-            items: [{ item_id: "defesa_procon", item_name: "Defesa Administrativa Procon", price: PRECO, quantity: 1 }],
-          });
+          localStorage.removeItem("procon_pending_payment");
+          fireCompraProcon(paymentId.toString());
+          // Se voltou numa página "limpa" (recarga/aba nova), recupera a análise
+          // do localStorage para que a defesa seja gerada.
+          if (!analise) {
+            const salvo = localStorage.getItem("procon_saved_result");
+            if (salvo) {
+              try {
+                setAnalise(JSON.parse(salvo));
+                setIsResultModalOpen(true);
+              } catch {}
+            }
+          }
         }
       } catch (err) {
         console.error("Erro no radar do PIX", err);
       }
     };
-    if (isPixModalOpen && paymentId) {
+    // Roda enquanto houver pagamento pendente — mesmo com o modal FECHADO.
+    // É isso que detecta o pagamento de quem saiu para pagar no app do banco.
+    if (paymentId && !isPaid) {
+      checkPaymentStatus();
       intervalId = setInterval(checkPaymentStatus, 3000);
-      timeoutId = setTimeout(() => clearInterval(intervalId), 600000);
+      timeoutId = setTimeout(() => clearInterval(intervalId), 900000); // 15 min
     }
     return () => {
       if (intervalId) clearInterval(intervalId);
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [isPixModalOpen, paymentId]);
+  }, [paymentId, isPaid]);
 
+  // Ao carregar a página: se houver pagamento pendente salvo, retoma a verificação.
+  // Cobre recarga, fechar/reabrir a aba e volta do app do banco.
   useEffect(() => {
-    if (isPaid && analise && !defenseResult && !isGeneratingDefense) {
-      generateDefense();
+    if (paymentId) return;
+    try {
+      const pendente = localStorage.getItem("procon_pending_payment");
+      const jaPago = localStorage.getItem("procon_paid_status") === "true";
+      if (!pendente || jaPago) return;
+      const dados = JSON.parse(pendente);
+      // Descarta pendências antigas (mais de 30 min): o PIX já teria expirado.
+      if (!dados?.id || Date.now() - (dados.ts || 0) > 30 * 60 * 1000) {
+        localStorage.removeItem("procon_pending_payment");
+        return;
+      }
+      setPaymentId(dados.id);
+    } catch {
+      localStorage.removeItem("procon_pending_payment");
     }
-  }, [isPaid, analise]);
+  }, []);
 
   // ─── HANDLERS ────────────────────────────────────────────────────────────
   const handleTipoSelect = (tipoName: string) => {
@@ -274,6 +317,7 @@ export default function Procon() {
     setIsUploadModalOpen(false);
     localStorage.removeItem("procon_saved_result");
     localStorage.removeItem("procon_paid_status");
+    localStorage.removeItem("procon_pending_payment");
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
@@ -412,6 +456,12 @@ export default function Procon() {
       if (response.ok && data.qr_code) {
         track("begin_checkout", "procon_4_checkout_iniciado", { value: PRECO, currency: "BRL" });
         setPaymentId(data.id);
+        try {
+          localStorage.setItem("procon_pending_payment", JSON.stringify({
+            id: data.id,
+            ts: Date.now(),
+          }));
+        } catch {}
         setQrCode(data.qr_code);
         setQrCodeBase64(data.qr_code_base64);
         setIsPixModalOpen(true);
@@ -460,6 +510,7 @@ export default function Procon() {
       setShowFomoBanner(false);
       localStorage.removeItem("procon_saved_result");
       localStorage.removeItem("procon_paid_status");
+      localStorage.removeItem("procon_pending_payment");
     } catch (err: any) {
       clearTimeout(timeoutId);
       if (err.name === "AbortError") setDefenseError("TIMEOUT");
