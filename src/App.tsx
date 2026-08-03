@@ -12,6 +12,7 @@ import BlogVigilancia from "./pages/BlogVigilancia";
 import BlogPostVigilancia from "./pages/BlogPostVigilancia";
 import ConsultaInfracao from "./pages/ConsultaInfracao";
 import InfracaoDetalhe from "./pages/InfracaoDetalhe";
+import SimuladorPontos from "./pages/SimuladorPontos";
 /* Sobe a página ao trocar de rota */
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -54,6 +55,8 @@ export default function App() {
         {/* CheckMulta — consulta de infrações */}
         <Route path="/infracao" element={<ConsultaInfracao />} />
         <Route path="/infracao/:slug" element={<InfracaoDetalheWrapper />} />
+        {/* CheckMulta — simulador de pontos */}
+        <Route path="/simulador-pontos" element={<SimuladorPontos />} />
         {/* CheckMulta — Procon */}
         <Route path="/procon" element={<Procon />} />
         <Route path="/procon/blog" element={<BlogProcon />} />
