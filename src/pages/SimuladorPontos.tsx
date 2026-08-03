@@ -57,6 +57,14 @@ interface Lancamento {
   slug?: string;
 }
 
+/** Teto de pontos do art. 261 do CTB, conforme as gravíssimas do período. */
+function limitePara(gravissimas: number, profissional: boolean): number {
+  if (profissional) return 40;
+  if (gravissimas >= 2) return 20;
+  if (gravissimas === 1) return 30;
+  return 40;
+}
+
 function tituloCurto(descricao: string, limite = 60): string {
   const corte = descricao.split(/\s+-\s+|\s+e\s+(?=[A-ZÀ-Ú])/)[0].trim();
   return corte.length > limite ? corte.slice(0, limite).trim() + "…" : corte;
@@ -183,12 +191,31 @@ export default function SimuladorPontos() {
   );
 
   /** Art. 261 do CTB: o teto cai conforme as gravíssimas do período. */
-  const limite = useMemo(() => {
-    if (profissional) return 40;
-    if (gravissimas >= 2) return 20;
-    if (gravissimas === 1) return 30;
-    return 40;
-  }, [gravissimas, profissional]);
+  const limite = useMemo(
+    () => limitePara(gravissimas, profissional),
+    [gravissimas, profissional]
+  );
+
+  /**
+   * Maior gravidade que ainda cabe sem atingir o limite.
+   * Considera o efeito duplo da gravíssima: ela soma 7 pontos E derruba o teto.
+   * Retorna null quando qualquer nova infração já atinge o limite.
+   */
+  const margem = useMemo(() => {
+    const escala: { gravidade: Gravidade; pontos: number; nome: string }[] = [
+      { gravidade: "gravissima", pontos: 7, nome: "gravíssima" },
+      { gravidade: "grave", pontos: 5, nome: "grave" },
+      { gravidade: "media", pontos: 4, nome: "média" },
+      { gravidade: "leve", pontos: 3, nome: "leve" },
+    ];
+    for (const item of escala) {
+      const novasGravissimas =
+        gravissimas + (item.gravidade === "gravissima" ? 1 : 0);
+      const novoLimite = limitePara(novasGravissimas, profissional);
+      if (totalPontos + item.pontos < novoLimite) return item.nome;
+    }
+    return null;
+  }, [totalPontos, gravissimas, profissional]);
 
   const restante = limite - totalPontos;
   const percentual = Math.min(100, Math.round((totalPontos / limite) * 100));
@@ -305,7 +332,7 @@ export default function SimuladorPontos() {
 
               <div className="text-right">
                 <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-                  {ultrapassou ? "Situação" : "Ainda cabem"}
+                  {ultrapassou ? "Situação" : "Margem restante"}
                 </span>
                 <span
                   className="text-2xl font-bold tabular-nums"
@@ -323,6 +350,42 @@ export default function SimuladorPontos() {
                 style={{ width: `${percentual}%`, backgroundColor: corBarra }}
               />
             </div>
+
+            {/* O QUE AINDA CABE */}
+            {!ultrapassou && (
+              <div
+                className="mb-4 rounded-lg border px-4 py-3 text-sm leading-relaxed"
+                style={{
+                  borderColor: margem ? "#e2e8f0" : "#fecaca",
+                  backgroundColor: margem ? "#ffffff" : "#fef2f2",
+                }}
+              >
+                {margem ? (
+                  <>
+                    A partir daqui, a multa mais pesada que você ainda pode receber sem
+                    atingir o limite é uma{" "}
+                    <strong className="font-semibold text-slate-900">
+                      infração {margem}
+                    </strong>
+                    .
+                    {margem !== "gravissima" && (
+                      <>
+                        {" "}
+                        Uma gravíssima já levaria você ao limite, porque soma 7 pontos e
+                        ainda derruba o teto.
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <span className="text-red-800">
+                    <strong className="font-semibold">
+                      Não há mais margem: qualquer nova multa
+                    </strong>{" "}
+                    — mesmo uma infração leve de 3 pontos — atinge o seu limite.
+                  </span>
+                )}
+              </div>
+            )}
 
             <p className="text-sm leading-relaxed text-slate-600">
               {lancamentos.length === 0 ? (
@@ -378,6 +441,60 @@ export default function SimuladorPontos() {
             </label>
           </div>
         </div>
+
+        {/* CTA CONTEXTUAL */}
+        {lancamentos.length > 0 && (
+          <div
+            className="mb-10 rounded-xl border p-5"
+            style={{
+              borderColor: ultrapassou || percentual >= 75 ? "#fecaca" : "#a7f3d0",
+              backgroundColor: ultrapassou || percentual >= 75 ? "#fef2f2" : "#ecfdf5",
+            }}
+          >
+            <p className="mb-3 text-sm leading-relaxed text-slate-700">
+              {ultrapassou ? (
+                <>
+                  <strong className="font-semibold text-slate-900">
+                    Uma multa cancelada pode mudar essa conta.
+                  </strong>{" "}
+                  Se o recurso for acolhido, os pontos daquela autuação saem da contagem — e,
+                  quando a infração cancelada é gravíssima, o próprio limite volta a subir.
+                </>
+              ) : percentual >= 75 ? (
+                <>
+                  <strong className="font-semibold text-slate-900">
+                    Você está perto do limite.
+                  </strong>{" "}
+                  Vale conferir se alguma dessas autuações tem erro formal. Cancelar uma
+                  delas devolve fôlego na contagem.
+                </>
+              ) : (
+                <>
+                  <strong className="font-semibold text-slate-900">
+                    Alguma dessas multas tem erro?
+                  </strong>{" "}
+                  Nossa IA lê o auto de infração e aponta de graça se há falha formal que
+                  abra margem para recurso.
+                </>
+              )}
+            </p>
+            <Link
+              to="/"
+              onClick={() =>
+                rastrear("cta_simulador_click", {
+                  cta_local: "resultado",
+                  pontos_total: totalPontos,
+                  ultrapassou,
+                })
+              }
+              className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+            >
+              <ShieldCheck className="h-4 w-4" />
+              Analisar minha multa grátis
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        )}
 
         {/* ADICIONAR */}
         <section className="mb-8">
@@ -545,60 +662,6 @@ export default function SimuladorPontos() {
               })}
             </div>
           </section>
-        )}
-
-        {/* CTA CONTEXTUAL */}
-        {lancamentos.length > 0 && (
-          <div
-            className="mb-10 rounded-xl border p-5"
-            style={{
-              borderColor: ultrapassou || percentual >= 75 ? "#fecaca" : "#a7f3d0",
-              backgroundColor: ultrapassou || percentual >= 75 ? "#fef2f2" : "#ecfdf5",
-            }}
-          >
-            <p className="mb-3 text-sm leading-relaxed text-slate-700">
-              {ultrapassou ? (
-                <>
-                  <strong className="font-semibold text-slate-900">
-                    Uma multa cancelada pode mudar essa conta.
-                  </strong>{" "}
-                  Se o recurso for acolhido, os pontos daquela autuação saem da contagem — e,
-                  quando a infração cancelada é gravíssima, o próprio limite volta a subir.
-                </>
-              ) : percentual >= 75 ? (
-                <>
-                  <strong className="font-semibold text-slate-900">
-                    Você está perto do limite.
-                  </strong>{" "}
-                  Vale conferir se alguma dessas autuações tem erro formal. Cancelar uma
-                  delas devolve fôlego na contagem.
-                </>
-              ) : (
-                <>
-                  <strong className="font-semibold text-slate-900">
-                    Alguma dessas multas tem erro?
-                  </strong>{" "}
-                  Nossa IA lê o auto de infração e aponta de graça se há falha formal que
-                  abra margem para recurso.
-                </>
-              )}
-            </p>
-            <Link
-              to="/"
-              onClick={() =>
-                rastrear("cta_simulador_click", {
-                  cta_local: "resultado",
-                  pontos_total: totalPontos,
-                  ultrapassou,
-                })
-              }
-              className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
-            >
-              <ShieldCheck className="h-4 w-4" />
-              Analisar minha multa grátis
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
         )}
 
         {/* COMO FUNCIONA */}
