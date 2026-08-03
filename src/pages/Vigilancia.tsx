@@ -12,7 +12,7 @@ import {
   PackageX, FileWarning, PlusCircle, Clock, UploadCloud
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-
+import CarrosselServicos from "../components/CarrosselServicos";
 declare global {
   interface Window {
     dataLayer: any[];
@@ -28,7 +28,24 @@ const track = (gtagEvent: string, clarityEvent: string, params?: Record<string, 
   if (window.gtag) window.gtag("event", gtagEvent, params || {});
   if (window.clarity) window.clarity("event", clarityEvent);
 };
-
+// ─── DISPARO DA VENDA ──────────────────────────────────────────────────────
+// A trava por transaction_id evita contagem dupla em recarga de página.
+const fireCompraVigilancia = (transactionId: string) => {
+  if (typeof window === "undefined") return;
+  const chave = `vigilancia_purchase_${transactionId}`;
+  try {
+    if (localStorage.getItem(chave)) return;
+    localStorage.setItem(chave, "1");
+  } catch {
+    // localStorage indisponível (aba anônima): segue e dispara mesmo assim
+  }
+  track("purchase", "vigilancia_5_pagamento_confirmado", {
+    transaction_id: transactionId,
+    value: PRECO,
+    currency: "BRL",
+    items: [{ item_id: "defesa_vigilancia", item_name: "Defesa Vigilancia Sanitaria", price: PRECO, quantity: 1 }],
+  });
+};
 // ─── TIPOS ─────────────────────────────────────────────────────────────────
 interface Achado {
   titulo: string;
@@ -169,6 +186,7 @@ export default function Vigilancia() {
       } catch {
         localStorage.removeItem("vigilancia_saved_result");
         localStorage.removeItem("vigilancia_paid_status");
+        localStorage.removeItem("vigilancia_pending_payment");
       }
     }
   }, []);
@@ -193,11 +211,11 @@ export default function Vigilancia() {
     return () => clearInterval(timer);
   }, [isPixModalOpen, pixTimeLeft]);
 
-  useEffect(() => {
+useEffect(() => {
     let intervalId: NodeJS.Timeout;
     let timeoutId: NodeJS.Timeout;
     const checkPaymentStatus = async () => {
-      if (!paymentId || !isPixModalOpen) return;
+      if (!paymentId) return;
       try {
         const res = await fetch(`/api/check-payment/${paymentId}`);
         const data = await res.json();
@@ -207,33 +225,54 @@ export default function Vigilancia() {
           setIsPixModalOpen(false);
           setIsPaid(true);
           localStorage.setItem("vigilancia_paid_status", "true");
-          track("purchase", "vigilancia_5_pagamento_confirmado", {
-            transaction_id: paymentId.toString(),
-            value: PRECO,
-            currency: "BRL",
-            items: [{ item_id: "defesa_vigilancia", item_name: "Defesa Vigilancia Sanitaria", price: PRECO, quantity: 1 }],
-          });
+          localStorage.removeItem("vigilancia_pending_payment");
+          fireCompraVigilancia(paymentId.toString());
+          // Se voltou numa página "limpa" (recarga/aba nova), recupera a análise
+          // do localStorage para que a defesa seja gerada.
+          if (!analise) {
+            const salvo = localStorage.getItem("vigilancia_saved_result");
+            if (salvo) {
+              try {
+                setAnalise(JSON.parse(salvo));
+                setIsResultModalOpen(true);
+              } catch {}
+            }
+          }
         }
       } catch (err) {
         console.error("Erro no radar do PIX", err);
       }
     };
-    if (isPixModalOpen && paymentId) {
+    // Roda enquanto houver pagamento pendente — mesmo com o modal FECHADO.
+    if (paymentId && !isPaid) {
+      checkPaymentStatus();
       intervalId = setInterval(checkPaymentStatus, 3000);
-      timeoutId = setTimeout(() => clearInterval(intervalId), 600000);
+      timeoutId = setTimeout(() => clearInterval(intervalId), 900000); // 15 min
     }
     return () => {
       if (intervalId) clearInterval(intervalId);
       if (timeoutId) clearTimeout(timeoutId);
     };
-  }, [isPixModalOpen, paymentId]);
+  }, [paymentId, isPaid]);
 
+  // Ao carregar a página: se houver pagamento pendente salvo, retoma a verificação.
   useEffect(() => {
-    if (isPaid && analise && !defenseResult && !isGeneratingDefense) {
-      generateDefense();
+    if (paymentId) return;
+    try {
+      const pendente = localStorage.getItem("vigilancia_pending_payment");
+      const jaPago = localStorage.getItem("vigilancia_paid_status") === "true";
+      if (!pendente || jaPago) return;
+      const dados = JSON.parse(pendente);
+      // Descarta pendências antigas (mais de 30 min): o PIX já teria expirado.
+      if (!dados?.id || Date.now() - (dados.ts || 0) > 30 * 60 * 1000) {
+        localStorage.removeItem("vigilancia_pending_payment");
+        return;
+      }
+      setPaymentId(dados.id);
+    } catch {
+      localStorage.removeItem("vigilancia_pending_payment");
     }
-  }, [isPaid, analise]);
-
+  }, []);
   // ─── HANDLERS ────────────────────────────────────────────────────────────
   const handleTipoSelect = (tipoName: string) => {
     setSelectedTipo(tipoName);
@@ -274,6 +313,7 @@ export default function Vigilancia() {
     setIsUploadModalOpen(false);
     localStorage.removeItem("vigilancia_saved_result");
     localStorage.removeItem("vigilancia_paid_status");
+    localStorage.removeItem("vigilancia_pending_payment");
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
@@ -412,6 +452,12 @@ export default function Vigilancia() {
       if (response.ok && data.qr_code) {
         track("begin_checkout", "vigilancia_4_checkout_iniciado", { value: PRECO, currency: "BRL" });
         setPaymentId(data.id);
+        try {
+          localStorage.setItem("vigilancia_pending_payment", JSON.stringify({
+            id: data.id,
+            ts: Date.now(),
+          }));
+        } catch {}
         setQrCode(data.qr_code);
         setQrCodeBase64(data.qr_code_base64);
         setIsPixModalOpen(true);
@@ -460,6 +506,7 @@ export default function Vigilancia() {
       setShowFomoBanner(false);
       localStorage.removeItem("vigilancia_saved_result");
       localStorage.removeItem("vigilancia_paid_status");
+      localStorage.removeItem("vigilancia_pending_payment");
     } catch (err: any) {
       clearTimeout(timeoutId);
       if (err.name === "AbortError") setDefenseError("TIMEOUT");
@@ -1044,6 +1091,9 @@ export default function Vigilancia() {
         </div>
       </section>
 
+{/* CARROSSEL DE SERVIÇOS */}
+      <CarrosselServicos excluir={["vigilancia"]} />
+      
       {/* FOOTER */}
       <footer className="border-t border-slate-200 bg-white">
         <div className="mx-auto max-w-4xl px-4 py-10 text-center">
@@ -1058,7 +1108,7 @@ export default function Vigilancia() {
           </div>
 
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
-            <a href="/" className="text-slate-600 transition hover:text-emerald-600">
+<a href="/" className="text-slate-600 transition hover:text-emerald-600">
               Multas de trânsito
             </a>
             <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
@@ -1437,7 +1487,7 @@ export default function Vigilancia() {
                           </li>
                           <li className="flex items-start gap-3">
                             <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
-                            <span>Pedido subsidiário de redução da multa com base nos critérios do critérios legais de dosimetria</span>
+                            <span>Pedido subsidiário de redução da multa com base nos critérios legais de dosimetria</span>
                           </li>
                           <li className="flex items-start gap-3">
                             <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
