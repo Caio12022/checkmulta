@@ -6,9 +6,35 @@ import { getFaq } from "../data/faqs";
 import { aplicarLinksInternos } from "../data/linksInternos";
 import { getCorSuave } from "../data/coresSuaves";
 
+// Permite chamar o gtag do GA4 sem quebrar a tipagem do TypeScript
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
+/**
+ * Registra o clique em um CTA do blog no GA4.
+ * "local" identifica qual dos CTAs foi clicado (topo, final, flutuante, barra).
+ * Com isso conseguimos separar dois problemas diferentes:
+ * - ninguém clica no botão  -> problema de CTA
+ * - clica mas não converte  -> problema da home
+ */
+function rastrearCTA(local: string, slugArtigo: string, categoria: string) {
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", "cta_blog_click", {
+      cta_local: local,
+      artigo_slug: slugArtigo,
+      artigo_categoria: categoria,
+    });
+  }
+}
+
 // Hook para atualizar meta tags via DOM nativo
 const useMetaTags = (titulo: string, descricao: string, url: string, keywords: string) => {
   useEffect(() => {
+    if (!titulo) return;
+
     document.title = `${titulo} | CheckMulta`;
 
     let metaDesc = document.querySelector('meta[name="description"]');
@@ -268,6 +294,15 @@ export default function BlogPost() {
   const artigo = artigos.find((a) => a.slug === slug);
   const [mostrarFlutuante, setMostrarFlutuante] = useState(false);
 
+  // ==========================================
+  // TODOS OS HOOKS FICAM AQUI, ANTES DE QUALQUER RETURN.
+  // Regra do React: a ordem dos hooks precisa ser sempre a mesma.
+  // Por isso usamos valores seguros quando o artigo não existe.
+  // ==========================================
+  const url = artigo ? `https://checkmulta.com.br/blog/${artigo.slug}` : "";
+  const faq = artigo ? getFaq(artigo.categoria) : [];
+  const cor = getCorSuave(artigo ? artigo.imagemBg : "from-slate-500 to-slate-600");
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
@@ -283,17 +318,17 @@ export default function BlogPost() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [slug]);
 
-  if (!artigo) return <Navigate to="/blog" replace />;
-
-  const url = `https://checkmulta.com.br/blog/${artigo.slug}`;
-
-  useMetaTags(artigo.titulo, artigo.descricao, url, artigo.palavrasChave.join(", "));
-
-  const faq = getFaq(artigo.categoria);
-  const cor = getCorSuave(artigo.imagemBg);
+  useMetaTags(
+    artigo ? artigo.titulo : "",
+    artigo ? artigo.descricao : "",
+    url,
+    artigo ? artigo.palavrasChave.join(", ") : ""
+  );
 
   // Schema FAQPage
   useEffect(() => {
+    if (!artigo) return;
+
     let faqScript = document.getElementById("faq-schema");
     if (!faqScript) {
       faqScript = document.createElement("script");
@@ -317,6 +352,8 @@ export default function BlogPost() {
 
   // Schema BreadcrumbList
   useEffect(() => {
+    if (!artigo) return;
+
     let bcScript = document.getElementById("breadcrumb-schema");
     if (!bcScript) {
       bcScript = document.createElement("script");
@@ -345,6 +382,12 @@ export default function BlogPost() {
       ],
     });
   }, [slug]);
+
+  // Só agora, com todos os hooks já registrados, é seguro sair.
+  if (!artigo) return <Navigate to="/blog" replace />;
+
+  // Atalho para não repetir slug e categoria em cada CTA
+  const cta = (local: string) => rastrearCTA(local, artigo.slug, artigo.categoria);
 
   // Artigos relacionados: prioriza mesma categoria, completa com outros
   const mesmaCategoria = artigos.filter(
@@ -388,7 +431,11 @@ export default function BlogPost() {
       <div className="border-b border-emerald-100 bg-emerald-50">
         <div className="mx-auto max-w-3xl px-4 py-2.5 text-center text-[13px] text-emerald-800">
           O prazo para recorrer é curto.{" "}
-          <Link to="/" className="font-semibold underline">
+          <Link
+            to="/"
+            onClick={() => cta("barra_urgencia")}
+            className="font-semibold underline"
+          >
             Analise sua multa grátis agora
           </Link>
         </div>
@@ -453,6 +500,7 @@ export default function BlogPost() {
           </p>
           <Link
             to="/"
+            onClick={() => cta("topo")}
             className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
             Analisar grátis
@@ -481,6 +529,7 @@ export default function BlogPost() {
           </p>
           <Link
             to="/"
+            onClick={() => cta("final")}
             className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
             Analisar minha multa grátis
@@ -583,6 +632,7 @@ export default function BlogPost() {
       >
         <Link
           to="/"
+          onClick={() => cta("flutuante")}
           className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:bg-emerald-700"
         >
           <ShieldCheck className="h-4 w-4" />
