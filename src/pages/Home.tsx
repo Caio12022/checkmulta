@@ -12,6 +12,7 @@ import {
   Smartphone, Map, PlusCircle, Calendar, DollarSign, Tag, Building2
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import CarrosselServicos from "../components/CarrosselServicos";
 
 declare global {
   interface Window {
@@ -1291,39 +1292,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* VERTICAL PROCON — apresenta a outra frente */}
-      <section className="border-t border-slate-100 bg-slate-50">
-        <div className="mx-auto max-w-4xl px-4 py-14">
-          <div className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8">
-            <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center">
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <Building2 className="h-6 w-6" />
-              </div>
-
-              <div className="flex-1">
-                <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
-                  Para empresas
-                </span>
-                <h2 className="mb-2 text-xl font-bold leading-snug text-slate-900">
-                  Sua empresa foi multada pelo Procon?
-                </h2>
-                <p className="text-sm leading-relaxed text-slate-600">
-                  Analisamos gratuitamente o auto de infração do Procon e apontamos
-                  se há falha que permite recorrer, com base no Código de Defesa do
-                  Consumidor e no Decreto 2.181/97.
-                </p>
-              </div>
-
-              <a
-                href="/procon"
-                className="w-full flex-shrink-0 rounded-lg bg-emerald-600 px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-emerald-700 sm:w-auto"
-              >
-                Analisar grátis
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+     {/* CARROSSEL DE SERVIÇOS */}
+      <CarrosselServicos />
+    
 
      {/* CONTEÚDO SEO */}
       <section className="border-t border-slate-100 bg-white">
