@@ -12,6 +12,50 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "perda-do-prazo-de-defesa-no-procon-consequencias-para-sua-empresa",
+    titulo: "Perda do prazo de defesa no Procon: consequências para sua empresa",
+    descricao: "Recebeu um auto de infração e perdeu o prazo? Entenda as implicações legais, os riscos financeiros e como o procedimento administrativo do Procon funciona.",
+    categoria: "Prazos e Procedimento",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-slate-50 to-gray-50",
+    palavrasChave: ["prazo defesa Procon", "auto de infração empresa", "processo administrativo Procon", "multa Procon o que fazer"],
+    conteudo: `## A importância do prazo no Processo Administrativo Sancionador
+
+Receber um auto de infração do Procon é um evento que exige atenção imediata de qualquer gestor ou proprietário de empresa. O procedimento administrativo instaurado pelo órgão é regido por normas específicas, como o Código de Defesa do Consumidor e legislações federais e estaduais que estabelecem o rito para a apuração de eventuais irregularidades. Quando uma empresa é autuada, ela recebe uma notificação oficial que concede um período determinado para a apresentação de defesa escrita.
+
+O prazo para defesa é um elemento basilar do devido processo legal. Não existe um prazo único válido para todo o território nacional, uma vez que legislações estaduais e municipais podem estabelecer tempos distintos. Por isso, a regra de ouro é sempre verificar o que está escrito expressamente no auto de infração entregue pelo fiscal ou na notificação de abertura do processo.
+
+## O que ocorre com a revelia administrativa
+
+Quando a empresa não apresenta sua defesa dentro do prazo estabelecido, ocorre o fenômeno da revelia administrativa. Em termos práticos, a autoridade julgadora pode entender que a empresa abriu mão do direito de contestar os fatos narrados e os fundamentos jurídicos expostos pelo agente fiscalizador. Isso pode resultar em desvantagem processual crítica para o negócio.
+
+Ao ignorar o prazo, a empresa perde a oportunidade de:
+
+- Apontar vícios formais no auto de infração, como a ausência de requisitos obrigatórios, descrição imprecisa do fato ou fundamentação legal insuficiente.
+- Questionar a aplicação do critério de dupla visita, nos casos previstos na legislação de regência para micro e pequenas empresas.
+- Apresentar elementos que comprovem a boa-fé ou a ausência de prejuízo ao consumidor.
+- Argumentar sobre atenuantes ou possíveis equívocos na dosimetria da pena, buscando evitar que agravantes indevidas influenciem a decisão final.
+
+## As consequências da ausência de resposta
+
+Uma vez encerrado o prazo sem a manifestação do autuado, o processo administrativo prossegue para a fase de julgamento. O órgão julgador avaliará o relatório da fiscalização e, caso entenda que a infração foi configurada, poderá emitir uma decisão sancionadora. Sem defesa, o julgador terá apenas a visão unilateral do fiscal para compor sua análise.
+
+Se a decisão culminar em multa, a empresa poderá ter a possibilidade de apresentar recurso administrativo dentro do prazo indicado na própria notificação. Se a penalidade pecuniária não for quitada dentro do prazo legal após o trânsito em julgado da decisão, o valor poderá ser encaminhado para inscrição em dívida ativa, o que pode gerar transtornos financeiros e administrativos para a empresa.
+
+## A nulidade e o prejuízo à defesa
+
+Existe uma máxima no Direito Administrativo, aplicada também ao processo sancionador, que determina que a inobservância de formalidades pode gerar a anulação do ato se houver demonstração de prejuízo à defesa. Quando a empresa não se manifesta, torna-se mais complexo demonstrar que houve qualquer falha na forma como a autuação foi conduzida. Portanto, o exercício do direito de defesa é a ferramenta mais recomendada para buscar assegurar que a empresa não seja apenada de forma desproporcional ou ilegal.
+
+Diante de um auto de infração, a postura mais prudente é a análise técnica minuciosa. Verificar se todos os requisitos legais foram respeitados é o primeiro passo para avaliar a viabilidade de uma defesa robusta e fundamentada. A gestão responsável entende que prazos não são sugestões, mas pilares que sustentam a segurança jurídica do negócio frente aos órgãos de proteção ao consumidor.
+
+Para avaliar seu auto de infração, recomenda-se a leitura atenta de todos os itens da notificação e, se necessário, a busca por auxílio especializado para verificar se a autuação apresenta algum vício formal ou material.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "como-contar-o-prazo-de-defesa-em-um-auto-de-infracao-do-procon",
     titulo: "Como contar o prazo de defesa em um auto de infração do Procon",
     descricao: "Entenda como realizar a contagem correta dos prazos administrativos após receber uma autuação do Procon. Evite perdas de prazo. Analise seu auto gratuitamente.",
