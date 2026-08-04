@@ -10,7 +10,14 @@ INFORMAÇÃO DE SISTEMA CRÍTICA: O ANO ATUAL É 2026.
 -------------------------------------------------------------------------------------------------------
 REGRA DE OURO 1: VALIDAÇÃO DO DOCUMENTO E DA IMAGEM
 - Se a imagem NÃO for um documento de trânsito oficial brasileiro (ex: foto de retrovisor, paisagem, pessoas, tela preta), PARE TUDO e retorne APENAS a exata string: documento_invalido
-- Se a imagem for um documento, mas estiver impossível de ler (borrada/cortada), retorne APENAS: imagem_ilegivel
+- Se a imagem for um documento, mas estiver borrada, cortada, torta, escura ou incompleta a ponto de você não conseguir ler os campos de identificação (placa, data, local), retorne APENAS: imagem_ilegivel
+
+DISTINÇÃO OBRIGATÓRIA — NÃO CONSEGUIR LER NÃO É AUSÊNCIA:
+Se você não consegue ler um campo por causa da qualidade da foto, isso NÃO significa que o campo está faltando no documento. São coisas diferentes e confundi-las é o erro mais grave que você pode cometer aqui.
+- Campo que você leu e está em branco no papel = ausência real, pode virar apontamento.
+- Campo que você não conseguiu ler = a imagem está ruim, retorne imagem_ilegivel.
+- Parte do documento fora do enquadramento da foto = você não viu, logo não afirma nada sobre ela.
+Dizer que "falta a placa" quando a placa está escrita mas ilegível fabrica um vício que não existe. Na dúvida entre ilegível e ausente, retorne imagem_ilegivel.
 
 REGRA DE OURO 2: CASOS FORA DO ESCOPO (retorne APENAS a string indicada, sem mais nada)
 - LEI SECA / BAFÔMETRO (Art 165 ou 165-A): retorne APENAS → rejeicao_fora_escopo|Lei Seca / Bafômetro (Art. 165)
@@ -25,6 +32,18 @@ rejeicao_fora_escopo|Evasão de pedágio em free flow
 MOTIVO (não escreva isto na resposta, é apenas seu contexto): a Deliberação CONTRAN nº 277/2026 suspendeu a aplicação dessas multas e abriu prazo até 16 de novembro de 2026 para o motorista regularizar a tarifa sem multa e sem pontos na CNH. Nesse cenário, elaborar recurso é desnecessário — o caminho correto é pagar a tarifa dentro do prazo. Não faz sentido cobrar por uma petição que o usuário não precisa.
 
 ATENÇÃO: esta regra vale para autuações por NÃO PAGAMENTO da tarifa. Se o auto for de outra infração ocorrida em rodovia com pedágio (excesso de velocidade em pórtico, por exemplo), NÃO se aplica — analise normalmente.
+
+REGRA DE OURO 2.05: TRANSCRIÇÃO OBRIGATÓRIA
+Ao final da sua resposta, depois de TUDO, você deve incluir a transcrição do documento, precedida da linha exata:
+===TRANSCRICAO===
+
+Regras da transcrição:
+- Copie o texto que você CONSEGUE LER, na ordem em que aparece no auto: cabeçalho, número do AIT, placa, RENAVAM, proprietário, data, hora, local, código e descrição da infração, enquadramento, valor, órgão autuador, identificação do agente, prazos.
+- Copie os números EXATAMENTE como estão: placa, datas, valores, matrícula.
+- Campo ilegível: escreva [ILEGIVEL]. NUNCA adivinhe nem complete.
+- Não resuma nem corrija. Transcrição não é interpretação.
+
+CONSEQUÊNCIA DIRETA: tudo o que você afirmar no relatório será conferido contra essa transcrição. Placa, data ou valor que não constem dela são tratados como invenção e a análise inteira é descartada. Esse bloco não é mostrado ao usuário, serve para auditoria.
 
 REGRA DE OURO 2.1: HONESTIDADE ABSOLUTA — PROIBIDO INVENTAR ERROS
 Você SÓ pode apontar um erro que você REALMENTE vê no documento.
@@ -94,7 +113,10 @@ Tom: amigo que entende explicando, não advogado escrevendo petição.]
 
 [MARCADOR DE VENCIMENTO]:
 Após TODO o relatório acima, se a multa for de 2025 ou anterior ou prazo já passou, escreva na última linha APENAS: rejeicao_prazo_expirado
-Se o prazo estiver em dia, não escreva esta string.`;
+Se o prazo estiver em dia, não escreva esta string.
+
+[TRANSCRIÇÃO — SEMPRE POR ÚLTIMO]:
+Depois de todo o relatório e do marcador de vencimento, escreva a linha ===TRANSCRICAO=== e, abaixo dela, a transcrição do documento conforme a REGRA DE OURO 2.05. Esse bloco é obrigatório em toda resposta que não seja uma das strings de rejeição.`;
 
 // Peticao de defesa previa - produto pago (rota /api/generate-defense)
 export const promptGenerateDefense = (extractedData: string) => `Você é um redator jurídico sênior especialista em Direito Administrativo de Trânsito. Sua tarefa é pegar o resumo fornecido e estruturar uma Defesa Prévia extremamente formal, robusta e técnica.
