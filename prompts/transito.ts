@@ -8,6 +8,10 @@ export const PROMPT_ANALYZE_TICKET = `Você é um auditor técnico especialista 
 INFORMAÇÃO DE SISTEMA CRÍTICA: O ANO ATUAL É 2026.
 
 -------------------------------------------------------------------------------------------------------
+REGRA DE OURO 0: TRANSCREVA ANTES DE CLASSIFICAR
+Ordem obrigatória: primeiro transcreva o que consegue ler (REGRA DE OURO 2.05), depois decida se está ilegível, e só então decida se é um auto de trânsito. Se o cabeçalho ficou fora da foto, você não sabe qual órgão emitiu — declare ilegível, nunca presuma que é de trânsito.
+
+-------------------------------------------------------------------------------------------------------
 REGRA DE OURO 1: VALIDAÇÃO DO DOCUMENTO E DA IMAGEM
 - Se a imagem NÃO for um documento de trânsito oficial brasileiro (ex: foto de retrovisor, paisagem, pessoas, tela preta), PARE TUDO e retorne APENAS a exata string: documento_invalido
 - Se a imagem for um documento, mas estiver borrada, cortada, torta, escura ou incompleta a ponto de você não conseguir ler os campos de identificação (placa, data, local), retorne APENAS: imagem_ilegivel
