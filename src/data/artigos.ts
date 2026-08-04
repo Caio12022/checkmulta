@@ -682,7 +682,7 @@ Receber uma notificação de indeferimento de recurso é sempre frustrante, espe
 
 ## O dever de motivar a decisão
 
-A Constituição Federal, em seu artigo 93, inciso IX, estabelece que todas as decisões dos órgãos públicos devem ser fundamentadas. No âmbito administrativo, a Lei 9.784/1999 reforça que os atos administrativos precisam de motivação clara e precisa. Quando o órgão apenas nega o pedido sem rebater os pontos da sua defesa, ele comete um vício de nulidade.
+O princípio constitucional da motivação dos atos estatais, que orienta todo o ordenamento jurídico brasileiro, exige que decisões afetando direitos sejam fundamentadas. No âmbito administrativo, a Lei 9.784/1999 reforça que os atos administrativos precisam de motivação clara e precisa. Quando o órgão apenas nega o pedido sem rebater os pontos da sua defesa, ele comete um vício de nulidade.
 
 ## Passo 1: Analise a decisão com rigor
 
@@ -3964,7 +3964,7 @@ Diferente de multas eletrônicas, essa infração normalmente é presenciada por
     conteudo: `
 ## Quando o uso de farol alto é proibido
 
-O Art. 229 do CTB proíbe usar farol alto em vias públicas iluminadas e ao cruzar com outro veículo (deve trocar para baixo a partir de 200 metros de distância aproximados, conforme o caso). É infração média — 4 pontos.
+O Código de Trânsito Brasileiro proíbe usar farol alto em vias públicas iluminadas e ao cruzar com outro veículo (deve trocar para baixo a partir de 200 metros de distância aproximados, conforme o caso). É infração média — 4 pontos.
 
 ## Situações comuns de autuação questionável
 
@@ -4173,7 +4173,7 @@ Fotografe a sinalização (ou ausência dela) no local, verifique o horário exa
     conteudo: `
 ## O que caracteriza a infração
 
-O Art. 206 do CTB proíbe ultrapassar em locais com sinalização de proibição (faixa amarela contínua), em curvas, aclives sem visibilidade, cruzamentos e outras situações de risco. É infração gravíssima — 7 pontos.
+O Art. 203 do CTB proíbe ultrapassar pela contramão em locais com sinalização de proibição (faixa amarela contínua), em curvas, aclives sem visibilidade, cruzamentos e outras situações de risco. É infração gravíssima — 7 pontos.
 
 ## Como essa multa costuma ser autuada
 
