@@ -504,6 +504,11 @@ const prompt = PROMPT_ANALYZE_PROCON;
       if (auditoria.ilegivel) {
         return res.json({ result: "documento_ilegivel" });
       }
+      // Conferência da vertical feita em código: o cabeçalho pode ter ficado
+      // cortado fora da foto e o modelo não reconhecer o órgão emissor.
+      if (auditoria.invalido) {
+        return res.json({ result: "documento_invalido" });
+      }
       if (auditoria.descartados > 0) {
         console.warn(`Procon: ${auditoria.descartados} achado(s) descartado(s) na auditoria.`);
       }
@@ -594,6 +599,11 @@ const prompt = PROMPT_ANALYZE_VIGILANCIA;
       const auditoria = validarAnaliseJSON(parsed, "vigilancia");
       if (auditoria.ilegivel) {
         return res.json({ result: "documento_ilegivel" });
+      }
+      // Conferência da vertical feita em código: o cabeçalho pode ter ficado
+      // cortado fora da foto e o modelo não reconhecer o órgão emissor.
+      if (auditoria.invalido) {
+        return res.json({ result: "documento_invalido" });
       }
       if (auditoria.descartados > 0) {
         console.warn(`Vigilância: ${auditoria.descartados} achado(s) descartado(s) na auditoria.`);
