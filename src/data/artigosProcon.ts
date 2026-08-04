@@ -24,7 +24,7 @@ export const artigosProcon: ArtigoProcon[] = [
 
 Receber um auto de infração do Procon é um evento que exige atenção imediata de qualquer gestor ou proprietário de empresa. O procedimento administrativo instaurado pelo órgão é regido por normas específicas, como o Código de Defesa do Consumidor e legislações federais e estaduais que estabelecem o rito para a apuração de eventuais irregularidades. Quando uma empresa é autuada, ela recebe uma notificação oficial que concede um período determinado para a apresentação de defesa escrita.
 
-O prazo para defesa é um elemento basilar do devido processo legal. Não existe um prazo único válido para todo o território nacional, uma vez que legislações estaduais e municipais podem estabelecer tempos distintos. Por isso, a regra de ouro é sempre verificar o que está escrito expressamente no auto de infração entregue pelo fiscal ou na notificação de abertura do processo.
+O prazo para defesa é um elemento basilar do devido processo legal. Não existe um prazo único válido para todo o território nacional — o art. 42 do Decreto 2.181/97 fixa 20 dias no âmbito federal, mas legislações estaduais e municipais podem estabelecer tempos distintos. Por isso, a regra de ouro é sempre verificar o que está escrito expressamente no auto de infração entregue pelo fiscal ou na notificação de abertura do processo.
 
 ## O que ocorre com a revelia administrativa
 
@@ -160,7 +160,7 @@ Se houver dúvida sobre como estruturar a defesa ou se o auto de infração apre
     palavrasChave: ["reclamacao procon", "defesa administrativa procon", "notificacao preliminar", "processo administrativo consumidor"],
     conteudo: `## A importância da etapa preliminar no Procon
 
-Quando uma empresa recebe uma notificação do Procon, o primeiro impulso pode ser de preocupação. No entanto, é fundamental compreender que nem toda reclamação recebida evolui automaticamente para um processo administrativo sancionador. Existe uma etapa anterior, frequentemente chamada de fase de atendimento preliminar ou notificação para esclarecimentos, que serve para que o órgão verifique se houve, de fato, uma infração às normas de consumo.
+Quando uma empresa recebe uma notificação do Procon, o primeiro impulso pode ser de preocupação. No entanto, é fundamental compreender que nem toda reclamação recebida evolui automaticamente para um processo administrativo sancionador. O art. 33-A do Decreto 2.181/97 prevê justamente essa etapa anterior — a averiguação preliminar —, na qual o órgão verifica se houve, de fato, uma infração às normas de consumo antes de instaurar o processo formal.
 
 Atuar de forma estratégica neste momento é vital. Uma resposta bem estruturada, pautada na legislação vigente, pode resolver a pendência com o consumidor de forma extrajudicial, auxiliando na mitigação de riscos de um processo administrativo que, futuramente, poderia resultar em penalidades.
 
@@ -210,7 +210,7 @@ Compreender como esse cálculo é estruturado é o primeiro passo para organizar
 
 ## Os três pilares da dosimetria
 
-O Código de Defesa do Consumidor estabelece que o valor da multa deve ser graduado com base em critérios objetivos. Esses critérios permitem que a autoridade administrativa realize uma análise individualizada de cada caso. De forma geral, os três elementos que compõem o cálculo são:
+O Código de Defesa do Consumidor estabelece que o valor da multa deve ser graduado com base em critérios objetivos, detalhados nos arts. 24 a 28 do Decreto 2.181/97. Esses critérios permitem que a autoridade administrativa realize uma análise individualizada de cada caso. De forma geral, os três elementos que compõem o cálculo são:
 
 - A gravidade da infração: Analisa-se se a conduta atingiu direitos básicos do consumidor ou se colocou em risco a saúde e segurança, por exemplo.
 - A vantagem auferida: Verifica-se se a empresa obteve benefício econômico direto com a prática considerada irregular.
@@ -259,7 +259,7 @@ O cálculo, tecnicamente chamado de dosimetria da pena, é uma operação que bu
 
 ## Os critérios básicos da dosimetria
 
-A legislação estabelece critérios fundamentais para a gradação da sanção. Esses fatores permitem que o agente fiscal ou a autoridade administrativa competente realize uma análise individualizada de cada caso. Os principais critérios são:
+A legislação estabelece critérios fundamentais para a gradação da sanção, previstos nos arts. 24 a 28 do Decreto 2.181/97. Esses fatores permitem que o agente fiscal ou a autoridade administrativa competente realize uma análise individualizada de cada caso. Os principais critérios são:
 
 - Gravidade da infração: Analisa-se o potencial ofensivo da conduta ao mercado de consumo e os danos causados aos consumidores envolvidos.
 - Vantagem auferida: Avalia-se se a prática infratora trouxe um ganho econômico direto ou indireto para a empresa.
@@ -502,7 +502,7 @@ Nem sempre a autuação está em plena conformidade com a legislação. O proces
 - Inobservância dos princípios da razoabilidade e da proporcionalidade no cálculo da multa.
 - Erros na notificação ou na condução do procedimento administrativo pelo agente fiscalizador.
 
-Ao pagar o boleto imediatamente, a empresa pode descartar a possibilidade de arguir esses pontos perante a autoridade administrativa, perdendo a chance de buscar a anulação do auto ou, no mínimo, a redução do impacto financeiro da penalidade.
+Ao pagar o boleto imediatamente, a empresa pode descartar a possibilidade de arguir esses pontos perante a autoridade administrativa, perdendo a chance de buscar a anulação do auto ou, no mínimo, a redução do impacto financeiro da penalidade. Vale notar que o art. 49 do Decreto 2.181/97 assegura efeito suspensivo ao recurso interposto contra a multa, o que significa que contestar dentro do prazo não implica em cobrança imediata do valor questionado.
 
 ## Atenção aos prazos processuais
 
@@ -577,7 +577,7 @@ Receber um auto de infração do Procon gera incerteza imediata sobre o impacto 
 
 ## Os pilares da dosimetria
 
-Para chegar ao valor da multa, o Procon deve considerar variáveis principais, conforme a legislação vigente e o entendimento consolidado nas normas de proteção ao consumidor. São elas:
+Para chegar ao valor da multa, o Procon deve considerar as variáveis principais previstas nos arts. 24 a 28 do Decreto 2.181/97, conforme a legislação vigente e o entendimento consolidado nas normas de proteção ao consumidor. São elas:
 
 - A gravidade da infração: Analisa-se o potencial de dano ao consumidor ou à coletividade, bem como a extensão da lesão provocada pelo comportamento da empresa.
 - A vantagem auferida: Verifica-se se a conduta praticada trouxe algum proveito econômico direto à empresa autuada.
@@ -848,7 +848,7 @@ No CheckMulta, é possível enviar o auto de infração do Procon para obter uma
     palavrasChave: ["erro no auto de infração", "defesa Procon empresa", "nulidade processo administrativo", "notificação Procon incorreta"],
     conteudo: `## A importância da correta identificação no processo administrativo
 
-O processo administrativo sancionador, instaurado pelo Procon para apurar supostas violações às normas consumeristas, é regido por princípios fundamentais que garantem a segurança jurídica tanto do órgão fiscalizador quanto da empresa autuada. Dentre esses requisitos essenciais, a correta identificação do sujeito passivo — a empresa autuada — ocupa posição de destaque. A emissão de um auto de infração que contenha erros na qualificação da pessoa jurídica não é apenas um detalhe administrativo; trata-se de um ponto que pode comprometer a validade do procedimento desde a sua origem.
+O processo administrativo sancionador, instaurado pelo Procon para apurar supostas violações às normas consumeristas, é regido por princípios fundamentais que garantem a segurança jurídica tanto do órgão fiscalizador quanto da empresa autuada. Dentre esses requisitos essenciais, listados no art. 35, inciso I, do Decreto 2.181/97, a correta identificação do sujeito passivo — a empresa autuada — ocupa posição de destaque. A emissão de um auto de infração que contenha erros na qualificação da pessoa jurídica não é apenas um detalhe administrativo; trata-se de um ponto que pode comprometer a validade do procedimento desde a sua origem.
 
 Quando um agente fiscalizador preenche um auto de infração, a precisão das informações é mandatória. O documento deve indicar com clareza a razão social, o CNPJ e o endereço correto do estabelecimento fiscalizado. Se esses dados apresentam divergências significativas, é possível sustentar que o ato administrativo está maculado por um vício formal.
 
@@ -945,7 +945,7 @@ A dosimetria da multa é o procedimento técnico pelo qual o agente fiscal ou a 
 
 ## O tratamento diferenciado como pilar jurídico
 
-A legislação voltada ao consumidor prevê que a autoridade, ao graduar a pena, considere diversos fatores, dentre eles a condição econômica do fornecedor. O tratamento diferenciado para micro e pequenas empresas não é apenas uma faculdade do órgão, mas uma diretriz que visa garantir a sustentabilidade do negócio enquanto se busca a correção da prática infratora.
+A legislação voltada ao consumidor prevê que a autoridade, ao graduar a pena, considere diversos fatores, dentre eles a condição econômica do fornecedor. O tratamento diferenciado para micro e pequenas empresas não é apenas uma faculdade do órgão: o art. 38-A, § 3º, do Decreto 2.181/97 determina que os órgãos de defesa do consumidor observem o tratamento diferenciado, simplificado e favorecido da Lei Complementar 123/2006 na fixação de multas, como diretriz que visa garantir a sustentabilidade do negócio enquanto se busca a correção da prática infratora.
 
 Ao estruturar uma defesa administrativa, é imperativo que a empresa comprove sua condição de enquadramento. Este fato não serve para justificar a infração, mas para garantir que a autoridade julgadora utilize os parâmetros adequados de dosimetria, evitando que a aplicação da multa inviabilize a operação da empresa.
 
@@ -998,7 +998,7 @@ A dosimetria é o procedimento técnico pelo qual o órgão de proteção ao con
 - A vantagem auferida pelo fornecedor com a irregularidade.
 - A condição econômica do fornecedor autuado.
 
-É justamente no terceiro ponto, a condição econômica, que reside o direito ao tratamento diferenciado para microempresas e empresas de pequeno porte. O Procon tem o dever legal de considerar que o porte da empresa atua como um limitador para a capacidade de pagamento da penalidade.
+É justamente no terceiro ponto, a condição econômica, que reside o direito ao tratamento diferenciado para microempresas e empresas de pequeno porte. O art. 38-A, § 3º, do Decreto 2.181/97 determina que os órgãos de defesa do consumidor observem o tratamento diferenciado, simplificado e favorecido previsto na Lei Complementar 123/2006 na fixação de multas — o Procon tem o dever legal de considerar que o porte da empresa atua como um limitador para a capacidade de pagamento da penalidade.
 
 ## O tratamento diferenciado na prática
 
@@ -1087,7 +1087,7 @@ Aqueles que buscam suporte para analisar a autuação do Procon podem solicitar 
     palavrasChave: ["reclamacao Procon empresa", "processo administrativo Procon", "defesa empresa Procon", "o que fazer Procon"],
     conteudo: `## A importância da fase preliminar no Procon
 
-Receber uma notificação de reclamação de consumidor no Procon é um momento crítico para a gestão de qualquer empresa. Muitas vezes, o gestor encara o documento com receio, sem compreender que esta etapa inicial é fundamental para evitar que um simples desentendimento comercial se transforme em um processo administrativo sancionador, o que poderia resultar na lavratura de um auto de infração e aplicação de penalidades.
+Receber uma notificação de reclamação de consumidor no Procon é um momento crítico para a gestão de qualquer empresa. Muitas vezes, o gestor encara o documento com receio, sem compreender que esta etapa inicial é fundamental para evitar que um simples desentendimento comercial se transforme em um processo administrativo sancionador, o que poderia resultar na lavratura de um auto de infração e aplicação de penalidades. O art. 33-A do Decreto 2.181/97 prevê exatamente essa fase de averiguação preliminar antes da instauração do processo formal.
 
 O Sistema Nacional de Defesa do Consumidor, regido pelo Código de Defesa do Consumidor, prevê mecanismos de resolução extrajudicial. O Procon atua como um órgão facilitador desta composição. Portanto, a forma como a empresa responde à reclamação inicial pode ser um fator relevante para o encerramento do caso sem prejuízos financeiros ou administrativos.
 
@@ -1147,7 +1147,7 @@ Vale ressaltar que o prazo para a apresentação desta defesa não é uniforme e
 
 ## O que é o Recurso Administrativo?
 
-O recurso administrativo ocorre em um momento posterior. Ele só é interposto após a prolação da decisão administrativa de primeira instância, ou seja, após o julgamento da defesa prévia e a possível imposição de uma penalidade, como uma multa.
+O recurso administrativo ocorre em um momento posterior. Ele só é interposto após a prolação da decisão administrativa de primeira instância, ou seja, após o julgamento da defesa prévia e a possível imposição de uma penalidade, como uma multa. O art. 49 do Decreto 2.181/97 fixa o prazo de 10 dias para a interposição do recurso, que tem efeito suspensivo quando a penalidade aplicada for multa.
 
 Diferente da defesa, o recurso tem como função principal levar a análise do processo a uma autoridade superior dentro do órgão. Ele visa questionar a decisão que considerou a empresa infratora. No recurso, a empresa pode demonstrar onde a decisão de primeira instância pode ter se equivocado, seja por erro na aplicação da norma, por desproporcionalidade no valor da penalidade ou por ausência de fundamentação adequada.
 
@@ -1182,7 +1182,7 @@ No CheckMulta, é possível enviar o auto de infração do Procon e obter uma an
     palavrasChave: ["erro no auto de infração Procon", "defesa administrativa Procon", "identificação incorreta empresa", "vício formal auto de infração"],
     conteudo: `## A importância da correta identificação do infrator no processo administrativo
 
-No âmbito do processo administrativo sancionador instaurado pelos órgãos de proteção ao consumidor, a precisão formal é um pilar de sustentação para a validade do procedimento. Entre os requisitos essenciais para a lavratura de um auto de infração, a correta identificação da empresa autuada ocupa lugar de destaque. Quando o Procon comete equívocos ao indicar o sujeito passivo da sanção, abre-se uma oportunidade para questionamentos sobre a legalidade do ato.
+No âmbito do processo administrativo sancionador instaurado pelos órgãos de proteção ao consumidor, a precisão formal é um pilar de sustentação para a validade do procedimento. Entre os requisitos essenciais para a lavratura de um auto de infração, previstos no art. 35, inciso I, do Decreto 2.181/97, a correta identificação da empresa autuada ocupa lugar de destaque. Quando o Procon comete equívocos ao indicar o sujeito passivo da sanção, abre-se uma oportunidade para questionamentos sobre a legalidade do ato.
 
 ## O que constitui o erro de identificação?
 
@@ -1427,7 +1427,7 @@ A dosimetria da multa é pautada, fundamentalmente, pela análise de critérios 
 
 ## Os critérios da dosimetria
 
-O Poder Público, ao calcular a penalidade, deve observar os parâmetros estabelecidos pelo Código de Defesa do Consumidor e pelos decretos regulamentadores. Entre os fatores mais relevantes que podem elevar ou reduzir o valor da multa, destacam-se:
+O Poder Público, ao calcular a penalidade, deve observar os parâmetros estabelecidos pelo Código de Defesa do Consumidor e pelos arts. 24 a 28 do Decreto 2.181/97. Entre os fatores mais relevantes que podem elevar ou reduzir o valor da multa, destacam-se:
 
 - Gravidade da infração: Analisa-se o impacto da conduta no mercado de consumo e os danos causados aos consumidores. Infrações que colocam em risco a segurança ou a saúde possuem um peso considerável.
 - Vantagem auferida: O Procon verifica se a prática irregular trouxe um ganho financeiro direto ou indireto para o estabelecimento, buscando desestimular o benefício obtido através da infração.
@@ -1510,7 +1510,7 @@ No CheckMulta, é possível enviar o auto de infração do Procon para receber u
     palavrasChave: ["reclamacao Procon empresa", "processo administrativo Procon", "defesa Procon empresa", "notificacao Procon o que fazer"],
     conteudo: `## A importância da fase pré-autuação no Procon
 
-Receber uma notificação do Procon é um momento de atenção para qualquer gestor. Muitas empresas, ao serem comunicadas de uma reclamação, cometem o equívoco de ignorar o chamado ou responder de forma genérica. É fundamental compreender que a fase de atendimento preliminar representa uma oportunidade de resolver um conflito antes que o órgão instale um processo administrativo sancionador formal, que pode culminar em sanções pecuniárias.
+Receber uma notificação do Procon é um momento de atenção para qualquer gestor. Muitas empresas, ao serem comunicadas de uma reclamação, cometem o equívoco de ignorar o chamado ou responder de forma genérica. É fundamental compreender que a fase de atendimento preliminar — prevista no art. 33-A do Decreto 2.181/97 como averiguação preliminar — representa uma oportunidade de resolver um conflito antes que o órgão instale um processo administrativo sancionador formal, que pode culminar em sanções pecuniárias.
 
 O Código de Defesa do Consumidor e a legislação que rege os procedimentos administrativos nos órgãos de proteção ao consumidor incentivam a autocomposição. Resolver o problema do cliente diretamente, neste estágio inicial, costuma ser o caminho mais eficiente para evitar a lavratura de um auto de infração, que é um ato administrativo mais gravoso.
 
@@ -1558,7 +1558,7 @@ Caso deseje uma análise técnica, é possível buscar especialistas para verifi
     palavrasChave: ["erro identificação autuação Procon", "auto de infração incorreto", "defesa administrativa Procon", "nulidade processo administrativo"],
     conteudo: `## A importância da correta qualificação da empresa autuada
 
-No âmbito do processo administrativo instaurado pelo Procon, a precisão das informações contidas no auto de infração não é apenas uma formalidade burocrática, mas um requisito fundamental para a validade do procedimento. Entre os erros mais comuns que podem fragilizar uma autuação está a identificação incorreta da empresa autuada.
+No âmbito do processo administrativo instaurado pelo Procon, a precisão das informações contidas no auto de infração não é apenas uma formalidade burocrática, mas um requisito fundamental para a validade do procedimento, nos termos do art. 35, inciso I, do Decreto 2.181/97. Entre os erros mais comuns que podem fragilizar uma autuação está a identificação incorreta da empresa autuada.
 
 Quando um agente fiscal lavra um auto de infração, ele está formalizando uma acusação que pode culminar na aplicação de penalidades, incluindo multas administrativas. Para que esse ato tenha eficácia jurídica, é indispensável que o documento indique com precisão quem é o sujeito passivo da sanção, ou seja, a pessoa jurídica responsável pelo suposto descumprimento das normas de defesa do consumidor.
 
@@ -1618,7 +1618,7 @@ Antes de considerar o desembolso, a empresa deve realizar uma triagem detalhada 
 
 - Descrição clara da conduta: O fiscal descreveu de forma inequívoca qual foi a suposta irregularidade? Autuações genéricas, que não indicam exatamente o dispositivo legal infringido ou a conduta específica da empresa, podem ser contestadas por cerceamento de defesa.
 - Observância aos prazos: Verifique qual é o prazo concedido para a apresentação da defesa administrativa. Este prazo varia conforme a legislação e o órgão de proteção ao consumidor que expediu a autuação. É imprescindível conferir o prazo impresso no seu documento, pois a perda deste marco temporal impede que qualquer argumentação seja apresentada.
-- Competência e formalidade: Verifique se o documento contém os requisitos formais necessários, como a identificação correta do autuado, a assinatura do agente fiscalizador e a fundamentação legal da infração.
+- Competência e formalidade: Verifique se o documento contém os requisitos formais necessários, como a identificação correta do autuado, a assinatura do agente fiscalizador e a fundamentação legal da infração — o art. 35, inciso I, do Decreto 2.181/97 lista esses requisitos obrigatórios do auto de infração.
 - Proporcionalidade da multa: A legislação estabelece que a penalidade deve ser aplicada considerando a gravidade da infração, a vantagem auferida e a condição econômica do infrator. Se o valor fixado não observar esses critérios, ele pode ser questionado tecnicamente.
 
 ## A importância da defesa administrativa
@@ -1778,7 +1778,7 @@ Esta é uma distinção importante: discutir vício formal não é o mesmo que n
 
 ## Por que a forma importa
 
-O processo administrativo sancionatório do Procon é regido pelo Decreto nº 2.181/97, que regulamenta o Código de Defesa do Consumidor. A norma estabelece requisitos para a lavratura do auto de infração. Esses requisitos não são burocracia: existem para garantir que a empresa saiba exatamente do que está sendo acusada e possa se defender.
+O processo administrativo sancionatório do Procon é regido pelo Decreto nº 2.181/97, que regulamenta o Código de Defesa do Consumidor. O art. 35, inciso I, da norma estabelece os requisitos obrigatórios para a lavratura do auto de infração. Esses requisitos não são burocracia: existem para garantir que a empresa saiba exatamente do que está sendo acusada e possa se defender.
 
 Quando o auto é impreciso, o direito de defesa fica prejudicado — e é justamente aí que reside o argumento.
 
@@ -1800,7 +1800,7 @@ Quando o auto é impreciso, o direito de defesa fica prejudicado — e é justam
 
 ## Vício formal anula automaticamente?
 
-Não. A autoridade julgadora avalia se o vício é sanável e se efetivamente prejudicou a defesa. Irregularidades meramente materiais — um erro de digitação que não gera dúvida sobre o autuado, por exemplo — tendem a ser relevadas.
+Não. A autoridade julgadora avalia se o vício é sanável e se efetivamente prejudicou a defesa — o art. 48 do Decreto 2.181/97 estabelece que a inobservância de forma só acarreta nulidade se dela resultar prejuízo. Irregularidades meramente materiais — um erro de digitação que não gera dúvida sobre o autuado, por exemplo — tendem a ser relevadas.
 
 O que se busca demonstrar na defesa é que o vício comprometeu a compreensão da acusação ou a possibilidade de contrapô-la. Por isso, a alegação precisa ser fundamentada e vinculada ao caso concreto, não genérica.
 
