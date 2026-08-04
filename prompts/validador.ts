@@ -236,6 +236,69 @@ export function ehNaoVerificavel(achado: any): boolean {
 }
 
 // ============================================================
+// 5-A. CLASSIFICAÇÃO DA VERTICAL — EM CÓDIGO
+// ============================================================
+
+/**
+ * O modelo pode não reconhecer o órgão emissor quando o cabeçalho ficou
+ * cortado fora da foto. Aqui a conferência é feita por sinais léxicos na
+ * transcrição, independente do que o modelo concluiu.
+ *
+ * Caso real que motivou isto: um auto de vigilância sanitária com a metade
+ * direita cortada foi aceito pela rota do Procon, porque a palavra
+ * "SANITÁRIA" não aparecia na parte visível do documento.
+ */
+const SINAIS: Record<Vertical, string[]> = {
+  vigilancia: [
+    "vigilancia sanitaria", "infracao sanitaria", "sanitaria", "sanitario",
+    "6437", "6 437", "anvisa", "alvara sanitario", "interdicao",
+    "secretaria municipal da saude", "secretaria de saude", "autoridade sanitaria",
+    "fiscal sanitario", "manipulacao de alimentos", "boas praticas",
+  ],
+  procon: [
+    "procon", "defesa do consumidor", "protecao e defesa do consumidor",
+    "consumidor", "8078", "8 078", "2181", "2 181", "pratica abusiva",
+    "relacao de consumo", "codigo de defesa do consumidor", "fornecedor",
+  ],
+  transito: [
+    "ctb", "9503", "9 503", "detran", "renavam", "placa", "condutor",
+    "codigo de transito", "auto de infracao de transito", "ait",
+    "agente da autoridade de transito", "velocidade", "cnh", "veiculo",
+  ],
+};
+
+function pontuar(transcricao: string, vertical: Vertical): number {
+  const t = normalizar(transcricao);
+  const compacto = t.replace(/\s/g, "");
+  return SINAIS[vertical].filter((s) => {
+    const n = normalizar(s);
+    return t.includes(n) || compacto.includes(n.replace(/\s/g, ""));
+  }).length;
+}
+
+export type ResultadoVertical = "ok" | "outra_vertical" | "indefinido";
+
+/**
+ * Confere se o documento transcrito pertence à vertical da rota chamada.
+ * "outra_vertical" e "indefinido" viram documento_invalido: na dúvida,
+ * rejeita, que é a mesma regra já adotada nos prompts.
+ */
+export function conferirVertical(
+  transcricao: string,
+  esperada: Vertical
+): ResultadoVertical {
+  const meus = pontuar(transcricao, esperada);
+  const outras: Vertical[] = (["transito", "procon", "vigilancia"] as Vertical[])
+    .filter((v) => v !== esperada);
+
+  const maiorOutra = Math.max(...outras.map((v) => pontuar(transcricao, v)));
+
+  if (meus === 0) return "indefinido";
+  if (maiorOutra > meus) return "outra_vertical";
+  return "ok";
+}
+
+// ============================================================
 // 5. ILEGIBILIDADE — CRITÉRIO OBJETIVO
 // ============================================================
 
@@ -250,6 +313,10 @@ export function ehNaoVerificavel(achado: any): boolean {
 export function documentoIlegivel(transcricao: string, camposChave: string[]): boolean {
   const t = normalizar(transcricao);
   if (t.length < 180) return true;
+
+  // Documento com muitos campos marcados como ilegíveis não sustenta análise
+  const marcadores = (transcricao.match(/\[ILEGIVEL\]/gi) || []).length;
+  if (marcadores >= 3) return true;
 
   const preenchidos = camposChave.filter((c) => {
     const v = normalizar(c);
@@ -276,6 +343,7 @@ export function calcularViabilidade(achados: any[]): "Alta" | "Média" | "Baixa"
 
 export interface ResultadoValidacao {
   ilegivel: boolean;
+  invalido: boolean;
   parsed: any;
   descartados: number;
 }
@@ -294,8 +362,15 @@ export function validarAnaliseJSON(
     parsed?.empresa_autuada || parsed?.estabelecimento_autuado,
   ].filter((v) => typeof v === "string") as string[];
 
+  // ORDEM DAS TRAVAS (a ordem importa):
+  // 1º legibilidade — se não deu para ler, não se decide mais nada
   if (documentoIlegivel(transcricao, camposChave)) {
-    return { ilegivel: true, parsed, descartados: 0 };
+    return { ilegivel: true, invalido: false, parsed, descartados: 0 };
+  }
+
+  // 2º vertical — só depois de ler é que se pergunta de que órgão é o documento
+  if (conferirVertical(transcricao, vertical) !== "ok") {
+    return { ilegivel: false, invalido: true, parsed, descartados: 0 };
   }
 
   const originais: any[] = Array.isArray(parsed?.achados) ? parsed.achados : [];
@@ -344,6 +419,7 @@ export function validarAnaliseJSON(
 
   return {
     ilegivel: false,
+    invalido: false,
     parsed,
     descartados: originais.length - aprovados.length,
   };
@@ -397,8 +473,14 @@ export function validarAnaliseTransito(bruto: string): string {
   const data = campoTransito(relatorio, "Data");
   const local = campoTransito(relatorio, "Local exato");
 
+  // 1º legibilidade
   if (documentoIlegivel(transcricao, [placa, data, local])) {
     return "imagem_ilegivel";
+  }
+
+  // 2º vertical: auto do Procon ou da vigilância não é analisado aqui
+  if (conferirVertical(transcricao, "transito") !== "ok") {
+    return "documento_invalido";
   }
 
   // Números citados no relatório têm que existir no documento
