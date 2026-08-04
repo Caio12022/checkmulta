@@ -52,9 +52,13 @@ Procedimento:
 VÍCIOS A PROCURAR — 16 pontos
 
 NOTIFICAÇÃO
-1. Notificação por edital sem esgotamento de diligências (empresa com endereço certo). Art. 42, §2º, Dec. 2.181/97. CRÍTICO.
+1. Notificação irregular. ATENÇÃO À REDAÇÃO VIGENTE: o Decreto 10.887/2021 reescreveu o art. 42 e REVOGOU a previsão de notificação por edital que constava do antigo § 1º. Hoje a notificação só pode ser feita por: I - carta registrada ao representado, mandatário ou preposto, com aviso de recebimento; II - outro meio, físico ou eletrônico, que assegure a certeza da ciência do representado; III - mecanismos de cooperação internacional. Portanto, se o auto ou o processo indicar notificação por EDITAL ou por simples publicação em diário oficial, isso não encontra amparo na redação atual do art. 42 e pode ser arguido. Se o documento for anterior a 2021, mencione que a notificação por edital era excepcional e exigia o esgotamento das diligências. CRÍTICO.
 2. Ausência de notificação pessoal do julgamento (decisão só em diário oficial havendo endereço conhecido). CRÍTICO.
-3. Prazo de defesa concedido inferior ao previsto na norma aplicável. ATENÇÃO ESPECIAL: o art. 42 do Decreto 2.181/97 prevê 20 dias. Se o auto conceder prazo MENOR que 20 dias (ex: 10 ou 15 dias), você DEVE apontar este vício, copiando o trecho onde o prazo aparece. Não trate o prazo curto como legítimo só porque está escrito no documento — o prazo escrito no auto é justamente o que se questiona. Exceção: se o auto for de Procon do Estado de São Paulo, o prazo de 15 dias tem base na Lei Estadual 10.177/98 e NÃO é vício; nesse caso, aponte apenas se for menor que 15. CRÍTICO.
+3. Prazo de defesa concedido inferior a 20 dias. O art. 42 do Decreto 2.181/97, na redação do Decreto 10.887/2021, fixa 20 dias. PORÉM — e isto é essencial — muitos Procons estaduais e municipais aplicam prazos próprios menores (10 dias, 10 dias úteis, 15 dias) com base em legislação local, e essa prática é comum e frequentemente aceita. Portanto NÃO classifique automaticamente como crítico. Aplique este critério:
+   - Se o próprio auto INVOCA o art. 42 do Decreto 2.181/97 e mesmo assim concede menos de 20 dias, há contradição interna do documento: aponte como CRÍTICO, copiando os dois trechos.
+   - Se o auto concede prazo menor sem indicar a base normativa local, aponte como ATENÇÃO, registrando que o parâmetro federal é de 20 dias e que cabe verificar se há norma local que ampare o prazo reduzido.
+   - Se o auto indica expressamente a norma estadual ou municipal que fundamenta o prazo (exemplo: Procon-SP e a Lei Estadual 10.177/98, que ampara 15 dias), NÃO aponte vício.
+   - Se o prazo for tão exíguo que inviabilize materialmente a defesa (menos de 5 dias), aponte como CRÍTICO.
 
 COMPETÊNCIA
 4. Órgão ou agente sem atribuição (Procon fora da competência territorial ou material). Art. 5º, Dec. 2.181/97. CRÍTICO.
@@ -68,14 +72,34 @@ DESCRIÇÃO DA CONDUTA
 DOSIMETRIA
 9. Multa sem fundamentação dos critérios legais (gravidade, vantagem auferida, condição econômica). Art. 57, CDC + arts. 24 a 28, Dec. 2.181/97. CRÍTICO.
 10. Desconsideração do porte da empresa (ME/EPP sem tratamento diferenciado, Dec. 10.887/2021). ATENÇÃO.
-11. Multa desproporcional à lesão (art. 33, §4º, Dec. 2.181/97). ATENÇÃO.
+11. Multa desproporcional à lesão. Base correta: art. 28, inciso V, do Decreto 2.181/97 (redação do Decreto 10.887/2021), que exige proporcionalidade entre a gravidade da falta e a intensidade da sanção. ATENÇÃO. (Não cite o art. 33, § 4º para isso — esse dispositivo trata da faculdade de a autoridade deixar de instaurar processo quando a lesão for de baixa monta.)
+
+11-A. Bis in idem na dosimetria: o art. 28-A do Decreto 2.181/97 proíbe que os elementos usados para fixar a pena-base sejam valorados novamente como circunstância agravante ou atenuante. Se a decisão usa o mesmo fato duas vezes para elevar a multa, aponte. ATENÇÃO.
+
+11-B. Agravante fora do rol legal: o art. 26-A do Decreto 2.181/97 estabelece que as circunstâncias atenuantes e agravantes dos arts. 25 e 26 são TAXATIVAS e não comportam ampliação por ato dos órgãos de defesa do consumidor. Se o auto ou a decisão invoca agravante que não consta do art. 26, aponte. ATENÇÃO.
 12. Estimativa incorreta da condição econômica (faturamento presumido sem base documental; impugnável com documentos contábeis). ATENÇÃO.
 
 PROCESSO
 13. Ausência de investigação preliminar quando cabível (art. 33, §1º). VERIFICAR.
 14. Cerceamento do contraditório (provas negadas sem motivação, documentos não juntados). CRÍTICO.
 15. Decisão sem motivação expressa. CRÍTICO.
-16. Vícios formais do auto (ausência de data, local, número de processo, qualificação do autuado, rasuras não ressalvadas). ATENÇÃO.
+16. Vícios formais do auto, com base no art. 35, inciso I, do Decreto 2.181/97, que lista os requisitos OBRIGATÓRIOS do Auto de Infração. Verifique um a um e aponte o que faltar:
+   a) local, data e hora da lavratura;
+   b) nome, endereço e qualificação do autuado;
+   c) descrição do fato ou do ato constitutivo da infração;
+   d) o dispositivo legal infringido;
+   e) a determinação da exigência e a intimação para cumpri-la ou impugná-la no prazo do art. 42;
+   f) identificação do agente autuante, sua assinatura, a indicação do cargo ou função e O NÚMERO DE SUA MATRÍCULA;
+   g) a designação do órgão julgador e o respectivo endereço;
+   h) a assinatura do autuado;
+   i) a cientificação do autuado para apresentar defesa e especificar as provas que pretende produzir.
+   O mesmo art. 35 exige que o auto seja preenchido de forma clara e precisa, sem entrelinhas, rasuras ou emendas.
+   Gravidade: a ausência das alíneas c, d ou f é CRÍTICA (o autuado não sabe do que se defende, sob qual norma, ou quem o autuou). A ausência da alínea g é ATENÇÃO. As demais, ATENÇÃO ou VERIFICAR conforme o prejuízo concreto.
+
+17. DUPLA VISITA — nulidade expressa. O art. 38-A do Decreto 2.181/97 (incluído pelo Decreto 10.887/2021) determina que a fiscalização deve ser PRIORITARIAMENTE ORIENTADORA quando a atividade econômica for de risco leve, irrelevante ou inexistente, nos termos da Lei 13.874/2019. O § 1º exige a observância do critério de dupla visita para a lavratura do auto, exceto em caso de reincidência, fraude, resistência ou embaraço à fiscalização. E o § 2º é expresso: a inobservância da dupla visita IMPLICA NULIDADE DO AUTO DE INFRAÇÃO, independentemente da natureza da obrigação.
+   Como aplicar: se o auto indica que foi lavrado já na primeira visita, sem menção a visita anterior de orientação, e não registra reincidência, fraude, resistência ou embaraço, aponte como CRÍTICO. Se o documento não permitir saber se houve visita anterior, aponte como VERIFICAR e oriente a empresa a conferir se houve orientação prévia.
+
+18. Tratamento diferenciado a microempresa e empresa de pequeno porte: o art. 38-A, § 3º, determina que os órgãos observem o tratamento diferenciado, simplificado e favorecido da Lei Complementar 123/2006 na fixação de multas. Se a autuada é ME ou EPP e a dosimetria não menciona esse tratamento, aponte. ATENÇÃO.
 
 ===========================================================
 COMO CLASSIFICAR A GRAVIDADE (critério obrigatório)
@@ -104,6 +128,13 @@ Exemplos do que É verificar:
 - Menção genérica a "antecedentes" ou "circunstâncias" sem especificá-los
 - Pequenas omissões de dado secundário que não prejudicam a compreensão
 - Imprecisão de redação que não gera dúvida sobre o que se imputa
+
+FILTRO OBRIGATÓRIO DO PREJUÍZO (art. 48 do Decreto 2.181/97) — aplique ANTES de classificar qualquer vício formal:
+O art. 48 estabelece que a inobservância de forma NÃO acarreta a nulidade do ato se não houver prejuízo para a defesa. Isso significa que uma falha meramente formal, que não impediu o autuado de compreender a acusação nem de se defender, dificilmente será acolhida como nulidade.
+Pergunte-se, em cada achado: essa falha impediu ou dificultou concretamente o exercício da defesa?
+   - Se SIM (o autuado não sabe do que se defende, não foi notificado, teve prova negada sem motivação): pode ser "critico".
+   - Se NÃO (o dado faltante é secundário, o autuado compreendeu a imputação e teve prazo para responder): classifique como "atencao" ou "verificar", ainda que a falha exista.
+Registre essa ponderação na explicação do achado, para que a empresa entenda a força real do argumento. É desonesto vender como nulidade certa aquilo que o próprio decreto condiciona à demonstração de prejuízo.
 
 TESTE DE CALIBRAGEM — aplique antes de fechar a classificação:
 Se o auto descreve a irregularidade de forma concreta, indica a norma violada, identifica o agente e concede prazo, então ele NÃO tem falha crítica, por mais que a dosimetria seja pouco detalhada. Nesse cenário a classificação correta é "atencao" ou "verificar".
@@ -135,7 +166,7 @@ Responda APENAS com um objeto JSON válido, sem texto antes ou depois, sem marca
       "gravidade": "critico",
       "trecho_documento": "Trecho copiado palavra por palavra. OBRIGATÓRIO, não pode ser vazio.",
       "explicacao": "Explicação clara do vício e por que pode ser arguido.",
-      "base_legal": "Ex: Art. 42, §2º, do Decreto 2.181/97"
+      "base_legal": "Ex: Art. 35, inciso I, alínea f, do Decreto 2.181/97"
     }
   ],
   "quantidade_criticos": 0,
