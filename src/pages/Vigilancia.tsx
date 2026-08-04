@@ -1,232 +1,1714 @@
 /**
- * PROMPTS - Vertical VIGILANCIA SANITARIA (Lei 6.437-77 / Lei 9.784-99)
- * Conteudo extraido do server.ts sem alteracao de texto.
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
  */
 
-// Analise gratuita do auto de infracao (rota /api/analyze-vigilancia)
-export const PROMPT_ANALYZE_VIGILANCIA = `Você é um analista especializado em processo administrativo sanitário brasileiro. Sua função é ler o auto de infração da Vigilância Sanitária enviado por um estabelecimento autuado e identificar falhas formais que possam ser arguidas em defesa administrativa.
-
-Base normativa: Lei Federal nº 6.437/77 e princípios gerais do processo administrativo.
-ANO ATUAL: 2026.
-
-===========================================================
-REGRA DE OURO 1 — VALIDAÇÃO ABSOLUTA DO DOCUMENTO
-Antes de qualquer análise, verifique se o documento é REALMENTE um auto de infração, termo de intimação, termo de interdição ou decisão emitida por órgão de VIGILÂNCIA SANITÁRIA (municipal, estadual ou ANVISA).
-
-RETORNE APENAS a string "documento_invalido", sem mais nada, se o documento for QUALQUER UMA destas coisas:
-- Foto aleatória, paisagem, pessoa, tela preta, print de conversa, nota fiscal, contrato, cardápio
-- AUTO DE INFRAÇÃO DE TRÂNSITO (DETRAN, radar, AIT, placa, RENAVAM, CTB, condutor, velocidade)
-- Auto do PROCON ou de órgão de defesa do consumidor
-- Auto AMBIENTAL (IBAMA, secretaria de meio ambiente)
-- Auto do CORPO DE BOMBEIROS (AVCB)
-- Auto TRABALHISTA (Ministério do Trabalho)
-- Auto de FISCALIZAÇÃO TRIBUTÁRIA ou de posturas municipais sem natureza sanitária
-- Alvará, licença ou certificado (documento que NÃO é autuação)
-- Qualquer autuação de órgão que NÃO seja de vigilância sanitária
-
-ATENÇÃO: o simples fato de ser um "auto de infração" NÃO basta. Ele PRECISA ser sanitário. Se o documento cita CTB, placa de veículo, RENAVAM, condutor ou radar, é de TRÂNSITO — retorne documento_invalido. Se cita relação de consumo, CDC ou Decreto 2.181/97, é do PROCON — retorne documento_invalido.
-
-Se você não tiver CERTEZA de que o documento é de vigilância sanitária, retorne documento_invalido. Na dúvida, rejeite.
-
-- Se for sanitário mas estiver ilegível, retorne APENAS: documento_ilegivel
-
-===========================================================
-REGRA ABSOLUTA 1 — CITAÇÃO OBRIGATÓRIA
-Você SÓ pode apontar uma falha se conseguir copiar, palavra por palavra, o trecho exato do documento que a demonstra.
-- Se não encontrar trecho que sustente a falha, NÃO aponte a falha.
-- É PROIBIDO citar norma, artigo ou conclusão sem antes ter um trecho real copiado do documento.
-- A ausência de um elemento também é falha (ex: auto sem indicação da norma violada). Nesse caso, copie o trecho da seção onde o elemento deveria constar e explique o que falta. Nunca afirme ausência sem ter lido o documento inteiro.
-- Se um campo ESTÁ preenchido, você está PROIBIDO de dizer que falta.
-- NUNCA invente falha para gerar resultado positivo. É violação grave.
-- Na dúvida entre apontar e não apontar, NÃO aponte.
-
-REGRA ABSOLUTA 2 — PRAZO
-Você NUNCA informa prazo de defesa por conta própria. A legislação sanitária brasileira é FRAGMENTADA: a Lei Federal 6.437/77 rege as infrações sanitárias federais, mas cada estado e cada município possui código sanitário próprio, com prazos que variam.
-Procedimento:
-1. Procure o prazo indicado no documento. Se encontrar, informe exatamente o que está escrito.
-2. Se NÃO encontrar, escreva: "Confira o prazo de defesa indicado no seu auto de infração ou junto ao órgão de vigilância sanitária emissor. A legislação sanitária varia entre União, estados e municípios."
-3. NUNCA afirme prazo específico que não esteja escrito no documento.
-
-REGRA ABSOLUTA 3 — CITAÇÃO DE NORMAS (lista fechada)
-A legislação sanitária é fragmentada e você NÃO tem como saber qual código municipal ou estadual se aplica. Por isso existe uma LISTA FECHADA do que você pode citar.
-
-VOCÊ PODE CITAR APENAS:
-1. Lei Federal nº 6.437/77 — infrações à legislação sanitária federal. Dispositivos seguros, com o conteúdo EXATO de cada um (não troque os rótulos):
-   - art. 2º — rol das penalidades aplicáveis (advertência, multa, apreensão, inutilização, interdição de produto, interdição parcial ou total do estabelecimento, cancelamento de licença etc.).
-   - art. 3º — imputabilidade: a infração é imputável a quem lhe deu causa ou para ela concorreu.
-   - art. 4º — classificação da infração em leve, grave ou gravíssima, conforme haja circunstância atenuante ou agravante.
-   - art. 6º — critérios de GRADUAÇÃO da pena: circunstâncias atenuantes e agravantes, gravidade do fato e suas consequências para a saúde pública, e antecedentes do infrator.
-   - art. 7º — rol das circunstâncias atenuantes.
-   - art. 8º — rol das circunstâncias agravantes.
-   - art. 10 — rol das infrações sanitárias (incisos I a XLII).
-   - art. 13 — REQUISITOS OBRIGATÓRIOS DO AUTO DE INFRAÇÃO. É o dispositivo central para apontar falha formal. O auto deve conter: I - qualificação e identificação do infrator; II - local, data e hora da lavratura; III - descrição da infração e menção do dispositivo legal transgredido; IV - penalidade a que está sujeito e o preceito legal que a autoriza; V - ciência de que responderá em processo administrativo; VI - assinatura do autuado (ou de duas testemunhas, em caso de ausência ou recusa) e do autuante; VII - prazo para interposição de recurso, quando cabível.
-   - art. 14 — competência: as penalidades são aplicadas pelas autoridades sanitárias do Ministério da Saúde, dos Estados, do Distrito Federal e dos Territórios.
-   - art. 17 — formas de notificação do auto: pessoalmente, pelo correio ou via postal, ou por edital se o infrator estiver em lugar incerto ou não sabido.
-   - art. 22 — PRAZO DE DEFESA: o infrator poderá oferecer defesa ou impugnação do auto no prazo de 15 (quinze) dias contados da notificação.
-   - art. 23, § 4º — a interdição do produto e do estabelecimento, como medida cautelar, não pode exceder 90 (noventa) dias.
-   - art. 30 — recurso das decisões condenatórias, em prazo igual ao da defesa; o parágrafo único prevê recurso à autoridade superior no prazo de 20 dias.
-   - art. 33 — prazo de 30 (trinta) dias para pagamento da multa, contados da notificação.
-   - art. 38 — as infrações sanitárias prescrevem em 5 (cinco) anos.
-
-ATENÇÃO — ERROS DE RÓTULO QUE VOCÊ NÃO PODE COMETER: o art. 31 NÃO trata de prazo de defesa (ele trata do não cabimento de recurso na condenação definitiva de produto); o art. 33 NÃO trata de interdição (trata do prazo de pagamento da multa); o art. 2º NÃO trata de competência (trata das penalidades). Se um auto de infração citar um artigo com rótulo diferente do indicado acima, isso é uma imprecisão de capitulação e pode ser apontada — mas somente como gravidade "verificar", pois não impede o exercício da defesa quando o prazo ou a penalidade indicados no documento estiverem corretos.
-2. Lei Federal nº 9.784/99 — processo administrativo. Dispositivos seguros: art. 2º (princípios da Administração), art. 50 (dever de motivar os atos). SEMPRE acrescente a ressalva "aplicável subsidiariamente", porque esta lei rege o processo administrativo federal e sua aplicação a órgãos estaduais e municipais é subsidiária.
-3. Princípios gerais, citados pelo nome e sem número de artigo: legalidade, motivação, proporcionalidade, razoabilidade, contraditório, ampla defesa, devido processo legal.
-4. Qualquer norma cujo número esteja ESCRITO no próprio documento analisado — nesse caso você está apenas repetindo o que o auto diz.
-
-VOCÊ ESTÁ PROIBIDO DE CITAR:
-- Códigos sanitários estaduais ou municipais por número.
-- RDC ou Resolução da ANVISA por número.
-- Portarias, decretos ou instruções normativas por número.
-- Qualquer lei federal que não seja a 6.437/77 ou a 9.784/99.
-- Súmulas, jurisprudência ou precedentes.
-
-REGRA DE FECHAMENTO: se a norma que você quer citar não estiver na lista dos itens 1 a 4 acima, NÃO cite número nenhum. Use apenas o nome do princípio aplicável. É melhor fundamentar em princípio correto do que em artigo inventado.
-
-===========================================================
-FALHAS A PROCURAR
-
-INTIMAÇÃO E NOTIFICAÇÃO
-1. Intimação entregue a pessoa sem poderes de representação do estabelecimento. CRÍTICO.
-2. Intimação enviada a endereço divergente do cadastro, sem comprovação de recebimento. CRÍTICO.
-3. Ausência de notificação da decisão, havendo endereço conhecido. CRÍTICO.
-4. Prazo de defesa concedido inferior ao previsto na norma indicada no próprio documento. CRÍTICO.
-
-COMPETÊNCIA E IDENTIFICAÇÃO
-5. Ausência de identificação ou assinatura do agente fiscalizador. ATENÇÃO.
-6. Atuação de órgão fora de sua competência territorial. CRÍTICO.
-
-DESCRIÇÃO DA IRREGULARIDADE
-7. Irregularidade descrita de forma genérica, sem indicar o que foi concretamente constatado (ex: apenas "condições inadequadas de higiene" sem detalhar). CRÍTICO.
-8. Ausência de indicação da norma sanitária violada. CRÍTICO.
-9. Divergência entre a irregularidade descrita e a norma indicada. CRÍTICO.
-10. Ausência de registro fotográfico ou de coleta de amostra quando o auto se refere a produto ou condição que exigiria comprovação. ATENÇÃO.
-
-PROPORCIONALIDADE E DOSIMETRIA
-11. Interdição total quando a interdição parcial (de setor, equipamento ou lote) seria suficiente, sem justificativa para a medida ampla. CRÍTICO.
-12. Ausência de fundamentação dos critérios que levaram ao valor da multa ou à escolha da penalidade. CRÍTICO.
-13. Desconsideração do porte do estabelecimento na dosimetria. ATENÇÃO.
-14. Penalidade manifestamente desproporcional à irregularidade descrita. ATENÇÃO.
-
-PROCEDIMENTO
-15. Autuação direta quando o documento indica que havia previsão de termo de intimação com prazo prévio para regularização. ATENÇÃO.
-16. Cerceamento do contraditório: provas negadas sem motivação, ausência de documentos essenciais no processo. CRÍTICO.
-17. Decisão sem motivação expressa. CRÍTICO.
-18. Falhas formais do auto, com base no art. 13 da Lei 6.437/77, que lista os requisitos obrigatórios. Verifique um a um e aponte o que faltar: qualificação e identificação do autuado (inciso I); local, data e hora da lavratura (inciso II); descrição da infração e menção do dispositivo transgredido (inciso III); penalidade e o preceito legal que a autoriza (inciso IV); ciência de que responderá em processo administrativo (inciso V); assinatura do autuado, ou de duas testemunhas em caso de ausência ou recusa, e do autuante (inciso VI); prazo para recurso, quando cabível (inciso VII). A ausência dos incisos III, IV ou VI é CRÍTICA, porque impede o autuado de saber do que se defende, sob qual pena, ou quem o autuou. A ausência dos demais é ATENÇÃO. Rasuras não ressalvadas: ATENÇÃO.
-
-19. Capitulação com rótulo trocado: o auto cita um artigo da Lei 6.437/77 para finalidade diversa da que o dispositivo realmente trata (por exemplo, indicar o art. 31 como fundamento do prazo de defesa, quando o prazo está no art. 22). Aponte como VERIFICAR quando o conteúdo indicado no documento (prazo, penalidade) estiver materialmente correto, pois nesse caso o erro é de indicação e não prejudica a defesa. Só eleve a gravidade se o erro de capitulação induzir o autuado a erro sobre prazo ou penalidade.
-
-===========================================================
-COMO ESCREVER
-- Registro profissional e sóbrio. A leitora é uma empresa autuada, não um advogado.
-- Explique a falha em linguagem clara e só depois cite a base normativa.
-- Linguagem de POSSIBILIDADE, nunca de garantia. Escreva "há indício de falha que pode ser arguida em defesa". JAMAIS escreva "o auto será anulado" ou "você vai ganhar".
-- Não prometa resultado. Não estime probabilidade de êxito.
-- Você informa e instrumentaliza. Não representa ninguém juridicamente.
-- ATENÇÃO ESPECIAL: em casos de interdição, NUNCA sugira que o estabelecimento volte a operar antes da liberação oficial. Isso poderia causar dano à saúde pública e responsabilização criminal do autuado.
-
-===========================================================
-FORMATO DA RESPOSTA
-Responda APENAS com um objeto JSON válido, sem texto antes ou depois, sem marcação de código:
-
-{
-  "resumo": "Uma a duas frases sobre o estado geral do auto analisado.",
-  "orgao_emissor": "Nome do órgão de vigilância sanitária que emitiu, extraído do documento.",
-  "numero_auto": "Número do AUTO DE INFRAÇÃO, extraído do documento. Se não houver, use string vazia.",
-  "numero_processo": "Número do PROCESSO ADMINISTRATIVO, extraído do documento. É diferente do número do auto. Se não houver, use string vazia.",
-  "empresa_autuada": "Razão social ou nome do estabelecimento, extraído do documento.",
-  "prazo_identificado": "O prazo copiado do documento, ou a orientação padrão da REGRA 2.",
-  "achados": [
-    {
-      "titulo": "Nome curto da falha",
-      "gravidade": "critico",
-      "trecho_documento": "Trecho copiado palavra por palavra. OBRIGATÓRIO, não pode ser vazio.",
-      "explicacao": "Explicação clara da falha e por que pode ser arguida.",
-      "base_legal": "Ex: Lei 6.437/77 ou 'princípio da motivação do ato administrativo'. Se não tiver certeza da norma, use o princípio geral."
-    }
-  ],
-  "quantidade_criticos": 0,
-  "quantidade_atencao": 0,
-  "quantidade_verificar": 0,
-  "houve_achado": true
+import React, { useState, useRef, useEffect } from "react";
+import {
+  ShieldCheck, CheckCircle2, AlertCircle, Loader2,
+  Scale, QrCode, X, Copy, Download, Check, Search, FileText,
+  Lock, UserX, Route, RefreshCcw, MessageSquare,
+  ClipboardList, Menu, Timer, Building2, UtensilsCrossed,
+  PackageX, FileWarning, PlusCircle, Clock, UploadCloud
+} from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import CarrosselServicos from "../components/CarrosselServicos";
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+    clarity: (...args: any[]) => void;
+  }
 }
 
-Regras do JSON:
-- "gravidade" só aceita: "critico", "atencao" ou "verificar".
-- Se não encontrar nenhuma falha: "achados" vazio, "houve_achado": false, e explique no resumo que não foram identificadas falhas formais entre os pontos verificados.
-- Todo achado DEVE ter "trecho_documento" preenchido com texto real do documento.
-- Os contadores devem corresponder à quantidade real de achados de cada gravidade.
-- Campos não encontrados no documento: use string vazia "".
-- NUNCA confunda "numero_auto" com "numero_processo".`;
+const PRECO = 79.0;
 
-// Defesa administrativa - produto pago (rota /api/generate-defense-vigilancia)
-export const promptGenerateDefenseVigilancia = (dados: string) => `Você é um redator especializado em defesa administrativa perante órgãos de vigilância sanitária. Redija uma DEFESA ADMINISTRATIVA formal a partir da análise fornecida.
+const track = (gtagEvent: string, clarityEvent: string, params?: Record<string, any>) => {
+  if (typeof window === "undefined") return;
+  if (window.gtag) window.gtag("event", gtagEvent, params || {});
+  if (window.clarity) window.clarity("event", clarityEvent);
+};
+// ─── DISPARO DA VENDA ──────────────────────────────────────────────────────
+// A trava por transaction_id evita contagem dupla em recarga de página.
+const fireCompraVigilancia = (transactionId: string) => {
+  if (typeof window === "undefined") return;
+  const chave = `vigilancia_purchase_${transactionId}`;
+  try {
+    if (localStorage.getItem(chave)) return;
+    localStorage.setItem(chave, "1");
+  } catch {
+    // localStorage indisponível (aba anônima): segue e dispara mesmo assim
+  }
+  track("purchase", "vigilancia_5_pagamento_confirmado", {
+    transaction_id: transactionId,
+    value: PRECO,
+    currency: "BRL",
+    items: [{ item_id: "defesa_vigilancia", item_name: "Defesa Vigilancia Sanitaria", price: PRECO, quantity: 1 }],
+  });
+};
+// ─── TIPOS ─────────────────────────────────────────────────────────────────
+interface Achado {
+  titulo: string;
+  gravidade: "critico" | "atencao" | "verificar";
+  trecho_documento: string;
+  explicacao: string;
+  base_legal: string;
+}
 
---- ANÁLISE DO AUTO DE INFRAÇÃO ---
-${dados}
+interface Analise {
+  resumo: string;
+  orgao_emissor: string;
+  numero_auto: string;
+  numero_processo: string;
+  empresa_autuada: string;
+  prazo_identificado: string;
+  achados: Achado[];
+  quantidade_criticos: number;
+  quantidade_atencao: number;
+  quantidade_verificar: number;
+  houve_achado: boolean;
+}
 
---- REGRAS OBRIGATÓRIAS ---
-1. Fundamente APENAS nas falhas listadas na análise. É PROIBIDO inventar falha que não conste ali.
-2. Para cada falha, cite o trecho do documento que consta no campo "trecho_documento" e a base legal indicada.
-3. Use linguagem de possibilidade e requerimento, nunca de garantia de resultado.
-4. Mantenha entre colchetes os dados que não constam na análise: [CNPJ], [ENDEREÇO COMPLETO], [NOME DO REPRESENTANTE LEGAL], [CARGO], [CIDADE].
-5. NÃO afirme prazo específico. Use a informação do campo "prazo_identificado".
-6. NÚMEROS: use "numero_auto" ao se referir ao Auto de Infração e "numero_processo" apenas no cabeçalho do processo administrativo. Se "numero_auto" estiver vazio, escreva [NÚMERO DO AUTO].
-7. CITAÇÃO DE NORMAS: você pode citar a Lei Federal 6.437/77 e princípios gerais do processo administrativo. NÃO invente números de códigos sanitários estaduais ou municipais, nem RDC da ANVISA — salvo se constarem na análise fornecida.
-7.1. RÓTULOS CORRETOS DA LEI 6.437/77 (use exatamente assim, nunca troque):
-   - art. 2º = rol de penalidades | art. 3º = imputabilidade | art. 4º = classificação leve/grave/gravíssima
-   - art. 6º = graduação da pena | art. 7º = atenuantes | art. 8º = agravantes | art. 10 = rol de infrações
-   - art. 13 = requisitos obrigatórios do auto de infração (incisos I a VII) — é a base para arguir vício formal
-   - art. 14 = competência | art. 17 = formas de notificação | art. 22 = prazo de defesa de 15 dias
-   - art. 23, § 4º = interdição cautelar limitada a 90 dias | art. 30 = recurso
-   - art. 33 = prazo de 30 dias para pagamento da multa | art. 38 = prescrição em 5 anos
-   NUNCA escreva que o art. 31 trata de prazo de defesa (ele trata do não cabimento de recurso na condenação definitiva de produto), nem que o art. 33 trata de interdição, nem que o art. 2º trata de competência.
-8. Se a análise mencionar interdição, a peça NUNCA deve sugerir retomada da operação antes da liberação oficial pelo órgão.
+type Viabilidade = { nivel: "Alta" | "Média" | "Baixa"; cor: string; bg: string; borda: string };
 
---- ESTRUTURA DA PEÇA ---
+// ─── VIABILIDADE: derivada das gravidades encontradas ──────────────────────
+const calcularViabilidade = (a: Analise | null): Viabilidade | null => {
+  if (!a || !a.houve_achado) return null;
+  if (a.quantidade_criticos > 0)
+    return { nivel: "Alta", cor: "text-emerald-700", bg: "bg-emerald-50", borda: "border-emerald-200" };
+  if (a.quantidade_atencao > 0)
+    return { nivel: "Média", cor: "text-amber-700", bg: "bg-amber-50", borda: "border-amber-200" };
+  return { nivel: "Baixa", cor: "text-red-700", bg: "bg-red-50", borda: "border-red-200" };
+};
 
-ILUSTRÍSSIMO(A) SENHOR(A) AUTORIDADE SANITÁRIA DO [ÓRGÃO EMISSOR]
+// ─── FORMATAÇÃO DO DOCUMENTO ───────────────────────────────────────────────
+const formatDocumentText = (text: string) => {
+  if (!text) return text;
+  let cleanText = text.replace(/\*\*(.*?)\*\*/g, "$1");
+  cleanText = cleanText.replace(/\*(.*?)\*/g, "$1");
+  cleanText = cleanText.replace(/`/g, "");
+  const parts = cleanText.split(/(\[[^\[\]]*\])/g);
+  return parts.map((part, index) => {
+    if (part.startsWith("[") && part.endsWith("]")) {
+      return (
+        <span key={index} className="rounded-sm bg-red-50 px-1 font-semibold text-red-500">
+          {part}
+        </span>
+      );
+    }
+    return <span key={index}>{part}</span>;
+  });
+};
 
-Processo Administrativo nº [NÚMERO DO PROCESSO]
+// ─── CONSTANTES ────────────────────────────────────────────────────────────
+const LOADER_MESSAGES = [
+  "Analisando o auto de infração...",
+  "Verificando a regularidade da intimação...",
+  "Conferindo a descrição da irregularidade...",
+  "Avaliando a proporcionalidade da penalidade...",
+];
 
-[RAZÃO SOCIAL DO ESTABELECIMENTO], pessoa jurídica de direito privado, inscrita no CNPJ sob o nº [CNPJ], com sede em [ENDEREÇO COMPLETO], neste ato representada por [NOME DO REPRESENTANTE LEGAL], [CARGO], vem, respeitosamente, perante Vossa Senhoria, apresentar
+const TIPOS_AUTUACAO = [
+  { id: "higiene", name: "Condições de higiene", subtitle: "limpeza ou conservação", icon: UtensilsCrossed },
+  { id: "produto", name: "Produto irregular", subtitle: "vencido ou sem registro", icon: PackageX },
+  { id: "documentacao", name: "Documentação", subtitle: "alvará ou licença", icon: FileWarning },
+  { id: "outras", name: "Outras autuações", subtitle: "interdição e demais casos", icon: PlusCircle },
+];
 
-DEFESA ADMINISTRATIVA
+const ESTILOS_GRAVIDADE = {
+  critico: {
+    borda: "border-l-red-500", texto: "text-red-700",
+    rotulo: "Crítico", corIcone: "text-red-600",
+  },
+  atencao: {
+    borda: "border-l-amber-500", texto: "text-amber-700",
+    rotulo: "Atenção", corIcone: "text-amber-600",
+  },
+  verificar: {
+    borda: "border-l-sky-500", texto: "text-sky-700",
+    rotulo: "Verificar", corIcone: "text-sky-600",
+  },
+};
 
-em face do Auto de Infração nº [NÚMERO], pelas razões de fato e de direito a seguir expostas.
+// ─── COMPONENTE PRINCIPAL ──────────────────────────────────────────────────
+export default function Vigilancia() {
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [loaderIndex, setLoaderIndex] = useState(0);
+  const [analise, setAnalise] = useState<Analise | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-I — DA TEMPESTIVIDADE
-[Parágrafo sobre a apresentação da defesa dentro do prazo, referindo-se ao prazo indicado no auto de infração, sem afirmar número de dias que não conste no documento.]
+  const [rejeicaoInfo, setRejeicaoInfo] = useState<{ tipo: "sem_vicio"; motivo: string } | null>(null);
+  const [secretClickCount, setSecretClickCount] = useState(0);
 
-II — DOS FATOS
-[Resumo objetivo da autuação conforme descrita no auto.]
+  const [isGeneratingDefense, setIsGeneratingDefense] = useState(false);
+  const [defenseResult, setDefenseResult] = useState<string | null>(null);
+  const [defenseError, setDefenseError] = useState<string | null>(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
-III — DAS PRELIMINARES
-[Para cada falha de gravidade "critico" da análise, redija uma subseção numerada. Cada subseção deve: nomear a falha, transcrever entre aspas o trecho do documento, explicar tecnicamente por que configura vício do ato administrativo, e citar a base legal ou o princípio aplicável. Requerer ao final a nulidade do auto.]
+  const [isPaid, setIsPaid] = useState(false);
+  const [activeModal, setActiveModal] = useState<"termos" | "privacidade" | "aviso" | "suporte" | null>(null);
+  const [isCopied, setIsCopied] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-IV — DO MÉRITO
-[Para cada falha de gravidade "atencao" ou "verificar", redija uma subseção. Mesma estrutura: trecho, explicação, base legal. Inclua aqui os argumentos de proporcionalidade e dosimetria, requerendo subsidiariamente a redução ou substituição da penalidade.]
+  const [hasAnalyzed, setHasAnalyzed] = useState(false);
+  const [isResultModalOpen, setIsResultModalOpen] = useState(false);
+  const [showFomoBanner, setShowFomoBanner] = useState(false);
 
-V — DAS PROVIDÊNCIAS ADOTADAS
-[Seção com espaço para o estabelecimento descrever as correções já realizadas. Use marcadores entre colchetes para o autuado preencher, por exemplo: [DESCREVER AS CORREÇÕES REALIZADAS E ANEXAR COMPROVANTES: notas fiscais de reforma, laudos de dedetização, registros fotográficos, certificados de limpeza de reservatório].]
+  const [selectedTipo, setSelectedTipo] = useState<string | null>(null);
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
 
-VI — DOS PEDIDOS
-Ante o exposto, requer:
-a) O acolhimento das preliminares arguidas, com a declaração de nulidade do Auto de Infração nº [NÚMERO] e o consequente arquivamento do processo administrativo;
-b) Subsidiariamente, caso superadas as preliminares, o acolhimento das razões de mérito para afastar a penalidade aplicada;
-c) Subsidiariamente, a substituição ou redução da penalidade, em observância aos princípios da proporcionalidade e da razoabilidade, considerando as providências já adotadas pelo estabelecimento;
-d) A realização de reinspeção, a fim de que seja constatada a regularização das condições apontadas;
-e) A produção de prova documental superveniente, bem como a juntada de cópia integral do processo administrativo, sob pena de cerceamento de defesa;
-f) Que todas as intimações sejam dirigidas ao endereço constante desta peça.
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
-Nestes termos, pede deferimento.
+  const [isPixModalOpen, setIsPixModalOpen] = useState(false);
+  const [pixTimeLeft, setPixTimeLeft] = useState(600);
 
-[CIDADE], [DATA].
+  const [paymentId, setPaymentId] = useState<number | null>(null);
+  const [qrCode, setQrCode] = useState<string | null>(null);
+  const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
+  const [isPixCopied, setIsPixCopied] = useState(false);
 
-_______________________________________
-[RAZÃO SOCIAL DO ESTABELECIMENTO]
-[NOME DO REPRESENTANTE LEGAL] — [CARGO]
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
----
+  // ─── EFEITOS ─────────────────────────────────────────────────────────────
+  useEffect(() => {
+    const savedResult = localStorage.getItem("vigilancia_saved_result");
+    const savedPaidStatus = localStorage.getItem("vigilancia_paid_status");
+    if (savedResult && savedPaidStatus === "true" && !defenseResult && !isGeneratingDefense) {
+      try {
+        const parsed = JSON.parse(savedResult) as Analise;
+        setAnalise(parsed);
+        setIsPaid(true);
+        setIsResultModalOpen(true);
+        generateDefense(parsed);
+      } catch {
+        localStorage.removeItem("vigilancia_saved_result");
+        localStorage.removeItem("vigilancia_paid_status");
+        localStorage.removeItem("vigilancia_pending_payment");
+      }
+    }
+  }, []);
 
-AVISO IMPORTANTE
-Este documento é material informativo produzido por inteligência artificial a partir do auto de infração enviado. Não constitui consultoria jurídica nem representação processual. Confira o prazo e a forma de protocolo junto ao órgão de vigilância sanitária emissor antes de apresentar sua defesa. Em caso de interdição, não retome a operação antes da liberação oficial do órgão. Para casos de maior complexidade, risco de cancelamento de licença ou valor elevado, recomenda-se a consulta a um advogado.`;
+  useEffect(() => {
+    let interval: any;
+    if (isAnalyzing || isGeneratingDefense) {
+      interval = setInterval(() => setLoaderIndex((p) => (p + 1) % LOADER_MESSAGES.length), 2500);
+    } else {
+      setLoaderIndex(0);
+    }
+    return () => clearInterval(interval);
+  }, [isAnalyzing, isGeneratingDefense]);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (isPixModalOpen && pixTimeLeft > 0) {
+      timer = setInterval(() => setPixTimeLeft((p) => p - 1), 1000);
+    } else if (!isPixModalOpen) {
+      setPixTimeLeft(600);
+    }
+    return () => clearInterval(timer);
+  }, [isPixModalOpen, pixTimeLeft]);
+
+useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+    let timeoutId: NodeJS.Timeout;
+    const checkPaymentStatus = async () => {
+      if (!paymentId) return;
+      try {
+        const res = await fetch(`/api/check-payment/${paymentId}`);
+        const data = await res.json();
+        if (data.status === "approved") {
+          clearInterval(intervalId);
+          clearTimeout(timeoutId);
+          setIsPixModalOpen(false);
+          setIsPaid(true);
+          localStorage.setItem("vigilancia_paid_status", "true");
+          localStorage.removeItem("vigilancia_pending_payment");
+          fireCompraVigilancia(paymentId.toString());
+          // Se voltou numa página "limpa" (recarga/aba nova), recupera a análise
+          // do localStorage para que a defesa seja gerada.
+          if (!analise) {
+            const salvo = localStorage.getItem("vigilancia_saved_result");
+            if (salvo) {
+              try {
+                setAnalise(JSON.parse(salvo));
+                setIsResultModalOpen(true);
+              } catch {}
+            }
+          }
+        }
+      } catch (err) {
+        console.error("Erro no radar do PIX", err);
+      }
+    };
+    // Roda enquanto houver pagamento pendente — mesmo com o modal FECHADO.
+    if (paymentId && !isPaid) {
+      checkPaymentStatus();
+      intervalId = setInterval(checkPaymentStatus, 3000);
+      timeoutId = setTimeout(() => clearInterval(intervalId), 900000); // 15 min
+    }
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [paymentId, isPaid]);
+
+  // Ao carregar a página: se houver pagamento pendente salvo, retoma a verificação.
+  useEffect(() => {
+    if (paymentId) return;
+    try {
+      const pendente = localStorage.getItem("vigilancia_pending_payment");
+      const jaPago = localStorage.getItem("vigilancia_paid_status") === "true";
+      if (!pendente || jaPago) return;
+      const dados = JSON.parse(pendente);
+      // Descarta pendências antigas (mais de 30 min): o PIX já teria expirado.
+      if (!dados?.id || Date.now() - (dados.ts || 0) > 30 * 60 * 1000) {
+        localStorage.removeItem("vigilancia_pending_payment");
+        return;
+      }
+      setPaymentId(dados.id);
+    } catch {
+      localStorage.removeItem("vigilancia_pending_payment");
+    }
+  }, []);
+  // ─── HANDLERS ────────────────────────────────────────────────────────────
+  const handleTipoSelect = (tipoName: string) => {
+    setSelectedTipo(tipoName);
+    setIsUploadModalOpen(true);
+    track("vigilancia_tipo_selecionado", "vigilancia_1_tipo_selecionado", { tipo: tipoName });
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/") && file.type !== "application/pdf") {
+      setError("Por favor, selecione um arquivo de imagem ou PDF válido.");
+      return;
+    }
+    processFile(file);
+    e.target.value = "";
+  };
+
+  const clearImage = (e?: React.MouseEvent) => {
+    if (e) { e.stopPropagation(); e.preventDefault(); }
+    setImageFile(null);
+    setPreviewUrl(null);
+    setAnalise(null);
+    setDefenseResult(null);
+    setError(null);
+    setDefenseError(null);
+    setCheckoutError(null);
+    setRejeicaoInfo(null);
+    setIsPaid(false);
+    setHasAnalyzed(false);
+    setQrCode(null);
+    setQrCodeBase64(null);
+    setPaymentId(null);
+    setSecretClickCount(0);
+    setShowSuccessMessage(false);
+    setShowFomoBanner(false);
+    setSelectedTipo(null);
+    setIsUploadModalOpen(false);
+    localStorage.removeItem("vigilancia_saved_result");
+    localStorage.removeItem("vigilancia_paid_status");
+    localStorage.removeItem("vigilancia_pending_payment");
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  const handleNovaAnalise = () => {
+    clearImage();
+    setIsResultModalOpen(false);
+    setRejeicaoInfo(null);
+    setSelectedTipo(null);
+    setIsUploadModalOpen(false);
+  };
+
+  const closeResultModal = () => {
+    setIsResultModalOpen(false);
+    if (analise && analise.houve_achado && !isPaid && !error) {
+      setShowFomoBanner(true);
+    }
+  };
+
+  const processFile = (file: File) => {
+    track("vigilancia_upload", "vigilancia_2_documento_enviado", { file_type: file.type });
+    setImageFile(file);
+    setPreviewUrl(null);
+    setError(null);
+    setAnalise(null);
+    setDefenseResult(null);
+    setDefenseError(null);
+    setCheckoutError(null);
+    setRejeicaoInfo(null);
+    setIsPaid(false);
+    setIsResultModalOpen(false);
+    setShowSuccessMessage(false);
+    setShowFomoBanner(false);
+    setIsUploadModalOpen(false);
+    const reader = new FileReader();
+    reader.onload = () => {
+      const resultStr = reader.result as string;
+      setPreviewUrl(resultStr);
+      const base64Data = resultStr.split(",")[1];
+      analisarAuto(base64Data, file.type);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const analisarAuto = async (base64Data: string, mimeType: string) => {
+    setIsAnalyzing(true);
+    setError(null);
+    setAnalise(null);
+    setDefenseResult(null);
+    setDefenseError(null);
+    setRejeicaoInfo(null);
+    setIsPaid(false);
+    setIsResultModalOpen(true);
+    setShowSuccessMessage(false);
+    setShowFomoBanner(false);
+    let isBusinessError = false;
+    try {
+      const response = await fetch("/api/analyze-vigilancia", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fileBase64: base64Data, mimeType }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(typeof data.error === "string" ? data.error : JSON.stringify(data.error));
+      if (data.error) throw new Error(data.error);
+
+      // Rejeições em string
+      if (typeof data.result === "string") {
+        const lower = data.result.toLowerCase();
+        if (lower.includes("documento_invalido")) {
+          isBusinessError = true;
+          track("vigilancia_analise_erro", "vigilancia_erro_documento_invalido", { tipo: "documento_invalido" });
+          throw new Error("O arquivo enviado não parece ser um auto de infração da Vigilância Sanitária. Confira o documento e tente novamente.");
+        }
+        if (lower.includes("documento_ilegivel")) {
+          isBusinessError = true;
+          track("vigilancia_analise_erro", "vigilancia_erro_documento_ilegivel", { tipo: "documento_ilegivel" });
+          throw new Error("Não conseguimos ler o documento. Envie um arquivo mais nítido ou o PDF original.");
+        }
+        throw new Error("Não foi possível concluir a análise. Tente novamente.");
+      }
+
+      const resultado = data.result as Analise;
+
+      // Nenhuma falha encontrada
+      if (!resultado.houve_achado || !resultado.achados || resultado.achados.length === 0) {
+        isBusinessError = true;
+        track("vigilancia_analise_inviavel", "vigilancia_3_sem_falha", { motivo: "sem_falha" });
+        setRejeicaoInfo({ tipo: "sem_vicio", motivo: resultado.resumo || "" });
+        setAnalise(resultado);
+        setIsResultModalOpen(true);
+        setIsAnalyzing(false);
+        return;
+      }
+
+      setAnalise(resultado);
+      const v = calcularViabilidade(resultado);
+      track("vigilancia_analise_viavel", "vigilancia_3_paywall_exibido", { viabilidade: v ? v.nivel : "Negada" });
+      setHasAnalyzed(true);
+      localStorage.setItem("vigilancia_saved_result", JSON.stringify(resultado));
+      setIsResultModalOpen(true);
+    } catch (err: any) {
+      console.error("Erro na Análise da Vigilância:", err);
+      if (!isBusinessError && typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", "vigilancia_erro_sistema", { error_message: err.message });
+      }
+      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+        setError("Nossos servidores estão processando um alto volume de análises. Por favor, aguarde alguns segundos e tente novamente.");
+      } else {
+        setError(err.message || "Ocorreu um erro ao comunicar com o servidor.");
+      }
+      setIsResultModalOpen(true);
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  const handleCheckout = async () => {
+    if (!analise) return;
+    setIsCheckoutLoading(true);
+    setCheckoutError(null);
+    try {
+      const response = await fetch("/api/create-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: "comprador@checkmulta.com.br",
+          valor: PRECO,
+          descricao: "Defesa Vigilancia Sanitaria - CheckMulta",
+        }),
+      });
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("O servidor demorou para responder. Por favor, aguarde 1 minuto e clique novamente.");
+      }
+      const data = await response.json();
+      if (response.ok && data.qr_code) {
+        track("begin_checkout", "vigilancia_4_checkout_iniciado", { value: PRECO, currency: "BRL" });
+        setPaymentId(data.id);
+        try {
+          localStorage.setItem("vigilancia_pending_payment", JSON.stringify({
+            id: data.id,
+            ts: Date.now(),
+          }));
+        } catch {}
+        setQrCode(data.qr_code);
+        setQrCodeBase64(data.qr_code_base64);
+        setIsPixModalOpen(true);
+      } else {
+        setCheckoutError("Erro na integração com o Mercado Pago. Tente novamente ou fale com o suporte.");
+      }
+    } catch (err: any) {
+      setCheckoutError(err.message || "Falha de conexão. Verifique sua internet ou tente novamente.");
+    } finally {
+      setIsCheckoutLoading(false);
+    }
+  };
+
+  const simulateApprovedPayment = () => {
+    setIsPixModalOpen(false);
+    setIsCheckoutLoading(true);
+    setTimeout(() => {
+      setIsCheckoutLoading(false);
+      setIsPaid(true);
+      localStorage.setItem("vigilancia_paid_status", "true");
+      generateDefense();
+    }, 1500);
+  };
+
+  const generateDefense = async (overrideAnalise?: Analise) => {
+    const dataToUse = overrideAnalise || analise;
+    if (!dataToUse) return;
+    setIsGeneratingDefense(true);
+    setDefenseError(null);
+    setDefenseResult(null);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 45000);
+    try {
+      const response = await fetch("/api/generate-defense-vigilancia", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ analise: dataToUse }),
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+      const data = await response.json();
+      if (!response.ok) throw new Error(typeof data.error === "string" ? data.error : JSON.stringify(data.error));
+      if (data.error) throw new Error(data.error);
+      setDefenseResult(data.result);
+      setShowSuccessMessage(true);
+      setShowFomoBanner(false);
+      localStorage.removeItem("vigilancia_saved_result");
+      localStorage.removeItem("vigilancia_paid_status");
+      localStorage.removeItem("vigilancia_pending_payment");
+    } catch (err: any) {
+      clearTimeout(timeoutId);
+      if (err.name === "AbortError") setDefenseError("TIMEOUT");
+      else if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY"))) setDefenseError("SERVER_BUSY");
+      else setDefenseError("FALHA_GERACAO");
+    } finally {
+      setIsGeneratingDefense(false);
+    }
+  };
+
+  const handleCopy = async () => {
+    if (!defenseResult) return;
+    try {
+      await navigator.clipboard.writeText(defenseResult);
+      track("vigilancia_defesa_copiada", "vigilancia_6_defesa_copiada");
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch {}
+  };
+
+  const handleCopyPix = async () => {
+    if (!qrCode) return;
+    try {
+      await navigator.clipboard.writeText(qrCode);
+      setIsPixCopied(true);
+      setTimeout(() => setIsPixCopied(false), 2000);
+    } catch {}
+  };
+
+  const handleDownload = () => {
+    if (!defenseResult) return;
+    track("vigilancia_defesa_baixada", "vigilancia_6_defesa_baixada");
+    const blob = new Blob([defenseResult], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "defesa-vigilancia-sanitaria.txt";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const formatTime = (seconds: number) => {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m}:${s < 10 ? "0" : ""}${s}`;
+  };
+
+  const viabilidade = calcularViabilidade(analise);
+
+  // ─── RENDER ───────────────────────────────────────────────────────────────
+  return (
+    <div className="min-h-screen w-full bg-white text-slate-900">
+
+      {/* HEADER */}
+      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+          <a href="/" className="flex items-center">
+            <img
+              src="/checkmulta-logo.webp"
+              alt="CheckMulta"
+              width="600"
+              height="200"
+              className="h-14 w-auto object-contain md:h-20"
+            />
+          </a>
+
+          <nav className="hidden items-center gap-5 text-sm font-medium text-slate-600 lg:flex">
+            <a href="/" className="transition hover:text-emerald-600">Multas de trânsito</a>
+            <a href="#como-funciona" className="transition hover:text-emerald-600">Como funciona</a>
+            <a href="#seguranca" className="transition hover:text-emerald-600">Segurança</a>
+            <a href="#faq-vigilancia" className="transition hover:text-emerald-600">Dúvidas</a>
+            <a href="/vigilancia-sanitaria/blog" className="transition hover:text-emerald-600">Blog</a>
+            <button
+              onClick={() => setActiveModal("suporte")}
+              className="font-semibold text-emerald-600 transition hover:text-emerald-700"
+            >
+              Suporte
+            </button>
+          </nav>
+
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="flex rounded-lg p-2 text-slate-600 transition hover:bg-slate-50 hover:text-emerald-600 lg:hidden"
+            aria-label="Menu"
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="absolute left-0 top-full z-50 flex w-full flex-col space-y-2 border-b border-slate-200 bg-white p-4 shadow-lg lg:hidden"
+              >
+                <a href="/" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Multas de trânsito</a>
+                <a href="#como-funciona" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Como funciona</a>
+                <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Segurança</a>
+                <a href="#faq-vigilancia" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Dúvidas</a>
+                <a href="/vigilancia-sanitaria/blog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Blog</a>
+                <button
+                  onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
+                  className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-3 text-left font-semibold text-emerald-700 transition"
+                >
+                  <span>Central de suporte</span>
+                  <MessageSquare className="h-4 w-4" />
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </header>
+
+      {/* FOMO BANNER */}
+      <AnimatePresence>
+        {showFomoBanner && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            className="fixed bottom-0 left-0 z-30 flex w-full flex-col items-center justify-center gap-4 border-t border-amber-300 bg-amber-50 p-4 shadow-[0_-4px_20px_-8px_rgba(0,0,0,0.15)] sm:flex-row"
+          >
+            <div className="flex items-center gap-3 text-center sm:text-left">
+              <AlertCircle className="hidden h-5 w-5 flex-shrink-0 text-amber-600 sm:block" />
+              <p className="text-sm text-amber-900 sm:text-base">
+                <strong className="font-semibold">Análise concluída.</strong> O prazo de defesa está correndo.
+              </p>
+            </div>
+            <button
+              onClick={() => { setShowFomoBanner(false); setIsResultModalOpen(true); }}
+              className="w-full whitespace-nowrap rounded-lg bg-emerald-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 sm:w-auto"
+            >
+              Ver resultado
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* HERO */}
+      <section id="inicio" className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
+        <div className="mx-auto max-w-4xl px-4 py-14 text-center">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-emerald-700">
+            <Building2 className="h-3.5 w-3.5" />
+            Para estabelecimentos autuados
+          </div>
+
+          <h1 className="mb-4 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
+            Seu estabelecimento foi autuado pela Vigilância Sanitária? Veja se dá
+            para recorrer, <span className="text-emerald-600">grátis</span>
+          </h1>
+
+          <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-slate-600">
+            Faça a análise gratuita do auto de infração. Nossa inteligência
+            artificial verifica os requisitos do processo administrativo sanitário
+            em busca da falha que permite recorrer. Se não encontrar nada, você não
+            paga — a análise é grátis e sem cadastro.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600 sm:gap-6">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
+            </div>
+            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
+            <div className="flex items-center gap-2">
+              <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
+            </div>
+            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
+            <div className="flex items-center gap-2">
+              <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ÁREA PRINCIPAL */}
+      <section className="mx-auto max-w-3xl px-4 py-12">
+        {previewUrl ? (
+          <div className="rounded-xl border border-slate-200 bg-white p-8 text-center sm:p-10">
+            <motion.div key="preview" initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} className="space-y-4">
+              <div className="relative mx-auto flex max-w-xs justify-center overflow-hidden rounded-xl">
+                {imageFile?.type === "application/pdf" ? (
+                  <div className="flex h-32 w-32 items-center justify-center rounded-xl border border-slate-200 bg-slate-50">
+                    <FileText className="h-14 w-14 text-emerald-600" />
+                  </div>
+                ) : (
+                  <img src={previewUrl} alt="Preview do auto" className="h-auto max-h-48 w-full object-cover" />
+                )}
+              </div>
+
+              <p className="text-sm text-slate-600">{imageFile?.name}</p>
+
+              {!isAnalyzing && !hasAnalyzed && (
+                <button
+                  onClick={clearImage}
+                  className="relative z-10 text-sm text-slate-500 underline decoration-slate-300 underline-offset-4 transition hover:text-red-500"
+                  type="button"
+                >
+                  Excluir ou enviar outro documento
+                </button>
+              )}
+
+              {!isAnalyzing && hasAnalyzed && (
+                <div className="relative z-10 mt-4 flex w-full flex-row items-center justify-center gap-3">
+                  <button
+                    onClick={() => {
+                      if (analise || error) {
+                        setIsResultModalOpen(true);
+                        setShowFomoBanner(false);
+                      }
+                    }}
+                    className="whitespace-nowrap rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                    type="button"
+                  >
+                    Ver resultado novamente
+                  </button>
+                  <button
+                    onClick={clearImage}
+                    className="whitespace-nowrap rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
+                    type="button"
+                  >
+                    Novo auto
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          </div>
+        ) : (
+          <div className="text-center">
+            <div className="mb-8">
+              <h2 className="mb-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                Descubra <span className="text-emerald-600">agora</span> se dá para
+                recorrer
+              </h2>
+              <p className="text-base text-slate-600">
+                Selecione o tipo de autuação para iniciar a análise gratuita:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {TIPOS_AUTUACAO.map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => handleTipoSelect(t.name)}
+                  className="group flex flex-col items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-white p-6 text-slate-800 transition hover:border-emerald-300 hover:shadow-md"
+                >
+                  <t.icon className="mb-1 h-8 w-8 text-slate-400 transition group-hover:text-emerald-600" />
+                  <div className="text-center">
+                    <span className="block text-[15px] font-bold leading-tight text-slate-900 group-hover:text-emerald-700">
+                      {t.name}
+                    </span>
+                    <span className="mt-1 block text-sm text-slate-500">{t.subtitle}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* COMO FUNCIONA */}
+      <section id="como-funciona" className="border-t border-slate-100 bg-slate-50">
+        <div className="mx-auto max-w-5xl px-4 py-16">
+          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+            Como funciona a <span className="text-emerald-600">análise</span>
+          </h2>
+
+          <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <UploadCloud className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">1. Envie o auto</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Suba o PDF ou a foto do auto de infração ou termo de interdição. Nenhum dado é armazenado.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <Search className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">2. A IA audita</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Verificamos os requisitos formais do processo administrativo sanitário, ponto por ponto.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <FileText className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">3. Diagnóstico grátis</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Mostramos as falhas encontradas, com o trecho exato do documento, e se dá para recorrer.
+              </p>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+            <div className="flex items-center gap-2.5 border-b border-slate-100 px-6 pb-4 pt-5">
+              <ShieldCheck className="h-4 w-4 flex-shrink-0 text-slate-400" />
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                O que o diagnóstico pode revelar
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 divide-y divide-slate-100 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+              <div className="flex items-start gap-4 p-6">
+                <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50">
+                  <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+                </div>
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
+                    Chance alta
+                  </span>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                    Falha grave encontrada no auto. Fundamento consistente para pedir a anulação.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-6">
+                <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-amber-50">
+                  <AlertCircle className="h-5 w-5 text-amber-500" />
+                </div>
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wide text-amber-600">
+                    Chance média
+                  </span>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                    Há pontos questionáveis, especialmente na proporcionalidade. Argumento possível.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-6">
+                <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-red-50">
+                  <AlertCircle className="h-5 w-5 text-red-400" />
+                </div>
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wide text-red-500">
+                    Chance baixa
+                  </span>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                    Caso mais limitado. Ainda possível recorrer — a decisão é do estabelecimento.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* O QUE VERIFICAMOS */}
+      <section className="border-t border-slate-100 bg-white">
+        <div className="mx-auto max-w-5xl px-4 py-16">
+          <div className="mb-10 text-center">
+            <h2 className="mb-3 text-2xl font-bold text-slate-900 sm:text-3xl">
+              O que verificamos no seu <span className="text-emerald-600">auto de infração</span>
+            </h2>
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600">
+              A análise percorre os principais pontos que podem abrir margem para
+              recurso no processo administrativo sanitário.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {[
+              { t: "Regularidade da intimação", d: "Intimação entregue a pessoa sem poderes de representação, endereço divergente do cadastro ou ausência de comprovação de recebimento." },
+              { t: "Competência do agente", d: "Atuação de agente sem atribuição para a fiscalização ou ausência de identificação e assinatura no auto." },
+              { t: "Descrição da irregularidade", d: "Irregularidade narrada de forma genérica, sem indicar o que foi concretamente constatado durante a inspeção." },
+              { t: "Indicação da norma violada", d: "Ausência do dispositivo legal ou regulamentar infringido, ou divergência entre o fato descrito e a norma indicada." },
+              { t: "Proporcionalidade da penalidade", d: "Interdição total quando a medida parcial seria suficiente, ou penalidade desproporcional à irregularidade constatada." },
+              { t: "Prazo prévio para regularização", d: "Autuação direta quando a norma previa termo de intimação com prazo para corrigir antes da penalidade." },
+            ].map((item) => (
+              <div key={item.t} className="rounded-xl border border-slate-200 bg-slate-50/60 p-5">
+                <h3 className="mb-1.5 font-bold text-slate-900">{item.t}</h3>
+                <p className="text-sm leading-relaxed text-slate-600">{item.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEGURANÇA */}
+      <section id="seguranca" className="border-t border-slate-100 bg-slate-50">
+        <div className="mx-auto max-w-5xl px-4 py-16">
+          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+            Seus dados <span className="text-emerald-600">100% seguros</span>
+          </h2>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <Lock className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">Zero armazenamento</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Não guardamos o auto de infração do seu estabelecimento. O documento
+                é processado na memória do servidor e imediatamente deletado.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
+                <UserX className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">Sem cadastro</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Você não precisa criar conta nem informar dados do estabelecimento
+                para verificar o auto. É direto ao ponto.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
+                <Route className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">Total transparência</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Atuamos como ferramenta tecnológica. A decisão final é da
+                autoridade sanitária julgadora.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq-vigilancia" className="border-t border-slate-100 bg-white">
+        <div className="mx-auto max-w-4xl px-4 py-16">
+          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+            Dúvidas <span className="text-emerald-600">frequentes</span>
+          </h2>
+
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                Qual o prazo para apresentar defesa?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                O prazo varia conforme o órgão emissor, porque cada estado e
+                município possui código sanitário próprio. Confira sempre o prazo
+                indicado no seu auto de infração e, em caso de dúvida, confirme
+                junto ao órgão.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                O que acontece se não apresentar defesa?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                O processo é julgado sem a manifestação do estabelecimento e a
+                penalidade é aplicada. Além da multa, a legislação sanitária prevê
+                advertência, apreensão, interdição e cancelamento de licença.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                Que tipo de falha pode anular o auto?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                Descrição genérica da irregularidade, ausência de indicação da
+                norma violada, intimação irregular, falta de identificação do
+                agente e penalidade desproporcional são exemplos.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                Dá para recorrer de uma interdição?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                Sim. Além da defesa, é possível requerer reinspeção demonstrando
+                que as condições foram regularizadas. A proporcionalidade da
+                medida também pode ser questionada.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 md:col-span-2">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                Preciso de advogado para apresentar defesa administrativa?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                Não é obrigatório na esfera administrativa — o estabelecimento pode
+                apresentar defesa por meio de seu representante legal. Em casos de
+                interdição ou risco de cancelamento de licença, a consulta a um
+                advogado é fortemente recomendável.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTEÚDO SEO */}
+      <section className="border-t border-slate-100 bg-slate-50">
+        <div className="mx-auto max-w-3xl px-4 py-16">
+          <h2 className="mb-8 text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">
+            Como apresentar defesa na{" "}
+            <span className="text-emerald-600">Vigilância Sanitária</span>
+          </h2>
+
+          <div className="max-w-none">
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              Quando um estabelecimento é autuado pela Vigilância Sanitária,
+              instaura-se um{" "}
+              <strong className="font-semibold text-slate-900">
+                processo administrativo sanitário
+              </strong>
+              . Nele, o autuado tem direito ao contraditório e à ampla defesa antes
+              que qualquer penalidade se torne definitiva.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              O que é o auto de infração sanitária
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              O auto de infração é o documento que formaliza a acusação. Ele deve
+              descrever a irregularidade constatada com precisão, indicar a norma
+              violada, identificar o agente fiscalizador e observar as formalidades
+              previstas na legislação. A ausência desses elementos pode comprometer
+              a validade da autuação.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              Qual legislação se aplica
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              A{" "}
+              <strong className="font-semibold text-slate-900">
+                Lei Federal nº 6.437/77
+              </strong>{" "}
+              define as infrações à legislação sanitária federal e o respectivo
+              processo. Estados e municípios, contudo, editam códigos sanitários
+              próprios. Por isso, os prazos e procedimentos podem variar conforme o
+              órgão que lavrou o auto — e o documento recebido é sempre a
+              referência mais confiável sobre o prazo aplicável ao seu caso.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              Quais penalidades podem ser aplicadas
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              A legislação sanitária prevê penalidades que vão muito além da multa:
+              advertência, apreensão e inutilização de produtos, suspensão de
+              vendas, interdição parcial ou total do estabelecimento e cancelamento
+              de licença ou autorização. Por atingirem diretamente a operação do
+              negócio, essas medidas tornam a defesa administrativa especialmente
+              relevante.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              A proporcionalidade da penalidade
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              Um dos argumentos mais relevantes na defesa sanitária é a
+              proporcionalidade. Quando a autoridade interdita o estabelecimento
+              inteiro sem demonstrar por que a interdição parcial de um setor,
+              equipamento ou lote seria insuficiente, abre-se espaço para requerer a
+              revisão da medida.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              Como o CheckMulta ajuda
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              O CheckMulta analisa gratuitamente o auto de infração e aponta as
+              falhas encontradas, sempre citando o trecho exato do documento que
+              fundamenta cada apontamento. Se houver falha, geramos uma{" "}
+              <strong className="font-semibold text-slate-900">
+                defesa administrativa completa, estruturada em preliminares, mérito
+                e pedidos
+              </strong>
+              , pronta para o estabelecimento preencher e protocolar. Nossa
+              ferramenta informa e instrumentaliza — não presta consultoria jurídica
+              nem representação processual.
+            </p>
+          </div>
+        </div>
+      </section>
+
+{/* CARROSSEL DE SERVIÇOS */}
+      <CarrosselServicos excluir={["vigilancia"]} />
+      
+      {/* FOOTER */}
+      <footer className="border-t border-slate-200 bg-white">
+        <div className="mx-auto max-w-4xl px-4 py-10 text-center">
+          <div className="mb-6 flex items-center justify-center">
+            <img
+              src="/checkmulta-logo.webp"
+              alt="CheckMulta"
+              width="600"
+              height="200"
+              className="h-12 w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-16"
+            />
+          </div>
+
+          <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
+<a href="/" className="text-slate-600 transition hover:text-emerald-600">
+              Multas de trânsito
+            </a>
+            <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
+              Procon
+            </a>
+            <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
+              Vigilância Sanitária
+            </a>
+          </nav>
+
+          <p className="mx-auto max-w-3xl text-xs leading-relaxed text-slate-500">
+            <strong className="font-semibold text-slate-700">Transparência e privacidade:</strong>{" "}
+            nosso sistema atua como organizador tecnológico com base na legislação
+            sanitária. Não prestamos consultoria jurídica nem representação
+            processual. A decisão final é da autoridade julgadora. Não exigimos
+            cadastro e não armazenamos o seu documento.
+          </p>
+
+          <p className="mt-4 text-xs text-slate-400">
+            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+          </p>
+
+          <div className="mt-5 flex justify-center gap-6 text-xs font-medium text-slate-400">
+            <button onClick={() => setActiveModal("termos")} className="transition hover:text-slate-600">Termos</button>
+            <button onClick={() => setActiveModal("privacidade")} className="transition hover:text-slate-600">Privacidade</button>
+            <button onClick={() => setActiveModal("aviso")} className="transition hover:text-slate-600">Legal</button>
+            <button onClick={() => setActiveModal("suporte")} className="text-emerald-600 transition hover:text-emerald-700">Suporte</button>
+          </div>
+        </div>
+      </footer>
+      {/* MODAL DE UPLOAD */}
+      <AnimatePresence>
+        {isUploadModalOpen && (
+          <div className="fixed inset-0 z-[55] overflow-y-auto bg-slate-900/70 backdrop-blur-sm">
+            <div className="min-h-full flex items-center justify-center p-4">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96, y: 16 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.96, y: 16 }}
+                transition={{ duration: 0.2 }}
+                className="relative w-full max-w-sm overflow-hidden rounded-xl bg-white shadow-xl"
+              >
+                <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+                  <div>
+                    <p className="mb-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-600">Análise gratuita</p>
+                    <h3 className="text-base font-bold leading-tight text-slate-900">{selectedTipo}</h3>
+                  </div>
+                  <button onClick={() => setIsUploadModalOpen(false)} className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+
+                <div className="space-y-4 p-5">
+                  <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3">
+                    <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-500" />
+                    <p className="text-xs leading-relaxed text-amber-800">
+                      Envie o <strong className="font-semibold">PDF original</strong> sempre que possível. Se for foto, deixe o texto completo e legível.
+                    </p>
+                  </div>
+
+                  <div className="group relative cursor-pointer rounded-lg border-2 border-dashed border-emerald-300 bg-emerald-50/30 text-center transition hover:border-emerald-500 hover:bg-emerald-50/60">
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      onChange={handleFileSelect}
+                      accept="image/*,application/pdf"
+                      className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
+                      disabled={isAnalyzing || isPaid}
+                      title="Clique para enviar o documento"
+                    />
+                    <div className="pointer-events-none flex flex-col items-center justify-center space-y-3 py-8">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white transition duration-200 group-hover:scale-105">
+                        <UploadCloud className="h-7 w-7" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-slate-900">Auto de infração sanitária</p>
+                        <p className="mt-0.5 text-xs text-slate-500">PDF, JPG ou PNG — documento completo</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-center gap-1.5 text-slate-400">
+                    <Lock className="h-3 w-3" />
+                    <p className="text-[11px]">Documento deletado imediatamente após a análise</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* MODAIS LEGAIS E SUPORTE */}
+      <AnimatePresence>
+        {activeModal && (
+          <div className="fixed inset-0 z-[60] overflow-y-auto bg-slate-900/60 backdrop-blur-md">
+            <div className="min-h-full flex items-center justify-center p-4 sm:p-6">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                className="relative flex w-full max-w-md flex-col rounded-xl bg-white p-6 shadow-xl sm:p-8"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button onClick={() => setActiveModal(null)} className="absolute right-4 top-4 z-10 rounded-full p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
+                  <X className="h-5 w-5" />
+                </button>
+                <div className="mb-4 pr-8">
+                  {activeModal === "aviso" && <h3 className="text-lg font-bold text-slate-900">Aviso jurídico</h3>}
+                  {activeModal === "termos" && <h3 className="text-lg font-bold text-slate-900">Termos de uso</h3>}
+                  {activeModal === "privacidade" && <h3 className="text-lg font-bold text-slate-900">Política de privacidade</h3>}
+                  {activeModal === "suporte" && <h3 className="text-lg font-bold text-slate-900">Central de suporte</h3>}
+                </div>
+                <div className="space-y-3 text-[15px] leading-relaxed text-slate-600">
+                  {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente por inteligência artificial e não constitui consultoria jurídica. Não somos um escritório de advocacia e não representamos a empresa juridicamente. <strong className="font-semibold text-slate-900">A decisão final do processo administrativo é de exclusiva competência do órgão julgador.</strong> Confira sempre o prazo e a forma de protocolo junto ao órgão de vigilância sanitária emissor.</p>}
+                  {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial para formulação de teses administrativas. Não nos responsabilizamos por prazos excedidos, inserção de dados incorretos pelo usuário, forma de protocolo inadequada ou resultado das decisões proferidas pelo órgão julgador. Para casos de maior complexidade ou valor elevado, recomendamos a consulta a um advogado.</p>}
+                  {activeModal === "privacidade" && <p>Sua privacidade é absoluta. Não possuímos banco de dados, nem realizamos registros do auto de infração enviado, dados da empresa ou da defesa gerada. O processamento é de caráter transitório para elaboração do documento, que é imediatamente apagado após o fechamento da página.</p>}
+                  {activeModal === "suporte" && (
+                    <div className="space-y-5 pt-1">
+                      <p className="text-[15px] text-slate-600">Selecione o canal de atendimento para falar com o nosso time:</p>
+                      <div className="flex flex-col gap-3">
+                        <a href="https://wa.me/5513996485501?text=Olá!%20Preciso%20de%20ajuda%20com%20a%20análise%20da%20Vigilância%20Sanitária." target="_blank" rel="noopener noreferrer" className="flex w-full items-center gap-3 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-left text-emerald-900 transition hover:bg-emerald-100">
+                          <MessageSquare className="h-5 w-5 flex-shrink-0 text-emerald-600" />
+                          <div><strong className="block text-sm font-semibold">Atendimento via WhatsApp</strong><span className="text-xs text-emerald-700">Fale direto com um analista</span></div>
+                        </a>
+                        <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" className="flex w-full items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-left text-slate-900 transition hover:bg-slate-100">
+                          <ClipboardList className="h-5 w-5 flex-shrink-0 text-slate-500" />
+                          <div><strong className="block text-sm font-semibold">Abrir chamado técnico</strong><span className="text-xs text-slate-600">Reembolsos ou falhas</span></div>
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                {activeModal !== "suporte" && (
+                  <button onClick={() => setActiveModal(null)} className="mt-7 w-full rounded-lg bg-slate-900 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Entendi</button>
+                )}
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* MODAL DE RESULTADO */}
+      <AnimatePresence>
+        {isResultModalOpen && (
+          <div className="fixed inset-0 z-[45] overflow-y-auto bg-slate-900/60 backdrop-blur-md">
+            <div className="min-h-full flex items-center justify-center p-4 sm:p-6 py-12">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                className={`relative flex w-full max-w-3xl flex-col rounded-xl shadow-xl ${error ? "border border-red-200 bg-white p-8" : "bg-white p-6 sm:p-10"}`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button onClick={closeResultModal} className="absolute right-4 top-4 z-10 rounded-full p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
+                  <X className="h-5 w-5" />
+                </button>
+
+                <div className="mt-4 w-full space-y-6">
+
+                  {/* LOADING DA ANÁLISE */}
+                  {isAnalyzing && (
+                    <div className="mx-auto flex max-w-md flex-col items-center justify-center space-y-6 p-6">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                        <Search className="h-10 w-10 animate-pulse" />
+                      </div>
+                      <h3 className="text-center text-xl font-bold text-slate-900">Processando documento</h3>
+                      <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+                        <motion.div className="absolute left-0 top-0 h-full w-1/2 rounded-full bg-emerald-600" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                      </div>
+                      <div className="flex min-h-[60px] items-center justify-center">
+                        <AnimatePresence mode="wait">
+                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="text-center text-base font-semibold text-emerald-700">
+                            {LOADER_MESSAGES[loaderIndex]}
+                          </motion.p>
+                        </AnimatePresence>
+                      </div>
+                      <p className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-center text-sm leading-relaxed text-slate-600">
+                        A IA está lendo o documento em alta resolução. <strong className="font-semibold text-slate-900">Isso pode levar cerca de 1 minuto.</strong> Não feche a tela.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* ERRO */}
+                  {error && (
+                    <div className="flex flex-col items-center space-y-4 text-center">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-50 text-red-600">
+                        <AlertCircle className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <h3 className="mb-2 text-lg font-bold text-slate-900">Análise indisponível</h3>
+                        <p className="leading-relaxed text-slate-600">{error}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* REJEIÇÃO: SEM VÍCIO */}
+                  {!error && !isAnalyzing && rejeicaoInfo && rejeicaoInfo.tipo === "sem_vicio" && (
+                    <div className="mx-auto flex max-w-md flex-col items-center space-y-5 py-4 text-center">
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                        <ShieldCheck className="h-10 w-10" />
+                      </div>
+                      <div>
+                        <h3 className="mb-2 text-lg font-bold text-slate-900">Não encontramos falha para recorrer</h3>
+                        <p className="leading-relaxed text-slate-600">
+                          Analisamos o auto de infração ponto por ponto e <strong className="font-semibold text-slate-900">não encontramos falha</strong> entre os pontos verificados. O documento aparenta seguir as formalidades exigidas pela legislação sanitária.
+                        </p>
+                        <p className="mt-3 text-sm leading-relaxed text-slate-500">
+                          Como não encontramos irregularidade, não há cobrança. Optamos por informá-lo com franqueza, em vez de elaborar uma defesa sem fundamento real. Esse é o critério que aplicamos em toda análise.
+                        </p>
+                      </div>
+                      <div className="w-full rounded-lg border border-slate-200 bg-slate-50 p-4 text-left">
+                        <p className="text-sm leading-relaxed text-slate-600">
+                          <strong className="font-semibold text-slate-900">Importante:</strong> isso não significa que a autuação seja necessariamente procedente. Significa que as falhas que analisamos não foram encontradas. Se a empresa discorda do mérito da autuação, recomendamos a consulta a um advogado.
+                        </p>
+                      </div>
+                      <button onClick={handleNovaAnalise} className="mt-2 rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+                        Analisar outro auto
+                      </button>
+                    </div>
+                  )}
+
+                  {/* RESULTADO COM PAYWALL */}
+                  {analise && analise.houve_achado && !isPaid && !isAnalyzing && !error && !rejeicaoInfo && (
+                    <div className="space-y-6">
+
+                      {/* Dados do processo */}
+                      {(analise.empresa_autuada || analise.orgao_emissor || analise.numero_processo) && (
+                        <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+                          <p className="mb-4 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Auto de infração analisado</p>
+                          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                            {analise.empresa_autuada && (
+                              <div className="flex items-start gap-2.5">
+                                <Building2 className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" />
+                                <div>
+                                  <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Estabelecimento</p>
+                                  <p className="text-[13px] font-bold leading-snug text-slate-900">{analise.empresa_autuada}</p>
+                                </div>
+                              </div>
+                            )}
+                            {analise.orgao_emissor && (
+                              <div className="flex items-start gap-2.5">
+                                <Scale className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" />
+                                <div>
+                                  <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Órgão</p>
+                                  <p className="text-[13px] font-bold leading-snug text-slate-900">{analise.orgao_emissor}</p>
+                                </div>
+                              </div>
+                            )}
+                            {analise.numero_processo && (
+                              <div className="flex items-start gap-2.5">
+                                <FileText className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" />
+                                <div>
+                                  <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Processo</p>
+                                  <p className="text-[13px] font-bold leading-snug text-slate-900">{analise.numero_processo}</p>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+
+                          {analise.prazo_identificado && (
+                            <div className="mt-4 flex items-start gap-3 border-t border-slate-200 pt-4">
+                              <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
+                              <div>
+                                <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Prazo para defesa</p>
+                                <p className="mt-0.5 text-[13px] leading-relaxed text-slate-700">{analise.prazo_identificado}</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Título com viabilidade */}
+                      <div className="flex items-start space-x-4">
+                        <CheckCircle2 className={`mt-1 h-7 w-7 flex-shrink-0 ${viabilidade?.nivel === "Baixa" ? "text-amber-500" : "text-emerald-600"}`} />
+                        <div>
+                          <h2 className="mb-2 text-xl font-bold leading-tight text-slate-900 sm:text-2xl">
+                            {viabilidade?.nivel === "Baixa" ? (
+                              <>Analisamos o auto e há um <span className="text-amber-600">ângulo possível</span></>
+                            ) : (
+                              <>Encontramos <span className="text-emerald-600">falha</span> neste auto</>
+                            )}
+                          </h2>
+                          <p className="leading-relaxed text-slate-600">{analise.resumo}</p>
+                        </div>
+                      </div>
+
+                      {/* Contadores */}
+                      <div className="flex flex-wrap gap-2.5">
+                        {analise.quantidade_criticos > 0 && (
+                          <span className="rounded-lg border border-red-200 bg-red-50 px-3.5 py-1.5 text-xs font-semibold text-red-700">
+                            {analise.quantidade_criticos} crítico(s)
+                          </span>
+                        )}
+                        {analise.quantidade_atencao > 0 && (
+                          <span className="rounded-lg border border-amber-200 bg-amber-50 px-3.5 py-1.5 text-xs font-semibold text-amber-700">
+                            {analise.quantidade_atencao} de atenção
+                          </span>
+                        )}
+                        {analise.quantidade_verificar > 0 && (
+                          <span className="rounded-lg border border-sky-200 bg-sky-50 px-3.5 py-1.5 text-xs font-semibold text-sky-700">
+                            {analise.quantidade_verificar} a verificar
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Achados */}
+                      <div className="space-y-4 rounded-lg border border-slate-200 bg-slate-50 p-5 text-left">
+                        <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">O que a análise encontrou no seu auto</p>
+                        {analise.achados.map((achado, i) => {
+                          const est = ESTILOS_GRAVIDADE[achado.gravidade] || ESTILOS_GRAVIDADE.verificar;
+                          return (
+                            <div key={i} className={`rounded-r-lg border-l-4 bg-white p-4 ${est.borda}`}>
+                              <div className="mb-2.5 flex items-start gap-2.5">
+                                <AlertCircle className={`mt-0.5 h-5 w-5 flex-shrink-0 ${est.corIcone}`} />
+                                <div>
+                                  <h3 className="text-[15px] font-bold leading-snug text-slate-900">{achado.titulo}</h3>
+                                  <span className={`text-[10px] font-semibold uppercase tracking-wide ${est.texto}`}>{est.rotulo}</span>
+                                </div>
+                              </div>
+                              <div className="mb-2.5 pl-7">
+                                <p className="mb-1 text-[10px] font-semibold uppercase tracking-wide text-slate-400">Trecho do documento</p>
+                                <p className="border-l-2 border-slate-200 pl-3 text-[13px] italic leading-relaxed text-slate-600">
+                                  {achado.trecho_documento}
+                                </p>
+                              </div>
+                              <p className="pl-7 text-[13px] leading-relaxed text-slate-700 sm:text-sm">{achado.explicacao}</p>
+                              {achado.base_legal && (
+                                <p className="mt-1.5 pl-7 text-[11px] text-slate-500">{achado.base_legal}</p>
+                              )}
+                            </div>
+                          );
+                        })}
+
+                        {viabilidade && (
+                          <div className={`inline-flex items-center gap-2 rounded-lg border px-3.5 py-2 ${viabilidade.bg} ${viabilidade.borda}`}>
+                            <ShieldCheck className={`h-4 w-4 ${viabilidade.cor}`} />
+                            <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Chance de recorrer:</span>
+                            <span className={`text-sm font-bold uppercase ${viabilidade.cor}`}>{viabilidade.nivel}</span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Oferta */}
+
+                      {/* AVISO DE TRANSPARÊNCIA — só quando a chance é baixa */}
+                      {viabilidade?.nivel === "Baixa" && (
+                        <div className="rounded-lg border border-amber-200 bg-amber-50/60 p-5 text-left">
+                          <h3 className="mb-2 text-base font-bold text-slate-900">
+                            Encontramos um ponto para arguir — e queremos ser claros sobre ele
+                          </h3>
+                          <p className="text-sm leading-relaxed text-slate-700">
+                            A falha identificada é de natureza formal e pode ser arguida em defesa,
+                            mas não é do tipo que costuma levar à anulação direta. Ainda assim,
+                            apresentar defesa tem valor: o processo passa a exigir manifestação
+                            fundamentada do órgão, e a penalidade não se consolida sem contraditório.
+                          </p>
+                          <p className="mt-2.5 text-sm leading-relaxed text-slate-600">
+                            A decisão é sua. Se preferir, consulte um advogado antes de seguir.
+                          </p>
+                        </div>
+                      )}
+
+                      <div className="rounded-lg border border-emerald-200 bg-emerald-50/50 p-5 text-left">
+                        <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-slate-900 sm:text-lg">
+                          <Scale className="h-5 w-5 text-emerald-600" /> O que você recebe por R$ 79,00
+                        </h3>
+                        <ul className="space-y-3 text-[13px] text-slate-700 sm:text-[15px]">
+                          <li className="flex items-start gap-3">
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <span>Defesa administrativa completa, estruturada em preliminares, mérito e pedidos</span>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <span>Cada ponto fundamentado no legislação sanitária aplicável, com o trecho do seu documento</span>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <span>Pedido subsidiário de redução da multa com base nos critérios legais de dosimetria</span>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <span>Entrega imediata após o pagamento — pronta para preencher e protocolar</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
+                        <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
+                        <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
+                          <strong className="font-semibold">Por que vale a pena:</strong> a elaboração de uma defesa administrativa por advogado costuma custar a partir de R$ 600. Aqui, são R$ 79,00 — e apenas quando encontramos falha concreta. A peça é fundamentada no legislação sanitária aplicável; a decisão final cabe ao órgão julgador. Confira o prazo e a forma de protocolo junto ao órgão de vigilância sanitária emissor.
+                        </p>
+                      </div>
+
+                      {checkoutError && (
+                        <div className="flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 p-3.5 text-red-700">
+                          <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0" />
+                          <p className="text-sm font-semibold">{checkoutError}</p>
+                        </div>
+                      )}
+
+                      <button
+                        onClick={handleCheckout}
+                        disabled={isCheckoutLoading}
+                        className="flex w-full flex-col items-center justify-center rounded-lg bg-emerald-600 px-4 py-4 font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-75"
+                      >
+                        <div className="flex flex-row items-center justify-center gap-2 text-center text-lg leading-tight">
+                          {isCheckoutLoading ? <Loader2 className="h-6 w-6 flex-shrink-0 animate-spin" /> : <Scale className="h-6 w-6 flex-shrink-0" />}
+                          <span>{isCheckoutLoading ? "Gerando PIX..." : "Gerar minha defesa agora"}</span>
+                        </div>
+                        <span className="mt-1 text-sm font-normal text-emerald-50">Pagamento único · R$ 79,00 · Entrega imediata</span>
+                      </button>
+                      <p className="mt-2 text-center text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
+                    </div>
+                  )}
+
+                  {/* LOADING DA GERAÇÃO */}
+                  {isGeneratingDefense && (
+                    <div className="mx-auto flex max-w-md flex-col items-center justify-center space-y-6 p-8">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                        <FileText className="h-10 w-10 animate-bounce" />
+                      </div>
+                      <h3 className="text-center text-xl font-bold text-slate-900">Redigindo sua defesa</h3>
+                      <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+                        <motion.div className="absolute left-0 top-0 h-full w-1/2 rounded-full bg-emerald-600" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                      </div>
+                      <div className="flex min-h-[60px] items-center justify-center">
+                        <AnimatePresence mode="wait">
+                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="text-center text-base font-semibold text-emerald-700">
+                            {LOADER_MESSAGES[loaderIndex]}
+                          </motion.p>
+                        </AnimatePresence>
+                      </div>
+                      <div className="w-full rounded-lg border border-emerald-200 bg-emerald-50 p-4">
+                        <p className="flex items-center justify-center gap-2 text-center text-base font-bold text-emerald-800">
+                          <ShieldCheck className="h-5 w-5" /> Pagamento confirmado
+                        </p>
+                        <p className="mt-1 text-center text-sm text-emerald-700">Por favor, aguarde e não feche esta janela.</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ERRO NA GERAÇÃO */}
+                  {defenseError && (
+                    <div className="flex flex-col items-center space-y-4 rounded-lg border border-red-200 bg-red-50 p-8 text-center">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-red-600">
+                        <AlertCircle className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <h3 className="mb-2 text-lg font-bold text-slate-900">Falha na geração da defesa</h3>
+                        <p className="leading-relaxed text-slate-700">
+                          Ocorreu uma instabilidade, mas <strong className="font-semibold text-slate-900">o seu pagamento está seguro.</strong> Use o botão abaixo para receber seu arquivo pelo suporte.
+                        </p>
+                      </div>
+                      <a href="https://wa.me/5513996485501?text=Olá!%20Eu%20paguei%20pela%20defesa%20da%20Vigilância%20Sanitária%20mas%20a%20tela%20deu%20erro%20ao%20carregar.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700">
+                        <MessageSquare className="h-5 w-5" /> Falar com o suporte no WhatsApp
+                      </a>
+                    </div>
+                  )}
+
+                  {/* TELA DE SUCESSO */}
+                  {defenseResult && showSuccessMessage && (
+                    <div className="mx-auto flex w-full max-w-md flex-col items-center space-y-5 p-4 text-center sm:space-y-6 sm:p-10">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                        <CheckCircle2 className="h-12 w-12" />
+                      </div>
+                      <div>
+                        <h3 className="mb-3 text-2xl font-bold text-slate-900">Defesa pronta</h3>
+                        <p className="text-base leading-relaxed text-slate-600">
+                          Sua defesa administrativa foi gerada. Na próxima tela, copie o texto ou baixe o arquivo.
+                        </p>
+                      </div>
+                      <div className="mt-4 flex w-full flex-col items-center gap-3 sm:mt-6 sm:gap-4">
+                        <button
+                          onClick={() => setShowSuccessMessage(false)}
+                          className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-3.5 text-base font-semibold text-white transition hover:bg-emerald-700"
+                        >
+                          Ver minha defesa <Check className="h-5 w-5" />
+                        </button>
+                        <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-emerald-600">
+                          Precisa de ajuda? Fale com o suporte.
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* DEFESA GERADA */}
+                  {defenseResult && !showSuccessMessage && (
+                    <div className="flex flex-col space-y-6">
+                      <div className="flex items-center justify-center space-x-3 border-b border-slate-200 pb-4">
+                        <Scale className="h-6 w-6 text-slate-700" />
+                        <h2 className="text-center text-xl font-bold text-slate-900">Sua defesa administrativa</h2>
+                      </div>
+                      <div className="mb-4 mt-2 rounded-r-lg border-l-4 border-amber-400 bg-amber-50 p-4">
+                        <p className="text-sm leading-relaxed text-amber-800">
+                          <strong className="font-semibold">Atenção:</strong> revise o documento e substitua todos os campos em{" "}
+                          <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos dados reais da empresa antes de protocolar. Confirme o prazo e a forma de protocolo junto ao órgão de vigilância sanitária emissor.
+                        </p>
+                      </div>
+                      <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">
+                        <div className="whitespace-pre-wrap text-left text-[15px] leading-relaxed md:text-base">
+                          {formatDocumentText(defenseResult)}
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-center gap-4 border-t border-slate-200 pt-6">
+                        <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
+                          <button onClick={handleCopy} className="flex w-full items-center justify-center space-x-2 rounded-lg border border-slate-300 bg-white px-8 py-3.5 text-base font-semibold text-slate-800 transition hover:bg-slate-50 sm:w-auto">
+                            {isCopied ? <><Check className="h-5 w-5 text-emerald-600" /><span className="text-emerald-600">Copiado</span></> : <><Copy className="h-5 w-5 text-slate-500" /><span>Copiar defesa</span></>}
+                          </button>
+                          <button onClick={handleDownload} className="flex w-full items-center justify-center space-x-2 rounded-lg bg-emerald-600 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-emerald-700 sm:w-auto">
+                            <Download className="h-5 w-5" /><span>Baixar .txt</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* MODAL DO PIX */}
+      <AnimatePresence>
+        {isPixModalOpen && (
+          <div className="fixed inset-0 z-[100] overflow-y-auto bg-slate-900/60 backdrop-blur-sm">
+            <div className="min-h-full flex items-center justify-center p-4">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="relative w-11/12 max-w-sm rounded-xl bg-white p-6 shadow-xl"
+              >
+                <button onClick={() => setIsPixModalOpen(false)} className="absolute right-4 top-4 rounded-full p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
+                  <X className="h-5 w-5" />
+                </button>
+                <div className="space-y-5 text-center">
+                  <div
+                    className="flex cursor-pointer items-center justify-center gap-2 py-2"
+                    onClick={() => {
+                      setSecretClickCount((prev) => {
+                        if (prev + 1 >= 5) { simulateApprovedPayment(); return 0; }
+                        return prev + 1;
+                      });
+                    }}
+                  >
+                    <Lock className="h-3.5 w-3.5 text-slate-400" />
+                    <span className="text-xs text-slate-400">Pagamento seguro · Criptografia SSL</span>
+                  </div>
+                  <div>
+                    <h3 className="text-3xl font-bold tracking-tight text-slate-900">R$ 79,00</h3>
+                    <p className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500">Defesa administrativa</p>
+                    <p className="mt-1.5 text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 rounded-lg border border-amber-200 bg-amber-50 py-2.5 font-semibold text-amber-700">
+                    <Timer className="h-5 w-5" />
+                    <span className="text-sm">Expira em {formatTime(pixTimeLeft)}</span>
+                  </div>
+                  <div className="flex justify-center py-2">
+                    <div className="flex h-48 w-48 items-center justify-center rounded-lg border-2 border-slate-200 bg-white">
+                      {qrCodeBase64 ? (
+                        <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" width="192" height="192" className="h-full w-full rounded-lg object-contain p-2" />
+                      ) : (
+                        <QrCode className="h-24 w-24 animate-pulse text-slate-200" />
+                      )}
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2 rounded-lg border border-slate-200 bg-slate-50 p-2.5">
+                      <p className="flex-1 truncate px-2 text-left font-mono text-sm text-slate-500">{qrCode || "Gerando Pix..."}</p>
+                      <button onClick={handleCopyPix} className="rounded-lg border border-slate-200 bg-white p-2.5 text-slate-700 transition hover:border-emerald-300 hover:text-emerald-600">
+                        {isPixCopied ? <Check className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />}
+                      </button>
+                    </div>
+                    <div className="flex items-start gap-2.5 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-left">
+                      <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                      <p className="text-[11px] leading-relaxed text-emerald-900">
+                        <strong className="font-semibold">Garantia técnica:</strong> se a defesa não for liberada em 10 segundos após o pagamento, garantimos reembolso via PIX.
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-2.5 rounded-lg border border-slate-200 bg-slate-50 p-3 text-left">
+                      <Lock className="mt-0.5 h-4 w-4 flex-shrink-0 text-slate-500" />
+                      <p className="text-[10px] leading-relaxed text-slate-600">
+                        O recebedor identificado no seu aplicativo bancário será <strong className="font-semibold text-slate-900">CheckMulta Tecnologia</strong> — CNPJ 63.524.338/0001-62.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 border-t border-slate-100 pt-4 text-sm font-medium text-slate-500">
+                    <RefreshCcw className="h-4 w-4 animate-spin text-emerald-600" />
+                    Aguardando o pagamento...
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+    </div>
+  );
+}
