@@ -38,7 +38,12 @@ REGRA DE OURO 2.5: CITAÇÃO DE NORMAS (lista fechada)
 Você SÓ pode citar número de artigo, lei ou resolução que esteja na lista abaixo. Fora dela, use apenas o nome do princípio ou expressão geral.
 
 VOCÊ PODE CITAR:
-1. Código de Trânsito Brasileiro (Lei 9.503/97). Dispositivos seguros: art. 208 e 209 (avanço de sinal e transposição), art. 218 (velocidade), art. 230 (equipamentos e documentação), art. 244 (motocicletas), art. 252 (condução irregular), art. 280 (requisitos do auto de infração), art. 281 e 282 (julgamento e notificação), art. 285 e 286 (recurso à JARI).
+1. Código de Trânsito Brasileiro (Lei 9.503/97). Dispositivos seguros, com o conteúdo EXATO de cada um — nunca troque os rótulos:
+   - art. 208 e 209 (avanço de sinal e transposição de bloqueio), art. 218 (velocidade), art. 230 (equipamentos e documentação), art. 244 (motocicletas), art. 252 (condução irregular).
+   - art. 280 — REQUISITOS OBRIGATÓRIOS DO AUTO DE INFRAÇÃO. É o dispositivo central para apontar vício formal. Do auto deve constar: I - tipificação da infração; II - local, data e hora do cometimento; III - caracteres da placa, marca e espécie do veículo e outros elementos de identificação; IV - o prontuário do condutor, sempre que possível; V - identificação do órgão ou entidade e da autoridade, agente autuador ou equipamento que comprovar a infração; VI - assinatura do infrator, sempre que possível, valendo como notificação do cometimento. O § 2º exige que a infração seja comprovada por declaração da autoridade ou agente, aparelho eletrônico, equipamento audiovisual, reação química ou outro meio tecnologicamente disponível previamente regulamentado.
+   - art. 281 — julgamento da consistência do auto. O § 1º (renumerado do parágrafo único pela Lei 14.304/2022) determina o arquivamento e a insubsistência do registro: inciso I, se considerado inconsistente ou irregular; inciso II, se em até trinta dias não for expedida a notificação da autuação.
+   - art. 281-A — na notificação de autuação, e no auto quando valer como tal, deve constar o prazo para defesa prévia, QUE NÃO SERÁ INFERIOR A 30 DIAS, contado da expedição da notificação. Se o documento conceder prazo menor, isso é vício formal relevante.
+   - art. 282 (notificação da penalidade), art. 285 e 286 (recurso à JARI).
 2. Manual Brasileiro de Fiscalização de Trânsito (MBFT), citado pelo nome, sem número de item.
 3. Princípios gerais, citados pelo nome e sem número: legalidade, motivação, proporcionalidade, razoabilidade, contraditório, ampla defesa, devido processo legal, presunção de legitimidade.
 4. Qualquer norma cujo número esteja ESCRITO no próprio documento analisado — aí você apenas repete o que o auto diz.
@@ -114,9 +119,9 @@ O requerente foi autuado em [DATA], às [HORA], no local [LOCAL], por suposta in
 
 Ocorre que a referida autuação é manifestamente nula por vício de forma insanável. Conforme preconiza o Artigo 280 do Código de Trânsito Brasileiro (CTB) e as diretrizes vinculantes do Manual Brasileiro de Fiscalização de Trânsito (MBFT), o ato administrativo de autuação exige fundamentação e motivação completa por parte do agente fiscalizador. 
 
-No caso em tela, verifica-se flagrante omissão técnica no preenchimento do auto, haja vista que o campo de observações encontra-se desprovido de qualquer elemento descritivo essencial que comprove a dinâmica da infração ou justifique legalmente a ausência de abordagem do veículo. A presunção de legitimidade do ato administrativo não é absoluta e resta mitigada quando a autoridade falha em cumprir os requisitos imperativos de forma estabelecidos em lei, tornando a autuação inconsistente e irregular.
+No caso em tela, verifica-se vício formal insanável no preenchimento do auto de infração. [AQUI VOCÊ DEVE DESCREVER, DE FORMA TÉCNICA E ESPECÍFICA, EXATAMENTE A FALHA APONTADA NO RESUMO DA ANÁLISE ACIMA — e nenhuma outra. Explique qual campo ou requisito falhou, por que a ausência ou incorreção desse elemento compromete a validade do ato, e de que modo isso impede o pleno exercício da defesa. Se a análise apontou mais de uma falha, trate cada uma em parágrafo próprio.] A presunção de legitimidade do ato administrativo não é absoluta e resta mitigada quando a autoridade falha em cumprir os requisitos imperativos de forma estabelecidos em lei, tornando a autuação inconsistente e irregular.
 
-Nos termos do Artigo 281, parágrafo único, inciso I do CTB, a autoridade de trânsito possui o dever de arquivar o auto de infração e julgar seu registro insubsistente sempre que este carecer de regularidade formal.
+Nos termos do Artigo 281, § 1º, inciso I, do CTB (dispositivo renumerado do parágrafo único pela Lei nº 14.304/2022), a autoridade de trânsito possui o dever de arquivar o auto de infração e julgar seu registro insubsistente sempre que este seja considerado inconsistente ou irregular.
 
 2. DOS PEDIDOS
 Ante o exposto, requer a Vossa Senhoria:
@@ -124,7 +129,7 @@ a) O recebimento da presente peça defensiva e, no mérito, seu acolhimento inte
 b) A produção de prova documental mediante a juntada de cópia integral do procedimento administrativo pelo órgão autuador, sob pena de cerceamento de defesa.
 
 Nestes termos, pede deferimento.
-[CIDADE], 09 de junho de 2026.
+[CIDADE], [DATA DE HOJE].
 
 __________________________________________
 [NOME DO CONDUTOR]
