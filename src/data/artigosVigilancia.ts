@@ -107,7 +107,7 @@ Esses documentos não apenas fundamentam o pedido de reinspeção, mas também c
 
 Ao elaborar a defesa, é preciso focar na técnica. Argumentos genéricos, como alegações de dificuldades financeiras ou desconhecimento da norma, raramente possuem eficácia jurídica. O foco deve ser a demonstração de falhas no auto de infração ou a comprovação de que as exigências legais foram, na verdade, cumpridas. Com base no art. 50 da Lei 9.784/99 (aplicável subsidiariamente), o ato administrativo deve ser motivado com a indicação dos fatos e fundamentos jurídicos. Caso o auto de infração omita esses elementos, a peça de defesa pode questionar a validade da sanção aplicada.
 
-Lembre-se que o processo administrativo é a oportunidade de levar ao conhecimento da autoridade fatos que podem atenuar ou até descaracterizar a infração apontada inicialmente, sempre à luz da Lei 6.437/77 (arts. 31 e 33).
+Lembre-se que o processo administrativo é a oportunidade de levar ao conhecimento da autoridade fatos que podem atenuar ou até descaracterizar a infração apontada inicialmente, sempre à luz da Lei 6.437/77 (arts. 4º e 7º).
 
 Aqueles que receberam um auto de infração podem buscar a análise técnica do documento para verificar se a autuação apresenta falha capaz de fundamentar um recurso administrativo.
 
@@ -154,7 +154,7 @@ Caso existam exigências de reparação, documente todo o processo de correção
 
 ## Princípios que norteiam a sua defesa
 
-Na estruturação de um recurso administrativo, deve-se sempre invocar os princípios do contraditório e da proporcionalidade. A penalidade aplicada pela autoridade sanitária deve ser compatível com a gravidade do fato e com a conduta do infrator, conforme diretrizes gerais presentes nos arts. 4º, 31 e 33 da Lei Federal nº 6.437/77. A autuação pode ser objeto de revisão se comprovado que o estabelecimento agiu em conformidade com as normas e que os pontos questionados possuem elementos capazes de atenuar a sanção.
+Na estruturação de um recurso administrativo, deve-se sempre invocar os princípios do contraditório e da proporcionalidade. A penalidade aplicada pela autoridade sanitária deve ser compatível com a gravidade do fato e com a conduta do infrator, conforme os critérios de graduação da pena do art. 6º da Lei Federal nº 6.437/77. A autuação pode ser objeto de revisão se comprovado que o estabelecimento agiu em conformidade com as normas e que os pontos questionados possuem elementos capazes de atenuar a sanção.
 
 Lembre-se de que o foco deve estar na comprovação da conformidade técnica e na demonstração de que a segurança dos usuários está sendo preservada, utilizando para isso as evidências documentais que o seu estabelecimento produz rotineiramente.
 
@@ -197,7 +197,7 @@ Caso o estabelecimento identifique que as exigências feitas pela fiscalização
 
 ## A necessidade de análise técnica
 
-Nem todo auto de infração é imune a falhas. A Lei 6.437/77 (arts. 2º, 3º, 4º, 10, 31, 33) define os contornos das infrações e a aplicação de sanções, exigindo que a autoridade observe os princípios da razoabilidade e da proporcionalidade. Frequentemente, a descrição do fato no auto pode estar incompleta ou o procedimento de fiscalização pode ter desrespeitado formalidades essenciais.
+Nem todo auto de infração é imune a falhas. A Lei 6.437/77 (arts. 2º, 3º, 4º e 10) define os contornos das infrações e a aplicação de sanções, exigindo que a autoridade observe os princípios da razoabilidade e da proporcionalidade. Frequentemente, a descrição do fato no auto pode estar incompleta ou o procedimento de fiscalização pode ter desrespeitado formalidades essenciais.
 
 Por isso, ao receber o auto, avalie a existência de pontos passíveis de questionamento. A análise de um profissional especializado permite identificar se a capitulação da infração está correta e se os princípios do contraditório e da ampla defesa foram respeitados pelo agente fiscalizador.
 
@@ -239,7 +239,7 @@ Essa documentação serve como suporte do seu requerimento junto ao órgão, per
 
 Uma vez que o estabelecimento esteja regularizado, deve ser formalizado o requerimento de reinspeção junto à unidade da Vigilância Sanitária que emitiu o auto. Este procedimento segue o rito do processo administrativo, em que os princípios do contraditório e da ampla defesa permitem que o administrado apresente seus argumentos e comprove o cumprimento das exigências.
 
-Quanto aos prazos para essa solicitação, é crucial observar que a legislação sanitária é descentralizada. Embora a Lei nº 6.437/77 (arts. 2º, 3º, 4º, 10, 31, 33) estabeleça diretrizes sobre infrações e penalidades, a regulação procedimental varia entre estados e municípios. Portanto, não existe um prazo único válido para todo o território nacional. É dever do autuado verificar atentamente o prazo indicado no próprio auto de infração ou contatar o órgão fiscalizador para confirmar o procedimento local específico.
+Quanto aos prazos para essa solicitação, é crucial observar que a legislação sanitária é descentralizada. Embora a Lei nº 6.437/77 (arts. 2º, 3º, 4º e 10) estabeleça diretrizes sobre infrações e penalidades, a regulação procedimental varia entre estados e municípios. Portanto, não existe um prazo único válido para todo o território nacional. É dever do autuado verificar atentamente o prazo indicado no próprio auto de infração ou contatar o órgão fiscalizador para confirmar o procedimento local específico.
 
 ## O papel dos princípios no processo administrativo
 
@@ -274,7 +274,7 @@ Uma dúvida frequente diz respeito ao tempo disponível para a protocolização 
 
 ## Estrutura da Defesa Administrativa
 
-Para que uma defesa seja considerada eficaz, ela deve ser pautada nos fatos e na correta aplicação da norma. O exercício da defesa permite questionar a consistência do auto de infração à luz dos princípios da legalidade, da motivação, da proporcionalidade e da razoabilidade. Conforme estabelece a Lei 6.437/77 (arts. 2º, 3º, 4º, 10, 31, 33), a aplicação de penalidades deve levar em conta o contexto da infração e o histórico do estabelecimento. Aspectos que podem ser arguidos em defesa incluem:
+Para que uma defesa seja considerada eficaz, ela deve ser pautada nos fatos e na correta aplicação da norma. O exercício da defesa permite questionar a consistência do auto de infração à luz dos princípios da legalidade, da motivação, da proporcionalidade e da razoabilidade. Conforme estabelece a Lei 6.437/77 (arts. 2º, 3º, 4º e 10), a aplicação de penalidades deve levar em conta o contexto da infração e o histórico do estabelecimento. Aspectos que podem ser arguidos em defesa incluem:
 
 - Inconsistências formais no preenchimento do auto de infração.
 - Ausência de motivação clara sobre a infração cometida, ferindo o dever de clareza do ato administrativo.
@@ -314,7 +314,7 @@ Quando um estabelecimento comercial recebe um auto de infração, espera-se que 
 
 ## O que dizem as normas sobre o ato administrativo
 
-De acordo com a Lei nº 6.437/77, que dispõe sobre infrações à legislação sanitária, a lavratura do auto de infração é o ato inicial que dá viabilidade ao processo. Os arts. 2º, 3º, 4º, 10, 31 e 33 dessa lei estabelecem os parâmetros para a autuação e a necessidade de clareza nos atos processuais.
+De acordo com a Lei nº 6.437/77, que dispõe sobre infrações à legislação sanitária, a lavratura do auto de infração é o ato inicial que dá viabilidade ao processo. Os arts. 2º, 3º, 4º e 10 dessa lei estabelecem os parâmetros para a autuação e a necessidade de clareza nos atos processuais.
 
 Além disso, deve-se considerar a Lei nº 9.784/99, aplicável subsidiariamente, que trata do processo administrativo na administração pública federal. Os arts. 2º e 50 desta lei exigem que os atos administrativos sejam motivados, com a indicação dos fatos e fundamentos jurídicos. A identificação do agente é parte intrínseca dessa motivação, pois garante que o ato foi praticado por autoridade ou servidor competente para tal função.
 
@@ -378,7 +378,7 @@ Se o auto indicar irregularidades, o passo recomendado é sanar as falhas aponta
 
 ## Prazos e procedimentos
 
-É indispensável que o responsável pelo estabelecimento verifique o prazo indicado no próprio auto de infração para a apresentação de defesa. Como a legislação sanitária é fragmentada e cada órgão possui autonomia em seu âmbito, os prazos não são uniformes. Consulte sempre o documento recebido e, em caso de dúvida sobre a contagem ou o rito, entre em contato diretamente com o órgão emissor. A ausência de manifestação tempestiva pode levar à preclusão do direito de defesa e à manutenção da sanção administrativa aplicada, nos termos da Lei 6.437/77 (arts. 31 e 33).
+É indispensável que o responsável pelo estabelecimento verifique o prazo indicado no próprio auto de infração para a apresentação de defesa. Como a legislação sanitária é fragmentada e cada órgão possui autonomia em seu âmbito, os prazos não são uniformes. Consulte sempre o documento recebido e, em caso de dúvida sobre a contagem ou o rito, entre em contato diretamente com o órgão emissor. A ausência de manifestação tempestiva pode levar à preclusão do direito de defesa e à manutenção da sanção administrativa aplicada, nos termos do art. 22 da Lei 6.437/77, que trata do prazo de defesa.
 
 Ao elaborar uma defesa, deve-se observar os princípios da razoabilidade e da proporcionalidade. A punição aplicada pela autoridade pode ser questionada caso não esteja em equilíbrio com a infração cometida, observando sempre os limites estabelecidos pela Lei 6.437/77.
 
@@ -431,7 +431,7 @@ Se houver exigência de adequação ou, em casos mais graves, interdição, a po
 
 ## A análise técnica da autuação
 
-Nem todo auto de infração é irrefutável. Falhas na descrição dos fatos, ausência de motivação adequada ou a aplicação de penalidade desproporcional à gravidade da situação, conforme arts. 3º, 4º, 10, 31 e 33 da Lei 6.437/77, podem ser fundamentos para a elaboração de uma defesa administrativa. O princípio do devido processo legal assegura que o responsável pelo estabelecimento possa apresentar seus argumentos antes que qualquer sanção definitiva seja consolidada.
+Nem todo auto de infração é irrefutável. Falhas na descrição dos fatos, ausência de motivação adequada ou a aplicação de penalidade desproporcional à gravidade da situação, em desacordo com os arts. 3º, 4º e 10 da Lei 6.437/77, podem ser fundamentos para a elaboração de uma defesa administrativa. O princípio do devido processo legal assegura que o responsável pelo estabelecimento possa apresentar seus argumentos antes que qualquer sanção definitiva seja consolidada.
 
 O envio do auto de infração da Vigilância Sanitária para análise técnica pode auxiliar na identificação de eventuais irregularidades no procedimento fiscalizatório, o que pode servir de base para a construção de um recurso administrativo.
 
@@ -456,7 +456,7 @@ O processo administrativo, que rege a relação entre o Estado e o estabelecimen
 
 ## A fragmentação normativa e a identificação do prazo
 
-Um ponto que gera frequentes dúvidas entre os empresários é a diversidade de normas existentes. No âmbito federal, a Lei 6.437/77 (arts. 2º, 3º, 4º, 10, 31 e 33) estabelece as normas para infrações à legislação sanitária. No entanto, é fundamental compreender que cada ente federativo — estados e municípios — possui autonomia para legislar sobre suas próprias estruturas de fiscalização e prazos administrativos.
+Um ponto que gera frequentes dúvidas entre os empresários é a diversidade de normas existentes. No âmbito federal, a Lei 6.437/77 (arts. 2º, 3º, 4º e 10) estabelece as normas para infrações à legislação sanitária. No entanto, é fundamental compreender que cada ente federativo — estados e municípios — possui autonomia para legislar sobre suas próprias estruturas de fiscalização e prazos administrativos.
 
 Como o procedimento varia conforme a legislação sanitária local aplicável, não existe uma regra única de contagem que se aplique universalmente a todos os estabelecimentos do país. Por esse motivo, o primeiro passo após o recebimento de um auto de infração é a leitura minuciosa do documento recebido. O prazo para defesa é, invariavelmente, indicado pelo próprio órgão fiscalizador no momento da autuação ou em notificação subsequente.
 
@@ -508,7 +508,7 @@ A análise técnica de um auto de infração pode auxiliar na identificação de
 
 O cancelamento da licença ou do alvará sanitário é uma das medidas mais severas que um estabelecimento pode enfrentar no âmbito da fiscalização sanitária. Quando o órgão competente decide por esta penalidade, o impacto operacional é imediato, forçando a interrupção das atividades. Compreender o que fundamenta essa decisão e como estruturar uma defesa técnica é um passo relevante para buscar o restabelecimento da conformidade.
 
-A penalidade de cancelamento de licença é o desdobramento de um processo administrativo sanitário. A Lei nº 6.437/77 (arts. 2º, 3º, 4º, 10, 31, 33) estabelece as bases para as infrações à legislação sanitária e determina os procedimentos para a aplicação de penalidades, servindo como referência estrutural para a administração pública em diversas esferas.
+A penalidade de cancelamento de licença é o desdobramento de um processo administrativo sanitário. A Lei nº 6.437/77 (arts. 2º, 3º, 4º e 10) estabelece as bases para as infrações à legislação sanitária e determina os procedimentos para a aplicação de penalidades, servindo como referência estrutural para a administração pública em diversas esferas.
 
 ## A importância dos princípios administrativos
 
@@ -564,13 +564,13 @@ Compreender essa diferença é o primeiro passo para estruturar uma resposta té
 
 ## A natureza da interdição cautelar
 
-A interdição cautelar possui natureza preventiva. Ela é fundamentada no poder de polícia da administração pública, que visa proteger a coletividade diante de um risco sanitário iminente. Conforme previsto no art. 3º da Lei 6.437/77, a autoridade sanitária pode determinar a interdição de um estabelecimento quando houver indício de risco à saúde pública.
+A interdição cautelar possui natureza preventiva. Ela é fundamentada no poder de polícia da administração pública, que visa proteger a coletividade diante de um risco sanitário iminente. Conforme previsto no art. 23, § 4º, da Lei 6.437/77, a autoridade sanitária pode determinar a interdição de um estabelecimento, como medida cautelar limitada a 90 dias, quando houver indício de risco à saúde pública.
 
 Esta medida é tomada antes mesmo da conclusão do processo administrativo. O objetivo não é punir o proprietário naquele momento, mas sim cessar um perigo identificado durante a fiscalização. Por ser uma medida de urgência, a interdição cautelar exige que a administração pública fundamente a decisão no princípio da motivação, demonstrando claramente qual era o risco concreto que justificava a paralisação das atividades.
 
 ## A interdição como penalidade
 
-Ao contrário da medida preventiva, a interdição aplicada como penalidade ocorre ao final do processo administrativo. Após assegurados os princípios do contraditório e da ampla defesa, a autoridade julga o mérito da autuação. Se ficar comprovada a infração sanitária, a interdição pode ser aplicada como uma sanção definitiva, prevista nos arts. 2º, 4º, 10, 31 e 33 da Lei 6.437/77, dentre outras penalidades possíveis.
+Ao contrário da medida preventiva, a interdição aplicada como penalidade ocorre ao final do processo administrativo. Após assegurados os princípios do contraditório e da ampla defesa, a autoridade julga o mérito da autuação. Se ficar comprovada a infração sanitária, a interdição pode ser aplicada como uma sanção definitiva, prevista nos arts. 2º, 4º e 10 da Lei 6.437/77, dentre outras penalidades possíveis.
 
 Enquanto a medida cautelar visa conter um risco imediato, a penalidade visa punir o descumprimento das normas sanitárias vigentes. Este ato deve observar, rigorosamente, os princípios da razoabilidade e da proporcionalidade, garantindo que a punição guarde relação com a gravidade da infração cometida.
 
@@ -611,7 +611,7 @@ A complexidade dos processos administrativos exige cautela e análise técnica d
 
 Receber um auto de infração da Vigilância Sanitária é um momento que exige serenidade e organização. O processo administrativo sanitário é o rito pelo qual o poder público apura eventuais irregularidades cometidas por estabelecimentos comerciais. Para que o autuado possa exercer o seu direito ao contraditório e à ampla defesa, é fundamental apresentar uma documentação robusta que fundamente suas alegações.
 
-A Lei Federal nº 6.437/77, no seu art. 31, estabelece que as infrações à legislação sanitária são apuradas em processo administrativo. Este procedimento deve observar rigorosamente princípios basilares do Direito, como o devido processo legal, a legalidade, a motivação e a razoabilidade. Quando o estabelecimento prepara uma defesa, o objetivo é apresentar elementos que possibilitem a reanálise da autuação ou a revisão da penalidade aplicada, com base nas normas aplicáveis subsidiariamente pela Lei Federal nº 9.784/99, art. 2º.
+A Lei Federal nº 6.437/77, no seu art. 10, estabelece o rol das infrações à legislação sanitária, e a apuração ocorre em processo administrativo próprio. Este procedimento deve observar rigorosamente princípios basilares do Direito, como o devido processo legal, a legalidade, a motivação e a razoabilidade. Quando o estabelecimento prepara uma defesa, o objetivo é apresentar elementos que possibilitem a reanálise da autuação ou a revisão da penalidade aplicada, com base nas normas aplicáveis subsidiariamente pela Lei Federal nº 9.784/99, art. 2º.
 
 ## Documentos essenciais para a sua defesa
 
@@ -633,7 +633,7 @@ Se o seu estabelecimento sofreu uma medida de interdição, a prioridade absolut
 
 Uma defesa administrativa bem estruturada deve pautar-se pela clareza e pela técnica. Ao relatar os fatos, utilize uma linguagem sóbria e objetiva. Argumente com base nos princípios da proporcionalidade e da razoabilidade, buscando demonstrar elementos que possam favorecer a revisão da sanção aplicada à luz da realidade fática do estabelecimento.
 
-Lembre-se que o direito à ampla defesa é uma garantia constitucional. Ao fundamentar o recurso, procure identificar eventuais falhas procedimentais no auto, como descrições vagas que dificultem a compreensão da conduta punida, ou a ausência de motivação adequada para a penalidade aplicada. A conformidade com os artigos 3º, 4º, 10 e 33 da Lei Federal nº 6.437/77 deve ser considerada na análise do mérito da autuação.
+Lembre-se que o direito à ampla defesa é uma garantia constitucional. Ao fundamentar o recurso, procure identificar eventuais falhas procedimentais no auto, como descrições vagas que dificultem a compreensão da conduta punida, ou a ausência de motivação adequada para a penalidade aplicada. A conformidade com os requisitos obrigatórios do auto de infração, previstos no art. 13 da Lei Federal nº 6.437/77, e com a classificação da infração dos arts. 3º, 4º e 10 da mesma lei, deve ser considerada na análise do mérito da autuação.
 
 É possível submeter o auto de infração para uma análise técnica, verificando se a autuação apresenta elementos que permitam fundamentar a apresentação de um recurso administrativo.
 
@@ -673,7 +673,7 @@ Ao receber um auto de infração, o estabelecimento entra em um processo adminis
 
 Se o estabelecimento for autuado, o contraditório e a ampla defesa, reforçados pelo art. 2º da Lei Federal nº 9.784/99, aplicável subsidiariamente, permitem que o autuado apresente seus argumentos. Em situações de irregularidades sanáveis, o foco deve ser a correção imediata, documentada através de relatórios, registros fotográficos e notas fiscais de serviços, que servirão como base para o pedido de reinspeção junto ao órgão fiscalizador.
 
-Caso tenha ocorrido uma interdição, a retomada das atividades deve seguir estritamente os trâmites do órgão, aguardando a liberação formal após a inspeção. Operar sem o aval da autoridade, fundamentado nos arts. 31 e 33 da Lei Federal nº 6.437/77, pode agravar severamente a situação jurídica do estabelecimento.
+Caso tenha ocorrido uma interdição, a retomada das atividades deve seguir estritamente os trâmites do órgão, aguardando a liberação formal após a inspeção. O art. 23, § 4º, da Lei Federal nº 6.437/77 limita a interdição cautelar a 90 dias, mas isso não autoriza a retomada por conta própria: operar sem o aval da autoridade pode agravar severamente a situação jurídica do estabelecimento.
 
 ## Como proceder diante de uma autuação
 
@@ -721,7 +721,7 @@ Lembre-se que, conforme o art. 2º da Lei Federal nº 9.784/99, aplicável subsi
 
 ## O que fazer se houve interdição
 
-Caso o auto de infração tenha resultado em interdição, o foco principal deve ser a regularização imediata. Nunca retome as atividades sem a devida autorização formal do órgão, sob pena de agravar a situação administrativa e sujeitar o estabelecimento a sanções mais severas. A documentação que comprova a solução dos problemas deve ser apresentada ao órgão para fins de solicitação de reinspeção, conforme os arts. 31 e 33 da Lei Federal nº 6.437/77, que tratam das medidas preventivas e das cautelares. Mantenha os registros organizados para demonstrar que o risco à saúde pública, que motivou a medida, foi eliminado.
+Caso o auto de infração tenha resultado em interdição, o foco principal deve ser a regularização imediata. Nunca retome as atividades sem a devida autorização formal do órgão, sob pena de agravar a situação administrativa e sujeitar o estabelecimento a sanções mais severas. A documentação que comprova a solução dos problemas deve ser apresentada ao órgão para fins de solicitação de reinspeção, conforme o art. 23, § 4º, da Lei Federal nº 6.437/77, que trata da interdição cautelar. Mantenha os registros organizados para demonstrar que o risco à saúde pública, que motivou a medida, foi eliminado.
 
 ## Atenção aos prazos processuais
 
@@ -748,10 +748,10 @@ Compreender essa diferença é o primeiro passo para estruturar uma estratégia 
 
 ## Interdição Cautelar: Medida de Proteção Imediata
 
-A interdição cautelar tem natureza preventiva e emergencial. Conforme previsto no art. 3º da Lei 6.437/77, essa medida é adotada quando há risco iminente à saúde pública. O objetivo não é punir o estabelecimento, mas proteger a população até que o risco seja devidamente mitigado.
+A interdição cautelar tem natureza preventiva e emergencial. Conforme previsto no art. 23, § 4º, da Lei 6.437/77, essa medida é adotada quando há risco iminente à saúde pública, com duração limitada a 90 dias. O objetivo não é punir o estabelecimento, mas proteger a população até que o risco seja devidamente mitigado.
 
 - Objetivo: Interrupção imediata de um perigo sanitário.
-- Vigência: Perdura enquanto persistirem os motivos que a ensejaram.
+- Vigência: Limitada a 90 dias pelo art. 23, § 4º, da Lei 6.437/77, ou até que cessem os motivos que a justificaram, o que ocorrer primeiro.
 - Procedimento: É uma medida preparatória ou incidental, que não encerra o processo administrativo por si só.
 
 Nesta fase, a autoridade sanitária busca estancar um dano potencial. Por se tratar de um ato administrativo, deve observar rigorosamente o princípio da motivação, previsto na Lei 9.784/99 (aplicável subsidiariamente), o qual exige que o órgão indique claramente os fatos e fundamentos jurídicos que justificaram tal urgência.
@@ -761,7 +761,7 @@ Nesta fase, a autoridade sanitária busca estancar um dano potencial. Por se tra
 Diferente da medida cautelar, a interdição como penalidade constitui uma das sanções previstas nos arts. 2º e 10 da Lei 6.437/77. Ela é o resultado final de um processo administrativo no qual se apurou a infração às normas sanitárias, assegurando ao autuado o exercício dos princípios do contraditório e da ampla defesa.
 
 - Objetivo: Sancionar a conduta praticada pelo estabelecimento em desacordo com as normas sanitárias vigentes.
-- Vigência: Possui caráter sancionatório, com duração definida conforme os critérios estabelecidos na legislação e nos arts. 31 e 33 da Lei 6.437/77.
+- Vigência: Possui caráter sancionatório, com duração definida conforme os critérios de dosimetria estabelecidos nos arts. 6º, 7º e 8º da Lei 6.437/77.
 - Procedimento: Ocorre após o encerramento da fase instrutória, onde foi comprovada a responsabilidade do autuado.
 
 ## O Devido Processo Legal e a Regularização
@@ -818,7 +818,7 @@ Caso o estabelecimento tenha sido interditado, é fundamental manter a interrup�
 
 Os arts. 3º e 4º da Lei 6.437/77 estabelecem critérios para a gradação das penas. Princípios como proporcionalidade e razoabilidade podem ser invocados caso a sanção imposta seja excessiva frente à irregularidade encontrada. Se o estabelecimento possui histórico de conformidade ou se a falha foi sanada prontamente, esses elementos podem ser levados ao conhecimento da autoridade julgadora durante a fase de defesa administrativa para fins de análise de mitigação da sanção.
 
-Lembre-se que o objetivo da Vigilância Sanitária é a proteção da saúde da população, conforme definido nos arts. 2º, 10, 31 e 33 da Lei 6.437/77. A defesa bem estruturada é aquela que demonstra que o estabelecimento possui condições de operar em segurança e que eventuais falhas foram pontuais ou sanadas.
+Lembre-se que o objetivo da Vigilância Sanitária é a proteção da saúde da população, conforme definido nos arts. 2º e 10 da Lei 6.437/77. A defesa bem estruturada é aquela que demonstra que o estabelecimento possui condições de operar em segurança e que eventuais falhas foram pontuais ou sanadas.
 
 ## Como o CheckMulta pode auxiliar
 
@@ -841,7 +841,7 @@ No CheckMulta, você pode enviar o auto de infração da Vigilância Sanitária 
 
 A conformidade de um estabelecimento junto à Vigilância Sanitária não se resume apenas às condições físicas ou ao manuseio adequado de produtos. A regularidade é comprovada, essencialmente, por meio de documentos que atestam a boa-fé e o controle dos processos operacionais. A fiscalização é rigorosa quanto à rastreabilidade e à gestão de riscos.
 
-Receber um auto de infração pode causar insegurança, mas é fundamental compreender que o processo administrativo é regido por princípios que garantem a segurança jurídica do administrado. Conforme a Lei Federal 6.437/77, o poder de polícia sanitária deve ser exercido com cautela, observando sempre os limites legais, conforme o art. 2º, art. 3º e art. 4º da referida lei.
+Receber um auto de infração pode causar insegurança, mas é fundamental compreender que o processo administrativo é regido por princípios que garantem a segurança jurídica do administrado. A Lei Federal 6.437/77 estabelece, no art. 2º, o rol das penalidades aplicáveis, no art. 3º, a imputabilidade da infração a quem lhe deu causa, e no art. 4º, a classificação da infração em leve, grave ou gravíssima — parâmetros que devem ser observados para que a penalidade aplicada seja legítima.
 
 ## Documentos essenciais para o dia a dia
 
@@ -863,7 +863,7 @@ Se o estabelecimento recebeu uma penalidade ou notificação, o contraditório e
 
 Se a fiscalização apontou uma inconformidade, o primeiro passo é a correção técnica. Documentar essa regularização é um dever de quem busca a conformidade. Utilize registros fotográficos, notas fiscais, contratos de manutenção e laudos técnicos.
 
-Se houver a interdição do local, esta deve ser tratada com absoluta seriedade. É proibida a retomada das operações antes de obter a liberação oficial da autoridade sanitária competente. O procedimento correto consiste em realizar todas as correções apontadas, protocolar o pedido de reinspeção junto ao órgão e aguardar a verificação in loco. O art. 31 da Lei Federal 6.437/77 prevê os ritos de fiscalização e o exercício do poder de polícia, devendo o administrado colaborar, mas sempre exigindo que o órgão atue dentro dos limites previstos pelo art. 33 da mesma lei.
+Se houver a interdição do local, esta deve ser tratada com absoluta seriedade. É proibida a retomada das operações antes de obter a liberação oficial da autoridade sanitária competente. O procedimento correto consiste em realizar todas as correções apontadas, protocolar o pedido de reinspeção junto ao órgão e aguardar a verificação in loco. O art. 23, § 4º, da Lei Federal 6.437/77 limita a interdição cautelar a 90 dias, devendo o administrado colaborar com a fiscalização, mas sempre exigindo que o órgão atue dentro desse prazo legal.
 
 ## Prazos e cautelas importantes
 
@@ -911,7 +911,7 @@ Ao estruturar uma defesa, é indispensável observar os princípios que regem a 
 
 Se o estabelecimento sofreu uma medida cautelar, como a interdição, é importante reiterar que o foco imediato deve ser a regularização das condições sanitárias. Em hipótese alguma o estabelecimento deve retomar suas atividades antes da liberação oficial e expressa pelo órgão competente. O descumprimento de uma interdição configura infração grave e pode agravar severamente a situação jurídica e administrativa da empresa.
 
-Para o pedido de reinspeção, a documentação é o caminho mais adequado. Reúna notas fiscais de compra de insumos, registros fotográficos que demonstrem as adequações feitas no ambiente, laudos de controle de pragas ou comprovantes de manutenção preventiva de equipamentos. Esses documentos constituem o suporte probatório para demonstrar que o estabelecimento sanou as falhas, conforme os critérios de fiscalização previstos na Lei 6.437/77 (arts. 31 e 33).
+Para o pedido de reinspeção, a documentação é o caminho mais adequado. Reúna notas fiscais de compra de insumos, registros fotográficos que demonstrem as adequações feitas no ambiente, laudos de controle de pragas ou comprovantes de manutenção preventiva de equipamentos. Esses documentos constituem o suporte probatório para demonstrar que o estabelecimento sanou as infrações apontadas com base no auto de infração original.
 
 ## A importância da análise técnica
 
@@ -960,7 +960,7 @@ Receber um auto de infração gera preocupação, mas o foco deve ser a regulari
 
 Se o auto mencionar a ausência de documentação, o primeiro passo é reunir os registros existentes e providenciar a correção das falhas apontadas. Documente a correção com registros fotográficos, notas fiscais e relatórios técnicos. Essa prova documental pode ser essencial tanto para o pedido de reinspeção quanto para subsidiar argumentos em uma defesa administrativa.
 
-Em situações de interdição, a recomendação técnica é a regularização imediata e integral. Nunca retome as atividades antes da liberação oficial do órgão competente, pois o descumprimento pode agravar as sanções previstas na Lei 6.437/77, nos termos dos artigos 10, 31 e 33, gerando maiores prejuízos e riscos ao negócio.
+Em situações de interdição, a recomendação técnica é a regularização imediata e integral. Nunca retome as atividades antes da liberação oficial do órgão competente, pois o descumprimento pode agravar as sanções previstas na Lei 6.437/77, nos termos do art. 23, § 4º, gerando maiores prejuízos e riscos ao negócio.
 
 ## Análise técnica do seu auto
 
@@ -995,7 +995,7 @@ Conforme o art. 50 da Lei nº 9.784/99, aplicável subsidiariamente ao processo 
 
 ## Como a Lei nº 6.437/77 protege o administrado
 
-A Lei nº 6.437/77 (arts. 2º, 3º, 4º, 10, 31, 33), que trata das infrações à legislação sanitária, estabelece procedimentos que devem ser observados para que a autuação possua eficácia. O art. 31 desta lei reforça a necessidade de um processo administrativo hígido. Quando um auto de infração omite a norma infringida, ele pode afrontar a segurança jurídica, um princípio essencial para o funcionamento de qualquer negócio. Se a autoridade sanitária não consegue apontar o dispositivo legal que foi desrespeitado, o devido processo legal (art. 2º da Lei nº 9.784/99, aplicável subsidiariamente) pode ser colocado em xeque.
+A Lei nº 6.437/77 (arts. 2º, 3º, 4º e 10), que trata das infrações à legislação sanitária, estabelece procedimentos que devem ser observados para que a autuação possua eficácia, exigindo que o auto descreva com precisão a conduta e o dispositivo legal transgredido. Quando um auto de infração omite a norma infringida, ele pode afrontar a segurança jurídica, um princípio essencial para o funcionamento de qualquer negócio. Se a autoridade sanitária não consegue apontar o dispositivo legal que foi desrespeitado, o devido processo legal (art. 2º da Lei nº 9.784/99, aplicável subsidiariamente) pode ser colocado em xeque.
 
 ## O que fazer ao identificar a ausência de norma no auto
 
@@ -1038,7 +1038,7 @@ O documento entregue pelo fiscal possui natureza jurídica de ato administrativo
 Ao ter em mãos o termo de intimação ou o auto de infração, o primeiro procedimento é a leitura minuciosa. Verifique os seguintes pontos:
 
 - Descrição clara da irregularidade: O fiscal deve descrever objetivamente qual conduta ou condição física do estabelecimento infringe a legislação sanitária vigente. A ausência de uma descrição clara pode fragilizar a acusação.
-- Fundamentação legal: Verifique quais são os dispositivos citados. Conforme a Lei 6.437/77 (arts. 2º, 3º, 4º, 10, 31, 33), as infrações devem ser tipificadas adequadamente. O órgão deve indicar, de forma clara, em quais artigos a conduta se enquadra.
+- Fundamentação legal: Verifique quais são os dispositivos citados. A infração deve estar enquadrada no rol do art. 10 da Lei 6.437/77, e o auto deve indicar claramente o dispositivo transgredido, conforme exige o art. 13 da mesma lei. O órgão deve indicar, de forma clara, em quais artigos a conduta se enquadra.
 - Prazo para providências: Esta é a informação mais crítica. A legislação sanitária é fragmentada e varia conforme a esfera federativa (União, estados ou municípios). Não existe um prazo universal. O período para apresentação de defesa ou para o cumprimento de exigências consta expressamente no documento recebido. Caso não esteja claro, é dever do estabelecimento buscar o esclarecimento diretamente junto ao órgão emissor.
 
 ## Princípios que regem o processo
@@ -1056,7 +1056,7 @@ Caso o termo contenha exigências técnicas (como adequação de layout, troca d
 
 ## Cuidados com o processo administrativo
 
-A Lei 9.784/99 (art. 2º, aplicável subsidiariamente) estabelece que a administração deve atuar com base na proporcionalidade. Isso significa que a sanção aplicada deve ser adequada à gravidade da infração, sem excessos. Em caso de autuação, é possível verificar se a multa ou medida imposta guarda coerência com o prejuízo causado à saúde pública, observando os parâmetros da Lei 6.437/77 (arts. 31 e 33) no que tange à dosimetria das penas.
+A Lei 9.784/99 (art. 2º, aplicável subsidiariamente) estabelece que a administração deve atuar com base na proporcionalidade. Isso significa que a sanção aplicada deve ser adequada à gravidade da infração, sem excessos. Em caso de autuação, é possível verificar se a multa ou medida imposta guarda coerência com o prejuízo causado à saúde pública, observando os critérios de graduação da pena previstos no art. 6º da Lei 6.437/77.
 
 Lembre-se que o processo administrativo é a oportunidade de esclarecer os fatos. A defesa técnica deve ser objetiva, fundamentada e instruída com provas que demonstrem a boa-fé do estabelecimento e o efetivo cumprimento das normas. É possível buscar análise especializada para verificar se a autuação apresenta falhas que permitam a formulação de recurso administrativo.
 
@@ -1091,7 +1091,7 @@ A solicitação de reinspeção não deve ser feita de maneira informal. O proce
 
 É fundamental destacar que, caso o estabelecimento tenha sido interditado, a retomada da operação sem a devida liberação oficial do órgão é uma conduta de risco extremo. O descumprimento de uma interdição imposta pode agravar a situação jurídica do estabelecimento, conforme o disposto no art. 10 da Lei Federal nº 6.437/77, que elenca as infrações sanitárias. Aguarde sempre a visita do fiscal e a emissão do termo de desinterdição ou de liberação para retomar suas atividades.
 
-Quanto aos prazos, a legislação sanitária é fragmentada. Enquanto a Lei Federal nº 6.437/77 estabelece normas gerais de infração (arts. 31 e 33), os procedimentos de protocolo e os prazos para defesa e reinspeção são definidos pelas normas sanitárias locais. Não utilize prazos genéricos encontrados na internet. Verifique sempre o prazo indicado no próprio auto de infração ou entre em contato diretamente com o setor de atendimento do órgão fiscalizador para confirmar o procedimento de solicitação de vistoria.
+Quanto aos prazos, a legislação sanitária é fragmentada. Enquanto a Lei Federal nº 6.437/77 estabelece o rol das infrações sanitárias federais (art. 10), os procedimentos de protocolo e os prazos para defesa e reinspeção são definidos pelas normas sanitárias locais. Não utilize prazos genéricos encontrados na internet. Verifique sempre o prazo indicado no próprio auto de infração ou entre em contato diretamente com o setor de atendimento do órgão fiscalizador para confirmar o procedimento de solicitação de vistoria.
 
 ## A relação entre defesa administrativa e reinspeção
 
@@ -1128,7 +1128,7 @@ Além disso, o art. 2º da referida lei, aplicável subsidiariamente, reforça q
 
 A Lei nº 6.437/77 estabelece nos arts. 2º, 3º e 4º que, para a imposição da pena e sua gradação, a autoridade sanitária deve observar elementos centrais, tais como a gravidade do fato, a antecedência do infrator e a sua situação econômica.
 
-Quando um auto de infração ignora esses critérios e apresenta um valor de multa sem qualquer demonstração de cálculo ou justificativa sobre o porquê daquela sanção específica ter sido aplicada, surge um ponto de fragilidade no ato. Os arts. 10, 31 e 33 da Lei nº 6.437/77 corroboram a necessidade de observância desses critérios na aplicação das penalidades. Sem a explicitação de como a autoridade considerou a gravidade ou as condições do infrator, o estabelecimento pode argumentar que houve ofensa ao devido processo legal.
+Quando um auto de infração ignora esses critérios e apresenta um valor de multa sem qualquer demonstração de cálculo ou justificativa sobre o porquê daquela sanção específica ter sido aplicada, surge um ponto de fragilidade no ato. O art. 6º da Lei nº 6.437/77, que trata da graduação da pena conforme a gravidade do fato e os antecedentes do infrator, corrobora a necessidade de observância desses critérios na aplicação das penalidades. Sem a explicitação de como a autoridade considerou a gravidade ou as condições do infrator, o estabelecimento pode argumentar que houve ofensa ao devido processo legal.
 
 ## O que observar no seu auto de infração
 
@@ -1208,7 +1208,7 @@ Para analisar se o seu auto de infração apresenta falhas que possam fundamenta
     palavrasChave: ["interdição vigilância sanitária", "auto de infração excessivo", "princípio da proporcionalidade", "recurso administrativo sanitário"],
     conteudo: `## A natureza da interdição na fiscalização sanitária
 
-A interdição de um estabelecimento é uma das medidas mais severas que a autoridade sanitária pode aplicar. Ela interrompe as atividades comerciais, gerando impactos operacionais e financeiros. Contudo, para que essa medida seja legítima, ela deve estar rigorosamente alinhada aos preceitos legais e aos princípios que regem a administração pública. No contexto da Lei nº 6.437/77 (arts. 2º, 3º, 4º, 10, 31 e 33), a interdição é prevista como medida preventiva ou punitiva quando há risco iminente à saúde da população.
+A interdição de um estabelecimento é uma das medidas mais severas que a autoridade sanitária pode aplicar. Ela interrompe as atividades comerciais, gerando impactos operacionais e financeiros. Contudo, para que essa medida seja legítima, ela deve estar rigorosamente alinhada aos preceitos legais e aos princípios que regem a administração pública. No contexto da Lei nº 6.437/77, a interdição é prevista como medida preventiva quando há risco iminente à saúde pública (art. 23, § 4º) ou como penalidade após a apuração da infração (art. 2º).
 
 ## O princípio da proporcionalidade e sua aplicação
 
@@ -1264,7 +1264,7 @@ Uma intimação pode ser considerada irregular quando falha em cumprir seu objet
 - Ausência de descrição clara sobre o procedimento de defesa ou o órgão responsável pelo recebimento do recurso.
 - Envio de documentos que não permitem a leitura ou identificação das exigências técnicas.
 
-De acordo com a Lei nº 6.437/77 (arts. 2º, 3º, 4º, 10, 31, 33), o processo administrativo deve observar o devido processo legal para que as sanções, como as multas, possuam legitimidade. Se o procedimento de comunicação falha, o prazo para a apresentação de defesa pode ser questionado, pois o termo inicial para a contagem desse período depende da ciência válida do interessado.
+De acordo com a Lei nº 6.437/77 (arts. 2º, 3º, 4º e 10), o processo administrativo deve observar o devido processo legal para que as sanções, como as multas, possuam legitimidade. Se o procedimento de comunicação falha, o prazo para a apresentação de defesa pode ser questionado, pois o termo inicial para a contagem desse período depende da ciência válida do interessado.
 
 ## O impacto nos prazos processuais
 
@@ -1337,7 +1337,7 @@ Esses documentos não servem apenas para a defesa administrativa, mas também s�
 
 O prazo para apresentação de defesa não é uniforme, pois varia conforme a norma local aplicável ao órgão fiscalizador. Por isso, é imprescindível verificar o prazo estipulado no próprio documento recebido. Perder o prazo para a apresentação de defesa implica preclusão, o que pode levar à confirmação da penalidade pela autoridade sanitária.
 
-O devido processo legal exige que todos os pontos apontados pelo fiscal sejam analisados com cautela. Muitas vezes, a autuação pode conter falhas de descrição, excesso na medida aplicada ou desproporcionalidade entre o fato e a sanção, nos termos dos arts. 31 e 33 da Lei 6.437/77. O questionamento desses pontos é a essência do recurso administrativo, podendo ensejar a revisão da penalidade.
+O devido processo legal exige que todos os pontos apontados pelo fiscal sejam analisados com cautela. Muitas vezes, a autuação pode conter falhas de descrição que violam os requisitos do art. 13 da Lei 6.437/77, ou desproporcionalidade entre o fato e a sanção em desacordo com os critérios de graduação da pena dos arts. 6º a 8º da mesma lei. O questionamento desses pontos é a essência do recurso administrativo, podendo ensejar a revisão da penalidade.
 
 Interessados podem enviar o auto de infração para uma análise técnica que verifique se a autuação apresenta falhas capazes de fundamentar um recurso administrativo.
 
@@ -1378,7 +1378,7 @@ Ao receber um auto de infração, o primeiro passo é a análise técnica detalh
 
 Vale ressaltar que a regularização de eventuais problemas sanitários detectados no estabelecimento deve ocorrer independentemente da discussão técnica sobre a validade do auto. Caso haja exigências de adequação, registre todo o processo de correção. Tire fotos, guarde notas fiscais de materiais utilizados, elabore relatórios técnicos e, se for o caso, solicite a reinspeção pelo órgão competente. A comprovação da regularidade sanitária é um passo indispensável. 
 
-Importante: em caso de interdição, a retomada das atividades está estritamente condicionada à vistoria e liberação formal pela autoridade sanitária competente. Não opere o estabelecimento sem a devida autorização legal, sob risco de agravamento das sanções previstas na Lei 6.437/77 (arts. 10, 31 e 33).
+Importante: em caso de interdição, a retomada das atividades está estritamente condicionada à vistoria e liberação formal pela autoridade sanitária competente. Não opere o estabelecimento sem a devida autorização legal, sob risco de agravamento das sanções, já que a interdição cautelar prevista no art. 23, § 4º, da Lei 6.437/77 só cessa com essa liberação.
 
 ## Atenção aos prazos
 
@@ -1411,7 +1411,7 @@ O procedimento administrativo é regido por princípios fundamentais que garante
 
 ## Onde encontrar o prazo correto
 
-É um equívoco comum acreditar que existe um prazo único para todos os estabelecimentos no Brasil. A legislação sanitária é descentralizada. Enquanto a Lei 6.437/77 estabelece diretrizes gerais sobre infrações à legislação sanitária federal (arts. 2º, 3º, 4º, 10, 31, 33), a execução da fiscalização ocorre de forma descentralizada entre municípios e estados, observando normas locais de procedimento administrativo.
+É um equívoco comum acreditar que existe um prazo único para todos os estabelecimentos no Brasil. A legislação sanitária é descentralizada. Enquanto a Lei 6.437/77 estabelece diretrizes gerais sobre infrações à legislação sanitária federal (arts. 2º, 3º, 4º e 10), a execução da fiscalização ocorre de forma descentralizada entre municípios e estados, observando normas locais de procedimento administrativo.
 
 Por essa razão, o primeiro passo ao receber o auto de infração é a leitura minuciosa do documento. O prazo para a apresentação da defesa deve constar expressamente no próprio auto ou no documento de notificação que o acompanha. Não utilize prazos sugeridos por terceiros ou baseados em experiências anteriores com outros órgãos; foque exclusivamente nas orientações contidas no auto recebido. Em caso de dúvida sobre a contagem ou sobre a natureza do prazo, entre em contato diretamente com o órgão emissor da autuação.
 
@@ -1429,7 +1429,7 @@ Ao corrigir as pendências, documente todo o processo. Fotografias, notas fiscai
 
 ## O que observar no preenchimento do auto
 
-Conforme a Lei 6.437/77, o auto de infração deve descrever com clareza a infração cometida (arts. 31 e 33). Caso haja omissões, descrições genéricas ou falta de clareza sobre o dispositivo legal infringido, esses pontos podem ser questionados dentro do prazo estabelecido. A observância aos princípios da legalidade e da motivação é o que confere validade ao ato administrativo. O foco da defesa deve ser sempre a verificação da conformidade entre a ação fiscal e a norma, garantindo que o direito do estabelecimento tenha sido respeitado durante toda a diligência.
+Conforme o art. 13 da Lei 6.437/77, o auto de infração deve descrever com clareza a infração cometida e o dispositivo legal transgredido. Caso haja omissões, descrições genéricas ou falta de clareza sobre o dispositivo legal infringido, esses pontos podem ser questionados dentro do prazo estabelecido. A observância aos princípios da legalidade e da motivação é o que confere validade ao ato administrativo. O foco da defesa deve ser sempre a verificação da conformidade entre a ação fiscal e a norma, garantindo que o direito do estabelecimento tenha sido respeitado durante toda a diligência.
 
 ---
 *Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
@@ -1485,7 +1485,7 @@ Essas provas são fundamentais para demonstrar à autoridade sanitária que o es
 
 ## O contraditório e a ampla defesa
 
-O ordenamento jurídico brasileiro garante a todos o direito ao contraditório e à ampla defesa. Portanto, ao receber um auto de infração, o proprietário tem o direito de apresentar os fatos e documentos que contraponham a autuação. A Lei Federal nº 6.437/77 (arts. 2º, 3º, 4º, 31, 33), e a Lei Federal nº 9.784/99 (art. 2º, aplicável subsidiariamente), preveem mecanismos para que o autuado se defenda, permitindo que a administração reavalie a legalidade e a adequação da sanção aplicada.
+O ordenamento jurídico brasileiro garante a todos o direito ao contraditório e à ampla defesa. Portanto, ao receber um auto de infração, o proprietário tem o direito de apresentar os fatos e documentos que contraponham a autuação. A Lei Federal nº 6.437/77 (arts. 2º, 3º e 4º), e a Lei Federal nº 9.784/99 (art. 2º, aplicável subsidiariamente), preveem mecanismos para que o autuado se defenda, permitindo que a administração reavalie a legalidade e a adequação da sanção aplicada.
 
 A análise técnica do auto é um passo relevante. É preciso verificar se o agente sanitário observou as formalidades legais e se os fatos narrados configuram, de forma fundamentada, uma infração sanitária. Falhas na redação do auto ou a aplicação de penalidades que não condizem com a gravidade da situação são pontos que podem ser arguidos em sede de recurso.
 
@@ -1508,7 +1508,7 @@ Ao receber um auto de infração que resulta na suspensão das atividades de um 
 
 ## O que é a interdição cautelar?
 
-A interdição cautelar possui natureza preventiva e provisória. Conforme previsto no art. 3º da Lei Federal nº 6.437/77, esta medida é adotada quando há risco iminente à saúde pública. O objetivo não é punir o estabelecimento de imediato, mas sim cessar uma situação de perigo enquanto o processo administrativo segue seu curso regular.
+A interdição cautelar possui natureza preventiva e provisória. Conforme previsto no art. 23, § 4º, da Lei Federal nº 6.437/77, esta medida é adotada quando há risco iminente à saúde pública, com duração máxima de 90 dias. O objetivo não é punir o estabelecimento de imediato, mas sim cessar uma situação de perigo enquanto o processo administrativo segue seu curso regular.
 
 Algumas características marcantes da interdição cautelar incluem:
 
@@ -1518,7 +1518,7 @@ Algumas características marcantes da interdição cautelar incluem:
 
 ## O que é a interdição como penalidade?
 
-Diferente da medida cautelar, a interdição como penalidade possui caráter sancionatório. Ela ocorre ao final do processo administrativo, quando, após assegurado o contraditório e a ampla defesa, o órgão competente conclui pela existência da infração e pela necessidade de punição, conforme preveem os dispositivos sancionatórios contidos na Lei Federal nº 6.437/77 (arts. 10, 31 e 33).
+Diferente da medida cautelar, a interdição como penalidade possui caráter sancionatório. Ela ocorre ao final do processo administrativo, quando, após assegurado o contraditório e a ampla defesa, o órgão competente conclui pela existência da infração e pela necessidade de punição, conforme prevê o rol de penalidades do art. 2º da Lei Federal nº 6.437/77.
 
 Principais pontos sobre a natureza da penalidade:
 
