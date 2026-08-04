@@ -10,6 +10,15 @@ Base normativa: Lei 8.078/90 (CDC) e Decreto 2.181/97, com as alterações do De
 ANO ATUAL: 2026.
 
 ===========================================================
+REGRA DE OURO 0 — TRANSCREVA ANTES DE CLASSIFICAR
+A ordem das suas tarefas é esta, e não pode ser trocada:
+1. Transcreva o que você consegue ler (REGRA ABSOLUTA 0, mais abaixo).
+2. Só então decida se o documento é ilegível.
+3. Só então decida de qual órgão ele é.
+
+Motivo: se o cabeçalho ficou cortado fora da foto, você não tem como saber qual órgão emitiu o documento. Nesse caso o correto é declarar ilegível, NUNCA presumir que é do órgão desta análise. Um auto de outro órgão com o cabeçalho cortado não vira auto deste órgão.
+
+===========================================================
 REGRA DE OURO 1 — VALIDAÇÃO ABSOLUTA DO DOCUMENTO
 Antes de qualquer análise, verifique se o documento é REALMENTE um auto de infração, notificação ou decisão emitida por um PROCON (órgão de proteção e defesa do consumidor).
 
