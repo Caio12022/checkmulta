@@ -488,7 +488,103 @@ export function validarAnaliseTransito(bruto: string): string {
     return "imagem_ilegivel";
   }
 
+  // COERÊNCIA: relatório que nega a existência de falha não pode
+  // ser apresentado como se tivesse encontrado uma.
+  if (relatorioNegaFalha(relatorio)) {
+    return "rejeicao_sem_falha";
+  }
+
+  // PRAZO: alegação aritmeticamente falsa não sustenta o relatório sozinha.
+  if (alegacaoDePrazoEhFalsa(relatorio) && !temOutroVicio(relatorio)) {
+    return "rejeicao_sem_falha";
+  }
+
   return relatorio;
+}
+
+
+// ============================================================
+// 8-A. TRÂNSITO — COERÊNCIA DO RELATÓRIO
+// ============================================================
+
+/**
+ * O relatório de trânsito é texto corrido, então o modelo consegue se
+ * contradizer: afirmar que o auto está correto e, ao mesmo tempo, entregar
+ * um relatório de falha. Aconteceu no caso 01.
+ *
+ * Se o texto diz que não há irregularidade, o resultado correto é
+ * rejeicao_sem_falha — que a tela já sabe exibir.
+ */
+const FRASES_SEM_FALHA = [
+  "nao foram identificadas irregularidades",
+  "nao foram identificadas falhas",
+  "nao foi identificada irregularidade",
+  "nao foram encontradas irregularidades",
+  "nao ha irregularidade",
+  "nao ha falha",
+  "nenhuma irregularidade",
+  "nenhuma falha",
+  "apresenta todos os requisitos",
+  "contem todos os requisitos",
+  "atende a todos os requisitos",
+  "todos os campos obrigatorios estao preenchidos",
+  "esta formalmente regular",
+  "nao apresenta vicio",
+  "sem vicio formal",
+];
+
+export function relatorioNegaFalha(relatorio: string): boolean {
+  const t = normalizar(relatorio);
+  return FRASES_SEM_FALHA.some((f) => t.includes(normalizar(f)));
+}
+
+/**
+ * Falso positivo de prazo (caso 02): o modelo alegou prazo insuficiente
+ * num auto que concedia 34 dias, quando o mínimo é 30. A conta é
+ * verificável, então é feita aqui.
+ *
+ * Retorna true quando a alegação de prazo curto está ERRADA.
+ */
+export function alegacaoDePrazoEhFalsa(relatorio: string): boolean {
+  const t = normalizar(relatorio);
+
+  const falaDePrazo =
+    t.includes("prazo") &&
+    (t.includes("30 dias") || t.includes("trinta dias") ||
+     t.includes("inferior") || t.includes("insuficiente") ||
+     t.includes("exiguo") || t.includes("menor"));
+  if (!falaDePrazo) return false;
+
+  // Só interessam as datas citadas na parte que discute o prazo. As datas do
+  // bloco de dados extraídos (data da infração, por exemplo) contaminariam a conta.
+  const corte = relatorio.search(/O QUE ENCONTRAMOS|DIAGN[ÓO]STICO/i);
+  const trechoPrazo = corte === -1 ? relatorio : relatorio.slice(corte);
+
+  const datas = (trechoPrazo.match(/\b(\d{2})\/(\d{2})\/(\d{4})\b/g) || []).map((d) => {
+    const [dia, mes, ano] = d.split("/").map(Number);
+    return new Date(ano, mes - 1, dia).getTime();
+  });
+  if (datas.length < 2) return false;
+
+  const dias = (Math.max(...datas) - Math.min(...datas)) / 86400000;
+  return dias >= 30;
+}
+
+/**
+ * Indícios de vício concreto no texto. Serve para não apagar um relatório
+ * legítimo só porque a parte do prazo estava errada.
+ */
+const INDICIOS_DE_VICIO = [
+  "ausencia", "ausente", "nao consta", "nao ha identificacao", "falta",
+  "em branco", "nao informado", "nao identificado", "ilegivel",
+  "divergencia", "divergente", "generico", "generica", "incompleto",
+  "incompleta", "sem assinatura", "sem identificacao", "sem matricula",
+  "nao preenchido", "omissao",
+];
+
+function temOutroVicio(relatorio: string): boolean {
+  const t = normalizar(relatorio);
+  return INDICIOS_DE_VICIO.some((i) => t.includes(normalizar(i)));
 }
 
 // ============================================================
