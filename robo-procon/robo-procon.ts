@@ -1,7 +1,7 @@
 /**
  * AGENTE DE ARTIGOS - CheckMulta PROCON
  * ------------------------------------------------------------
- * Roda 1x por dia (GitHub Actions) e gera 3 artigos por execução.
+ * Roda 1x por dia (GitHub Actions) e gera 1 artigo por execução.
  *
  * SEGURANÇA: antes de commitar, o arquivo montado é validado com esbuild.
  * - Se compilar     -> commit direto na main (site atualiza sozinho).
@@ -27,7 +27,7 @@ const GITHUB_BRANCH_BASE = "main";
 const CAMINHO_ARTIGOS = "src/data/artigosProcon.ts";
 
 // Quantos artigos gerar por execução
-const ARTIGOS_POR_EXECUCAO = 3;
+const ARTIGOS_POR_EXECUCAO = 1;
 
 // Categorias reais do blog Procon + temas que combinam com cada uma.
 // Para adicionar pauta nova, basta acrescentar uma linha aqui.
@@ -182,6 +182,8 @@ Responda APENAS com um objeto JSON válido, sem markdown, sem crases, sem texto 
 
 REGRAS JURÍDICAS OBRIGATÓRIAS (críticas — erro aqui compromete a credibilidade do serviço):
 - Base normativa correta: Lei 8.078/90 (Código de Defesa do Consumidor) e Decreto 2.181/97, com alterações do Decreto 10.887/2021.
+- DISPOSITIVOS SEGUROS do Decreto 2.181/97, com o conteúdo exato de cada um (use apenas estes, e nunca troque os rótulos): art. 5º = competência dos órgãos para apurar e punir; arts. 24 a 28 = graduação da pena, atenuantes, agravantes, reincidência e fixação da multa; art. 26-A = as atenuantes e agravantes são taxativas; art. 28-A = vedação a valorar o mesmo elemento duas vezes na dosimetria; art. 33 = início do processo administrativo sancionador; art. 33-A = averiguação preliminar; art. 35, inciso I = REQUISITOS OBRIGATÓRIOS DO AUTO DE INFRAÇÃO (local, data e hora; qualificação do autuado; descrição do fato; dispositivo legal infringido; intimação; identificação, assinatura e matrícula do agente; designação do órgão julgador; assinatura do autuado; cientificação para defesa); art. 38-A = fiscalização orientadora e critério de DUPLA VISITA para atividade de risco leve, cuja inobservância implica nulidade do auto (§ 2º), e tratamento diferenciado a ME e EPP (§ 3º); art. 42 = notificação e prazo de defesa; art. 48 = a inobservância de forma só gera nulidade se houver prejuízo para a defesa; art. 49 = recurso em 10 dias, com efeito suspensivo em caso de multa; art. 55 = inscrição em dívida ativa se a multa não for recolhida em 30 dias.
+- ATENÇÃO: o Decreto 10.887/2021 REVOGOU a notificação por edital do art. 42. Não escreva que o Procon pode notificar por edital com base na redação atual.
 - SÓ cite número específico de artigo, decreto ou lei se tiver CERTEZA absoluta. Na dúvida, use expressão geral: 'o Código de Defesa do Consumidor prevê', 'a legislação aplicável estabelece', 'as normas do processo administrativo determinam'.
 - É melhor um texto sem número de artigo do que um texto com número errado.
 - NUNCA afirme prazo específico de defesa em dias. O prazo varia por Procon: o Decreto federal 2.181/97 prevê 20 dias, mas Procons estaduais podem adotar prazo próprio (o Procon-SP adota 15 dias, com base na Lei Estadual 10.177/98). Sempre oriente o leitor a conferir o prazo indicado no próprio auto de infração.
