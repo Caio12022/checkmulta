@@ -31,6 +31,28 @@ Se você não tiver CERTEZA de que o documento é de vigilância sanitária, ret
 - Se for sanitário mas estiver ilegível, retorne APENAS: documento_ilegivel
 
 ===========================================================
+REGRA ABSOLUTA 0 — TRANSCRIÇÃO OBRIGATÓRIA (leia antes de tudo)
+Antes de analisar qualquer coisa, TRANSCREVA o documento. A transcrição vai no campo "transcricao_documento" do JSON e é a base de conferência de tudo o que você afirmar depois.
+
+Como transcrever:
+- Copie o texto que você CONSEGUE LER, na ordem em que aparece: cabeçalho, número do auto, qualificação do autuado, datas, descrição dos fatos, capitulação, valores, prazos, identificação do agente.
+- Copie os números EXATAMENTE como estão escritos: valores, datas, CNPJ, número do auto, matrícula.
+- Se um campo estiver ilegível, escreva [ILEGIVEL] no lugar dele. NUNCA adivinhe, complete ou reconstrua.
+- Não resuma, não corrija, não reescreva. Transcrição não é interpretação.
+
+CONSEQUÊNCIA DIRETA: todo trecho que você citar em um achado será conferido, palavra por palavra, contra essa transcrição. Trecho que não constar dela é descartado automaticamente e o achado se perde. Portanto: copie o trecho da transcrição, não da sua memória do documento.
+
+REGRA ABSOLUTA 0.1 — ILEGÍVEL É ILEGÍVEL
+Se o documento estiver cortado, borrado, torto, escuro ou incompleto a ponto de você não conseguir ler os campos de identificação, retorne APENAS: documento_ilegivel
+
+E o mais importante: se você NÃO CONSEGUE LER um campo, isso NÃO significa que o campo está ausente do documento. São coisas diferentes.
+- Campo que você leu e está vazio no papel = ausência real, pode virar achado.
+- Campo que você não conseguiu ler por causa da qualidade da imagem = [ILEGIVEL], NUNCA vira achado.
+- Parte do documento cortada fora do enquadramento = você não viu, logo não afirma nada sobre ela.
+Afirmar que falta assinatura porque o rodapé ficou fora da foto é erro grave e proibido.
+
+
+===========================================================
 REGRA ABSOLUTA 1 — CITAÇÃO OBRIGATÓRIA
 Você SÓ pode apontar uma falha se conseguir copiar, palavra por palavra, o trecho exato do documento que a demonstra.
 - Se não encontrar trecho que sustente a falha, NÃO aponte a falha.
@@ -129,6 +151,7 @@ FORMATO DA RESPOSTA
 Responda APENAS com um objeto JSON válido, sem texto antes ou depois, sem marcação de código:
 
 {
+  "transcricao_documento": "Transcrição fiel do documento, conforme a REGRA ABSOLUTA 0. Campo OBRIGATÓRIO. Sem ele a análise inteira é descartada.",
   "resumo": "Uma a duas frases sobre o estado geral do auto analisado.",
   "orgao_emissor": "Nome do órgão de vigilância sanitária que emitiu, extraído do documento.",
   "numero_auto": "Número do AUTO DE INFRAÇÃO, extraído do documento. Se não houver, use string vazia.",
@@ -156,7 +179,9 @@ Regras do JSON:
 - Todo achado DEVE ter "trecho_documento" preenchido com texto real do documento.
 - Os contadores devem corresponder à quantidade real de achados de cada gravidade.
 - Campos não encontrados no documento: use string vazia "".
-- NUNCA confunda "numero_auto" com "numero_processo".`;
+- NUNCA confunda "numero_auto" com "numero_processo".
+- "transcricao_documento" é OBRIGATÓRIO e deve vir preenchido com o texto real do documento. Sem ele, nada do que você escrever será exibido.
+- Achados que dependem de informação que NÃO está no documento (se houve orientação prévia, o porte do estabelecimento, reincidência, antecedentes, memória de cálculo interna do órgão) são hipóteses, não constatações: classifique sempre como "verificar" e deixe claro na explicação que o estabelecimento precisa conferir esse ponto.`;
 
 // Defesa administrativa - produto pago (rota /api/generate-defense-vigilancia)
 export const promptGenerateDefenseVigilancia = (dados: string) => `Você é um redator especializado em defesa administrativa perante órgãos de vigilância sanitária. Redija uma DEFESA ADMINISTRATIVA formal a partir da análise fornecida.
