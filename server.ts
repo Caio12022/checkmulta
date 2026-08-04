@@ -11,6 +11,7 @@ import { infracoes, calcularValor, formatarReal, NOMES_GRAVIDADE } from "./src/d
 import { PROMPT_ANALYZE_TICKET, promptGenerateDefense } from "./prompts/transito";
 import { PROMPT_ANALYZE_PROCON, promptGenerateDefenseProcon } from "./prompts/procon";
 import { PROMPT_ANALYZE_VIGILANCIA, promptGenerateDefenseVigilancia } from "./prompts/vigilancia";
+import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry } from "./prompts/validador";
 let aiClient: GoogleGenAI | null = null;
 function getAIClient() {
   if (!aiClient) {
@@ -404,16 +405,18 @@ async function startServer() {
 
       const prompt = PROMPT_ANALYZE_TICKET;
 
-      const response = await ai.models.generateContent({
+      const response = await gerarComRetry(() => ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
         contents: [
           { role: "user", parts: [{ inlineData: { data: imageBase64, mimeType: mimeType } }, { text: prompt }] }
         ],
         config: { temperature: 0.0 }
-      });
+      }));
 
-      const resultText = response.text || "";
-      res.json({ result: resultText.trim() });
+      // AUDITORIA: confere o relatório contra a transcrição do próprio documento
+      // e remove o bloco de transcrição antes de enviar ao navegador.
+      const resultText = validarAnaliseTransito((response.text || "").trim());
+      res.json({ result: resultText });
     } catch (err: any) {
       console.error("API Error in analyze-ticket:", err);
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
@@ -436,11 +439,11 @@ async function startServer() {
 
 const prompt = promptGenerateDefense(extractedData);
 
-      const response = await ai.models.generateContent({
+      const response = await gerarComRetry(() => ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
         contents: [{ role: "user", parts: [{ text: prompt }] }],
         config: { temperature: 0.0 }
-      });
+      }));
 
       const resultText = response.text || "";
       res.json({ result: resultText.trim() });
@@ -467,13 +470,13 @@ const prompt = promptGenerateDefense(extractedData);
 
 const prompt = PROMPT_ANALYZE_PROCON;
 
-      const response = await ai.models.generateContent({
+      const response = await gerarComRetry(() => ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
         contents: [
           { role: "user", parts: [{ inlineData: { data: fileBase64, mimeType: mimeType } }, { text: prompt }] }
         ],
         config: { temperature: 0.0 }
-      });
+      }));
 
       let resultText = (response.text || "").trim();
 
@@ -493,23 +496,19 @@ const prompt = PROMPT_ANALYZE_PROCON;
         return res.status(500).json({ error: "Falha ao processar a análise. Tente novamente." });
       }
 
-      // TRAVA DE SEGURANÇA: descarta qualquer achado sem trecho copiado do documento.
-      // É a aplicação prática da regra de citação obrigatória.
-      if (Array.isArray(parsed.achados)) {
-        parsed.achados = parsed.achados.filter(
-          (a: any) => a && typeof a.trecho_documento === "string" && a.trecho_documento.trim().length > 0
-        );
-      } else {
-        parsed.achados = [];
+      // AUDITORIA DETERMINÍSTICA (prompts/validador.ts)
+      // Confere cada achado contra a transcrição do documento: trecho real,
+      // números reais, citação dentro da lista fechada. O que não passa é
+      // descartado antes de chegar ao navegador.
+      const auditoria = validarAnaliseJSON(parsed, "procon");
+      if (auditoria.ilegivel) {
+        return res.json({ result: "documento_ilegivel" });
+      }
+      if (auditoria.descartados > 0) {
+        console.warn(`Procon: ${auditoria.descartados} achado(s) descartado(s) na auditoria.`);
       }
 
-      // Recalcula os contadores no servidor (não confia no que o modelo devolveu)
-      parsed.quantidade_criticos = parsed.achados.filter((a: any) => a.gravidade === "critico").length;
-      parsed.quantidade_atencao = parsed.achados.filter((a: any) => a.gravidade === "atencao").length;
-      parsed.quantidade_verificar = parsed.achados.filter((a: any) => a.gravidade === "verificar").length;
-      parsed.houve_achado = parsed.achados.length > 0;
-
-      res.json({ result: parsed });
+      res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-procon:", err);
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
@@ -533,11 +532,11 @@ const prompt = PROMPT_ANALYZE_PROCON;
 
 const prompt = promptGenerateDefenseProcon(dados);
 
-      const response = await ai.models.generateContent({
+      const response = await gerarComRetry(() => ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
         contents: [{ role: "user", parts: [{ text: prompt }] }],
         config: { temperature: 0.0 }
-      });
+      }));
 
       const resultText = response.text || "";
       res.json({ result: resultText.trim() });
@@ -565,13 +564,13 @@ const prompt = promptGenerateDefenseProcon(dados);
 
 const prompt = PROMPT_ANALYZE_VIGILANCIA;
 
-      const response = await ai.models.generateContent({
+      const response = await gerarComRetry(() => ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
         contents: [
           { role: "user", parts: [{ inlineData: { data: fileBase64, mimeType: mimeType } }, { text: prompt }] }
         ],
         config: { temperature: 0.0 }
-      });
+      }));
 
       let resultText = (response.text || "").trim();
 
@@ -591,22 +590,16 @@ const prompt = PROMPT_ANALYZE_VIGILANCIA;
         return res.status(500).json({ error: "Falha ao processar a análise. Tente novamente." });
       }
 
-      // TRAVA DE SEGURANÇA: descarta qualquer achado sem trecho copiado do documento.
-      if (Array.isArray(parsed.achados)) {
-        parsed.achados = parsed.achados.filter(
-          (a: any) => a && typeof a.trecho_documento === "string" && a.trecho_documento.trim().length > 0
-        );
-      } else {
-        parsed.achados = [];
+      // AUDITORIA DETERMINÍSTICA (prompts/validador.ts)
+      const auditoria = validarAnaliseJSON(parsed, "vigilancia");
+      if (auditoria.ilegivel) {
+        return res.json({ result: "documento_ilegivel" });
+      }
+      if (auditoria.descartados > 0) {
+        console.warn(`Vigilância: ${auditoria.descartados} achado(s) descartado(s) na auditoria.`);
       }
 
-      // Recalcula os contadores no servidor (não confia no que o modelo devolveu)
-      parsed.quantidade_criticos = parsed.achados.filter((a: any) => a.gravidade === "critico").length;
-      parsed.quantidade_atencao = parsed.achados.filter((a: any) => a.gravidade === "atencao").length;
-      parsed.quantidade_verificar = parsed.achados.filter((a: any) => a.gravidade === "verificar").length;
-      parsed.houve_achado = parsed.achados.length > 0;
-
-      res.json({ result: parsed });
+      res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-vigilancia:", err);
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
@@ -630,11 +623,11 @@ const prompt = PROMPT_ANALYZE_VIGILANCIA;
 
 const prompt = promptGenerateDefenseVigilancia(dados);
 
-      const response = await ai.models.generateContent({
+      const response = await gerarComRetry(() => ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
         contents: [{ role: "user", parts: [{ text: prompt }] }],
         config: { temperature: 0.0 }
-      });
+      }));
 
       const resultText = response.text || "";
       res.json({ result: resultText.trim() });
