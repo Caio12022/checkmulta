@@ -12,6 +12,56 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "como-solicitar-reinspecao-apos-regularizar-irregularidades-sanitarias",
+    titulo: "Como solicitar reinspeção após regularizar irregularidades sanitárias",
+    descricao: "Saiba como proceder com o pedido de reinspeção junto à Vigilância Sanitária após corrigir as infrações apontadas. Verifique seu auto gratuitamente.",
+    categoria: "Penalidades",
+    tempoLeitura: "5 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["reinspeção vigilância sanitária", "regularizar auto de infração", "defesa processo administrativo sanitário", "reabertura de estabelecimento"],
+    conteudo: `## A importância da regularização e da comunicação formal
+
+Receber um auto de infração da Vigilância Sanitária gera um impacto operacional imediato no estabelecimento. Seja para um restaurante, farmácia ou clínica, o objetivo principal após a autuação deve ser a pronta correção das desconformidades identificadas pelos fiscais. No entanto, muitos empreendedores cometem o erro de realizar as adequações físicas e operacionais, mas falham ao comunicar formalmente ao órgão que as exigências foram cumpridas.
+
+A reinspeção é o procedimento administrativo pelo qual o agente fiscal retorna ao estabelecimento para verificar se as irregularidades que motivaram a penalidade ou a interdição foram devidamente sanadas. Este ato é fundamental para a viabilização da retomada das atividades ou para a mitigação de sanções futuras.
+
+## O processo administrativo e o pedido de reinspeção
+
+O processo administrativo, regido pelos princípios da motivação, da razoabilidade e do devido processo legal, exige que o administrado demonstre a cessação da irregularidade. Conforme a Lei 9.784/99 (aplicável subsidiariamente), o órgão deve pautar seus atos no interesse público, o que inclui a verificação da regularidade sanitária assim que o risco à saúde for removido.
+
+Para solicitar a reinspeção, não basta apenas o contato informal. É necessário formalizar o pedido dentro do processo administrativo já instaurado. Ao protocolar o pedido, o estabelecimento deve apresentar um dossiê comprobatório das mudanças realizadas.
+
+## Como documentar as correções
+
+O pedido de reinspeção deve ser instruído com provas robustas. A autoridade sanitária precisa de evidências documentais para autorizar o deslocamento da equipe de fiscalização. Reúna os seguintes itens:
+
+- Relatório descritivo: detalhe ponto a ponto as medidas adotadas para cada item apontado no auto de infração.
+- Registro fotográfico: anexe fotos do antes e do depois das áreas ou processos corrigidos.
+- Documentação suporte: notas fiscais de serviços de limpeza de caixa d'água, controle de pragas, certificados de calibração de equipamentos ou laudos técnicos laboratoriais, conforme a exigência feita no momento da autuação.
+- Notas fiscais de compra: comprovantes de aquisição de insumos ou equipamentos que foram exigidos durante a inspeção inicial.
+
+## A natureza da reinspeção e as penalidades
+
+É importante lembrar que a existência de uma infração é analisada sob os critérios da Lei 6.437/77, que define as infrações sanitárias. O art. 6º desta lei estabelece que a penalidade será graduada de acordo com a gravidade da infração e os antecedentes do infrator. Quando você solicita a reinspeção, está demonstrando boa-fé e o cumprimento dos critérios de adequação, o que pode ser considerado no curso do processo administrativo.
+
+Caso o seu estabelecimento tenha sofrido interdição, a reinspeção é o caminho legal para a desinterdição. O art. 23, § 4º, da Lei 6.437/77, trata da interdição cautelar de no máximo 90 dias. O desatendimento das normas que levaram à medida preventiva não deve ser contornado por meios informais. Apenas a inspeção oficial garante a segurança jurídica para que o seu negócio volte a operar sem risco de novas autuações por descumprimento de ordem superior.
+
+## Requisitos do pedido e prazos
+
+Ao redigir o requerimento de reinspeção, observe que a clareza é indispensável. O pedido deve ser endereçado à autoridade sanitária competente, mencionando o número do processo administrativo e o número do auto de infração. Verifique no documento recebido o prazo para defesa ou manifestação, conforme o art. 22 da Lei 6.437/77, ou o prazo estipulado pela legislação local específica, já que a norma federal é aplicada em conjunto com as normas do ente federativo que expediu a autuação.
+
+Lembre-se sempre dos princípios do contraditório e da ampla defesa. Você tem o direito de ser ouvido e de provar que o seu estabelecimento está em condições de atender à população com segurança.
+
+## Evite riscos: regularize e peça a reinspeção oficial
+
+Jamais retome operações interditadas sem a devida liberação do órgão competente. A violação de lacres ou o descumprimento de interdição podem gerar agravantes severas conforme o art. 8º da Lei 6.437/77, complicando ainda mais a situação jurídica do estabelecimento. O processo administrativo deve ser conduzido com transparência e seguindo estritamente os trâmites legais exigidos pelo órgão fiscalizador.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "recebeu-uma-intimacao-da-vigilancia-sanitaria-saiba-como-proceder",
     titulo: "Recebeu uma intimação da Vigilância Sanitária? Saiba como proceder",
     descricao: "Entenda os passos fundamentais ao receber um termo de intimação da Vigilância Sanitária. Proteja seu negócio com uma análise técnica do auto de infração.",
