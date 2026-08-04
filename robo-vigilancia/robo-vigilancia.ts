@@ -1,7 +1,7 @@
 /**
  * AGENTE DE ARTIGOS - CheckMulta VIGILÂNCIA SANITÁRIA
  * ------------------------------------------------------------
- * Roda 1x por dia (GitHub Actions) e gera 3 artigos por execução.
+ * Roda 1x por dia (GitHub Actions) e gera 1 artigo por execução.
  *
  * SEGURANÇA: antes de commitar, o arquivo montado é validado com esbuild.
  * - Se compilar     -> commit direto na main (site atualiza sozinho).
@@ -27,7 +27,7 @@ const GITHUB_BRANCH_BASE = "main";
 const CAMINHO_ARTIGOS = "src/data/artigosVigilancia.ts";
 
 // Quantos artigos gerar por execução
-const ARTIGOS_POR_EXECUCAO = 3;
+const ARTIGOS_POR_EXECUCAO = 1;
 
 // Categorias reais do blog Vigilancia + temas que combinam com cada uma.
 // Para adicionar pauta nova, basta acrescentar uma linha aqui.
@@ -186,7 +186,9 @@ Responda APENAS com um objeto JSON válido, sem markdown, sem crases, sem texto 
 REGRAS JURÍDICAS OBRIGATÓRIAS (críticas — erro aqui compromete a credibilidade do serviço):
 
 CITAÇÃO DE NORMAS — LISTA FECHADA. Você SÓ pode citar número de artigo ou lei que esteja nesta lista:
-1. Lei Federal nº 6.437/77 (infrações à legislação sanitária federal). Dispositivos seguros: art. 2º, art. 3º, art. 4º, art. 10, art. 31, art. 33.
+1. Lei Federal nº 6.437/77 (infrações à legislação sanitária federal). Dispositivos seguros, com o conteúdo EXATO de cada um — nunca troque os rótulos:
+   art. 2º = rol de penalidades; art. 3º = imputabilidade; art. 4º = classificação em leve, grave ou gravíssima; art. 6º = critérios de graduação da pena; art. 7º = circunstâncias atenuantes; art. 8º = circunstâncias agravantes; art. 10 = rol das infrações sanitárias; art. 13 = requisitos obrigatórios do auto de infração (incisos I a VII); art. 14 = competência para aplicar as penalidades; art. 17 = formas de notificação; art. 22 = prazo de defesa de 15 dias; art. 23, § 4º = interdição cautelar limitada a 90 dias; art. 30 = recurso; art. 33 = prazo de 30 dias para pagamento da multa; art. 38 = prescrição em 5 anos.
+   ATENÇÃO: o art. 31 NÃO trata de prazo de defesa (trata do não cabimento de recurso na condenação definitiva de produto). O art. 33 NÃO trata de interdição. O art. 2º NÃO trata de competência.
 2. Lei Federal nº 9.784/99 (processo administrativo). Dispositivos seguros: art. 2º e art. 50. SEMPRE escreva "aplicável subsidiariamente", porque esta lei rege o processo federal e sua aplicação a órgãos estaduais e municipais é subsidiária.
 3. Princípios gerais, citados pelo nome e SEM número: legalidade, motivação, proporcionalidade, razoabilidade, contraditório, ampla defesa, devido processo legal.
 
@@ -233,7 +235,8 @@ async function revisarArtigo(conteudo: string): Promise<string> {
   const prompt = `Você é um revisor jurídico sênior especializado em Direito Sanitário e processo administrativo. Abaixo está um artigo de blog dirigido a estabelecimentos autuados pela Vigilância Sanitária. Revise e devolva a versão CORRIGIDA.
 
 Faça o seguinte:
-1. CITAÇÃO DE NORMAS: verifique toda citação de artigo, lei ou norma. Só podem permanecer: Lei 6.437/77 (arts. 2º, 3º, 4º, 10, 31, 33), Lei 9.784/99 (arts. 2º e 50, sempre com a ressalva 'aplicável subsidiariamente') e princípios gerais citados pelo nome sem número. REMOVA qualquer citação de código sanitário estadual ou municipal por número, RDC ou Resolução da ANVISA, portaria, decreto, súmula ou jurisprudência, substituindo por expressão geral.
+1. CITAÇÃO DE NORMAS: verifique toda citação de artigo, lei ou norma. Só podem permanecer: Lei 6.437/77 (arts. 2º, 3º, 4º, 6º, 7º, 8º, 10, 13, 14, 17, 22, 23, 30, 33 e 38), Lei 9.784/99 (arts. 2º e 50, sempre com a ressalva 'aplicável subsidiariamente') e princípios gerais citados pelo nome sem número. REMOVA qualquer citação de código sanitário estadual ou municipal por número, RDC ou Resolução da ANVISA, portaria, decreto, súmula ou jurisprudência, substituindo por expressão geral.
+1.1. CONFERÊNCIA DE RÓTULO — corrija se o texto atribuir a um artigo conteúdo que não é o dele. Os rótulos corretos são: art. 2º = rol de penalidades; art. 3º = imputabilidade; art. 4º = classificação leve/grave/gravíssima; art. 6º = graduação da pena; art. 7º = atenuantes; art. 8º = agravantes; art. 10 = rol de infrações; art. 13 = requisitos obrigatórios do auto de infração; art. 14 = competência; art. 17 = formas de notificação; art. 22 = prazo de defesa de 15 dias; art. 23, § 4º = interdição cautelar de no máximo 90 dias; art. 30 = recurso; art. 33 = prazo de 30 dias para pagar a multa; art. 38 = prescrição em 5 anos. Em especial: se o texto disser que o prazo de defesa está no art. 31, CORRIJA para art. 22. Se disser que o art. 33 trata de interdição, CORRIJA. Se disser que o art. 2º trata de competência, CORRIJA para art. 14.
 2. PRAZO: se o texto afirmar número específico de dias para defesa como se valesse para todos os órgãos, corrija. A legislação sanitária varia entre União, estados e municípios. O texto deve orientar a conferir o prazo no próprio auto.
 3. Remova qualquer promessa de resultado ('será anulado', 'você vai ganhar', 'garantimos'). Substitua por linguagem de possibilidade.
 4. Verifique se o texto não confundiu a Vigilância Sanitária com outro órgão. Menção a Procon, CDC, CTB, DETRAN, radar, Corpo de Bombeiros ou órgão ambiental está errada neste contexto e deve ser removida.
