@@ -12,6 +12,54 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "apreensao-e-inutilizacao-de-produtos-pela-vigilancia-sanitaria",
+    titulo: "Apreensão e Inutilização de Produtos pela Vigilância Sanitária",
+    descricao: "Entenda como a Vigilância Sanitária atua na apreensão e inutilização de produtos e saiba quais são os fundamentos para exercer seu direito de defesa.",
+    categoria: "Penalidades",
+    tempoLeitura: "5 min",
+    imagemEmoji: "📦",
+    imagemBg: "from-rose-50 to-pink-50",
+    palavrasChave: ["apreensão de produtos", "auto de infração vigilância sanitária", "inutilização de mercadoria", "defesa processo administrativo"],
+    conteudo: `## A competência da Vigilância Sanitária na gestão de produtos
+
+A fiscalização sanitária detém o poder de polícia para identificar produtos que representem risco à saúde pública. Esse poder não é absoluto e deve ser exercido dentro dos limites da legalidade, da razoabilidade e da proporcionalidade. Quando um agente fiscal realiza a apreensão ou a inutilização de bens em um estabelecimento, ele deve seguir ritos administrativos rigorosos para garantir que o devido processo legal seja preservado.
+
+A Lei 6.437/77, aplicada no âmbito das infrações sanitárias federais, estabelece no seu art. 2º o rol de penalidades que podem ser impostas ao infrator. Entre elas, encontram-se a apreensão e a inutilização de produtos, insumos ou equipamentos, caso estejam em desconformidade com as normas sanitárias vigentes.
+
+## Requisitos do Auto de Infração
+
+A formalização dessa penalidade ocorre mediante a lavratura de um auto de infração. Este documento é o marco inicial do processo administrativo e precisa conter, obrigatoriamente, os requisitos previstos no art. 13 da Lei 6.437/77, tais como a qualificação do autuado, a descrição clara do fato e a assinatura da autoridade competente. A ausência de qualquer desses requisitos pode comprometer a validade do ato.
+
+É fundamental compreender que o agente público, ao decidir pela inutilização de mercadorias, deve motivar o seu ato, conforme exige o art. 50 da Lei 9.784/99 (aplicável subsidiariamente). A motivação deve ser clara, explícita e congruente, indicando os fundamentos de fato e de direito que levaram àquela medida.
+
+## Garantindo o seu direito de defesa
+
+Receber uma autuação não significa que o processo administrativo foi concluído em seu desfavor. O ordenamento jurídico brasileiro, regido pelos princípios do contraditório e da ampla defesa, faculta ao autuado a oportunidade de apresentar sua versão dos fatos antes que qualquer decisão definitiva seja tomada.
+
+É imperativo que o responsável pelo estabelecimento consulte o prazo específico indicado no corpo do próprio auto de infração ou junto ao órgão sanitário emissor. A legislação sanitária é fragmentada e, embora a Lei 6.437/77 traga diretrizes gerais, os prazos podem variar conforme a esfera administrativa, sendo o art. 22 da Lei 6.437/77 a referência legal para o prazo de defesa no âmbito federal.
+
+## Como proceder diante de uma apreensão
+
+Caso o seu estabelecimento tenha sofrido a apreensão de produtos, algumas medidas práticas são recomendáveis:
+
+- Documente a situação: realize registros fotográficos detalhados de como os produtos estavam armazenados e de quais itens foram retirados.
+- Organize notas fiscais e certificados de qualidade: mantenha à disposição toda a documentação que comprove a origem e a regularidade das mercadorias.
+- Avalie a motivação: ao receber o auto, verifique se a autoridade discriminou adequadamente os motivos técnicos para a medida.
+- Verifique as circunstâncias: a Lei 6.437/77 prevê, nos seus arts. 7º e 8º, circunstâncias que podem atenuar ou agravar a penalidade. O histórico do estabelecimento e a natureza da infração são considerados no momento da gradação da pena, conforme previsto no art. 6º da citada lei.
+
+## A importância da regularização
+
+Se a autuação decorreu de irregularidades passíveis de correção, o foco do estabelecimento deve ser a adequação. A regularização deve ser documentada, pois servirá como base probatória em eventual pedido de reinspeção ou para demonstrar a colaboração do proprietário no processo administrativo. É estritamente proibido retomar atividades em ambientes interditados ou comercializar produtos sob embargo sem a devida autorização formal do órgão fiscalizador. O descumprimento pode acarretar sanções severas, conforme o rol de infrações do art. 10 da Lei 6.437/77.
+
+O processo administrativo é regido pelo princípio da motivação e da legalidade, o que obriga o órgão a analisar os argumentos apresentados pela defesa. Por isso, fundamentar tecnicamente a defesa ou o recurso, observando os trâmites do art. 30 da Lei 6.437/77, é a estratégia adequada para questionar a proporcionalidade da medida aplicada.
+
+No CheckMulta, é possível enviar o auto de infração da Vigilância Sanitária para análise técnica sobre eventuais falhas que possam fundamentar a defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "como-solicitar-reinspecao-apos-regularizar-irregularidades-sanitarias",
     titulo: "Como solicitar reinspeção após regularizar irregularidades sanitárias",
     descricao: "Saiba como proceder com o pedido de reinspeção junto à Vigilância Sanitária após corrigir as infrações apontadas. Verifique seu auto gratuitamente.",
