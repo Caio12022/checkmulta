@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Building2, Scale, FileText, ShieldCheck } from "lucide-react";
+import { Building2, Scale, FileText, ShieldCheck, Zap } from "lucide-react";
 
 /**
  * Carrossel de serviços do CheckMulta.
@@ -14,7 +14,7 @@ import { Building2, Scale, FileText, ShieldCheck } from "lucide-react";
  * anunciar a si mesma.
  */
 
-export type ServicoId = "procon" | "vigilancia" | "simulador" | "codigos";
+export type ServicoId = "procon" | "vigilancia" | "energia" | "simulador" | "codigos";
 
 interface Servico {
   id: ServicoId;
@@ -50,6 +50,17 @@ const SERVICOS: Servico[] = [
     botao: "Analisar grátis",
     Icone: ShieldCheck,
     cor: { faixa: "#0ea5e9", icone: "#0369a1", fundoIcone: "#f0f9ff", texto: "#0369a1" },
+  },
+  {
+    id: "energia",
+    eyebrow: "Para pessoas e empresas",
+    titulo: "Recebeu uma cobrança retroativa de energia?",
+    texto:
+      "Analisamos gratuitamente o TOI ou a notificação de recuperação de consumo e apontamos se a inspeção ou o cálculo têm falha, com base na Resolução ANEEL nº 1.000/2021.",
+    href: "/energia",
+    botao: "Analisar grátis",
+    Icone: Zap,
+    cor: { faixa: "#eab308", icone: "#a16207", fundoIcone: "#fefce8", texto: "#a16207" },
   },
   {
     id: "simulador",
