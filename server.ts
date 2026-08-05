@@ -649,7 +649,9 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       }
       res.status(500).json({ error: err.message || "Internal server error" });
     }
-    // ==========================================
+  });
+
+  // ==========================================
   // ROTA: ANALISAR TOI DE ENERGIA ELÉTRICA (GRÁTIS)
   // ==========================================
   app.post("/api/analyze-energia", async (req, res) => {
@@ -753,7 +755,6 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       }
       res.status(500).json({ error: err.message || "Internal server error" });
     }
-  });
   });
 
   if (process.env.NODE_ENV !== "production") {
