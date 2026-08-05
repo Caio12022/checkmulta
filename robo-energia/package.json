@@ -1,27 +1,13 @@
-name: Robo de Artigos Energia
-"on":
-  workflow_dispatch:
-  schedule:
-    - cron: "0 6 * * *"
-permissions:
-  contents: write
-  pull-requests: write
-jobs:
-  gerar-artigo-energia:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Baixar o codigo
-        uses: actions/checkout@v4
-      - name: Preparar o Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-      - name: Instalar dependencias
-        working-directory: robo-energia
-        run: npm install
-      - name: Rodar o robo
-        working-directory: robo-energia
-        run: npm start
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+{
+  "name": "robo-energia-checkmulta",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "tsx robo-energia.ts"
+  },
+  "dependencies": {
+    "@google/genai": "^2.13.0",
+    "tsx": "^4.19.2"
+  }
+}
