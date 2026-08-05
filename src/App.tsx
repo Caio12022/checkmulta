@@ -11,6 +11,8 @@ import Vigilancia from "./pages/Vigilancia";
 import BlogVigilancia from "./pages/BlogVigilancia";
 import BlogPostVigilancia from "./pages/BlogPostVigilancia";
 import Energia from "./pages/Energia";
+import BlogEnergia from "./pages/BlogEnergia";
+import BlogPostEnergia from "./pages/BlogPostEnergia";
 import ConsultaInfracao from "./pages/ConsultaInfracao";
 import InfracaoDetalhe from "./pages/InfracaoDetalhe";
 import SimuladorPontos from "./pages/SimuladorPontos";
@@ -38,6 +40,10 @@ function BlogPostProconWrapper() {
 function BlogPostVigilanciaWrapper() {
   const { slug } = useParams<{ slug: string }>();
   return <BlogPostVigilancia key={slug} />;
+}
+function BlogPostEnergiaWrapper() {
+  const { slug } = useParams<{ slug: string }>();
+  return <BlogPostEnergia key={slug} />;
 }
 function InfracaoDetalheWrapper() {
   const { slug } = useParams<{ slug: string }>();
@@ -71,6 +77,8 @@ export default function App() {
         />
         {/* CheckMulta — Energia elétrica (TOI) */}
         <Route path="/energia" element={<Energia />} />
+        <Route path="/energia/blog" element={<BlogEnergia />} />
+        <Route path="/energia/blog/:slug" element={<BlogPostEnergiaWrapper />} />
       </Routes>
     </>
   );
