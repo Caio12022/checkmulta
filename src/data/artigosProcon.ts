@@ -12,6 +12,63 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "como-ler-e-interpretar-um-auto-de-infracao-do-procon-em-2026",
+    titulo: "Como ler e interpretar um auto de infração do Procon em 2026",
+    descricao: "Recebeu uma autuação e não sabe o que fazer? Aprenda a identificar os requisitos obrigatórios e os pontos de atenção em seu auto de infração. Verifique grátis.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "5 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["auto de infração procon", "defesa administrativa procon", "multa procon como recorrer", "processo administrativo sancionador"],
+    conteudo: `## Introdução ao Processo Administrativo Sancionador
+
+Receber um auto de infração do Procon gera preocupação imediata em qualquer empresário. O documento marca o início do processo administrativo sancionador, regulado pela legislação consumerista e pelo Decreto 2.181/97. Compreender o conteúdo deste documento é o primeiro passo para exercer o direito ao contraditório e à ampla defesa. O art. 33 do referido decreto define o início do processo administrativo sancionador, podendo ser precedido de averiguação preliminar, conforme o art. 33-A.
+
+## O que é o Auto de Infração
+
+O auto de infração é o documento oficial que formaliza a suspeita de descumprimento de normas consumeristas. Conforme o art. 5º do Decreto 2.181/97, compete aos órgãos do Sistema Nacional de Defesa do Consumidor apurar e punir infrações. Portanto, o documento que você recebeu é o instrumento pelo qual o Estado inicia formalmente a verificação de uma irregularidade.
+
+## Requisitos de Validade: O que observar
+
+Para que o auto de infração seja considerado válido, ele deve respeitar uma série de requisitos formais descritos no art. 35, inciso I, do Decreto 2.181/97. A ausência de qualquer um desses elementos pode ser um ponto de partida para a construção da sua defesa:
+
+- Local, data e hora.
+- Qualificação do autuado.
+- Descrição do fato.
+- Dispositivo legal infringido.
+- Intimação.
+- Identificação, assinatura e matrícula do agente.
+- Designação do órgão julgador.
+- Assinatura do autuado.
+- Cientificação para defesa.
+
+É importante notar que, nos termos do art. 48 do mesmo decreto, a inobservância de forma só gera nulidade se houver prejuízo para a defesa. Por isso, a análise técnica do documento é indispensável.
+
+## Fiscalização Orientadora e o Critério da Dupla Visita
+
+O art. 38-A do Decreto 2.181/97 estabelece a fiscalização orientadora e o critério de dupla visita para atividade de risco leve, cuja inobservância implica nulidade do auto (§ 2º), garantindo tratamento diferenciado a ME e EPP (§ 3º). Nesses casos, a primeira visita tem caráter orientador e não punitivo. 
+
+## A Dosimetria da Multa
+
+Caso o processo siga seu curso e culmine em penalidade, o valor da multa deve seguir os critérios de graduação previstos nos arts. 24 a 28 do Decreto 2.181/97, que tratam da graduação da pena, atenuantes, agravantes, reincidência e fixação da multa. O art. 26-A determina que as atenuantes e agravantes são taxativas, enquanto o art. 28-A estabelece a vedação a valorar o mesmo elemento duas vezes na dosimetria.
+
+## Prazos e Defesa
+
+Ao ler o documento, identifique claramente o prazo concedido para a apresentação da defesa. Embora o Decreto 2.181/97 apresente diretrizes gerais, é essencial verificar o prazo específico indicado no próprio auto de infração, já que legislações estaduais ou municipais podem fixar prazos próprios que divergem entre si. O descumprimento desses prazos pode resultar em prejuízo processual para a empresa.
+
+Lembre-se que o recurso administrativo deve ser interposto no prazo de 10 dias, com efeito suspensivo em caso de multa, conforme o art. 49. Caso a multa não seja recolhida no prazo de 30 dias, o débito poderá ser inscrito em dívida ativa, conforme o art. 55.
+
+## Como proceder após a leitura
+
+Após identificar os pontos técnicos, a empresa deve organizar as provas que contradigam o relato dos fatos contido no auto. Se o documento contiver vícios formais ou se a conduta não se enquadrar na infração citada, existe a possibilidade de questionar a autuação em sede administrativa.
+
+É possível submeter o auto de infração do Procon a uma análise especializada para verificar se a autuação apresenta indícios de vício formal.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "perda-do-prazo-de-defesa-no-procon-consequencias-para-sua-empresa",
     titulo: "Perda do prazo de defesa no Procon: consequências para sua empresa",
     descricao: "Recebeu um auto de infração e perdeu o prazo? Entenda as implicações legais, os riscos financeiros e como o procedimento administrativo do Procon funciona.",
