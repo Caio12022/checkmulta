@@ -10,6 +10,7 @@ import BlogPostProcon from "./pages/BlogPostProcon";
 import Vigilancia from "./pages/Vigilancia";
 import BlogVigilancia from "./pages/BlogVigilancia";
 import BlogPostVigilancia from "./pages/BlogPostVigilancia";
+import Energia from "./pages/Energia";
 import ConsultaInfracao from "./pages/ConsultaInfracao";
 import InfracaoDetalhe from "./pages/InfracaoDetalhe";
 import SimuladorPontos from "./pages/SimuladorPontos";
@@ -68,6 +69,8 @@ export default function App() {
           path="/vigilancia-sanitaria/blog/:slug"
           element={<BlogPostVigilanciaWrapper />}
         />
+        {/* CheckMulta — Energia elétrica (TOI) */}
+        <Route path="/energia" element={<Energia />} />
       </Routes>
     </>
   );
