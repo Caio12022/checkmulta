@@ -12,6 +12,47 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "multa-por-triangulo-ou-extintor-como-proceder-em-2026",
+    titulo: "Multa por Triângulo ou Extintor: Como proceder em 2026",
+    descricao: "Recebeu uma multa por falta ou irregularidade de equipamentos de segurança? Entenda a legislação atual e saiba como contestar. Analise sua multa grátis.",
+    categoria: "Equipamentos",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⚠️",
+    imagemBg: "from-amber-600 to-amber-800",
+    conteudo: `## A importância dos equipamentos obrigatórios
+
+No cotidiano das estradas brasileiras, a fiscalização de trânsito vai muito além de verificar a velocidade ou o uso do cinto de segurança. Um ponto que frequentemente gera dúvidas entre os motoristas diz respeito aos equipamentos obrigatórios. Quando o agente de trânsito aborda um veículo e constata a ausência ou a irregularidade de itens, uma autuação pode ser lavrada. Mas, afinal, o que a lei realmente exige?
+
+## O Extintor de Incêndio ainda é obrigatório?
+
+Esta é a dúvida mais comum. Muitos condutores ainda se questionam se o extintor de incêndio é um item de porte obrigatório. A legislação de trânsito passou por diversas atualizações ao longo dos anos. Atualmente, para a maioria dos veículos de passeio, o uso do extintor é facultativo, ou seja, opcional. No entanto, é fundamental ter atenção redobrada se o seu veículo se enquadra em categorias específicas, como transporte coletivo de passageiros, veículos escolares ou transporte de produtos perigosos, onde a presença do extintor permanece como uma exigência técnica.
+
+Se você foi autuado por falta de extintor em um carro de passeio comum, é preciso verificar se a autuação possui fundamento legal para o seu tipo específico de veículo. Erros formais na classificação do automóvel no auto de infração são falhas comuns que podem ser utilizadas em sua defesa.
+
+## O Triângulo de Segurança: um item indispensável
+
+Diferente do extintor para veículos leves, o triângulo de sinalização permanece como um equipamento de uso obrigatório. Ele é essencial para garantir a segurança viária em situações de emergência, como uma pane mecânica ou troca de pneus. A ausência desse equipamento, ou a sua apresentação em estado de conservação que impossibilite o uso, configura uma irregularidade passível de sanção.
+
+É importante lembrar que não basta ter o triângulo guardado no porta-malas. O equipamento deve estar em boas condições de visibilidade e refletividade. Se o agente de trânsito entender que o item está inoperante ou que você não possui o equipamento, a autuação será lavrada por descumprimento das normas de segurança estabelecidas pela legislação de trânsito.
+
+## Como identificar erros na autuação
+
+Ao receber uma notificação de infração relacionada a equipamentos, o primeiro passo é a calma. A legislação de trânsito brasileira é criteriosa quanto ao preenchimento do auto de infração. Para que a autuação seja válida, o agente deve descrever com clareza o motivo da medida. Se a multa foi aplicada de forma genérica, sem especificar qual equipamento estava irregular ou se a exigência não se aplica ao seu veículo, existem chances reais de sucesso no recurso.
+
+Observe sempre:
+- O modelo e categoria do seu veículo conferem com a exigência legal citada?
+- O agente descreveu corretamente a situação fática da abordagem?
+- Existem vícios formais no documento, como erros de grafia ou datas incorretas?
+
+## Posso recorrer de uma multa por equipamentos?
+
+Sim, o direito de defesa é garantido a todo condutor. Se você acredita que a multa foi injusta, aplicada indevidamente ou se houve falha na fiscalização, o processo de defesa administrativa é o caminho correto. O Estado precisa comprovar a irregularidade seguindo todos os trâmites legais e, caso haja qualquer desvio de procedimento, o auto de infração pode ser questionado.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Nossa equipe especializada auxilia você a entender se o seu caso possui fundamentação para um recurso consistente e eficaz, aumentando suas chances de sucesso diante dos órgãos de trânsito.`,
+    palavrasChave: ["multa equipamentos", "triângulo de segurança", "extintor de incêndio", "defesa de multa"],
+  },
+
+  {
     slug: "recurso-de-multa-negado-sem-justificativa-o-que-fazer",
     titulo: "Recurso de Multa Negado sem Justificativa: O Que Fazer?",
     descricao: "Recebeu uma negativa vaga no recurso de trânsito? Saiba como identificar falhas administrativas e garantir seu direito à defesa. Analise sua multa grátis.",
