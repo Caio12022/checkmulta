@@ -356,7 +356,7 @@ async function startServer() {
       const { email, valor, descricao } = req.body;
 
       // Valores permitidos (trava de segurança: impede manipulação pelo cliente)
-      const VALORES_PERMITIDOS = [19.90, 39.90, 79.00, 99.00];
+      const VALORES_PERMITIDOS = [19.90, 39.90, 49.90, 79.00, 79.90, 99.00];
       const valorFinal = VALORES_PERMITIDOS.includes(Number(valor)) ? Number(valor) : 19.90;
 
       const paymentData = {
