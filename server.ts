@@ -12,6 +12,7 @@ import { PROMPT_ANALYZE_TICKET, promptGenerateDefense } from "./prompts/transito
 import { PROMPT_ANALYZE_PROCON, promptGenerateDefenseProcon } from "./prompts/procon";
 import { PROMPT_ANALYZE_VIGILANCIA, promptGenerateDefenseVigilancia } from "./prompts/vigilancia";
 import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry } from "./prompts/validador";
+import { PROMPT_ANALYZE_ENERGIA, promptGenerateDefenseEnergia, promptRevisorEnergia } from "./prompts/energia";
 let aiClient: GoogleGenAI | null = null;
 function getAIClient() {
   if (!aiClient) {
@@ -648,6 +649,111 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       }
       res.status(500).json({ error: err.message || "Internal server error" });
     }
+    // ==========================================
+  // ROTA: ANALISAR TOI DE ENERGIA ELÉTRICA (GRÁTIS)
+  // ==========================================
+  app.post("/api/analyze-energia", async (req, res) => {
+    try {
+      const { fileBase64, mimeType = "application/pdf" } = req.body;
+      if (!fileBase64) return res.status(400).json({ error: "Documento ausente." });
+
+      const ai = getAIClient();
+
+      const prompt = PROMPT_ANALYZE_ENERGIA;
+
+      const response = await gerarComRetry(() => ai.models.generateContent({
+        model: "gemini-3.1-flash-lite",
+        contents: [
+          { role: "user", parts: [{ inlineData: { data: fileBase64, mimeType: mimeType } }, { text: prompt }] }
+        ],
+        config: { temperature: 0.0 }
+      }));
+
+      let resultText = (response.text || "").trim();
+
+      if (resultText === "documento_invalido" || resultText === "documento_ilegivel") {
+        return res.json({ result: resultText });
+      }
+
+      resultText = resultText.replace(/```json/gi, "").replace(/```/g, "").trim();
+
+      let parsed: any;
+      try {
+        parsed = JSON.parse(resultText);
+      } catch {
+        console.error("Falha ao parsear JSON de Energia:", resultText.slice(0, 500));
+        return res.status(500).json({ error: "Falha ao processar a análise. Tente novamente." });
+      }
+
+      // Rejeição vinda dentro do JSON
+      if (parsed.status === "documento_invalido" || parsed.status === "documento_ilegivel") {
+        return res.json({ result: parsed.status });
+      }
+
+      // TODO: acoplar validarAnaliseJSON(parsed, "energia") quando o validador
+      // conhecer a vertical de energia. Ver observação abaixo.
+
+      res.json({ result: parsed });
+    } catch (err: any) {
+      console.error("API Error in analyze-energia:", err);
+      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+        return res.status(429).json({ error: "SERVER_BUSY" });
+      }
+      res.status(500).json({ error: err.message || "Internal server error" });
+    }
+  });
+
+  // ==========================================
+  // ROTA: GERAR CONTESTAÇÃO DE ENERGIA (PAGO)
+  // ==========================================
+  app.post("/api/generate-defense-energia", async (req, res) => {
+    try {
+      const { analise } = req.body;
+      if (!analise) return res.status(400).json({ error: "analise ausente." });
+
+      const ai = getAIClient();
+
+      const dados = typeof analise === "string" ? analise : JSON.stringify(analise, null, 2);
+
+      const rascunho = await gerarComRetry(() => ai.models.generateContent({
+        model: "gemini-3.1-flash-lite",
+        contents: [{ role: "user", parts: [{ text: promptGenerateDefenseEnergia(dados) }] }],
+        config: { temperature: 0.0 }
+      }));
+
+      const textoRascunho = (rascunho.text || "").trim();
+
+      // Segunda passada: revisor jurídico
+      let textoFinal = textoRascunho;
+      try {
+        const revisao = await gerarComRetry(() => ai.models.generateContent({
+          model: "gemini-3.1-flash-lite",
+          contents: [{ role: "user", parts: [{ text: promptRevisorEnergia(textoRascunho, dados) }] }],
+          config: { temperature: 0.0 }
+        }));
+
+        let revText = (revisao.text || "").trim().replace(/```json/gi, "").replace(/```/g, "").trim();
+        const revParsed = JSON.parse(revText);
+
+        if (revParsed.texto_final && String(revParsed.texto_final).trim().length > 200) {
+          textoFinal = String(revParsed.texto_final).trim();
+          if (revParsed.aprovado === false) {
+            console.warn("Energia: revisor aplicou correções:", revParsed.correcoes_aplicadas);
+          }
+        }
+      } catch (e) {
+        console.warn("Energia: revisor falhou, entregando rascunho.", e);
+      }
+
+      res.json({ result: textoFinal });
+    } catch (err: any) {
+      console.error("API Error in generate-defense-energia:", err);
+      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+        return res.status(429).json({ error: "SERVER_BUSY" });
+      }
+      res.status(500).json({ error: err.message || "Internal server error" });
+    }
+  });
   });
 
   if (process.env.NODE_ENV !== "production") {
