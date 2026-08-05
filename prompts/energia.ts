@@ -25,6 +25,14 @@ do que deve ser rejeitado: conta de luz comum sem cobrança de recuperação, au
 de trânsito, multa de Procon, documento de vigilância sanitária, contrato, boleto avulso,
 foto de medidor sem documento, print de aplicativo sem o termo.
 
+TRAVA OBRIGATÓRIA DA FATURA COMUM: se o documento for uma fatura mensal de energia e NÃO
+contiver nenhuma cobrança de recuperação de consumo, nenhum valor retroativo, nenhuma
+menção a TOI, inspeção ou irregularidade, então ele é documento_invalido — SEMPRE, sem
+exceção. Conta alta por consumo elevado, bandeira tarifária, aumento de tarifa ou erro de
+leitura NÃO são objeto desta análise. É PROIBIDO responder que "o procedimento aparenta
+seguir as exigências da norma" para uma fatura comum: não existe procedimento de apuração
+a avaliar num documento desses. A resposta correta é documento_invalido.
+
 Responda apenas com a palavra documento_ilegivel quando não for possível ler com segurança os campos
 essenciais (distribuidora, número do TOI ou da unidade consumidora, data da inspeção,
 descrição da irregularidade, valor ou período cobrado). Foto cortada, borrada, escura ou
@@ -115,6 +123,11 @@ A3. A inspeção foi acompanhada por alguém? Se o TOI indica que foi lavrado ap
     inspetores, sem consumidor nem acompanhante, isso é achado grave.
 A4. Se houve recusa de recebimento, ou se quem acompanhou não foi o consumidor titular,
     há indício de envio da cópia em até 15 dias com comprovação de recebimento?
+    VERIFIQUE SEMPRE ESTE PONTO quando a inspeção ocorreu sem o consumidor titular. Promessa
+    genérica de envio futuro ("será complementado por notificação formal", "cópia será
+    enviada") NÃO é comprovação de recebimento: é achado com base no art. 591, § 3º.
+    Este é o dispositivo correto para a hipótese de inspeção sem o consumidor — o art. 591,
+    I, trata da entrega mediante recibo no ato, não do envio posterior.
 A5. O TOI informa expressamente o direito de solicitar verificação ou perícia metrológica
     no INMETRO ou órgão delegado, e informa prazos e custos dessa perícia?
 A6. Houve violação do medidor alegada? Se sim, há menção a relatório de avaliação técnica
@@ -133,6 +146,21 @@ B3. ATENÇÃO — este é o defeito mais comum: cobrança de período longo (fre
     demonstrado, o período deveria estar limitado a 6 ciclos anteriores à constatação
     (art. 596, § 1º). Sinalize sempre que o período cobrado exceder 6 ciclos sem
     demonstração do início.
+
+B3.1. REGRA ANTI-INVERSÃO — LEIA COM ATENÇÃO, é o erro mais grave que você pode cometer:
+    o art. 596, § 1º é uma PROTEÇÃO ao consumidor, não uma obrigação de identificar o
+    início. Ele diz: quando o início não pode ser identificado, a cobrança FICA LIMITADA a
+    6 ciclos. Portanto:
+    - Se o período cobrado for de 6 ciclos ou MENOS, o período está DENTRO do limite legal
+      e NÃO é achado. Não gere achado de período nessa hipótese, em nenhuma circunstância.
+    - Se o documento declarar que não foi possível determinar tecnicamente o início da
+      irregularidade E a cobrança estiver limitada a 6 ciclos, isso é CUMPRIMENTO CORRETO
+      da norma, não defeito. É PROIBIDO transformar essa declaração em achado.
+    - A admissão de impossibilidade de determinar o início é a CONDIÇÃO DE APLICAÇÃO da
+      regra dos 6 ciclos. Tratá-la como falha é inverter o sentido da norma e apontar
+      defeito onde a distribuidora agiu certo.
+    O achado de período só existe quando a cobrança PASSA de 6 ciclos sem demonstração
+    técnica ou histórica do marco inicial.
 B4. O período cobrado ultrapassa 36 ciclos? Isso excede o teto.
 B5. Se o critério usado foi a média dos três maiores consumos, ela foi extraída de até 12
     ciclos de medição REGULAR anteriores ao início da irregularidade — ou pegou ciclos já
@@ -148,7 +176,12 @@ C1. O medidor foi retirado? Há registro de acondicionamento em invólucro e lac
 C2. Há registro de comunicação prévia ao consumidor da data e do horário da avaliação
     técnica em laboratório, permitindo acompanhamento pessoal ou por assistente técnico?
     A perícia feita sem essa comunicação é achado grave.
-C3. O relatório de inspeção foi entregue dentro de 30 dias contados da solicitação?
+C3. O relatório de inspeção foi entregue dentro de 30 dias contados da SOLICITAÇÃO?
+    VERIFIQUE ISSO SEMPRE que o documento traga as duas datas. Faça a conta: da data da
+    solicitação até a data de encaminhamento do relatório. Se passar de 30 dias, é achado
+    com base nos arts. 592 e 250. Atenção à contagem: o prazo corre da solicitação, não da
+    data da inspeção nem da retirada do medidor — se o documento sugerir outra contagem,
+    use a da solicitação.
 
 =====================================================================
 4. CLASSIFICAÇÃO DE GRAVIDADE
@@ -162,6 +195,32 @@ C3. O relatório de inspeção foi entregue dentro de 30 dias contados da solici
 "atencao"  — fragilidade relevante e defensável, mas que isoladamente pode não anular.
              Exemplo típico: período longo cobrado sem demonstração clara do marco inicial.
 "verificar"— imprecisão menor, campo mal preenchido, dado ilegível ou divergência pequena.
+
+=====================================================================
+4.1. DISCIPLINA DO ACHADO — três proibições absolutas
+=====================================================================
+
+PROIBIÇÃO 1 — COERÊNCIA ENTRE O TRECHO E O ACHADO.
+O campo "trecho_documento" tem que PROVAR o achado. Antes de fechar cada achado, releia o
+trecho que você citou e pergunte: este trecho confirma ou contradiz o que estou alegando?
+Se o trecho afirma que a distribuidora FEZ algo, você não pode alegar que ela não fez.
+Exemplo do erro a evitar: alegar "ausência de análise do histórico de consumo" e citar como
+prova o trecho "período apurado com base no histórico de consumo da unidade" — o trecho
+desmente o achado. Nesse caso, DESCARTE o achado inteiro.
+
+PROIBIÇÃO 2 — NÃO JULGAR DOCUMENTO QUE VOCÊ NÃO RECEBEU.
+Analise apenas o documento enviado. Se o documento for um laudo de perícia, um relatório de
+inspeção ou uma notificação de cobrança — e NÃO o próprio TOI — então você não tem o TOI em
+mãos e não pode afirmar que ele descumpriu as exigências do art. 591. Nessa hipótese, o
+máximo permitido é um achado de gravidade "verificar", redigido como orientação para o
+consumidor conferir o TOI original, e nunca como afirmação de que o TOI é defeituoso.
+É PROIBIDO gerar achado "critico" sobre o conteúdo de um documento ausente.
+
+PROIBIÇÃO 3 — AUSÊNCIA DE INFORMAÇÃO NÃO É AUTOMATICAMENTE DEFEITO.
+Antes de registrar um achado com o trecho "Informação ausente no documento.", verifique se
+aquela informação DEVERIA constar naquele tipo de documento específico. O art. 591 impõe
+deveres ao TOI; não impõe os mesmos deveres a um laudo de laboratório ou a uma fatura. Se a
+informação não é exigida naquele documento, não há achado.
 
 =====================================================================
 5. TRANSPARÊNCIA QUANDO O CASO É FRACO
@@ -398,6 +457,16 @@ CHECAGENS OBRIGATÓRIAS
 
 5. FIDELIDADE AOS ACHADOS. Todo argumento do texto deve corresponder a um achado presente
    no JSON. Argumento sem lastro no JSON deve ser removido integralmente.
+5.1. INVERSÃO DO ART. 596. Se o texto alegar como defeito o fato de a distribuidora ter
+   limitado a cobrança a 6 ciclos, ou ter declarado impossibilidade de determinar o início
+   da irregularidade quando a cobrança já está em 6 ciclos ou menos, REMOVA o argumento
+   inteiro. Isso é cumprimento da norma, não defeito — o art. 596, § 1º é proteção ao
+   consumidor. Só é defeito quando o período cobrado PASSA de 6 ciclos sem demonstração.
+5.2. COERÊNCIA DO TRECHO. Se o texto citar um trecho do documento que contradiz o
+   argumento que ele sustenta, REMOVA o argumento.
+5.3. DOCUMENTO AUSENTE. Se o texto afirmar defeito no TOI mas o documento analisado não
+   for o TOI, reescreva como orientação para o consumidor conferir o TOI original, sem
+   afirmar que o termo é defeituoso.
 
 6. PROMESSAS. Remova qualquer promessa de resultado, afirmação de ilegalidade categórica,
    imputação de fraude ou má-fé à distribuidora, e qualquer orientação para deixar de
