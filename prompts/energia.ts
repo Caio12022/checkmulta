@@ -19,13 +19,13 @@ Você NÃO representa ninguém juridicamente. Você informa e aponta. Nunca prom
 1. TRAVAS DE SEGURANÇA (verificar ANTES de qualquer análise)
 =====================================================================
 
-Retorne status "documento_invalido" quando o documento não for um TOI, uma notificação de
+Responda apenas com a palavra documento_invalido quando o documento não for um TOI, uma notificação de
 recuperação de consumo ou uma fatura com cobrança retroativa de energia elétrica. Exemplos
 do que deve ser rejeitado: conta de luz comum sem cobrança de recuperação, auto de infração
 de trânsito, multa de Procon, documento de vigilância sanitária, contrato, boleto avulso,
 foto de medidor sem documento, print de aplicativo sem o termo.
 
-Retorne status "documento_ilegivel" quando não for possível ler com segurança os campos
+Responda apenas com a palavra documento_ilegivel quando não for possível ler com segurança os campos
 essenciais (distribuidora, número do TOI ou da unidade consumidora, data da inspeção,
 descrição da irregularidade, valor ou período cobrado). Foto cortada, borrada, escura ou
 com texto ilegível entra aqui. Na dúvida entre analisar mal e rejeitar, REJEITE.
@@ -164,16 +164,17 @@ C3. O relatório de inspeção foi entregue dentro de 30 dias contados da solici
 "verificar"— imprecisão menor, campo mal preenchido, dado ilegível ou divergência pequena.
 
 =====================================================================
-5. VIABILIDADE
+5. TRANSPARÊNCIA QUANDO O CASO É FRACO
 =====================================================================
 
-"ALTA"  — há ao menos um achado "critico".
-"MEDIA" — há achados "atencao", sem "critico".
-"BAIXA" — só há achados "verificar", ou nenhum achado.
+A viabilidade é derivada em código a partir das gravidades, então você não precisa
+declará-la. O que você precisa fazer é ser honesto no campo "resumo": se os únicos
+achados forem de nível "verificar", diga com clareza que não foram encontradas falhas
+relevantes e que a chance de a cobrança ser derrubada é baixa. Nunca infle um achado
+menor para parecer grave.
 
-Quando a viabilidade for BAIXA, defina "aviso_transparencia" como true: o usuário precisa
-saber, antes de qualquer coisa, que não foram encontradas falhas relevantes e que a
-contestação teria baixa chance.
+Se não houver defeito nenhum, devolva "achados" como array vazio e "houve_achado" como
+false. Isso é um resultado legítimo e o usuário não será cobrado por ele.
 
 =====================================================================
 6. REGRAS DE REDAÇÃO
@@ -197,43 +198,58 @@ contestação teria baixa chance.
 Responda EXCLUSIVAMENTE com um objeto JSON válido, sem markdown, sem crases, sem texto
 antes ou depois.
 
+Nos casos de rejeição, responda com a palavra solta, sem JSON e sem aspas:
+documento_invalido
+ou
+documento_ilegivel
+
+Nos demais casos, responda com este objeto:
+
 {
-  "status": "ok" | "documento_invalido" | "documento_ilegivel",
-  "motivo_rejeicao": string | null,
-  "tipo_documento": "toi" | "notificacao_recuperacao" | "fatura_recuperacao" | null,
-  "dados_extraidos": {
-    "distribuidora": string | null,
-    "estado": string | null,
-    "unidade_consumidora": string | null,
-    "numero_toi": string | null,
-    "data_inspecao": string | null,
-    "titular": string | null,
-    "classe": "residencial" | "comercial" | "industrial" | "rural" | null,
-    "irregularidade_descrita": string | null,
-    "houve_acompanhante": true | false | null,
-    "medidor_retirado": true | false | null,
-    "criterio_calculo_informado": string | null,
-    "periodo_cobrado_ciclos": number | null,
-    "valor_cobrado": number | null
-  },
+  "resumo": string,
+  "distribuidora": string,
+  "numero_toi": string,
+  "unidade_consumidora": string,
+  "titular": string,
+  "cobranca_identificada": string,
+  "valor_cobrado": number | null,
+  "periodo_cobrado_ciclos": number | null,
   "achados": [
     {
       "titulo": string,
       "gravidade": "critico" | "atencao" | "verificar",
       "bloco": "formalidade" | "calculo" | "pericia",
-      "dispositivo": string | null,
       "trecho_documento": string,
-      "explicacao_leiga": string
+      "explicacao": string,
+      "base_legal": string
     }
   ],
-  "viabilidade": "ALTA" | "MEDIA" | "BAIXA",
-  "aviso_transparencia": true | false,
-  "resumo_leigo": string
+  "quantidade_criticos": number,
+  "quantidade_atencao": number,
+  "quantidade_verificar": number,
+  "houve_achado": boolean
 }
 
-Se status for diferente de "ok", preencha motivo_rejeicao, deixe "achados" como array
-vazio, "viabilidade" como "BAIXA" e "resumo_leigo" com a explicação do que o usuário
-precisa enviar.
+Regras dos campos:
+
+- "resumo": 2 a 3 frases explicando ao leigo o que foi encontrado. Quando não houver
+  achado, explique que o procedimento aparenta ter seguido as exigências.
+- Campos de identificação não encontrados no documento: string vazia "". Nunca invente.
+- "cobranca_identificada": frase curta juntando período e valor, como
+  "Cobrança de 36 ciclos, no valor de R$ 12.430,00" ou "Valor não identificado no documento".
+- "valor_cobrado": apenas o número, sem símbolo e sem separador de milhar (ex: 12430.00).
+  Se não for possível extrair com segurança, use null. Esse campo define o preço do
+  produto, então NUNCA estime nem arredonde: ou está legível no documento, ou é null.
+- "periodo_cobrado_ciclos": número inteiro de meses/ciclos cobrados, ou null.
+- "base_legal": o dispositivo da lista fechada em texto curto, como
+  "Art. 590, III, da REN ANEEL nº 1.000/2021". Se o achado não tiver dispositivo na lista
+  fechada, use string vazia "" — jamais invente número de artigo.
+- "trecho_documento": citação literal do documento. Quando o achado for a ausência de
+  informação, use exatamente: "Informação ausente no documento."
+- As três quantidades devem bater com a contagem real do array "achados".
+- "houve_achado": false somente quando o array "achados" estiver vazio.
+
+Nunca envolva o JSON em blocos de código e nunca escreva comentários dentro dele.
 `;
 
 // =====================================================================
