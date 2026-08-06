@@ -133,7 +133,7 @@ const TITULO =
   "CheckMulta — Defesa de autos de infração e notificações administrativas";
 const DESCRICAO =
   "Recebeu um auto de infração ou uma notificação de órgão público? Analisamos o documento gratuitamente e apontamos se há falha que permite recorrer. Trânsito, Procon, Vigilância Sanitária, energia elétrica e meio ambiente.";
-const CANONICAL = "https://checkmulta.com.br/plataforma";
+const CANONICAL = "https://checkmulta.com.br/";
 
 export default function Plataforma() {
   const [menuAberto, setMenuAberto] = useState(false);
@@ -155,15 +155,6 @@ export default function Plataforma() {
     setMeta("property", "og:title", TITULO);
     setMeta("property", "og:description", DESCRICAO);
     setMeta("property", "og:url", CANONICAL);
-
-    /* ------------------------------------------------------------------
-       PROVISORIO — REMOVER NO PASSO 3
-
-       Enquanto esta pagina vive em /plataforma, ela nao pode ser indexada:
-       seria conteudo concorrendo com a raiz. Quando ela assumir a raiz do
-       dominio, apagar a linha do robots logo abaixo.
-    ------------------------------------------------------------------ */
-    setMeta("name", "robots", "noindex, follow");
 
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
@@ -188,8 +179,6 @@ export default function Plataforma() {
 
     return () => {
       schema.remove();
-      const r = document.querySelector('meta[name="robots"]');
-      if (r) r.remove();
     };
   }, []);
 
@@ -200,7 +189,7 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       <header className="sticky top-0 z-40 border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <a href="/plataforma" className="flex items-center">
+          <a href="/" className="flex items-center">
             <img
               src="/checkmulta-logo.webp"
               alt="CheckMulta"
@@ -223,7 +212,7 @@ export default function Plataforma() {
             <a href="#duvidas" className="transition hover:text-emerald-600">
               Dúvidas
             </a>
-            <a href="/blog" className="transition hover:text-emerald-600">
+            <a href="/multa-de-transito/blog" className="transition hover:text-emerald-600">
               Blog
             </a>
             <a
@@ -275,7 +264,7 @@ export default function Plataforma() {
                 Dúvidas
               </a>
               <a
-                href="/blog"
+                href="/multa-de-transito/blog"
                 onClick={() => setMenuAberto(false)}
                 className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50"
               >
@@ -701,7 +690,7 @@ export default function Plataforma() {
                 {f.titulo}
               </a>
             ))}
-            <a href="/blog" className="transition hover:text-emerald-600">
+            <a href="/multa-de-transito/blog" className="transition hover:text-emerald-600">
               Blog
             </a>
           </nav>
