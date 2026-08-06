@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Building2, Scale, FileText, ShieldCheck, Zap } from "lucide-react";
+import { Building2, Scale, FileText, ShieldCheck, Zap, Leaf } from "lucide-react";
 
 /**
  * Carrossel de serviços do CheckMulta.
@@ -14,7 +14,7 @@ import { Building2, Scale, FileText, ShieldCheck, Zap } from "lucide-react";
  * anunciar a si mesma.
  */
 
-export type ServicoId = "procon" | "vigilancia" | "energia" | "simulador" | "codigos";
+export type ServicoId = "procon" | "vigilancia" | "energia" | "ibama" | "simulador" | "codigos";
 
 interface Servico {
   id: ServicoId;
@@ -61,6 +61,17 @@ const SERVICOS: Servico[] = [
     botao: "Analisar grátis",
     Icone: Zap,
     cor: { faixa: "#eab308", icone: "#a16207", fundoIcone: "#fefce8", texto: "#a16207" },
+  },
+  {
+    id: "ibama",
+    eyebrow: "Para pessoas e empresas",
+    titulo: "Recebeu um auto de infração do IBAMA?",
+    texto:
+      "Analisamos gratuitamente o auto de infração ambiental e apontamos se há vício formal, incompetência ou prescrição, com base no Decreto nº 6.514/2008.",
+    href: "/ibama",
+    botao: "Analisar grátis",
+    Icone: Leaf,
+    cor: { faixa: "#16a34a", icone: "#15803d", fundoIcone: "#f0fdf4", texto: "#15803d" },
   },
   {
     id: "simulador",
