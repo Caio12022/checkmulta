@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   ChevronDown,
   AlertTriangle,
@@ -7,6 +7,9 @@ import {
   Upload,
   Search,
   FileText,
+  Menu,
+  X,
+  MessageSquare,
 } from "lucide-react";
 import { VERTICAIS, FERRAMENTAS } from "../data/verticais";
 
@@ -133,6 +136,8 @@ const DESCRICAO =
 const CANONICAL = "https://checkmulta.com.br/plataforma";
 
 export default function Plataforma() {
+  const [menuAberto, setMenuAberto] = useState(false);
+
   useEffect(() => {
     document.title = TITULO;
 
@@ -193,25 +198,101 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Cabecalho                                                         */}
       {/* ---------------------------------------------------------------- */}
-      <header className="border-b border-slate-200">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
+      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <a href="/plataforma" className="flex items-center">
             <img
               src="/checkmulta-logo.webp"
               alt="CheckMulta"
               width="600"
               height="200"
-              className="h-8 w-auto object-contain sm:h-10"
+              className="h-14 w-auto object-contain md:h-20"
             />
           </a>
-          <nav className="flex items-center gap-5 text-xs font-medium text-slate-500 sm:text-sm">
-            <a href="#areas" className="transition-colors hover:text-emerald-700">
+
+          <nav className="hidden items-center gap-5 text-sm font-medium text-slate-600 lg:flex">
+            <a href="#areas" className="transition hover:text-emerald-600">
               Áreas
             </a>
-            <a href="/blog" className="transition-colors hover:text-emerald-700">
+            <a href="#como-funciona" className="transition hover:text-emerald-600">
+              Como funciona
+            </a>
+            <a href="#ferramentas" className="transition hover:text-emerald-600">
+              Ferramentas
+            </a>
+            <a href="#duvidas" className="transition hover:text-emerald-600">
+              Dúvidas
+            </a>
+            <a href="/blog" className="transition hover:text-emerald-600">
               Blog
             </a>
+            <a
+              href="https://wa.me/5513996485501"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-emerald-600 transition hover:text-emerald-700"
+            >
+              Suporte
+            </a>
           </nav>
+
+          <button
+            onClick={() => setMenuAberto(!menuAberto)}
+            className="flex rounded-lg p-2 text-slate-600 transition hover:bg-slate-50 hover:text-emerald-600 lg:hidden"
+            aria-label="Menu"
+          >
+            {menuAberto ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+
+          {menuAberto ? (
+            <div className="absolute left-0 top-full z-50 flex w-full flex-col space-y-2 border-b border-slate-200 bg-white p-4 shadow-lg lg:hidden">
+              <a
+                href="#areas"
+                onClick={() => setMenuAberto(false)}
+                className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50"
+              >
+                Áreas
+              </a>
+              <a
+                href="#como-funciona"
+                onClick={() => setMenuAberto(false)}
+                className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50"
+              >
+                Como funciona
+              </a>
+              <a
+                href="#ferramentas"
+                onClick={() => setMenuAberto(false)}
+                className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50"
+              >
+                Ferramentas
+              </a>
+              <a
+                href="#duvidas"
+                onClick={() => setMenuAberto(false)}
+                className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50"
+              >
+                Dúvidas
+              </a>
+              <a
+                href="/blog"
+                onClick={() => setMenuAberto(false)}
+                className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50"
+              >
+                Blog
+              </a>
+              <a
+                href="https://wa.me/5513996485501"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuAberto(false)}
+                className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-3 text-left font-semibold text-emerald-700 transition"
+              >
+                <span>Central de suporte</span>
+                <MessageSquare className="h-4 w-4" />
+              </a>
+            </div>
+          ) : null}
         </div>
       </header>
 
@@ -489,28 +570,28 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Processo                                                          */}
       {/* ---------------------------------------------------------------- */}
-      <section className="bg-emerald-950">
+      <section id="como-funciona" className="border-b border-slate-200 bg-slate-50">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
-          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-emerald-400">
+          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-slate-400">
             Como funciona
           </p>
-          <h2 className="mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+          <h2 className="mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
             Três etapas, nessa ordem.
           </h2>
 
           <ol className="grid gap-10 sm:grid-cols-3">
             {PASSOS.map((p) => (
               <li key={p.numero}>
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-emerald-800 text-emerald-400">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 bg-white text-emerald-700">
                   <p.Icone className="h-5 w-5" strokeWidth={1.5} />
                 </div>
-                <span className="font-mono text-xs tracking-widest text-emerald-500">
+                <span className="font-mono text-xs tracking-widest text-emerald-700">
                   {p.numero}
                 </span>
-                <h3 className="mt-2 text-lg font-semibold tracking-tight text-white">
+                <h3 className="mt-2 text-lg font-semibold tracking-tight text-slate-900">
                   {p.titulo}
                 </h3>
-                <p className="mt-3 text-base leading-relaxed text-emerald-100/80">
+                <p className="mt-3 text-base leading-relaxed text-slate-600">
                   {p.texto}
                 </p>
               </li>
@@ -522,7 +603,7 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Ferramentas                                                       */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-b border-slate-200">
+      <section id="ferramentas" className="border-b border-slate-200">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-slate-400">
             Ferramentas gratuitas
@@ -555,7 +636,7 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Perguntas frequentes                                              */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-b border-slate-200">
+      <section id="duvidas" className="border-b border-slate-200 bg-slate-50">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-slate-400">
             Perguntas frequentes
