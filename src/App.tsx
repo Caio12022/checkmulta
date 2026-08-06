@@ -19,6 +19,7 @@ import BlogPostIbama from "./pages/BlogPostIbama";
 import ConsultaInfracao from "./pages/ConsultaInfracao";
 import InfracaoDetalhe from "./pages/InfracaoDetalhe";
 import SimuladorPontos from "./pages/SimuladorPontos";
+import Plataforma from "./pages/Plataforma";
 /* Sobe a página ao trocar de rota */
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -90,6 +91,7 @@ export default function App() {
         <Route path="/ibama" element={<Ibama />} />
         <Route path="/ibama/blog" element={<BlogIbama />} />
         <Route path="/ibama/blog/:slug" element={<BlogPostIbamaWrapper />} />
+        <Route path="/plataforma" element={<Plataforma />} />
       </Routes>
     </>
   );
