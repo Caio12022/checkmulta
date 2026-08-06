@@ -157,11 +157,14 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       <header className="border-b border-slate-200">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
-          <a
-            href="/plataforma"
-            className="text-base font-semibold tracking-tight text-slate-900"
-          >
-            Check<span className="text-emerald-700">Multa</span>
+          <a href="/plataforma" className="flex items-center">
+            <img
+              src="/checkmulta-logo.webp"
+              alt="CheckMulta"
+              width="600"
+              height="200"
+              className="h-8 w-auto object-contain sm:h-10"
+            />
           </a>
           <nav className="flex items-center gap-5 text-xs font-medium text-slate-500 sm:text-sm">
             <a href="#areas" className="transition-colors hover:text-emerald-700">
@@ -178,7 +181,7 @@ export default function Plataforma() {
       {/* Triagem                                                           */}
       {/* ---------------------------------------------------------------- */}
       <section className="border-b border-slate-200">
-        <div className="mx-auto max-w-3xl px-5 py-14 sm:py-20">
+        <div className="mx-auto max-w-4xl px-5 py-14 text-center sm:py-20">
           <p className="mb-6 font-mono text-[11px] uppercase tracking-widest text-slate-400">
             CheckMulta Tecnologia · CNPJ 63.524.338/0001-62
           </p>
@@ -187,13 +190,13 @@ export default function Plataforma() {
             Quem te autuou?
           </h1>
 
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
             Escolha o órgão, envie o documento e receba a análise gratuita.
             Apontamos, com o trecho citado, se existe falha formal que permita
             recorrer.
           </p>
 
-          <div className="mt-10 grid gap-3 sm:grid-cols-2">
+          <div className="mt-10 grid gap-3 text-left sm:grid-cols-2">
             {VERTICAIS.map((v) => {
               const o = ORGAOS[v.id];
               return (
@@ -320,13 +323,13 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       <section id="areas" className="border-b border-slate-200">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
-          <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-slate-400">
             Áreas atendidas
           </p>
-          <h2 className="mb-4 max-w-2xl text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 className="mx-auto mb-4 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
             Cada órgão tem uma lei. Cada lei tem um agente.
           </h2>
-          <p className="mb-12 max-w-2xl text-base leading-relaxed text-slate-600">
+          <p className="mx-auto mb-12 max-w-2xl text-center text-base leading-relaxed text-slate-600">
             Não usamos a mesma análise para tudo. Abra a área correspondente ao
             documento que você recebeu para ver tudo o que cobrimos.
           </p>
@@ -443,10 +446,10 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       <section className="border-b border-slate-200 bg-slate-50">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
-          <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-slate-400">
             Processo
           </p>
-          <h2 className="mb-12 max-w-2xl text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 className="mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
             Três etapas, nessa ordem.
           </h2>
 
@@ -473,10 +476,10 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       <section className="border-b border-slate-200">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
-          <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-slate-400">
             Ferramentas gratuitas
           </p>
-          <h2 className="mb-12 max-w-2xl text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 className="mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
             Consulte antes de precisar recorrer.
           </h2>
 
@@ -506,14 +509,14 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       <section className="border-b border-slate-200">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
-          <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-slate-400">
             Perguntas frequentes
           </p>
-          <h2 className="mb-12 max-w-2xl text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 className="mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
             O que costuma gerar dúvida.
           </h2>
 
-          <div className="max-w-3xl border-t border-slate-200">
+          <div className="mx-auto max-w-3xl border-t border-slate-200">
             {FAQ.map((f) => (
               <details
                 key={f.pergunta}
@@ -535,87 +538,59 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Rodape                                                            */}
       {/* ---------------------------------------------------------------- */}
-      <footer className="bg-slate-900 text-slate-300">
-        <div className="mx-auto max-w-6xl px-5 py-14">
-          <div className="grid gap-10 sm:grid-cols-4">
-            <div>
-              <span className="text-base font-semibold tracking-tight text-white">
-                Check<span className="text-emerald-400">Multa</span>
-              </span>
-              <p className="mt-4 font-mono text-[11px] uppercase leading-relaxed tracking-widest text-slate-500">
-                Defesa administrativa
-                <br />
-                em cinco áreas
-              </p>
-            </div>
-
-            <div>
-              <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-slate-500">
-                Áreas
-              </p>
-              <ul className="space-y-3 text-sm">
-                {VERTICAIS.map((v) => (
-                  <li key={v.id}>
-                    <a
-                      href={v.href}
-                      className="transition-colors hover:text-emerald-400"
-                    >
-                      {v.titulo}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-slate-500">
-                Ferramentas
-              </p>
-              <ul className="space-y-3 text-sm">
-                {FERRAMENTAS.map((f) => (
-                  <li key={f.id}>
-                    <a
-                      href={f.href}
-                      className="transition-colors hover:text-emerald-400"
-                    >
-                      {f.titulo}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-slate-500">
-                Conteúdo
-              </p>
-              <ul className="space-y-3 text-sm">
-                {VERTICAIS.filter((v) => v.hrefBlog).map((v) => (
-                  <li key={v.id}>
-                    <a
-                      href={v.hrefBlog}
-                      className="transition-colors hover:text-emerald-400"
-                    >
-                      {v.titulo}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+      <footer className="border-t border-slate-200 bg-white">
+        <div className="mx-auto max-w-4xl px-4 py-12 text-center">
+          <div className="mb-6 flex items-center justify-center">
+            <img
+              src="/checkmulta-logo.webp"
+              alt="CheckMulta"
+              width="600"
+              height="200"
+              className="h-12 w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-16"
+            />
           </div>
 
-          <div className="mt-14 border-t border-slate-800 pt-8">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-slate-500">
-              CheckMulta Tecnologia · CNPJ 63.524.338/0001-62
-            </p>
-            <p className="mt-4 max-w-2xl text-xs leading-relaxed text-slate-500">
-              O CheckMulta presta serviço de análise documental e elaboração de
-              peça administrativa. Não realiza representação judicial nem
-              substitui a orientação de advogado. As análises são geradas a
-              partir da legislação federal aplicável a cada órgão e não
-              constituem garantia de resultado.
-            </p>
-          </div>
+          <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
+            {VERTICAIS.map((v) => (
+              <a
+                key={v.id}
+                href={v.href}
+                className="text-slate-600 transition hover:text-emerald-600"
+              >
+                {v.titulo}
+              </a>
+            ))}
+          </nav>
+
+          <nav className="mb-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-500">
+            {FERRAMENTAS.map((f) => (
+              <a
+                key={f.id}
+                href={f.href}
+                className="transition hover:text-emerald-600"
+              >
+                {f.titulo}
+              </a>
+            ))}
+            <a href="/blog" className="transition hover:text-emerald-600">
+              Blog
+            </a>
+          </nav>
+
+          <p className="mx-auto max-w-3xl text-xs leading-relaxed text-slate-500">
+            <strong className="font-semibold text-slate-700">
+              Transparência e privacidade:
+            </strong>{" "}
+            o CheckMulta presta serviço de análise documental e elaboração de
+            peça administrativa, com base na legislação federal aplicável a cada
+            órgão. Não prestamos consultoria jurídica nem representação, e a
+            decisão sobre a defesa cabe sempre ao órgão autuador. Não exigimos
+            cadastro e não armazenamos o seu documento.
+          </p>
+
+          <p className="mt-4 text-xs text-slate-400">
+            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+          </p>
         </div>
       </footer>
     </div>
