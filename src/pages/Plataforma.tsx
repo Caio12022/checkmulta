@@ -579,9 +579,9 @@ export default function Plataforma() {
             Três etapas, nessa ordem.
           </h2>
 
-          <ol className="grid gap-10 sm:grid-cols-3">
+          <ol className="grid gap-10 text-center sm:grid-cols-3">
             {PASSOS.map((p) => (
-              <li key={p.numero}>
+              <li key={p.numero} className="flex flex-col items-center">
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 bg-white text-emerald-700">
                   <p.Icone className="h-5 w-5" strokeWidth={1.5} />
                 </div>
@@ -591,7 +591,7 @@ export default function Plataforma() {
                 <h3 className="mt-2 text-lg font-semibold tracking-tight text-slate-900">
                   {p.titulo}
                 </h3>
-                <p className="mt-3 text-base leading-relaxed text-slate-600">
+                <p className="mt-3 max-w-xs text-base leading-relaxed text-slate-600">
                   {p.texto}
                 </p>
               </li>
