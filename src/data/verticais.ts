@@ -6,9 +6,13 @@ import { Car, Building2, ShieldCheck, Zap, Leaf, Scale, FileText } from "lucide-
  * Todo lugar que lista serviços (carrossel, home-mãe, rodapés) deve ler daqui.
  * Vertical nova = uma entrada neste arquivo, e ela aparece em todos os lugares.
  *
- * IMPORTANTE (SEO): o campo "resumo" e os textos de "detalhe" são exclusivos
- * desta listagem. Nunca copiar texto da landing da vertical para cá — as duas
+ * IMPORTANTE (SEO): os campos "resumo" e "detalhe" são exclusivos desta
+ * listagem. Nunca copiar texto da landing da vertical para cá — as duas
  * páginas passariam a competir pelo mesmo termo no Google.
+ *
+ * Os "href" das especialidades apontam para artigos que já existem no blog.
+ * Especialidade sem artigo fica só como texto, sem link — basta acrescentar
+ * o href quando o artigo for publicado.
  */
 
 export type VerticalId =
@@ -25,7 +29,7 @@ export type ServicoId = VerticalId | FerramentaId;
 export interface Especialidade {
   /** Texto curto que aparece na lista dentro do acordeão. */
   texto: string;
-  /** Link interno opcional (artigo ou categoria do blog). */
+  /** Link interno opcional (artigo do blog da vertical). */
   href?: string;
 }
 
@@ -33,7 +37,7 @@ export interface Vertical {
   id: VerticalId;
   /** Quem é o cliente. Vira o "eyebrow" acima do título. */
   publico: string;
-  /** Título do card. Na home-mãe é renderizado como H2. */
+  /** Título do card. Na home-mãe é renderizado como H3. */
   titulo: string;
   /** Resumo de 1-2 linhas, visível sem abrir o acordeão. */
   resumo: string;
@@ -47,7 +51,7 @@ export interface Vertical {
   preco: string;
   /** Rota da landing. */
   href: string;
-  /** Rota da landing com âncora do upload — usada nos botões. */
+  /** Rota da landing com âncora do upload — reservado para uso futuro. */
   hrefAnalise: string;
   /** Blog da vertical, quando existe. */
   hrefBlog?: string;
@@ -81,19 +85,44 @@ export const VERTICAIS: Vertical[] = [
     detalhe:
       "A notificação de trânsito precisa cumprir requisitos formais do Código de Trânsito Brasileiro para valer. Prazo de expedição, descrição do local, identificação do agente e aferição do equipamento são pontos em que o auto costuma falhar. Enviamos a análise gratuita apontando o que foi encontrado e, se houver falha, entregamos a defesa pronta para protocolo.",
     especialidades: [
-      { texto: "Excesso de velocidade e radar" },
-      { texto: "Avanço de sinal vermelho" },
-      { texto: "Uso do celular ao volante" },
-      { texto: "Cinto de segurança" },
-      { texto: "Estacionamento irregular e rodízio" },
-      { texto: "Embriaguez ao volante e recusa ao teste" },
-      { texto: "CNH vencida e condutor não habilitado" },
-      { texto: "Notificação recebida fora do prazo" },
+      {
+        texto: "Excesso de velocidade e radar",
+        href: "/blog/recurso-de-multa-por-excesso-de-velocidade-veja-como-recorrer",
+      },
+      {
+        texto: "Avanço de sinal vermelho",
+        href: "/blog/multa-sinal-vermelho-como-recorrer",
+      },
+      {
+        texto: "Celular ao volante e cinto de segurança",
+        href: "/blog/multa-celular-cinto-como-recorrer",
+      },
+      {
+        texto: "Estacionamento irregular",
+        href: "/blog/multa-estacionamento-como-cancelar",
+      },
+      {
+        texto: "Rodízio municipal",
+        href: "/blog/multa-rodizio-municipal-como-recorrer",
+      },
+      {
+        texto: "Direção sob efeito de álcool",
+        href: "/blog/multa-transito-dirigir-alcool",
+      },
+      {
+        texto: "CNH vencida",
+        href: "/blog/multa-cnh-vencida-o-que-fazer",
+      },
+      {
+        texto: "Notificação recebida fora do prazo",
+        href: "/blog/multa-chegou-apos-prazo-vencido",
+      },
     ],
-    baseLegal: "Código de Trânsito Brasileiro e Manual Brasileiro de Fiscalização de Trânsito",
-    preco: "A partir de R$ 19,90",
+    baseLegal:
+      "Código de Trânsito Brasileiro e Manual Brasileiro de Fiscalização de Trânsito",
+    preco: "a partir de R$ 19,90",
     href: "/",
-    hrefAnalise: "/#analise",
+    hrefAnalise: "/",
     hrefBlog: "/blog",
     botao: "Analisar minha multa",
     Icone: Car,
@@ -106,19 +135,45 @@ export const VERTICAIS: Vertical[] = [
     resumo:
       "Auto de infração lavrado por órgão de proteção e defesa do consumidor.",
     detalhe:
-      "O processo administrativo do Procon tem regras próprias de instrução, dosimetria e prazo. Auto genérico, ausência de averiguação preliminar, multa calculada sem considerar o porte da empresa e falha na notificação são falhas frequentes. A análise é gratuita e só cobramos se houver fundamento para recorrer.",
+      "O processo administrativo do Procon tem regras próprias de instrução, dosimetria e prazo. Auto genérico, ausência de capitulação legal, multa calculada sem considerar o porte da empresa e falha na notificação são falhas frequentes. A análise é gratuita e só cobramos se houver fundamento para recorrer.",
     especialidades: [
-      { texto: "Auto de infração sem descrição clara da conduta" },
-      { texto: "Multa desproporcional ao porte da empresa" },
-      { texto: "Tratamento diferenciado a ME e EPP" },
-      { texto: "Falha na notificação e contagem de prazo" },
-      { texto: "Ausência de averiguação preliminar" },
-      { texto: "Recurso administrativo em segunda instância" },
+      {
+        texto: "Auto com descrição genérica da conduta",
+        href: "/procon/blog/descricao-generica-no-auto-de-infracao-um-vicio-que-pode-anular",
+      },
+      {
+        texto: "Ausência de capitulação legal",
+        href: "/procon/blog/auto-de-infracao-sem-capitulacao-legal-como-contestar",
+      },
+      {
+        texto: "Multa desproporcional ao porte da empresa",
+        href: "/procon/blog/multa-do-procon-como-questionar-o-valor-quando-for-desproporcional",
+      },
+      {
+        texto: "Tratamento diferenciado a ME e EPP",
+        href: "/procon/blog/micro-e-pequena-empresa-tratamento-diferenciado-no-procon",
+      },
+      {
+        texto: "Erro na identificação da empresa autuada",
+        href: "/procon/blog/erro-na-identificacao-do-autuado-vicio-que-anula-o-auto-de-infracao",
+      },
+      {
+        texto: "Contagem do prazo de defesa",
+        href: "/procon/blog/como-contar-o-prazo-de-defesa-em-um-auto-de-infracao-do-procon",
+      },
+      {
+        texto: "Decisão sem motivação",
+        href: "/procon/blog/decisao-do-procon-sem-motivacao-como-questionar-essa-nulidade",
+      },
+      {
+        texto: "Diferença entre defesa e recurso",
+        href: "/procon/blog/defesa-administrativa-e-recurso-no-procon-entenda-a-diferenca",
+      },
     ],
     baseLegal: "Código de Defesa do Consumidor e Decreto 2.181/97",
     preco: "R$ 99,00",
     href: "/procon",
-    hrefAnalise: "/procon#analise",
+    hrefAnalise: "/procon",
     hrefBlog: "/procon/blog",
     botao: "Analisar o auto",
     Icone: Building2,
@@ -131,19 +186,45 @@ export const VERTICAIS: Vertical[] = [
     resumo:
       "Auto de infração sanitária, termo de interdição ou apreensão de produtos.",
     detalhe:
-      "A fiscalização sanitária atinge restaurantes, farmácias, clínicas, mercados e indústrias de alimentos. O auto precisa descrever a irregularidade de forma determinada, indicar o dispositivo infringido e observar a gradação da penalidade. Interdição cautelar tem limite de duração e não pode se tornar definitiva por inércia do órgão.",
+      "A fiscalização sanitária atinge restaurantes, farmácias, clínicas, mercados e indústrias de alimentos. O auto precisa descrever a irregularidade de forma determinada, indicar o dispositivo infringido e observar a gradação da penalidade. A interdição cautelar tem limite de duração e não pode se tornar definitiva por inércia do órgão.",
     especialidades: [
-      { texto: "Auto com descrição genérica da irregularidade" },
-      { texto: "Interdição cautelar do estabelecimento" },
-      { texto: "Apreensão e inutilização de produtos" },
-      { texto: "Classificação equivocada da gravidade" },
-      { texto: "Atenuantes não consideradas na dosimetria" },
-      { texto: "Prazo de defesa e contagem da notificação" },
+      {
+        texto: "Auto sem indicação da norma violada",
+        href: "/vigilancia-sanitaria/blog/ausencia-de-indicacao-da-norma-violada-no-auto-de-infracao-sanitaria",
+      },
+      {
+        texto: "Auto sem identificação do agente",
+        href: "/vigilancia-sanitaria/blog/auto-de-infracao-sem-identificacao-do-agente-e-possivel-contestar",
+      },
+      {
+        texto: "Interdição cautelar do estabelecimento",
+        href: "/vigilancia-sanitaria/blog/interdicao-cautelar-vs-interdicao-como-penalidade-entenda-a-diferenca",
+      },
+      {
+        texto: "Interdição total desproporcional",
+        href: "/vigilancia-sanitaria/blog/interdicao-total-desproporcional-como-contestar-o-excesso",
+      },
+      {
+        texto: "Multa sem fundamentação da dosimetria",
+        href: "/vigilancia-sanitaria/blog/multa-sanitaria-sem-fundamentacao-dos-criterios-de-dosimetria",
+      },
+      {
+        texto: "Intimação irregular e prazo de defesa",
+        href: "/vigilancia-sanitaria/blog/intimacao-irregular-da-vigilancia-sanitaria-e-os-prazos-de-defesa",
+      },
+      {
+        texto: "Cancelamento de licença sanitária",
+        href: "/vigilancia-sanitaria/blog/cancelamento-de-licenca-sanitaria-como-reagir-e-reverter-a-situacao",
+      },
+      {
+        texto: "Pedido de reinspeção após regularizar",
+        href: "/vigilancia-sanitaria/blog/como-solicitar-reinspecao-da-vigilancia-sanitaria-apos-regularizacao",
+      },
     ],
     baseLegal: "Lei 6.437/77",
     preco: "R$ 79,00",
     href: "/vigilancia-sanitaria",
-    hrefAnalise: "/vigilancia-sanitaria#analise",
+    hrefAnalise: "/vigilancia-sanitaria",
     hrefBlog: "/vigilancia-sanitaria/blog",
     botao: "Analisar o auto",
     Icone: ShieldCheck,
@@ -158,17 +239,43 @@ export const VERTICAIS: Vertical[] = [
     detalhe:
       "O Termo de Ocorrência e Inspeção só sustenta a cobrança se a distribuidora cumprir as providências exigidas pela ANEEL: perícia metrológica, entrega de cópia legível, informação sobre o direito à perícia e demonstração do período de irregularidade. Cobrar o período máximo sem provar quando a irregularidade começou é a falha mais comum.",
     especialidades: [
-      { texto: "TOI sem perícia metrológica do medidor" },
-      { texto: "Cópia do termo não entregue ao consumidor" },
-      { texto: "Período de cobrança sem demonstração técnica" },
-      { texto: "Cálculo da recuperação de consumo" },
-      { texto: "Ameaça de corte com base em débito de TOI" },
-      { texto: "Faturamento a maior e devolução em dobro" },
+      {
+        texto: "O que é o TOI e para que serve",
+        href: "/energia/blog/o-que-e-toi-termo-de-ocorrencia-e-inspecao",
+      },
+      {
+        texto: "TOI lavrado sem o consumidor presente",
+        href: "/energia/blog/toi-lavrado-sem-o-consumidor-presente",
+      },
+      {
+        texto: "Direito à perícia no medidor",
+        href: "/energia/blog/direito-a-pericia-no-medidor-inmetro",
+      },
+      {
+        texto: "Perícia do medidor em laboratório",
+        href: "/energia/blog/pericia-do-medidor-em-laboratorio-seus-direitos",
+      },
+      {
+        texto: "Cobrança de 36 meses sem demonstração",
+        href: "/energia/blog/cobranca-de-36-meses-de-energia-quando-e-indevida",
+      },
+      {
+        texto: "Como é calculada a recuperação de consumo",
+        href: "/energia/blog/como-e-calculada-a-recuperacao-de-consumo",
+      },
+      {
+        texto: "Ameaça de corte por débito de TOI",
+        href: "/energia/blog/podem-cortar-a-luz-por-debito-de-toi",
+      },
+      {
+        texto: "Recebi a cobrança, o que fazer agora",
+        href: "/energia/blog/recebi-cobranca-retroativa-de-energia-o-que-fazer",
+      },
     ],
     baseLegal: "Resolução Normativa ANEEL nº 1.000/2021",
-    preco: "A partir de R$ 39,90",
+    preco: "a partir de R$ 39,90",
     href: "/energia",
-    hrefAnalise: "/energia#analise",
+    hrefAnalise: "/energia",
     hrefBlog: "/energia/blog",
     botao: "Analisar a cobrança",
     Icone: Zap,
@@ -178,22 +285,39 @@ export const VERTICAIS: Vertical[] = [
     id: "ibama",
     publico: "Para pessoas e empresas",
     titulo: "Auto de infração ambiental",
-    resumo:
-      "Autuação federal lavrada pelo IBAMA por infração ambiental.",
+    resumo: "Autuação federal lavrada pelo IBAMA por infração ambiental.",
     detalhe:
       "O auto ambiental é ato vinculado: precisa descrever a conduta de forma clara e objetiva, indicar os dispositivos infringidos e ser lavrado por agente competente. Descrição vaga, tipificação incorreta, ausência de laudo de constatação e prescrição do processo são os pontos que mais comprometem a autuação.",
     especialidades: [
-      { texto: "Descrição vaga ou tipificação incorreta" },
-      { texto: "Autuação por agente incompetente" },
-      { texto: "Prescrição em cinco anos" },
-      { texto: "Prescrição intercorrente por processo parado" },
-      { texto: "Audiência de conciliação ambiental" },
-      { texto: "Conversão da multa em serviços ambientais" },
+      {
+        texto: "Requisitos formais do auto de infração",
+        href: "/ibama/blog/requisitos-do-auto-de-infracao-ambiental-art-97",
+      },
+      {
+        texto: "Autuação por órgão incompetente",
+        href: "/ibama/blog/auto-do-ibama-ou-do-orgao-estadual-competencia",
+      },
+      {
+        texto: "Prescrição da pretensão punitiva",
+        href: "/ibama/blog/prescricao-do-auto-de-infracao-ambiental",
+      },
+      {
+        texto: "Prazo de defesa e contagem",
+        href: "/ibama/blog/prazo-de-defesa-auto-de-infracao-ambiental",
+      },
+      {
+        texto: "Conversão da multa em serviços ambientais",
+        href: "/ibama/blog/conversao-de-multa-ambiental-em-servicos",
+      },
+      {
+        texto: "Recebi o auto, o que fazer agora",
+        href: "/ibama/blog/recebi-auto-de-infracao-do-ibama-o-que-fazer",
+      },
     ],
     baseLegal: "Lei 9.605/98 e Decreto 6.514/08",
-    preco: "A partir de R$ 149,00",
+    preco: "a partir de R$ 149,00",
     href: "/ibama",
-    hrefAnalise: "/ibama#analise",
+    hrefAnalise: "/ibama",
     hrefBlog: "/ibama/blog",
     botao: "Analisar o auto",
     Icone: Leaf,
