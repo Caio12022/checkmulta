@@ -1,5 +1,13 @@
 import { useEffect } from "react";
-import { ChevronDown, AlertTriangle, AlertCircle, Check } from "lucide-react";
+import {
+  ChevronDown,
+  AlertTriangle,
+  AlertCircle,
+  Check,
+  Upload,
+  Search,
+  FileText,
+} from "lucide-react";
 import { VERTICAIS, FERRAMENTAS } from "../data/verticais";
 
 /**
@@ -25,33 +33,63 @@ import { VERTICAIS, FERRAMENTAS } from "../data/verticais";
  * órgão na triagem, definido em ORGAOS logo abaixo.
  */
 
-/** Rótulo curto do órgão e da lei, usado apenas na triagem do topo. */
-const ORGAOS: Record<string, { orgao: string; lei: string }> = {
-  transito: { orgao: "Detran, PRF, agente municipal", lei: "CTB" },
-  procon: { orgao: "Procon", lei: "CDC" },
-  vigilancia: { orgao: "Vigilância Sanitária", lei: "Lei 6.437/77" },
-  energia: { orgao: "Distribuidora de energia", lei: "REN 1.000/2021" },
-  ibama: { orgao: "Ibama", lei: "Decreto 6.514/08" },
+/**
+ * Rótulos da triagem do topo.
+ *
+ * Regra de escrita: em cima a língua da pessoa (quem mandou o papel e o que
+ * é esse papel), embaixo a lei. Quem chega aqui raramente sabe que o
+ * documento se chama "auto de infração" — sabe que "levou uma multa do
+ * Procon". O termo jurídico aparece depois, como prova de fundamento.
+ */
+const ORGAOS: Record<string, { orgao: string; oque: string; lei: string }> = {
+  transito: {
+    orgao: "Detran, PRF ou prefeitura",
+    oque: "Multa de trânsito",
+    lei: "CTB",
+  },
+  procon: {
+    orgao: "Procon",
+    oque: "Multa por reclamação de cliente",
+    lei: "CDC",
+  },
+  vigilancia: {
+    orgao: "Vigilância Sanitária",
+    oque: "Auto de infração ou interdição",
+    lei: "Lei 6.437/77",
+  },
+  energia: {
+    orgao: "Companhia de luz",
+    oque: "Cobrança retroativa de energia",
+    lei: "REN 1.000/2021",
+  },
+  ibama: {
+    orgao: "Ibama",
+    oque: "Multa ambiental",
+    lei: "Decreto 6.514/08",
+  },
 };
 
 const PASSOS = [
   {
     numero: "01",
+    Icone: Upload,
     titulo: "Envie o documento",
     texto:
-      "Fotografe ou anexe o auto de infração, a notificação ou o termo que você recebeu. Não é preciso criar conta.",
+      "Tire uma foto do papel que você recebeu, ou anexe o arquivo. Não precisa criar conta nem informar dados pessoais.",
   },
   {
     numero: "02",
+    Icone: Search,
     titulo: "Receba a análise",
     texto:
-      "O documento é lido à luz da legislação aplicável ao órgão que autuou. O resultado aponta, com o trecho citado, onde há falha formal.",
+      "Lemos o documento inteiro à luz da lei do órgão que aplicou a multa e mostramos, em português claro, cada erro encontrado.",
   },
   {
     numero: "03",
+    Icone: FileText,
     titulo: "Obtenha a defesa",
     texto:
-      "Havendo fundamento, entregamos a peça redigida e pronta para protocolo. Se não houver falha, dizemos isso com clareza e nada é cobrado.",
+      "Havendo erro, entregamos o recurso escrito e pronto para você protocolar. Se não houver, dizemos isso e não cobramos nada.",
   },
 ];
 
@@ -203,17 +241,20 @@ export default function Plataforma() {
                 <a
                   key={v.id}
                   href={v.href}
-                  className="group flex items-center gap-4 rounded-lg border border-slate-200 p-4 transition-colors hover:border-emerald-700 hover:bg-emerald-50/40"
+                  className="group flex items-center gap-4 rounded-lg border border-slate-200 p-5 transition-colors hover:border-emerald-700 hover:bg-emerald-50/40"
                 >
                   <span
-                    className="h-8 w-1 flex-shrink-0 rounded-full"
+                    className="h-12 w-1 flex-shrink-0 rounded-full"
                     style={{ backgroundColor: v.cor.faixa }}
                   />
                   <span className="min-w-0">
-                    <span className="block text-sm font-medium text-slate-900 group-hover:text-emerald-800">
+                    <span className="block text-base font-semibold text-slate-900 group-hover:text-emerald-800">
                       {o ? o.orgao : v.titulo}
                     </span>
-                    <span className="mt-0.5 block font-mono text-[11px] tracking-wide text-slate-400">
+                    <span className="mt-1 block text-sm text-slate-600">
+                      {o ? o.oque : v.resumo}
+                    </span>
+                    <span className="mt-1 block font-mono text-xs tracking-wide text-slate-400">
                       {o ? o.lei : v.baseLegal}
                     </span>
                   </span>
@@ -223,15 +264,15 @@ export default function Plataforma() {
 
             <a
               href="#areas"
-              className="flex items-center gap-4 rounded-lg border border-dashed border-slate-300 p-4 transition-colors hover:border-slate-400 hover:bg-slate-50"
+              className="flex items-center gap-4 rounded-lg border border-dashed border-slate-300 p-5 transition-colors hover:border-slate-400 hover:bg-slate-50"
             >
-              <span className="h-8 w-1 flex-shrink-0 rounded-full bg-slate-200" />
+              <span className="h-12 w-1 flex-shrink-0 rounded-full bg-slate-200" />
               <span>
-                <span className="block text-sm font-medium text-slate-600">
-                  Não sei quem me autuou
+                <span className="block text-base font-semibold text-slate-700">
+                  Não sei quem me multou
                 </span>
-                <span className="mt-0.5 block font-mono text-[11px] tracking-wide text-slate-400">
-                  Ver todas as áreas
+                <span className="mt-1 block text-sm text-slate-600">
+                  Ver todas as áreas e descobrir
                 </span>
               </span>
             </a>
@@ -249,70 +290,74 @@ export default function Plataforma() {
               O que você recebe
             </p>
             <h2 className="text-2xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-3xl">
-              Todo auto tem forma. Quando a forma falha, ele cai.
+              Toda multa tem regras para ser aplicada. Quando o órgão erra, ela
+              pode ser derrubada.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-slate-600">
-              A análise percorre o documento campo a campo e devolve cada
-              apontamento com o trecho citado e o dispositivo legal
-              correspondente. Nada de parecer genérico: você vê exatamente onde
-              está o problema e por quê.
+              Nós lemos o seu documento linha por linha e apontamos cada erro
+              que encontramos, em português claro, dizendo qual regra foi
+              descumprida e por que aquilo é um problema.
             </p>
             <p className="mt-5 text-base leading-relaxed text-slate-600">
-              Se não houver falha, dizemos isso com clareza e nada é cobrado.
+              Se não houver erro nenhum, a gente fala isso na cara e não cobra
+              nada.
             </p>
           </div>
 
           {/* Peca de demonstracao. Conteudo ilustrativo. */}
           <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
             <p className="mb-6 font-mono text-[11px] uppercase tracking-widest text-slate-400">
-              Auto de infração nº 4471-B
+              Exemplo de análise
             </p>
 
             <div className="space-y-5">
               <div>
                 <p className="font-mono text-[11px] uppercase tracking-wide text-slate-400">
-                  Local da infração
+                  Onde a multa foi aplicada
                 </p>
                 <p className="mt-1 inline-block rounded bg-red-50 px-2 py-1 text-sm font-medium text-red-800">
                   Av. Principal, s/n
                 </p>
-                <p className="mt-2 flex items-start gap-2 text-xs leading-relaxed text-red-700">
+                <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-red-700">
                   <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                  Sem numeração ou ponto de referência. Descrição genérica
-                  impede a identificação do local.
+                  O endereço está incompleto. Sem número nem ponto de
+                  referência, não dá para saber onde a multa foi aplicada — e
+                  isso é motivo de anulação.
                 </p>
               </div>
 
               <div className="border-t border-slate-100 pt-5">
                 <p className="font-mono text-[11px] uppercase tracking-wide text-slate-400">
-                  Agente autuador
+                  Quem aplicou
                 </p>
                 <p className="mt-1 inline-block rounded bg-amber-50 px-2 py-1 text-sm font-medium text-amber-800">
                   Matrícula ilegível
                 </p>
-                <p className="mt-2 flex items-start gap-2 text-xs leading-relaxed text-amber-700">
+                <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-amber-700">
                   <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                  Identificação do agente comprometida. Ponto de atenção.
+                  Não dá para identificar o agente que aplicou a multa. Sozinho
+                  não derruba, mas reforça a defesa.
                 </p>
               </div>
 
               <div className="border-t border-slate-100 pt-5">
                 <p className="font-mono text-[11px] uppercase tracking-wide text-slate-400">
-                  Data da notificação
+                  Quando você foi avisado
                 </p>
                 <p className="mt-1 text-sm font-medium text-slate-900">
                   14/03/2026
                 </p>
-                <p className="mt-2 flex items-start gap-2 text-xs leading-relaxed text-slate-500">
+                <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-slate-500">
                   <Check className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                  Dentro do prazo legal. Sem falha neste campo.
+                  O aviso chegou dentro do prazo. Aqui está tudo certo, e a
+                  gente diz isso também.
                 </p>
               </div>
             </div>
 
             <p className="mt-6 border-t border-slate-100 pt-5 text-xs leading-relaxed text-slate-500">
-              Exemplo ilustrativo. Cada área é analisada segundo a legislação do
-              órgão que autuou.
+              Exemplo ilustrativo. Cada área é analisada segundo a lei do órgão
+              que aplicou a multa.
             </p>
           </div>
         </div>
@@ -444,25 +489,28 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Processo                                                          */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-b border-slate-200 bg-slate-50">
+      <section className="bg-emerald-950">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
-          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-slate-400">
-            Processo
+          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-emerald-400">
+            Como funciona
           </p>
-          <h2 className="mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 className="mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-white sm:text-3xl">
             Três etapas, nessa ordem.
           </h2>
 
-          <ol className="grid gap-8 sm:grid-cols-3">
+          <ol className="grid gap-10 sm:grid-cols-3">
             {PASSOS.map((p) => (
-              <li key={p.numero} className="border-t border-slate-900 pt-5">
-                <span className="font-mono text-sm tracking-widest text-emerald-700">
+              <li key={p.numero}>
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-emerald-800 text-emerald-400">
+                  <p.Icone className="h-5 w-5" strokeWidth={1.5} />
+                </div>
+                <span className="font-mono text-xs tracking-widest text-emerald-500">
                   {p.numero}
                 </span>
-                <h3 className="mt-4 text-base font-semibold tracking-tight text-slate-900">
+                <h3 className="mt-2 text-lg font-semibold tracking-tight text-white">
                   {p.titulo}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                <p className="mt-3 text-base leading-relaxed text-emerald-100/80">
                   {p.texto}
                 </p>
               </li>
