@@ -295,7 +295,7 @@ export default function Plataforma() {
           </p>
 
           <h1 className="text-3xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-5xl">
-            Quem te autuou?
+            Quem te <span className="text-emerald-600">autuou</span>?
           </h1>
 
           <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
@@ -361,7 +361,7 @@ export default function Plataforma() {
             </p>
             <h2 className="text-2xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-3xl">
               Toda multa tem regras para ser aplicada. Quando o órgão erra, ela
-              pode ser derrubada.
+              pode ser <span className="text-emerald-600">derrubada</span>.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-slate-600">
               Nós lemos o seu documento linha por linha e apontamos cada erro
@@ -442,7 +442,7 @@ export default function Plataforma() {
             Áreas atendidas
           </p>
           <h2 className="mx-auto mb-4 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-            Cada órgão tem uma lei. Cada lei tem um agente.
+            Cada órgão tem uma lei. Cada lei tem um <span className="text-emerald-600">agente</span>.
           </h2>
           <p className="mx-auto mb-12 max-w-2xl text-center text-base leading-relaxed text-slate-600">
             Não usamos a mesma análise para tudo. Abra a área correspondente ao
@@ -565,7 +565,7 @@ export default function Plataforma() {
             Como funciona
           </p>
           <h2 className="mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-            Três etapas, nessa ordem.
+            Três etapas, nessa <span className="text-emerald-600">ordem</span>.
           </h2>
 
           <ol className="grid gap-10 text-center sm:grid-cols-3">
@@ -598,7 +598,7 @@ export default function Plataforma() {
             Ferramentas gratuitas
           </p>
           <h2 className="mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-            Consulte antes de precisar recorrer.
+            Consulte antes de precisar <span className="text-emerald-600">recorrer</span>.
           </h2>
 
           <div className="grid gap-10 sm:grid-cols-2">
@@ -631,7 +631,7 @@ export default function Plataforma() {
             Perguntas frequentes
           </p>
           <h2 className="mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-            O que costuma gerar dúvida.
+            O que costuma gerar <span className="text-emerald-600">dúvida</span>.
           </h2>
 
           <div className="mx-auto max-w-3xl border-t border-slate-200">
