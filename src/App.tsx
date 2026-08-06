@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Routes, Route, useLocation, useParams } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation, useParams } from "react-router-dom";
 import Home from "./pages/Home";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
@@ -57,22 +57,42 @@ function InfracaoDetalheWrapper() {
   const { slug } = useParams<{ slug: string }>();
   return <InfracaoDetalhe key={slug} />;
 }
+
+/*
+  Redirects das URLs antigas de artigo/categoria de trânsito.
+  Preservam o slug: /blog/multa-cnh-vencida-o-que-fazer vira
+  /multa-de-transito/blog/multa-cnh-vencida-o-que-fazer, sem quebrar
+  o link específico de cada artigo já indexado.
+*/
+function RedirectArtigo() {
+  const { slug } = useParams<{ slug: string }>();
+  return <Navigate to={`/multa-de-transito/blog/${slug}`} replace />;
+}
+function RedirectCategoria() {
+  const { categoria } = useParams<{ categoria: string }>();
+  return <Navigate to={`/multa-de-transito/blog/categoria/${categoria}`} replace />;
+}
 export default function App() {
   return (
     <>
       <ScrollToTop />
       <Routes>
-        {/* CheckMulta — trânsito */}
-        <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/categoria/:categoria" element={<CategoriaBlogWrapper />} />
-        <Route path="/blog/:slug" element={<BlogPostWrapper />} />
+        {/* Home institucional (home-mãe). Assumiu a raiz no Passo 3.2. */}
+        <Route path="/" element={<Plataforma />} />
+
         {/*
-          PASSO 3.1 — rotas novas em paralelo às antigas (/, /blog).
-          Apontam para os MESMOS componentes. Nada foi removido ainda.
-          No Passo 3.2 a raiz troca de dono e estas passam a ser as
-          rotas reais do funil de trânsito.
+          Redirects 301-equivalentes das URLs antigas de trânsito.
+          Preservam ranking e favoritos: quem chegar em / ou /blog
+          (ou em um artigo antigo) é levado para o novo endereço.
         */}
+        <Route path="/blog" element={<Navigate to="/multa-de-transito/blog" replace />} />
+        <Route
+          path="/blog/categoria/:categoria"
+          element={<RedirectCategoria />}
+        />
+        <Route path="/blog/:slug" element={<RedirectArtigo />} />
+
+        {/* CheckMulta — trânsito */}
         <Route path="/multa-de-transito" element={<Home />} />
         <Route
           path="/multa-de-transito/blog"
@@ -110,7 +130,6 @@ export default function App() {
         <Route path="/ibama" element={<Ibama />} />
         <Route path="/ibama/blog" element={<BlogIbama />} />
         <Route path="/ibama/blog/:slug" element={<BlogPostIbamaWrapper />} />
-        <Route path="/plataforma" element={<Plataforma />} />
       </Routes>
     </>
   );
