@@ -13,6 +13,7 @@ import BlogPostVigilancia from "./pages/BlogPostVigilancia";
 import Energia from "./pages/Energia";
 import BlogEnergia from "./pages/BlogEnergia";
 import BlogPostEnergia from "./pages/BlogPostEnergia";
+import Ibama from "./pages/Ibama";
 import ConsultaInfracao from "./pages/ConsultaInfracao";
 import InfracaoDetalhe from "./pages/InfracaoDetalhe";
 import SimuladorPontos from "./pages/SimuladorPontos";
@@ -79,6 +80,8 @@ export default function App() {
         <Route path="/energia" element={<Energia />} />
         <Route path="/energia/blog" element={<BlogEnergia />} />
         <Route path="/energia/blog/:slug" element={<BlogPostEnergiaWrapper />} />
+        {/* CheckMulta — IBAMA (auto de infração ambiental) */}
+        <Route path="/ibama" element={<Ibama />} />
       </Routes>
     </>
   );
