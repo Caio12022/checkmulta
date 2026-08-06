@@ -340,8 +340,23 @@ export default function App() {
     };
   }, []);
   useEffect(() => {
-    const savedResult = localStorage.getItem("checkmulta_saved_result");
+    // Prioridade 1: a defesa final já tinha sido gerada e paga. Mostra
+    // direto, sem chamar a IA de novo — cobre fechar a aba DEPOIS que o
+    // texto ficou pronto, que antes perdia tudo.
+    const savedDefense = localStorage.getItem("checkmulta_defense_result");
     const savedPaidStatus = localStorage.getItem("checkmulta_paid_status");
+    if (savedDefense && savedPaidStatus === "true" && !defenseResult) {
+      setDefenseResult(savedDefense);
+      setIsPaid(true);
+      setIsResultModalOpen(true);
+      setShowSuccessMessage(true);
+      return;
+    }
+
+    // Prioridade 2: pagou, mas fechou ANTES da defesa terminar de gerar.
+    // Comportamento que já existia — refaz a chamada à IA a partir do
+    // resultado da análise salvo.
+    const savedResult = localStorage.getItem("checkmulta_saved_result");
     if (savedResult && savedPaidStatus === "true" && !defenseResult && !isGeneratingDefense) {
       setResult(savedResult);
       setPrecoDefesa(definirPreco(savedResult));
@@ -484,6 +499,7 @@ export default function App() {
     setIsUploadModalOpen(false);
     setPrecoDefesa(PRECO_BAIXO);
     localStorage.removeItem("checkmulta_saved_result");
+    localStorage.removeItem("checkmulta_defense_result");
     localStorage.removeItem("checkmulta_paid_status");
     localStorage.removeItem("checkmulta_pending_payment");
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -723,8 +739,12 @@ export default function App() {
       setDefenseResult(data.result);
       setShowSuccessMessage(true);
       setShowFomoBanner(false);
+      // Guarda o resultado final também. Antes, ao terminar de gerar a
+      // defesa o localStorage era limpo por completo — se a pessoa fechasse
+      // a aba neste instante ou depois, o texto pronto (já pago) se perdia
+      // sem qualquer forma de recuperar.
+      localStorage.setItem("checkmulta_defense_result", data.result);
       localStorage.removeItem("checkmulta_saved_result");
-      localStorage.removeItem("checkmulta_paid_status");
       localStorage.removeItem("checkmulta_pending_payment");
     } catch (err: any) {
       clearTimeout(timeoutId);
