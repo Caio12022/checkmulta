@@ -161,7 +161,7 @@ export default function BlogGeral() {
             Blog
           </p>
           <h1 className="text-3xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-4xl">
-            Um blog para cada área.
+            Um blog para cada <span className="text-emerald-600">área</span>.
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-slate-600">
             Escolha a área do seu caso para ver todos os artigos, ou role para
@@ -203,7 +203,7 @@ export default function BlogGeral() {
             Publicados recentemente
           </p>
           <h2 className="mx-auto mb-10 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
-            De todas as áreas, juntos.
+            De todas as áreas, <span className="text-emerald-600">juntos</span>.
           </h2>
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
