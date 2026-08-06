@@ -14,6 +14,8 @@ import Energia from "./pages/Energia";
 import BlogEnergia from "./pages/BlogEnergia";
 import BlogPostEnergia from "./pages/BlogPostEnergia";
 import Ibama from "./pages/Ibama";
+import BlogIbama from "./pages/BlogIbama";
+import BlogPostIbama from "./pages/BlogPostIbama";
 import ConsultaInfracao from "./pages/ConsultaInfracao";
 import InfracaoDetalhe from "./pages/InfracaoDetalhe";
 import SimuladorPontos from "./pages/SimuladorPontos";
@@ -45,6 +47,10 @@ function BlogPostVigilanciaWrapper() {
 function BlogPostEnergiaWrapper() {
   const { slug } = useParams<{ slug: string }>();
   return <BlogPostEnergia key={slug} />;
+}
+function BlogPostIbamaWrapper() {
+  const { slug } = useParams<{ slug: string }>();
+  return <BlogPostIbama key={slug} />;
 }
 function InfracaoDetalheWrapper() {
   const { slug } = useParams<{ slug: string }>();
@@ -82,6 +88,8 @@ export default function App() {
         <Route path="/energia/blog/:slug" element={<BlogPostEnergiaWrapper />} />
         {/* CheckMulta — IBAMA (auto de infração ambiental) */}
         <Route path="/ibama" element={<Ibama />} />
+        <Route path="/ibama/blog" element={<BlogIbama />} />
+        <Route path="/ibama/blog/:slug" element={<BlogPostIbamaWrapper />} />
       </Routes>
     </>
   );
