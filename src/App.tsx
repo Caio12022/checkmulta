@@ -20,6 +20,7 @@ import ConsultaInfracao from "./pages/ConsultaInfracao";
 import InfracaoDetalhe from "./pages/InfracaoDetalhe";
 import SimuladorPontos from "./pages/SimuladorPontos";
 import Plataforma from "./pages/Plataforma";
+import BlogGeral from "./pages/BlogGeral";
 /* Sobe a página ao trocar de rota */
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -80,12 +81,17 @@ export default function App() {
         {/* Home institucional (home-mãe). Assumiu a raiz no Passo 3.2. */}
         <Route path="/" element={<Plataforma />} />
 
+        {/* Blog-mãe: reúne as cinco verticais. Página própria, não redirect. */}
+        <Route path="/blog" element={<BlogGeral />} />
+
         {/*
-          Redirects 301-equivalentes das URLs antigas de trânsito.
-          Preservam ranking e favoritos: quem chegar em / ou /blog
-          (ou em um artigo antigo) é levado para o novo endereço.
+          Redirects 301-equivalentes das URLs antigas de ARTIGO de trânsito.
+          Preservam ranking e favoritos dos 128 artigos já indexados: quem
+          chegar em /blog/:slug (ou /blog/categoria/:categoria) é levado
+          para o novo endereço em /multa-de-transito/blog/...
+          Só a LISTAGEM (/blog) mudou de conteúdo — o artigo individual
+          continua redirecionando normalmente.
         */}
-        <Route path="/blog" element={<Navigate to="/multa-de-transito/blog" replace />} />
         <Route
           path="/blog/categoria/:categoria"
           element={<RedirectCategoria />}
