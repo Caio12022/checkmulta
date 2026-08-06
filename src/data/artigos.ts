@@ -12,6 +12,56 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "como-acompanhar-o-seu-recurso-de-multa-de-transito-em-2026",
+    titulo: "Como acompanhar o seu recurso de multa de trânsito em 2026",
+    descricao: "Ficou na dúvida sobre o status do seu recurso de multa? Aprenda agora o passo a passo para monitorar o seu processo de forma simples. Analise sua multa.",
+    categoria: "Processo de Recurso",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🔍",
+    imagemBg: "from-indigo-600 to-indigo-800",
+    conteudo: `## Acompanhando o seu recurso: o que você precisa saber
+
+Entrar com um recurso contra uma multa de trânsito é um direito assegurado a todo condutor ou proprietário de veículo. No entanto, após protocolar a defesa, o processo pode parecer um labirinto burocrático. A digitalização dos serviços de trânsito facilitou muito esse monitoramento, mas é preciso saber exatamente onde olhar e o que esperar de cada etapa.
+
+## Por que o acompanhamento é fundamental?
+
+O processo administrativo de trânsito possui prazos e fases distintas. Desde a Defesa Prévia até os recursos em instâncias superiores, cada etapa exige que você esteja atento às notificações. Acompanhar o andamento permite que você:
+
+* Identifique rapidamente se houve uma decisão favorável ou desfavorável.
+* Saiba quando é o momento de avançar para a próxima instância recursal.
+* Evite surpresas como a perda de prazos para novos recursos ou a inclusão de pontos na carteira antes da hora.
+
+## Onde verificar o status do seu recurso
+
+Atualmente, a maioria dos órgãos de trânsito disponibiliza plataformas online para consulta. Confira os principais caminhos para verificar a sua situação:
+
+1. **Portal de Serviços do órgão autuador:** Acesse o site do órgão que emitiu a multa. Na área restrita do usuário, você encontrará uma aba específica para 'Meus Veículos' ou 'Consultar Processos'.
+2. **Aplicativos Oficiais:** O uso de aplicativos de trânsito unificados permite que você tenha acesso a todo o seu histórico de infrações e processos vinculados ao seu CPF em um único lugar.
+3. **Consulta por número do protocolo:** Caso você tenha protocolado o recurso presencialmente ou por meio digital, guarde sempre o número do processo ou o código de rastreio gerado no momento da entrega.
+
+## Entendendo as fases do processo
+
+Ao verificar o sistema, você encontrará diversos termos técnicos. É comum encontrar status como 'Em análise', 'Em fase de julgamento' ou 'Recurso deferido/indeferido'. 
+
+* **Em análise:** Significa que o órgão recebeu sua defesa e ela está na fila para ser lida e avaliada pelos agentes ou pela junta julgadora.
+* **Deferido:** Esta é a notícia que todo condutor deseja. Significa que os argumentos foram aceitos e a penalidade será cancelada.
+* **Indeferido:** O recurso não foi aceito. Nesse caso, a legislação de trânsito prevê que você tem o direito de recorrer para instâncias superiores, dentro do prazo legal, caso ainda existam argumentos técnicos não apreciados.
+
+## Dicas para não se perder nos prazos
+
+Mesmo com a tecnologia, o erro mais comum é o esquecimento. Verifique o seu endereço cadastrado junto ao órgão de trânsito periodicamente. Muitas notificações de resultado de julgamento ainda são enviadas via correios e, se o endereço estiver desatualizado, você pode perder o prazo para um novo recurso sem saber.
+
+Além disso, lembre-se que cada fase do recurso tem um rito próprio. Se o seu recurso foi indeferido na primeira instância, mantenha a calma e analise a decisão. Muitas vezes, a negativa ocorre por falta de clareza nos argumentos ou ausência de documentos essenciais que comprovem a sua tese.
+
+## Buscando auxílio especializado
+
+O processo de recurso não se trata apenas de escrever um texto justificando a infração. Para ter chances reais de sucesso, é necessário fundamentar sua defesa com base na legislação de trânsito vigente, apontando falhas formais no auto de infração ou erros na sinalização que possam ter induzido o condutor ao erro. A falta de técnica jurídica acaba sendo um dos maiores motivos para o indeferimento de recursos legítimos.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Aproveite a tecnologia para entender seus direitos e proteger o seu direito de dirigir.`,
+    palavrasChave: ["recurso de multa", "processo administrativo de trânsito", "acompanhar recurso", "detran"],
+  },
+
+  {
     slug: "multa-por-triangulo-ou-extintor-como-proceder-em-2026",
     titulo: "Multa por Triângulo ou Extintor: Como proceder em 2026",
     descricao: "Recebeu uma multa por falta ou irregularidade de equipamentos de segurança? Entenda a legislação atual e saiba como contestar. Analise sua multa grátis.",
