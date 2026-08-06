@@ -194,8 +194,23 @@ export default function Ibama() {
 
   // ─── EFEITOS ─────────────────────────────────────────────────────────────
   useEffect(() => {
-    const savedResult = localStorage.getItem("ibama_saved_result");
+    // Prioridade 1: a defesa final já tinha sido gerada e paga. Mostra
+    // direto, sem chamar a IA de novo — cobre fechar a aba DEPOIS que o
+    // texto ficou pronto, que antes perdia tudo.
+    const savedDefense = localStorage.getItem("ibama_defense_result");
     const savedPaidStatus = localStorage.getItem("ibama_paid_status");
+    if (savedDefense && savedPaidStatus === "true" && !defenseResult) {
+      setDefenseResult(savedDefense);
+      setIsPaid(true);
+      setIsResultModalOpen(true);
+      setShowSuccessMessage(true);
+      return;
+    }
+
+    // Prioridade 2: pagou, mas fechou ANTES da defesa terminar de gerar.
+    // Comportamento que já existia — refaz a chamada à IA a partir da
+    // análise salva.
+    const savedResult = localStorage.getItem("ibama_saved_result");
     if (savedResult && savedPaidStatus === "true" && !defenseResult && !isGeneratingDefense) {
       try {
         const parsed = JSON.parse(savedResult) as Analise;
@@ -332,6 +347,7 @@ useEffect(() => {
     setSelectedTipo(null);
     setIsUploadModalOpen(false);
     localStorage.removeItem("ibama_saved_result");
+    localStorage.removeItem("ibama_defense_result");
     localStorage.removeItem("ibama_paid_status");
     localStorage.removeItem("ibama_pending_payment");
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -524,8 +540,12 @@ useEffect(() => {
       setDefenseResult(data.result);
       setShowSuccessMessage(true);
       setShowFomoBanner(false);
+      // Guarda o resultado final também. Antes, ao terminar de gerar a
+      // defesa o localStorage era limpo por completo — se a pessoa fechasse
+      // a aba neste instante ou depois, o texto pronto (já pago) se perdia
+      // sem qualquer forma de recuperar.
+      localStorage.setItem("ibama_defense_result", data.result);
       localStorage.removeItem("ibama_saved_result");
-      localStorage.removeItem("ibama_paid_status");
       localStorage.removeItem("ibama_pending_payment");
     } catch (err: any) {
       clearTimeout(timeoutId);
