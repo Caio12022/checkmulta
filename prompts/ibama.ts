@@ -109,8 +109,14 @@ BLOCO A — requisitos formais do auto (art. 97)
 A1. A descrição da infração é CLARA E OBJETIVA, indicando concretamente o que foi
     constatado (o quê, onde, quanto)? Descrição genérica ("degradação ambiental",
     "intervenção em APP") sem especificar a conduta e a extensão é achado grave.
-A2. Há indicação do dispositivo legal/regulamentar infringido? A ausência do enquadramento,
-    ou enquadramento incompatível com o fato descrito, é achado.
+A2. Há indicação do dispositivo legal/regulamentar infringido? A ausência TOTAL de
+    enquadramento, ou enquadramento claramente incompatível com o fato descrito, pode ser
+    achado. Mas atenção: este ponto, isolado, é no MÁXIMO "atencao", nunca "critico" —
+    porque a falta de citação de artigo, por si só, raramente anula um auto que descreve
+    a conduta com clareza. E é PROIBIDO gerar este achado quando o auto indica qualquer
+    enquadramento (mesmo que remissivo). Não use "dispositivo legal ausente" como achado
+    de preenchimento repetido em todo caso: só registre se a ausência de enquadramento for
+    real e relevante para a defesa.
 A3. Há delimitação da área ou dimensionamento do dano? Área estimada "a olho", sem
     georreferenciamento, coordenadas ou levantamento técnico, é fragilidade relevante.
 A4. Há menção a laudo de constatação, relatório de fiscalização ou prova técnica que
@@ -167,7 +173,11 @@ que você não viu; no máximo gere achado "verificar" orientando conferir o aut
 
 PROIBIÇÃO 3 — AUSÊNCIA DE INFORMAÇÃO NÃO É AUTOMATICAMENTE DEFEITO. Antes de registrar
 "Informação ausente no documento.", confirme que aquela informação DEVERIA constar naquele
-tipo de documento específico.
+tipo de documento específico. Em especial, NÃO gere o achado "ausência de indicação do
+dispositivo legal" com o trecho "Informação ausente no documento" quando o auto já
+descreve a conduta e o enquadramento de forma compreensível — inventar esse vício para
+reforçar um resultado que já tem outro achado forte (como prescrição ou incompetência) é
+exatamente o erro a evitar. Um único achado sólido basta; não infle a lista.
 
 =====================================================================
 5. TRANSPARÊNCIA QUANDO O CASO É FRACO
@@ -237,8 +247,11 @@ Regras dos campos:
 - "resumo": 2 a 3 frases ao leigo. Sem achado, explique que o auto aparenta cumprir as
   formalidades.
 - Campos de identificação não encontrados: string vazia "". Nunca invente.
-- "valor_multa": só o número, sem símbolo e sem separador de milhar (ex: 300000.00). Esse
-  campo define o preço do produto — NUNCA estime nem arredonde: ou está legível, ou é null.
+- "valor_multa": SOMENTE o valor monetário da multa, como número puro, sem símbolo e sem
+  separador de milhar (ex: 8500.00). É o valor em reais da penalidade — NÃO coloque aqui a
+  descrição da infração nem qualquer texto. Se o auto traz "Multa no valor de R$ 8.500,00",
+  o campo recebe 8500.00. Esse campo define o preço do produto: NUNCA estime nem arredonde;
+  se não houver valor legível, use null.
 - "dispositivo": o item da lista fechada em texto curto (ex.: "Art. 97 do Decreto nº
   6.514/2008"). Sem dispositivo na lista fechada, use "" — jamais invente artigo.
 - As três quantidades batem com a contagem real do array "achados".
@@ -367,6 +380,10 @@ CHECAGENS OBRIGATÓRIAS
 5. FIDELIDADE AOS ACHADOS. Todo argumento deve corresponder a um achado do JSON. Argumento
    sem lastro deve ser removido.
 5.1. COERÊNCIA DO TRECHO. Se o trecho citado contradiz o argumento, remova o argumento.
+5.1.1. DISPOSITIVO AUSENTE INFLADO. Se o texto sustentar como razão de defesa a "ausência
+   de indicação do dispositivo legal" com base em "informação ausente", mas o auto na
+   verdade descreve a conduta e traz enquadramento, REMOVA esse argumento — é vício
+   inventado para reforçar a peça. Mantenha apenas os argumentos com lastro real.
 5.2. DOCUMENTO AUSENTE. Se o texto afirmar defeito no auto mas o documento analisado não
    for o auto, reescreva como orientação para conferir o auto original.
 6. PROMESSAS. Remova promessa de resultado, imputação de crime/má-fé, e qualquer
