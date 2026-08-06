@@ -12,6 +12,63 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "como-se-preparar-para-uma-inspecao-da-vigilancia-sanitaria",
+    titulo: "Como se preparar para uma inspeção da Vigilância Sanitária",
+    descricao: "Saiba como organizar seu estabelecimento para receber a Vigilância Sanitária e entenda os procedimentos legais após uma autuação. Analise seu auto agora.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "6 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["auto de infração vigilância sanitária", "fiscalização sanitária como proceder", "defesa administrativa vigilância sanitária", "processo administrativo sanitário"],
+    conteudo: `## A importância da organização documental e estrutural
+
+A fiscalização exercida pela Vigilância Sanitária é uma atividade essencial para a proteção da saúde pública. Para o proprietário de um estabelecimento ou responsável técnico, receber uma inspeção deve ser encarado como um procedimento de rotina, que exige prontidão e transparência. Estar preparado não significa apenas manter as instalações físicas em ordem, mas também garantir que toda a documentação obrigatória esteja acessível e atualizada.
+
+## A condução da inspeção
+
+No momento em que o fiscal se apresenta, é fundamental que o responsável pelo estabelecimento acompanhe toda a diligência. A postura deve ser colaborativa, mantendo o diálogo profissional. Caso sejam apontadas irregularidades, questione a fundamentação técnica e peça explicações claras sobre o que deve ser corrigido. Se o fiscal lavrar um auto de infração, leia o documento cuidadosamente antes de assinar. Lembre-se que a assinatura do auto não significa confissão ou concordância, mas apenas a ciência da notificação.
+
+## O Auto de Infração e os requisitos legais
+
+Um auto de infração válido deve obedecer a requisitos formais rigorosos para garantir a segurança jurídica do administrado. Conforme estabelece a Lei 6.437/77, em seu art. 13, o auto deve conter obrigatoriamente elementos que descrevam com clareza o fato ocorrido, a identificação do autuado e a base legal da infração. Falhas no preenchimento desses requisitos podem fragilizar a autuação.
+
+Além disso, o processo administrativo sanitário deve ser norteado pelos princípios da legalidade, motivação, proporcionalidade, razoabilidade, contraditório, ampla defesa e devido processo legal. A Lei 9.784/99 (aplicável subsidiariamente) reforça, em seus arts. 2º e 50, a necessidade de que os atos administrativos sejam motivados, indicando os fatos e os fundamentos jurídicos que levaram à decisão da autoridade sanitária.
+
+## Após a autuação: prazos e defesas
+
+Caso o seu estabelecimento receba um auto de infração, o primeiro passo é identificar o prazo estipulado para a apresentação de defesa. Embora a Lei 6.437/77 preveja, em seu art. 22, um prazo de 15 dias para a defesa, é imprescindível verificar o prazo específico que consta no próprio documento entregue pelo fiscal, visto que a legislação sanitária varia entre os entes federativos.
+
+É fundamental que, ao elaborar a defesa, o autuado se atente aos seguintes pontos previstos na Lei 6.437/77:
+
+- O art. 2º, que define o rol de penalidades.
+- O art. 3º, que trata da imputabilidade.
+- O art. 4º, que classifica as infrações em leve, grave e gravíssima.
+- O art. 6º, que dispõe sobre a graduação da pena.
+- Os arts. 7º e 8º, que estabelecem as circunstâncias atenuantes e agravantes.
+- O art. 10, que traz o rol de infrações.
+- O art. 14, que trata da competência para autuar.
+- O art. 17, que disciplina as formas de notificação.
+- O art. 30, que versa sobre o recurso administrativo.
+- O art. 33, que estipula o prazo para pagamento da multa.
+- O art. 38, que trata da prescrição.
+
+## Regularização e o papel das provas
+
+Se o estabelecimento for autuado, a prioridade absoluta deve ser a correção das inconformidades apontadas. Documente todo o processo de adequação: mantenha registros fotográficos do antes e depois, notas fiscais de compra de materiais, laudos técnicos de higienização e registros de treinamento de pessoal. Essa documentação pode servir como base para o pedido de reinspeção e ser utilizada como prova material em sua defesa administrativa.
+
+Caso tenha ocorrido uma interdição cautelar, saiba que, nos termos da Lei 6.437/77, art. 23, § 4º, esta medida possui limite temporal de no máximo 90 dias. Em hipótese alguma retome as atividades antes de obter a liberação oficial ou o ato administrativo formal de desinterdição expedido pela autoridade sanitária competente.
+
+## Como prosseguir
+
+Se você recebeu um auto de infração, o caminho para o questionamento passa pela análise detalhada da validade do documento. A conformidade com o devido processo legal e a correta tipificação da infração são pontos que podem ser arguidos em sede de defesa, aumentando as possibilidades de um resultado favorável ao administrado.
+
+É possível enviar o auto de infração da Vigilância Sanitária para análise técnica, visando verificar se a autuação apresenta falhas que fundamentem um recurso administrativo.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "apreensao-e-inutilizacao-de-produtos-pela-vigilancia-sanitaria",
     titulo: "Apreensão e Inutilização de Produtos pela Vigilância Sanitária",
     descricao: "Entenda como a Vigilância Sanitária atua na apreensão e inutilização de produtos e saiba quais são os fundamentos para exercer seu direito de defesa.",
