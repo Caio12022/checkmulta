@@ -87,43 +87,43 @@ export const VERTICAIS: Vertical[] = [
     especialidades: [
       {
         texto: "Excesso de velocidade e radar",
-        href: "/blog/recurso-de-multa-por-excesso-de-velocidade-veja-como-recorrer",
+        href: "/multa-de-transito/blog/recurso-de-multa-por-excesso-de-velocidade-veja-como-recorrer",
       },
       {
         texto: "Avanço de sinal vermelho",
-        href: "/blog/multa-sinal-vermelho-como-recorrer",
+        href: "/multa-de-transito/blog/multa-sinal-vermelho-como-recorrer",
       },
       {
         texto: "Celular ao volante e cinto de segurança",
-        href: "/blog/multa-celular-cinto-como-recorrer",
+        href: "/multa-de-transito/blog/multa-celular-cinto-como-recorrer",
       },
       {
         texto: "Estacionamento irregular",
-        href: "/blog/multa-estacionamento-como-cancelar",
+        href: "/multa-de-transito/blog/multa-estacionamento-como-cancelar",
       },
       {
         texto: "Rodízio municipal",
-        href: "/blog/multa-rodizio-municipal-como-recorrer",
+        href: "/multa-de-transito/blog/multa-rodizio-municipal-como-recorrer",
       },
       {
         texto: "Direção sob efeito de álcool",
-        href: "/blog/multa-transito-dirigir-alcool",
+        href: "/multa-de-transito/blog/multa-transito-dirigir-alcool",
       },
       {
         texto: "CNH vencida",
-        href: "/blog/multa-cnh-vencida-o-que-fazer",
+        href: "/multa-de-transito/blog/multa-cnh-vencida-o-que-fazer",
       },
       {
         texto: "Notificação recebida fora do prazo",
-        href: "/blog/multa-chegou-apos-prazo-vencido",
+        href: "/multa-de-transito/blog/multa-chegou-apos-prazo-vencido",
       },
     ],
     baseLegal:
       "Código de Trânsito Brasileiro e Manual Brasileiro de Fiscalização de Trânsito",
     preco: "a partir de R$ 19,90",
-    href: "/",
-    hrefAnalise: "/",
-    hrefBlog: "/blog",
+    href: "/multa-de-transito",
+    hrefAnalise: "/multa-de-transito",
+    hrefBlog: "/multa-de-transito/blog",
     botao: "Analisar minha multa",
     Icone: Car,
     cor: { faixa: "#10b981", icone: "#047857", fundoIcone: "#ecfdf5", texto: "#047857" },
