@@ -14,7 +14,7 @@ import { VERTICAIS, FERRAMENTAS } from "../data/verticais";
  * vertical pertencem à landing da vertical — nunca duplicar aqui.
  *
  * Acessibilidade e indexação: os detalhes usam <details>/<summary> nativos.
- * O texto fica sempre no HTML, mesmo fechado.
+ * O texto fica sempre no HTML, mesmo com o item fechado.
  */
 
 const PASSOS = [
@@ -66,7 +66,8 @@ const FAQ = [
   },
 ];
 
-const TITULO = "CheckMulta — Defesa de autos de infração e notificações administrativas";
+const TITULO =
+  "CheckMulta — Defesa de autos de infração e notificações administrativas";
 const DESCRICAO =
   "Recebeu um auto de infração ou uma notificação de órgão público? Analisamos o documento gratuitamente e apontamos se há falha que permite recorrer. Trânsito, Procon, Vigilância Sanitária, energia elétrica e meio ambiente.";
 const CANONICAL = "https://checkmulta.com.br/plataforma";
@@ -91,11 +92,11 @@ export default function Plataforma() {
     setMeta("property", "og:url", CANONICAL);
 
     /* ------------------------------------------------------------------
-       PROVISÓRIO — REMOVER NO PASSO 3
+       PROVISORIO — REMOVER NO PASSO 3
 
-       Enquanto esta página vive em /plataforma, ela não pode ser indexada:
-       seria conteúdo concorrendo com a raiz. Quando ela assumir a raiz do
-       domínio, apagar o bloco abaixo (as três linhas do robots).
+       Enquanto esta pagina vive em /plataforma, ela nao pode ser indexada:
+       seria conteudo concorrendo com a raiz. Quando ela assumir a raiz do
+       dominio, apagar a linha do robots logo abaixo.
     ------------------------------------------------------------------ */
     setMeta("name", "robots", "noindex, follow");
 
@@ -129,10 +130,13 @@ export default function Plataforma() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Cabeçalho */}
+      {/* Cabecalho */}
       <header className="border-b border-slate-100 bg-white">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-          <a href="/plataforma" className="text-lg font-bold tracking-tight text-slate-900">
+          <a
+            href="/plataforma"
+            className="text-lg font-bold tracking-tight text-slate-900"
+          >
             Check<span className="text-emerald-600">Multa</span>
           </a>
           <nav className="flex items-center gap-5 text-sm font-medium text-slate-600">
@@ -160,7 +164,7 @@ export default function Plataforma() {
             aplicável ao órgão que autuou, se existe falha formal que permita
             recorrer. A análise não custa nada e não exige cadastro.
           </p>
-          
+          <a
             href="#servicos"
             className="mt-8 inline-block rounded-lg bg-emerald-600 px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
@@ -208,12 +212,18 @@ export default function Plataforma() {
                 key={v.id}
                 className="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-slate-300"
               >
-                <div className="h-1 w-full" style={{ backgroundColor: v.cor.faixa }} />
+                <div
+                  className="h-1 w-full"
+                  style={{ backgroundColor: v.cor.faixa }}
+                />
 
                 <summary className="flex cursor-pointer list-none items-start gap-4 p-5 sm:p-6 [&::-webkit-details-marker]:hidden">
                   <div
                     className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl"
-                    style={{ backgroundColor: v.cor.fundoIcone, color: v.cor.icone }}
+                    style={{
+                      backgroundColor: v.cor.fundoIcone,
+                      color: v.cor.icone,
+                    }}
                   >
                     <v.Icone className="h-5 w-5" />
                   </div>
@@ -255,7 +265,7 @@ export default function Plataforma() {
                           style={{ backgroundColor: v.cor.faixa }}
                         />
                         {e.href ? (
-                          
+                          <a
                             href={e.href}
                             className="underline decoration-slate-300 underline-offset-2 transition hover:text-emerald-700"
                           >
@@ -277,24 +287,24 @@ export default function Plataforma() {
                     <strong className="font-semibold text-slate-800">
                       Análise gratuita.
                     </strong>{" "}
-                    Defesa a partir de {v.preco.replace(/^A partir de /, "")}.
+                    Defesa {v.preco.toLowerCase()}.
                   </div>
 
                   <div className="flex flex-col gap-3 sm:flex-row">
-                    
+                    <a
                       href={v.href}
                       className="rounded-lg bg-emerald-600 px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-emerald-700"
                     >
                       {v.botao}
                     </a>
-                    {v.hrefBlog && (
-                      
+                    {v.hrefBlog ? (
+                      <a
                         href={v.hrefBlog}
                         className="rounded-lg border border-slate-200 px-6 py-3 text-center text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
                       >
                         Ler os artigos
                       </a>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               </details>
@@ -317,7 +327,10 @@ export default function Plataforma() {
               >
                 <div
                   className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl"
-                  style={{ backgroundColor: f.cor.fundoIcone, color: f.cor.icone }}
+                  style={{
+                    backgroundColor: f.cor.fundoIcone,
+                    color: f.cor.icone,
+                  }}
                 >
                   <f.Icone className="h-5 w-5" />
                 </div>
@@ -327,11 +340,11 @@ export default function Plataforma() {
                 <p className="mb-5 flex-1 text-sm leading-relaxed text-slate-600">
                   {f.resumo}
                 </p>
-                
+                <a
                   href={f.href}
                   className="text-sm font-semibold text-emerald-700 transition hover:text-emerald-800"
                 >
-                  {f.botao} →
+                  {f.botao}
                 </a>
               </div>
             ))}
@@ -364,7 +377,7 @@ export default function Plataforma() {
         </div>
       </section>
 
-      {/* Rodapé */}
+      {/* Rodape */}
       <footer className="bg-white">
         <div className="mx-auto max-w-5xl px-4 py-12">
           <div className="mb-8 grid gap-8 sm:grid-cols-3">
@@ -403,7 +416,10 @@ export default function Plataforma() {
               <ul className="space-y-2 text-sm text-slate-600">
                 {VERTICAIS.filter((v) => v.hrefBlog).map((v) => (
                   <li key={v.id}>
-                    <a href={v.hrefBlog} className="transition hover:text-emerald-700">
+                    <a
+                      href={v.hrefBlog}
+                      className="transition hover:text-emerald-700"
+                    >
                       Blog de {v.titulo.toLowerCase()}
                     </a>
                   </li>
