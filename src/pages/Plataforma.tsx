@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ChevronDown, ShieldCheck, FileSearch, FileCheck2 } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { VERTICAIS, FERRAMENTAS } from "../data/verticais";
 
 /**
@@ -13,26 +13,30 @@ import { VERTICAIS, FERRAMENTAS } from "../data/verticais";
  * administrativa", "recebi uma notificação"). Termos específicos de cada
  * vertical pertencem à landing da vertical — nunca duplicar aqui.
  *
- * Acessibilidade e indexação: os detalhes usam <details>/<summary> nativos.
- * O texto fica sempre no HTML, mesmo com o item fechado.
+ * Indexação: os itens usam <details>/<summary> nativos. O texto fica sempre
+ * presente no HTML, mesmo com o item fechado.
+ *
+ * Direção visual: registro oficial. Rótulos em fonte monoespaçada na margem,
+ * filetes finos, muito espaço em branco, uma única cor de destaque (verde da
+ * marca). Sem ilustração, sem gradiente, sem emoji.
  */
 
 const PASSOS = [
   {
-    Icone: FileSearch,
+    numero: "01",
     titulo: "Envie o documento",
     texto:
       "Fotografe ou anexe o auto de infração, a notificação ou o termo que você recebeu. Não é preciso criar conta.",
   },
   {
-    Icone: ShieldCheck,
-    titulo: "Receba a análise gratuita",
+    numero: "02",
+    titulo: "Receba a análise",
     texto:
-      "A leitura do documento é feita à luz da legislação aplicável àquele órgão e aponta, com o trecho citado, onde há falha formal.",
+      "O documento é lido à luz da legislação aplicável ao órgão que autuou. O resultado aponta, com o trecho citado, onde há falha formal.",
   },
   {
-    Icone: FileCheck2,
-    titulo: "Obtenha a defesa pronta",
+    numero: "03",
+    titulo: "Obtenha a defesa",
     texto:
       "Havendo fundamento, entregamos a peça redigida e pronta para protocolo. Se não houver falha, dizemos isso com clareza e nada é cobrado.",
   },
@@ -45,14 +49,14 @@ const FAQ = [
       "É o documento pelo qual um órgão público formaliza a acusação de que alguém descumpriu uma norma. Ele dá início ao processo administrativo e abre o prazo para defesa. Vale para trânsito, consumo, vigilância sanitária, meio ambiente e demais áreas fiscalizadas.",
   },
   {
-    pergunta: "Recebi uma notificação. Quanto tempo eu tenho para me defender?",
+    pergunta: "Recebi uma notificação. Quanto tempo tenho para me defender?",
     resposta:
-      "O prazo varia conforme o órgão e costuma ser contado a partir da ciência da autuação. Cada área tem regra própria, e o prazo é fatal: perdido, a penalidade se consolida. Por isso a orientação é analisar o documento assim que ele chega.",
+      "O prazo varia conforme o órgão e costuma ser contado a partir da ciência da autuação. Cada área tem regra própria, e o prazo é fatal: uma vez perdido, a penalidade se consolida. Por isso a orientação é analisar o documento assim que ele chega.",
   },
   {
     pergunta: "Vale a pena recorrer mesmo tendo cometido a irregularidade?",
     resposta:
-      "Sim, em muitos casos. A defesa administrativa não discute apenas o fato: discute se o órgão observou as formalidades exigidas por lei ao lavrar o auto. Descrição genérica, ausência de dispositivo legal, falha na notificação e erro na dosimetria comprometem a autuação independentemente do mérito.",
+      "Em muitos casos, sim. A defesa administrativa não discute apenas o fato: discute se o órgão observou as formalidades exigidas por lei ao lavrar o auto. Descrição genérica, ausência de dispositivo legal, falha na notificação e erro na dosimetria comprometem a autuação independentemente do mérito.",
   },
   {
     pergunta: "É preciso contratar advogado?",
@@ -62,7 +66,12 @@ const FAQ = [
   {
     pergunta: "Quanto custa?",
     resposta:
-      "A análise é sempre gratuita, em todas as áreas. A cobrança ocorre apenas quando há falha identificada e você decide gerar a defesa. O valor varia conforme a área e o porte da penalidade.",
+      "A análise é gratuita em todas as áreas. A cobrança ocorre apenas quando há falha identificada e você decide gerar a defesa. O valor varia conforme a área e o porte da penalidade.",
+  },
+  {
+    pergunta: "Como sei que não é golpe?",
+    resposta:
+      "O CheckMulta é operado pela CheckMulta Tecnologia, CNPJ 63.524.338/0001-62. A análise é entregue antes de qualquer cobrança e o pagamento é processado por PIX via Mercado Pago. Não pedimos senha de portal de órgão público nem dados bancários.",
   },
 ];
 
@@ -129,182 +138,191 @@ export default function Plataforma() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Cabecalho */}
-      <header className="border-b border-slate-100 bg-white">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
+    <div className="min-h-screen bg-white text-slate-900 antialiased">
+      {/* ---------------------------------------------------------------- */}
+      {/* Cabecalho                                                        */}
+      {/* ---------------------------------------------------------------- */}
+      <header className="border-b border-slate-200">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <a
             href="/plataforma"
-            className="text-lg font-bold tracking-tight text-slate-900"
+            className="text-base font-semibold tracking-tight text-slate-900"
           >
-            Check<span className="text-emerald-600">Multa</span>
+            Check<span className="text-emerald-700">Multa</span>
           </a>
-          <nav className="flex items-center gap-5 text-sm font-medium text-slate-600">
-            <a href="#servicos" className="transition hover:text-emerald-700">
-              Serviços
+          <nav className="flex items-center gap-6 font-mono text-[11px] uppercase tracking-widest text-slate-500">
+            <a href="#areas" className="transition-colors hover:text-emerald-700">
+              Áreas
             </a>
-            <a href="/blog" className="transition hover:text-emerald-700">
+            <a href="#processo" className="transition-colors hover:text-emerald-700">
+              Processo
+            </a>
+            <a href="/blog" className="transition-colors hover:text-emerald-700">
               Blog
             </a>
           </nav>
         </div>
       </header>
 
-      {/* Abertura */}
-      <section className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
-        <div className="mx-auto max-w-3xl px-4 py-16 text-center sm:py-20">
-          <span className="mb-4 inline-block rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-700">
-            Análise gratuita
-          </span>
-          <h1 className="mb-5 text-3xl font-bold leading-tight tracking-tight text-slate-900 sm:text-4xl">
-            Recebeu um auto de infração ou uma notificação?
+      {/* ---------------------------------------------------------------- */}
+      {/* Abertura                                                         */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="border-b border-slate-200">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
+          <p className="mb-8 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+            CheckMulta Tecnologia · CNPJ 63.524.338/0001-62
+          </p>
+
+          <h1 className="max-w-3xl text-4xl font-semibold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+            Todo auto de infração tem forma.
+            <span className="block text-slate-400">
+              Quando a forma falha, ele cai.
+            </span>
           </h1>
-          <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
-            O CheckMulta analisa o documento e aponta, com base na legislação
-            aplicável ao órgão que autuou, se existe falha formal que permita
-            recorrer. A análise não custa nada e não exige cadastro.
-          </p>
-          <a
-            href="#servicos"
-            className="mt-8 inline-block rounded-lg bg-emerald-600 px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
-          >
-            Ver as áreas atendidas
-          </a>
-        </div>
-      </section>
 
-      {/* Como funciona */}
-      <section className="border-b border-slate-100 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-14">
-          <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-slate-900">
-            Como funciona
-          </h2>
-          <div className="grid gap-8 sm:grid-cols-3">
-            {PASSOS.map((p, i) => (
-              <div key={p.titulo} className="text-center">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
-                  <p.Icone className="h-6 w-6" />
-                </div>
-                <h3 className="mb-2 text-base font-semibold text-slate-900">
-                  {i + 1}. {p.titulo}
-                </h3>
-                <p className="text-sm leading-relaxed text-slate-600">{p.texto}</p>
-              </div>
-            ))}
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-600">
+            Envie o documento que você recebeu. Analisamos gratuitamente à luz da
+            legislação aplicável ao órgão que autuou e apontamos, com o trecho
+            citado, se existe falha que permita recorrer.
+          </p>
+
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <a
+              href="#areas"
+              className="bg-emerald-700 px-8 py-4 text-sm font-semibold text-white transition-colors hover:bg-emerald-800"
+            >
+              Escolher a área
+            </a>
+            <a
+              href="#processo"
+              className="px-2 py-4 text-sm font-semibold text-slate-600 underline decoration-slate-300 underline-offset-4 transition-colors hover:text-emerald-700"
+            >
+              Ver como funciona
+            </a>
           </div>
+
+          <dl className="mt-16 grid max-w-3xl gap-8 border-t border-slate-200 pt-8 sm:grid-cols-3">
+            <div>
+              <dt className="font-mono text-[11px] uppercase tracking-widest text-slate-400">
+                Análise
+              </dt>
+              <dd className="mt-2 text-sm text-slate-700">
+                Gratuita em todas as áreas, sem cadastro
+              </dd>
+            </div>
+            <div>
+              <dt className="font-mono text-[11px] uppercase tracking-widest text-slate-400">
+                Cobrança
+              </dt>
+              <dd className="mt-2 text-sm text-slate-700">
+                Apenas se houver falha e você quiser a peça
+              </dd>
+            </div>
+            <div>
+              <dt className="font-mono text-[11px] uppercase tracking-widest text-slate-400">
+                Fundamento
+              </dt>
+              <dd className="mt-2 text-sm text-slate-700">
+                Dispositivo legal citado em cada apontamento
+              </dd>
+            </div>
+          </dl>
         </div>
       </section>
 
-      {/* Verticais */}
-      <section id="servicos" className="border-b border-slate-100 bg-slate-50">
-        <div className="mx-auto max-w-4xl px-4 py-16">
-          <h2 className="mb-3 text-center text-2xl font-bold tracking-tight text-slate-900">
-            Áreas atendidas
-          </h2>
-          <p className="mx-auto mb-10 max-w-xl text-center text-sm leading-relaxed text-slate-600">
-            Cada área tem legislação própria e é analisada por um agente
-            específico. Abra o item para ver o que cobrimos.
-          </p>
+      {/* ---------------------------------------------------------------- */}
+      {/* Areas atendidas — registro                                       */}
+      {/* ---------------------------------------------------------------- */}
+      <section id="areas" className="border-b border-slate-200">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+          <div className="mb-14 max-w-2xl">
+            <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+              Áreas atendidas
+            </p>
+            <h2 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+              Cada órgão tem uma lei. Cada lei tem um agente.
+            </h2>
+            <p className="mt-5 text-base leading-relaxed text-slate-600">
+              Não usamos a mesma análise para tudo. Abra a área correspondente ao
+              documento que você recebeu para ver o que cobrimos.
+            </p>
+          </div>
 
-          <div className="space-y-4">
+          <div className="border-t border-slate-200">
             {VERTICAIS.map((v) => (
-              <details
-                key={v.id}
-                className="group overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-slate-300"
-              >
-                <div
-                  className="h-1 w-full"
-                  style={{ backgroundColor: v.cor.faixa }}
-                />
-
-                <summary className="flex cursor-pointer list-none items-start gap-4 p-5 sm:p-6 [&::-webkit-details-marker]:hidden">
-                  <div
-                    className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl"
-                    style={{
-                      backgroundColor: v.cor.fundoIcone,
-                      color: v.cor.icone,
-                    }}
-                  >
-                    <v.Icone className="h-5 w-5" />
-                  </div>
-
-                  <div className="min-w-0 flex-1">
+              <details key={v.id} className="group border-b border-slate-200">
+                <summary className="flex cursor-pointer list-none flex-col gap-4 py-8 transition-colors hover:bg-slate-50 sm:flex-row sm:items-start sm:gap-10 [&::-webkit-details-marker]:hidden">
+                  {/* Margem: rotulo do registro */}
+                  <div className="flex items-center gap-3 sm:w-56 sm:flex-shrink-0 sm:pt-1">
                     <span
-                      className="mb-1 block text-[11px] font-semibold uppercase tracking-wide"
-                      style={{ color: v.cor.texto }}
-                    >
+                      className="h-2.5 w-2.5 flex-shrink-0"
+                      style={{ backgroundColor: v.cor.faixa }}
+                    />
+                    <span className="font-mono text-[11px] uppercase leading-relaxed tracking-widest text-slate-400">
                       {v.publico}
                     </span>
-                    <h3 className="text-lg font-bold leading-snug text-slate-900">
+                  </div>
+
+                  {/* Corpo do registro */}
+                  <div className="min-w-0 flex-1">
+                    <h3 className="text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
                       {v.titulo}
                     </h3>
-                    <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                    <p className="mt-2 max-w-2xl text-base leading-relaxed text-slate-600">
                       {v.resumo}
+                    </p>
+                    <p className="mt-3 font-mono text-[11px] leading-relaxed tracking-wide text-slate-400">
+                      {v.baseLegal}
                     </p>
                   </div>
 
-                  <ChevronDown className="mt-1 h-5 w-5 flex-shrink-0 text-slate-400 transition-transform duration-300 group-open:rotate-180" />
+                  <ChevronDown className="hidden h-5 w-5 flex-shrink-0 text-slate-300 transition-transform duration-300 group-open:rotate-180 sm:mt-2 sm:block" />
                 </summary>
 
-                <div className="border-t border-slate-100 px-5 pb-6 pt-5 sm:px-6">
-                  <p className="mb-5 text-sm leading-relaxed text-slate-700">
+                {/* Conteudo aberto */}
+                <div className="pb-12 sm:pl-[16.5rem]">
+                  <p className="max-w-2xl text-base leading-relaxed text-slate-700">
                     {v.detalhe}
                   </p>
 
-                  <h4 className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  <p className="mb-4 mt-10 font-mono text-[11px] uppercase tracking-widest text-slate-400">
                     Situações analisadas
-                  </h4>
-                  <ul className="mb-5 grid gap-2 sm:grid-cols-2">
+                  </p>
+                  <ul className="grid max-w-3xl gap-x-10 gap-y-3 sm:grid-cols-2">
                     {v.especialidades.map((e) => (
-                      <li
-                        key={e.texto}
-                        className="flex items-start gap-2 text-sm text-slate-600"
-                      >
-                        <span
-                          className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full"
-                          style={{ backgroundColor: v.cor.faixa }}
-                        />
+                      <li key={e.texto} className="text-sm leading-relaxed">
                         {e.href ? (
                           <a
                             href={e.href}
-                            className="underline decoration-slate-300 underline-offset-2 transition hover:text-emerald-700"
+                            className="text-slate-600 underline decoration-slate-200 underline-offset-4 transition-colors hover:text-emerald-700 hover:decoration-emerald-700"
                           >
                             {e.texto}
                           </a>
                         ) : (
-                          <span>{e.texto}</span>
+                          <span className="text-slate-600">{e.texto}</span>
                         )}
                       </li>
                     ))}
                   </ul>
 
-                  <div className="mb-5 rounded-lg bg-slate-50 p-4 text-xs leading-relaxed text-slate-600">
-                    <strong className="font-semibold text-slate-800">
-                      Base legal:
-                    </strong>{" "}
-                    {v.baseLegal}
-                    <br />
-                    <strong className="font-semibold text-slate-800">
-                      Análise gratuita.
-                    </strong>{" "}
-                    Defesa {v.preco.toLowerCase()}.
-                  </div>
-
-                  <div className="flex flex-col gap-3 sm:flex-row">
+                  <div className="mt-10 flex flex-wrap items-center gap-6 border-t border-slate-200 pt-6">
                     <a
                       href={v.href}
-                      className="rounded-lg bg-emerald-600 px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-emerald-700"
+                      className="bg-emerald-700 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-emerald-800"
                     >
                       {v.botao}
                     </a>
                     {v.hrefBlog ? (
                       <a
                         href={v.hrefBlog}
-                        className="rounded-lg border border-slate-200 px-6 py-3 text-center text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                        className="text-sm font-semibold text-slate-600 underline decoration-slate-300 underline-offset-4 transition-colors hover:text-emerald-700"
                       >
                         Ler os artigos
                       </a>
                     ) : null}
+                    <span className="font-mono text-[11px] uppercase tracking-widest text-slate-400">
+                      Análise gratuita · defesa {v.preco}
+                    </span>
                   </div>
                 </div>
               </details>
@@ -313,36 +331,60 @@ export default function Plataforma() {
         </div>
       </section>
 
-      {/* Ferramentas */}
-      <section className="border-b border-slate-100 bg-white">
-        <div className="mx-auto max-w-4xl px-4 py-14">
-          <h2 className="mb-8 text-center text-2xl font-bold tracking-tight text-slate-900">
-            Ferramentas gratuitas
+      {/* ---------------------------------------------------------------- */}
+      {/* Processo                                                          */}
+      {/* ---------------------------------------------------------------- */}
+      <section id="processo" className="border-b border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+            Processo
+          </p>
+          <h2 className="mb-14 max-w-2xl text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            Três etapas, nessa ordem.
           </h2>
-          <div className="grid gap-5 sm:grid-cols-2">
+
+          <ol className="grid gap-px bg-slate-200 sm:grid-cols-3">
+            {PASSOS.map((p) => (
+              <li key={p.numero} className="bg-slate-50 p-8 sm:p-10">
+                <span className="font-mono text-sm tracking-widest text-emerald-700">
+                  {p.numero}
+                </span>
+                <h3 className="mt-6 text-lg font-semibold tracking-tight text-slate-900">
+                  {p.titulo}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                  {p.texto}
+                </p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/* Ferramentas                                                       */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="border-b border-slate-200">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+            Ferramentas gratuitas
+          </p>
+          <h2 className="mb-14 max-w-2xl text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            Consulte antes de precisar recorrer.
+          </h2>
+
+          <div className="grid gap-12 sm:grid-cols-2">
             {FERRAMENTAS.map((f) => (
-              <div
-                key={f.id}
-                className="flex flex-col rounded-xl border border-slate-200 p-6"
-              >
-                <div
-                  className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl"
-                  style={{
-                    backgroundColor: f.cor.fundoIcone,
-                    color: f.cor.icone,
-                  }}
-                >
-                  <f.Icone className="h-5 w-5" />
-                </div>
-                <h3 className="mb-2 text-base font-bold text-slate-900">
+              <div key={f.id} className="border-t border-slate-900 pt-6">
+                <h3 className="text-lg font-semibold tracking-tight text-slate-900">
                   {f.titulo}
                 </h3>
-                <p className="mb-5 flex-1 text-sm leading-relaxed text-slate-600">
+                <p className="mt-3 max-w-md text-sm leading-relaxed text-slate-600">
                   {f.resumo}
                 </p>
                 <a
                   href={f.href}
-                  className="text-sm font-semibold text-emerald-700 transition hover:text-emerald-800"
+                  className="mt-5 inline-block text-sm font-semibold text-emerald-700 underline decoration-emerald-200 underline-offset-4 transition-colors hover:decoration-emerald-700"
                 >
                   {f.botao}
                 </a>
@@ -352,23 +394,26 @@ export default function Plataforma() {
         </div>
       </section>
 
-      {/* Perguntas frequentes */}
-      <section className="border-b border-slate-100 bg-slate-50">
-        <div className="mx-auto max-w-3xl px-4 py-16">
-          <h2 className="mb-8 text-center text-2xl font-bold tracking-tight text-slate-900">
+      {/* ---------------------------------------------------------------- */}
+      {/* Perguntas frequentes                                              */}
+      {/* ---------------------------------------------------------------- */}
+      <section className="border-b border-slate-200">
+        <div className="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-slate-400">
             Perguntas frequentes
+          </p>
+          <h2 className="mb-14 max-w-2xl text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
+            O que costuma gerar dúvida.
           </h2>
-          <div className="space-y-3">
+
+          <div className="max-w-3xl border-t border-slate-200">
             {FAQ.map((f) => (
-              <details
-                key={f.pergunta}
-                className="group rounded-xl border border-slate-200 bg-white"
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 p-5 text-sm font-semibold text-slate-900 [&::-webkit-details-marker]:hidden">
+              <details key={f.pergunta} className="group border-b border-slate-200">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-8 py-6 text-base font-medium text-slate-900 transition-colors hover:text-emerald-700 [&::-webkit-details-marker]:hidden">
                   {f.pergunta}
-                  <ChevronDown className="h-5 w-5 flex-shrink-0 text-slate-400 transition-transform duration-300 group-open:rotate-180" />
+                  <ChevronDown className="mt-1 h-4 w-4 flex-shrink-0 text-slate-300 transition-transform duration-300 group-open:rotate-180" />
                 </summary>
-                <p className="border-t border-slate-100 px-5 pb-5 pt-4 text-sm leading-relaxed text-slate-600">
+                <p className="max-w-2xl pb-7 text-sm leading-relaxed text-slate-600">
                   {f.resposta}
                 </p>
               </details>
@@ -377,50 +422,71 @@ export default function Plataforma() {
         </div>
       </section>
 
-      {/* Rodape */}
-      <footer className="bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-12">
-          <div className="mb-8 grid gap-8 sm:grid-cols-3">
-            <div>
-              <span className="mb-3 block text-sm font-bold text-slate-900">
-                Áreas
+      {/* ---------------------------------------------------------------- */}
+      {/* Rodape                                                            */}
+      {/* ---------------------------------------------------------------- */}
+      <footer className="bg-slate-900 text-slate-300">
+        <div className="mx-auto max-w-6xl px-6 py-16">
+          <div className="grid gap-12 sm:grid-cols-4">
+            <div className="sm:col-span-1">
+              <span className="text-base font-semibold tracking-tight text-white">
+                Check<span className="text-emerald-400">Multa</span>
               </span>
-              <ul className="space-y-2 text-sm text-slate-600">
+              <p className="mt-4 font-mono text-[11px] uppercase leading-relaxed tracking-widest text-slate-500">
+                Defesa administrativa
+                <br />
+                em cinco áreas
+              </p>
+            </div>
+
+            <div>
+              <p className="mb-5 font-mono text-[11px] uppercase tracking-widest text-slate-500">
+                Áreas
+              </p>
+              <ul className="space-y-3 text-sm">
                 {VERTICAIS.map((v) => (
                   <li key={v.id}>
-                    <a href={v.href} className="transition hover:text-emerald-700">
+                    <a
+                      href={v.href}
+                      className="transition-colors hover:text-emerald-400"
+                    >
                       {v.titulo}
                     </a>
                   </li>
                 ))}
               </ul>
             </div>
+
             <div>
-              <span className="mb-3 block text-sm font-bold text-slate-900">
+              <p className="mb-5 font-mono text-[11px] uppercase tracking-widest text-slate-500">
                 Ferramentas
-              </span>
-              <ul className="space-y-2 text-sm text-slate-600">
+              </p>
+              <ul className="space-y-3 text-sm">
                 {FERRAMENTAS.map((f) => (
                   <li key={f.id}>
-                    <a href={f.href} className="transition hover:text-emerald-700">
+                    <a
+                      href={f.href}
+                      className="transition-colors hover:text-emerald-400"
+                    >
                       {f.titulo}
                     </a>
                   </li>
                 ))}
               </ul>
             </div>
+
             <div>
-              <span className="mb-3 block text-sm font-bold text-slate-900">
+              <p className="mb-5 font-mono text-[11px] uppercase tracking-widest text-slate-500">
                 Conteúdo
-              </span>
-              <ul className="space-y-2 text-sm text-slate-600">
+              </p>
+              <ul className="space-y-3 text-sm">
                 {VERTICAIS.filter((v) => v.hrefBlog).map((v) => (
                   <li key={v.id}>
                     <a
                       href={v.hrefBlog}
-                      className="transition hover:text-emerald-700"
+                      className="transition-colors hover:text-emerald-400"
                     >
-                      Blog de {v.titulo.toLowerCase()}
+                      {v.titulo}
                     </a>
                   </li>
                 ))}
@@ -428,14 +494,16 @@ export default function Plataforma() {
             </div>
           </div>
 
-          <div className="border-t border-slate-100 pt-6 text-xs leading-relaxed text-slate-500">
-            <p className="mb-2">
-              CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+          <div className="mt-16 border-t border-slate-800 pt-8">
+            <p className="font-mono text-[11px] uppercase tracking-widest text-slate-500">
+              CheckMulta Tecnologia · CNPJ 63.524.338/0001-62
             </p>
-            <p>
+            <p className="mt-4 max-w-2xl text-xs leading-relaxed text-slate-500">
               O CheckMulta presta serviço de análise documental e elaboração de
               peça administrativa. Não realiza representação judicial nem
-              substitui a orientação de advogado.
+              substitui a orientação de advogado. As análises são geradas a
+              partir da legislação federal aplicável a cada órgão e não
+              constituem garantia de resultado.
             </p>
           </div>
         </div>
