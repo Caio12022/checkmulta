@@ -67,6 +67,25 @@ export default function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/categoria/:categoria" element={<CategoriaBlogWrapper />} />
         <Route path="/blog/:slug" element={<BlogPostWrapper />} />
+        {/*
+          PASSO 3.1 — rotas novas em paralelo às antigas (/, /blog).
+          Apontam para os MESMOS componentes. Nada foi removido ainda.
+          No Passo 3.2 a raiz troca de dono e estas passam a ser as
+          rotas reais do funil de trânsito.
+        */}
+        <Route path="/multa-de-transito" element={<Home />} />
+        <Route
+          path="/multa-de-transito/blog"
+          element={<Blog />}
+        />
+        <Route
+          path="/multa-de-transito/blog/categoria/:categoria"
+          element={<CategoriaBlogWrapper />}
+        />
+        <Route
+          path="/multa-de-transito/blog/:slug"
+          element={<BlogPostWrapper />}
+        />
         {/* CheckMulta — consulta de infrações */}
         <Route path="/infracao" element={<ConsultaInfracao />} />
         <Route path="/infracao/:slug" element={<InfracaoDetalheWrapper />} />
