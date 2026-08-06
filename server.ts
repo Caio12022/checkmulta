@@ -109,18 +109,40 @@ function metaInfracao(pathname: string): MetaInfo | null {
 }
 
 function getMetaParaRota(pathname: string): MetaInfo {
-  // Home (padrão)
-  const home: MetaInfo = {
-    title: "Sua multa dá pra recorrer? Descubra grátis com IA | CheckMulta",
-    description: "Sua multa pode ter um erro formal que abre margem pra recurso. Nossa IA verifica grátis em 60s e entrega a petição pronta. Sem cadastro, sem advogado.",
+  // Home institucional (home-mãe). Assumiu a raiz no Passo 3.2.
+  const homeInstitucional: MetaInfo = {
+    title: "CheckMulta — Defesa de autos de infração e notificações administrativas",
+    description:
+      "Recebeu um auto de infração ou uma notificação de órgão público? Analisamos o documento gratuitamente e apontamos se há falha que permite recorrer. Trânsito, Procon, Vigilância Sanitária, energia elétrica e meio ambiente.",
     url: `${BASE_URL}/`,
   };
 
-  if (pathname === "/" || pathname === "") return home;
+  if (pathname === "/" || pathname === "") return homeInstitucional;
+
+  // Funil de trânsito (antiga home, agora em /multa-de-transito)
+  if (pathname === "/multa-de-transito" || pathname === "/multa-de-transito/") {
+    return {
+      title: "Sua multa dá pra recorrer? Descubra grátis com IA | CheckMulta",
+      description:
+        "Sua multa pode ter um erro formal que abre margem pra recurso. Nossa IA verifica grátis em 60s e entrega a petição pronta. Sem cadastro, sem advogado.",
+      url: `${BASE_URL}/multa-de-transito`,
+    };
+  }
+
   const metaInfra = metaInfracao(pathname);
   if (metaInfra) return metaInfra;
   const metaSim = metaSimulador(pathname);
   if (metaSim) return metaSim;
+
+  // Blog-mãe: reúne as cinco verticais
+  if (pathname === "/blog" || pathname === "/blog/") {
+    return {
+      title: "Blog CheckMulta — Trânsito, Procon, Vigilância, Energia e IBAMA",
+      description:
+        "Guias práticos sobre como recorrer de multas e notificações administrativas: trânsito, Procon, Vigilância Sanitária, cobrança de energia e infrações ambientais.",
+      url: `${BASE_URL}/blog`,
+    };
+  }
 
   // Procon (landing da vertical B2B)
   if (pathname === "/procon" || pathname === "/procon/") {
@@ -186,17 +208,17 @@ function getMetaParaRota(pathname: string): MetaInfo {
     }
   }
 
-  // Blog (listagem)
-  if (pathname === "/blog" || pathname === "/blog/") {
+  // Blog de trânsito (listagem) — agora em /multa-de-transito/blog
+  if (pathname === "/multa-de-transito/blog" || pathname === "/multa-de-transito/blog/") {
     return {
       title: "Blog CheckMulta — Tudo sobre Multas de Trânsito",
       description: "Guias práticos sobre como recorrer de multas, prazos, pontos na CNH e seus direitos como condutor. Analise sua multa grátis com nossa IA.",
-      url: `${BASE_URL}/blog`,
+      url: `${BASE_URL}/multa-de-transito/blog`,
     };
   }
 
-  // Página de categoria: /blog/categoria/:categoria
-  const matchCategoria = pathname.match(/^\/blog\/categoria\/([^/]+)\/?$/);
+  // Página de categoria: /multa-de-transito/blog/categoria/:categoria
+  const matchCategoria = pathname.match(/^\/multa-de-transito\/blog\/categoria\/([^/]+)\/?$/);
   if (matchCategoria) {
     const slugCat = matchCategoria[1];
     const artigoDaCat = artigos.find((a) => slugifyCategoria(a.categoria) === slugCat);
@@ -204,12 +226,12 @@ function getMetaParaRota(pathname: string): MetaInfo {
     return {
       title: `${nomeCat} — Blog CheckMulta`,
       description: `Artigos sobre ${nomeCat}: guias práticos sobre multas de trânsito, recursos e seus direitos. Analise sua multa grátis com nossa IA.`,
-      url: `${BASE_URL}/blog/categoria/${slugCat}`,
+      url: `${BASE_URL}/multa-de-transito/blog/categoria/${slugCat}`,
     };
   }
 
-  // Artigo: /blog/:slug
-  const matchArtigo = pathname.match(/^\/blog\/([^/]+)\/?$/);
+  // Artigo de trânsito: /multa-de-transito/blog/:slug
+  const matchArtigo = pathname.match(/^\/multa-de-transito\/blog\/([^/]+)\/?$/);
   if (matchArtigo) {
     const slug = matchArtigo[1];
     const artigo = artigos.find((a) => a.slug === slug);
@@ -217,13 +239,13 @@ function getMetaParaRota(pathname: string): MetaInfo {
       return {
         title: `${artigo.titulo} | CheckMulta`,
         description: artigo.descricao,
-        url: `${BASE_URL}/blog/${artigo.slug}`,
+        url: `${BASE_URL}/multa-de-transito/blog/${artigo.slug}`,
       };
     }
   }
 
-  // Rota desconhecida: usa a home
-  return home;
+  // Rota desconhecida: usa a home institucional
+  return homeInstitucional;
 }
 
 function injetarMeta(html: string, meta: MetaInfo): string {
@@ -251,14 +273,16 @@ function gerarSitemap(): string {
  
   const urls: { loc: string; priority: string; changefreq: string }[] = [];
 
-  // Home e landings
+  // Home institucional (home-mãe) e landings das verticais
   urls.push({ loc: `${BASE_URL}/`, priority: "1.0", changefreq: "weekly" });
+  urls.push({ loc: `${BASE_URL}/blog`, priority: "0.9", changefreq: "daily" });
+  urls.push({ loc: `${BASE_URL}/multa-de-transito`, priority: "1.0", changefreq: "weekly" });
   urls.push({ loc: `${BASE_URL}/procon`, priority: "0.9", changefreq: "weekly" });
 
   urls.push({ loc: `${BASE_URL}/vigilancia-sanitaria`, priority: "0.9", changefreq: "weekly" });
 
   // Listagens de blog
-  urls.push({ loc: `${BASE_URL}/blog`, priority: "0.8", changefreq: "daily" });
+  urls.push({ loc: `${BASE_URL}/multa-de-transito/blog`, priority: "0.8", changefreq: "daily" });
   urls.push({ loc: `${BASE_URL}/procon/blog`, priority: "0.8", changefreq: "daily" });
 
   urls.push({ loc: `${BASE_URL}/vigilancia-sanitaria/blog`, priority: "0.8", changefreq: "daily" });
@@ -280,7 +304,7 @@ function gerarSitemap(): string {
   const categorias = new Set(artigos.map((a) => slugifyCategoria(a.categoria)));
   categorias.forEach((slug) => {
     urls.push({
-      loc: `${BASE_URL}/blog/categoria/${slug}`,
+      loc: `${BASE_URL}/multa-de-transito/blog/categoria/${slug}`,
       priority: "0.6",
       changefreq: "weekly",
     });
@@ -289,7 +313,7 @@ function gerarSitemap(): string {
   // Artigos de trânsito
   artigos.forEach((a) => {
     urls.push({
-      loc: `${BASE_URL}/blog/${a.slug}`,
+      loc: `${BASE_URL}/multa-de-transito/blog/${a.slug}`,
       priority: "0.7",
       changefreq: "monthly",
     });
