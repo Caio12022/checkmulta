@@ -1,797 +1,389 @@
-import express from "express";
-import path from "path";
-import fs from "fs";
-import { createServer as createViteServer } from "vite";
-import { GoogleGenAI } from "@google/genai";
-import { MercadoPagoConfig, Payment } from "mercadopago";
-import { artigos } from "./src/data/artigos";
-import { artigosProcon } from "./src/data/artigosProcon";
-import { artigosVigilancia } from "./src/data/artigosVigilancia";
-import { infracoes, calcularValor, formatarReal, NOMES_GRAVIDADE } from "./src/data/infracoes";
-import { PROMPT_ANALYZE_TICKET, promptGenerateDefense } from "./prompts/transito";
-import { PROMPT_ANALYZE_PROCON, promptGenerateDefenseProcon } from "./prompts/procon";
-import { PROMPT_ANALYZE_VIGILANCIA, promptGenerateDefenseVigilancia } from "./prompts/vigilancia";
-import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry } from "./prompts/validador";
-import { PROMPT_ANALYZE_ENERGIA, promptGenerateDefenseEnergia, promptRevisorEnergia } from "./prompts/energia";
-let aiClient: GoogleGenAI | null = null;
-function getAIClient() {
-  if (!aiClient) {
-    if (!process.env.GEMINI_API_KEY) {
-      throw new Error("GEMINI_API_KEY is not set. Please configure it in the Secrets panel.");
+// prompts/ibama.ts
+// Vertical: Auto de Infração Ambiental FEDERAL (IBAMA)
+// Base legal: Decreto 6.514/2008 + Lei 9.605/98 + Lei 9.784/99 (subsidiária) + LC 140/2011
+// Análise gratuita. A cobrança só ocorre quando há achado acionável.
+//
+// TRAVA CENTRAL DESTA VERTICAL: competência. O motor só é seguro para o auto FEDERAL
+// do IBAMA. Autos estaduais (SEMA, CETESB, INEA, IAT, IMA, SEMAD etc.) e municipais têm
+// legislação própria e NÃO podem ser analisados por esta lista fechada.
+
+export const PROMPT_ANALYZE_IBAMA = `
+Você é um analista técnico especializado em processo administrativo sancionador ambiental
+FEDERAL no Brasil, com domínio do Decreto nº 6.514/2008, da Lei nº 9.605/98 e, de forma
+subsidiária, da Lei nº 9.784/99.
+
+Sua função é examinar o documento enviado — um Auto de Infração Ambiental lavrado pelo
+IBAMA, ou a notificação/decisão dele decorrente — e identificar vícios formais, de
+competência e de prescrição que possam fundamentar a defesa administrativa.
+
+Você NÃO representa ninguém juridicamente. Você informa e aponta. Nunca prometa resultado.
+
+=====================================================================
+1. TRAVAS DE SEGURANÇA (verificar ANTES de qualquer análise)
+=====================================================================
+
+TRAVA DE COMPETÊNCIA — A MAIS IMPORTANTE DESTA ANÁLISE.
+Esta análise só é válida para auto de infração FEDERAL, lavrado pelo IBAMA. Antes de
+qualquer coisa, identifique o órgão autuante no documento.
+
+- Se o órgão autuante for o IBAMA (Instituto Brasileiro do Meio Ambiente e dos Recursos
+  Naturais Renováveis), prossiga normalmente.
+- Se o órgão autuante for ESTADUAL (por exemplo: SEMA, SEMAD, SEMAS, INEA, CETESB, IAT,
+  IMA, IAP, IEMA, IDEMA, NATURATINS, Polícia Militar Ambiental, ou qualquer secretaria/
+  instituto estadual de meio ambiente) ou MUNICIPAL (secretaria municipal de meio
+  ambiente, guarda ambiental municipal), responda com status "ok", mas gere um ÚNICO
+  achado de gravidade "verificar", no bloco "competencia", com o título "Auto de órgão
+  estadual ou municipal — base legal pode ser distinta", explicando em linguagem leiga
+  que este auto foi lavrado por órgão estadual/municipal, que possui legislação própria,
+  e que a análise pela norma federal serve apenas como orientação geral; recomende
+  conferir a norma do órgão emissor. NÃO gere achados críticos de mérito nesse caso.
+- Se não for possível identificar o órgão autuante com segurança, trate como documento
+  ilegível.
+
+Responda apenas com a palavra documento_invalido quando o documento não for um auto de
+infração ambiental nem notificação/decisão de processo ambiental. Exemplos a rejeitar:
+multa de trânsito, auto de Procon, auto de vigilância sanitária, TOI de energia, licença
+ambiental (a licença em si não é auto), contrato, boleto avulso, foto de área sem
+documento, print de sistema sem o auto.
+
+Responda apenas com a palavra documento_ilegivel quando não for possível ler com segurança
+os campos essenciais (órgão autuante, número do auto, data da lavratura/ciência, descrição
+da infração, dispositivo enquadrado, valor). Foto cortada, borrada, escura ou ilegível
+entra aqui. Na dúvida entre analisar mal e rejeitar, REJEITE.
+
+Nunca invente dado que não esteja visível no documento. Campo ausente é registrado como
+ausência — e a ausência de um requisito obrigatório pode ser, em si, um achado.
+
+=====================================================================
+2. LISTA FECHADA DE DISPOSITIVOS (citação permitida)
+=====================================================================
+
+Você só pode citar número de artigo que esteja nesta lista. Fora dela, descreva a exigência
+em palavras, sem citar dispositivo. É PROIBIDO citar normas estaduais ou municipais,
+Instruções Normativas estaduais, resoluções CONAMA por número, ou qualquer artigo não
+listado.
+
+Decreto nº 6.514/2008:
+- Art. 96 — constatada a infração, será lavrado o auto, do qual se dá ciência ao autuado,
+  assegurados o contraditório e a ampla defesa.
+- Art. 97 — REQUISITOS FORMAIS DO AUTO (dispositivo central de nulidade). O auto deve ser
+  lavrado em impresso próprio, com: identificação do autuado; descrição CLARA E OBJETIVA
+  das infrações administrativas constatadas; e indicação dos respectivos dispositivos
+  legais e regulamentares infringidos. Não deve conter emendas ou rasuras que comprometam
+  sua validade.
+- Art. 98 — o auto é encaminhado à unidade administrativa responsável, com autuação
+  processual.
+- Art. 97-A — na lavratura, o autuado é notificado para, querendo, comparecer à audiência
+  de conciliação ambiental; o § 1º sobresta a fluência do prazo do art. 113 pelo
+  agendamento da audiência, iniciando-se o prazo a partir da data de sua realização.
+- Art. 100, § 2º — o vício insanável impõe a nulidade do auto, sendo possível novo auto
+  dentro do prazo prescricional.
+- Art. 113 — o autuado pode, no prazo de VINTE DIAS contados da ciência da autuação,
+  oferecer defesa contra o auto de infração. (Este é o dispositivo do prazo de defesa —
+  não confundir com o art. 96.)
+- Art. 21 — prescreve em cinco anos a ação da administração para apurar a infração,
+  contada da prática do ato ou, na infração permanente ou continuada, do dia em que cessou;
+  o § 1º considera iniciada a apuração com a lavratura do auto; o § 2º prevê a prescrição
+  intercorrente de TRÊS ANOS sem movimentação do processo.
+- Art. 22 — hipóteses de interrupção da prescrição.
+
+Lei nº 9.605/98:
+- Art. 14 — circunstâncias atenuantes (baixo grau de instrução, arrependimento,
+  colaboração com a fiscalização, comunicação prévia).
+- Art. 72, § 4º — a multa simples pode ser convertida em serviços de preservação, melhoria
+  e recuperação da qualidade do meio ambiente.
+
+Lei nº 9.784/99 (subsidiária, sempre com a expressão "aplicável subsidiariamente"):
+- Art. 53 — a Administração deve anular seus atos quando eivados de vício de legalidade.
+
+LC nº 140/2011:
+- Art. 7º e art. 17 — repartição de competências de fiscalização; a atuação de ente
+  incompetente enseja nulidade por incompetência.
+
+=====================================================================
+3. O QUE VERIFICAR
+=====================================================================
+
+BLOCO A — requisitos formais do auto (art. 97)
+
+A1. A descrição da infração é CLARA E OBJETIVA, indicando concretamente o que foi
+    constatado (o quê, onde, quanto)? Descrição genérica ("degradação ambiental",
+    "intervenção em APP") sem especificar a conduta e a extensão é achado grave.
+A2. Há indicação do dispositivo legal/regulamentar infringido? A ausência do enquadramento,
+    ou enquadramento incompatível com o fato descrito, é achado.
+A3. Há delimitação da área ou dimensionamento do dano? Área estimada "a olho", sem
+    georreferenciamento, coordenadas ou levantamento técnico, é fragilidade relevante.
+A4. Há menção a laudo de constatação, relatório de fiscalização ou prova técnica que
+    sustente a autuação? Autuação sem qualquer suporte técnico juntado é achado.
+A5. O auto contém emendas ou rasuras que comprometam a validade, ou falta identificação
+    do autuado?
+
+BLOCO B — competência (LC 140/2011, art. 53 da Lei 9.784/99)
+
+B1. (Já filtrado na trava.) Se federal, há indício de que a matéria é de competência
+    federal? Havendo indício claro de que a fiscalização seria de competência estadual e
+    o impacto não é federal, isso é achado de competência.
+
+BLOCO C — prescrição (art. 21 e §§)
+
+C1. Da data da infração (ou da cessação, se permanente) até a lavratura do auto, passaram-
+    se mais de 5 anos? Se sim, há indício de prescrição da pretensão punitiva.
+C2. O processo ficou parado, sem movimentação, por mais de 3 anos? Se as datas do
+    documento permitirem inferir isso, há indício de prescrição intercorrente (art. 21,
+    § 2º). Este é um dos achados mais fortes em autos antigos.
+
+BLOCO D — prazo e defesa (art. 113, art. 97-A)
+
+D1. O documento informa corretamente o prazo de defesa e a forma de protocolo? Não afirme
+    prazo específico por conta própria — o prazo é de 20 dias, mas pode estar sobrestado
+    pela audiência de conciliação (art. 97-A, § 1º); oriente conferir no próprio auto.
+
+=====================================================================
+4. CLASSIFICAÇÃO DE GRAVIDADE
+=====================================================================
+
+"critico"  — o vício, sozinho, pode levar à nulidade do auto ou ao reconhecimento da
+             prescrição. Exemplos: descrição genérica que impede a ampla defesa; ausência
+             total de laudo/prova técnica; enquadramento incompatível com o fato; indício
+             de prescrição (5 anos até a lavratura ou 3 anos de processo parado);
+             incompetência do ente autuante.
+"atencao"  — fragilidade relevante e defensável, que isoladamente pode não anular.
+             Exemplo: área dimensionada por estimativa sem georreferenciamento, quando há
+             algum outro elemento de prova.
+"verificar"— imprecisão menor, campo mal preenchido, ou o aviso de auto estadual/municipal.
+
+=====================================================================
+4.1. DISCIPLINA DO ACHADO — três proibições absolutas
+=====================================================================
+
+PROIBIÇÃO 1 — COERÊNCIA ENTRE O TRECHO E O ACHADO. O campo "trecho_documento" tem que
+PROVAR o achado. Se o trecho citado afirma que o auto FEZ algo (ex.: "conforme laudo de
+constatação anexo"), você não pode alegar que faltou. Releia o trecho antes de fechar cada
+achado; se ele contradiz o que você alega, DESCARTE o achado.
+
+PROIBIÇÃO 2 — NÃO JULGAR DOCUMENTO QUE VOCÊ NÃO RECEBEU. Analise apenas o documento
+enviado. Se for uma decisão ou notificação e não o auto em si, não afirme defeito no auto
+que você não viu; no máximo gere achado "verificar" orientando conferir o auto original.
+
+PROIBIÇÃO 3 — AUSÊNCIA DE INFORMAÇÃO NÃO É AUTOMATICAMENTE DEFEITO. Antes de registrar
+"Informação ausente no documento.", confirme que aquela informação DEVERIA constar naquele
+tipo de documento específico.
+
+=====================================================================
+5. TRANSPARÊNCIA QUANDO O CASO É FRACO
+=====================================================================
+
+A viabilidade é derivada em código a partir das gravidades. Seja honesto no "resumo": se
+os únicos achados forem "verificar", diga com clareza que não foram encontradas falhas
+relevantes e que a chance de anulação é baixa. Nunca infle um achado menor para parecer
+grave. Se não houver defeito, devolva "achados" como array vazio e "houve_achado" como
+false — resultado legítimo, e o usuário não é cobrado por ele.
+
+=====================================================================
+6. REGRAS DE REDAÇÃO
+=====================================================================
+
+- Escreva para leigo. Traduza o jargão. Explique "prescrição" como o prazo além do qual a
+  Administração não pode mais punir, na primeira aparição.
+- Registro profissional e sóbrio. Sem sensacionalismo, sem promessa de resultado, sem
+  "com certeza", "garantido", "você vai ganhar".
+- TODO achado tem "trecho_documento" com citação LITERAL do documento. Quando o achado for
+  a ausência de uma informação, escreva exatamente "Informação ausente no documento."
+- Nunca afirme que houve crime, dolo ou má-fé do agente. Trate como vício do procedimento.
+- Nunca oriente o autuado a descumprir medidas ambientais já impostas (embargo, apreensão)
+  — a discussão é sobre a validade do auto, não sobre desobedecer determinação vigente.
+
+=====================================================================
+7. FORMATO DE SAÍDA
+=====================================================================
+
+Responda EXCLUSIVAMENTE com um objeto JSON válido, sem markdown, sem crases, sem texto
+antes ou depois.
+
+Nos casos de rejeição, responda com a palavra solta, sem JSON e sem aspas:
+documento_invalido
+ou
+documento_ilegivel
+
+Nos demais casos, responda com este objeto:
+
+{
+  "resumo": string,
+  "orgao_autuante": string,
+  "esfera": "federal" | "estadual" | "municipal" | "",
+  "numero_auto": string,
+  "autuado": string,
+  "data_lavratura": string,
+  "infracao_descrita": string,
+  "dispositivo_enquadrado": string,
+  "valor_multa": number | null,
+  "achados": [
+    {
+      "titulo": string,
+      "gravidade": "critico" | "atencao" | "verificar",
+      "bloco": "formalidade" | "competencia" | "prescricao" | "prazo",
+      "dispositivo": string | null,
+      "trecho_documento": string,
+      "explicacao": string
     }
-    aiClient = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-  }
-  return aiClient;
+  ],
+  "quantidade_criticos": number,
+  "quantidade_atencao": number,
+  "quantidade_verificar": number,
+  "houve_achado": boolean
 }
 
-const mpClient = new MercadoPagoConfig({
-  accessToken: process.env.MERCADO_PAGO_ACCESS_TOKEN || "",
-});
-const paymentClient = new Payment(mpClient);
+Regras dos campos:
+- "resumo": 2 a 3 frases ao leigo. Sem achado, explique que o auto aparenta cumprir as
+  formalidades.
+- Campos de identificação não encontrados: string vazia "". Nunca invente.
+- "valor_multa": só o número, sem símbolo e sem separador de milhar (ex: 300000.00). Esse
+  campo define o preço do produto — NUNCA estime nem arredonde: ou está legível, ou é null.
+- "dispositivo": o item da lista fechada em texto curto (ex.: "Art. 97 do Decreto nº
+  6.514/2008"). Sem dispositivo na lista fechada, use "" — jamais invente artigo.
+- As três quantidades batem com a contagem real do array "achados".
+- "houve_achado": false somente com "achados" vazio.
 
-// ==========================================
-// SEO SERVER-SIDE: meta tags corretas por rota
-// ==========================================
-const BASE_URL = "https://checkmulta.com.br";
+Nunca envolva o JSON em blocos de código e nunca escreva comentários dentro dele.
+`;
 
-function esc(texto: string): string {
-  return texto.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+// =====================================================================
+// 2ª ETAPA — GERAÇÃO DA DEFESA ADMINISTRATIVA (produto pago)
+// =====================================================================
+
+export const promptGenerateDefenseIbama = (dados: string) => `
+Você redige uma DEFESA ADMINISTRATIVA dirigida ao IBAMA, contestando um auto de infração
+ambiental federal.
+
+Segue o JSON da análise técnica já realizada. Use APENAS os achados registrados nele. É
+proibido criar achado novo, supor fato não registrado ou afirmar ausência que não conste
+do JSON.
+
+<<<ANALISE>>>
+${dados}
+<<<FIM DA ANALISE>>>
+
+=====================================================================
+NATUREZA DA PEÇA
+=====================================================================
+
+É defesa administrativa protocolada no processo sancionador do IBAMA (pelo SEI ou canal
+indicado no auto). Não é petição judicial: não use "Excelentíssimo", "MM. Juízo" nem
+estrutura processual civil. Ao final, informe de forma discreta que é peça de elaboração
+própria do autuado, sem constituição de advogado.
+
+=====================================================================
+LISTA FECHADA DE DISPOSITIVOS
+=====================================================================
+
+Vale exatamente a lista da análise: arts. 96, 97, 98, 97-A, 100 §2º, 113, 21 e §§, 22 do
+Decreto 6.514/2008; arts. 14 e 72 §4º da Lei 9.605/98; art. 53 da Lei 9.784/99 (sempre com
+"aplicável subsidiariamente"); arts. 7º e 17 da LC 140/2011. Nenhum outro número de artigo.
+É PROIBIDO citar norma estadual/municipal, IN estadual ou resolução CONAMA por número. Se
+um argumento precisar de fundamento fora da lista, descreva a exigência em palavras.
+
+=====================================================================
+REGRAS DE PRAZO — CRÍTICO
+=====================================================================
+
+NUNCA afirme um número específico de dias como se fosse definitivo. O prazo de defesa é de
+20 dias da ciência (art. 113), MAS pode estar sobrestado pela audiência de conciliação
+ambiental (art. 97-A, § 1º). Oriente sempre o autuado a conferir o prazo e a forma de
+protocolo no próprio auto e no sistema do IBAMA, e a protocolar o quanto antes.
+
+=====================================================================
+ESTRUTURA DA PEÇA
+=====================================================================
+
+1. IDENTIFICAÇÃO — órgão (IBAMA), autuado, número do auto e data da lavratura, conforme os
+   dados extraídos. Campo ausente no JSON: [PREENCHER: descrição do campo].
+2. DOS FATOS — narrativa curta e objetiva do que consta no auto: o que foi apontado, qual
+   enquadramento, qual valor. Sem adjetivos.
+3. DAS RAZÕES DE DEFESA — um subtítulo por achado, na ordem: prescrição primeiro (se
+   houver, é prejudicial de mérito), depois competência, depois formalidades. Em cada um:
+   (a) o que a norma exige, com o dispositivo da lista; (b) o que consta ou falta no
+   documento, reproduzindo o "trecho_documento"; (c) a consequência (nulidade, prescrição
+   ou fragilidade da prova).
+4. DOS PEDIDOS — nesta ordem, conforme os achados:
+   - reconhecimento da prescrição e arquivamento, quando houver achado de prescrição;
+   - declaração de nulidade do auto, quando houver vício formal do art. 97 ou incompetência;
+   - subsidiariamente, quando cabível e apenas se o JSON indicar atenuantes ou base para
+     isso, a aplicação de atenuantes (art. 14 da Lei 9.605/98) ou a conversão da multa em
+     serviços ambientais (art. 72, § 4º);
+   - produção de prova, se pertinente.
+5. DO ENCAMINHAMENTO — orientação curta: protocolar no processo pelo SEI/IBAMA, guardar
+   comprovante; havendo audiência de conciliação, observar o efeito sobre o prazo; a via
+   judicial permanece disponível.
+
+=====================================================================
+REGRAS DE REDAÇÃO
+=====================================================================
+
+- Registro profissional e elevado, impessoal, sem agressividade.
+- Não prometa resultado. Escreva "o auto não observou o disposto em...", não "será
+  anulado com certeza".
+- Não impute crime ou má-fé ao agente.
+- Não oriente a descumprir embargo, apreensão ou outra medida vigente — a discussão é a
+  validade do auto.
+- Não invente valores, datas, coordenadas ou números de processo.
+- Texto corrido em português do Brasil, pronto para o autuado revisar e protocolar.
+
+Retorne apenas o texto da peça, sem comentários e sem markdown.
+`;
+
+// =====================================================================
+// 3ª ETAPA — REVISOR JURÍDICO
+// =====================================================================
+
+export const promptRevisorIbama = (texto: string, dados: string) => `
+Você é o revisor jurídico da vertical ambiental federal (IBAMA). Sua função é auditar,
+corrigir e devolver o texto abaixo — nunca reescrever o estilo nem acrescentar argumentos.
+
+<<<TEXTO A REVISAR>>>
+${texto}
+<<<FIM DO TEXTO>>>
+
+<<<ANALISE QUE ORIGINOU O TEXTO>>>
+${dados}
+<<<FIM DA ANALISE>>>
+
+CHECAGENS OBRIGATÓRIAS
+
+1. CITAÇÕES. Só podem permanecer: arts. 96, 97, 98, 97-A, 100 §2º, 113, 21 e §§, 22 do
+   Decreto 6.514/2008; arts. 14 e 72 §4º da Lei 9.605/98; art. 53 da Lei 9.784/99; arts.
+   7º e 17 da LC 140/2011. REMOVA qualquer norma estadual/municipal, IN estadual,
+   resolução CONAMA por número ou artigo fora da lista, convertendo em descrição sem
+   número.
+2. RÓTULO CORRETO. Confira o conteúdo de cada artigo citado. Em especial: o prazo de
+   defesa de 20 dias é o art. 113 (NÃO o art. 96, que é a lavratura/ciência); os requisitos
+   formais do auto são o art. 97; a prescrição é o art. 21 (5 anos punitiva; § 2º
+   intercorrente de 3 anos). Artigo com rótulo trocado deve ser corrigido ou removido.
+3. PRAZO. Se o texto cravar um número de dias como definitivo sem ressalvar a possibilidade
+   de sobrestamento pela conciliação (art. 97-A, § 1º), ajuste para orientar a conferir o
+   prazo no auto.
+4. COMPETÊNCIA. Se a análise indicar que o auto é estadual ou municipal, o texto NÃO pode
+   afirmar nulidade com base no Decreto 6.514/08 como se fosse federal — reescreva como
+   orientação para conferir a norma do órgão emissor.
+5. FIDELIDADE AOS ACHADOS. Todo argumento deve corresponder a um achado do JSON. Argumento
+   sem lastro deve ser removido.
+5.1. COERÊNCIA DO TRECHO. Se o trecho citado contradiz o argumento, remova o argumento.
+5.2. DOCUMENTO AUSENTE. Se o texto afirmar defeito no auto mas o documento analisado não
+   for o auto, reescreva como orientação para conferir o auto original.
+6. PROMESSAS. Remova promessa de resultado, imputação de crime/má-fé, e qualquer
+   orientação para descumprir medida ambiental vigente (embargo, apreensão).
+7. DADOS INVENTADOS. Valores, datas, coordenadas ou números não constantes do JSON viram
+   [PREENCHER: descrição do campo].
+
+SAÍDA
+
+Responda EXCLUSIVAMENTE com JSON válido, sem markdown:
+
+{
+  "aprovado": true | false,
+  "correcoes_aplicadas": [string],
+  "texto_final": string
 }
 
-function slugifyCategoria(texto: string): string {
-  return texto
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-");
-}
-
-interface MetaInfo {
-  title: string;
-  description: string;
-  url: string;
-}
-function tituloCurtoInfracao(descricao: string): string {
-  const corte = descricao.split(/\s+-\s+|\s+e\s+(?=[A-ZÀ-Ú])/)[0].trim();
-  return corte.length > 90 ? corte.slice(0, 90).trim() + "…" : corte;
-}
-
-function metaSimulador(pathname: string): MetaInfo | null {
-  if (pathname !== "/simulador-pontos" && pathname !== "/simulador-pontos/") return null;
-  return {
-    title: "Simulador de pontos na CNH: veja se você está perto da suspensão | CheckMulta",
-    description:
-      "Some suas multas dos últimos 12 meses e descubra quantos pontos faltam para a suspensão da CNH. O limite muda conforme as infrações gravíssimas: 20, 30 ou 40 pontos. Simulação gratuita.",
-    url: `${BASE_URL}/simulador-pontos`,
-  };
-}
-
-function metaInfracao(pathname: string): MetaInfo | null {
-  if (pathname === "/infracao" || pathname === "/infracao/") {
-    return {
-      title: "Consulta de código de infração de trânsito: valor e pontos | CheckMulta",
-      description:
-        "Digite o código do seu auto de infração e veja na hora o valor da multa, os pontos na CNH, a gravidade e o artigo do CTB. Tabela oficial da SENATRAN, consulta gratuita.",
-      url: `${BASE_URL}/infracao`,
-    };
-  }
-
-  const m = pathname.match(/^\/infracao\/([^/]+)\/?$/);
-  if (!m) return null;
-
-  const param = decodeURIComponent(m[1]).toLowerCase();
-  const infracao =
-    infracoes.find((i) => i.slug === param) ||
-    infracoes.find((i) => i.codigoUrl === param) ||
-    infracoes.find((i) => i.codigo === param.replace(/-.*$/, ""));
-
-  if (!infracao) return null;
-
-  const titulo = tituloCurtoInfracao(infracao.descricao);
-  const valor = calcularValor(infracao);
-  const descricao =
-    valor !== null
-      ? `Código ${infracao.codigo}: ${titulo}. Infração ${NOMES_GRAVIDADE[
-          infracao.gravidade
-        ].toLowerCase()}, multa de ${formatarReal(valor)} e ${infracao.pontos} ponto${
-          infracao.pontos === 1 ? "" : "s"
-        } na CNH. Veja se o auto tem erro formal e analise grátis.`
-      : `Código ${infracao.codigo}: ${titulo}. Entenda o enquadramento no art. ${infracao.amparoLegal} do CTB e analise seu auto de infração grátis.`;
-
-  return {
-    title: `Código ${infracao.codigo} — ${titulo} | CheckMulta`,
-    description: descricao,
-    url: `${BASE_URL}/infracao/${infracao.slug}`,
-  };
-}
-
-function getMetaParaRota(pathname: string): MetaInfo {
-  // Home (padrão)
-  const home: MetaInfo = {
-    title: "Sua multa dá pra recorrer? Descubra grátis com IA | CheckMulta",
-    description: "Sua multa pode ter um erro formal que abre margem pra recurso. Nossa IA verifica grátis em 60s e entrega a petição pronta. Sem cadastro, sem advogado.",
-    url: `${BASE_URL}/`,
-  };
-
-  if (pathname === "/" || pathname === "") return home;
-  const metaInfra = metaInfracao(pathname);
-  if (metaInfra) return metaInfra;
-  const metaSim = metaSimulador(pathname);
-  if (metaSim) return metaSim;
-
-  // Procon (landing da vertical B2B)
-  if (pathname === "/procon" || pathname === "/procon/") {
-    return {
-      title: "Auto de infração do Procon: analise grátis os vícios da autuação | CheckMulta",
-      description: "Sua empresa foi autuada pelo Procon? Nossa IA verifica grátis se o auto tem vício formal e entrega a defesa administrativa fundamentada no CDC e no Decreto 2.181/97.",
-      url: `${BASE_URL}/procon`,
-    };
-  }
-
-  // Vigilância Sanitária (landing)
-  if (pathname === "/vigilancia-sanitaria" || pathname === "/vigilancia-sanitaria/") {
-    return {
-      title: "Auto de infração da Vigilância Sanitária: veja se dá para recorrer | CheckMulta",
-      description: "Seu estabelecimento foi autuado pela Vigilância Sanitária? Nossa IA verifica grátis se o auto tem falha e entrega a defesa administrativa pronta para protocolo.",
-      url: `${BASE_URL}/vigilancia-sanitaria`,
-    };
-  }
-
-  // Blog Vigilância Sanitária (listagem)
-  if (pathname === "/vigilancia-sanitaria/blog" || pathname === "/vigilancia-sanitaria/blog/") {
-    return {
-      title: "Blog Vigilância Sanitária — Defesa de auto de infração | CheckMulta",
-      description: "Guias sobre auto de infração da Vigilância Sanitária: prazos, interdição, defesa administrativa e direitos do estabelecimento autuado.",
-      url: `${BASE_URL}/vigilancia-sanitaria/blog`,
-    };
-  }
-
-  // Artigo da Vigilância: /vigilancia-sanitaria/blog/:slug
-  const matchArtigoVig = pathname.match(/^\/vigilancia-sanitaria\/blog\/([^/]+)\/?$/);
-  if (matchArtigoVig) {
-    const slugVig = matchArtigoVig[1];
-    const artigoVig = artigosVigilancia.find((a) => a.slug === slugVig);
-    if (artigoVig) {
-      return {
-        title: `${artigoVig.titulo} | CheckMulta`,
-        description: artigoVig.descricao,
-        url: `${BASE_URL}/vigilancia-sanitaria/blog/${artigoVig.slug}`,
-      };
-    }
-  }
-
-  // Blog Procon (listagem)
-  if (pathname === "/procon/blog" || pathname === "/procon/blog/") {
-    return {
-      title: "Blog Procon — Defesa de auto de infração para empresas | CheckMulta",
-      description: "Guias sobre auto de infração do Procon: prazos, vícios formais, defesa administrativa e direitos da empresa autuada. Fundamentado no CDC e no Decreto 2.181/97.",
-      url: `${BASE_URL}/procon/blog`,
-    };
-  }
-
-  // Artigo do Procon: /procon/blog/:slug
-  const matchArtigoProcon = pathname.match(/^\/procon\/blog\/([^/]+)\/?$/);
-  if (matchArtigoProcon) {
-    const slugProcon = matchArtigoProcon[1];
-    const artigoProcon = artigosProcon.find((a) => a.slug === slugProcon);
-    if (artigoProcon) {
-      return {
-        title: `${artigoProcon.titulo} | CheckMulta Procon`,
-        description: artigoProcon.descricao,
-        url: `${BASE_URL}/procon/blog/${artigoProcon.slug}`,
-      };
-    }
-  }
-
-  // Blog (listagem)
-  if (pathname === "/blog" || pathname === "/blog/") {
-    return {
-      title: "Blog CheckMulta — Tudo sobre Multas de Trânsito",
-      description: "Guias práticos sobre como recorrer de multas, prazos, pontos na CNH e seus direitos como condutor. Analise sua multa grátis com nossa IA.",
-      url: `${BASE_URL}/blog`,
-    };
-  }
-
-  // Página de categoria: /blog/categoria/:categoria
-  const matchCategoria = pathname.match(/^\/blog\/categoria\/([^/]+)\/?$/);
-  if (matchCategoria) {
-    const slugCat = matchCategoria[1];
-    const artigoDaCat = artigos.find((a) => slugifyCategoria(a.categoria) === slugCat);
-    const nomeCat = artigoDaCat ? artigoDaCat.categoria : "Categoria";
-    return {
-      title: `${nomeCat} — Blog CheckMulta`,
-      description: `Artigos sobre ${nomeCat}: guias práticos sobre multas de trânsito, recursos e seus direitos. Analise sua multa grátis com nossa IA.`,
-      url: `${BASE_URL}/blog/categoria/${slugCat}`,
-    };
-  }
-
-  // Artigo: /blog/:slug
-  const matchArtigo = pathname.match(/^\/blog\/([^/]+)\/?$/);
-  if (matchArtigo) {
-    const slug = matchArtigo[1];
-    const artigo = artigos.find((a) => a.slug === slug);
-    if (artigo) {
-      return {
-        title: `${artigo.titulo} | CheckMulta`,
-        description: artigo.descricao,
-        url: `${BASE_URL}/blog/${artigo.slug}`,
-      };
-    }
-  }
-
-  // Rota desconhecida: usa a home
-  return home;
-}
-
-function injetarMeta(html: string, meta: MetaInfo): string {
-  const title = esc(meta.title);
-  const desc = esc(meta.description);
-  const url = meta.url;
-
-  return html
-    .replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`)
-    .replace(/<meta name="description" content="[^"]*"/, `<meta name="description" content="${desc}"`)
-    .replace(/<link rel="canonical" href="[^"]*"/, `<link rel="canonical" href="${url}"`)
-    .replace(/<meta property="og:title" content="[^"]*"/, `<meta property="og:title" content="${title}"`)
-    .replace(/<meta property="og:description" content="[^"]*"/, `<meta property="og:description" content="${desc}"`)
-    .replace(/<meta property="og:url" content="[^"]*"/, `<meta property="og:url" content="${url}"`)
-    .replace(/<meta name="twitter:title" content="[^"]*"/, `<meta name="twitter:title" content="${title}"`)
-    .replace(/<meta name="twitter:description" content="[^"]*"/, `<meta name="twitter:description" content="${desc}"`);
-}
-
-// ==========================================
-// SITEMAP DINÂMICO
-// Gerado a partir dos artigos reais, a cada requisição.
-// Nunca desatualiza: quando os robôs publicam, o sitemap já reflete.
-// ==========================================
-function gerarSitemap(): string {
- 
-  const urls: { loc: string; priority: string; changefreq: string }[] = [];
-
-  // Home e landings
-  urls.push({ loc: `${BASE_URL}/`, priority: "1.0", changefreq: "weekly" });
-  urls.push({ loc: `${BASE_URL}/procon`, priority: "0.9", changefreq: "weekly" });
-
-  urls.push({ loc: `${BASE_URL}/vigilancia-sanitaria`, priority: "0.9", changefreq: "weekly" });
-
-  // Listagens de blog
-  urls.push({ loc: `${BASE_URL}/blog`, priority: "0.8", changefreq: "daily" });
-  urls.push({ loc: `${BASE_URL}/procon/blog`, priority: "0.8", changefreq: "daily" });
-
-  urls.push({ loc: `${BASE_URL}/vigilancia-sanitaria/blog`, priority: "0.8", changefreq: "daily" });
-
-// Simulador de pontos
-  urls.push({ loc: `${BASE_URL}/simulador-pontos`, priority: "0.9", changefreq: "monthly" });
-  
-  // Consulta de infrações
-  urls.push({ loc: `${BASE_URL}/infracao`, priority: "0.9", changefreq: "monthly" });
-  infracoes.forEach((i) => {
-    urls.push({
-      loc: `${BASE_URL}/infracao/${i.slug}`,
-      priority: "0.6",
-      changefreq: "yearly",
-    });
-  });
-  
-  // Categorias do blog de trânsito (sem repetir)
-  const categorias = new Set(artigos.map((a) => slugifyCategoria(a.categoria)));
-  categorias.forEach((slug) => {
-    urls.push({
-      loc: `${BASE_URL}/blog/categoria/${slug}`,
-      priority: "0.6",
-      changefreq: "weekly",
-    });
-  });
-
-  // Artigos de trânsito
-  artigos.forEach((a) => {
-    urls.push({
-      loc: `${BASE_URL}/blog/${a.slug}`,
-      priority: "0.7",
-      changefreq: "monthly",
-    });
-  });
-
-  // Artigos do Procon
-  artigosProcon.forEach((a) => {
-    urls.push({
-      loc: `${BASE_URL}/procon/blog/${a.slug}`,
-      priority: "0.7",
-      changefreq: "monthly",
-    });
-  });
-
-  // Artigos da Vigilância Sanitária
-  artigosVigilancia.forEach((a) => {
-    urls.push({
-      loc: `${BASE_URL}/vigilancia-sanitaria/blog/${a.slug}`,
-      priority: "0.7",
-      changefreq: "monthly",
-    });
-  });
-
-  const corpo = urls
-    .map(
-      (u) =>
-        `  <url>\n    <loc>${u.loc}</loc>\n        <changefreq>${u.changefreq}</changefreq>\n    <priority>${u.priority}</priority>\n  </url>`
-    )
-    .join("\n");
-
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${corpo}\n</urlset>`;
-}
-
-async function startServer() {
-  const app = express();
-  const PORT = parseInt(process.env.PORT || "3000", 10);
-
-  app.use(express.json({ limit: "50mb" }));
-
-  // ==========================================
-  // SITEMAP E ROBOTS (dinâmicos)
-  // Declarados antes do static, para terem prioridade sobre arquivos em /public
-  // ==========================================
-  app.get("/sitemap.xml", (_req, res) => {
-    res.setHeader("Content-Type", "application/xml; charset=utf-8");
-    res.setHeader("Cache-Control", "public, max-age=3600");
-    res.send(gerarSitemap());
-  });
-
-  app.get("/robots.txt", (_req, res) => {
-    res.setHeader("Content-Type", "text/plain; charset=utf-8");
-    res.send(`User-agent: *\nAllow: /\n\nSitemap: ${BASE_URL}/sitemap.xml\n`);
-  });
-
-  // ==========================================
-  // ROTA: GERAR PIX (MERCADO PAGO)
-  // Aceita valor variável. Padrão 19.90 (CheckMulta trânsito).
-  // Procon usa 99.00, enviado pelo front.
-  // ==========================================
-  app.post("/api/create-payment", async (req, res) => {
-    try {
-      if (!process.env.MERCADO_PAGO_ACCESS_TOKEN) {
-        return res.status(500).json({ error: "MERCADO_PAGO_ACCESS_TOKEN não configurado." });
-      }
-      const { email, valor, descricao } = req.body;
-
-      // Valores permitidos (trava de segurança: impede manipulação pelo cliente)
-      const VALORES_PERMITIDOS = [19.90, 39.90, 49.90, 79.00, 79.90, 99.00];
-      const valorFinal = VALORES_PERMITIDOS.includes(Number(valor)) ? Number(valor) : 19.90;
-
-      const paymentData = {
-        body: {
-          transaction_amount: valorFinal,
-          description: descricao || "Criação de Recurso - CheckMulta",
-          payment_method_id: "pix",
-          payer: { email: email || "cliente@checkmulta.com.br" },
-        },
-      };
-      const response = await paymentClient.create(paymentData);
-      res.json({
-        id: response.id,
-        status: response.status,
-        qr_code: response.point_of_interaction?.transaction_data?.qr_code,
-        qr_code_base64: response.point_of_interaction?.transaction_data?.qr_code_base64,
-      });
-    } catch (err: any) {
-      console.error("Erro ao criar pagamento:", err);
-      res.status(500).json({ error: err.message || "Erro interno ao gerar o Pix." });
-    }
-  });
-
-  app.get("/api/check-payment/:id", async (req, res) => {
-    try {
-      const paymentId = Number(req.params.id);
-      if (!paymentId) return res.status(400).json({ error: "ID inválido" });
-      const payment = await paymentClient.get({ id: paymentId });
-      res.json({ status: payment.status });
-    } catch (err: any) {
-      console.error("Erro ao checar pagamento:", err);
-      res.status(500).json({ error: "Erro interno ao verificar Pix" });
-    }
-  });
-
-  // ==========================================
-  // ROTA: ANALISAR MULTA (PROMPT BLINDADO - 2026)
-  // Diagnóstico DOSADO: mostra qual campo falhou e que é grave (a "pista"),
-  // mas NÃO entrega a tese jurídica articulada (isso é o produto pago).
-  // ==========================================
-  app.post("/api/analyze-ticket", async (req, res) => {
-    try {
-      const { imageBase64, mimeType = "image/jpeg" } = req.body;
-      if (!imageBase64) return res.status(400).json({ error: "Dados da imagem ausentes." });
-
-      const ai = getAIClient();
-
-      const prompt = PROMPT_ANALYZE_TICKET;
-
-      const response = await gerarComRetry(() => ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
-        contents: [
-          { role: "user", parts: [{ inlineData: { data: imageBase64, mimeType: mimeType } }, { text: prompt }] }
-        ],
-        config: { temperature: 0.0 }
-      }));
-
-      // AUDITORIA: confere o relatório contra a transcrição do próprio documento
-      // e remove o bloco de transcrição antes de enviar ao navegador.
-      const resultText = validarAnaliseTransito((response.text || "").trim());
-      res.json({ result: resultText });
-    } catch (err: any) {
-      console.error("API Error in analyze-ticket:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
-        return res.status(429).json({ error: "SERVER_BUSY" });
-      }
-      res.status(500).json({ error: err.message || "Internal server error" });
-    }
-  });
-
-  // ==========================================
-  // ROTA: GERAÇÃO DA PETIÇÃO COMPLETA
-  // Aqui SIM entra toda a fundamentação jurídica (o produto pago).
-  // ==========================================
-  app.post("/api/generate-defense", async (req, res) => {
-    try {
-      const { extractedData } = req.body;
-      if (!extractedData) return res.status(400).json({ error: "extractedData ausente." });
-
-      const ai = getAIClient();
-
-const prompt = promptGenerateDefense(extractedData);
-
-      const response = await gerarComRetry(() => ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
-        contents: [{ role: "user", parts: [{ text: prompt }] }],
-        config: { temperature: 0.0 }
-      }));
-
-      const resultText = response.text || "";
-      res.json({ result: resultText.trim() });
-    } catch (err: any) {
-      console.error("API Error in generate-defense:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
-        return res.status(429).json({ error: "SERVER_BUSY" });
-      }
-      res.status(500).json({ error: err.message || "Internal server error" });
-    }
-  });
-
-  // ==========================================
-  // ROTA: ANALISAR AUTO DE INFRAÇÃO DO PROCON (GRÁTIS)
-  // Aceita PDF ou imagem. Retorna JSON com os vícios encontrados.
-  // Regra central: só aponta vício se copiar o trecho do documento.
-  // ==========================================
-  app.post("/api/analyze-procon", async (req, res) => {
-    try {
-      const { fileBase64, mimeType = "application/pdf" } = req.body;
-      if (!fileBase64) return res.status(400).json({ error: "Documento ausente." });
-
-      const ai = getAIClient();
-
-const prompt = PROMPT_ANALYZE_PROCON;
-
-      const response = await gerarComRetry(() => ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
-        contents: [
-          { role: "user", parts: [{ inlineData: { data: fileBase64, mimeType: mimeType } }, { text: prompt }] }
-        ],
-        config: { temperature: 0.0 }
-      }));
-
-      let resultText = (response.text || "").trim();
-
-      // Casos de rejeição direta
-      if (resultText === "documento_invalido" || resultText === "documento_ilegivel") {
-        return res.json({ result: resultText });
-      }
-
-      // Limpa possíveis cercas de código
-      resultText = resultText.replace(/```json/gi, "").replace(/```/g, "").trim();
-
-      let parsed: any;
-      try {
-        parsed = JSON.parse(resultText);
-      } catch {
-        console.error("Falha ao parsear JSON do Procon:", resultText.slice(0, 500));
-        return res.status(500).json({ error: "Falha ao processar a análise. Tente novamente." });
-      }
-
-      // AUDITORIA DETERMINÍSTICA (prompts/validador.ts)
-      // Confere cada achado contra a transcrição do documento: trecho real,
-      // números reais, citação dentro da lista fechada. O que não passa é
-      // descartado antes de chegar ao navegador.
-      const auditoria = validarAnaliseJSON(parsed, "procon");
-      if (auditoria.ilegivel) {
-        return res.json({ result: "documento_ilegivel" });
-      }
-      // Conferência da vertical feita em código: o cabeçalho pode ter ficado
-      // cortado fora da foto e o modelo não reconhecer o órgão emissor.
-      if (auditoria.invalido) {
-        return res.json({ result: "documento_invalido" });
-      }
-      if (auditoria.descartados > 0) {
-        console.warn(`Procon: ${auditoria.descartados} achado(s) descartado(s) na auditoria.`);
-      }
-
-      res.json({ result: auditoria.parsed });
-    } catch (err: any) {
-      console.error("API Error in analyze-procon:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
-        return res.status(429).json({ error: "SERVER_BUSY" });
-      }
-      res.status(500).json({ error: err.message || "Internal server error" });
-    }
-  });
-
-  // ==========================================
-  // ROTA: GERAR DEFESA ADMINISTRATIVA DO PROCON (PAGO)
-  // ==========================================
-  app.post("/api/generate-defense-procon", async (req, res) => {
-    try {
-      const { analise } = req.body;
-      if (!analise) return res.status(400).json({ error: "analise ausente." });
-
-      const ai = getAIClient();
-
-      const dados = typeof analise === "string" ? analise : JSON.stringify(analise, null, 2);
-
-const prompt = promptGenerateDefenseProcon(dados);
-
-      const response = await gerarComRetry(() => ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
-        contents: [{ role: "user", parts: [{ text: prompt }] }],
-        config: { temperature: 0.0 }
-      }));
-
-      const resultText = response.text || "";
-      res.json({ result: resultText.trim() });
-    } catch (err: any) {
-      console.error("API Error in generate-defense-procon:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
-        return res.status(429).json({ error: "SERVER_BUSY" });
-      }
-      res.status(500).json({ error: err.message || "Internal server error" });
-    }
-  });
-
-
-  // ==========================================
-  // ROTA: ANALISAR AUTO DA VIGILÂNCIA SANITÁRIA (GRÁTIS)
-  // Aceita PDF ou imagem. Retorna JSON com as falhas encontradas.
-  // Regra central: só aponta falha se copiar o trecho do documento.
-  // ==========================================
-  app.post("/api/analyze-vigilancia", async (req, res) => {
-    try {
-      const { fileBase64, mimeType = "application/pdf" } = req.body;
-      if (!fileBase64) return res.status(400).json({ error: "Documento ausente." });
-
-      const ai = getAIClient();
-
-const prompt = PROMPT_ANALYZE_VIGILANCIA;
-
-      const response = await gerarComRetry(() => ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
-        contents: [
-          { role: "user", parts: [{ inlineData: { data: fileBase64, mimeType: mimeType } }, { text: prompt }] }
-        ],
-        config: { temperature: 0.0 }
-      }));
-
-      let resultText = (response.text || "").trim();
-
-      // Casos de rejeição direta
-      if (resultText === "documento_invalido" || resultText === "documento_ilegivel") {
-        return res.json({ result: resultText });
-      }
-
-      // Limpa possíveis cercas de código
-      resultText = resultText.replace(/```json/gi, "").replace(/```/g, "").trim();
-
-      let parsed: any;
-      try {
-        parsed = JSON.parse(resultText);
-      } catch {
-        console.error("Falha ao parsear JSON da Vigilância:", resultText.slice(0, 500));
-        return res.status(500).json({ error: "Falha ao processar a análise. Tente novamente." });
-      }
-
-      // AUDITORIA DETERMINÍSTICA (prompts/validador.ts)
-      const auditoria = validarAnaliseJSON(parsed, "vigilancia");
-      if (auditoria.ilegivel) {
-        return res.json({ result: "documento_ilegivel" });
-      }
-      // Conferência da vertical feita em código: o cabeçalho pode ter ficado
-      // cortado fora da foto e o modelo não reconhecer o órgão emissor.
-      if (auditoria.invalido) {
-        return res.json({ result: "documento_invalido" });
-      }
-      if (auditoria.descartados > 0) {
-        console.warn(`Vigilância: ${auditoria.descartados} achado(s) descartado(s) na auditoria.`);
-      }
-
-      res.json({ result: auditoria.parsed });
-    } catch (err: any) {
-      console.error("API Error in analyze-vigilancia:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
-        return res.status(429).json({ error: "SERVER_BUSY" });
-      }
-      res.status(500).json({ error: err.message || "Internal server error" });
-    }
-  });
-
-  // ==========================================
-  // ROTA: GERAR DEFESA DA VIGILÂNCIA SANITÁRIA (PAGO)
-  // ==========================================
-  app.post("/api/generate-defense-vigilancia", async (req, res) => {
-    try {
-      const { analise } = req.body;
-      if (!analise) return res.status(400).json({ error: "analise ausente." });
-
-      const ai = getAIClient();
-
-      const dados = typeof analise === "string" ? analise : JSON.stringify(analise, null, 2);
-
-const prompt = promptGenerateDefenseVigilancia(dados);
-
-      const response = await gerarComRetry(() => ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
-        contents: [{ role: "user", parts: [{ text: prompt }] }],
-        config: { temperature: 0.0 }
-      }));
-
-      const resultText = response.text || "";
-      res.json({ result: resultText.trim() });
-    } catch (err: any) {
-      console.error("API Error in generate-defense-vigilancia:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
-        return res.status(429).json({ error: "SERVER_BUSY" });
-      }
-      res.status(500).json({ error: err.message || "Internal server error" });
-    }
-  });
-
-  // ==========================================
-  // ROTA: ANALISAR TOI DE ENERGIA ELÉTRICA (GRÁTIS)
-  // ==========================================
-  app.post("/api/analyze-energia", async (req, res) => {
-    try {
-      const { fileBase64, mimeType = "application/pdf" } = req.body;
-      if (!fileBase64) return res.status(400).json({ error: "Documento ausente." });
-
-      const ai = getAIClient();
-
-      const prompt = PROMPT_ANALYZE_ENERGIA;
-
-      const response = await gerarComRetry(() => ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
-        contents: [
-          { role: "user", parts: [{ inlineData: { data: fileBase64, mimeType: mimeType } }, { text: prompt }] }
-        ],
-        config: { temperature: 0.0 }
-      }));
-
-      let resultText = (response.text || "").trim();
-
-      if (resultText === "documento_invalido" || resultText === "documento_ilegivel") {
-        return res.json({ result: resultText });
-      }
-
-      resultText = resultText.replace(/```json/gi, "").replace(/```/g, "").trim();
-
-      let parsed: any;
-      try {
-        parsed = JSON.parse(resultText);
-      } catch {
-        console.error("Falha ao parsear JSON de Energia:", resultText.slice(0, 500));
-        return res.status(500).json({ error: "Falha ao processar a análise. Tente novamente." });
-      }
-
-      // Rejeição vinda dentro do JSON
-      if (parsed.status === "documento_invalido" || parsed.status === "documento_ilegivel") {
-        return res.json({ result: parsed.status });
-      }
-
-      // TODO: acoplar validarAnaliseJSON(parsed, "energia") quando o validador
-      // conhecer a vertical de energia. Ver observação abaixo.
-
-      res.json({ result: parsed });
-    } catch (err: any) {
-      console.error("API Error in analyze-energia:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
-        return res.status(429).json({ error: "SERVER_BUSY" });
-      }
-      res.status(500).json({ error: err.message || "Internal server error" });
-    }
-  });
-
-  // ==========================================
-  // ROTA: GERAR CONTESTAÇÃO DE ENERGIA (PAGO)
-  // ==========================================
-  app.post("/api/generate-defense-energia", async (req, res) => {
-    try {
-      const { analise } = req.body;
-      if (!analise) return res.status(400).json({ error: "analise ausente." });
-
-      const ai = getAIClient();
-
-      const dados = typeof analise === "string" ? analise : JSON.stringify(analise, null, 2);
-
-      const rascunho = await gerarComRetry(() => ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
-        contents: [{ role: "user", parts: [{ text: promptGenerateDefenseEnergia(dados) }] }],
-        config: { temperature: 0.0 }
-      }));
-
-      const textoRascunho = (rascunho.text || "").trim();
-
-      // Segunda passada: revisor jurídico
-      let textoFinal = textoRascunho;
-      try {
-        const revisao = await gerarComRetry(() => ai.models.generateContent({
-          model: "gemini-3.1-flash-lite",
-          contents: [{ role: "user", parts: [{ text: promptRevisorEnergia(textoRascunho, dados) }] }],
-          config: { temperature: 0.0 }
-        }));
-
-        let revText = (revisao.text || "").trim().replace(/```json/gi, "").replace(/```/g, "").trim();
-        const revParsed = JSON.parse(revText);
-
-        if (revParsed.texto_final && String(revParsed.texto_final).trim().length > 200) {
-          textoFinal = String(revParsed.texto_final).trim();
-          if (revParsed.aprovado === false) {
-            console.warn("Energia: revisor aplicou correções:", revParsed.correcoes_aplicadas);
-          }
-        }
-      } catch (e) {
-        console.warn("Energia: revisor falhou, entregando rascunho.", e);
-      }
-
-      res.json({ result: textoFinal });
-    } catch (err: any) {
-      console.error("API Error in generate-defense-energia:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
-        return res.status(429).json({ error: "SERVER_BUSY" });
-      }
-      res.status(500).json({ error: err.message || "Internal server error" });
-    }
-  });
-
-  if (process.env.NODE_ENV !== "production") {
-    const vite = await createViteServer({
-      server: { middlewareMode: true },
-      appType: "spa",
-    });
-    app.use(vite.middlewares);
-  } else {
-    const distPath = path.join(process.cwd(), "dist");
-
-    // Carrega o index.html uma vez na memória
-    const indexHtmlPath = path.join(distPath, "index.html");
-    let indexHtml = "";
-    try {
-      indexHtml = fs.readFileSync(indexHtmlPath, "utf-8");
-    } catch (e) {
-      console.error("Não foi possível ler dist/index.html:", e);
-    }
-
-    app.use(express.static(distPath, { index: false }));
-
-    // SEO: injeta meta tags corretas por rota antes de enviar o HTML
-    app.get("*", (req, res) => {
-      if (!indexHtml) {
-        return res.sendFile(indexHtmlPath);
-      }
-      const meta = getMetaParaRota(req.path);
-      const html = injetarMeta(indexHtml, meta);
-      res.setHeader("Content-Type", "text/html; charset=utf-8");
-      res.send(html);
-    });
-  }
-
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-}
-
-startServer().catch(console.error);
+"aprovado" é false quando você removeu argumento inteiro ou citação por erro de rótulo —
+o texto corrigido vai igualmente em "texto_final". Nunca devolva "texto_final" vazio.
+`;
