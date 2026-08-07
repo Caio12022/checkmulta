@@ -2141,6 +2141,14 @@ if (!v) return null;
                                 <div className="text-sm text-slate-700">
                                   <p className="font-semibold text-slate-900">Identifique o órgão autuador no seu documento</p>
                                   <p className="mt-0.5 text-slate-600">Confira no Auto de Infração, na Notificação de Autuação ou na Notificação de Penalidade quem aplicou a multa: DETRAN do seu estado, PRF (rodovia federal), DER (rodovia estadual), prefeitura municipal, ou outro órgão. É a esse órgão que a defesa deve ser enviada — não existe um portal único nacional.</p>
+                                  <a
+                                    href="https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/multas-duvidas-gerais"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
+                                  >
+                                    Ver como identificar o órgão autuador (gov.br)
+                                  </a>
                                 </div>
                               </div>
 
@@ -2148,7 +2156,15 @@ if (!v) return null;
                                 <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">2</div>
                                 <div className="text-sm text-slate-700">
                                   <p className="font-semibold text-slate-900">Acesse o portal digital do órgão identificado</p>
-                                  <p className="mt-0.5 text-slate-600">Busque "DETRAN" + o nome do seu estado (ex.: DETRAN-SP, DETRAN-PR, DETRAN-MG) para encontrar o serviço de "defesa prévia" ou "recurso de multa". A maioria permite protocolar online com login via portal próprio ou conta gov.br, anexando o requerimento e os documentos pedidos.</p>
+                                  <p className="mt-0.5 text-slate-600">Busque "DETRAN" + o nome do seu estado (ex.: DETRAN-SP, DETRAN-PR, DETRAN-MG) para encontrar o serviço de "defesa prévia" ou "recurso de multa". A maioria permite protocolar online com login via portal próprio ou conta gov.br, anexando o requerimento e os documentos pedidos. Você também pode consultar suas infrações pelo Portal de Serviços da Senatran, que reúne autuações de vários órgãos.</p>
+                                  <a
+                                    href="https://www.gov.br/pt-br/servicos/consultar-online-suas-infracoes-de-transito"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
+                                  >
+                                    Consultar infrações no Portal Senatran
+                                  </a>
                                 </div>
                               </div>
 
