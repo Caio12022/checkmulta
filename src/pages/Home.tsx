@@ -9,7 +9,7 @@ import {
   Scale, QrCode, X, Copy, Download, Check, Search, FileText,
   Lock, UserX, Route, ArrowDown, RefreshCcw, MessageSquare,
   ClipboardList, Menu, Timer, Camera, TrafficCone, Car,
-  Smartphone, Map, PlusCircle, Calendar, DollarSign, Tag, Building2, Clock
+  Smartphone, Map, PlusCircle, Calendar, DollarSign, Tag, Building2
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
@@ -277,7 +277,13 @@ export default function App() {
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
   const [isPixCopied, setIsPixCopied] = useState(false);
 
-  const [isProtocoloExpandido, setIsProtocoloExpandido] = useState(true);
+  /* Retomada de sessao.
+     Quando o usuario volta e ja existe defesa paga guardada, a pagina NAO abre
+     o resultado direto: mostra a escolha entre reabrir o que ele comprou ou
+     comecar de novo. Comecar de novo passa por confirmacao, porque descarta a
+     peca paga. */
+  const [showRetomarModal, setShowRetomarModal] = useState(false);
+  const [showConfirmNovaModal, setShowConfirmNovaModal] = useState(false);
   const [isSeoOpen, setIsSeoOpen] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -345,26 +351,15 @@ export default function App() {
     // Prioridade 1: a defesa final já tinha sido gerada e paga. Mostra
     // direto, sem chamar a IA de novo — cobre fechar a aba DEPOIS que o
     // texto ficou pronto, que antes perdia tudo.
-    //
-    // Expira em 7 dias: passado esse prazo a situação da multa pode ter
-    // mudado (pagamento, julgamento, prazo do recurso), então não faz
-    // sentido reabrir uma defesa velha como se fosse atual.
-    const SETE_DIAS_MS = 7 * 24 * 60 * 60 * 1000;
     const savedDefense = localStorage.getItem("checkmulta_defense_result");
-    const savedDefenseSavedAt = localStorage.getItem("checkmulta_defense_saved_at");
     const savedPaidStatus = localStorage.getItem("checkmulta_paid_status");
-    const defesaExpirada =
-      savedDefenseSavedAt && Date.now() - Number(savedDefenseSavedAt) > SETE_DIAS_MS;
-
-    if (defesaExpirada) {
-      localStorage.removeItem("checkmulta_defense_result");
-      localStorage.removeItem("checkmulta_defense_saved_at");
-      localStorage.removeItem("checkmulta_paid_status");
-    } else if (savedDefense && savedPaidStatus === "true" && !defenseResult) {
+    if (savedDefense && savedPaidStatus === "true" && !defenseResult) {
       setDefenseResult(savedDefense);
       setIsPaid(true);
-      setIsResultModalOpen(true);
+      setHasAnalyzed(true);
       setShowSuccessMessage(true);
+      /* Nao abre o resultado automaticamente: oferece a escolha. */
+      setShowRetomarModal(true);
       return;
     }
 
@@ -376,8 +371,9 @@ export default function App() {
       setResult(savedResult);
       setPrecoDefesa(definirPreco(savedResult));
       setIsPaid(true);
-      setIsResultModalOpen(true);
-      generateDefense(savedResult);
+      setHasAnalyzed(true);
+      /* Nao abre o resultado automaticamente: oferece a escolha. */
+      setShowRetomarModal(true);
     }
   }, []);
 
@@ -474,24 +470,6 @@ export default function App() {
 
   // ─── HANDLERS ────────────────────────────────────────────────────────────
   const handleViolationSelect = (violationName: string) => {
-    // Já existe uma defesa gerada/paga (inclusive vinda do localStorage dos
-    // últimos 7 dias). Confirma antes de liberar, pois seguir vai substituir
-    // o resultado salvo.
-    if (isPaid || defenseResult) {
-      const confirmar = window.confirm(
-        "Você já tem uma defesa pronta salva. Se enviar um novo documento, esse resultado será substituído e não poderá ser recuperado depois. Deseja continuar mesmo assim?"
-      );
-      if (!confirmar) {
-        // Cancelou: a defesa salva continua intacta, mas o modal de
-        // resultado estava fechado (usuário estava na tela inicial). Reabre
-        // mostrando a defesa pronta, em vez de deixá-la "sumida" até um
-        // refresh manual da página.
-        setIsResultModalOpen(true);
-        setShowSuccessMessage(true);
-        return;
-      }
-      clearImage();
-    }
     setSelectedViolation(violationName);
     setIsUploadModalOpen(true);
     track("violation_selected", "funil_1_infracao_selecionada", { violation_type: violationName });
@@ -533,13 +511,40 @@ export default function App() {
     setPrecoDefesa(PRECO_BAIXO);
     localStorage.removeItem("checkmulta_saved_result");
     localStorage.removeItem("checkmulta_defense_result");
-    localStorage.removeItem("checkmulta_defense_saved_at");
     localStorage.removeItem("checkmulta_paid_status");
     localStorage.removeItem("checkmulta_pending_payment");
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   // Reseta tudo e volta para os cards de seleção de infração — sem rastro do estado anterior
+  /* Reabre a peca ja paga. Se o texto nao veio do storage (aba fechada antes de
+     a geracao terminar), gera uma unica vez. */
+  const handleAbrirDefesaSalva = () => {
+    setShowRetomarModal(false);
+    setIsResultModalOpen(true);
+    if (!defenseResult && result) generateDefense(result);
+  };
+
+  /* Comecar de novo descarta a peca paga: exige confirmacao. */
+  const handlePedirNovaAnalise = () => {
+    setShowRetomarModal(false);
+    setShowConfirmNovaModal(true);
+  };
+
+  const handleConfirmarNovaAnalise = () => {
+    setShowConfirmNovaModal(false);
+    setDefenseResult(null);
+    setResult(null);
+    setIsPaid(false);
+    clearImage();
+  };
+
+  /* Desistiu de comecar de novo: volta para a escolha, sem perder nada. */
+  const handleCancelarNovaAnalise = () => {
+    setShowConfirmNovaModal(false);
+    setShowRetomarModal(true);
+  };
+
   const handleNovaAnalise = () => {
     clearImage();
     setIsResultModalOpen(false);
@@ -778,7 +783,6 @@ export default function App() {
       // a aba neste instante ou depois, o texto pronto (já pago) se perdia
       // sem qualquer forma de recuperar.
       localStorage.setItem("checkmulta_defense_result", data.result);
-      localStorage.setItem("checkmulta_defense_saved_at", String(Date.now()));
       localStorage.removeItem("checkmulta_saved_result");
       localStorage.removeItem("checkmulta_pending_payment");
     } catch (err: any) {
@@ -835,7 +839,7 @@ export default function App() {
       {/* HEADER */}
       <header className="sticky top-0 z-40 border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <a href="/multa-de-transito" className="flex items-center">
+          <a href="/" className="flex items-center">
             <img
               src="/checkmulta-logo.webp"
               alt="CheckMulta"
@@ -855,8 +859,6 @@ export default function App() {
             <a href="/blog" className="transition hover:text-emerald-600">Blog</a>
             <a href="/procon" className="transition hover:text-emerald-600">Procon</a>
             <a href="/vigilancia-sanitaria" className="transition hover:text-emerald-600">Vigilância</a>
-            <a href="/energia" className="transition hover:text-emerald-600">Energia</a>
-            <a href="/ibama" className="transition hover:text-emerald-600">IBAMA</a>
             <button
               onClick={() => setActiveModal("suporte")}
               className="font-semibold text-emerald-600 transition hover:text-emerald-700"
@@ -894,14 +896,6 @@ export default function App() {
                 </a>
                 <a href="/vigilancia-sanitaria" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-between rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">
                   <span>Vigilância Sanitária</span>
-                  <Building2 className="h-4 w-4 text-slate-400" />
-                </a>
-                <a href="/energia" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-between rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">
-                  <span>Energia — cobrança retroativa</span>
-                  <Building2 className="h-4 w-4 text-slate-400" />
-                </a>
-                <a href="/ibama" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-between rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">
-                  <span>IBAMA — infração ambiental</span>
                   <Building2 className="h-4 w-4 text-slate-400" />
                 </a>
                 <button
@@ -1357,7 +1351,7 @@ export default function App() {
       </section>
 
      {/* CARROSSEL DE SERVIÇOS */}
-      <CarrosselServicos excluir={["transito"]} />
+      <CarrosselServicos />
     
 
      {/* CONTEÚDO SEO */}
@@ -1492,7 +1486,7 @@ export default function App() {
           </div>
 
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
-            <a href="/multa-de-transito" className="text-slate-600 transition hover:text-emerald-600">
+            <a href="/" className="text-slate-600 transition hover:text-emerald-600">
               Multas de trânsito
             </a>
             <a href="/simulador-pontos" className="text-slate-600 transition hover:text-emerald-600">
@@ -1506,12 +1500,6 @@ export default function App() {
             </a>
             <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
               Vigilância Sanitária
-            </a>
-            <a href="/energia" className="text-slate-600 transition hover:text-emerald-600">
-              Energia
-            </a>
-            <a href="/ibama" className="text-slate-600 transition hover:text-emerald-600">
-              IBAMA
             </a>
           </nav>
 
@@ -1575,7 +1563,7 @@ export default function App() {
                       accept="image/*,application/pdf"
                       capture="environment"
                       className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
-                      disabled={isAnalyzing}
+                      disabled={isAnalyzing || isPaid}
                       title="Clique para enviar a foto"
                     />
                     <div className="pointer-events-none flex flex-col items-center justify-center space-y-3 py-8">
@@ -2110,90 +2098,6 @@ if (!v) return null;
                           <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos seus dados reais antes de protocolar.
                         </p>
                       </div>
-
-                      {/* PRÓXIMO PASSO: ONDE E COMO PROTOCOLAR */}
-                      <div className="mx-auto w-full rounded-lg border border-emerald-200 bg-emerald-50/60">
-                        <button
-                          type="button"
-                          onClick={() => setIsProtocoloExpandido((p) => !p)}
-                          className="flex w-full items-center justify-between gap-3 p-4 text-left"
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white">
-                              <Route className="h-4.5 w-4.5" />
-                            </div>
-                            <div>
-                              <h3 className="text-base font-bold text-slate-900">Próximo passo: onde protocolar</h3>
-                              <p className="text-xs text-slate-500">Depende do órgão que autuou · guia rápido</p>
-                            </div>
-                          </div>
-                        </button>
-
-                        {isProtocoloExpandido && (
-                          <div className="space-y-4 px-4 pb-5">
-                            <p className="text-sm leading-relaxed text-slate-700">
-                              O protocolo de multas de trânsito varia conforme <strong className="font-semibold">quem aplicou a multa</strong> — DETRAN estadual, PRF, DER, prefeitura ou outro órgão. Veja como identificar o caminho certo:
-                            </p>
-
-                            <div className="space-y-3">
-                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
-                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">1</div>
-                                <div className="text-sm text-slate-700">
-                                  <p className="font-semibold text-slate-900">Identifique o órgão autuador no seu documento</p>
-                                  <p className="mt-0.5 text-slate-600">Confira no Auto de Infração, na Notificação de Autuação ou na Notificação de Penalidade quem aplicou a multa: DETRAN do seu estado, PRF (rodovia federal), DER (rodovia estadual), prefeitura municipal, ou outro órgão. É a esse órgão que a defesa deve ser enviada — não existe um portal único nacional.</p>
-                                  <a
-                                    href="https://www.gov.br/transportes/pt-br/assuntos/transito/conteudo-Senatran/multas-duvidas-gerais"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
-                                  >
-                                    Ver como identificar o órgão autuador (gov.br)
-                                  </a>
-                                </div>
-                              </div>
-
-                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
-                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">2</div>
-                                <div className="text-sm text-slate-700">
-                                  <p className="font-semibold text-slate-900">Acesse o portal digital do órgão identificado</p>
-                                  <p className="mt-0.5 text-slate-600">Busque "DETRAN" + o nome do seu estado (ex.: DETRAN-SP, DETRAN-PR, DETRAN-MG) para encontrar o serviço de "defesa prévia" ou "recurso de multa". A maioria permite protocolar online com login via portal próprio ou conta gov.br, anexando o requerimento e os documentos pedidos. Você também pode consultar suas infrações pelo Portal de Serviços da Senatran, que reúne autuações de vários órgãos.</p>
-                                  <a
-                                    href="https://www.gov.br/pt-br/servicos/consultar-online-suas-infracoes-de-transito"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
-                                  >
-                                    Consultar infrações no Portal Senatran
-                                  </a>
-                                </div>
-                              </div>
-
-                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
-                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">3</div>
-                                <div className="text-sm text-slate-700">
-                                  <p className="font-semibold text-slate-900">Entenda as fases: Defesa Prévia → JARI → CETRAN</p>
-                                  <p className="mt-0.5 text-slate-600">A <strong className="font-semibold">Defesa da Autuação</strong> é apresentada antes da multa ser confirmada. Se não for aceita, cabe recurso à <strong className="font-semibold">JARI</strong> (1ª instância), e se negado, à <strong className="font-semibold">CETRAN</strong> (2ª instância) — sempre dentro do mesmo órgão autuador.</p>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="flex items-start gap-2.5 rounded-lg border border-sky-200 bg-sky-50 p-3">
-                              <UserX className="mt-0.5 h-4 w-4 flex-shrink-0 text-sky-600" />
-                              <p className="text-xs leading-relaxed text-sky-900">
-                                <strong className="font-semibold">Não precisa pagar a multa para recorrer</strong> — nem apresentar Defesa Prévia é obrigatório para poder entrar depois com Recurso à JARI. Guarde sempre o número de protocolo gerado.
-                              </p>
-                            </div>
-
-                            <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3">
-                              <Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-600" />
-                              <p className="text-xs leading-relaxed text-amber-900">
-                                <strong className="font-semibold">Prazo:</strong> a Defesa da Autuação costuma ter até 30 dias; o Recurso à JARI é indicado na Notificação de Penalidade. Confirme sempre a data exata no documento recebido — os prazos podem variar conforme o órgão e o tipo de infração.
-                              </p>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
                       <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">
                         <div className="whitespace-pre-wrap text-left text-[15px] leading-relaxed md:text-base">
                           {formatDocumentText(defenseResult)}
@@ -2291,6 +2195,93 @@ if (!v) return null;
                 </div>
               </motion.div>
             </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* --- RETOMADA DE SESSAO --- */}
+      <AnimatePresence>
+        {showRetomarModal && (
+          <div className="fixed inset-0 z-[70] flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
+            >
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50">
+                <FileText className="h-6 w-6 text-emerald-600" />
+              </div>
+
+              <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 sm:text-xl">
+                Você tem uma defesa pronta
+              </h3>
+              <p className="mb-6 text-sm leading-relaxed text-slate-600">
+                Encontramos a análise da multa que você já pagou. Pode abrir a peça
+                novamente ou começar uma análise nova.
+              </p>
+
+              <div className="space-y-3">
+                <button
+                  onClick={handleAbrirDefesaSalva}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                >
+                  Abrir minha defesa
+                  <FileText className="h-4 w-4" />
+                </button>
+
+                <button
+                  onClick={handlePedirNovaAnalise}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                >
+                  <PlusCircle className="h-4 w-4" />
+                  Analisar outra multa
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* --- CONFIRMACAO ANTES DE DESCARTAR A PECA PAGA --- */}
+      <AnimatePresence>
+        {showConfirmNovaModal && (
+          <div className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
+            >
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50">
+                <AlertCircle className="h-6 w-6 text-amber-600" />
+              </div>
+
+              <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 sm:text-xl">
+                Você vai perder a defesa atual
+              </h3>
+              <p className="mb-6 text-sm leading-relaxed text-slate-600">
+                Ao começar uma análise nova, a peça que você já pagou é apagada deste
+                aparelho e não poderá ser recuperada. Se ainda não salvou o texto,
+                volte e copie antes de prosseguir.
+              </p>
+
+              <div className="space-y-3">
+                <button
+                  onClick={handleCancelarNovaAnalise}
+                  className="w-full rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                >
+                  Não, manter minha defesa
+                </button>
+
+                <button
+                  onClick={handleConfirmarNovaAnalise}
+                  className="w-full rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50"
+                >
+                  Sim, quero analisar outra multa
+                </button>
+              </div>
+            </motion.div>
           </div>
         )}
       </AnimatePresence>
