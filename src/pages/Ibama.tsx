@@ -9,7 +9,8 @@ import {
   Scale, QrCode, X, Copy, Download, Check, Search, FileText,
   Lock, UserX, Route, RefreshCcw, MessageSquare,
   ClipboardList, Menu, Timer, Building2, Leaf,
-  ShieldAlert, FileWarning, PlusCircle, Clock, UploadCloud, Receipt
+  ShieldAlert, FileWarning, PlusCircle, Clock, UploadCloud, Receipt,
+  ExternalLink, ChevronDown, ChevronUp, UserCircle2, Send
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
@@ -190,39 +191,14 @@ export default function Ibama() {
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
   const [isPixCopied, setIsPixCopied] = useState(false);
 
+  const [isProtocoloExpandido, setIsProtocoloExpandido] = useState(true);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // ─── EFEITOS ─────────────────────────────────────────────────────────────
   useEffect(() => {
-    // Prioridade 1: a defesa final já tinha sido gerada e paga. Mostra
-    // direto, sem chamar a IA de novo — cobre fechar a aba DEPOIS que o
-    // texto ficou pronto, que antes perdia tudo.
-    //
-    // Expira em 7 dias: passado esse prazo a situação pode ter mudado
-    // (pagamento, prazo do recurso), então não reabre como se fosse atual.
-    const SETE_DIAS_MS = 7 * 24 * 60 * 60 * 1000;
-    const savedDefense = localStorage.getItem("ibama_defense_result");
-    const savedDefenseSavedAt = localStorage.getItem("ibama_defense_saved_at");
-    const savedPaidStatus = localStorage.getItem("ibama_paid_status");
-    const defesaExpirada =
-      savedDefenseSavedAt && Date.now() - Number(savedDefenseSavedAt) > SETE_DIAS_MS;
-
-    if (defesaExpirada) {
-      localStorage.removeItem("ibama_defense_result");
-      localStorage.removeItem("ibama_defense_saved_at");
-      localStorage.removeItem("ibama_paid_status");
-    } else if (savedDefense && savedPaidStatus === "true" && !defenseResult) {
-      setDefenseResult(savedDefense);
-      setIsPaid(true);
-      setIsResultModalOpen(true);
-      setShowSuccessMessage(true);
-      return;
-    }
-
-    // Prioridade 2: pagou, mas fechou ANTES da defesa terminar de gerar.
-    // Comportamento que já existia — refaz a chamada à IA a partir da
-    // análise salva.
     const savedResult = localStorage.getItem("ibama_saved_result");
+    const savedPaidStatus = localStorage.getItem("ibama_paid_status");
     if (savedResult && savedPaidStatus === "true" && !defenseResult && !isGeneratingDefense) {
       try {
         const parsed = JSON.parse(savedResult) as Analise;
@@ -359,8 +335,6 @@ useEffect(() => {
     setSelectedTipo(null);
     setIsUploadModalOpen(false);
     localStorage.removeItem("ibama_saved_result");
-    localStorage.removeItem("ibama_defense_result");
-    localStorage.removeItem("ibama_defense_saved_at");
     localStorage.removeItem("ibama_paid_status");
     localStorage.removeItem("ibama_pending_payment");
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -553,13 +527,8 @@ useEffect(() => {
       setDefenseResult(data.result);
       setShowSuccessMessage(true);
       setShowFomoBanner(false);
-      // Guarda o resultado final também. Antes, ao terminar de gerar a
-      // defesa o localStorage era limpo por completo — se a pessoa fechasse
-      // a aba neste instante ou depois, o texto pronto (já pago) se perdia
-      // sem qualquer forma de recuperar.
-      localStorage.setItem("ibama_defense_result", data.result);
-      localStorage.setItem("ibama_defense_saved_at", String(Date.now()));
       localStorage.removeItem("ibama_saved_result");
+      localStorage.removeItem("ibama_paid_status");
       localStorage.removeItem("ibama_pending_payment");
     } catch (err: any) {
       clearTimeout(timeoutId);
@@ -629,14 +598,11 @@ useEffect(() => {
           </a>
 
           <nav className="hidden items-center gap-5 text-sm font-medium text-slate-600 lg:flex">
-            <a href="/multa-de-transito" className="transition hover:text-emerald-600">Multas de trânsito</a>
+            <a href="/" className="transition hover:text-emerald-600">Multas de trânsito</a>
             <a href="#como-funciona" className="transition hover:text-emerald-600">Como funciona</a>
             <a href="#seguranca" className="transition hover:text-emerald-600">Segurança</a>
             <a href="#faq-ibama" className="transition hover:text-emerald-600">Dúvidas</a>
             <a href="/ibama/blog" className="transition hover:text-emerald-600">Blog</a>
-            <a href="/procon" className="transition hover:text-emerald-600">Procon</a>
-            <a href="/vigilancia-sanitaria" className="transition hover:text-emerald-600">Vigilância</a>
-            <a href="/energia" className="transition hover:text-emerald-600">Energia</a>
             <button
               onClick={() => setActiveModal("suporte")}
               className="font-semibold text-emerald-600 transition hover:text-emerald-700"
@@ -661,14 +627,11 @@ useEffect(() => {
                 exit={{ opacity: 0, y: -10 }}
                 className="absolute left-0 top-full z-50 flex w-full flex-col space-y-2 border-b border-slate-200 bg-white p-4 shadow-lg lg:hidden"
               >
-                <a href="/multa-de-transito" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Multas de trânsito</a>
+                <a href="/" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Multas de trânsito</a>
                 <a href="#como-funciona" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Como funciona</a>
                 <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Segurança</a>
                 <a href="#faq-ibama" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Dúvidas</a>
                 <a href="/ibama/blog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Blog</a>
-                <a href="/procon" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Procon</a>
-                <a href="/vigilancia-sanitaria" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Vigilância Sanitária</a>
-                <a href="/energia" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Energia</a>
                 <button
                   onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
                   className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-3 text-left font-semibold text-emerald-700 transition"
@@ -1163,7 +1126,7 @@ useEffect(() => {
           </div>
 
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
-<a href="/multa-de-transito" className="text-slate-600 transition hover:text-emerald-600">
+<a href="/" className="text-slate-600 transition hover:text-emerald-600">
               Multas de trânsito
             </a>
             <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
@@ -1670,6 +1633,104 @@ useEffect(() => {
                           <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos seus dados reais antes de protocolar. Confirme o prazo e a forma de protocolo na notificação recebida.
                         </p>
                       </div>
+
+                      {/* PRÓXIMO PASSO: ONDE E COMO PROTOCOLAR */}
+                      <div className="mx-auto w-full rounded-lg border border-emerald-200 bg-emerald-50/60">
+                        <button
+                          type="button"
+                          onClick={() => setIsProtocoloExpandido((p) => !p)}
+                          className="flex w-full items-center justify-between gap-3 p-4 text-left"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white">
+                              <Send className="h-4.5 w-4.5" />
+                            </div>
+                            <div>
+                              <h3 className="text-base font-bold text-slate-900">Próximo passo: onde protocolar</h3>
+                              <p className="text-xs text-slate-500">Protocolo eletrônico pelo SEI-Ibama · guia rápido</p>
+                            </div>
+                          </div>
+                          {isProtocoloExpandido ? (
+                            <ChevronUp className="h-5 w-5 flex-shrink-0 text-emerald-700" />
+                          ) : (
+                            <ChevronDown className="h-5 w-5 flex-shrink-0 text-emerald-700" />
+                          )}
+                        </button>
+
+                        {isProtocoloExpandido && (
+                          <div className="space-y-4 px-4 pb-5">
+                            <p className="text-sm leading-relaxed text-slate-700">
+                              O protocolo de defesas do IBAMA é <strong className="font-semibold">federal e eletrônico</strong>, feito pelo Sistema Eletrônico de Informações (SEI-Ibama). Veja o caminho:
+                            </p>
+
+                            <div className="space-y-3">
+                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
+                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">1</div>
+                                <div className="text-sm text-slate-700">
+                                  <p className="font-semibold text-slate-900">Cadastre-se como usuário externo do SEI-Ibama</p>
+                                  <p className="mt-0.5 text-slate-600">Preencha o formulário de cadastro e envie seus documentos de identificação para <span className="font-mono text-xs">sei.sede@ibama.gov.br</span>. A ativação da conta é confirmada por e-mail.</p>
+                                  <a
+                                    href="https://sei.ibama.gov.br/controlador_externo.php?acao=usuario_externo_logar&id_orgao_acesso_externo=0"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
+                                  >
+                                    Acessar cadastro no SEI-Ibama <ExternalLink className="h-3.5 w-3.5" />
+                                  </a>
+                                </div>
+                              </div>
+
+                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
+                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">2</div>
+                                <div className="text-sm text-slate-700">
+                                  <p className="font-semibold text-slate-900">Protocole a defesa por Peticionamento Eletrônico</p>
+                                  <p className="mt-0.5 text-slate-600">Com a conta ativa, envie o documento no processo já existente pela opção <span className="font-medium">"Peticionamento &gt; Intercorrente"</span>, informando o número do processo (formato <span className="font-mono text-xs">02xxx.xxxxxx/aaaa-xx</span>) que consta na notificação recebida.</p>
+                                </div>
+                              </div>
+
+                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
+                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">3</div>
+                                <div className="text-sm text-slate-700">
+                                  <p className="font-semibold text-slate-900">Não achou o número do processo?</p>
+                                  <p className="mt-0.5 text-slate-600">Consulte pelo seu CPF/CNPJ na Central de Informações do Autuado do IBAMA.</p>
+                                  <a
+                                    href="https://www.gov.br/ibama/pt-br/assuntos/processo-sancionador-ambiental/central-de-informacoes-do-autuado"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
+                                  >
+                                    Central de Informações do Autuado <ExternalLink className="h-3.5 w-3.5" />
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="flex items-start gap-2.5 rounded-lg border border-sky-200 bg-sky-50 p-3">
+                              <UserCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-sky-600" />
+                              <p className="text-xs leading-relaxed text-sky-900">
+                                <strong className="font-semibold">Alternativa sem cadastro no SEI:</strong> é possível enviar o documento pelo{" "}
+                                <a
+                                  href="https://www.gov.br/pt-br/servicos/protocolar-documentos-junto-ao-ibama"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="font-semibold underline hover:text-sky-700"
+                                >
+                                  Protocolo Digital do IBAMA
+                                </a>{" "}
+                                — informando remetente, setor destinatário e assinatura no próprio documento.
+                              </p>
+                            </div>
+
+                            <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3">
+                              <Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-600" />
+                              <p className="text-xs leading-relaxed text-amber-900">
+                                <strong className="font-semibold">Prazo:</strong> a defesa deve ser protocolada em até <strong className="font-semibold">20 dias</strong> a partir do recebimento do auto. Confirme a data exata na notificação — este prazo pode variar conforme a forma de ciência.
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
                       <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">
                         <div className="whitespace-pre-wrap text-left text-[15px] leading-relaxed md:text-base">
                           {formatDocumentText(defenseResult)}
