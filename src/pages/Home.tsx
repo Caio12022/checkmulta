@@ -9,7 +9,7 @@ import {
   Scale, QrCode, X, Copy, Download, Check, Search, FileText,
   Lock, UserX, Route, ArrowDown, RefreshCcw, MessageSquare,
   ClipboardList, Menu, Timer, Camera, TrafficCone, Car,
-  Smartphone, Map, PlusCircle, Calendar, DollarSign, Tag, Building2
+  Smartphone, Map, PlusCircle, Calendar, DollarSign, Tag, Building2, Clock
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
@@ -276,6 +276,8 @@ export default function App() {
   const [qrCode, setQrCode] = useState<string | null>(null);
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
   const [isPixCopied, setIsPixCopied] = useState(false);
+
+  const [isProtocoloExpandido, setIsProtocoloExpandido] = useState(true);
   const [isSeoOpen, setIsSeoOpen] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -472,6 +474,24 @@ export default function App() {
 
   // ─── HANDLERS ────────────────────────────────────────────────────────────
   const handleViolationSelect = (violationName: string) => {
+    // Já existe uma defesa gerada/paga (inclusive vinda do localStorage dos
+    // últimos 7 dias). Confirma antes de liberar, pois seguir vai substituir
+    // o resultado salvo.
+    if (isPaid || defenseResult) {
+      const confirmar = window.confirm(
+        "Você já tem uma defesa pronta salva. Se enviar um novo documento, esse resultado será substituído e não poderá ser recuperado depois. Deseja continuar mesmo assim?"
+      );
+      if (!confirmar) {
+        // Cancelou: a defesa salva continua intacta, mas o modal de
+        // resultado estava fechado (usuário estava na tela inicial). Reabre
+        // mostrando a defesa pronta, em vez de deixá-la "sumida" até um
+        // refresh manual da página.
+        setIsResultModalOpen(true);
+        setShowSuccessMessage(true);
+        return;
+      }
+      clearImage();
+    }
     setSelectedViolation(violationName);
     setIsUploadModalOpen(true);
     track("violation_selected", "funil_1_infracao_selecionada", { violation_type: violationName });
@@ -1555,7 +1575,7 @@ export default function App() {
                       accept="image/*,application/pdf"
                       capture="environment"
                       className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
-                      disabled={isAnalyzing || isPaid}
+                      disabled={isAnalyzing}
                       title="Clique para enviar a foto"
                     />
                     <div className="pointer-events-none flex flex-col items-center justify-center space-y-3 py-8">
@@ -2090,6 +2110,74 @@ if (!v) return null;
                           <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos seus dados reais antes de protocolar.
                         </p>
                       </div>
+
+                      {/* PRÓXIMO PASSO: ONDE E COMO PROTOCOLAR */}
+                      <div className="mx-auto w-full rounded-lg border border-emerald-200 bg-emerald-50/60">
+                        <button
+                          type="button"
+                          onClick={() => setIsProtocoloExpandido((p) => !p)}
+                          className="flex w-full items-center justify-between gap-3 p-4 text-left"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white">
+                              <Route className="h-4.5 w-4.5" />
+                            </div>
+                            <div>
+                              <h3 className="text-base font-bold text-slate-900">Próximo passo: onde protocolar</h3>
+                              <p className="text-xs text-slate-500">Depende do órgão que autuou · guia rápido</p>
+                            </div>
+                          </div>
+                        </button>
+
+                        {isProtocoloExpandido && (
+                          <div className="space-y-4 px-4 pb-5">
+                            <p className="text-sm leading-relaxed text-slate-700">
+                              O protocolo de multas de trânsito varia conforme <strong className="font-semibold">quem aplicou a multa</strong> — DETRAN estadual, PRF, DER, prefeitura ou outro órgão. Veja como identificar o caminho certo:
+                            </p>
+
+                            <div className="space-y-3">
+                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
+                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">1</div>
+                                <div className="text-sm text-slate-700">
+                                  <p className="font-semibold text-slate-900">Identifique o órgão autuador no seu documento</p>
+                                  <p className="mt-0.5 text-slate-600">Confira no Auto de Infração, na Notificação de Autuação ou na Notificação de Penalidade quem aplicou a multa: DETRAN do seu estado, PRF (rodovia federal), DER (rodovia estadual), prefeitura municipal, ou outro órgão. É a esse órgão que a defesa deve ser enviada — não existe um portal único nacional.</p>
+                                </div>
+                              </div>
+
+                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
+                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">2</div>
+                                <div className="text-sm text-slate-700">
+                                  <p className="font-semibold text-slate-900">Acesse o portal digital do órgão identificado</p>
+                                  <p className="mt-0.5 text-slate-600">Busque "DETRAN" + o nome do seu estado (ex.: DETRAN-SP, DETRAN-PR, DETRAN-MG) para encontrar o serviço de "defesa prévia" ou "recurso de multa". A maioria permite protocolar online com login via portal próprio ou conta gov.br, anexando o requerimento e os documentos pedidos.</p>
+                                </div>
+                              </div>
+
+                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
+                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">3</div>
+                                <div className="text-sm text-slate-700">
+                                  <p className="font-semibold text-slate-900">Entenda as fases: Defesa Prévia → JARI → CETRAN</p>
+                                  <p className="mt-0.5 text-slate-600">A <strong className="font-semibold">Defesa da Autuação</strong> é apresentada antes da multa ser confirmada. Se não for aceita, cabe recurso à <strong className="font-semibold">JARI</strong> (1ª instância), e se negado, à <strong className="font-semibold">CETRAN</strong> (2ª instância) — sempre dentro do mesmo órgão autuador.</p>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="flex items-start gap-2.5 rounded-lg border border-sky-200 bg-sky-50 p-3">
+                              <UserX className="mt-0.5 h-4 w-4 flex-shrink-0 text-sky-600" />
+                              <p className="text-xs leading-relaxed text-sky-900">
+                                <strong className="font-semibold">Não precisa pagar a multa para recorrer</strong> — nem apresentar Defesa Prévia é obrigatório para poder entrar depois com Recurso à JARI. Guarde sempre o número de protocolo gerado.
+                              </p>
+                            </div>
+
+                            <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3">
+                              <Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-600" />
+                              <p className="text-xs leading-relaxed text-amber-900">
+                                <strong className="font-semibold">Prazo:</strong> a Defesa da Autuação costuma ter até 30 dias; o Recurso à JARI é indicado na Notificação de Penalidade. Confirme sempre a data exata no documento recebido — os prazos podem variar conforme o órgão e o tipo de infração.
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
                       <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">
                         <div className="whitespace-pre-wrap text-left text-[15px] leading-relaxed md:text-base">
                           {formatDocumentText(defenseResult)}
