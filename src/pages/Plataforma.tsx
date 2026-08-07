@@ -10,6 +10,15 @@ import {
   Menu,
   X,
   MessageSquare,
+  ShieldCheck,
+  Lock,
+  Timer,
+  Car,
+  Scale,
+  Droplet,
+  Zap,
+  Leaf,
+  HelpCircle,
 } from "lucide-react";
 import { VERTICAIS, FERRAMENTAS } from "../data/verticais";
 
@@ -70,6 +79,15 @@ const ORGAOS: Record<string, { orgao: string; oque: string; lei: string }> = {
     oque: "Multa ambiental",
     lei: "Decreto 6.514/08",
   },
+};
+
+/** Ícone de cada vertical na grade de triagem. */
+const ICONES_ORGAO: Record<string, React.ComponentType<{ className?: string }>> = {
+  transito: Car,
+  procon: Scale,
+  vigilancia: Droplet,
+  energia: Zap,
+  ibama: Leaf,
 };
 
 const PASSOS = [
@@ -345,8 +363,33 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Triagem                                                           */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-b border-slate-200">
-        <div className="mx-auto max-w-4xl px-5 py-14 text-center sm:py-20">
+      <section className="relative overflow-hidden border-b border-slate-200">
+        {/* Fundo hexagonal sutil — decorativo, não interativo */}
+        <svg
+          className="pointer-events-none absolute inset-0 h-full w-full text-slate-200"
+          aria-hidden="true"
+        >
+          <defs>
+            <pattern
+              id="hex-pattern"
+              width="56"
+              height="97"
+              patternUnits="userSpaceOnUse"
+              patternTransform="scale(1)"
+            >
+              <path
+                d="M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z M28 64 L56 80 L56 112 L28 128 L0 112 L0 80 Z"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1"
+                opacity="0.5"
+              />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hex-pattern)" />
+        </svg>
+
+        <div className="relative mx-auto max-w-4xl px-5 py-14 text-center sm:py-20">
           <p className="mb-6 font-mono text-[11px] uppercase tracking-widest text-slate-400">
             CheckMulta Tecnologia · CNPJ 63.524.338/0001-62
           </p>
@@ -361,20 +404,33 @@ export default function Plataforma() {
             recorrer.
           </p>
 
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-600">
+            <span className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
+            </span>
+            <span className="flex items-center gap-2">
+              <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
+            </span>
+            <span className="flex items-center gap-2">
+              <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
+            </span>
+          </div>
+
           <div className="mt-10 grid gap-3 text-left sm:grid-cols-2">
             {VERTICAIS.map((v) => {
               const o = ORGAOS[v.id];
+              const Icone = ICONES_ORGAO[v.id];
               return (
                 <a
                   key={v.id}
                   href={v.href}
-                  className="group flex items-center gap-4 rounded-lg border border-slate-200 p-5 transition-colors hover:border-emerald-700 hover:bg-emerald-50/40"
+                  className="group flex items-center gap-4 rounded-lg border border-slate-200 bg-white p-5 transition-colors hover:border-emerald-700 hover:bg-emerald-50/40"
                 >
                   <span
                     className="h-12 w-1 flex-shrink-0 rounded-full"
                     style={{ backgroundColor: v.cor.faixa }}
                   />
-                  <span className="min-w-0">
+                  <span className="min-w-0 flex-1">
                     <span className="block text-base font-semibold text-slate-900 group-hover:text-emerald-800">
                       {o ? o.orgao : v.titulo}
                     </span>
@@ -385,16 +441,19 @@ export default function Plataforma() {
                       {o ? o.lei : v.baseLegal}
                     </span>
                   </span>
+                  {Icone ? (
+                    <Icone className="h-8 w-8 flex-shrink-0 text-slate-300 transition-colors group-hover:text-emerald-600" />
+                  ) : null}
                 </a>
               );
             })}
 
             <a
               href="#areas"
-              className="flex items-center gap-4 rounded-lg border border-dashed border-slate-300 p-5 transition-colors hover:border-slate-400 hover:bg-slate-50"
+              className="flex items-center gap-4 rounded-lg border border-dashed border-slate-300 bg-white p-5 transition-colors hover:border-slate-400 hover:bg-slate-50"
             >
               <span className="h-12 w-1 flex-shrink-0 rounded-full bg-slate-200" />
-              <span>
+              <span className="min-w-0 flex-1">
                 <span className="block text-base font-semibold text-slate-700">
                   Não sei quem me multou
                 </span>
@@ -402,6 +461,7 @@ export default function Plataforma() {
                   Ver todas as áreas e descobrir
                 </span>
               </span>
+              <HelpCircle className="h-8 w-8 flex-shrink-0 text-slate-300" />
             </a>
           </div>
         </div>
