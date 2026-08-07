@@ -442,7 +442,7 @@ export default function BlogPostEnergia() {
           </div>
 
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
-            <Link to="/" className="text-slate-600 transition hover:text-emerald-600">
+            <Link to="/multa-de-transito" className="text-slate-600 transition hover:text-emerald-600">
               Multas de trânsito
             </Link>
             <Link to="/procon" className="text-slate-600 transition hover:text-emerald-600">
