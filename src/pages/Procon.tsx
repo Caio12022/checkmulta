@@ -170,8 +170,6 @@ export default function Procon() {
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
   const [isPixCopied, setIsPixCopied] = useState(false);
 
-  const [isProtocoloExpandido, setIsProtocoloExpandido] = useState(true);
-
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // ─── EFEITOS ─────────────────────────────────────────────────────────────
@@ -179,21 +177,9 @@ export default function Procon() {
     // Prioridade 1: a defesa final já tinha sido gerada e paga. Mostra
     // direto, sem chamar a IA de novo — cobre fechar a aba DEPOIS que o
     // texto ficou pronto, que antes perdia tudo.
-    //
-    // Expira em 7 dias: passado esse prazo a situação pode ter mudado
-    // (pagamento, prazo do recurso), então não reabre como se fosse atual.
-    const SETE_DIAS_MS = 7 * 24 * 60 * 60 * 1000;
     const savedDefense = localStorage.getItem("procon_defense_result");
-    const savedDefenseSavedAt = localStorage.getItem("procon_defense_saved_at");
     const savedPaidStatus = localStorage.getItem("procon_paid_status");
-    const defesaExpirada =
-      savedDefenseSavedAt && Date.now() - Number(savedDefenseSavedAt) > SETE_DIAS_MS;
-
-    if (defesaExpirada) {
-      localStorage.removeItem("procon_defense_result");
-      localStorage.removeItem("procon_defense_saved_at");
-      localStorage.removeItem("procon_paid_status");
-    } else if (savedDefense && savedPaidStatus === "true" && !defenseResult) {
+    if (savedDefense && savedPaidStatus === "true" && !defenseResult) {
       setDefenseResult(savedDefense);
       setIsPaid(true);
       setIsResultModalOpen(true);
@@ -308,24 +294,6 @@ export default function Procon() {
 
   // ─── HANDLERS ────────────────────────────────────────────────────────────
   const handleTipoSelect = (tipoName: string) => {
-    // Já existe uma defesa gerada/paga (inclusive vinda do localStorage dos
-    // últimos 7 dias). Confirma antes de liberar, pois seguir vai substituir
-    // o resultado salvo.
-    if (isPaid || defenseResult) {
-      const confirmar = window.confirm(
-        "Você já tem uma defesa pronta salva. Se enviar um novo documento, esse resultado será substituído e não poderá ser recuperado depois. Deseja continuar mesmo assim?"
-      );
-      if (!confirmar) {
-        // Cancelou: a defesa salva continua intacta, mas o modal de
-        // resultado estava fechado (usuário estava na tela inicial). Reabre
-        // mostrando a defesa pronta, em vez de deixá-la "sumida" até um
-        // refresh manual da página.
-        setIsResultModalOpen(true);
-        setShowSuccessMessage(true);
-        return;
-      }
-      clearImage();
-    }
     setSelectedTipo(tipoName);
     setIsUploadModalOpen(true);
     track("procon_tipo_selecionado", "procon_1_tipo_selecionado", { tipo: tipoName });
@@ -364,7 +332,6 @@ export default function Procon() {
     setIsUploadModalOpen(false);
     localStorage.removeItem("procon_saved_result");
     localStorage.removeItem("procon_defense_result");
-    localStorage.removeItem("procon_defense_saved_at");
     localStorage.removeItem("procon_paid_status");
     localStorage.removeItem("procon_pending_payment");
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -562,7 +529,6 @@ export default function Procon() {
       // a aba neste instante ou depois, o texto pronto (já pago) se perdia
       // sem qualquer forma de recuperar.
       localStorage.setItem("procon_defense_result", data.result);
-      localStorage.setItem("procon_defense_saved_at", String(Date.now()));
       localStorage.removeItem("procon_saved_result");
       localStorage.removeItem("procon_pending_payment");
     } catch (err: any) {
@@ -637,9 +603,6 @@ export default function Procon() {
             <a href="#seguranca" className="transition hover:text-emerald-600">Segurança</a>
             <a href="#faq-procon" className="transition hover:text-emerald-600">Dúvidas</a>
             <a href="/procon/blog" className="transition hover:text-emerald-600">Blog</a>
-            <a href="/vigilancia-sanitaria" className="transition hover:text-emerald-600">Vigilância</a>
-            <a href="/energia" className="transition hover:text-emerald-600">Energia</a>
-            <a href="/ibama" className="transition hover:text-emerald-600">IBAMA</a>
             <button
               onClick={() => setActiveModal("suporte")}
               className="font-semibold text-emerald-600 transition hover:text-emerald-700"
@@ -669,9 +632,6 @@ export default function Procon() {
                 <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Segurança</a>
                 <a href="#faq-procon" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Dúvidas</a>
                 <a href="/procon/blog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Blog</a>
-                <a href="/vigilancia-sanitaria" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Vigilância Sanitária</a>
-                <a href="/energia" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Energia</a>
-                <a href="/ibama" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">IBAMA</a>
                 <button
                   onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
                   className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-3 text-left font-semibold text-emerald-700 transition"
@@ -1183,7 +1143,7 @@ export default function Procon() {
             <a href="/simulador-pontos" className="text-slate-600 transition hover:text-emerald-600">
               Simulador de pontos
             </a>
-            <a href="/multa-de-transito/blog" className="text-slate-600 transition hover:text-emerald-600">
+            <a href="/blog" className="text-slate-600 transition hover:text-emerald-600">
               Blog de trânsito
             </a>
             <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
@@ -1194,12 +1154,6 @@ export default function Procon() {
             </a>
             <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
               Vigilância Sanitária
-            </a>
-            <a href="/energia" className="text-slate-600 transition hover:text-emerald-600">
-              Energia
-            </a>
-            <a href="/ibama" className="text-slate-600 transition hover:text-emerald-600">
-              IBAMA
             </a>
           </nav>
 
@@ -1260,7 +1214,7 @@ export default function Procon() {
                       onChange={handleFileSelect}
                       accept="image/*,application/pdf"
                       className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
-                      disabled={isAnalyzing}
+                      disabled={isAnalyzing || isPaid}
                       title="Clique para enviar o documento"
                     />
                     <div className="pointer-events-none flex flex-col items-center justify-center space-y-3 py-8">
@@ -1692,82 +1646,6 @@ export default function Procon() {
                           <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos dados reais da empresa antes de protocolar. Confirme o prazo e a forma de protocolo junto ao Procon emissor.
                         </p>
                       </div>
-
-                      {/* PRÓXIMO PASSO: ONDE E COMO PROTOCOLAR */}
-                      <div className="mx-auto w-full rounded-lg border border-emerald-200 bg-emerald-50/60">
-                        <button
-                          type="button"
-                          onClick={() => setIsProtocoloExpandido((p) => !p)}
-                          className="flex w-full items-center justify-between gap-3 p-4 text-left"
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white">
-                              <Route className="h-4.5 w-4.5" />
-                            </div>
-                            <div>
-                              <h3 className="text-base font-bold text-slate-900">Próximo passo: onde protocolar</h3>
-                              <p className="text-xs text-slate-500">Plataforma nacional ou Procon do seu estado · guia rápido</p>
-                            </div>
-                          </div>
-                        </button>
-
-                        {isProtocoloExpandido && (
-                          <div className="space-y-4 px-4 pb-5">
-                            <p className="text-sm leading-relaxed text-slate-700">
-                              O protocolo de reclamações do Procon varia por estado, mas há um caminho nacional que funciona para a maioria dos casos. Veja o caminho:
-                            </p>
-
-                            <div className="space-y-3">
-                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
-                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">1</div>
-                                <div className="text-sm text-slate-700">
-                                  <p className="font-semibold text-slate-900">Verifique se a empresa está no Consumidor.gov.br</p>
-                                  <p className="mt-0.5 text-slate-600">É a plataforma nacional oficial (Senacon/MJSP), gratuita, com login pela conta gov.br. A empresa tem <strong className="font-semibold">até 10 dias</strong> para responder. Funciona para a maioria das grandes empresas — bancos, telefonia, varejo, companhias aéreas, entre outras.</p>
-                                  <a
-                                    href="https://www.consumidor.gov.br/pages/principal/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
-                                  >
-                                    Acessar Consumidor.gov.br
-                                  </a>
-                                </div>
-                              </div>
-
-                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
-                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">2</div>
-                                <div className="text-sm text-slate-700">
-                                  <p className="font-semibold text-slate-900">Empresa não participa? Procure o Procon do seu estado</p>
-                                  <p className="mt-0.5 text-slate-600">Cada estado tem seu próprio Procon, com canal digital de reclamação e documentos exigidos próprios. Busque "Procon" + o nome do seu estado para encontrar o site oficial (ex.: Procon-SP, Procon-PR, Procon-RJ).</p>
-                                </div>
-                              </div>
-
-                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
-                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">3</div>
-                                <div className="text-sm text-slate-700">
-                                  <p className="font-semibold text-slate-900">Organize a reclamação em três partes</p>
-                                  <p className="mt-0.5 text-slate-600">Fatos (datas, valores, o que aconteceu), provas (nota fiscal, prints, protocolos anteriores) e pedido específico (reembolso, troca, cancelamento, correção de cobrança). <strong className="font-semibold">Guarde sempre o número do protocolo</strong> gerado ao final.</p>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="flex items-start gap-2.5 rounded-lg border border-sky-200 bg-sky-50 p-3">
-                              <UserX className="mt-0.5 h-4 w-4 flex-shrink-0 text-sky-600" />
-                              <p className="text-xs leading-relaxed text-sky-900">
-                                <strong className="font-semibold">Se a resposta não for satisfatória</strong>, o caso pode seguir para o Juizado Especial Cível, sem necessidade de advogado para causas de menor valor.
-                              </p>
-                            </div>
-
-                            <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3">
-                              <Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-600" />
-                              <p className="text-xs leading-relaxed text-amber-900">
-                                <strong className="font-semibold">Prazo:</strong> confirme o prazo de defesa ou resposta indicado na notificação que você recebeu — ele varia conforme o Procon emissor e o tipo de processo (reclamação direta ou processo administrativo sancionador).
-                              </p>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
                       <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">
                         <div className="whitespace-pre-wrap text-left text-[15px] leading-relaxed md:text-base">
                           {formatDocumentText(defenseResult)}
