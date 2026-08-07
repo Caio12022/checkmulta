@@ -170,8 +170,6 @@ export default function Vigilancia() {
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
   const [isPixCopied, setIsPixCopied] = useState(false);
 
-  const [isProtocoloExpandido, setIsProtocoloExpandido] = useState(true);
-
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // ─── EFEITOS ─────────────────────────────────────────────────────────────
@@ -179,21 +177,9 @@ export default function Vigilancia() {
     // Prioridade 1: a defesa final já tinha sido gerada e paga. Mostra
     // direto, sem chamar a IA de novo — cobre fechar a aba DEPOIS que o
     // texto ficou pronto, que antes perdia tudo.
-    //
-    // Expira em 7 dias: passado esse prazo a situação pode ter mudado
-    // (pagamento, prazo do recurso), então não reabre como se fosse atual.
-    const SETE_DIAS_MS = 7 * 24 * 60 * 60 * 1000;
     const savedDefense = localStorage.getItem("vigilancia_defense_result");
-    const savedDefenseSavedAt = localStorage.getItem("vigilancia_defense_saved_at");
     const savedPaidStatus = localStorage.getItem("vigilancia_paid_status");
-    const defesaExpirada =
-      savedDefenseSavedAt && Date.now() - Number(savedDefenseSavedAt) > SETE_DIAS_MS;
-
-    if (defesaExpirada) {
-      localStorage.removeItem("vigilancia_defense_result");
-      localStorage.removeItem("vigilancia_defense_saved_at");
-      localStorage.removeItem("vigilancia_paid_status");
-    } else if (savedDefense && savedPaidStatus === "true" && !defenseResult) {
+    if (savedDefense && savedPaidStatus === "true" && !defenseResult) {
       setDefenseResult(savedDefense);
       setIsPaid(true);
       setIsResultModalOpen(true);
@@ -304,24 +290,6 @@ useEffect(() => {
   }, []);
   // ─── HANDLERS ────────────────────────────────────────────────────────────
   const handleTipoSelect = (tipoName: string) => {
-    // Já existe uma defesa gerada/paga (inclusive vinda do localStorage dos
-    // últimos 7 dias). Confirma antes de liberar, pois seguir vai substituir
-    // o resultado salvo.
-    if (isPaid || defenseResult) {
-      const confirmar = window.confirm(
-        "Você já tem uma defesa pronta salva. Se enviar um novo documento, esse resultado será substituído e não poderá ser recuperado depois. Deseja continuar mesmo assim?"
-      );
-      if (!confirmar) {
-        // Cancelou: a defesa salva continua intacta, mas o modal de
-        // resultado estava fechado (usuário estava na tela inicial). Reabre
-        // mostrando a defesa pronta, em vez de deixá-la "sumida" até um
-        // refresh manual da página.
-        setIsResultModalOpen(true);
-        setShowSuccessMessage(true);
-        return;
-      }
-      clearImage();
-    }
     setSelectedTipo(tipoName);
     setIsUploadModalOpen(true);
     track("vigilancia_tipo_selecionado", "vigilancia_1_tipo_selecionado", { tipo: tipoName });
@@ -360,7 +328,6 @@ useEffect(() => {
     setIsUploadModalOpen(false);
     localStorage.removeItem("vigilancia_saved_result");
     localStorage.removeItem("vigilancia_defense_result");
-    localStorage.removeItem("vigilancia_defense_saved_at");
     localStorage.removeItem("vigilancia_paid_status");
     localStorage.removeItem("vigilancia_pending_payment");
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -558,7 +525,6 @@ useEffect(() => {
       // a aba neste instante ou depois, o texto pronto (já pago) se perdia
       // sem qualquer forma de recuperar.
       localStorage.setItem("vigilancia_defense_result", data.result);
-      localStorage.setItem("vigilancia_defense_saved_at", String(Date.now()));
       localStorage.removeItem("vigilancia_saved_result");
       localStorage.removeItem("vigilancia_pending_payment");
     } catch (err: any) {
@@ -633,9 +599,6 @@ useEffect(() => {
             <a href="#seguranca" className="transition hover:text-emerald-600">Segurança</a>
             <a href="#faq-vigilancia" className="transition hover:text-emerald-600">Dúvidas</a>
             <a href="/vigilancia-sanitaria/blog" className="transition hover:text-emerald-600">Blog</a>
-            <a href="/procon" className="transition hover:text-emerald-600">Procon</a>
-            <a href="/energia" className="transition hover:text-emerald-600">Energia</a>
-            <a href="/ibama" className="transition hover:text-emerald-600">IBAMA</a>
             <button
               onClick={() => setActiveModal("suporte")}
               className="font-semibold text-emerald-600 transition hover:text-emerald-700"
@@ -665,9 +628,6 @@ useEffect(() => {
                 <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Segurança</a>
                 <a href="#faq-vigilancia" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Dúvidas</a>
                 <a href="/vigilancia-sanitaria/blog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Blog</a>
-                <a href="/procon" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Procon</a>
-                <a href="/energia" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Energia</a>
-                <a href="/ibama" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">IBAMA</a>
                 <button
                   onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
                   className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-3 text-left font-semibold text-emerald-700 transition"
@@ -1177,12 +1137,6 @@ useEffect(() => {
             <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
               Vigilância Sanitária
             </a>
-            <a href="/energia" className="text-slate-600 transition hover:text-emerald-600">
-              Energia
-            </a>
-            <a href="/ibama" className="text-slate-600 transition hover:text-emerald-600">
-              IBAMA
-            </a>
           </nav>
 
           <p className="mx-auto max-w-3xl text-xs leading-relaxed text-slate-500">
@@ -1242,7 +1196,7 @@ useEffect(() => {
                       onChange={handleFileSelect}
                       accept="image/*,application/pdf"
                       className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
-                      disabled={isAnalyzing}
+                      disabled={isAnalyzing || isPaid}
                       title="Clique para enviar o documento"
                     />
                     <div className="pointer-events-none flex flex-col items-center justify-center space-y-3 py-8">
@@ -1674,82 +1628,6 @@ useEffect(() => {
                           <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos dados reais da empresa antes de protocolar. Confirme o prazo e a forma de protocolo junto ao órgão de vigilância sanitária emissor.
                         </p>
                       </div>
-
-                      {/* PRÓXIMO PASSO: ONDE E COMO PROTOCOLAR */}
-                      <div className="mx-auto w-full rounded-lg border border-emerald-200 bg-emerald-50/60">
-                        <button
-                          type="button"
-                          onClick={() => setIsProtocoloExpandido((p) => !p)}
-                          className="flex w-full items-center justify-between gap-3 p-4 text-left"
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white">
-                              <Route className="h-4.5 w-4.5" />
-                            </div>
-                            <div>
-                              <h3 className="text-base font-bold text-slate-900">Próximo passo: onde protocolar</h3>
-                              <p className="text-xs text-slate-500">Protocolo municipal ou estadual · guia rápido</p>
-                            </div>
-                          </div>
-                        </button>
-
-                        {isProtocoloExpandido && (
-                          <div className="space-y-4 px-4 pb-5">
-                            <p className="text-sm leading-relaxed text-slate-700">
-                              O protocolo de defesa de vigilância sanitária é o <strong className="font-semibold">mais fragmentado dos órgãos</strong> que analisamos: cada município — e em alguns casos o estado — tem seu próprio canal, prazo e forma de entrega, sem um portal nacional único. Veja como localizar o caminho certo:
-                            </p>
-
-                            <div className="space-y-3">
-                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
-                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">1</div>
-                                <div className="text-sm text-slate-700">
-                                  <p className="font-semibold text-slate-900">Confira a forma de protocolo indicada no próprio auto</p>
-                                  <p className="mt-0.5 text-slate-600">O auto de infração ou a notificação geralmente informa se a entrega é presencial (balcão da Vigilância Sanitária), por e-mail, por sistema de protocolo digital da prefeitura, ou por correio com aviso de recebimento. Essa informação tem prioridade sobre qualquer orientação genérica.</p>
-                                </div>
-                              </div>
-
-                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
-                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">2</div>
-                                <div className="text-sm text-slate-700">
-                                  <p className="font-semibold text-slate-900">Não achou essa informação? Busque o site oficial do órgão autuante</p>
-                                  <p className="mt-0.5 text-slate-600">Pesquise "vigilância sanitária" + o nome do seu município (ex.: "vigilância sanitária Jundiaí", "vigilância sanitária Porto Alegre") para localizar o site oficial da prefeitura ou secretaria de saúde responsável — a maioria disponibiliza um serviço específico de "defesa de auto de infração" com o passo a passo.</p>
-                                </div>
-                              </div>
-
-                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
-                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">3</div>
-                                <div className="text-sm text-slate-700">
-                                  <p className="font-semibold text-slate-900">Autuação foi da ANVISA (federal)?</p>
-                                  <p className="mt-0.5 text-slate-600">Nesse caso o protocolo é eletrônico, pelo SEI da ANVISA, mediante cadastro de usuário externo.</p>
-                                  <a
-                                    href="https://www.gov.br/pt-br/servicos/apresentar-defesa-de-auto-de-infracao-sanitaria"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
-                                  >
-                                    Ver serviço da ANVISA no gov.br
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="flex items-start gap-2.5 rounded-lg border border-sky-200 bg-sky-50 p-3">
-                              <UserX className="mt-0.5 h-4 w-4 flex-shrink-0 text-sky-600" />
-                              <p className="text-xs leading-relaxed text-sky-900">
-                                <strong className="font-semibold">Guarde sempre o comprovante ou número de protocolo</strong> da entrega da defesa, seja presencial, por e-mail ou por sistema digital — é sua prova de que protocolou dentro do prazo.
-                              </p>
-                            </div>
-
-                            <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3">
-                              <Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-600" />
-                              <p className="text-xs leading-relaxed text-amber-900">
-                                <strong className="font-semibold">Prazo:</strong> o prazo de defesa varia por município e tipo de penalidade (comumente entre 10 e 15 dias). Confirme a data exata no auto ou na notificação recebida — este texto não deve ser usado para calcular o prazo por conta própria.
-                              </p>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
                       <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">
                         <div className="whitespace-pre-wrap text-left text-[15px] leading-relaxed md:text-base">
                           {formatDocumentText(defenseResult)}
