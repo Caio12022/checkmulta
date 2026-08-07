@@ -1,153 +1,24 @@
-import { useEffect, type ReactElement } from "react";
-import { Link, useParams } from "react-router-dom";
-import { Clock, ArrowRight, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { Zap, Clock, ArrowRight } from "lucide-react";
 import {
   artigosEnergia,
-  getArtigoEnergiaPorSlug,
+  getCategoriasEnergia,
 } from "../data/artigosEnergia";
+import { selo } from "../data/revisao";
 
-/* ---------- Renderizador de markdown simples ---------- */
+export default function BlogEnergia() {
+  const [categoriaAtiva, setCategoriaAtiva] = useState<string | null>(null);
 
-function renderizarConteudo(markdown: string) {
-  const linhas = markdown.split("\n");
-  const blocos: ReactElement[] = [];
-  let listaAtual: string[] = [];
-  let chave = 0;
+  const categorias = getCategoriasEnergia();
 
-  const aplicarNegrito = (texto: string) => {
-    const partes = texto.split(/(\*\*[^*]+\*\*)/g);
-    return partes.map((parte, i) => {
-      if (parte.startsWith("**") && parte.endsWith("**")) {
-        return (
-          <strong key={i} className="font-semibold text-slate-900">
-            {parte.slice(2, -2)}
-          </strong>
-        );
-      }
-      const italico = parte.split(/(\*[^*]+\*)/g);
-      return italico.map((p, j) =>
-        p.startsWith("*") && p.endsWith("*") && p.length > 2 ? (
-          <em key={`${i}-${j}`}>{p.slice(1, -1)}</em>
-        ) : (
-          <span key={`${i}-${j}`}>{p}</span>
-        )
-      );
-    });
-  };
-
-  const fecharLista = () => {
-    if (listaAtual.length > 0) {
-      blocos.push(
-        <ul
-          key={`ul-${chave++}`}
-          className="my-5 ml-1 space-y-2 border-l-2 border-emerald-100 pl-5"
-        >
-          {listaAtual.map((item, i) => (
-            <li key={i} className="text-[16.5px] leading-relaxed text-slate-700">
-              {aplicarNegrito(item)}
-            </li>
-          ))}
-        </ul>
-      );
-      listaAtual = [];
-    }
-  };
-
-  linhas.forEach((linha) => {
-    const l = linha.trim();
-
-    if (l === "") {
-      fecharLista();
-      return;
-    }
-
-    if (l === "---") {
-      fecharLista();
-      blocos.push(
-        <hr key={`hr-${chave++}`} className="my-8 border-slate-200" />
-      );
-      return;
-    }
-
-    if (l.startsWith("## ")) {
-      fecharLista();
-      blocos.push(
-        <h2
-          key={`h2-${chave++}`}
-          className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]"
-        >
-          {l.slice(3)}
-        </h2>
-      );
-      return;
-    }
-
-    if (l.startsWith("### ")) {
-      fecharLista();
-      blocos.push(
-        <h3
-          key={`h3-${chave++}`}
-          className="mb-2 mt-7 text-lg font-bold text-slate-900"
-        >
-          {l.slice(4)}
-        </h3>
-      );
-      return;
-    }
-
-    if (l.startsWith("- ")) {
-      listaAtual.push(l.slice(2));
-      return;
-    }
-
-    fecharLista();
-
-    // Parágrafo em itálico isolado (aviso legal do rodapé)
-    if (l.startsWith("*") && l.endsWith("*") && !l.startsWith("**")) {
-      blocos.push(
-        <p
-          key={`aviso-${chave++}`}
-          className="mt-6 text-sm italic leading-relaxed text-slate-500"
-        >
-          {l.slice(1, -1)}
-        </p>
-      );
-      return;
-    }
-
-    blocos.push(
-      <p
-        key={`p-${chave++}`}
-        className="mb-4 text-[16.5px] leading-[1.75] text-slate-700"
-      >
-        {aplicarNegrito(l)}
-      </p>
-    );
-  });
-
-  fecharLista();
-  return blocos;
-}
-
-/* ---------- Componente ---------- */
-
-export default function BlogPostEnergia() {
-  const { slug } = useParams<{ slug: string }>();
-  const artigo = slug ? getArtigoEnergiaPorSlug(slug) : undefined;
-
-  const relacionados = artigo
-    ? artigosEnergia
-        .filter((a) => a.slug !== artigo.slug)
-        .sort((a) => (a.categoria === artigo.categoria ? -1 : 1))
-        .slice(0, 3)
-    : [];
+  const artigosFiltrados = categoriaAtiva
+    ? artigosEnergia.filter((a) => a.categoria === categoriaAtiva)
+    : artigosEnergia;
 
   useEffect(() => {
-    if (!artigo) return;
-
-    const url = `https://checkmulta.com.br/energia/blog/${artigo.slug}`;
-
-    document.title = `${artigo.titulo} | CheckMulta`;
+    document.title =
+      "Blog Energia Elétrica — Defesa de TOI e conta de luz | CheckMulta";
 
     const setMeta = (name: string, content: string, isProperty = false) => {
       const attr = isProperty ? "property" : "name";
@@ -160,14 +31,16 @@ export default function BlogPostEnergia() {
       el.setAttribute("content", content);
     };
 
-    setMeta("description", artigo.descricao);
-    setMeta("keywords", artigo.palavrasChave.join(", "));
-    setMeta("og:title", artigo.titulo, true);
-    setMeta("og:description", artigo.descricao, true);
-    setMeta("og:url", url, true);
-    setMeta("og:type", "article", true);
-    setMeta("twitter:title", artigo.titulo);
-    setMeta("twitter:description", artigo.descricao);
+    const descricao =
+      "Guias sobre TOI, recuperação de consumo e contestação de conta de energia: prazos, vícios da autuação e direitos do consumidor perante a distribuidora.";
+
+    setMeta("description", descricao);
+    setMeta("og:title", "Blog Energia Elétrica — Defesa de TOI e conta de luz", true);
+    setMeta("og:description", descricao, true);
+    setMeta("og:url", "https://checkmulta.com.br/energia/blog", true);
+    setMeta("og:type", "website", true);
+    setMeta("twitter:title", "Blog Energia Elétrica — Defesa de TOI e conta de luz");
+    setMeta("twitter:description", descricao);
 
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
@@ -175,89 +48,37 @@ export default function BlogPostEnergia() {
       canonical.setAttribute("rel", "canonical");
       document.head.appendChild(canonical);
     }
-    canonical.setAttribute("href", url);
+    canonical.setAttribute(
+      "href",
+      "https://checkmulta.com.br/energia/blog"
+    );
 
-    const schemas = [
-      {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        headline: artigo.titulo,
-        description: artigo.descricao,
-        articleSection: artigo.categoria,
-        keywords: artigo.palavrasChave.join(", "),
-        inLanguage: "pt-BR",
-        mainEntityOfPage: { "@type": "WebPage", "@id": url },
-        author: { "@type": "Organization", name: "CheckMulta" },
-        publisher: {
-          "@type": "Organization",
-          name: "CheckMulta",
-          url: "https://checkmulta.com.br",
-        },
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      name: "Blog Energia Elétrica — CheckMulta",
+      description: descricao,
+      url: "https://checkmulta.com.br/energia/blog",
+      publisher: {
+        "@type": "Organization",
+        name: "CheckMulta",
+        url: "https://checkmulta.com.br",
       },
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Energia Elétrica",
-            item: "https://checkmulta.com.br/energia",
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Blog",
-            item: "https://checkmulta.com.br/energia/blog",
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: artigo.titulo,
-            item: url,
-          },
-        ],
-      },
-    ];
+    };
 
-    const existente = document.getElementById("schema-post-energia");
-    if (existente) existente.remove();
-
-    const script = document.createElement("script");
-    script.setAttribute("type", "application/ld+json");
-    script.id = "schema-post-energia";
-    script.textContent = JSON.stringify(schemas);
-    document.head.appendChild(script);
+    let scriptSchema = document.getElementById("schema-blog-energia");
+    if (scriptSchema) scriptSchema.remove();
+    scriptSchema = document.createElement("script");
+    scriptSchema.setAttribute("type", "application/ld+json");
+    scriptSchema.id = "schema-blog-energia";
+    scriptSchema.textContent = JSON.stringify(schema);
+    document.head.appendChild(scriptSchema);
 
     return () => {
-      const s = document.getElementById("schema-post-energia");
+      const s = document.getElementById("schema-blog-energia");
       if (s) s.remove();
     };
-  }, [artigo]);
-
-  /* ---------- Artigo não encontrado ---------- */
-
-  if (!artigo) {
-    return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-white px-4 text-center">
-        <h1 className="mb-3 text-2xl font-bold text-slate-900">
-          Artigo não encontrado
-        </h1>
-        <p className="mb-6 text-slate-600">
-          O conteúdo que você procura não existe ou foi movido.
-        </p>
-        <Link
-          to="/energia/blog"
-          className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
-        >
-          Ver todos os artigos
-          <ArrowRight className="h-4 w-4" />
-        </Link>
-      </div>
-    );
-  }
-
-  /* ---------- Artigo ---------- */
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -285,134 +106,141 @@ export default function BlogPostEnergia() {
         </div>
       </header>
 
-      {/* Barra de urgência */}
-      <div className="border-b border-emerald-100 bg-emerald-50">
-        <div className="mx-auto max-w-3xl px-4 py-2.5 text-center text-[13px] text-emerald-800">
-          O prazo para contestar está na sua notificação.{" "}
-          <Link to="/energia" className="font-semibold underline">
-            Verifique agora se a cobrança tem falha
-          </Link>
-        </div>
-      </div>
+      {/* Capa */}
+      <section className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
+        <div className="mx-auto max-w-4xl px-4 py-14 text-center">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-emerald-700">
+            <Zap className="h-3.5 w-3.5" />
+            Para quem recebeu TOI ou cobrança retroativa
+          </div>
 
-      <article className="mx-auto max-w-3xl px-4 pb-4 pt-8">
-        {/* Breadcrumb */}
-        <nav className="mb-6 flex flex-wrap items-center gap-1 text-xs text-slate-500">
-          <Link to="/energia" className="hover:text-emerald-600">
-            Energia Elétrica
-          </Link>
-          <ChevronRight className="h-3 w-3" />
-          <Link to="/energia/blog" className="hover:text-emerald-600">
-            Blog
-          </Link>
-          <ChevronRight className="h-3 w-3" />
-          <span className="text-slate-400">{artigo.categoria}</span>
-        </nav>
-
-        {/* Cabeçalho do artigo */}
-        <div className="mb-8 border-l-4 border-emerald-500 pl-5">
-          <span className="mb-2 block text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
-            {artigo.categoria}
-          </span>
-
-          <h1 className="mb-3 text-2xl font-bold leading-tight text-slate-900 sm:text-[32px] sm:leading-[1.2]">
-            {artigo.titulo}
+          <h1 className="mb-4 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
+            Blog Energia Elétrica: tudo sobre{" "}
+            <span className="text-emerald-600">TOI</span> e conta de luz
           </h1>
 
-          <p className="mb-4 text-base leading-relaxed text-slate-600">
-            {artigo.descricao}
+          <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600">
+            Prazo de defesa, cobrança retroativa, vícios do termo e direitos do
+            consumidor. Conteúdo fundamentado na REN 1.000/2021 da ANEEL.
           </p>
 
-          <div className="flex items-center gap-1.5 text-xs text-slate-400">
-            <Clock className="h-3.5 w-3.5" />
-            {artigo.tempoLeitura} de leitura
-          </div>
-        </div>
-
-        {/* CTA topo */}
-        <div className="mb-9 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
-          <p className="mb-3 text-sm leading-relaxed text-slate-700">
-            <strong className="font-semibold text-slate-900">
-              Recebeu uma cobrança de recuperação de consumo?
-            </strong>{" "}
-            Envie o TOI ou a notificação e veja grátis se a cobrança tem
-            falha.
-          </p>
           <Link
             to="/energia"
-            className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+            className="mt-7 inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
-            Analisar grátis
+            Ver se o meu TOI tem falha
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
+      </section>
 
-        {/* Conteúdo */}
-        <div className="max-w-none">{renderizarConteudo(artigo.conteudo)}</div>
+      {/* Filtro de categorias */}
+      <div className="mx-auto max-w-5xl px-4 pt-10">
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <button
+            onClick={() => setCategoriaAtiva(null)}
+            className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
+              categoriaAtiva === null
+                ? "bg-slate-900 text-white"
+                : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+            }`}
+          >
+            Todos os artigos
+          </button>
 
-        {/* CTA final */}
-        <div className="mt-12 rounded-xl border border-slate-200 bg-slate-50 p-6 text-center">
-          <h2 className="mb-2 text-lg font-bold text-slate-900">
-            Veja grátis se a sua cobrança tem falha
+          {categorias.map((cat) => (
+            <button
+              key={cat}
+              onClick={() =>
+                setCategoriaAtiva(categoriaAtiva === cat ? null : cat)
+              }
+              className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
+                categoriaAtiva === cat
+                  ? "bg-slate-900 text-white"
+                  : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Lista de artigos */}
+      <section className="mx-auto max-w-5xl px-4 py-10">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {artigosFiltrados.map((artigo) => {
+            const dataArtigo = selo(
+              (artigo as { dataPublicacao?: string }).dataPublicacao
+            );
+            return (
+              <Link
+                key={artigo.slug}
+                to={`/energia/blog/${artigo.slug}`}
+                className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
+              >
+                <div
+                  className={`flex h-32 items-center justify-center bg-gradient-to-br ${artigo.imagemBg}`}
+                >
+                  <span className="text-4xl opacity-60">{artigo.imagemEmoji}</span>
+                </div>
+
+                <div className="flex flex-1 flex-col p-5">
+                  <span className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
+                    {artigo.categoria}
+                  </span>
+
+                  <h2 className="mb-2 text-base font-bold leading-snug text-slate-900 group-hover:text-emerald-700">
+                    {artigo.titulo}
+                  </h2>
+
+                  <p className="mb-4 flex-1 text-sm leading-relaxed text-slate-600">
+                    {artigo.descricao}
+                  </p>
+
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
+                    <span className="flex items-center gap-1.5">
+                      <Clock className="h-3.5 w-3.5" />
+                      {artigo.tempoLeitura} de leitura
+                    </span>
+                    <span aria-hidden="true" className="text-slate-300">
+                      ·
+                    </span>
+                    <time dateTime={dataArtigo.iso}>{dataArtigo.texto}</time>
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+
+        {artigosFiltrados.length === 0 && (
+          <p className="py-12 text-center text-slate-500">
+            Nenhum artigo nesta categoria ainda.
+          </p>
+        )}
+      </section>
+
+      {/* CTA final */}
+      <section className="border-t border-slate-100 bg-slate-50">
+        <div className="mx-auto max-w-3xl px-4 py-14 text-center">
+          <h2 className="mb-3 text-2xl font-bold text-slate-900">
+            Recebeu um TOI ou cobrança retroativa?
           </h2>
-          <p className="mx-auto mb-5 max-w-xl text-sm leading-relaxed text-slate-600">
-            A análise aponta se o procedimento tem falha capaz de derrubar a
-            cobrança. Se não houver, você não paga nada.
+          <p className="mb-6 text-base leading-relaxed text-slate-600">
+            Envie o documento e receba, gratuitamente, a análise que aponta se
+            ele tem falha que permite contestação. Se não houver, você não paga
+            nada.
           </p>
           <Link
             to="/energia"
             className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
-            Começar análise gratuita
+            Analisar grátis agora
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-      </article>
-
-      {/* Relacionados */}
-      {relacionados.length > 0 && (
-        <section className="border-t border-slate-100 bg-slate-50/60">
-          <div className="mx-auto max-w-5xl px-4 py-12">
-            <h2 className="mb-6 text-xl font-bold text-slate-900 sm:text-[22px]">
-              Continue lendo
-            </h2>
-
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {relacionados.map((rel) => (
-                <Link
-                  key={rel.slug}
-                  to={`/energia/blog/${rel.slug}`}
-                  className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
-                >
-                  <div
-                    className={`flex h-32 items-center justify-center bg-gradient-to-br ${rel.imagemBg}`}
-                  >
-                    <span className="text-4xl opacity-60">
-                      {rel.imagemEmoji}
-                    </span>
-                  </div>
-
-                  <div className="flex flex-1 flex-col p-5">
-                    <span className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
-                      {rel.categoria}
-                    </span>
-                    <h3 className="mb-2 text-base font-bold leading-snug text-slate-900 group-hover:text-emerald-700">
-                      {rel.titulo}
-                    </h3>
-                    <p className="mb-4 flex-1 text-sm leading-relaxed text-slate-600">
-                      {rel.descricao}
-                    </p>
-                    <span className="flex items-center gap-1.5 text-xs text-slate-400">
-                      <Clock className="h-3.5 w-3.5" /> {rel.tempoLeitura} de
-                      leitura
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      </section>
 
       {/* Rodapé */}
       <footer className="border-t border-slate-200 bg-white">
@@ -445,6 +273,12 @@ export default function BlogPostEnergia() {
               className="text-slate-600 transition hover:text-emerald-600"
             >
               Conta de luz
+            </Link>
+            <Link
+              to="/ibama"
+              className="text-slate-600 transition hover:text-emerald-600"
+            >
+              IBAMA
             </Link>
           </nav>
 
