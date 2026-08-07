@@ -284,6 +284,9 @@ export default function App() {
      peca paga. */
   const [showRetomarModal, setShowRetomarModal] = useState(false);
   const [showConfirmNovaModal, setShowConfirmNovaModal] = useState(false);
+  /* Aviso antes de encerrar a consulta da defesa: fechar o modal apaga a peca
+     deste aparelho, entao o usuario confirma que ja salvou o texto. */
+  const [showConfirmFecharDefesa, setShowConfirmFecharDefesa] = useState(false);
   const [isSeoOpen, setIsSeoOpen] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -521,6 +524,11 @@ export default function App() {
      a geracao terminar), gera uma unica vez. */
   const handleAbrirDefesaSalva = () => {
     setShowRetomarModal(false);
+    setShowConfirmNovaModal(false);
+    setIsPaid(true);
+    /* Abre direto no texto final, sem a tela intermediaria "Defesa pronta". */
+    setShowSuccessMessage(false);
+    setShowFomoBanner(false);
     setIsResultModalOpen(true);
     if (!defenseResult && result) generateDefense(result);
   };
@@ -542,7 +550,12 @@ export default function App() {
   /* Desistiu de comecar de novo: volta para a escolha, sem perder nada. */
   const handleCancelarNovaAnalise = () => {
     setShowConfirmNovaModal(false);
-    setShowRetomarModal(true);
+  };
+
+  /* Sair da retomada sem escolher: o usuario quer navegar ou enviar outro
+     documento. Nada e apagado — a defesa continua guardada. */
+  const handleFecharRetomada = () => {
+    setShowRetomarModal(false);
   };
 
   const handleNovaAnalise = () => {
@@ -554,14 +567,42 @@ export default function App() {
   };
 
   const closeResultModal = () => {
+    /* Com a defesa paga em tela, fechar significa encerrar: confirma antes,
+       porque a peca sai do aparelho e nao ha como recuperar. */
+    if (defenseResult && isPaid) {
+      setShowConfirmFecharDefesa(true);
+      return;
+    }
     setIsResultModalOpen(false);
     if (result && !isPaid && !isExpiredBypassActive && !error) {
       setShowFomoBanner(true);
     }
   };
 
+  /* Confirmou que salvou: encerra de vez. Some do storage, o fluxo volta ao
+     inicio e a retomada nao aparece mais numa proxima visita. */
+  const handleEncerrarDefesa = () => {
+    setShowConfirmFecharDefesa(false);
+    setIsResultModalOpen(false);
+    setShowRetomarModal(false);
+    setShowSuccessMessage(false);
+    setShowFomoBanner(false);
+    clearImage();
+  };
+
+  /* Ainda nao salvou: volta para a peca sem apagar nada. */
+  const handleVoltarParaDefesa = () => {
+    setShowConfirmFecharDefesa(false);
+  };
+
   const processFile = (file: File) => {
     track("file_upload", "funil_2_foto_enviada", { file_type: file.type });
+    /* Enviar documento novo sempre recomeca do zero, mesmo com defesa
+       guardada: sem isso a tela ficava presa no resultado antigo. */
+    setShowRetomarModal(false);
+    setShowConfirmNovaModal(false);
+    setShowConfirmFecharDefesa(false);
+    setHasAnalyzed(false);
     setImageFile(file);
     setPreviewUrl(null);
     setError(null);
@@ -856,9 +897,11 @@ export default function App() {
             <a href="/simulador-pontos" className="transition hover:text-emerald-600">Simulador</a>
             <a href="/infracao" className="transition hover:text-emerald-600">Códigos</a>
             <a href="#faq-seo" className="transition hover:text-emerald-600">Dúvidas</a>
-            <a href="/blog" className="transition hover:text-emerald-600">Blog</a>
+            <a href="/multa-de-transito/blog" className="transition hover:text-emerald-600">Blog</a>
             <a href="/procon" className="transition hover:text-emerald-600">Procon</a>
             <a href="/vigilancia-sanitaria" className="transition hover:text-emerald-600">Vigilância</a>
+            <a href="/energia" className="transition hover:text-emerald-600">Energia</a>
+            <a href="/ibama" className="transition hover:text-emerald-600">IBAMA</a>
             <button
               onClick={() => setActiveModal("suporte")}
               className="font-semibold text-emerald-600 transition hover:text-emerald-700"
@@ -886,18 +929,14 @@ export default function App() {
                 <a href="#como-funciona" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Como funciona</a>
                 <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Segurança</a>
                 <a href="#guias" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Guias</a>
-                <a href="/simulador-pontos" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Simulador de pontos</a>
-                <a href="/infracao" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Consulta de códigos</a>
+                <a href="/simulador-pontos" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Simulador</a>
+                <a href="/infracao" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Códigos</a>
                 <a href="#faq-seo" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Dúvidas</a>
-                <a href="/blog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Blog</a>
-                <a href="/procon" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-between rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">
-                  <span>Procon — para empresas</span>
-                  <Building2 className="h-4 w-4 text-slate-400" />
-                </a>
-                <a href="/vigilancia-sanitaria" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-between rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">
-                  <span>Vigilância Sanitária</span>
-                  <Building2 className="h-4 w-4 text-slate-400" />
-                </a>
+                <a href="/multa-de-transito/blog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Blog</a>
+                <a href="/procon" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Procon</a>
+                <a href="/vigilancia-sanitaria" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Vigilância</a>
+                <a href="/energia" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Energia</a>
+                <a href="/ibama" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">IBAMA</a>
                 <button
                   onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
                   className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-3 text-left font-semibold text-emerald-700 transition"
@@ -1199,6 +1238,9 @@ export default function App() {
         </div>
       </section>
 
+      {/* CARROSSEL DE SERVIÇOS */}
+      <CarrosselServicos />
+
       {/* FAQ */}
       <section id="faq-seo" className="border-t border-slate-100 bg-slate-50">
         <div className="mx-auto max-w-4xl px-4 py-16">
@@ -1350,8 +1392,6 @@ export default function App() {
         </div>
       </section>
 
-     {/* CARROSSEL DE SERVIÇOS */}
-      <CarrosselServicos />
     
 
      {/* CONTEÚDO SEO */}
@@ -1486,20 +1526,20 @@ export default function App() {
           </div>
 
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
-            <a href="/" className="text-slate-600 transition hover:text-emerald-600">
-              Multas de trânsito
-            </a>
-            <a href="/simulador-pontos" className="text-slate-600 transition hover:text-emerald-600">
-              Simulador de pontos
-            </a>
-            <a href="/infracao" className="text-slate-600 transition hover:text-emerald-600">
-              Consulta de códigos
-            </a>
             <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
               Procon
             </a>
             <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
               Vigilância Sanitária
+            </a>
+            <a href="/energia" className="text-slate-600 transition hover:text-emerald-600">
+              Conta de luz
+            </a>
+            <a href="/ibama" className="text-slate-600 transition hover:text-emerald-600">
+              IBAMA
+            </a>
+            <a href="/blog" className="text-slate-600 transition hover:text-emerald-600">
+              Blog
             </a>
           </nav>
 
@@ -2209,8 +2249,18 @@ if (!v) return null;
               exit={{ opacity: 0, scale: 0.96, y: 12 }}
               className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
             >
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50">
-                <FileText className="h-6 w-6 text-emerald-600" />
+              <div className="mb-5 flex items-start justify-between">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50">
+                  <FileText className="h-6 w-6 text-emerald-600" />
+                </div>
+                <button
+                  onClick={handleFecharRetomada}
+                  className="rounded-lg p-2 text-slate-400 transition hover:bg-slate-50 hover:text-slate-600"
+                  aria-label="Fechar"
+                  type="button"
+                >
+                  <X className="h-5 w-5" />
+                </button>
               </div>
 
               <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 sm:text-xl">
@@ -2279,6 +2329,51 @@ if (!v) return null;
                   className="w-full rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50"
                 >
                   Sim, quero analisar outra multa
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* --- CONFIRMACAO AO ENCERRAR A CONSULTA DA DEFESA --- */}
+      <AnimatePresence>
+        {showConfirmFecharDefesa && (
+          <div className="fixed inset-0 z-[90] flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
+            >
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50">
+                <AlertCircle className="h-6 w-6 text-amber-600" />
+              </div>
+
+              <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 sm:text-xl">
+                Você já salvou o arquivo?
+              </h3>
+              <p className="mb-6 text-sm leading-relaxed text-slate-600">
+                Ao fechar, a defesa é apagada deste aparelho e não poderá ser
+                recuperada — seria necessário fazer uma nova análise. Se ainda não
+                copiou ou baixou o texto, volte e salve antes.
+              </p>
+
+              <div className="space-y-3">
+                <button
+                  onClick={handleVoltarParaDefesa}
+                  className="w-full rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                  type="button"
+                >
+                  Voltar e salvar
+                </button>
+
+                <button
+                  onClick={handleEncerrarDefesa}
+                  className="w-full rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50"
+                  type="button"
+                >
+                  Já salvei, pode fechar
                 </button>
               </div>
             </motion.div>
