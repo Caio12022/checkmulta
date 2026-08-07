@@ -475,7 +475,7 @@ export default function BlogPost() {
         <div className="mx-auto max-w-3xl px-4 py-2.5 text-center text-[13px] text-emerald-800">
           O prazo para recorrer é curto.{" "}
           <Link
-            to="/"
+            to="/multa-de-transito"
             onClick={() => cta("barra_urgencia")}
             className="font-semibold underline"
           >
@@ -548,7 +548,7 @@ export default function BlogPost() {
             de 400 multas já analisadas, sem cadastro.
           </p>
           <Link
-            to="/"
+            to="/multa-de-transito"
             onClick={() => cta("topo")}
             className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
@@ -606,7 +606,7 @@ export default function BlogPost() {
             houver falha, você não paga nada.
           </p>
           <Link
-            to="/"
+            to="/multa-de-transito"
             onClick={() => cta("final")}
             className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
@@ -709,7 +709,7 @@ export default function BlogPost() {
         }`}
       >
         <Link
-          to="/"
+          to="/multa-de-transito"
           onClick={() => cta("flutuante")}
           className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:bg-emerald-700"
         >
@@ -733,7 +733,7 @@ export default function BlogPost() {
           </div>
 
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
-            <Link to="/" className="text-slate-600 transition hover:text-emerald-600">
+            <Link to="/multa-de-transito" className="text-slate-600 transition hover:text-emerald-600">
               Multas de trânsito
             </Link>
             <Link to="/infracao" className="text-slate-600 transition hover:text-emerald-600">
