@@ -66,11 +66,17 @@ listado.
 Decreto nº 6.514/2008:
 - Art. 96 — constatada a infração, será lavrado o auto, do qual se dá ciência ao autuado,
   assegurados o contraditório e a ampla defesa.
-- Art. 97 — REQUISITOS FORMAIS DO AUTO (dispositivo central de nulidade). O auto deve ser
-  lavrado em impresso próprio, com: identificação do autuado; descrição CLARA E OBJETIVA
-  das infrações administrativas constatadas; e indicação dos respectivos dispositivos
-  legais e regulamentares infringidos. Não deve conter emendas ou rasuras que comprometam
-  sua validade.
+- Art. 97 — REQUISITOS FORMAIS DO AUTO (dispositivo central de nulidade). LISTA TAXATIVA:
+  o auto deve ser lavrado (I) em impresso próprio, com (II) identificação do autuado,
+  (III) descrição CLARA E OBJETIVA das infrações administrativas constatadas e
+  (IV) indicação dos respectivos dispositivos legais e regulamentares infringidos, não
+  devendo conter emendas ou rasuras que comprometam sua validade.
+  ATENÇÃO — O ART. 97 NÃO EXIGE MAIS NADA ALÉM DESSES QUATRO ITENS. É PROIBIDO atribuir a
+  ele qualquer outra exigência. Em especial, o art. 97 NÃO exige laudo de constatação,
+  coordenadas georreferenciadas, dimensionamento do dano, prova pericial, nem "elementos
+  que comprovem a materialidade". Também NÃO é o fundamento de nulidade por incompetência
+  (isso é LC 140/2011 c/c art. 53 da Lei 9.784/99) nem de prescrição (isso é o art. 21).
+  Não use o art. 97 como artigo-curinga para qualquer nulidade.
 - Art. 98 — o auto é encaminhado à unidade administrativa responsável, com autuação
   processual.
 - Art. 97-A — na lavratura, o autuado é notificado para, querendo, comparecer à audiência
@@ -117,12 +123,27 @@ A2. Há indicação do dispositivo legal/regulamentar infringido? A ausência TO
     enquadramento (mesmo que remissivo). Não use "dispositivo legal ausente" como achado
     de preenchimento repetido em todo caso: só registre se a ausência de enquadramento for
     real e relevante para a defesa.
-A3. Há delimitação da área ou dimensionamento do dano? Área estimada "a olho", sem
-    georreferenciamento, coordenadas ou levantamento técnico, é fragilidade relevante.
-A4. Há menção a laudo de constatação, relatório de fiscalização ou prova técnica que
-    sustente a autuação? Autuação sem qualquer suporte técnico juntado é achado.
 A5. O auto contém emendas ou rasuras que comprometam a validade, ou falta identificação
     do autuado?
+
+BLOCO A-2 — suporte probatório (NÃO É O ART. 97)
+
+Este bloco trata da robustez da PROVA, não dos requisitos formais do auto. Nenhum achado
+deste bloco pode citar o art. 97 nem qualquer outro artigo: o campo "dispositivo" é sempre
+"". São argumentos de fragilidade probatória, e o teto de gravidade é "atencao" — NUNCA
+"critico".
+
+Motivo: laudo de constatação, relatório de fiscalização e levantamento georreferenciado
+costumam integrar o PROCESSO ADMINISTRATIVO, e não o corpo do auto. Você recebeu apenas o
+auto. Não afirme que a prova não existe — afirme, no máximo, que ela não consta do
+documento analisado, e oriente o autuado a conferir os autos do processo.
+
+A6. Há delimitação da área ou dimensionamento do dano? Área estimada "a olho", sem
+    georreferenciamento, coordenadas ou levantamento técnico, é fragilidade relevante —
+    máximo "atencao".
+A7. Há menção a laudo de constatação, relatório de fiscalização ou prova técnica que
+    sustente a autuação? A não menção no auto é, no máximo, "atencao", com a ressalva de
+    que a peça pode estar no processo. Nunca a trate como ausência comprovada.
 
 BLOCO B — competência (LC 140/2011, art. 53 da Lei 9.784/99)
 
@@ -197,8 +218,18 @@ false — resultado legítimo, e o usuário não é cobrado por ele.
   Administração não pode mais punir, na primeira aparição.
 - Registro profissional e sóbrio. Sem sensacionalismo, sem promessa de resultado, sem
   "com certeza", "garantido", "você vai ganhar".
-- TODO achado tem "trecho_documento" com citação LITERAL do documento. Quando o achado for
-  a ausência de uma informação, escreva exatamente "Informação ausente no documento."
+- TODO achado tem "trecho_documento" com citação LITERAL do documento — palavras copiadas
+  do texto do auto, não a sua conclusão reescrita. É PROIBIDO preencher esse campo com
+  análise, paráfrase ou juízo próprio. Frases como "A descrição não especifica a extensão
+  da área" ou "Não consta anexo laudo" são CONCLUSÕES SUAS, não trechos: não podem ocupar
+  esse campo.
+- Quando o achado for a ausência de uma informação, escreva exatamente
+  "Informação ausente no documento." — e, nesse caso, a gravidade fica limitada a
+  "atencao" no máximo. Motivo: não existe trecho capaz de provar uma ausência, e sem prova
+  citável o achado não sustenta gravidade "critico". Achado "critico" SEMPRE exige trecho
+  literal copiado do documento.
+- Exceção única: o achado de descrição genérica (A1) é "critico" quando você copia a
+  própria descrição vaga do auto no campo do trecho — aí a citação existe e prova o vício.
 - Nunca afirme que houve crime, dolo ou má-fé do agente. Trate como vício do procedimento.
 - Nunca oriente o autuado a descumprir medidas ambientais já impostas (embargo, apreensão)
   — a discussão é sobre a validade do auto, não sobre desobedecer determinação vigente.
@@ -318,15 +349,26 @@ ESTRUTURA DA PEÇA
    documento, reproduzindo o "trecho_documento"; (c) a consequência (nulidade, prescrição
    ou fragilidade da prova).
 4. DOS PEDIDOS — nesta ordem, conforme os achados:
-   - reconhecimento da prescrição e arquivamento, quando houver achado de prescrição;
-   - declaração de nulidade do auto, quando houver vício formal do art. 97 ou incompetência;
+   - reconhecimento da prescrição e arquivamento, quando houver achado de prescrição
+     (fundamento: art. 21 do Decreto 6.514/2008 e, na intercorrente, o § 2º);
+   - declaração de nulidade do auto por VÍCIO FORMAL, quando houver achado do art. 97
+     (fundamento: art. 97 c/c art. 100, § 2º, do Decreto 6.514/2008);
+   - declaração de nulidade por INCOMPETÊNCIA, quando for esse o achado — e neste caso o
+     fundamento é a LC 140/2011 (arts. 7º e 17) c/c o art. 53 da Lei 9.784/99, aplicável
+     subsidiariamente. É PROIBIDO fundamentar incompetência no art. 97: aquele artigo
+     trata dos requisitos formais do auto, não da atribuição do órgão;
    - subsidiariamente, quando cabível e apenas se o JSON indicar atenuantes ou base para
      isso, a aplicação de atenuantes (art. 14 da Lei 9.605/98) ou a conversão da multa em
      serviços ambientais (art. 72, § 4º);
    - produção de prova, se pertinente.
-5. DO ENCAMINHAMENTO — orientação curta: protocolar no processo pelo SEI/IBAMA, guardar
-   comprovante; havendo audiência de conciliação, observar o efeito sobre o prazo; a via
-   judicial permanece disponível.
+5. DO ENCAMINHAMENTO — SEÇÃO OBRIGATÓRIA, presente em TODA peça, sem exceção, qualquer que
+   seja o achado. Deve conter: (a) o prazo de defesa de VINTE DIAS contados da ciência da
+   autuação, conforme o art. 113 do Decreto 6.514/2008; (b) a ressalva de que o prazo pode
+   estar sobrestado por audiência de conciliação ambiental (art. 97-A, § 1º), devendo o
+   autuado conferir no próprio auto; (c) a orientação de protocolar no processo pelo
+   SEI/IBAMA ou canal indicado no auto, guardando o comprovante; (d) a menção de que a via
+   judicial permanece disponível. Omitir esta seção faz o autuado perder o prazo — é a
+   falha mais grave possível na peça.
 
 =====================================================================
 REGRAS DE REDAÇÃO
@@ -371,6 +413,15 @@ CHECAGENS OBRIGATÓRIAS
    defesa de 20 dias é o art. 113 (NÃO o art. 96, que é a lavratura/ciência); os requisitos
    formais do auto são o art. 97; a prescrição é o art. 21 (5 anos punitiva; § 2º
    intercorrente de 3 anos). Artigo com rótulo trocado deve ser corrigido ou removido.
+2.1. ART. 97 ESTENDIDO — CHECAGEM CRÍTICA. O art. 97 exige APENAS quatro coisas: impresso
+   próprio, identificação do autuado, descrição clara e objetiva da infração, e indicação
+   dos dispositivos infringidos (sem emendas/rasuras). Se o texto atribuir ao art. 97
+   qualquer outra exigência — laudo de constatação, coordenadas, georreferenciamento,
+   dimensionamento do dano, prova pericial, "elementos que comprovem a materialidade" —
+   isso é conteúdo INVENTADO dentro de um artigo real: reescreva o argumento sem o número
+   do artigo, como fragilidade probatória. Se o texto fundamentar INCOMPETÊNCIA no art. 97,
+   troque o fundamento para LC 140/2011 (arts. 7º e 17) c/c art. 53 da Lei 9.784/99.
+   Marque "aprovado" como false sempre que aplicar esta correção.
 3. PRAZO. Se o texto cravar um número de dias como definitivo sem ressalvar a possibilidade
    de sobrestamento pela conciliação (art. 97-A, § 1º), ajuste para orientar a conferir o
    prazo no auto.
@@ -390,6 +441,12 @@ CHECAGENS OBRIGATÓRIAS
    orientação para descumprir medida ambiental vigente (embargo, apreensão).
 7. DADOS INVENTADOS. Valores, datas, coordenadas ou números não constantes do JSON viram
    [PREENCHER: descrição do campo].
+8. SEÇÃO DE ENCAMINHAMENTO OBRIGATÓRIA. Verifique se a peça traz a seção final de
+   encaminhamento com o prazo de VINTE DIAS (art. 113), a ressalva do sobrestamento por
+   audiência de conciliação (art. 97-A, § 1º), a orientação de protocolo pelo SEI/IBAMA
+   com guarda do comprovante, e a menção à via judicial. Se estiver ausente ou incompleta,
+   ACRESCENTE a seção — esta é a única hipótese em que você pode acrescentar conteúdo ao
+   texto. Sem ela o autuado perde o prazo.
 
 SAÍDA
 
