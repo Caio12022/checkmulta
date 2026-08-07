@@ -12,6 +12,53 @@ export interface ArtigoIbama {
 
 export const artigosIbama: ArtigoIbama[] = [
   {
+    slug: "conciliacao-ambiental-ou-defesa-quando-vale-a-pena-optar",
+    titulo: "Conciliação Ambiental ou Defesa: Quando vale a pena optar?",
+    descricao: "Entenda as diferenças entre a audiência de conciliação e a defesa administrativa do IBAMA. Analise seu auto gratuitamente com o CheckMulta.",
+    categoria: "Alternativas",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["conciliação ambiental IBAMA", "defesa auto de infração", "multa ambiental federal", "anulação auto IBAMA"],
+    conteudo: `## A escolha estratégica no processo administrativo federal
+
+Ao receber um auto de infração ambiental lavrado pelo IBAMA, o autuado se depara com uma bifurcação processual relevante: optar pela audiência de conciliação ambiental ou apresentar diretamente uma defesa técnica. Esta decisão, regida pelo Decreto nº 6.514/2008, impacta o curso do processo e as possibilidades de resolução da pendência.
+
+É fundamental destacar que este rito aplica-se exclusivamente a autuações federais. Caso tenha sido autuado por órgãos estaduais ou municipais, as regras são ditadas pela legislação local, não sendo aplicável o Decreto nº 6.514/2008. A LC nº 140/2011, em seus arts. 7º e 17, estabelece a repartição de competências e a atuação de um ente em esfera incompetente pode gerar questionamentos sobre a legalidade da sanção, reforçando a importância de verificar a origem da fiscalização e as normas pertinentes a cada esfera administrativa.
+
+## O papel da conciliação ambiental
+
+A audiência de conciliação ambiental, prevista no art. 97-A do Decreto nº 6.514/2008, foi instituída como um mecanismo para buscar a resolução célere do conflito. Quando o agendamento da audiência é realizado, ocorre o sobrestamento da fluência do prazo de defesa (art. 97-A, § 1º). É necessário conferir no próprio auto de infração ou no sistema eletrônico se o prazo de vinte dias, previsto no art. 113, encontra-se suspenso ou em curso.
+
+A conciliação é um cenário em que o autuado pode buscar a regularização ambiental ou a obtenção de benefícios previstos em normas gerais sobre o tema. Nela, podem ser discutidas formas de conversão da multa em serviços de preservação, melhoria e recuperação ambiental, conforme o art. 72, § 4º da Lei nº 9.605/98.
+
+## Quando a defesa é o caminho recomendado
+
+Por outro lado, a defesa administrativa é o momento processual adequado para questionar a validade jurídica do ato. Se o auto de infração apresenta vícios formais que comprometem sua legalidade, a defesa é a ferramenta para provocar a administração pública a exercer seu dever de rever atos eivados de ilegalidade, conforme o art. 53 da Lei nº 9.784/99, aplicada subsidiariamente.
+
+Deve-se priorizar a defesa quando há indícios de:
+
+- Nulidades formais: Erros na identificação, descrição imprecisa da infração ou ausência de requisitos obrigatórios conforme o art. 97 do Decreto nº 6.514/2008. Vícios insanáveis podem fundamentar o pedido de nulidade, cabendo ao órgão avaliar a emissão de novo auto, desde que dentro do prazo prescricional (art. 100, § 2º).
+- Prescrição: O art. 21 do Decreto nº 6.514/2008 estabelece a prescrição da pretensão punitiva em cinco anos contados da data da lavratura do auto. Além disso, existe a prescrição intercorrente, de três anos, quando o processo fica parado sem julgamento ou despacho (art. 21, § 2º).
+- Incompetência do ente fiscalizador: Conforme LC nº 140/2011, a fiscalização deve observar a competência legalmente atribuída aos entes federados.
+
+## A importância da cautela técnica
+
+Independentemente da opção pela conciliação ou defesa, é imperativo observar que a existência de um auto de infração e eventuais medidas cautelares, como embargos ou apreensões, mantêm sua eficácia até decisão administrativa final. A defesa visa discutir a validade do procedimento, não autorizando o descumprimento de ordens vigentes.
+
+O prazo de vinte dias, conforme o art. 113, é o marco temporal fundamental para a manifestação. Perder este prazo pode implicar a preclusão do direito de defesa e a configuração da revelia, tornando a multa definitiva.
+
+## Como proceder
+
+O primeiro passo é verificar se o auto de infração foi lavrado conforme as exigências do art. 97 do Decreto nº 6.514/2008. A clareza da descrição da infração e o respeito aos trâmites de lavratura e ciência (art. 96) são pilares que não podem ser negligenciados, bem como a análise de eventuais atenuantes que podem reduzir o valor da penalidade, conforme o art. 14 da Lei nº 9.605/98.
+
+Para uma análise pormenorizada, recomenda-se a verificação do auto por profissionais especializados para identificar se existem falhas capazes de fundamentar a defesa ou o pedido de revisão.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "recebi-auto-de-infracao-do-ibama-o-que-fazer",
     titulo: "Recebi um auto de infração do IBAMA: o que fazer agora",
     descricao: "Passo a passo do que fazer ao receber um auto de infração ambiental federal: prazo, documentos e onde protocolar a defesa. Analise o seu gratuitamente.",
