@@ -177,6 +177,9 @@ export default function Procon() {
      peca paga. */
   const [showRetomarModal, setShowRetomarModal] = useState(false);
   const [showConfirmNovaModal, setShowConfirmNovaModal] = useState(false);
+  /* Aviso antes de encerrar a consulta da defesa: fechar o modal apaga a peca
+     deste aparelho, entao o usuario confirma que ja salvou o texto. */
+  const [showConfirmFecharDefesa, setShowConfirmFecharDefesa] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -356,7 +359,9 @@ export default function Procon() {
     /* Vai direto para a peca: com a defesa em maos e o pagamento confirmado,
        o modal de resultado ja abre no texto final, sem etapa intermediaria. */
     setIsPaid(true);
-    setShowSuccessMessage(true);
+    /* Sem a tela intermediaria "Defesa pronta": quem clicou em abrir a defesa
+       ja sabe que ela existe, entao o modal abre direto no texto final. */
+    setShowSuccessMessage(false);
     setShowFomoBanner(false);
     setIsResultModalOpen(true);
     if (!defenseResult && analise) generateDefense(analise);
@@ -397,10 +402,32 @@ export default function Procon() {
   };
 
   const closeResultModal = () => {
+    /* Com a defesa paga em tela, fechar significa encerrar: confirma antes,
+       porque a peca sai do aparelho e nao ha como recuperar. */
+    if (defenseResult && isPaid) {
+      setShowConfirmFecharDefesa(true);
+      return;
+    }
     setIsResultModalOpen(false);
     if (analise && analise.houve_achado && !isPaid && !error) {
       setShowFomoBanner(true);
     }
+  };
+
+  /* Confirmou que salvou: encerra de vez. Some do storage, o fluxo volta ao
+     inicio e a retomada nao aparece mais numa proxima visita. */
+  const handleEncerrarDefesa = () => {
+    setShowConfirmFecharDefesa(false);
+    setIsResultModalOpen(false);
+    setShowRetomarModal(false);
+    setShowSuccessMessage(false);
+    setShowFomoBanner(false);
+    clearImage();
+  };
+
+  /* Ainda nao salvou: volta para a peca sem apagar nada. */
+  const handleVoltarParaDefesa = () => {
+    setShowConfirmFecharDefesa(false);
   };
 
   const processFile = (file: File) => {
@@ -1200,9 +1227,6 @@ export default function Procon() {
             <a href="/multa-de-transito" className="text-slate-600 transition hover:text-emerald-600">
               Multas de trânsito
             </a>
-            <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
-              Procon
-            </a>
             <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
               Vigilância Sanitária
             </a>
@@ -1898,6 +1922,51 @@ export default function Procon() {
                   className="w-full rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50"
                 >
                   Sim, quero analisar outro
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* --- CONFIRMACAO AO ENCERRAR A CONSULTA DA DEFESA --- */}
+      <AnimatePresence>
+        {showConfirmFecharDefesa && (
+          <div className="fixed inset-0 z-[90] flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
+            >
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50">
+                <AlertCircle className="h-6 w-6 text-amber-600" />
+              </div>
+
+              <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 sm:text-xl">
+                Você já salvou o arquivo?
+              </h3>
+              <p className="mb-6 text-sm leading-relaxed text-slate-600">
+                Ao fechar, a defesa é apagada deste aparelho e não poderá ser
+                recuperada — seria necessário fazer uma nova análise. Se ainda não
+                copiou ou baixou o texto, volte e salve antes.
+              </p>
+
+              <div className="space-y-3">
+                <button
+                  onClick={handleVoltarParaDefesa}
+                  className="w-full rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                  type="button"
+                >
+                  Voltar e salvar
+                </button>
+
+                <button
+                  onClick={handleEncerrarDefesa}
+                  className="w-full rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50"
+                  type="button"
+                >
+                  Já salvei, pode fechar
                 </button>
               </div>
             </motion.div>
