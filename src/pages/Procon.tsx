@@ -352,6 +352,12 @@ export default function Procon() {
      a geracao terminar), gera uma unica vez. */
   const handleAbrirDefesaSalva = () => {
     setShowRetomarModal(false);
+    setShowConfirmNovaModal(false);
+    /* Vai direto para a peca: com a defesa em maos e o pagamento confirmado,
+       o modal de resultado ja abre no texto final, sem etapa intermediaria. */
+    setIsPaid(true);
+    setShowSuccessMessage(true);
+    setShowFomoBanner(false);
     setIsResultModalOpen(true);
     if (!defenseResult && analise) generateDefense(analise);
   };
@@ -373,7 +379,13 @@ export default function Procon() {
   /* Desistiu de comecar de novo: volta para a escolha, sem perder nada. */
   const handleCancelarNovaAnalise = () => {
     setShowConfirmNovaModal(false);
-    setShowRetomarModal(true);
+  };
+
+  /* Sair da retomada sem escolher: o usuario quer navegar ou enviar outro
+     documento. Nada e apagado — a defesa continua guardada e ele pode
+     reabrir depois pelo aviso que fica no topo. */
+  const handleFecharRetomada = () => {
+    setShowRetomarModal(false);
   };
 
   const handleNovaAnalise = () => {
@@ -393,6 +405,12 @@ export default function Procon() {
 
   const processFile = (file: File) => {
     track("procon_upload", "procon_2_documento_enviado", { file_type: file.type });
+    /* Enviar um documento novo sempre recomeca do zero, mesmo que exista uma
+       defesa guardada da analise anterior: sem isso a tela ficava presa no
+       resultado antigo e o upload parecia bloqueado. */
+    setShowRetomarModal(false);
+    setShowConfirmNovaModal(false);
+    setHasAnalyzed(false);
     setImageFile(file);
     setPreviewUrl(null);
     setError(null);
@@ -637,11 +655,14 @@ export default function Procon() {
           </a>
 
           <nav className="hidden items-center gap-5 text-sm font-medium text-slate-600 md:flex">
-            <a href="/multa-de-transito" className="transition hover:text-emerald-600">Multas de trânsito</a>
             <a href="#como-funciona" className="transition hover:text-emerald-600">Como funciona</a>
             <a href="#seguranca" className="transition hover:text-emerald-600">Segurança</a>
             <a href="#faq-procon" className="transition hover:text-emerald-600">Dúvidas</a>
             <a href="/procon/blog" className="transition hover:text-emerald-600">Blog</a>
+            <a href="/multa-de-transito" className="transition hover:text-emerald-600">Trânsito</a>
+            <a href="/vigilancia-sanitaria" className="transition hover:text-emerald-600">Vigilância</a>
+            <a href="/energia" className="transition hover:text-emerald-600">Energia</a>
+            <a href="/ibama" className="transition hover:text-emerald-600">IBAMA</a>
             <button
               onClick={() => setActiveModal("suporte")}
               className="font-semibold text-emerald-600 transition hover:text-emerald-700"
@@ -666,11 +687,14 @@ export default function Procon() {
                 exit={{ opacity: 0, y: -10 }}
                 className="absolute left-0 top-full z-50 flex w-full flex-col space-y-2 border-b border-slate-200 bg-white p-4 shadow-lg md:hidden"
               >
-                <a href="/multa-de-transito" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Multas de trânsito</a>
                 <a href="#como-funciona" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Como funciona</a>
                 <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Segurança</a>
                 <a href="#faq-procon" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Dúvidas</a>
                 <a href="/procon/blog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Blog</a>
+                <a href="/multa-de-transito" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Trânsito</a>
+                <a href="/vigilancia-sanitaria" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Vigilância</a>
+                <a href="/energia" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Energia</a>
+                <a href="/ibama" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">IBAMA</a>
                 <button
                   onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
                   className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-3 text-left font-semibold text-emerald-700 transition"
@@ -1001,6 +1025,9 @@ export default function Procon() {
         </div>
       </section>
 
+      {/* CARROSSEL DE SERVIÇOS */}
+      <CarrosselServicos excluir={["procon"]} />
+
       {/* FAQ */}
       <section id="faq-procon" className="border-t border-slate-100 bg-white">
         <div className="mx-auto max-w-4xl px-4 py-16">
@@ -1155,10 +1182,7 @@ export default function Procon() {
           </div>
         </div>
       </section>
-      
-{/* CARROSSEL DE SERVIÇOS */}
-      <CarrosselServicos excluir={["procon"]} />
-      
+
       {/* FOOTER */}
       <footer className="border-t border-slate-200 bg-white">
         <div className="mx-auto max-w-4xl px-4 py-10 text-center">
@@ -1173,26 +1197,23 @@ export default function Procon() {
           </div>
 
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
-           <a href="/multa-de-transito" className="text-slate-600 transition hover:text-emerald-600">
+            <a href="/multa-de-transito" className="text-slate-600 transition hover:text-emerald-600">
               Multas de trânsito
-            </a>
-            <a href="/infracao" className="text-slate-600 transition hover:text-emerald-600">
-              Consulta de códigos
-            </a>
-            <a href="/simulador-pontos" className="text-slate-600 transition hover:text-emerald-600">
-              Simulador de pontos
-            </a>
-            <a href="/blog" className="text-slate-600 transition hover:text-emerald-600">
-              Blog de trânsito
             </a>
             <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
               Procon
             </a>
-            <a href="/procon/blog" className="text-slate-600 transition hover:text-emerald-600">
-              Blog Procon
-            </a>
             <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
               Vigilância Sanitária
+            </a>
+            <a href="/energia" className="text-slate-600 transition hover:text-emerald-600">
+              Conta de luz
+            </a>
+            <a href="/ibama" className="text-slate-600 transition hover:text-emerald-600">
+              IBAMA
+            </a>
+            <a href="/blog" className="text-slate-600 transition hover:text-emerald-600">
+              Blog
             </a>
           </nav>
 
@@ -1796,8 +1817,18 @@ export default function Procon() {
               exit={{ opacity: 0, scale: 0.96, y: 12 }}
               className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
             >
-              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50">
-                <FileText className="h-6 w-6 text-emerald-600" />
+              <div className="mb-5 flex items-start justify-between">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50">
+                  <FileText className="h-6 w-6 text-emerald-600" />
+                </div>
+                <button
+                  onClick={handleFecharRetomada}
+                  className="rounded-lg p-2 text-slate-400 transition hover:bg-slate-50 hover:text-slate-600"
+                  aria-label="Fechar"
+                  type="button"
+                >
+                  <X className="h-5 w-5" />
+                </button>
               </div>
 
               <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 sm:text-xl">
