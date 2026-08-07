@@ -5,6 +5,7 @@ import {
   artigosVigilancia,
   getArtigoVigilanciaPorSlug,
 } from "../data/artigosVigilancia";
+import { selo } from "../data/revisao";
 
 /* ---------- Renderizador de markdown simples ---------- */
 
@@ -142,6 +143,11 @@ export default function BlogPostVigilancia() {
         .slice(0, 3)
     : [];
 
+  /* Selo de data — ver src/data/revisao.ts para a explicacao completa. */
+  const dataArtigo = selo(
+    (artigo as { dataPublicacao?: string } | undefined)?.dataPublicacao
+  );
+
   useEffect(() => {
     if (!artigo) return;
 
@@ -193,6 +199,8 @@ export default function BlogPostVigilancia() {
           name: "CheckMulta",
           url: "https://checkmulta.com.br",
         },
+        dateModified: dataArtigo.iso,
+        ...(dataArtigo.publicacao ? { datePublished: dataArtigo.iso } : {}),
       },
       {
         "@context": "https://schema.org",
@@ -233,7 +241,7 @@ export default function BlogPostVigilancia() {
       const s = document.getElementById("schema-post-vigilancia");
       if (s) s.remove();
     };
-  }, [artigo]);
+  }, [artigo, dataArtigo.iso, dataArtigo.publicacao]);
 
   /* ---------- Artigo não encontrado ---------- */
 
@@ -323,9 +331,15 @@ export default function BlogPostVigilancia() {
             {artigo.descricao}
           </p>
 
-          <div className="flex items-center gap-1.5 text-xs text-slate-400">
-            <Clock className="h-3.5 w-3.5" />
-            {artigo.tempoLeitura} de leitura
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-slate-400">
+            <span className="flex items-center gap-1.5">
+              <Clock className="h-3.5 w-3.5" />
+              {artigo.tempoLeitura} de leitura
+            </span>
+            <span aria-hidden="true" className="text-slate-300">
+              ·
+            </span>
+            <time dateTime={dataArtigo.iso}>{dataArtigo.texto}</time>
           </div>
         </div>
 
