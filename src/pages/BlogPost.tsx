@@ -5,6 +5,7 @@ import { artigos } from "../data/artigos";
 import { getFaq } from "../data/faqs";
 import { aplicarLinksInternos } from "../data/linksInternos";
 import { getCorSuave } from "../data/coresSuaves";
+import { selo } from "../data/revisao";
 
 // Permite chamar o gtag do GA4 sem quebrar a tipagem do TypeScript
 declare global {
@@ -31,7 +32,14 @@ function rastrearCTA(local: string, slugArtigo: string, categoria: string) {
 }
 
 // Hook para atualizar meta tags via DOM nativo
-const useMetaTags = (titulo: string, descricao: string, url: string, keywords: string) => {
+const useMetaTags = (
+  titulo: string,
+  descricao: string,
+  url: string,
+  keywords: string,
+  dataIso: string,
+  ehPublicacao: boolean
+) => {
   useEffect(() => {
     if (!titulo) return;
 
@@ -106,12 +114,23 @@ const useMetaTags = (titulo: string, descricao: string, url: string, keywords: s
         "@type": "WebPage",
         "@id": url,
       },
+      /* ----------------------------------------------------------------
+         Sinal de frescor.
+
+         dateModified sempre presente: aponta para a data da ultima
+         auditoria de citacoes legais (fonte: src/data/revisao.ts).
+
+         datePublished so aparece quando o artigo tem data de publicacao
+         real gravada. Nao inventamos data para o acervo antigo.
+      ---------------------------------------------------------------- */
+      dateModified: dataIso,
+      ...(ehPublicacao ? { datePublished: dataIso } : {}),
     });
 
     return () => {
       document.title = "CheckMulta — Análise de Multas com IA";
     };
-  }, [titulo, descricao, url, keywords]);
+  }, [titulo, descricao, url, keywords, dataIso, ehPublicacao]);
 };
 
 const formatarTexto = (texto: string, slugAtual: string, jaUsados: Set<string>): string => {
@@ -303,6 +322,22 @@ export default function BlogPost() {
   const faq = artigo ? getFaq(artigo.categoria) : [];
   const cor = getCorSuave(artigo ? artigo.imagemBg : "from-slate-500 to-slate-600");
 
+  /* --------------------------------------------------------------------
+     Selo de data.
+
+     O acervo antigo nao possui data de publicacao registrada, entao exibe
+     a data da ultima revisao — que e verdadeira e verificavel. Artigos
+     gravados pelos robos daqui em diante trazem `dataPublicacao` e passam
+     a exibir "Publicado em ...".
+
+     O cast existe porque o campo ainda e opcional e nao consta da interface
+     Artigo; quando os robos comecarem a grava-lo, basta declarar
+     `dataPublicacao?: string` em src/data/artigos.ts e remover o cast.
+  -------------------------------------------------------------------- */
+  const dataArtigo = selo(
+    (artigo as { dataPublicacao?: string } | undefined)?.dataPublicacao
+  );
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
@@ -322,7 +357,9 @@ export default function BlogPost() {
     artigo ? artigo.titulo : "",
     artigo ? artigo.descricao : "",
     url,
-    artigo ? artigo.palavrasChave.join(", ") : ""
+    artigo ? artigo.palavrasChave.join(", ") : "",
+    dataArtigo.iso,
+    dataArtigo.publicacao
   );
 
   // Schema FAQPage
@@ -486,9 +523,15 @@ export default function BlogPost() {
             {artigo.descricao}
           </p>
 
-          <div className="flex items-center gap-1.5 text-xs text-slate-400">
-            <Clock className="h-3.5 w-3.5" />
-            {artigo.tempoLeitura} de leitura
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-slate-400">
+            <span className="flex items-center gap-1.5">
+              <Clock className="h-3.5 w-3.5" />
+              {artigo.tempoLeitura} de leitura
+            </span>
+            <span aria-hidden="true" className="text-slate-300">
+              ·
+            </span>
+            <time dateTime={dataArtigo.iso}>{dataArtigo.texto}</time>
           </div>
         </div>
 
