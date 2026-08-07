@@ -191,9 +191,21 @@ export default function Energia() {
     // Prioridade 1: a defesa final já tinha sido gerada e paga. Mostra
     // direto, sem chamar a IA de novo — cobre o caso de fechar a aba
     // DEPOIS que o texto ficou pronto, que antes perdia tudo.
+    //
+    // Expira em 7 dias: passado esse prazo a situação pode ter mudado
+    // (pagamento, prazo do recurso), então não reabre como se fosse atual.
+    const SETE_DIAS_MS = 7 * 24 * 60 * 60 * 1000;
     const savedDefense = localStorage.getItem("energia_defense_result");
+    const savedDefenseSavedAt = localStorage.getItem("energia_defense_saved_at");
     const savedPaidStatus = localStorage.getItem("energia_paid_status");
-    if (savedDefense && savedPaidStatus === "true" && !defenseResult) {
+    const defesaExpirada =
+      savedDefenseSavedAt && Date.now() - Number(savedDefenseSavedAt) > SETE_DIAS_MS;
+
+    if (defesaExpirada) {
+      localStorage.removeItem("energia_defense_result");
+      localStorage.removeItem("energia_defense_saved_at");
+      localStorage.removeItem("energia_paid_status");
+    } else if (savedDefense && savedPaidStatus === "true" && !defenseResult) {
       setDefenseResult(savedDefense);
       setIsPaid(true);
       setIsResultModalOpen(true);
@@ -342,6 +354,7 @@ useEffect(() => {
     setIsUploadModalOpen(false);
     localStorage.removeItem("energia_saved_result");
     localStorage.removeItem("energia_defense_result");
+    localStorage.removeItem("energia_defense_saved_at");
     localStorage.removeItem("energia_paid_status");
     localStorage.removeItem("energia_pending_payment");
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -539,6 +552,7 @@ useEffect(() => {
       // por completo — se a pessoa fechasse a aba neste instante ou depois,
       // o texto pronto (já pago) se perdia sem qualquer forma de recuperar.
       localStorage.setItem("energia_defense_result", data.result);
+      localStorage.setItem("energia_defense_saved_at", String(Date.now()));
       localStorage.removeItem("energia_saved_result");
       localStorage.removeItem("energia_pending_payment");
     } catch (err: any) {
@@ -609,11 +623,14 @@ useEffect(() => {
           </a>
 
           <nav className="hidden items-center gap-5 text-sm font-medium text-slate-600 lg:flex">
-            <a href="/" className="transition hover:text-emerald-600">Multas de trânsito</a>
+            <a href="/multa-de-transito" className="transition hover:text-emerald-600">Multas de trânsito</a>
             <a href="#como-funciona" className="transition hover:text-emerald-600">Como funciona</a>
             <a href="#seguranca" className="transition hover:text-emerald-600">Segurança</a>
             <a href="#faq-energia" className="transition hover:text-emerald-600">Dúvidas</a>
             <a href="/energia/blog" className="transition hover:text-emerald-600">Blog</a>
+            <a href="/procon" className="transition hover:text-emerald-600">Procon</a>
+            <a href="/vigilancia-sanitaria" className="transition hover:text-emerald-600">Vigilância</a>
+            <a href="/ibama" className="transition hover:text-emerald-600">IBAMA</a>
             <button
               onClick={() => setActiveModal("suporte")}
               className="font-semibold text-emerald-600 transition hover:text-emerald-700"
@@ -638,11 +655,14 @@ useEffect(() => {
                 exit={{ opacity: 0, y: -10 }}
                 className="absolute left-0 top-full z-50 flex w-full flex-col space-y-2 border-b border-slate-200 bg-white p-4 shadow-lg lg:hidden"
               >
-                <a href="/" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Multas de trânsito</a>
+                <a href="/multa-de-transito" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Multas de trânsito</a>
                 <a href="#como-funciona" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Como funciona</a>
                 <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Segurança</a>
                 <a href="#faq-energia" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Dúvidas</a>
                 <a href="/energia/blog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Blog</a>
+                <a href="/procon" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Procon</a>
+                <a href="/vigilancia-sanitaria" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Vigilância Sanitária</a>
+                <a href="/ibama" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">IBAMA</a>
                 <button
                   onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
                   className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-3 text-left font-semibold text-emerald-700 transition"
@@ -1144,7 +1164,7 @@ useEffect(() => {
           </div>
 
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
-<a href="/" className="text-slate-600 transition hover:text-emerald-600">
+<a href="/multa-de-transito" className="text-slate-600 transition hover:text-emerald-600">
               Multas de trânsito
             </a>
             <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
@@ -1155,6 +1175,9 @@ useEffect(() => {
             </a>
             <a href="/energia" className="text-slate-600 transition hover:text-emerald-600">
               Conta de luz
+            </a>
+            <a href="/ibama" className="text-slate-600 transition hover:text-emerald-600">
+              IBAMA
             </a>
           </nav>
 
