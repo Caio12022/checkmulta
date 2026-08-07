@@ -2,9 +2,10 @@ import { useEffect, type ReactElement } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Clock, ArrowRight, ChevronRight } from "lucide-react";
 import {
-  artigosEnergia,
-  getArtigoEnergiaPorSlug,
-} from "../data/artigosEnergia";
+  artigosIbama,
+  getArtigoIbamaPorSlug,
+} from "../data/artigosIbama";
+import { selo } from "../data/revisao";
 
 /* ---------- Renderizador de markdown simples ---------- */
 
@@ -131,21 +132,26 @@ function renderizarConteudo(markdown: string) {
 
 /* ---------- Componente ---------- */
 
-export default function BlogPostEnergia() {
+export default function BlogPostIbama() {
   const { slug } = useParams<{ slug: string }>();
-  const artigo = slug ? getArtigoEnergiaPorSlug(slug) : undefined;
+  const artigo = slug ? getArtigoIbamaPorSlug(slug) : undefined;
 
   const relacionados = artigo
-    ? artigosEnergia
+    ? artigosIbama
         .filter((a) => a.slug !== artigo.slug)
         .sort((a) => (a.categoria === artigo.categoria ? -1 : 1))
         .slice(0, 3)
     : [];
 
+  /* Selo de data — ver src/data/revisao.ts para a explicacao completa. */
+  const dataArtigo = selo(
+    (artigo as { dataPublicacao?: string } | undefined)?.dataPublicacao
+  );
+
   useEffect(() => {
     if (!artigo) return;
 
-    const url = `https://checkmulta.com.br/energia/blog/${artigo.slug}`;
+    const url = `https://checkmulta.com.br/ibama/blog/${artigo.slug}`;
 
     document.title = `${artigo.titulo} | CheckMulta`;
 
@@ -193,6 +199,8 @@ export default function BlogPostEnergia() {
           name: "CheckMulta",
           url: "https://checkmulta.com.br",
         },
+        dateModified: dataArtigo.iso,
+        ...(dataArtigo.publicacao ? { datePublished: dataArtigo.iso } : {}),
       },
       {
         "@context": "https://schema.org",
@@ -201,14 +209,14 @@ export default function BlogPostEnergia() {
           {
             "@type": "ListItem",
             position: 1,
-            name: "Energia Elétrica",
-            item: "https://checkmulta.com.br/energia",
+            name: "IBAMA",
+            item: "https://checkmulta.com.br/ibama",
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Blog",
-            item: "https://checkmulta.com.br/energia/blog",
+            item: "https://checkmulta.com.br/ibama/blog",
           },
           {
             "@type": "ListItem",
@@ -220,20 +228,20 @@ export default function BlogPostEnergia() {
       },
     ];
 
-    const existente = document.getElementById("schema-post-energia");
+    const existente = document.getElementById("schema-post-ibama");
     if (existente) existente.remove();
 
     const script = document.createElement("script");
     script.setAttribute("type", "application/ld+json");
-    script.id = "schema-post-energia";
+    script.id = "schema-post-ibama";
     script.textContent = JSON.stringify(schemas);
     document.head.appendChild(script);
 
     return () => {
-      const s = document.getElementById("schema-post-energia");
+      const s = document.getElementById("schema-post-ibama");
       if (s) s.remove();
     };
-  }, [artigo]);
+  }, [artigo, dataArtigo.iso, dataArtigo.publicacao]);
 
   /* ---------- Artigo não encontrado ---------- */
 
@@ -247,7 +255,7 @@ export default function BlogPostEnergia() {
           O conteúdo que você procura não existe ou foi movido.
         </p>
         <Link
-          to="/energia/blog"
+          to="/ibama/blog"
           className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
         >
           Ver todos os artigos
@@ -264,7 +272,7 @@ export default function BlogPostEnergia() {
       {/* Cabeçalho */}
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <Link to="/energia" className="flex items-center">
+          <Link to="/ibama" className="flex items-center">
             <img
               src="/checkmulta-logo.webp"
               alt="CheckMulta"
@@ -275,10 +283,10 @@ export default function BlogPostEnergia() {
           </Link>
 
           <nav className="flex items-center gap-5 text-sm font-medium text-slate-600">
-            <Link to="/energia" className="hover:text-emerald-600">
+            <Link to="/ibama" className="hover:text-emerald-600">
               Análise gratuita
             </Link>
-            <Link to="/energia/blog" className="text-emerald-600">
+            <Link to="/ibama/blog" className="text-emerald-600">
               Blog
             </Link>
           </nav>
@@ -288,9 +296,9 @@ export default function BlogPostEnergia() {
       {/* Barra de urgência */}
       <div className="border-b border-emerald-100 bg-emerald-50">
         <div className="mx-auto max-w-3xl px-4 py-2.5 text-center text-[13px] text-emerald-800">
-          O prazo para contestar está na sua notificação.{" "}
-          <Link to="/energia" className="font-semibold underline">
-            Verifique agora se a cobrança tem falha
+          O prazo de defesa está no seu auto de infração.{" "}
+          <Link to="/ibama" className="font-semibold underline">
+            Verifique agora se o auto tem falha
           </Link>
         </div>
       </div>
@@ -298,11 +306,11 @@ export default function BlogPostEnergia() {
       <article className="mx-auto max-w-3xl px-4 pb-4 pt-8">
         {/* Breadcrumb */}
         <nav className="mb-6 flex flex-wrap items-center gap-1 text-xs text-slate-500">
-          <Link to="/energia" className="hover:text-emerald-600">
-            Energia Elétrica
+          <Link to="/ibama" className="hover:text-emerald-600">
+            IBAMA
           </Link>
           <ChevronRight className="h-3 w-3" />
-          <Link to="/energia/blog" className="hover:text-emerald-600">
+          <Link to="/ibama/blog" className="hover:text-emerald-600">
             Blog
           </Link>
           <ChevronRight className="h-3 w-3" />
@@ -323,9 +331,15 @@ export default function BlogPostEnergia() {
             {artigo.descricao}
           </p>
 
-          <div className="flex items-center gap-1.5 text-xs text-slate-400">
-            <Clock className="h-3.5 w-3.5" />
-            {artigo.tempoLeitura} de leitura
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-slate-400">
+            <span className="flex items-center gap-1.5">
+              <Clock className="h-3.5 w-3.5" />
+              {artigo.tempoLeitura} de leitura
+            </span>
+            <span aria-hidden="true" className="text-slate-300">
+              ·
+            </span>
+            <time dateTime={dataArtigo.iso}>{dataArtigo.texto}</time>
           </div>
         </div>
 
@@ -333,13 +347,13 @@ export default function BlogPostEnergia() {
         <div className="mb-9 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
           <p className="mb-3 text-sm leading-relaxed text-slate-700">
             <strong className="font-semibold text-slate-900">
-              Recebeu uma cobrança de recuperação de consumo?
+              Foi autuado pelo IBAMA?
             </strong>{" "}
-            Envie o TOI ou a notificação e veja grátis se a cobrança tem
-            falha.
+            Envie o auto de infração e veja grátis se ele tem falha que
+            permite defesa.
           </p>
           <Link
-            to="/energia"
+            to="/ibama"
             className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
             Analisar grátis
@@ -353,14 +367,14 @@ export default function BlogPostEnergia() {
         {/* CTA final */}
         <div className="mt-12 rounded-xl border border-slate-200 bg-slate-50 p-6 text-center">
           <h2 className="mb-2 text-lg font-bold text-slate-900">
-            Veja grátis se a sua cobrança tem falha
+            Veja grátis se o seu auto tem falha
           </h2>
           <p className="mx-auto mb-5 max-w-xl text-sm leading-relaxed text-slate-600">
-            A análise aponta se o procedimento tem falha capaz de derrubar a
-            cobrança. Se não houver, você não paga nada.
+            A análise aponta se o auto tem falha capaz de fundamentar a defesa.
+            Se não houver, você não paga nada.
           </p>
           <Link
-            to="/energia"
+            to="/ibama"
             className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
             Começar análise gratuita
@@ -381,7 +395,7 @@ export default function BlogPostEnergia() {
               {relacionados.map((rel) => (
                 <Link
                   key={rel.slug}
-                  to={`/energia/blog/${rel.slug}`}
+                  to={`/ibama/blog/${rel.slug}`}
                   className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
                 >
                   <div
@@ -445,6 +459,12 @@ export default function BlogPostEnergia() {
               className="text-slate-600 transition hover:text-emerald-600"
             >
               Conta de luz
+            </Link>
+            <Link
+              to="/ibama"
+              className="text-slate-600 transition hover:text-emerald-600"
+            >
+              IBAMA
             </Link>
           </nav>
 
