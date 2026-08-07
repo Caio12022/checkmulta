@@ -361,6 +361,13 @@ ESTRUTURA DA PEÇA
      isso, a aplicação de atenuantes (art. 14 da Lei 9.605/98) ou a conversão da multa em
      serviços ambientais (art. 72, § 4º);
    - produção de prova, se pertinente.
+
+   PROPORÇÃO ENTRE ACHADO E PEDIDO. O pedido não pode ser mais forte que a gravidade do
+   achado que o sustenta. Achado "critico" autoriza pedir nulidade ou arquivamento. Achado
+   "atencao" NÃO autoriza: dele só cabe pedido de que o órgão junte ou esclareça o ponto,
+   ou menção como reforço dentro de outro pedido. É PROIBIDO pedir arquivamento do processo
+   com base em achado de gravidade "atencao" — em especial o de suporte probatório, que é
+   fragilidade de prova e não vício do auto. Achado "verificar" não gera pedido próprio.
 5. DO ENCAMINHAMENTO — SEÇÃO OBRIGATÓRIA, presente em TODA peça, sem exceção, qualquer que
    seja o achado. Deve conter: (a) o prazo de defesa de VINTE DIAS contados da ciência da
    autuação, conforme o art. 113 do Decreto 6.514/2008; (b) a ressalva de que o prazo pode
@@ -447,6 +454,12 @@ CHECAGENS OBRIGATÓRIAS
    com guarda do comprovante, e a menção à via judicial. Se estiver ausente ou incompleta,
    ACRESCENTE a seção — esta é a única hipótese em que você pode acrescentar conteúdo ao
    texto. Sem ela o autuado perde o prazo.
+9. PROPORÇÃO ENTRE GRAVIDADE E PEDIDO. Cruze cada pedido com a gravidade do achado que o
+   sustenta no JSON. Se a peça pedir nulidade ou arquivamento com base em achado cuja
+   gravidade seja "atencao" ou "verificar", REDUZA o pedido: converta em pedido de que o
+   órgão junte ou esclareça o ponto, ou incorpore como reforço de outro pedido amparado em
+   achado "critico". Pedir arquivamento por fragilidade probatória é desproporcional e
+   enfraquece a peça inteira perante o julgador.
 
 SAÍDA
 
