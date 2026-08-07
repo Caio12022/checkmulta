@@ -9,7 +9,7 @@ import {
   Scale, QrCode, X, Copy, Download, Check, Search, FileText,
   Lock, UserX, Route, RefreshCcw, MessageSquare,
   ClipboardList, Menu, Timer, Building2, Leaf,
-  ShieldAlert, FileWarning, PlusCircle, Clock, UploadCloud, Receipt
+  ShieldAlert, FileWarning, PlusCircle, UploadCloud, Receipt
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
@@ -39,6 +39,17 @@ const precoPara = (a: Analise | null): number => {
 };
 
 const formatarPreco = (v: number) => v.toFixed(2).replace(".", ",");
+
+/* Valor da multa do auto, em reais. Diferente de formatarPreco, que formata o
+   preco do produto: aqui entra separador de milhar, porque multa ambiental
+   costuma passar de mil (ex.: 62500 vira "R$ 62.500,00"). */
+const formatarValorMulta = (v: number) =>
+  v.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
 
 const track = (gtagEvent: string, clarityEvent: string, params?: Record<string, any>) => {
   if (typeof window === "undefined") return;
@@ -1392,10 +1403,20 @@ useEffect(() => {
 
                           {analise.infracao_descrita && (
                             <div className="mt-4 flex items-start gap-3 border-t border-slate-200 pt-4">
-                              <Clock className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
+                              <FileWarning className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
+                              <div>
+                                <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Infração descrita</p>
+                                <p className="mt-0.5 text-[13px] leading-relaxed text-slate-700">{analise.infracao_descrita}</p>
+                              </div>
+                            </div>
+                          )}
+
+                          {typeof analise.valor_multa === "number" && (
+                            <div className="mt-4 flex items-start gap-3 border-t border-slate-200 pt-4">
+                              <Receipt className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
                               <div>
                                 <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Valor da multa</p>
-                                <p className="mt-0.5 text-[13px] leading-relaxed text-slate-700">{analise.infracao_descrita}</p>
+                                <p className="mt-0.5 text-[13px] font-bold leading-relaxed text-slate-900">{formatarValorMulta(analise.valor_multa)}</p>
                               </div>
                             </div>
                           )}
