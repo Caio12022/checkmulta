@@ -298,6 +298,16 @@ useEffect(() => {
   }, []);
   // ─── HANDLERS ────────────────────────────────────────────────────────────
   const handleTipoSelect = (tipoName: string) => {
+    // Já existe uma defesa gerada/paga (inclusive vinda do localStorage dos
+    // últimos 7 dias). Confirma antes de liberar, pois seguir vai substituir
+    // o resultado salvo.
+    if (isPaid || defenseResult) {
+      const confirmar = window.confirm(
+        "Você já tem uma defesa pronta salva. Se enviar um novo documento, esse resultado será substituído e não poderá ser recuperado depois. Deseja continuar mesmo assim?"
+      );
+      if (!confirmar) return;
+      clearImage();
+    }
     setSelectedTipo(tipoName);
     setIsUploadModalOpen(true);
     track("ibama_tipo_selecionado", "ibama_1_tipo_selecionado", { tipo: tipoName });
@@ -1200,7 +1210,7 @@ useEffect(() => {
                       onChange={handleFileSelect}
                       accept="image/*,application/pdf"
                       className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
-                      disabled={isAnalyzing || isPaid}
+                      disabled={isAnalyzing}
                       title="Clique para enviar o documento"
                     />
                     <div className="pointer-events-none flex flex-col items-center justify-center space-y-3 py-8">
