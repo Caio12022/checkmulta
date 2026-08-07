@@ -343,9 +343,22 @@ export default function App() {
     // Prioridade 1: a defesa final já tinha sido gerada e paga. Mostra
     // direto, sem chamar a IA de novo — cobre fechar a aba DEPOIS que o
     // texto ficou pronto, que antes perdia tudo.
+    //
+    // Expira em 7 dias: passado esse prazo a situação da multa pode ter
+    // mudado (pagamento, julgamento, prazo do recurso), então não faz
+    // sentido reabrir uma defesa velha como se fosse atual.
+    const SETE_DIAS_MS = 7 * 24 * 60 * 60 * 1000;
     const savedDefense = localStorage.getItem("checkmulta_defense_result");
+    const savedDefenseSavedAt = localStorage.getItem("checkmulta_defense_saved_at");
     const savedPaidStatus = localStorage.getItem("checkmulta_paid_status");
-    if (savedDefense && savedPaidStatus === "true" && !defenseResult) {
+    const defesaExpirada =
+      savedDefenseSavedAt && Date.now() - Number(savedDefenseSavedAt) > SETE_DIAS_MS;
+
+    if (defesaExpirada) {
+      localStorage.removeItem("checkmulta_defense_result");
+      localStorage.removeItem("checkmulta_defense_saved_at");
+      localStorage.removeItem("checkmulta_paid_status");
+    } else if (savedDefense && savedPaidStatus === "true" && !defenseResult) {
       setDefenseResult(savedDefense);
       setIsPaid(true);
       setIsResultModalOpen(true);
@@ -500,6 +513,7 @@ export default function App() {
     setPrecoDefesa(PRECO_BAIXO);
     localStorage.removeItem("checkmulta_saved_result");
     localStorage.removeItem("checkmulta_defense_result");
+    localStorage.removeItem("checkmulta_defense_saved_at");
     localStorage.removeItem("checkmulta_paid_status");
     localStorage.removeItem("checkmulta_pending_payment");
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -744,6 +758,7 @@ export default function App() {
       // a aba neste instante ou depois, o texto pronto (já pago) se perdia
       // sem qualquer forma de recuperar.
       localStorage.setItem("checkmulta_defense_result", data.result);
+      localStorage.setItem("checkmulta_defense_saved_at", String(Date.now()));
       localStorage.removeItem("checkmulta_saved_result");
       localStorage.removeItem("checkmulta_pending_payment");
     } catch (err: any) {
@@ -800,7 +815,7 @@ export default function App() {
       {/* HEADER */}
       <header className="sticky top-0 z-40 border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <a href="/" className="flex items-center">
+          <a href="/multa-de-transito" className="flex items-center">
             <img
               src="/checkmulta-logo.webp"
               alt="CheckMulta"
@@ -820,6 +835,8 @@ export default function App() {
             <a href="/blog" className="transition hover:text-emerald-600">Blog</a>
             <a href="/procon" className="transition hover:text-emerald-600">Procon</a>
             <a href="/vigilancia-sanitaria" className="transition hover:text-emerald-600">Vigilância</a>
+            <a href="/energia" className="transition hover:text-emerald-600">Energia</a>
+            <a href="/ibama" className="transition hover:text-emerald-600">IBAMA</a>
             <button
               onClick={() => setActiveModal("suporte")}
               className="font-semibold text-emerald-600 transition hover:text-emerald-700"
@@ -857,6 +874,14 @@ export default function App() {
                 </a>
                 <a href="/vigilancia-sanitaria" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-between rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">
                   <span>Vigilância Sanitária</span>
+                  <Building2 className="h-4 w-4 text-slate-400" />
+                </a>
+                <a href="/energia" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-between rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">
+                  <span>Energia — cobrança retroativa</span>
+                  <Building2 className="h-4 w-4 text-slate-400" />
+                </a>
+                <a href="/ibama" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-between rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">
+                  <span>IBAMA — infração ambiental</span>
                   <Building2 className="h-4 w-4 text-slate-400" />
                 </a>
                 <button
@@ -1312,7 +1337,7 @@ export default function App() {
       </section>
 
      {/* CARROSSEL DE SERVIÇOS */}
-      <CarrosselServicos />
+      <CarrosselServicos excluir={["transito"]} />
     
 
      {/* CONTEÚDO SEO */}
@@ -1447,7 +1472,7 @@ export default function App() {
           </div>
 
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
-            <a href="/" className="text-slate-600 transition hover:text-emerald-600">
+            <a href="/multa-de-transito" className="text-slate-600 transition hover:text-emerald-600">
               Multas de trânsito
             </a>
             <a href="/simulador-pontos" className="text-slate-600 transition hover:text-emerald-600">
@@ -1461,6 +1486,12 @@ export default function App() {
             </a>
             <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
               Vigilância Sanitária
+            </a>
+            <a href="/energia" className="text-slate-600 transition hover:text-emerald-600">
+              Energia
+            </a>
+            <a href="/ibama" className="text-slate-600 transition hover:text-emerald-600">
+              IBAMA
             </a>
           </nav>
 
