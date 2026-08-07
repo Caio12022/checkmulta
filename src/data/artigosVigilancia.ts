@@ -12,6 +12,47 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "manual-de-boas-praticas-o-que-o-seu-estabelecimento-deve-manter",
+    titulo: "Manual de Boas Práticas: O Que o Seu Estabelecimento Deve Manter",
+    descricao: "Saiba quais documentos e registros compõem o Manual de Boas Práticas e como a falta deles pode gerar autuações. Analise seu auto de infração gratuitamente.",
+    categoria: "Boas Práticas",
+    tempoLeitura: "5 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-emerald-50 to-teal-50",
+    palavrasChave: ["Manual de Boas Práticas", "Auto de infração Vigilância Sanitária", "defesa processo administrativo sanitário", "regularização sanitária"],
+    conteudo: `## A Importância do Manual de Boas Práticas
+
+O Manual de Boas Práticas é um documento fundamental para qualquer estabelecimento que lida com a saúde pública, seja na manipulação de alimentos, na prestação de serviços de saúde ou na comercialização de produtos. Ele funciona como o guia operacional que estabelece os procedimentos necessários para garantir a segurança e a qualidade do que é ofertado ao consumidor. Quando a autoridade sanitária fiscaliza um estabelecimento, a ausência ou a desconformidade deste documento é um dos principais motivos para a lavratura de um auto de infração.
+
+## O que deve compor a documentação
+
+A legislação sanitária exige que os estabelecimentos demonstrem, por meio de documentos, que as rotinas de higiene, controle de temperatura, limpeza e saúde dos colaboradores estão sendo executadas. Não basta executar as tarefas; é preciso documentar. Registros como notas fiscais de compra, certificados de controle de pragas, laudos de análise de água e planilhas de controle de temperaturas de equipamentos são evidências essenciais da conformidade sanitária.
+
+## O Auto de Infração e os Requisitos Legais
+
+Caso o fiscal identifique a ausência desses registros, o estabelecimento pode ser autuado. O auto de infração, conforme estabelece a Lei 6.437/77 em seu art. 13, deve conter requisitos obrigatórios, como a descrição clara da infração e o dispositivo legal infringido. A ausência de elementos formais obrigatórios pode ser objeto de análise em uma defesa administrativa, com possibilidade de questionamento quanto à validade do ato.
+
+Ao receber um auto, é importante observar que a aplicação de sanções, conforme o rol de penalidades do art. 2º da Lei 6.437/77, segue critérios de graduação descritos no art. 6º da mesma norma, levando em conta a gravidade do fato (art. 4º) e as circunstâncias atenuantes ou agravantes, conforme os arts. 7º e 8º. O processo administrativo deve sempre observar princípios fundamentais como a legalidade, a motivação e a ampla defesa. A Lei 9.784/99, aplicável subsidiariamente, reforça a importância da motivação nas decisões administrativas, conforme seu art. 50, e a garantia de direitos no art. 2º.
+
+## Como proceder após a autuação
+
+Se o estabelecimento for autuado, o primeiro passo é verificar o prazo estipulado para a apresentação da defesa no próprio documento recebido. Este prazo varia conforme a legislação do ente federativo competente (conforme arts. 14 e 22 da Lei 6.437/77), já que a estrutura sanitária é descentralizada. Verifique atentamente o documento recebido e, em caso de dúvida, entre em contato com o órgão emissor.
+
+Em situações que envolvam interdição cautelar, lembre-se que esta medida possui limite temporal máximo de 90 dias, conforme o art. 23, § 4º da Lei 6.437/77. O estabelecimento deve focar exclusivamente na correção das irregularidades e na formalização do pedido de nova vistoria junto ao órgão fiscalizador. Somente após a liberação oficial pela autoridade sanitária é que o estabelecimento poderá retomar suas atividades. É essencial documentar toda a adequação feita, incluindo registros fotográficos e notas fiscais de equipamentos ou reformas, para subsidiar o pedido de reinspeção.
+
+## Defesa Administrativa e Princípios Processuais
+
+O devido processo legal garante que o autuado possa apresentar seus argumentos de defesa. No âmbito administrativo, pode-se questionar desde a forma do auto até a proporcionalidade da pena aplicada, observando-se os prazos previstos na norma (art. 22 da Lei 6.437/77) e as possibilidades de recurso (art. 30 da Lei 6.437/77). O contraditório e a razoabilidade são pilares que protegem o empresário contra excessos na aplicação de sanções. Sempre que for apresentar uma defesa, busque fundamentar seus argumentos com base nos fatos ocorridos e nas provas documentais que comprovem a correção das falhas apontadas pela fiscalização.
+
+Lembre-se que o pagamento da multa dentro do prazo legal, conforme estabelecido no art. 33 da Lei 6.437/77, deve observar as orientações específicas do órgão autuante. O acompanhamento rigoroso dos prazos é essencial para evitar o agravamento da situação administrativa e a eventual prescrição, que ocorre em cinco anos, conforme o art. 38 da Lei 6.437/77.
+
+O envio do auto de infração para análise profissional pode permitir a identificação de falhas formais que fundamentem o exercício do direito de defesa e recurso.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "como-se-preparar-para-uma-inspecao-da-vigilancia-sanitaria",
     titulo: "Como se preparar para uma inspeção da Vigilância Sanitária",
     descricao: "Saiba como organizar seu estabelecimento para receber a Vigilância Sanitária e entenda os procedimentos legais após uma autuação. Analise seu auto agora.",
