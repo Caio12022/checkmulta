@@ -12,6 +12,47 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "presuncao-de-legitimidade-o-que-voce-precisa-saber",
+    titulo: "Presunção de Legitimidade: O que você precisa saber",
+    descricao: "Entenda como funciona a presunção de legitimidade nas multas de trânsito e como contestar o auto de infração. Analise sua multa gratuitamente hoje.",
+    categoria: "Jurídico",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-amber-600 to-amber-800",
+    conteudo: `## Entendendo a Presunção de Legitimidade no Direito de Trânsito
+
+Ao receber uma notificação de autuação, é muito comum que o condutor se sinta injustiçado, especialmente quando tem a certeza de que não cometeu a irregularidade apontada. Nesse momento, surge uma dúvida frequente: se a palavra do agente de trânsito vale mais que a do condutor, existe alguma chance de reverter essa penalidade? É aqui que entra o conceito da **presunção de legitimidade**.
+
+Este é um atributo inerente aos atos administrativos praticados por agentes públicos no exercício de suas funções. Em termos simples, significa que a lei presume que o ato praticado pelo agente estatal é verdadeiro, correto e está de acordo com as normas vigentes, até que se prove o contrário.
+
+## Por que o agente tem essa autoridade?
+
+A legislação de trânsito brasileira concede ao agente de trânsito a fé pública. Isso quer dizer que, ao registrar uma infração, entende-se que ele agiu dentro do dever de ofício, observando o que a legislação determina. Como o agente representa o Estado, o auto de infração é considerado um documento oficial com veracidade garantida.
+
+Contudo, é fundamental compreender que essa presunção **não é absoluta**. Ela é chamada pelos juristas de presunção relativa, o que significa que admite prova em contrário. O sistema jurídico brasileiro não permite que o cidadão seja privado de seus direitos de forma arbitrária e sem possibilidade de defesa.
+
+## Como combater essa presunção?
+
+Para anular uma multa baseada na presunção de legitimidade, o proprietário do veículo ou o condutor infrator deve apresentar elementos que desconstruam a veracidade ou a legalidade do auto de infração. Não basta apenas negar o ocorrido; é preciso trazer fatos concretos.
+
+Algumas formas eficazes de questionar essa presunção incluem:
+
+* **Erros formais:** Verificar se o auto de infração contém dados incorretos, como placa errada, modelo do veículo divergente ou falta de informações obrigatórias sobre o local e a hora da abordagem.
+* **Falhas procedimentais:** Analisar se o agente respeitou todas as etapas previstas na legislação para a lavratura da infração, como a correta sinalização da via ou o procedimento de abordagem exigido pela norma.
+* **Prova documental:** Utilizar registros fotográficos, vídeos, notas fiscais, registros de GPS ou comprovantes de que o veículo não estava no local ou no horário apontado pela fiscalização.
+* **Equipamentos de medição:** Caso a multa seja eletrônica, é possível questionar a calibração e a manutenção periódica dos equipamentos utilizados, exigindo os certificados que garantem a precisão técnica do aparelho.
+
+## O Direito à Ampla Defesa
+
+O princípio da presunção de legitimidade caminha lado a lado com o princípio constitucional do contraditório e da ampla defesa. Se o Estado tem o poder de autuar, o cidadão tem o direito pleno de questionar esse poder. O processo administrativo de trânsito existe justamente para que as autoridades competentes avaliem se, naquele caso específico, o agente realmente agiu conforme a norma ou se cometeu um equívoco que justifique o cancelamento da penalidade.
+
+Se você acredita que foi multado indevidamente e deseja exercer o seu direito de recorrer, o primeiro passo é analisar cuidadosamente o documento que você recebeu. A falta de um detalhe técnico no auto de infração pode ser a chave para o sucesso do seu recurso.
+
+No CheckMulta, você pode enviar o auto de infração para receber uma análise que aponta se há falhas capazes de anular a multa. Utilize a tecnologia a seu favor e garanta que sua defesa seja pautada nos argumentos técnicos mais eficazes para o seu caso.`,
+    palavrasChave: ["presunção de legitimidade", "multa de trânsito", "recurso de multa", "direito de trânsito"],
+  },
+
+  {
     slug: "como-acompanhar-o-seu-recurso-de-multa-de-transito-em-2026",
     titulo: "Como acompanhar o seu recurso de multa de trânsito em 2026",
     descricao: "Ficou na dúvida sobre o status do seu recurso de multa? Aprenda agora o passo a passo para monitorar o seu processo de forma simples. Analise sua multa.",
