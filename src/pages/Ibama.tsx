@@ -201,23 +201,38 @@ export default function Ibama() {
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
   const [isPixCopied, setIsPixCopied] = useState(false);
 
+  /* Retomada de sessao.
+     Quando o usuario volta e ja existe defesa paga guardada, a pagina NAO abre
+     o resultado direto nem gera nada: mostra a escolha entre reabrir o que ele
+     comprou ou comecar de novo. Comecar de novo passa por confirmacao, porque
+     descarta a peca paga. */
+  const [showRetomarModal, setShowRetomarModal] = useState(false);
+  const [showConfirmNovaModal, setShowConfirmNovaModal] = useState(false);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // ─── EFEITOS ─────────────────────────────────────────────────────────────
   useEffect(() => {
     const savedResult = localStorage.getItem("ibama_saved_result");
     const savedPaidStatus = localStorage.getItem("ibama_paid_status");
+    const savedDefense = localStorage.getItem("ibama_defense_result");
     if (savedResult && savedPaidStatus === "true" && !defenseResult && !isGeneratingDefense) {
       try {
         const parsed = JSON.parse(savedResult) as Analise;
         setAnalise(parsed);
         setIsPaid(true);
-        setIsResultModalOpen(true);
-        generateDefense(parsed);
+        setHasAnalyzed(true);
+        /* Se a peca ja foi gerada antes, ela volta do storage — sem nova
+           chamada a IA. Isso evita cobrar uma geracao a cada retorno e
+           garante que o usuario receba exatamente o texto que comprou. */
+        if (savedDefense) setDefenseResult(savedDefense);
+        /* Nao abre o resultado automaticamente: oferece a escolha. */
+        setShowRetomarModal(true);
       } catch {
         localStorage.removeItem("ibama_saved_result");
         localStorage.removeItem("ibama_paid_status");
         localStorage.removeItem("ibama_pending_payment");
+        localStorage.removeItem("ibama_defense_result");
       }
     }
   }, []);
@@ -345,7 +360,36 @@ useEffect(() => {
     localStorage.removeItem("ibama_saved_result");
     localStorage.removeItem("ibama_paid_status");
     localStorage.removeItem("ibama_pending_payment");
+    localStorage.removeItem("ibama_defense_result");
     if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  /* Reabre a peca ja paga. Se por algum motivo o texto nao veio do storage
+     (ex.: aba fechada antes de a geracao terminar), gera uma unica vez. */
+  const handleAbrirDefesaSalva = () => {
+    setShowRetomarModal(false);
+    setIsResultModalOpen(true);
+    if (!defenseResult && analise) generateDefense(analise);
+  };
+
+  /* Comecar de novo descarta a peca paga: exige confirmacao. */
+  const handlePedirNovaAnalise = () => {
+    setShowRetomarModal(false);
+    setShowConfirmNovaModal(true);
+  };
+
+  const handleConfirmarNovaAnalise = () => {
+    setShowConfirmNovaModal(false);
+    setDefenseResult(null);
+    setAnalise(null);
+    setIsPaid(false);
+    clearImage();
+  };
+
+  /* Desistiu de comecar de novo: volta para a escolha, sem perder nada. */
+  const handleCancelarNovaAnalise = () => {
+    setShowConfirmNovaModal(false);
+    setShowRetomarModal(true);
   };
 
   const handleNovaAnalise = () => {
@@ -535,8 +579,15 @@ useEffect(() => {
       setDefenseResult(data.result);
       setShowSuccessMessage(true);
       setShowFomoBanner(false);
-      localStorage.removeItem("ibama_saved_result");
-      localStorage.removeItem("ibama_paid_status");
+      /* NAO limpar o storage aqui. Se o usuario fechar a aba agora, ele perde a
+         peca que acabou de pagar. Guardamos o texto final e mantemos
+         saved_result e paid_status para permitir a retomada. Só o
+         pending_payment sai, porque o pagamento ja foi concluido. */
+      try {
+        localStorage.setItem("ibama_defense_result", data.result);
+      } catch {
+        /* storage cheio ou indisponivel: segue, o usuario ainda ve o texto na tela */
+      }
       localStorage.removeItem("ibama_pending_payment");
     } catch (err: any) {
       clearTimeout(timeoutId);
@@ -1748,6 +1799,94 @@ useEffect(() => {
                 </div>
               </motion.div>
             </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* ─── RETOMADA DE SESSÃO ─────────────────────────────────────────── */}
+      <AnimatePresence>
+        {showRetomarModal && (
+          <div className="fixed inset-0 z-[70] flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
+            >
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50">
+                <FileText className="h-6 w-6 text-emerald-600" />
+              </div>
+
+              <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 sm:text-xl">
+                Você tem uma defesa pronta
+              </h3>
+              <p className="mb-6 text-sm leading-relaxed text-slate-600">
+                Encontramos a análise do auto
+                {analise?.numero_auto ? ` nº ${analise.numero_auto}` : ""} que você já
+                pagou. Pode abrir a peça novamente ou começar uma análise nova.
+              </p>
+
+              <div className="space-y-3">
+                <button
+                  onClick={handleAbrirDefesaSalva}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                >
+                  Abrir minha defesa
+                  <FileText className="h-4 w-4" />
+                </button>
+
+                <button
+                  onClick={handlePedirNovaAnalise}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                >
+                  <PlusCircle className="h-4 w-4" />
+                  Analisar outro auto
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* ─── CONFIRMAÇÃO ANTES DE DESCARTAR A PEÇA PAGA ─────────────────── */}
+      <AnimatePresence>
+        {showConfirmNovaModal && (
+          <div className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
+            >
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50">
+                <ShieldAlert className="h-6 w-6 text-amber-600" />
+              </div>
+
+              <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 sm:text-xl">
+                Você vai perder a defesa atual
+              </h3>
+              <p className="mb-6 text-sm leading-relaxed text-slate-600">
+                Ao começar uma análise nova, a peça que você já pagou é apagada deste
+                aparelho e não poderá ser recuperada. Se ainda não salvou o texto,
+                volte e copie antes de prosseguir.
+              </p>
+
+              <div className="space-y-3">
+                <button
+                  onClick={handleCancelarNovaAnalise}
+                  className="w-full rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                >
+                  Não, manter minha defesa
+                </button>
+
+                <button
+                  onClick={handleConfirmarNovaAnalise}
+                  className="w-full rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50"
+                >
+                  Sim, quero analisar outro auto
+                </button>
+              </div>
+            </motion.div>
           </div>
         )}
       </AnimatePresence>
