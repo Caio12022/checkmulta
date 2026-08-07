@@ -7,6 +7,8 @@ import { MercadoPagoConfig, Payment } from "mercadopago";
 import { artigos } from "./src/data/artigos";
 import { artigosProcon } from "./src/data/artigosProcon";
 import { artigosVigilancia } from "./src/data/artigosVigilancia";
+import { artigosEnergia } from "./src/data/artigosEnergia";
+import { artigosIbama } from "./src/data/artigosIbama";
 import { infracoes, calcularValor, formatarReal, NOMES_GRAVIDADE } from "./src/data/infracoes";
 import { PROMPT_ANALYZE_TICKET, promptGenerateDefense } from "./prompts/transito";
 import { PROMPT_ANALYZE_PROCON, promptGenerateDefenseProcon } from "./prompts/procon";
@@ -185,6 +187,70 @@ function getMetaParaRota(pathname: string): MetaInfo {
     }
   }
 
+  // Energia (landing)
+  if (pathname === "/energia" || pathname === "/energia/") {
+    return {
+      title: "Recebeu um TOI de energia elétrica? Veja se tem falha, grátis | CheckMulta",
+      description: "Sua distribuidora aplicou um TOI ou cobrança retroativa de energia? Nossa IA verifica grátis se a autuação cumpriu a REN 1.000/2021 da ANEEL e entrega a contestação pronta.",
+      url: `${BASE_URL}/energia`,
+    };
+  }
+
+  // Blog Energia (listagem)
+  if (pathname === "/energia/blog" || pathname === "/energia/blog/") {
+    return {
+      title: "Blog Energia — Contestação de TOI e cobrança retroativa | CheckMulta",
+      description: "Guias sobre TOI, recuperação de consumo e cobrança retroativa de energia elétrica: prazos, perícia no medidor, contestação e direitos do consumidor. Fundamentado na REN 1.000/2021 da ANEEL.",
+      url: `${BASE_URL}/energia/blog`,
+    };
+  }
+
+  // Artigo de Energia: /energia/blog/:slug
+  const matchArtigoEnergia = pathname.match(/^\/energia\/blog\/([^/]+)\/?$/);
+  if (matchArtigoEnergia) {
+    const slugEnergia = matchArtigoEnergia[1];
+    const artigoEnergia = artigosEnergia.find((a) => a.slug === slugEnergia);
+    if (artigoEnergia) {
+      return {
+        title: `${artigoEnergia.titulo} | CheckMulta Energia`,
+        description: artigoEnergia.descricao,
+        url: `${BASE_URL}/energia/blog/${artigoEnergia.slug}`,
+      };
+    }
+  }
+
+  // IBAMA (landing)
+  if (pathname === "/ibama" || pathname === "/ibama/") {
+    return {
+      title: "Recebeu um auto de infração do IBAMA? Veja se tem falha, grátis | CheckMulta",
+      description: "Analise gratuitamente o seu auto de infração ambiental. Nossa IA confere os requisitos formais do Decreto nº 6.514/2008, a competência do órgão e indícios de prescrição.",
+      url: `${BASE_URL}/ibama`,
+    };
+  }
+
+  // Blog IBAMA (listagem)
+  if (pathname === "/ibama/blog" || pathname === "/ibama/blog/") {
+    return {
+      title: "Blog IBAMA — Defesa de auto de infração ambiental | CheckMulta",
+      description: "Guias sobre auto de infração ambiental do IBAMA: prazos, prescrição, requisitos formais e defesa administrativa. Fundamentado no Decreto nº 6.514/2008.",
+      url: `${BASE_URL}/ibama/blog`,
+    };
+  }
+
+  // Artigo do IBAMA: /ibama/blog/:slug
+  const matchArtigoIbama = pathname.match(/^\/ibama\/blog\/([^/]+)\/?$/);
+  if (matchArtigoIbama) {
+    const slugIbama = matchArtigoIbama[1];
+    const artigoIbama = artigosIbama.find((a) => a.slug === slugIbama);
+    if (artigoIbama) {
+      return {
+        title: `${artigoIbama.titulo} | CheckMulta IBAMA`,
+        description: artigoIbama.descricao,
+        url: `${BASE_URL}/ibama/blog/${artigoIbama.slug}`,
+      };
+    }
+  }
+
   // Blog Procon (listagem)
   if (pathname === "/procon/blog" || pathname === "/procon/blog/") {
     return {
@@ -280,12 +346,16 @@ function gerarSitemap(): string {
   urls.push({ loc: `${BASE_URL}/procon`, priority: "0.9", changefreq: "weekly" });
 
   urls.push({ loc: `${BASE_URL}/vigilancia-sanitaria`, priority: "0.9", changefreq: "weekly" });
+  urls.push({ loc: `${BASE_URL}/energia`, priority: "0.9", changefreq: "weekly" });
+  urls.push({ loc: `${BASE_URL}/ibama`, priority: "0.9", changefreq: "weekly" });
 
   // Listagens de blog
   urls.push({ loc: `${BASE_URL}/multa-de-transito/blog`, priority: "0.8", changefreq: "daily" });
   urls.push({ loc: `${BASE_URL}/procon/blog`, priority: "0.8", changefreq: "daily" });
 
   urls.push({ loc: `${BASE_URL}/vigilancia-sanitaria/blog`, priority: "0.8", changefreq: "daily" });
+  urls.push({ loc: `${BASE_URL}/energia/blog`, priority: "0.8", changefreq: "daily" });
+  urls.push({ loc: `${BASE_URL}/ibama/blog`, priority: "0.8", changefreq: "daily" });
 
 // Simulador de pontos
   urls.push({ loc: `${BASE_URL}/simulador-pontos`, priority: "0.9", changefreq: "monthly" });
@@ -332,6 +402,24 @@ function gerarSitemap(): string {
   artigosVigilancia.forEach((a) => {
     urls.push({
       loc: `${BASE_URL}/vigilancia-sanitaria/blog/${a.slug}`,
+      priority: "0.7",
+      changefreq: "monthly",
+    });
+  });
+
+  // Artigos de Energia
+  artigosEnergia.forEach((a) => {
+    urls.push({
+      loc: `${BASE_URL}/energia/blog/${a.slug}`,
+      priority: "0.7",
+      changefreq: "monthly",
+    });
+  });
+
+  // Artigos do IBAMA
+  artigosIbama.forEach((a) => {
+    urls.push({
+      loc: `${BASE_URL}/ibama/blog/${a.slug}`,
       priority: "0.7",
       changefreq: "monthly",
     });
