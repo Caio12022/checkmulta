@@ -184,41 +184,12 @@ export default function Energia() {
   const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
   const [isPixCopied, setIsPixCopied] = useState(false);
 
-  const [isProtocoloExpandido, setIsProtocoloExpandido] = useState(true);
-
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // ─── EFEITOS ─────────────────────────────────────────────────────────────
   useEffect(() => {
-    // Prioridade 1: a defesa final já tinha sido gerada e paga. Mostra
-    // direto, sem chamar a IA de novo — cobre o caso de fechar a aba
-    // DEPOIS que o texto ficou pronto, que antes perdia tudo.
-    //
-    // Expira em 7 dias: passado esse prazo a situação pode ter mudado
-    // (pagamento, prazo do recurso), então não reabre como se fosse atual.
-    const SETE_DIAS_MS = 7 * 24 * 60 * 60 * 1000;
-    const savedDefense = localStorage.getItem("energia_defense_result");
-    const savedDefenseSavedAt = localStorage.getItem("energia_defense_saved_at");
-    const savedPaidStatus = localStorage.getItem("energia_paid_status");
-    const defesaExpirada =
-      savedDefenseSavedAt && Date.now() - Number(savedDefenseSavedAt) > SETE_DIAS_MS;
-
-    if (defesaExpirada) {
-      localStorage.removeItem("energia_defense_result");
-      localStorage.removeItem("energia_defense_saved_at");
-      localStorage.removeItem("energia_paid_status");
-    } else if (savedDefense && savedPaidStatus === "true" && !defenseResult) {
-      setDefenseResult(savedDefense);
-      setIsPaid(true);
-      setIsResultModalOpen(true);
-      setShowSuccessMessage(true);
-      return;
-    }
-
-    // Prioridade 2: pagou, mas fechou ANTES da defesa terminar de gerar.
-    // Comportamento que já existia — refaz a chamada à IA a partir da
-    // análise salva.
     const savedResult = localStorage.getItem("energia_saved_result");
+    const savedPaidStatus = localStorage.getItem("energia_paid_status");
     if (savedResult && savedPaidStatus === "true" && !defenseResult && !isGeneratingDefense) {
       try {
         const parsed = JSON.parse(savedResult) as Analise;
@@ -318,24 +289,6 @@ useEffect(() => {
   }, []);
   // ─── HANDLERS ────────────────────────────────────────────────────────────
   const handleTipoSelect = (tipoName: string) => {
-    // Já existe uma defesa gerada/paga (inclusive vinda do localStorage dos
-    // últimos 7 dias). Confirma antes de liberar, pois seguir vai substituir
-    // o resultado salvo.
-    if (isPaid || defenseResult) {
-      const confirmar = window.confirm(
-        "Você já tem uma defesa pronta salva. Se enviar um novo documento, esse resultado será substituído e não poderá ser recuperado depois. Deseja continuar mesmo assim?"
-      );
-      if (!confirmar) {
-        // Cancelou: a defesa salva continua intacta, mas o modal de
-        // resultado estava fechado (usuário estava na tela inicial). Reabre
-        // mostrando a defesa pronta, em vez de deixá-la "sumida" até um
-        // refresh manual da página.
-        setIsResultModalOpen(true);
-        setShowSuccessMessage(true);
-        return;
-      }
-      clearImage();
-    }
     setSelectedTipo(tipoName);
     setIsUploadModalOpen(true);
     track("energia_tipo_selecionado", "energia_1_tipo_selecionado", { tipo: tipoName });
@@ -373,8 +326,6 @@ useEffect(() => {
     setSelectedTipo(null);
     setIsUploadModalOpen(false);
     localStorage.removeItem("energia_saved_result");
-    localStorage.removeItem("energia_defense_result");
-    localStorage.removeItem("energia_defense_saved_at");
     localStorage.removeItem("energia_paid_status");
     localStorage.removeItem("energia_pending_payment");
     if (fileInputRef.current) fileInputRef.current.value = "";
@@ -567,13 +518,8 @@ useEffect(() => {
       setDefenseResult(data.result);
       setShowSuccessMessage(true);
       setShowFomoBanner(false);
-      // Guarda o resultado final também, não só a análise. Antes desta
-      // mudança, ao terminar de gerar a defesa o localStorage era limpo
-      // por completo — se a pessoa fechasse a aba neste instante ou depois,
-      // o texto pronto (já pago) se perdia sem qualquer forma de recuperar.
-      localStorage.setItem("energia_defense_result", data.result);
-      localStorage.setItem("energia_defense_saved_at", String(Date.now()));
       localStorage.removeItem("energia_saved_result");
+      localStorage.removeItem("energia_paid_status");
       localStorage.removeItem("energia_pending_payment");
     } catch (err: any) {
       clearTimeout(timeoutId);
@@ -648,9 +594,6 @@ useEffect(() => {
             <a href="#seguranca" className="transition hover:text-emerald-600">Segurança</a>
             <a href="#faq-energia" className="transition hover:text-emerald-600">Dúvidas</a>
             <a href="/energia/blog" className="transition hover:text-emerald-600">Blog</a>
-            <a href="/procon" className="transition hover:text-emerald-600">Procon</a>
-            <a href="/vigilancia-sanitaria" className="transition hover:text-emerald-600">Vigilância</a>
-            <a href="/ibama" className="transition hover:text-emerald-600">IBAMA</a>
             <button
               onClick={() => setActiveModal("suporte")}
               className="font-semibold text-emerald-600 transition hover:text-emerald-700"
@@ -680,9 +623,6 @@ useEffect(() => {
                 <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Segurança</a>
                 <a href="#faq-energia" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Dúvidas</a>
                 <a href="/energia/blog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Blog</a>
-                <a href="/procon" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Procon</a>
-                <a href="/vigilancia-sanitaria" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Vigilância Sanitária</a>
-                <a href="/ibama" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">IBAMA</a>
                 <button
                   onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
                   className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-3 text-left font-semibold text-emerald-700 transition"
@@ -1196,9 +1136,6 @@ useEffect(() => {
             <a href="/energia" className="text-slate-600 transition hover:text-emerald-600">
               Conta de luz
             </a>
-            <a href="/ibama" className="text-slate-600 transition hover:text-emerald-600">
-              IBAMA
-            </a>
           </nav>
 
           <p className="mx-auto max-w-3xl text-xs leading-relaxed text-slate-500">
@@ -1259,7 +1196,7 @@ useEffect(() => {
                       onChange={handleFileSelect}
                       accept="image/*,application/pdf"
                       className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
-                      disabled={isAnalyzing}
+                      disabled={isAnalyzing || isPaid}
                       title="Clique para enviar o documento"
                     />
                     <div className="pointer-events-none flex flex-col items-center justify-center space-y-3 py-8">
@@ -1692,82 +1629,6 @@ useEffect(() => {
                           <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos seus dados reais antes de protocolar. Confirme o prazo e a forma de protocolo na notificação recebida.
                         </p>
                       </div>
-
-                      {/* PRÓXIMO PASSO: ONDE E COMO PROTOCOLAR */}
-                      <div className="mx-auto w-full rounded-lg border border-emerald-200 bg-emerald-50/60">
-                        <button
-                          type="button"
-                          onClick={() => setIsProtocoloExpandido((p) => !p)}
-                          className="flex w-full items-center justify-between gap-3 p-4 text-left"
-                        >
-                          <div className="flex items-center gap-3">
-                            <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-emerald-600 text-white">
-                              <Route className="h-4.5 w-4.5" />
-                            </div>
-                            <div>
-                              <h3 className="text-base font-bold text-slate-900">Próximo passo: onde protocolar</h3>
-                              <p className="text-xs text-slate-500">Contestação direto com a distribuidora · guia rápido</p>
-                            </div>
-                          </div>
-                        </button>
-
-                        {isProtocoloExpandido && (
-                          <div className="space-y-4 px-4 pb-5">
-                            <p className="text-sm leading-relaxed text-slate-700">
-                              A contestação de TOI e recuperação de consumo é feita <strong className="font-semibold">diretamente com a distribuidora</strong>; se ela não resolver, o passo seguinte é levar o caso à ANEEL. Veja o caminho:
-                            </p>
-
-                            <div className="space-y-3">
-                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
-                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">1</div>
-                                <div className="text-sm text-slate-700">
-                                  <p className="font-semibold text-slate-900">Protocole a contestação com a distribuidora</p>
-                                  <p className="mt-0.5 text-slate-600">Envie o texto pelo canal de atendimento, SAC, ouvidoria ou app da sua distribuidora (Enel, Cemig, Light, Copel, Energisa, CPFL, Equatorial, entre outras). <strong className="font-semibold">Anote sempre o número do protocolo</strong> — é sua prova de que reclamou dentro do prazo.</p>
-                                </div>
-                              </div>
-
-                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
-                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">2</div>
-                                <div className="text-sm text-slate-700">
-                                  <p className="font-semibold text-slate-900">Peça a perícia técnica no medidor, se aplicável</p>
-                                  <p className="mt-0.5 text-slate-600">Se a cobrança se baseia em suposta irregularidade no medidor, você pode solicitar perícia por empresa credenciada. Peça formalmente e por escrito, e guarde o protocolo dessa solicitação também.</p>
-                                </div>
-                              </div>
-
-                              <div className="flex gap-3 rounded-lg border border-slate-200 bg-white p-3.5">
-                                <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-slate-800 text-xs font-bold text-white">3</div>
-                                <div className="text-sm text-slate-700">
-                                  <p className="font-semibold text-slate-900">Distribuidora não resolveu? Escale para a ANEEL</p>
-                                  <p className="mt-0.5 text-slate-600">Com o protocolo da distribuidora em mãos, registre reclamação na ANEEL pelo app <strong className="font-semibold">ANEEL Consumidor</strong> (Android/iOS) ou pelo site da agência.</p>
-                                  <a
-                                    href="https://www.aneel.gov.br/registrar-solicitacao"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:text-emerald-800 hover:underline"
-                                  >
-                                    Registrar reclamação na ANEEL
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="flex items-start gap-2.5 rounded-lg border border-sky-200 bg-sky-50 p-3">
-                              <UserX className="mt-0.5 h-4 w-4 flex-shrink-0 text-sky-600" />
-                              <p className="text-xs leading-relaxed text-sky-900">
-                                <strong className="font-semibold">Se a distribuidora insistir na cobrança sem responder ou sem realizar a perícia</strong>, o caso também pode ser levado ao Procon ou ao Juizado Especial Cível, sem necessidade de advogado.
-                              </p>
-                            </div>
-
-                            <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3">
-                              <Clock className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-600" />
-                              <p className="text-xs leading-relaxed text-amber-900">
-                                <strong className="font-semibold">Prazo:</strong> a distribuidora tem até 30 dias para responder à contestação. Confirme o prazo de resposta e de eventual corte de energia na notificação recebida — enquanto a contestação está em análise, o fornecimento não deve ser interrompido por esse débito específico.
-                              </p>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
                       <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">
                         <div className="whitespace-pre-wrap text-left text-[15px] leading-relaxed md:text-base">
                           {formatDocumentText(defenseResult)}
