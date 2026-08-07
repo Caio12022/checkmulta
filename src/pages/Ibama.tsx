@@ -196,7 +196,31 @@ export default function Ibama() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // ─── EFEITOS ─────────────────────────────────────────────────────────────
+  // Restaura a defesa PRONTA (texto final), sem chamar a API de novo.
+  // Expira em 7 dias — depois disso, cai no fluxo antigo (reanalisa via API).
   useEffect(() => {
+    const SETE_DIAS_MS = 7 * 24 * 60 * 60 * 1000;
+    try {
+      const savedDefense = localStorage.getItem("ibama_defense_result");
+      const savedPaidStatus = localStorage.getItem("ibama_paid_status");
+      if (savedDefense && savedPaidStatus === "true" && !defenseResult && !isGeneratingDefense) {
+        const parsedDefense = JSON.parse(savedDefense) as { texto: string; ts: number; analise: Analise | null };
+        if (Date.now() - (parsedDefense.ts || 0) <= SETE_DIAS_MS && parsedDefense.texto) {
+          setDefenseResult(parsedDefense.texto);
+          if (parsedDefense.analise) setAnalise(parsedDefense.analise);
+          setIsPaid(true);
+          setShowSuccessMessage(false);
+          return;
+        }
+        // Expirou: limpa e segue para o fallback abaixo.
+        localStorage.removeItem("ibama_defense_result");
+      }
+    } catch {
+      localStorage.removeItem("ibama_defense_result");
+    }
+
+    // Fallback: não há defesa final salva (ou expirou), mas há análise paga
+    // pendente de geração — comportamento antigo, gera via API.
     const savedResult = localStorage.getItem("ibama_saved_result");
     const savedPaidStatus = localStorage.getItem("ibama_paid_status");
     if (savedResult && savedPaidStatus === "true" && !defenseResult && !isGeneratingDefense) {
@@ -347,6 +371,7 @@ useEffect(() => {
     localStorage.removeItem("ibama_saved_result");
     localStorage.removeItem("ibama_paid_status");
     localStorage.removeItem("ibama_pending_payment");
+    localStorage.removeItem("ibama_defense_result");
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
@@ -537,8 +562,15 @@ useEffect(() => {
       setDefenseResult(data.result);
       setShowSuccessMessage(true);
       setShowFomoBanner(false);
+      try {
+        localStorage.setItem(
+          "ibama_defense_result",
+          JSON.stringify({ texto: data.result, ts: Date.now(), analise: dataToUse })
+        );
+      } catch {
+        // localStorage indisponível (ex.: aba anônima) — segue sem persistir
+      }
       localStorage.removeItem("ibama_saved_result");
-      localStorage.removeItem("ibama_paid_status");
       localStorage.removeItem("ibama_pending_payment");
     } catch (err: any) {
       clearTimeout(timeoutId);
