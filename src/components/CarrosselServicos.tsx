@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Building2, Scale, FileText, ShieldCheck, Zap, Leaf } from "lucide-react";
+import { Building2, Scale, FileText, ShieldCheck, Zap, Car, Leaf } from "lucide-react";
 
 /**
  * Carrossel de serviços do CheckMulta.
@@ -10,11 +10,21 @@ import { Building2, Scale, FileText, ShieldCheck, Zap, Leaf } from "lucide-react
  * - Respeita quem desativou animações no sistema (prefers-reduced-motion)
  * - Não depende de biblioteca de animação: só transição de opacidade
  *
- * A prop "excluir" remove um serviço da rotação — usada para a página não
- * anunciar a si mesma.
+ * A prop "excluir" remove um serviço da rotação — cada página vertical
+ * exclui a si mesma (ex: Home.tsx passa excluir={["transito"]}).
+ *
+ * Ordem fixa dos itens de vertical: transito, procon, vigilancia, energia,
+ * ibama. Ferramentas (simulador, codigos) sempre por último.
  */
 
-export type ServicoId = "procon" | "vigilancia" | "energia" | "ibama" | "simulador" | "codigos";
+export type ServicoId =
+  | "transito"
+  | "procon"
+  | "vigilancia"
+  | "energia"
+  | "ibama"
+  | "simulador"
+  | "codigos";
 
 interface Servico {
   id: ServicoId;
@@ -29,6 +39,17 @@ interface Servico {
 }
 
 const SERVICOS: Servico[] = [
+  {
+    id: "transito",
+    eyebrow: "Para motoristas",
+    titulo: "Recebeu uma multa de trânsito?",
+    texto:
+      "Analisamos gratuitamente o auto de infração ou a notificação e apontamos se há falha formal que permite recorrer, com base no Código de Trânsito Brasileiro.",
+    href: "/multa-de-transito",
+    botao: "Analisar grátis",
+    Icone: Car,
+    cor: { faixa: "#10b981", icone: "#047857", fundoIcone: "#ecfdf5", texto: "#047857" },
+  },
   {
     id: "procon",
     eyebrow: "Para empresas",
@@ -65,9 +86,9 @@ const SERVICOS: Servico[] = [
   {
     id: "ibama",
     eyebrow: "Para pessoas e empresas",
-    titulo: "Recebeu um auto de infração do IBAMA?",
+    titulo: "Recebeu um auto de infração ambiental?",
     texto:
-      "Analisamos gratuitamente o auto de infração ambiental e apontamos se há vício formal, incompetência ou prescrição, com base no Decreto nº 6.514/2008.",
+      "Analisamos gratuitamente o auto do IBAMA e apontamos se há falha formal que permite recorrer, com base na Lei 9.605/98 e no Decreto 6.514/08.",
     href: "/ibama",
     botao: "Analisar grátis",
     Icone: Leaf,
