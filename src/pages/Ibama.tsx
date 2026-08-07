@@ -331,7 +331,15 @@ useEffect(() => {
       const confirmar = window.confirm(
         "Você já tem uma defesa pronta salva. Se enviar um novo documento, esse resultado será substituído e não poderá ser recuperado depois. Deseja continuar mesmo assim?"
       );
-      if (!confirmar) return;
+      if (!confirmar) {
+        // Cancelou: a defesa salva continua intacta, mas o modal de
+        // resultado estava fechado (usuário estava na tela inicial). Reabre
+        // mostrando a defesa pronta, em vez de deixá-la "sumida" até um
+        // refresh manual da página.
+        setIsResultModalOpen(true);
+        setShowSuccessMessage(true);
+        return;
+      }
       clearImage();
     }
     setSelectedTipo(tipoName);
