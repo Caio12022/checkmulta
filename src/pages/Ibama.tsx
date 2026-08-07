@@ -870,7 +870,7 @@ useEffect(() => {
                     Chance média
                   </span>
                   <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                    Há pontos questionáveis, especialmente no período cobrado. Argumento possível.
+                    Há pontos questionáveis na autuação. Argumento possível.
                   </p>
                 </div>
               </div>
@@ -1522,7 +1522,7 @@ useEffect(() => {
                         <ul className="space-y-3 text-[13px] text-slate-700 sm:text-[15px]">
                           <li className="flex items-start gap-3">
                             <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
-                            <span>Reclamação administrativa completa, com fatos, fundamentos e pedidos</span>
+                            <span>Defesa administrativa completa, com fatos, fundamentos e pedidos</span>
                           </li>
                           <li className="flex items-start gap-3">
                             <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
@@ -1530,7 +1530,7 @@ useEffect(() => {
                           </li>
                           <li className="flex items-start gap-3">
                             <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
-                            <span>Pedido subsidiário de revisão do cálculo e de limitação do período cobrado</span>
+                            <span>Pedido subsidiário de atenuantes ou de conversão da multa em serviços ambientais</span>
                           </li>
                           <li className="flex items-start gap-3">
                             <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
