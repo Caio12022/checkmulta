@@ -1185,7 +1185,7 @@ export default function App() {
                     Viabilidade baixa
                   </span>
                   <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                    Caso mais limitado. Ainda possível tentar — a decisão é sua.
+                    Caso mais limitado. Ainda possível tentar. A decisão é sua.
                   </p>
                 </div>
               </div>
@@ -1300,7 +1300,7 @@ export default function App() {
               <p className="text-[15.5px] leading-relaxed text-slate-600">
                 Sim. Recorrer é um direito garantido por lei. Além de evitar
                 pontos na CNH e a cobrança financeira, a defesa obriga o órgão a
-                provar que a autuação foi feita corretamente — o que muitas vezes
+                provar que a autuação foi feita corretamente. O que muitas vezes
                 não acontece.
               </p>
             </div>
@@ -1404,7 +1404,7 @@ export default function App() {
           <p className="mb-10 text-[16.5px] leading-[1.75] text-slate-600">
             Recorrer de uma multa é um direito garantido pelo Código de Trânsito
             Brasileiro (CTB). Muitas autuações contêm erros formais que podem, sozinhos,
-            anular a multa — e é essa falha que a análise gratuita da CheckMulta procura
+            anular a multa. E é essa falha que a análise gratuita da CheckMulta procura
             no seu auto de infração.
           </p>
 
@@ -1503,7 +1503,7 @@ export default function App() {
                   <strong className="font-semibold text-slate-900">analisar gratuitamente o seu auto de infração</strong>{" "}
                   e apontar se existe uma falha formal capaz de anular a multa. Se houver viabilidade,
                   o sistema gera uma petição de defesa prévia completa e fundamentada no CTB, pronta
-                  para você preencher e protocolar no órgão autuador — sem advogado e sem cadastro,
+                  para você preencher e protocolar no órgão autuador. Sem advogado e sem cadastro,
                   por R$ 19,90.
                 </p>
               </div>
@@ -1552,7 +1552,7 @@ export default function App() {
           </p>
 
           <p className="mt-4 text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
 
           <div className="mt-5 flex justify-center gap-6 text-xs font-medium text-slate-400">
@@ -1612,7 +1612,7 @@ export default function App() {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-slate-900">Foto do auto de infração</p>
-                        <p className="mt-0.5 text-xs text-slate-500">Fotografe o documento da multa — frente completa</p>
+                        <p className="mt-0.5 text-xs text-slate-500">Fotografe o documento da multa. Frente completa</p>
                       </div>
                     </div>
                   </div>
@@ -1776,7 +1776,7 @@ export default function App() {
                             <p className="mt-3 text-sm leading-relaxed text-slate-500">
                               O CONTRAN suspendeu esse tipo de multa e abriu um prazo excepcional
                               para regularização. Enquanto o prazo estiver aberto, basta pagar a
-                              tarifa de pedágio em atraso — a multa e os pontos na CNH são
+                              tarifa de pedágio em atraso. A multa e os pontos na CNH são
                               cancelados, sem necessidade de recurso.
                             </p>
                           </div>
@@ -1793,7 +1793,7 @@ export default function App() {
                             <p className="text-sm leading-relaxed text-slate-600">
                               <strong className="font-semibold text-slate-900">Por que não cobramos por isso:</strong> não
                               faria sentido vender um recurso que você não precisa. Se depois do
-                              prazo a multa continuar em aberto, aí sim volte aqui — nesse cenário
+                              prazo a multa continuar em aberto, aí sim volte aqui. Nesse cenário
                               a análise passa a fazer sentido.
                             </p>
                           </div>
@@ -1991,7 +1991,7 @@ if (!v) return null;
                       {extractViabilidade(result)?.nivel === "Baixa" && (
                         <div className="rounded-lg border border-amber-200 bg-amber-50/60 p-5 text-left">
                           <h3 className="mb-2 text-base font-bold text-slate-900">
-                            Encontramos um ponto para arguir — e queremos ser claros sobre ele
+                            Encontramos um ponto para arguir. E queremos ser claros sobre ele
                           </h3>
                           <p className="text-sm leading-relaxed text-slate-700">
                             A falha identificada é de natureza formal e pode ser arguida em recurso,
@@ -2017,11 +2017,11 @@ if (!v) return null;
                           </li>
                           <li className="flex items-start gap-3">
                             <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
-                            <span>Documento pronto para copiar e protocolar — sem advogado necessário</span>
+                            <span>Documento pronto para copiar e protocolar. Sem advogado necessário</span>
                           </li>
                           <li className="flex items-start gap-3">
                             <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
-                            <span>Entrega imediata após o pagamento — gerado em segundos pela IA</span>
+                            <span>Entrega imediata após o pagamento. Gerado em segundos pela IA</span>
                           </li>
                         </ul>
                       </div>
@@ -2029,7 +2029,7 @@ if (!v) return null;
                       <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
                         <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
                         <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
-                          <strong className="font-semibold">Por que vale a pena:</strong> a elaboração dessa defesa por um advogado costuma custar entre R$ 200 e R$ 500. Aqui, são R$ 19,90 — e apenas quando identificamos uma falha concreta. A petição é integralmente fundamentada no CTB; a decisão final cabe ao órgão julgador.
+                          <strong className="font-semibold">Por que vale a pena:</strong> a elaboração dessa defesa por um advogado costuma custar entre R$ 200 e R$ 500. Aqui, são R$ 19,90. E apenas quando identificamos uma falha concreta. A petição é integralmente fundamentada no CTB; a decisão final cabe ao órgão julgador.
                         </p>
                       </div>
 
@@ -2057,11 +2057,11 @@ if (!v) return null;
                         </p>
                         <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
                           Uma peça de defesa fundamentada nas falhas encontradas no seu
-                          documento. A decisão final é do órgão julgador — nenhuma defesa
+                          documento. A decisão final é do órgão julgador. Nenhuma defesa
                           garante a anulação.
                         </p>
                       </div>
-                      <p className="mt-2 text-center text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
+                      <p className="mt-2 text-center text-[11px] text-slate-400">CheckMulta Tecnologia. CNPJ 63.524.338/0001-62</p>
                     </div>
                   )}
 
@@ -2203,7 +2203,7 @@ if (!v) return null;
                   <div>
                     <h3 className="text-3xl font-bold tracking-tight text-slate-900">R$ {precoDefesa.toFixed(2).replace(".", ",")}</h3>
                     <p className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500">Petição estruturada</p>
-                    <p className="mt-1.5 text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
+                    <p className="mt-1.5 text-[11px] text-slate-400">CheckMulta Tecnologia. CNPJ 63.524.338/0001-62</p>
                   </div>
                   <div className="flex items-center justify-center gap-2 rounded-lg border border-amber-200 bg-amber-50 py-2.5 font-semibold text-amber-700">
                     <Timer className="h-5 w-5" />
@@ -2234,7 +2234,7 @@ if (!v) return null;
                     <div className="flex items-start gap-2.5 rounded-lg border border-slate-200 bg-slate-50 p-3 text-left">
                       <Lock className="mt-0.5 h-4 w-4 flex-shrink-0 text-slate-500" />
                       <p className="text-[10px] leading-relaxed text-slate-600">
-                        O recebedor identificado no seu aplicativo bancário será <strong className="font-semibold text-slate-900">CheckMulta Tecnologia</strong> — CNPJ 63.524.338/0001-62.
+                        O recebedor identificado no seu aplicativo bancário será <strong className="font-semibold text-slate-900">CheckMulta Tecnologia</strong>. CNPJ 63.524.338/0001-62.
                       </p>
                     </div>
                   </div>
@@ -2365,7 +2365,7 @@ if (!v) return null;
               </h3>
               <p className="mb-6 text-sm leading-relaxed text-slate-600">
                 Ao fechar, a defesa é apagada deste aparelho e não poderá ser
-                recuperada — seria necessário fazer uma nova análise. Se ainda não
+                recuperada. Seria necessário fazer uma nova análise. Se ainda não
                 copiou ou baixou o texto, volte e salve antes.
               </p>
 
