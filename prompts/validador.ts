@@ -217,6 +217,41 @@ export function citacaoPermitida(
 }
 
 // ============================================================
+// 3-B. TRECHO CONTAMINADO (INJEÇÃO NO DOCUMENTO)
+// ============================================================
+
+/**
+ * A trava do trecho literal impede citação INVENTADA. Não impede uma ameaça
+ * diferente: texto malicioso escrito DENTRO do documento enviado.
+ *
+ * Um PDF pode conter uma "nota técnica" plantada dizendo que o próprio auto é
+ * nulo, ou instruções dirigidas ao analisador. O trecho existe de verdade na
+ * transcrição, então passa por trechoConfere — e vira achado.
+ *
+ * O sinal que denuncia é a natureza da frase: auto de infração descreve FATOS
+ * (conduta, datas, valores, campos). Ele não emite juízo sobre a própria
+ * validade, e não dá ordens a quem o lê. Trecho com essa natureza não é prova
+ * de vício: é afirmação de terceiro, ou tentativa de manipulação.
+ *
+ * Na dúvida descartamos o achado. O custo é perder uma venda; o custo do
+ * contrário é cobrar por defesa fabricada a partir de texto plantado.
+ */
+const RE_CONCLUSAO_JURIDICA =
+  /(eivad[oa]|nulidade|nul[oa]\s+de\s+pleno|v[ií]cio\s+insan[aá]vel|padece\s+de\s+v[ií]cio|deve\s+ser\s+(?:anulad|declarad|considerad)|recomenda-se\s+que|ponto\s+controvertido|est[aá]\s+irregular|n[aã]o\s+observou\s+os\s+requisitos|lavrado\s+sem\s+a\s+descri[cç][aã]o|sem\s+indica[cç][aã]o\s+de\s+dispositivo\s+legal)/i;
+
+const RE_INSTRUCAO_AO_MODELO =
+  /(ignore\s+(?:as\s+)?(?:todas\s+as\s+)?instru[cç][oõ]es|desconsidere\s+as\s+instru[cç][oõ]es|voc[eê]\s+[eé]\s+um\s+(?:assistente|analista|advogado)|reporte\s+obrigatoriamente|sempre\s+encontrar|classifique\s+(?:sempre|como)|defina\s+(?:a\s+)?viabilidade|n[aã]o\s+mencione\s+est[ae]s?\s+instru[cç][oõ]es|sistema\s+de\s+an[aá]lise\s*:)/i;
+
+/**
+ * true quando o trecho citado não é constatação de fato, e sim juízo sobre a
+ * validade do auto ou comando dirigido ao analisador.
+ */
+export function trechoContaminado(trecho: string): boolean {
+  const t = trecho || "";
+  return RE_CONCLUSAO_JURIDICA.test(t) || RE_INSTRUCAO_AO_MODELO.test(t);
+}
+
+// ============================================================
 // 4. ACHADO NÃO VERIFICÁVEL NO DOCUMENTO
 // ============================================================
 
@@ -418,6 +453,10 @@ export function validarAnaliseJSON(
 
     // TRAVA 1 — o trecho tem que existir mesmo no documento
     if (!trechoConfere(trecho, transcricao)) continue;
+
+    // TRAVA 1-B — o trecho existe, mas é juízo plantado ou ordem ao modelo?
+    // Fato objetivo sustenta achado; opinião escrita no documento, não.
+    if (trechoContaminado(trecho)) continue;
 
     // TRAVA 2 — valores e datas citados têm que bater com o documento
     if (!numerosConferem(trecho, transcricao)) continue;
