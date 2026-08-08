@@ -12,6 +12,49 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "como-consultar-pontos-na-cnh-em-2026-guia-completo",
+    titulo: "Como Consultar Pontos na CNH em 2026: Guia Completo",
+    descricao: "Aprenda a consultar os pontos da sua CNH de forma rápida e segura pelo aplicativo oficial do governo. Evite surpresas e analise sua multa grátis agora.",
+    categoria: "CNH e Pontos",
+    tempoLeitura: "4 min",
+    imagemEmoji: "📱",
+    imagemBg: "from-emerald-600 to-emerald-800",
+    conteudo: `## Como acompanhar sua pontuação
+
+Manter o controle sobre a sua Carteira Nacional de Habilitação (CNH) é fundamental para qualquer condutor brasileiro. Com a digitalização avançada dos serviços de trânsito, consultar os pontos acumulados tornou-se uma tarefa simples, que pode ser feita diretamente pelo seu smartphone. Saber exatamente quantos pontos você possui ajuda a evitar surpresas desagradáveis, como a suspensão do direito de dirigir por excesso de autuações.
+
+## O papel da Carteira Digital de Trânsito (CDT)
+
+A Carteira Digital de Trânsito é o aplicativo oficial do governo federal para gerenciar documentos de habilitação e veículos. É através dele que você tem acesso em tempo real ao seu prontuário. A ferramenta é integrada com os sistemas dos Departamentos de Trânsito de todos os estados, garantindo que a informação que você vê seja a mais atualizada possível.
+
+## Passo a passo para a consulta
+
+Para acessar seus pontos, siga estas etapas simples:
+
+1. **Download e Acesso:** Certifique-se de que o aplicativo oficial esteja instalado no seu aparelho. Se ainda não possui, faça o download na loja de aplicativos do seu sistema operacional.
+2. **Login com Gov.br:** A utilização de qualquer serviço público digital exige uma conta no sistema único de login do governo federal. Certifique-se de ter o nível de segurança exigido para acessar seus dados pessoais.
+3. **Seção de Condutor:** Após entrar no aplicativo, busque pelo menu referente à CNH ou condutor. Ali, o sistema mostrará a versão digital da sua habilitação.
+4. **Verificação de Infrações:** Procure por uma opção que mencione 'infrações' ou 'pontuação'. O sistema irá exibir o total de pontos acumulados, além de detalhar as infrações que geraram tais registros.
+
+## Por que consultar seus pontos regularmente?
+
+Não espere receber uma notificação de suspensão para verificar sua situação. O Código de Trânsito Brasileiro estabelece limites de pontuação baseados na gravidade das infrações cometidas. Quando você monitora sua pontuação, é possível:
+
+* **Identificar multas desconhecidas:** Às vezes, o condutor não recebe a notificação física por falhas no cadastro do endereço, mas a multa segue existindo no sistema.
+* **Planejar recursos:** Se você acredita que uma infração foi registrada de forma injusta ou com erro formal, saber da existência dela o quanto antes aumenta suas chances de recorrer com eficiência.
+* **Manter a regularidade:** O monitoramento constante evita que o condutor ultrapasse o limite legal permitido pela legislação vigente.
+
+## O que fazer ao encontrar uma multa indevida?
+
+Ao consultar seus pontos, você pode se deparar com uma infração da qual não tem conhecimento ou que considera injusta. A legislação garante ao condutor o amplo direito de defesa. Muitas vezes, os órgãos de trânsito cometem erros formais na autuação, como dados do veículo incorretos, sinalização inadequada no local ou ausência de informações obrigatórias no auto de infração.
+
+Ao identificar uma penalidade, não entre em pânico. O processo administrativo de trânsito permite que você conteste a autuação em diferentes instâncias. A análise detalhada do auto de infração é o primeiro passo para construir um recurso com maiores chances de sucesso.
+
+Se você encontrar uma multa que considera questionável, o suporte técnico é essencial para entender se existem brechas na lei que favoreçam o cancelamento da penalidade. No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa.`,
+    palavrasChave: ["consultar pontos CNH", "pontuação CNH 2026", "aplicativo Carteira Digital", "extrato de multas"],
+  },
+
+  {
     slug: "presuncao-de-legitimidade-o-que-voce-precisa-saber",
     titulo: "Presunção de Legitimidade: O que você precisa saber",
     descricao: "Entenda como funciona a presunção de legitimidade nas multas de trânsito e como contestar o auto de infração. Analise sua multa gratuitamente hoje.",
