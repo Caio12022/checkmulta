@@ -548,6 +548,30 @@ useEffect(() => {
           track("ibama_analise_erro", "ibama_erro_documento_ilegivel", { tipo: "documento_ilegivel" });
           throw new Error("Não conseguimos ler o documento. Envie um arquivo mais nítido ou o PDF original.");
         }
+
+        /* Recusa por ESCOPO. Diferente de "não encontramos falha": aqui o
+           documento é legítimo, mas trata de tema que a plataforma não analisa.
+           Dizer isso com clareza é mais honesto e mais profissional do que
+           devolver "nada encontrado" para algo que sequer foi examinado. */
+        const foraDeEscopo: Record<string, string> = {
+          fora_escopo_dosimetria:
+            "Este documento trata do valor da multa (cálculo, gradação ou pedido de redução). Não analisamos dosimetria: isso depende de critérios internos do órgão e da situação econômica do autuado, que não constam do auto. Um contador ou advogado consegue avaliar esse ponto.",
+          fora_escopo_merito:
+            "A questão aqui é de fato — se a conduta ocorreu, se a área tem a classificação apontada — e não de forma do documento. Não analisamos mérito: isso se resolve com prova e perícia, não com a leitura do auto.",
+          fora_escopo_cautelar:
+            "Este é um termo de embargo, apreensão ou suspensão de atividade, que segue regras e prazos distintos do auto de infração. Não analisamos esse tipo de documento. Procure orientação jurídica com urgência, porque os prazos costumam ser curtos.",
+          fora_escopo_execucao:
+            "Esta multa já está em cobrança judicial ou inscrita em dívida ativa. A fase administrativa se encerrou e uma defesa administrativa não teria mais efeito. O caminho agora é judicial: procure um advogado.",
+          fora_escopo_penal:
+            "Este documento é da esfera criminal, não administrativa. Não analisamos matéria penal. Procure um advogado o quanto antes: prazos criminais são curtos e a defesa exige representação.",
+        };
+
+        const chaveEscopo = Object.keys(foraDeEscopo).find((k) => lower.includes(k));
+        if (chaveEscopo) {
+          isBusinessError = true;
+          track("ibama_analise_erro", "ibama_fora_escopo", { tipo: chaveEscopo });
+          throw new Error(foraDeEscopo[chaveEscopo]);
+        }
         throw new Error("Não foi possível concluir a análise. Tente novamente.");
       }
 
