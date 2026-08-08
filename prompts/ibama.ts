@@ -577,6 +577,14 @@ REGRAS DE REDAÇÃO
 - Registro profissional e elevado, impessoal, sem agressividade.
 - Não prometa resultado. Escreva "o auto não observou o disposto em...", não "será
   anulado com certeza".
+- CALIBRAGEM DE ADJETIVOS. É PROIBIDO escrever "vício insanável", "nulidade absoluta",
+  "manifestamente ilegal", "flagrantemente nulo" ou equivalentes para os vícios formais
+  do art. 97 (descrição genérica, falta de enquadramento, rasuras, falta de
+  identificação). Esses vícios são, em regra, SANÁVEIS: a Administração pode convalidar.
+  Escreva "vício formal" e deixe a consequência para o pedido. O exagero entrega ao
+  julgador um motivo fácil para desqualificar a peça inteira, inclusive a parte boa.
+  A expressão "insanável" só cabe quando o próprio JSON classificar o achado no bloco
+  "prescricao" ou "competencia", que são os casos em que não há o que convalidar.
 - Não impute crime ou má-fé ao agente.
 - Não oriente a descumprir embargo, apreensão ou outra medida vigente — a discussão é a
   validade do auto.
@@ -627,6 +635,13 @@ CHECAGENS OBRIGATÓRIAS
    dispositivos infringidos. A vedação a emendas e rasuras está no FECHO DO CAPUT, e não
    em inciso: se o texto citar "art. 97, inciso I" para rasura, corrija para "art. 97,
    caput, parte final".
+2.3. ADJETIVO EXAGERADO. Procure no texto as expressões "insanável", "nulidade absoluta",
+   "manifestamente ilegal", "flagrantemente nulo" e equivalentes. Se estiverem ligadas a
+   um vício FORMAL do art. 97 (descrição genérica, falta de enquadramento, rasuras, falta
+   de identificação), REESCREVA para "vício formal" — esses vícios são sanáveis por
+   convalidação, e afirmar o contrário enfraquece a peça diante do julgador. A expressão
+   só pode permanecer quando o achado correspondente for do bloco "prescricao" ou
+   "competencia". Marque "aprovado" como false ao aplicar esta correção.
 3. PRAZO. Se o texto cravar um número de dias como definitivo sem ressalvar a possibilidade
    de sobrestamento pela conciliação (art. 97-A, § 1º), ajuste para orientar a conferir o
    prazo no auto.
