@@ -12,6 +12,52 @@ export interface ArtigoIbama {
 
 export const artigosIbama: ArtigoIbama[] = [
   {
+    slug: "processo-administrativo-sancionador-federal-do-ibama-entenda-o-fluxo",
+    titulo: "Processo Administrativo Sancionador Federal do IBAMA: Entenda o Fluxo",
+    descricao: "Recebeu um auto de infração do IBAMA? Conheça as etapas do processo administrativo federal, prazos e direitos legais. Solicite uma análise gratuita hoje.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["processo administrativo IBAMA", "defesa auto infração IBAMA", "prazo multa ambiental federal", "anulação auto infração ambiental"],
+    conteudo: `## Introdução ao Processo Administrativo Federal
+
+Quando um agente do IBAMA constata uma infração ambiental, formaliza o ato por meio de um auto de infração. Este documento é o marco inicial de um procedimento regido por rito próprio, que deve observar rigorosamente a legalidade. É essencial compreender que este rito se aplica exclusivamente a autuações federais. Caso tenha recebido autuações de órgãos estaduais ou municipais, deve-se consultar a norma local específica e os regulamentos próprios daquele ente, pois o Decreto 6.514/2008 não rege processos administrativos de esferas estaduais ou municipais.
+
+## O Auto de Infração e os Requisitos Formais
+
+O auto de infração é um ato administrativo vinculado. Isso significa que ele precisa cumprir requisitos formais rigorosos para ter validade. Conforme o art. 97 do Decreto 6.514/2008, o documento deve conter a identificação clara do autuado, a descrição objetiva da infração, a indicação dos dispositivos legais infringidos e não pode conter rasuras ou emendas. Caso esses requisitos não sejam observados, o vício pode ser considerado insanável, conforme o art. 100, § 2º do referido Decreto, o que possibilita a discussão acerca da nulidade do auto.
+
+Outro ponto fundamental é a competência. Segundo a LC 140/2011, em seus arts. 7º e 17, existe uma clara repartição de competências entre os entes federativos. Se o órgão que lavrou o auto não possui a competência legal para fiscalizar aquela atividade ou local, a autuação pode estar eivada de nulidade.
+
+## O Prazo de Defesa e a Conciliação
+
+Após a lavratura, o autuado é cientificado, dando início ao contraditório e à ampla defesa, garantidos pelo art. 96 do Decreto 6.514/2008. O prazo para apresentação de defesa escrita é de vinte dias contados da ciência da autuação, conforme o art. 113 do mesmo diploma.
+
+Entretanto, é necessário verificar a existência de audiência de conciliação ambiental. O art. 97-A do Decreto 6.514/2008 estabelece essa etapa e, conforme seu § 1º, o agendamento da audiência sobresta a fluência do prazo para a defesa. Portanto, o prazo de vinte dias deve ser conferido com base no status processual indicado no documento oficial ou no sistema eletrônico de acompanhamento.
+
+## A Prescrição no Direito Ambiental
+
+O Direito Ambiental Sancionador Federal trabalha com dois conceitos principais de prescrição:
+
+- Prescrição da pretensão punitiva: Ocorre em cinco anos contados da prática do ato ou da cessação da infração, nos termos do art. 21 do Decreto 6.514/2008.
+- Prescrição intercorrente: Prevista no art. 21, § 2º, ocorre quando o processo administrativo permanece parado por mais de três anos, sem julgamento ou despacho que movimente a apuração.
+
+É importante notar que causas interruptivas, previstas no art. 22, podem reiniciar a contagem. A análise desses prazos é técnica e exige a verificação das datas de cada movimentação processual.
+
+## Direitos do Autuado: Atenuantes e Conversão
+
+Além da defesa técnica visando questionar a legalidade do auto, a legislação prevê institutos que podem mitigar a penalidade. O art. 14 da Lei 9.605/98 elenca circunstâncias atenuantes que podem ser consideradas na dosimetria da multa. Adicionalmente, o art. 72, § 4º da mesma lei permite a conversão da multa simples em serviços de preservação, melhoria e recuperação da qualidade do meio ambiente.
+
+Reforçamos que a discussão sobre a validade do auto de infração não exime o autuado do cumprimento de medidas cautelares, como embargos ou apreensões, que permanecem vigentes enquanto não houver decisão administrativa em sentido contrário. A Administração Pública tem o dever de anular seus próprios atos quando constatados vícios de legalidade, conforme o art. 53 da Lei 9.784/99, aplicada subsidiariamente.
+
+Caso deseje, é possível encaminhar o auto de infração para uma análise técnica que aponte se ele apresenta falhas capazes de fundamentar a estratégia de defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "conciliacao-ambiental-ou-defesa-quando-vale-a-pena-optar",
     titulo: "Conciliação Ambiental ou Defesa: Quando vale a pena optar?",
     descricao: "Entenda as diferenças entre a audiência de conciliação e a defesa administrativa do IBAMA. Analise seu auto gratuitamente com o CheckMulta.",
