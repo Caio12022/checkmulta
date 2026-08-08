@@ -104,13 +104,19 @@ export function numerosConferem(texto: string, transcricao: string): boolean {
 // 3. CITAÇÃO LEGAL — LISTA FECHADA POR VERTICAL
 // ============================================================
 
-export type Vertical = "transito" | "procon" | "vigilancia";
+export type Vertical = "transito" | "procon" | "vigilancia" | "energia" | "ibama";
 
 /** Diplomas que cada vertical pode citar (identificados pelo número). */
 const DIPLOMAS_PERMITIDOS: Record<Vertical, string[]> = {
   transito: ["9503", "9.503"],
   procon: ["8078", "8.078", "2181", "2.181", "10887", "10.887", "123", "13874", "13.874", "9784", "9.784"],
   vigilancia: ["6437", "6.437", "9784", "9.784"],
+  /* Energia: REN 1.000/2021 da ANEEL é resolução — o prompt cita por nome, não
+     por número. Restam CDC (subsidiário) e Lei 9.784/99. */
+  energia: ["8078", "8.078", "9784", "9.784"],
+  /* IBAMA: Decreto 6.514/2008 (base), Lei 9.605/98 (crimes/sanções ambientais),
+     LC 140/2011 (competência) e Lei 9.784/99 (processo administrativo). */
+  ibama: ["6514", "6.514", "9605", "9.605", "140", "9784", "9.784", "12651", "12.651"],
 };
 
 /** Artigos permitidos, quando a vertical trabalha com lista fechada de artigos. */
@@ -119,6 +125,19 @@ const ARTIGOS_PERMITIDOS: Partial<Record<Vertical, string[]>> = {
   vigilancia: ["2", "3", "4", "6", "7", "8", "10", "13", "14", "17", "22", "23", "30", "31", "33", "38", "50"],
   // Procon: controle por diploma. O prompt já restringe CDC + Decreto 2.181/97,
   // cujos artigos citáveis são numerosos e legítimos (18, 28, 35, 38-A, 42, 48, 57...).
+
+  /* IBAMA — lista fechada, espelha o catálogo de padrões P1 a P6 do prompt.
+     Decreto 6.514/2008: 21 (prescrição), 22, 96, 97 e 97-A (requisitos e
+     conciliação), 98, 98-A, 98-B, 100, 113 (prazo de defesa).
+     Lei 9.605/98: 14 (atenuantes), 70, 71, 72 (sanções e conversão).
+     LC 140/2011: 7, 9, 17 (competência).
+     Lei 9.784/99: 2, 50, 53 (subsidiários).
+     Artigos de enquadramento do próprio auto (43, 50, 51...) passam pela
+     regra geral: são aceitos quando escritos no documento. */
+  ibama: [
+    "2", "7", "9", "14", "17", "21", "22", "50", "53", "70", "71", "72",
+    "96", "97", "97-a", "98", "98-a", "98-b", "100", "113",
+  ],
 };
 
 /** Extrai números de lei/decreto mencionados num texto. */
@@ -265,6 +284,17 @@ const SINAIS: Record<Vertical, string[]> = {
     "codigo de transito", "auto de infracao de transito", "ait",
     "agente da autoridade de transito", "velocidade", "cnh", "veiculo",
   ],
+  energia: [
+    "toi", "termo de ocorrencia", "irregularidade", "aneel", "distribuidora",
+    "unidade consumidora", "medidor", "recuperacao de consumo", "kwh",
+    "energia eletrica", "conta de luz", "faturamento", "ren 1000", "ren 1.000",
+  ],
+  ibama: [
+    "ibama", "instituto brasileiro do meio ambiente", "ambiental", "6514",
+    "6 514", "auto de infracao ambiental", "vegetacao nativa", "desmat",
+    "area de preservacao permanente", "app", "reserva legal", "fauna",
+    "licenciamento ambiental", "analista ambiental", "9605", "9 605",
+  ],
 };
 
 function pontuar(transcricao: string, vertical: Vertical): number {
@@ -356,10 +386,14 @@ export function validarAnaliseJSON(
     ? parsed.transcricao_documento
     : "";
 
+  /* Cada vertical batizou os campos de identificação à sua maneira. Procon e
+     Vigilância usam orgao_emissor / empresa_autuada; IBAMA usa orgao_autuante /
+     autuado; Energia usa distribuidora. Aceitamos todos os apelidos para que a
+     trava de legibilidade funcione igual em qualquer rota. */
   const camposChave = [
-    parsed?.orgao_emissor,
+    parsed?.orgao_emissor || parsed?.orgao_autuante || parsed?.distribuidora,
     parsed?.numero_auto,
-    parsed?.empresa_autuada || parsed?.estabelecimento_autuado,
+    parsed?.empresa_autuada || parsed?.estabelecimento_autuado || parsed?.autuado,
   ].filter((v) => typeof v === "string") as string[];
 
   // ORDEM DAS TRAVAS (a ordem importa):
@@ -389,8 +423,14 @@ export function validarAnaliseJSON(
     if (!numerosConferem(trecho, transcricao)) continue;
     if (!numerosConferem(a.explicacao || "", transcricao)) continue;
 
-    // TRAVA 3 — citação legal dentro da lista fechada da vertical
-    if (!citacaoPermitida(a.base_legal || "", vertical, transcricao)) continue;
+    // TRAVA 3 — citação legal dentro da lista fechada da vertical.
+    // O campo mudou de nome entre verticais: base_legal em Procon/Vigilância,
+    // dispositivo no IBAMA. Conferimos os dois, e também a explicação, porque
+    // é comum a citação aparecer no corpo do texto e não no campo próprio.
+    const citacao = [a.base_legal, a.dispositivo, a.explicacao]
+      .filter((v: any) => typeof v === "string")
+      .join(" ");
+    if (!citacaoPermitida(citacao, vertical, transcricao)) continue;
 
     // TRAVA 4 — gravidade dentro do vocabulário aceito
     if (!["critico", "atencao", "verificar"].includes(a.gravidade)) {
