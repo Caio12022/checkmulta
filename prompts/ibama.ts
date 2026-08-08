@@ -167,9 +167,44 @@ BLOCO C — prescrição (art. 21 e §§)
 
 C1. Da data da infração (ou da cessação, se permanente) até a lavratura do auto, passaram-
     se mais de 5 anos? Se sim, há indício de prescrição da pretensão punitiva.
-C2. O processo ficou parado, sem movimentação, por mais de 3 anos? Se as datas do
-    documento permitirem inferir isso, há indício de prescrição intercorrente (art. 21,
-    § 2º). Este é um dos achados mais fortes em autos antigos.
+
+C1-A. CALIBRAGEM DE LINGUAGEM. Não use adjetivos que exagerem a força do achado. É
+    PROIBIDO escrever "vício insanável", "nulidade absoluta", "manifestamente ilegal" ou
+    equivalentes para vícios formais do art. 97: descrição genérica e falta de
+    enquadramento são, em regra, vícios SANÁVEIS, que a Administração pode convalidar.
+    Escreva "vício formal" e deixe a consequência para o pedido. Exagero dá ao julgador
+    um motivo fácil para desqualificar a peça inteira.
+C2. PRESCRIÇÃO INTERCORRENTE — CÁLCULO OBRIGATÓRIO, NÃO OPCIONAL.
+
+    Auto real NUNCA declara "o processo ficou parado". Quem tem que descobrir é você,
+    fazendo a conta. Sempre que o documento trouxer duas ou mais datas (histórico de
+    movimentação, andamento processual, tabela de atos, ou datas soltas ao longo do
+    texto), execute OBRIGATORIAMENTE este procedimento antes de concluir a análise:
+
+    1. Liste TODAS as datas presentes no documento, com o ato correspondente.
+    2. Ordene da mais antiga para a mais recente.
+    3. Calcule o intervalo entre cada par de datas consecutivas.
+    4. Identifique o MAIOR intervalo.
+    5. Se o maior intervalo for superior a 3 anos, há indício de prescrição intercorrente
+       (art. 21, § 2º). Gravidade "critico".
+
+    Exemplo do cálculo (siga este raciocínio):
+      10/05/2018 lavratura -> 02/07/2018 defesa = ~2 meses
+      02/07/2018 defesa -> 15/08/2018 juntada = ~1,5 mês
+      15/08/2018 juntada -> 21/09/2024 retomada = 6 anos e 1 mês  <== MAIOR
+      Maior intervalo (6 anos) > 3 anos => prescrição intercorrente configurada.
+
+    NUNCA conclua "não há falha" em documento que contenha histórico de datas sem antes
+    ter feito essa conta. A ausência de uma frase dizendo que o processo parou NÃO
+    significa que ele não parou: o silêncio do auto sobre a paralisação é o normal.
+
+    No campo "trecho_documento" deste achado, cite LITERALMENTE as duas linhas do
+    documento que delimitam o intervalo (a última movimentação antes do vazio e a
+    primeira depois dele). Essas linhas existem no texto, então a citação é literal —
+    não escreva "Informação ausente no documento" aqui.
+
+    Na explicação, informe ao leigo o intervalo apurado em anos e as duas datas que o
+    delimitam, para que ele possa conferir sozinho.
 
 BLOCO D — prazo e defesa (art. 113, art. 97-A)
 
