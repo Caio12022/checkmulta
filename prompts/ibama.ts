@@ -115,14 +115,26 @@ BLOCO A — requisitos formais do auto (art. 97)
 A1. A descrição da infração é CLARA E OBJETIVA, indicando concretamente o que foi
     constatado (o quê, onde, quanto)? Descrição genérica ("degradação ambiental",
     "intervenção em APP") sem especificar a conduta e a extensão é achado grave.
-A2. Há indicação do dispositivo legal/regulamentar infringido? A ausência TOTAL de
-    enquadramento, ou enquadramento claramente incompatível com o fato descrito, pode ser
-    achado. Mas atenção: este ponto, isolado, é no MÁXIMO "atencao", nunca "critico" —
-    porque a falta de citação de artigo, por si só, raramente anula um auto que descreve
-    a conduta com clareza. E é PROIBIDO gerar este achado quando o auto indica qualquer
-    enquadramento (mesmo que remissivo). Não use "dispositivo legal ausente" como achado
-    de preenchimento repetido em todo caso: só registre se a ausência de enquadramento for
-    real e relevante para a defesa.
+A2. Há indicação do dispositivo legal/regulamentar infringido? O art. 97, IV exige a
+    indicação dos DISPOSITIVOS infringidos — ou seja, artigo, decreto, resolução ou norma
+    identificável. Julgue em três faixas:
+
+    (a) O auto cita dispositivo identificável (ex.: "art. 50 do Decreto 6.514/2008",
+        "art. 38 da Lei 9.605/98", ou remissão a norma nomeada)? Então NÃO há achado.
+        É PROIBIDO gerar este achado nesse caso — foi assim que ele virou muleta.
+
+    (b) O auto traz um campo de enquadramento, mas VAZIO DE CONTEÚDO NORMATIVO — fórmulas
+        como "infração à legislação ambiental vigente", "descumprimento das normas
+        ambientais", "conforme legislação aplicável", sem nomear uma única norma? Isso NÃO
+        satisfaz o inciso IV: existe rótulo, não existe indicação. É achado, gravidade
+        "atencao". Cite no trecho a expressão vazia tal como aparece no auto.
+
+    (c) Não existe qualquer menção a enquadramento? Achado, gravidade "atencao".
+
+    Nas faixas (b) e (c), quando o auto TAMBÉM tiver descrição genérica (achado A1), diga
+    na explicação que os dois vícios se somam: sem saber o que foi feito nem qual norma
+    foi violada, o autuado não tem como exercer o contraditório. A soma reforça o pedido
+    de nulidade fundado no A1 — mas o A2, isolado, continua sendo no máximo "atencao".
 A5. O auto contém emendas ou rasuras que comprometam a validade, ou falta identificação
     do autuado?
 
