@@ -769,7 +769,7 @@ useEffect(() => {
             Faça a análise gratuita do auto de infração. Nossa inteligência
             artificial verifica os requisitos do processo administrativo sanitário
             em busca da falha que permite recorrer. Se não encontrar nada, você não
-            paga — a análise é grátis e sem cadastro.
+            paga. A análise é grátis e sem cadastro.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600 sm:gap-6">
@@ -958,7 +958,7 @@ useEffect(() => {
                     Chance baixa
                   </span>
                   <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                    Caso mais limitado. Ainda possível recorrer — a decisão é do estabelecimento.
+                    Caso mais limitado. Ainda possível recorrer. A decisão é do estabelecimento.
                   </p>
                 </div>
               </div>
@@ -1103,7 +1103,7 @@ useEffect(() => {
                 Preciso de advogado para apresentar defesa administrativa?
               </h3>
               <p className="text-[15.5px] leading-relaxed text-slate-600">
-                Não é obrigatório na esfera administrativa — o estabelecimento pode
+                Não é obrigatório na esfera administrativa. O estabelecimento pode
                 apresentar defesa por meio de seu representante legal. Em casos de
                 interdição ou risco de cancelamento de licença, a consulta a um
                 advogado é fortemente recomendável.
@@ -1154,7 +1154,7 @@ useEffect(() => {
               define as infrações à legislação sanitária federal e o respectivo
               processo. Estados e municípios, contudo, editam códigos sanitários
               próprios. Por isso, os prazos e procedimentos podem variar conforme o
-              órgão que lavrou o auto — e o documento recebido é sempre a
+              órgão que lavrou o auto. E o documento recebido é sempre a
               referência mais confiável sobre o prazo aplicável ao seu caso.
             </p>
 
@@ -1193,7 +1193,7 @@ useEffect(() => {
                 e pedidos
               </strong>
               , pronta para o estabelecimento preencher e protocolar. Nossa
-              ferramenta informa e instrumentaliza — não presta consultoria jurídica
+              ferramenta informa e instrumentaliza. Não presta consultoria jurídica
               nem representação processual.
             </p>
           </div>
@@ -1241,7 +1241,7 @@ useEffect(() => {
           </p>
 
           <p className="mt-4 text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
 
           <div className="mt-5 flex justify-center gap-6 text-xs font-medium text-slate-400">
@@ -1298,7 +1298,7 @@ useEffect(() => {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-slate-900">Auto de infração sanitária</p>
-                        <p className="mt-0.5 text-xs text-slate-500">PDF, JPG ou PNG — documento completo</p>
+                        <p className="mt-0.5 text-xs text-slate-500">PDF, JPG ou PNG. Documento completo</p>
                       </div>
                     </div>
                   </div>
@@ -1571,7 +1571,7 @@ useEffect(() => {
                       {viabilidade?.nivel === "Baixa" && (
                         <div className="rounded-lg border border-amber-200 bg-amber-50/60 p-5 text-left">
                           <h3 className="mb-2 text-base font-bold text-slate-900">
-                            Encontramos um ponto para arguir — e queremos ser claros sobre ele
+                            Encontramos um ponto para arguir. E queremos ser claros sobre ele
                           </h3>
                           <p className="text-sm leading-relaxed text-slate-700">
                             A falha identificada é de natureza formal e pode ser arguida em defesa,
@@ -1604,7 +1604,7 @@ useEffect(() => {
                           </li>
                           <li className="flex items-start gap-3">
                             <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
-                            <span>Entrega imediata após o pagamento — pronta para preencher e protocolar</span>
+                            <span>Entrega imediata após o pagamento. Pronta para preencher e protocolar</span>
                           </li>
                         </ul>
                       </div>
@@ -1612,7 +1612,7 @@ useEffect(() => {
                       <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
                         <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
                         <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
-                          <strong className="font-semibold">Por que vale a pena:</strong> a elaboração de uma defesa administrativa por advogado costuma custar a partir de R$ 600. Aqui, são R$ 79,00 — e apenas quando encontramos falha concreta. A peça é fundamentada no legislação sanitária aplicável; a decisão final cabe ao órgão julgador. Confira o prazo e a forma de protocolo junto ao órgão de vigilância sanitária emissor.
+                          <strong className="font-semibold">Por que vale a pena:</strong> a elaboração de uma defesa administrativa por advogado costuma custar a partir de R$ 600. Aqui, são R$ 79,00. E apenas quando encontramos falha concreta. A peça é fundamentada no legislação sanitária aplicável; a decisão final cabe ao órgão julgador. Confira o prazo e a forma de protocolo junto ao órgão de vigilância sanitária emissor.
                         </p>
                       </div>
 
@@ -1634,7 +1634,17 @@ useEffect(() => {
                         </div>
                         <span className="mt-1 text-sm font-normal text-emerald-50">Pagamento único · R$ 79,00 · Entrega imediata</span>
                       </button>
-                      <p className="mt-2 text-center text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
+                      <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
+                        <p className="mb-1 text-[11px] font-bold uppercase tracking-wide text-amber-900 sm:text-xs">
+                          O que você está contratando
+                        </p>
+                        <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
+                          Uma peça de defesa fundamentada nas falhas encontradas no seu
+                          documento. A decisão final é do órgão julgador. Nenhuma defesa
+                          garante a anulação.
+                        </p>
+                      </div>
+                      <p className="mt-2 text-center text-[11px] text-slate-400">CheckMulta Tecnologia. CNPJ 63.524.338/0001-62</p>
                     </div>
                   )}
 
@@ -1776,7 +1786,7 @@ useEffect(() => {
                   <div>
                     <h3 className="text-3xl font-bold tracking-tight text-slate-900">R$ 79,00</h3>
                     <p className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500">Defesa administrativa</p>
-                    <p className="mt-1.5 text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
+                    <p className="mt-1.5 text-[11px] text-slate-400">CheckMulta Tecnologia. CNPJ 63.524.338/0001-62</p>
                   </div>
                   <div className="flex items-center justify-center gap-2 rounded-lg border border-amber-200 bg-amber-50 py-2.5 font-semibold text-amber-700">
                     <Timer className="h-5 w-5" />
@@ -1807,7 +1817,7 @@ useEffect(() => {
                     <div className="flex items-start gap-2.5 rounded-lg border border-slate-200 bg-slate-50 p-3 text-left">
                       <Lock className="mt-0.5 h-4 w-4 flex-shrink-0 text-slate-500" />
                       <p className="text-[10px] leading-relaxed text-slate-600">
-                        O recebedor identificado no seu aplicativo bancário será <strong className="font-semibold text-slate-900">CheckMulta Tecnologia</strong> — CNPJ 63.524.338/0001-62.
+                        O recebedor identificado no seu aplicativo bancário será <strong className="font-semibold text-slate-900">CheckMulta Tecnologia</strong>. CNPJ 63.524.338/0001-62.
                       </p>
                     </div>
                   </div>
@@ -1939,7 +1949,7 @@ useEffect(() => {
               </h3>
               <p className="mb-6 text-sm leading-relaxed text-slate-600">
                 Ao fechar, a defesa é apagada deste aparelho e não poderá ser
-                recuperada — seria necessário fazer uma nova análise. Se ainda não
+                recuperada. Seria necessário fazer uma nova análise. Se ainda não
                 copiou ou baixou o texto, volte e salve antes.
               </p>
 
