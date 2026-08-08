@@ -103,12 +103,36 @@ interface Analise {
 type Viabilidade = { nivel: "Alta" | "Média" | "Baixa"; cor: string; bg: string; borda: string };
 
 // ─── VIABILIDADE: derivada das gravidades encontradas ──────────────────────
+/*
+   Antes, QUALQUER achado critico devolvia "Alta". Na pratica isso fazia o
+   medidor marcar Alta em praticamente toda analise com achado, e um indicador
+   que nunca varia nao informa nada — alem de inflar a expectativa do usuario
+   justamente onde queremos conte-la.
+
+   Agora ha gradacao: "Alta" exige um achado que sozinho derruba a autuacao
+   (prescricao ou incompetencia) ou o reforco de mais de um critico. Um unico
+   critico formal, isolado, e argumento bom mas nao garantido — fica "Media".
+*/
 const calcularViabilidade = (a: Analise | null): Viabilidade | null => {
   if (!a || !a.houve_achado) return null;
-  if (a.quantidade_criticos > 0)
+
+  const criticos = a.quantidade_criticos;
+
+  /* Achados que, procedentes, encerram o processo por si sos. */
+  const temAchadoTerminativo =
+    Array.isArray(a.achados) &&
+    a.achados.some(
+      (ac) =>
+        ac.gravidade === "critico" &&
+        (ac.bloco === "prescricao" || ac.bloco === "competencia")
+    );
+
+  if (criticos > 0 && (temAchadoTerminativo || criticos >= 2))
     return { nivel: "Alta", cor: "text-emerald-700", bg: "bg-emerald-50", borda: "border-emerald-200" };
-  if (a.quantidade_atencao > 0)
+
+  if (criticos > 0 || a.quantidade_atencao > 0)
     return { nivel: "Média", cor: "text-amber-700", bg: "bg-amber-50", borda: "border-amber-200" };
+
   return { nivel: "Baixa", cor: "text-red-700", bg: "bg-red-50", borda: "border-red-200" };
 };
 
