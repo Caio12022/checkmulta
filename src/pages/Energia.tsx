@@ -771,7 +771,7 @@ useEffect(() => {
             Faça a análise gratuita do Termo de Ocorrência e Inspeção (TOI) ou da
             fatura de recuperação de consumo. Nossa inteligência artificial confere
             as exigências da Resolução ANEEL nº 1.000/2021 e o cálculo do valor
-            cobrado. Se não encontrar falha, você não paga — a análise é grátis e
+            cobrado. Se não encontrar falha, você não paga. A análise é grátis e
             sem cadastro.
           </p>
 
@@ -961,7 +961,7 @@ useEffect(() => {
                     Chance baixa
                   </span>
                   <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                    Caso mais limitado. Ainda é possível contestar — a decisão é sua.
+                    Caso mais limitado. Ainda é possível contestar. A decisão é sua.
                   </p>
                 </div>
               </div>
@@ -1099,7 +1099,7 @@ useEffect(() => {
                 Os tribunais têm entendido que a distribuidora não pode interromper
                 o fornecimento com base em débito originado de TOI emitido em
                 desacordo com a Resolução ANEEL nº 1.000/2021. Continue pagando as
-                faturas normais de consumo — a discussão é só sobre o retroativo.
+                faturas normais de consumo. A discussão é só sobre o retroativo.
               </p>
             </div>
 
@@ -1157,8 +1157,8 @@ useEffect(() => {
             <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
               Muitas cobranças retroagem o máximo possível sem demonstrar quando a
               irregularidade teria começado. O art. 596 determina que esse período
-              seja definido tecnicamente ou pela análise do histórico de consumo —
-              e o § 1º limita a cobrança aos 6 ciclos anteriores à constatação
+              seja definido tecnicamente ou pela análise do histórico de consumo.
+              E o § 1º limita a cobrança aos 6 ciclos anteriores à constatação
               quando o início não puder ser identificado. Um TOI formalmente
               correto pode, ainda assim, ter o valor derrubado por esse motivo.
             </p>
@@ -1197,7 +1197,7 @@ useEffect(() => {
                 reclamação administrativa completa, com fatos, fundamentos e pedidos
               </strong>
               , pronta para você preencher e protocolar. Nossa ferramenta informa e
-              instrumentaliza — não presta consultoria jurídica nem representação.
+              instrumentaliza. Não presta consultoria jurídica nem representação.
             </p>
           </div>
         </div>
@@ -1245,7 +1245,7 @@ useEffect(() => {
           </p>
 
           <p className="mt-4 text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
 
           <div className="mt-5 flex justify-center gap-6 text-xs font-medium text-slate-400">
@@ -1302,7 +1302,7 @@ useEffect(() => {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-slate-900">TOI, notificação ou fatura retroativa</p>
-                        <p className="mt-0.5 text-xs text-slate-500">PDF, JPG ou PNG — documento completo</p>
+                        <p className="mt-0.5 text-xs text-slate-500">PDF, JPG ou PNG. Documento completo</p>
                       </div>
                     </div>
                   </div>
@@ -1575,7 +1575,7 @@ useEffect(() => {
                       {viabilidade?.nivel === "Baixa" && (
                         <div className="rounded-lg border border-amber-200 bg-amber-50/60 p-5 text-left">
                           <h3 className="mb-2 text-base font-bold text-slate-900">
-                            Encontramos um ponto para arguir — e queremos ser claros sobre ele
+                            Encontramos um ponto para arguir. E queremos ser claros sobre ele
                           </h3>
                           <p className="text-sm leading-relaxed text-slate-700">
                             A falha identificada é de natureza formal e pode ser arguida na
@@ -1609,7 +1609,7 @@ useEffect(() => {
                           </li>
                           <li className="flex items-start gap-3">
                             <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
-                            <span>Entrega imediata após o pagamento — pronta para preencher e protocolar</span>
+                            <span>Entrega imediata após o pagamento. Pronta para preencher e protocolar</span>
                           </li>
                         </ul>
                       </div>
@@ -1617,7 +1617,7 @@ useEffect(() => {
                       <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
                         <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
                         <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
-                          <strong className="font-semibold">Por que vale a pena:</strong> contratar um advogado para discutir um TOI costuma custar a partir de R$ 800. Aqui, são R$ {formatarPreco(preco)} — e apenas quando encontramos falha concreta. A peça é fundamentada na Resolução ANEEL nº 1.000/2021; a decisão cabe à distribuidora e, em grau seguinte, à ANEEL. Confira o prazo e a forma de protocolo na notificação recebida.
+                          <strong className="font-semibold">Por que vale a pena:</strong> contratar um advogado para discutir um TOI costuma custar a partir de R$ 800. Aqui, são R$ {formatarPreco(preco)}. E apenas quando encontramos falha concreta. A peça é fundamentada na Resolução ANEEL nº 1.000/2021; a decisão cabe à distribuidora e, em grau seguinte, à ANEEL. Confira o prazo e a forma de protocolo na notificação recebida.
                         </p>
                       </div>
 
@@ -1639,7 +1639,17 @@ useEffect(() => {
                         </div>
                         <span className="mt-1 text-sm font-normal text-emerald-50">Pagamento único · R$ {formatarPreco(preco)} · Entrega imediata</span>
                       </button>
-                      <p className="mt-2 text-center text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
+                      <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
+                        <p className="mb-1 text-[11px] font-bold uppercase tracking-wide text-amber-900 sm:text-xs">
+                          O que você está contratando
+                        </p>
+                        <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
+                          Uma peça de defesa fundamentada nas falhas encontradas no seu
+                          documento. A decisão final é do órgão julgador. Nenhuma defesa
+                          garante a anulação.
+                        </p>
+                      </div>
+                      <p className="mt-2 text-center text-[11px] text-slate-400">CheckMulta Tecnologia. CNPJ 63.524.338/0001-62</p>
                     </div>
                   )}
 
@@ -1781,7 +1791,7 @@ useEffect(() => {
                   <div>
                     <h3 className="text-3xl font-bold tracking-tight text-slate-900">R$ {formatarPreco(preco)}</h3>
                     <p className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500">Defesa administrativa</p>
-                    <p className="mt-1.5 text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
+                    <p className="mt-1.5 text-[11px] text-slate-400">CheckMulta Tecnologia. CNPJ 63.524.338/0001-62</p>
                   </div>
                   <div className="flex items-center justify-center gap-2 rounded-lg border border-amber-200 bg-amber-50 py-2.5 font-semibold text-amber-700">
                     <Timer className="h-5 w-5" />
@@ -1812,7 +1822,7 @@ useEffect(() => {
                     <div className="flex items-start gap-2.5 rounded-lg border border-slate-200 bg-slate-50 p-3 text-left">
                       <Lock className="mt-0.5 h-4 w-4 flex-shrink-0 text-slate-500" />
                       <p className="text-[10px] leading-relaxed text-slate-600">
-                        O recebedor identificado no seu aplicativo bancário será <strong className="font-semibold text-slate-900">CheckMulta Tecnologia</strong> — CNPJ 63.524.338/0001-62.
+                        O recebedor identificado no seu aplicativo bancário será <strong className="font-semibold text-slate-900">CheckMulta Tecnologia</strong>. CNPJ 63.524.338/0001-62.
                       </p>
                     </div>
                   </div>
@@ -1944,7 +1954,7 @@ useEffect(() => {
               </h3>
               <p className="mb-6 text-sm leading-relaxed text-slate-600">
                 Ao fechar, a defesa é apagada deste aparelho e não poderá ser
-                recuperada — seria necessário fazer uma nova análise. Se ainda não
+                recuperada. Seria necessário fazer uma nova análise. Se ainda não
                 copiou ou baixou o texto, volte e salve antes.
               </p>
 
