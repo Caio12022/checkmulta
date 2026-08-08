@@ -932,7 +932,23 @@ const prompt = promptGenerateDefenseVigilancia(dados);
         return res.json({ result: parsed.status });
       }
 
-      res.json({ result: parsed });
+      /* Auditoria programática. Até aqui o IBAMA era a única vertical paga sem
+         validação em código — tudo dependia de o modelo obedecer ao prompt.
+         Agora todo achado passa pelas mesmas travas do Procon e da Vigilância:
+         o trecho citado precisa existir na transcrição, os números precisam
+         bater, e a citação legal precisa estar na lista fechada da vertical. */
+      const auditoria = validarAnaliseJSON(parsed, "ibama");
+      if (auditoria.ilegivel) {
+        return res.json({ result: "documento_ilegivel" });
+      }
+      if (auditoria.invalido) {
+        return res.json({ result: "documento_invalido" });
+      }
+      if (auditoria.descartados > 0) {
+        console.warn(`IBAMA: ${auditoria.descartados} achado(s) descartado(s) na auditoria.`);
+      }
+
+      res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-ibama:", err);
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
