@@ -777,7 +777,7 @@ export default function Procon() {
             Faça a análise gratuita do auto de infração. Nossa inteligência
             artificial verifica 16 pontos do processo, com base no Código de
             Defesa do Consumidor e no Decreto 2.181/97, em busca da falha que
-            permite recorrer. Se não encontrar nada, você não paga — a análise é
+            permite recorrer. Se não encontrar nada, você não paga. A análise é
             grátis e sem cadastro.
           </p>
 
@@ -967,7 +967,7 @@ export default function Procon() {
                     Viabilidade baixa
                   </span>
                   <p className="mt-1 text-sm leading-relaxed text-slate-600">
-                    Caso mais limitado. Ainda possível arguir — a decisão é da empresa.
+                    Caso mais limitado. Ainda possível arguir. A decisão é da empresa.
                   </p>
                 </div>
               </div>
@@ -1068,8 +1068,8 @@ export default function Procon() {
                 Qual o prazo para apresentar defesa no Procon?
               </h3>
               <p className="text-[15.5px] leading-relaxed text-slate-600">
-                O Decreto federal 2.181/97 prevê 20 dias, mas há Procons estaduais com prazo próprio —
-                o Procon-SP, por exemplo, adota 15 dias. Confira sempre o prazo indicado no seu auto
+                O Decreto federal 2.181/97 prevê 20 dias, mas há Procons estaduais com prazo próprio.
+                O Procon-SP, por exemplo, adota 15 dias. Confira sempre o prazo indicado no seu auto
                 de infração.
               </p>
             </div>
@@ -1111,7 +1111,7 @@ export default function Procon() {
                 Preciso de advogado para apresentar defesa administrativa?
               </h3>
               <p className="text-[15.5px] leading-relaxed text-slate-600">
-                Não é obrigatório na esfera administrativa — a empresa pode apresentar defesa por meio
+                Não é obrigatório na esfera administrativa. A empresa pode apresentar defesa por meio
                 de seu representante legal. Para casos de maior complexidade ou valor elevado, a
                 consulta a um advogado é recomendável.
               </p>
@@ -1153,7 +1153,7 @@ export default function Procon() {
             <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
               O <strong className="font-semibold text-slate-900">artigo 42 do Decreto 2.181/97</strong>,
               com a redação dada pelo Decreto 10.887/2021, prevê o prazo de 20 dias contados do
-              recebimento da notificação. Alguns Procons estaduais adotam prazo próprio — o Procon-SP,
+              recebimento da notificação. Alguns Procons estaduais adotam prazo próprio. O Procon-SP,
               por exemplo, trabalha com 15 dias, com base na Lei Estadual 10.177/98. Por isso, é
               fundamental conferir o prazo indicado no próprio auto de infração e, em caso de dúvida,
               confirmar junto ao órgão emissor.
@@ -1167,7 +1167,7 @@ export default function Procon() {
               que a multa seja graduada de acordo com a gravidade da infração, a vantagem auferida e a
               condição econômica do fornecedor. Quando o auto não demonstra essa análise, ou quando
               estima o faturamento da empresa sem base documental, abre-se espaço para requerer a
-              redução do valor — inclusive apresentando a declaração de faturamento real.
+              redução do valor. Inclusive apresentando a declaração de faturamento real.
             </p>
 
             <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
@@ -1204,7 +1204,7 @@ export default function Procon() {
                 defesa administrativa completa, estruturada em preliminares, mérito e pedidos
               </strong>
               , pronta para a empresa preencher e protocolar. Nossa ferramenta informa e
-              instrumentaliza — não presta consultoria jurídica nem representação processual.
+              instrumentaliza. Não presta consultoria jurídica nem representação processual.
             </p>
           </div>
         </div>
@@ -1249,7 +1249,7 @@ export default function Procon() {
           </p>
 
           <p className="mt-4 text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
 
           <div className="mt-5 flex justify-center gap-6 text-xs font-medium text-slate-400">
@@ -1307,7 +1307,7 @@ export default function Procon() {
                       </div>
                       <div>
                         <p className="text-sm font-bold text-slate-900">Auto de infração do Procon</p>
-                        <p className="mt-0.5 text-xs text-slate-500">PDF, JPG ou PNG — documento completo</p>
+                        <p className="mt-0.5 text-xs text-slate-500">PDF, JPG ou PNG. Documento completo</p>
                       </div>
                     </div>
                   </div>
@@ -1580,7 +1580,7 @@ export default function Procon() {
                       {viabilidade?.nivel === "Baixa" && (
                         <div className="rounded-lg border border-amber-200 bg-amber-50/60 p-5 text-left">
                           <h3 className="mb-2 text-base font-bold text-slate-900">
-                            Encontramos um ponto para arguir — e queremos ser claros sobre ele
+                            Encontramos um ponto para arguir. E queremos ser claros sobre ele
                           </h3>
                           <p className="text-sm leading-relaxed text-slate-700">
                             A falha identificada é de natureza formal e pode ser arguida em defesa,
@@ -1613,7 +1613,7 @@ export default function Procon() {
                           </li>
                           <li className="flex items-start gap-3">
                             <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
-                            <span>Entrega imediata após o pagamento — pronta para preencher e protocolar</span>
+                            <span>Entrega imediata após o pagamento. Pronta para preencher e protocolar</span>
                           </li>
                         </ul>
                       </div>
@@ -1621,7 +1621,7 @@ export default function Procon() {
                       <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
                         <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
                         <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
-                          <strong className="font-semibold">Por que vale a pena:</strong> a elaboração de uma defesa administrativa por advogado costuma custar a partir de R$ 800. Aqui, são R$ 99,00 — e apenas quando encontramos falha concreta. A peça é fundamentada no CDC e no Decreto 2.181/97; a decisão final cabe ao órgão julgador. Confira o prazo e a forma de protocolo junto ao Procon emissor.
+                          <strong className="font-semibold">Por que vale a pena:</strong> a elaboração de uma defesa administrativa por advogado costuma custar a partir de R$ 800. Aqui, são R$ 99,00. E apenas quando encontramos falha concreta. A peça é fundamentada no CDC e no Decreto 2.181/97; a decisão final cabe ao órgão julgador. Confira o prazo e a forma de protocolo junto ao Procon emissor.
                         </p>
                       </div>
 
@@ -1643,7 +1643,17 @@ export default function Procon() {
                         </div>
                         <span className="mt-1 text-sm font-normal text-emerald-50">Pagamento único · R$ 99,00 · Entrega imediata</span>
                       </button>
-                      <p className="mt-2 text-center text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
+                      <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
+                        <p className="mb-1 text-[11px] font-bold uppercase tracking-wide text-amber-900 sm:text-xs">
+                          O que você está contratando
+                        </p>
+                        <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
+                          Uma peça de defesa fundamentada nas falhas encontradas no seu
+                          documento. A decisão final é do órgão julgador. Nenhuma defesa
+                          garante a anulação.
+                        </p>
+                      </div>
+                      <p className="mt-2 text-center text-[11px] text-slate-400">CheckMulta Tecnologia. CNPJ 63.524.338/0001-62</p>
                     </div>
                   )}
 
@@ -1785,7 +1795,7 @@ export default function Procon() {
                   <div>
                     <h3 className="text-3xl font-bold tracking-tight text-slate-900">R$ 99,00</h3>
                     <p className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500">Defesa administrativa</p>
-                    <p className="mt-1.5 text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
+                    <p className="mt-1.5 text-[11px] text-slate-400">CheckMulta Tecnologia. CNPJ 63.524.338/0001-62</p>
                   </div>
                   <div className="flex items-center justify-center gap-2 rounded-lg border border-amber-200 bg-amber-50 py-2.5 font-semibold text-amber-700">
                     <Timer className="h-5 w-5" />
@@ -1816,7 +1826,7 @@ export default function Procon() {
                     <div className="flex items-start gap-2.5 rounded-lg border border-slate-200 bg-slate-50 p-3 text-left">
                       <Lock className="mt-0.5 h-4 w-4 flex-shrink-0 text-slate-500" />
                       <p className="text-[10px] leading-relaxed text-slate-600">
-                        O recebedor identificado no seu aplicativo bancário será <strong className="font-semibold text-slate-900">CheckMulta Tecnologia</strong> — CNPJ 63.524.338/0001-62.
+                        O recebedor identificado no seu aplicativo bancário será <strong className="font-semibold text-slate-900">CheckMulta Tecnologia</strong>. CNPJ 63.524.338/0001-62.
                       </p>
                     </div>
                   </div>
@@ -1948,7 +1958,7 @@ export default function Procon() {
               </h3>
               <p className="mb-6 text-sm leading-relaxed text-slate-600">
                 Ao fechar, a defesa é apagada deste aparelho e não poderá ser
-                recuperada — seria necessário fazer uma nova análise. Se ainda não
+                recuperada. Seria necessário fazer uma nova análise. Se ainda não
                 copiou ou baixou o texto, volte e salve antes.
               </p>
 
