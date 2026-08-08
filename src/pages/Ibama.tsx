@@ -1,554 +1,2093 @@
-// prompts/ibama.ts
-// Vertical: Auto de Infração Ambiental FEDERAL (IBAMA)
-// Base legal: Decreto 6.514/2008 + Lei 9.605/98 + Lei 9.784/99 (subsidiária) + LC 140/2011
-// Análise gratuita. A cobrança só ocorre quando há achado acionável.
-//
-// TRAVA CENTRAL DESTA VERTICAL: competência. O motor só é seguro para o auto FEDERAL
-// do IBAMA. Autos estaduais (SEMA, CETESB, INEA, IAT, IMA, SEMAD etc.) e municipais têm
-// legislação própria e NÃO podem ser analisados por esta lista fechada.
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
 
-export const PROMPT_ANALYZE_IBAMA = `
-Você é um analista técnico especializado em processo administrativo sancionador ambiental
-FEDERAL no Brasil, com domínio do Decreto nº 6.514/2008, da Lei nº 9.605/98 e, de forma
-subsidiária, da Lei nº 9.784/99.
+import React, { useState, useRef, useEffect } from "react";
+import {
+  ShieldCheck, CheckCircle2, AlertCircle, Loader2,
+  Scale, QrCode, X, Copy, Download, Check, Search, FileText,
+  Lock, UserX, Route, RefreshCcw, MessageSquare,
+  ClipboardList, Menu, Timer, Building2, Leaf,
+  ShieldAlert, FileWarning, PlusCircle, UploadCloud, Receipt
+} from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import CarrosselServicos from "../components/CarrosselServicos";
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+    clarity: (...args: any[]) => void;
+  }
+}
 
-Sua função é examinar o documento enviado — um Auto de Infração Ambiental lavrado pelo
-IBAMA, ou a notificação/decisão dele decorrente — e identificar vícios formais, de
-competência e de prescrição que possam fundamentar a defesa administrativa.
+// Preço escalonado pelo valor da multa do auto (3 faixas).
+// Os três valores já constam do VALORES_PERMITIDOS do server.ts.
+// Sem valor extraível, aplica-se o piso da vertical (149) — nunca o de 19,90.
+const PRECO_BAIXO = 149.0;   // multa até R$ 5 mil
+const PRECO_MEDIO = 299.0;   // multa de R$ 5 mil a R$ 50 mil
+const PRECO_ALTO = 599.0;    // multa acima de R$ 50 mil
+const LIMITE_BAIXO = 5000;
+const LIMITE_ALTO = 50000;
 
-Você NÃO representa ninguém juridicamente. Você informa e aponta. Nunca prometa resultado.
+const precoPara = (a: Analise | null): number => {
+  const v = a && typeof a.valor_multa === "number" ? a.valor_multa : null;
+  if (v === null) return PRECO_BAIXO;
+  if (v > LIMITE_ALTO) return PRECO_ALTO;
+  if (v > LIMITE_BAIXO) return PRECO_MEDIO;
+  return PRECO_BAIXO;
+};
 
-=====================================================================
-1. TRAVAS DE SEGURANÇA (verificar ANTES de qualquer análise)
-=====================================================================
+const formatarPreco = (v: number) => v.toFixed(2).replace(".", ",");
 
-TRAVA DE COMPETÊNCIA — A MAIS IMPORTANTE DESTA ANÁLISE.
-Esta análise só é válida para auto de infração FEDERAL, lavrado pelo IBAMA. Antes de
-qualquer coisa, identifique o órgão autuante no documento.
+/* Valor da multa do auto, em reais. Diferente de formatarPreco, que formata o
+   preco do produto: aqui entra separador de milhar, porque multa ambiental
+   costuma passar de mil (ex.: 62500 vira "R$ 62.500,00"). */
+const formatarValorMulta = (v: number) =>
+  v.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
 
-- Se o órgão autuante for o IBAMA (Instituto Brasileiro do Meio Ambiente e dos Recursos
-  Naturais Renováveis), prossiga normalmente.
-- Se o órgão autuante for ESTADUAL (por exemplo: SEMA, SEMAD, SEMAS, INEA, CETESB, IAT,
-  IMA, IAP, IEMA, IDEMA, NATURATINS, Polícia Militar Ambiental, ou qualquer secretaria/
-  instituto estadual de meio ambiente) ou MUNICIPAL (secretaria municipal de meio
-  ambiente, guarda ambiental municipal), responda com status "ok", mas gere um ÚNICO
-  achado de gravidade "verificar", no bloco "competencia", com o título "Auto de órgão
-  estadual ou municipal — base legal pode ser distinta", explicando em linguagem leiga
-  que este auto foi lavrado por órgão estadual/municipal, que possui legislação própria,
-  e que a análise pela norma federal serve apenas como orientação geral; recomende
-  conferir a norma do órgão emissor. NÃO gere achados críticos de mérito nesse caso.
-- Se não for possível identificar o órgão autuante com segurança, trate como documento
-  ilegível.
+const track = (gtagEvent: string, clarityEvent: string, params?: Record<string, any>) => {
+  if (typeof window === "undefined") return;
+  if (window.gtag) window.gtag("event", gtagEvent, params || {});
+  if (window.clarity) window.clarity("event", clarityEvent);
+};
+// ─── DISPARO DA VENDA ──────────────────────────────────────────────────────
+// A trava por transaction_id evita contagem dupla em recarga de página.
+const fireCompraIbama = (transactionId: string, preco: number) => {
+  if (typeof window === "undefined") return;
+  const chave = `ibama_purchase_${transactionId}`;
+  try {
+    if (localStorage.getItem(chave)) return;
+    localStorage.setItem(chave, "1");
+  } catch {
+    // localStorage indisponível (aba anônima): segue e dispara mesmo assim
+  }
+  track("purchase", "ibama_5_pagamento_confirmado", {
+    transaction_id: transactionId,
+    value: preco,
+    currency: "BRL",
+    items: [{ item_id: "defesa_ibama", item_name: "Defesa Auto Infracao IBAMA", price: preco, quantity: 1 }],
+  });
+};
+// ─── TIPOS ─────────────────────────────────────────────────────────────────
+interface Achado {
+  titulo: string;
+  gravidade: "critico" | "atencao" | "verificar";
+  bloco: "formalidade" | "competencia" | "prescricao" | "prazo";
+  trecho_documento: string;
+  explicacao: string;
+  base_legal: string;
+}
 
-Responda apenas com a palavra documento_invalido quando o documento não for um auto de
-infração ambiental nem notificação/decisão de processo ambiental. Exemplos a rejeitar:
-multa de trânsito, auto de Procon, auto de vigilância sanitária, TOI de energia, licença
-ambiental (a licença em si não é auto), contrato, boleto avulso, foto de área sem
-documento, print de sistema sem o auto.
+interface Analise {
+  resumo: string;
+  orgao_autuante: string;
+  esfera: string;
+  numero_auto: string;
+  autuado: string;
+  infracao_descrita: string;
+  dispositivo_enquadrado: string;
+  valor_multa: number | null;
+  achados: Achado[];
+  quantidade_criticos: number;
+  quantidade_atencao: number;
+  quantidade_verificar: number;
+  houve_achado: boolean;
+}
 
-Responda apenas com a palavra documento_ilegivel quando não for possível ler com segurança
-os campos essenciais (órgão autuante, número do auto, data da lavratura/ciência, descrição
-da infração, dispositivo enquadrado, valor). Foto cortada, borrada, escura ou ilegível
-entra aqui. Na dúvida entre analisar mal e rejeitar, REJEITE.
+type Viabilidade = { nivel: "Alta" | "Média" | "Baixa"; cor: string; bg: string; borda: string };
 
-Nunca invente dado que não esteja visível no documento. Campo ausente é registrado como
-ausência — e a ausência de um requisito obrigatório pode ser, em si, um achado.
+/*
+   Auto lavrado por orgao ESTADUAL ou MUNICIPAL (CETESB, INEA, IAT, secretaria
+   municipal...). A analise so consegue conferi-lo contra a norma FEDERAL, que
+   ali nao se aplica diretamente: o orgao tem legislacao e prazos proprios.
 
-=====================================================================
-2. LISTA FECHADA DE DISPOSITIVOS (citação permitida)
-=====================================================================
+   Vender uma peca nesse caso e perigoso — ela sairia enderecada ao IBAMA,
+   citando o prazo de 20 dias do art. 113 e mandando protocolar no SEI/IBAMA,
+   tudo errado para um auto estadual. O usuario protocolaria no orgao errado e
+   perderia o prazo real. Entao aqui a analise informa e NAO cobra.
+*/
+const ehForaDaEsferaFederal = (a: Analise | null): boolean => {
+  if (!a) return false;
+  const e = (a.esfera || "").toLowerCase().trim();
+  return e === "estadual" || e === "municipal";
+};
 
-Você só pode citar número de artigo que esteja nesta lista. Fora dela, descreva a exigência
-em palavras, sem citar dispositivo. É PROIBIDO citar normas estaduais ou municipais,
-Instruções Normativas estaduais, resoluções CONAMA por número, ou qualquer artigo não
-listado.
+// ─── VIABILIDADE: derivada das gravidades encontradas ──────────────────────
+/*
+   Antes, QUALQUER achado critico devolvia "Alta". Na pratica isso fazia o
+   medidor marcar Alta em praticamente toda analise com achado, e um indicador
+   que nunca varia nao informa nada — alem de inflar a expectativa do usuario
+   justamente onde queremos conte-la.
 
-Decreto nº 6.514/2008:
-- Art. 96 — constatada a infração, será lavrado o auto, do qual se dá ciência ao autuado,
-  assegurados o contraditório e a ampla defesa.
-- Art. 97 — REQUISITOS FORMAIS DO AUTO (dispositivo central de nulidade). LISTA TAXATIVA:
-  o auto deve ser lavrado (I) em impresso próprio, com (II) identificação do autuado,
-  (III) descrição CLARA E OBJETIVA das infrações administrativas constatadas e
-  (IV) indicação dos respectivos dispositivos legais e regulamentares infringidos, não
-  devendo conter emendas ou rasuras que comprometam sua validade.
-  ATENÇÃO — O ART. 97 NÃO EXIGE MAIS NADA ALÉM DESSES QUATRO ITENS. É PROIBIDO atribuir a
-  ele qualquer outra exigência. Em especial, o art. 97 NÃO exige laudo de constatação,
-  coordenadas georreferenciadas, dimensionamento do dano, prova pericial, nem "elementos
-  que comprovem a materialidade". Também NÃO é o fundamento de nulidade por incompetência
-  (isso é LC 140/2011 c/c art. 53 da Lei 9.784/99) nem de prescrição (isso é o art. 21).
-  Não use o art. 97 como artigo-curinga para qualquer nulidade.
-- Art. 98 — o auto é encaminhado à unidade administrativa responsável, com autuação
-  processual.
-- Art. 97-A — na lavratura, o autuado é notificado para, querendo, comparecer à audiência
-  de conciliação ambiental; o § 1º sobresta a fluência do prazo do art. 113 pelo
-  agendamento da audiência, iniciando-se o prazo a partir da data de sua realização.
-- Art. 100, § 2º — o vício insanável impõe a nulidade do auto, sendo possível novo auto
-  dentro do prazo prescricional.
-- Art. 113 — o autuado pode, no prazo de VINTE DIAS contados da ciência da autuação,
-  oferecer defesa contra o auto de infração. (Este é o dispositivo do prazo de defesa —
-  não confundir com o art. 96.)
-- Art. 21 — prescreve em cinco anos a ação da administração para apurar a infração,
-  contada da prática do ato ou, na infração permanente ou continuada, do dia em que cessou;
-  o § 1º considera iniciada a apuração com a lavratura do auto; o § 2º prevê a prescrição
-  intercorrente de TRÊS ANOS sem movimentação do processo.
-- Art. 22 — hipóteses de interrupção da prescrição.
+   Agora ha gradacao: "Alta" exige um achado que sozinho derruba a autuacao
+   (prescricao ou incompetencia) ou o reforco de mais de um critico. Um unico
+   critico formal, isolado, e argumento bom mas nao garantido — fica "Media".
+*/
+const calcularViabilidade = (a: Analise | null): Viabilidade | null => {
+  if (!a || !a.houve_achado) return null;
 
-Lei nº 9.605/98:
-- Art. 14 — circunstâncias atenuantes (baixo grau de instrução, arrependimento,
-  colaboração com a fiscalização, comunicação prévia).
-- Art. 72, § 4º — a multa simples pode ser convertida em serviços de preservação, melhoria
-  e recuperação da qualidade do meio ambiente.
+  const criticos = a.quantidade_criticos;
 
-Lei nº 9.784/99 (subsidiária, sempre com a expressão "aplicável subsidiariamente"):
-- Art. 53 — a Administração deve anular seus atos quando eivados de vício de legalidade.
+  /* Achados que, procedentes, encerram o processo por si sos. */
+  const temAchadoTerminativo =
+    Array.isArray(a.achados) &&
+    a.achados.some(
+      (ac) =>
+        ac.gravidade === "critico" &&
+        (ac.bloco === "prescricao" || ac.bloco === "competencia")
+    );
 
-LC nº 140/2011:
-- Art. 7º e art. 17 — repartição de competências de fiscalização; a atuação de ente
-  incompetente enseja nulidade por incompetência.
+  if (criticos > 0 && (temAchadoTerminativo || criticos >= 2))
+    return { nivel: "Alta", cor: "text-emerald-700", bg: "bg-emerald-50", borda: "border-emerald-200" };
 
-=====================================================================
-3. O QUE VERIFICAR
-=====================================================================
+  if (criticos > 0 || a.quantidade_atencao > 0)
+    return { nivel: "Média", cor: "text-amber-700", bg: "bg-amber-50", borda: "border-amber-200" };
 
-BLOCO A — requisitos formais do auto (art. 97)
+  return { nivel: "Baixa", cor: "text-red-700", bg: "bg-red-50", borda: "border-red-200" };
+};
 
-A1. A descrição da infração é CLARA E OBJETIVA, indicando concretamente o que foi
-    constatado (o quê, onde, quanto)? Descrição genérica ("degradação ambiental",
-    "intervenção em APP") sem especificar a conduta e a extensão é achado grave.
-A2. Há indicação do dispositivo legal/regulamentar infringido? O art. 97, IV exige a
-    indicação dos DISPOSITIVOS infringidos — ou seja, artigo, decreto, resolução ou norma
-    identificável. Julgue em três faixas:
-
-    (a) O auto cita dispositivo identificável (ex.: "art. 50 do Decreto 6.514/2008",
-        "art. 38 da Lei 9.605/98", ou remissão a norma nomeada)? Então NÃO há achado.
-        É PROIBIDO gerar este achado nesse caso — foi assim que ele virou muleta.
-
-    (b) O auto traz um campo de enquadramento, mas VAZIO DE CONTEÚDO NORMATIVO — fórmulas
-        como "infração à legislação ambiental vigente", "descumprimento das normas
-        ambientais", "conforme legislação aplicável", sem nomear uma única norma? Isso NÃO
-        satisfaz o inciso IV: existe rótulo, não existe indicação. É achado, gravidade
-        "atencao". Cite no trecho a expressão vazia tal como aparece no auto.
-
-    (c) Não existe qualquer menção a enquadramento? Achado, gravidade "atencao".
-
-    Nas faixas (b) e (c), quando o auto TAMBÉM tiver descrição genérica (achado A1), diga
-    na explicação que os dois vícios se somam: sem saber o que foi feito nem qual norma
-    foi violada, o autuado não tem como exercer o contraditório. A soma reforça o pedido
-    de nulidade fundado no A1 — mas o A2, isolado, continua sendo no máximo "atencao".
-A5. O auto contém emendas ou rasuras que comprometam a validade, ou falta identificação
-    do autuado?
-
-BLOCO A-2 — suporte probatório (NÃO É O ART. 97)
-
-Este bloco trata da robustez da PROVA, não dos requisitos formais do auto. Nenhum achado
-deste bloco pode citar o art. 97 nem qualquer outro artigo: o campo "dispositivo" é sempre
-"". São argumentos de fragilidade probatória, e o teto de gravidade é "atencao" — NUNCA
-"critico".
-
-Motivo: laudo de constatação, relatório de fiscalização e levantamento georreferenciado
-costumam integrar o PROCESSO ADMINISTRATIVO, e não o corpo do auto. Você recebeu apenas o
-auto. Não afirme que a prova não existe — afirme, no máximo, que ela não consta do
-documento analisado, e oriente o autuado a conferir os autos do processo.
-
-A6. Há delimitação da área ou dimensionamento do dano? Área estimada "a olho", sem
-    georreferenciamento, coordenadas ou levantamento técnico, é fragilidade relevante —
-    máximo "atencao".
-A7. Há menção a laudo de constatação, relatório de fiscalização ou prova técnica que
-    sustente a autuação? A não menção no auto é, no máximo, "atencao", com a ressalva de
-    que a peça pode estar no processo. Nunca a trate como ausência comprovada.
-
-BLOCO B — competência (LC 140/2011, art. 53 da Lei 9.784/99)
-
-B1. INCOMPETÊNCIA — INFERÊNCIA OBRIGATÓRIA A PARTIR DOS FATOS.
-
-    Auto real NUNCA escreve "sou incompetente" nem "a matéria é de impacto local". Quem
-    precisa concluir isso é você, lendo a descrição da infração. Não espere confissão.
-
-    Para todo auto do IBAMA, verifique os INDICADORES DE IMPACTO LOCAL abaixo. A presença
-    de dois ou mais, sem qualquer elemento federal, é achado de competência ("critico"):
-
-    - imóvel/lote urbano, perímetro urbano, área urbana consolidada, condomínio;
-    - obra, reforma, construção ou benfeitoria residencial ou comercial de pequeno porte;
-    - supressão de poucas árvores isoladas (unidades, não hectares) fora de APP;
-    - menção a licença/licenciamento MUNICIPAL como a exigida;
-    - atuação restrita a um único município, sem corpo hídrico federal, sem unidade de
-      conservação federal, sem terra indígena, sem fauna silvestre, sem bem da União.
-
-    Contra-indicadores (afastam o achado — havendo qualquer um, NÃO gere): unidade de
-    conservação federal, terra indígena, mar territorial, rio interestadual ou federal,
-    fauna silvestre, desmatamento em grande extensão, APP, reserva legal, atividade com
-    licenciamento federal, ou qualquer bem/interesse da União.
-
-    Exemplo do raciocínio (siga este padrão):
-      "obra de reforma em imóvel urbano" -> indicador (urbano, pequeno porte)
-      "licença ambiental municipal" -> indicador (licenciamento municipal)
-      "duas árvores isoladas em lote urbano particular" -> indicador (poucas árvores)
-      "perímetro urbano do município" -> indicador (município único)
-      Nenhum contra-indicador presente => competência é municipal (LC 140/2011, art. 9º),
-      logo o IBAMA carece de atribuição => achado "critico" no bloco "competencia".
-
-    Fundamento a citar: arts. 7º e 17 da LC 140/2011 c/c art. 53 da Lei 9.784/99. É
-    PROIBIDO fundamentar incompetência no art. 97 do Decreto 6.514/2008.
-
-    No "trecho_documento", cite LITERALMENTE o pedaço da descrição que revela o caráter
-    local (ex.: a menção ao imóvel urbano ou à licença municipal). Não escreva
-    "Informação ausente no documento" neste achado.
-
-BLOCO C — prescrição (art. 21 e §§)
-
-C1. Da data da infração (ou da cessação, se permanente) até a lavratura do auto, passaram-
-    se mais de 5 anos? Se sim, há indício de prescrição da pretensão punitiva.
-
-C1-A. CALIBRAGEM DE LINGUAGEM. Não use adjetivos que exagerem a força do achado. É
-    PROIBIDO escrever "vício insanável", "nulidade absoluta", "manifestamente ilegal" ou
-    equivalentes para vícios formais do art. 97: descrição genérica e falta de
-    enquadramento são, em regra, vícios SANÁVEIS, que a Administração pode convalidar.
-    Escreva "vício formal" e deixe a consequência para o pedido. Exagero dá ao julgador
-    um motivo fácil para desqualificar a peça inteira.
-C2. PRESCRIÇÃO INTERCORRENTE — CÁLCULO OBRIGATÓRIO, NÃO OPCIONAL.
-
-    Auto real NUNCA declara "o processo ficou parado". Quem tem que descobrir é você,
-    fazendo a conta. Sempre que o documento trouxer duas ou mais datas (histórico de
-    movimentação, andamento processual, tabela de atos, ou datas soltas ao longo do
-    texto), execute OBRIGATORIAMENTE este procedimento antes de concluir a análise:
-
-    1. Liste TODAS as datas presentes no documento, com o ato correspondente.
-    2. Ordene da mais antiga para a mais recente.
-    3. Calcule o intervalo entre cada par de datas consecutivas.
-    4. Identifique o MAIOR intervalo.
-    5. Se o maior intervalo for superior a 3 anos, há indício de prescrição intercorrente
-       (art. 21, § 2º). Gravidade "critico".
-
-    Exemplo do cálculo (siga este raciocínio):
-      10/05/2018 lavratura -> 02/07/2018 defesa = ~2 meses
-      02/07/2018 defesa -> 15/08/2018 juntada = ~1,5 mês
-      15/08/2018 juntada -> 21/09/2024 retomada = 6 anos e 1 mês  <== MAIOR
-      Maior intervalo (6 anos) > 3 anos => prescrição intercorrente configurada.
-
-    NUNCA conclua "não há falha" em documento que contenha histórico de datas sem antes
-    ter feito essa conta. A ausência de uma frase dizendo que o processo parou NÃO
-    significa que ele não parou: o silêncio do auto sobre a paralisação é o normal.
-
-    No campo "trecho_documento" deste achado, cite LITERALMENTE as duas linhas do
-    documento que delimitam o intervalo (a última movimentação antes do vazio e a
-    primeira depois dele). Essas linhas existem no texto, então a citação é literal —
-    não escreva "Informação ausente no documento" aqui.
-
-    Na explicação, informe ao leigo o intervalo apurado em anos e as duas datas que o
-    delimitam, para que ele possa conferir sozinho.
-
-BLOCO D — prazo e defesa (art. 113, art. 97-A)
-
-D1. O documento informa corretamente o prazo de defesa e a forma de protocolo? Não afirme
-    prazo específico por conta própria — o prazo é de 20 dias, mas pode estar sobrestado
-    pela audiência de conciliação (art. 97-A, § 1º); oriente conferir no próprio auto.
-
-=====================================================================
-4. CLASSIFICAÇÃO DE GRAVIDADE
-=====================================================================
-
-"critico"  — o vício, sozinho, pode levar à nulidade do auto ou ao reconhecimento da
-             prescrição. Exemplos: descrição genérica que impede a ampla defesa; ausência
-             total de laudo/prova técnica; enquadramento incompatível com o fato; indício
-             de prescrição (5 anos até a lavratura ou 3 anos de processo parado);
-             incompetência do ente autuante.
-"atencao"  — fragilidade relevante e defensável, que isoladamente pode não anular.
-             Exemplo: área dimensionada por estimativa sem georreferenciamento, quando há
-             algum outro elemento de prova.
-"verificar"— imprecisão menor, campo mal preenchido, ou o aviso de auto estadual/municipal.
-
-=====================================================================
-4.1. DISCIPLINA DO ACHADO — três proibições absolutas
-=====================================================================
-
-PROIBIÇÃO 1 — COERÊNCIA ENTRE O TRECHO E O ACHADO. O campo "trecho_documento" tem que
-PROVAR o achado. Se o trecho citado afirma que o auto FEZ algo (ex.: "conforme laudo de
-constatação anexo"), você não pode alegar que faltou. Releia o trecho antes de fechar cada
-achado; se ele contradiz o que você alega, DESCARTE o achado.
-
-PROIBIÇÃO 2 — NÃO JULGAR DOCUMENTO QUE VOCÊ NÃO RECEBEU. Analise apenas o documento
-enviado. Se for uma decisão ou notificação e não o auto em si, não afirme defeito no auto
-que você não viu; no máximo gere achado "verificar" orientando conferir o auto original.
-
-PROIBIÇÃO 3 — AUSÊNCIA DE INFORMAÇÃO NÃO É AUTOMATICAMENTE DEFEITO. Antes de registrar
-"Informação ausente no documento.", confirme que aquela informação DEVERIA constar naquele
-tipo de documento específico. Em especial, NÃO gere o achado "ausência de indicação do
-dispositivo legal" com o trecho "Informação ausente no documento" quando o auto já
-descreve a conduta e o enquadramento de forma compreensível — inventar esse vício para
-reforçar um resultado que já tem outro achado forte (como prescrição ou incompetência) é
-exatamente o erro a evitar. Um único achado sólido basta; não infle a lista.
-
-=====================================================================
-5. TRANSPARÊNCIA QUANDO O CASO É FRACO
-=====================================================================
-
-A viabilidade é derivada em código a partir das gravidades. Seja honesto no "resumo": se
-os únicos achados forem "verificar", diga com clareza que não foram encontradas falhas
-relevantes e que a chance de anulação é baixa. Nunca infle um achado menor para parecer
-grave. Se não houver defeito, devolva "achados" como array vazio e "houve_achado" como
-false — resultado legítimo, e o usuário não é cobrado por ele.
-
-=====================================================================
-6. REGRAS DE REDAÇÃO
-=====================================================================
-
-- Escreva para leigo. Traduza o jargão. Explique "prescrição" como o prazo além do qual a
-  Administração não pode mais punir, na primeira aparição.
-- Registro profissional e sóbrio. Sem sensacionalismo, sem promessa de resultado, sem
-  "com certeza", "garantido", "você vai ganhar".
-- TODO achado tem "trecho_documento" com citação LITERAL do documento — palavras copiadas
-  do texto do auto, não a sua conclusão reescrita. É PROIBIDO preencher esse campo com
-  análise, paráfrase ou juízo próprio. Frases como "A descrição não especifica a extensão
-  da área" ou "Não consta anexo laudo" são CONCLUSÕES SUAS, não trechos: não podem ocupar
-  esse campo.
-- Quando o achado for a ausência de uma informação, escreva exatamente
-  "Informação ausente no documento." — e, nesse caso, a gravidade fica limitada a
-  "atencao" no máximo. Motivo: não existe trecho capaz de provar uma ausência, e sem prova
-  citável o achado não sustenta gravidade "critico". Achado "critico" SEMPRE exige trecho
-  literal copiado do documento.
-- Exceção única: o achado de descrição genérica (A1) é "critico" quando você copia a
-  própria descrição vaga do auto no campo do trecho — aí a citação existe e prova o vício.
-- Nunca afirme que houve crime, dolo ou má-fé do agente. Trate como vício do procedimento.
-- Nunca oriente o autuado a descumprir medidas ambientais já impostas (embargo, apreensão)
-  — a discussão é sobre a validade do auto, não sobre desobedecer determinação vigente.
-
-=====================================================================
-7. FORMATO DE SAÍDA
-=====================================================================
-
-Responda EXCLUSIVAMENTE com um objeto JSON válido, sem markdown, sem crases, sem texto
-antes ou depois.
-
-Nos casos de rejeição, responda com a palavra solta, sem JSON e sem aspas:
-documento_invalido
-ou
-documento_ilegivel
-
-Nos demais casos, responda com este objeto:
-
-{
-  "resumo": string,
-  "orgao_autuante": string,
-  "esfera": "federal" | "estadual" | "municipal" | "",
-  "numero_auto": string,
-  "autuado": string,
-  "data_lavratura": string,
-  "infracao_descrita": string,
-  "dispositivo_enquadrado": string,
-  "valor_multa": number | null,
-  "achados": [
-    {
-      "titulo": string,
-      "gravidade": "critico" | "atencao" | "verificar",
-      "bloco": "formalidade" | "competencia" | "prescricao" | "prazo",
-      "dispositivo": string | null,
-      "trecho_documento": string,
-      "explicacao": string
+// ─── FORMATAÇÃO DO DOCUMENTO ───────────────────────────────────────────────
+const formatDocumentText = (text: string) => {
+  if (!text) return text;
+  let cleanText = text.replace(/\*\*(.*?)\*\*/g, "$1");
+  cleanText = cleanText.replace(/\*(.*?)\*/g, "$1");
+  cleanText = cleanText.replace(/`/g, "");
+  const parts = cleanText.split(/(\[[^\[\]]*\])/g);
+  return parts.map((part, index) => {
+    if (part.startsWith("[") && part.endsWith("]")) {
+      return (
+        <span key={index} className="rounded-sm bg-red-50 px-1 font-semibold text-red-500">
+          {part}
+        </span>
+      );
     }
-  ],
-  "quantidade_criticos": number,
-  "quantidade_atencao": number,
-  "quantidade_verificar": number,
-  "houve_achado": boolean
+    return <span key={index}>{part}</span>;
+  });
+};
+
+// ─── CONSTANTES ────────────────────────────────────────────────────────────
+const LOADER_MESSAGES = [
+  "Lendo o auto de infração...",
+  "Conferindo os requisitos formais do auto...",
+  "Verificando indícios de prescrição...",
+  "Avaliando a competência do órgão autuante...",
+];
+
+const TIPOS_AUTUACAO = [
+  { id: "auto", name: "Auto de Infração", subtitle: "documento do IBAMA", icon: FileWarning },
+  { id: "notificacao", name: "Notificação do processo", subtitle: "andamento ou decisão", icon: Receipt },
+  { id: "embargo", name: "Termo de embargo", subtitle: "embargo ou apreensão", icon: ShieldAlert },
+  { id: "outros", name: "Outros documentos", subtitle: "laudo, relatório ou correspondência", icon: PlusCircle },
+];
+
+const ESTILOS_GRAVIDADE = {
+  critico: {
+    borda: "border-l-red-500", texto: "text-red-700",
+    rotulo: "Crítico", corIcone: "text-red-600",
+  },
+  atencao: {
+    borda: "border-l-amber-500", texto: "text-amber-700",
+    rotulo: "Atenção", corIcone: "text-amber-600",
+  },
+  verificar: {
+    borda: "border-l-sky-500", texto: "text-sky-700",
+    rotulo: "Verificar", corIcone: "text-sky-600",
+  },
+};
+
+// ─── COMPONENTE PRINCIPAL ──────────────────────────────────────────────────
+export default function Ibama() {
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [loaderIndex, setLoaderIndex] = useState(0);
+  const [analise, setAnalise] = useState<Analise | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  const [rejeicaoInfo, setRejeicaoInfo] = useState<{ tipo: "sem_vicio"; motivo: string } | null>(null);
+  const [secretClickCount, setSecretClickCount] = useState(0);
+
+  const [isGeneratingDefense, setIsGeneratingDefense] = useState(false);
+  const [defenseResult, setDefenseResult] = useState<string | null>(null);
+  const [defenseError, setDefenseError] = useState<string | null>(null);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  const [isPaid, setIsPaid] = useState(false);
+  const [activeModal, setActiveModal] = useState<"termos" | "privacidade" | "aviso" | "suporte" | null>(null);
+  const [isCopied, setIsCopied] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const [hasAnalyzed, setHasAnalyzed] = useState(false);
+  const [isResultModalOpen, setIsResultModalOpen] = useState(false);
+  const [showFomoBanner, setShowFomoBanner] = useState(false);
+
+  const [selectedTipo, setSelectedTipo] = useState<string | null>(null);
+  const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
+
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+
+  const [isPixModalOpen, setIsPixModalOpen] = useState(false);
+  const [pixTimeLeft, setPixTimeLeft] = useState(600);
+
+  const [paymentId, setPaymentId] = useState<number | null>(null);
+  const [qrCode, setQrCode] = useState<string | null>(null);
+  const [qrCodeBase64, setQrCodeBase64] = useState<string | null>(null);
+  const [isPixCopied, setIsPixCopied] = useState(false);
+
+  /* Retomada de sessao.
+     Quando o usuario volta e ja existe defesa paga guardada, a pagina NAO abre
+     o resultado direto nem gera nada: mostra a escolha entre reabrir o que ele
+     comprou ou comecar de novo. Comecar de novo passa por confirmacao, porque
+     descarta a peca paga. */
+  const [showRetomarModal, setShowRetomarModal] = useState(false);
+  const [showConfirmNovaModal, setShowConfirmNovaModal] = useState(false);
+  /* Aviso antes de encerrar a consulta da defesa: fechar o modal apaga a peca
+     deste aparelho, entao o usuario confirma que ja salvou o texto. */
+  const [showConfirmFecharDefesa, setShowConfirmFecharDefesa] = useState(false);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // ─── EFEITOS ─────────────────────────────────────────────────────────────
+  useEffect(() => {
+    const savedResult = localStorage.getItem("ibama_saved_result");
+    const savedPaidStatus = localStorage.getItem("ibama_paid_status");
+    const savedDefense = localStorage.getItem("ibama_defense_result");
+    if (savedResult && savedPaidStatus === "true" && !defenseResult && !isGeneratingDefense) {
+      try {
+        const parsed = JSON.parse(savedResult) as Analise;
+        setAnalise(parsed);
+        setIsPaid(true);
+        setHasAnalyzed(true);
+        /* Se a peca ja foi gerada antes, ela volta do storage — sem nova
+           chamada a IA. Isso evita cobrar uma geracao a cada retorno e
+           garante que o usuario receba exatamente o texto que comprou. */
+        if (savedDefense) setDefenseResult(savedDefense);
+        /* Nao abre o resultado automaticamente: oferece a escolha. */
+        setShowRetomarModal(true);
+      } catch {
+        localStorage.removeItem("ibama_saved_result");
+        localStorage.removeItem("ibama_paid_status");
+        localStorage.removeItem("ibama_pending_payment");
+        localStorage.removeItem("ibama_defense_result");
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    let interval: any;
+    if (isAnalyzing || isGeneratingDefense) {
+      interval = setInterval(() => setLoaderIndex((p) => (p + 1) % LOADER_MESSAGES.length), 2500);
+    } else {
+      setLoaderIndex(0);
+    }
+    return () => clearInterval(interval);
+  }, [isAnalyzing, isGeneratingDefense]);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (isPixModalOpen && pixTimeLeft > 0) {
+      timer = setInterval(() => setPixTimeLeft((p) => p - 1), 1000);
+    } else if (!isPixModalOpen) {
+      setPixTimeLeft(600);
+    }
+    return () => clearInterval(timer);
+  }, [isPixModalOpen, pixTimeLeft]);
+
+useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+    let timeoutId: NodeJS.Timeout;
+    const checkPaymentStatus = async () => {
+      if (!paymentId) return;
+      try {
+        const res = await fetch(`/api/check-payment/${paymentId}`);
+        const data = await res.json();
+        if (data.status === "approved") {
+          clearInterval(intervalId);
+          clearTimeout(timeoutId);
+          setIsPixModalOpen(false);
+          setIsPaid(true);
+          localStorage.setItem("ibama_paid_status", "true");
+          localStorage.removeItem("ibama_pending_payment");
+          fireCompraIbama(paymentId.toString(), precoPara(analise));
+          // Se voltou numa página "limpa" (recarga/aba nova), recupera a análise
+          // do localStorage para que a defesa seja gerada.
+          if (!analise) {
+            const salvo = localStorage.getItem("ibama_saved_result");
+            if (salvo) {
+              try {
+                setAnalise(JSON.parse(salvo));
+                setIsResultModalOpen(true);
+              } catch {}
+            }
+          }
+        }
+      } catch (err) {
+        console.error("Erro no radar do PIX", err);
+      }
+    };
+    // Roda enquanto houver pagamento pendente — mesmo com o modal FECHADO.
+    if (paymentId && !isPaid) {
+      checkPaymentStatus();
+      intervalId = setInterval(checkPaymentStatus, 3000);
+      timeoutId = setTimeout(() => clearInterval(intervalId), 900000); // 15 min
+    }
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
+  }, [paymentId, isPaid]);
+
+  // Ao carregar a página: se houver pagamento pendente salvo, retoma a verificação.
+  useEffect(() => {
+    if (paymentId) return;
+    try {
+      const pendente = localStorage.getItem("ibama_pending_payment");
+      const jaPago = localStorage.getItem("ibama_paid_status") === "true";
+      if (!pendente || jaPago) return;
+      const dados = JSON.parse(pendente);
+      // Descarta pendências antigas (mais de 30 min): o PIX já teria expirado.
+      if (!dados?.id || Date.now() - (dados.ts || 0) > 30 * 60 * 1000) {
+        localStorage.removeItem("ibama_pending_payment");
+        return;
+      }
+      setPaymentId(dados.id);
+    } catch {
+      localStorage.removeItem("ibama_pending_payment");
+    }
+  }, []);
+  // ─── HANDLERS ────────────────────────────────────────────────────────────
+  const handleTipoSelect = (tipoName: string) => {
+    setSelectedTipo(tipoName);
+    setIsUploadModalOpen(true);
+    track("ibama_tipo_selecionado", "ibama_1_tipo_selecionado", { tipo: tipoName });
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/") && file.type !== "application/pdf") {
+      setError("Por favor, selecione um arquivo de imagem ou PDF válido.");
+      return;
+    }
+    processFile(file);
+    e.target.value = "";
+  };
+
+  const clearImage = (e?: React.MouseEvent) => {
+    if (e) { e.stopPropagation(); e.preventDefault(); }
+    setImageFile(null);
+    setPreviewUrl(null);
+    setAnalise(null);
+    setDefenseResult(null);
+    setError(null);
+    setDefenseError(null);
+    setCheckoutError(null);
+    setRejeicaoInfo(null);
+    setIsPaid(false);
+    setHasAnalyzed(false);
+    setQrCode(null);
+    setQrCodeBase64(null);
+    setPaymentId(null);
+    setSecretClickCount(0);
+    setShowSuccessMessage(false);
+    setShowFomoBanner(false);
+    setSelectedTipo(null);
+    setIsUploadModalOpen(false);
+    localStorage.removeItem("ibama_saved_result");
+    localStorage.removeItem("ibama_paid_status");
+    localStorage.removeItem("ibama_pending_payment");
+    localStorage.removeItem("ibama_defense_result");
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  /* Reabre a peca ja paga. Se por algum motivo o texto nao veio do storage
+     (ex.: aba fechada antes de a geracao terminar), gera uma unica vez. */
+  const handleAbrirDefesaSalva = () => {
+    setShowRetomarModal(false);
+    setShowConfirmNovaModal(false);
+    setIsPaid(true);
+    /* Abre direto no texto final, sem a tela intermediaria "Defesa pronta". */
+    setShowSuccessMessage(false);
+    setShowFomoBanner(false);
+    setIsResultModalOpen(true);
+    if (!defenseResult && analise) generateDefense(analise);
+  };
+
+  /* Comecar de novo descarta a peca paga: exige confirmacao. */
+  const handlePedirNovaAnalise = () => {
+    setShowRetomarModal(false);
+    setShowConfirmNovaModal(true);
+  };
+
+  const handleConfirmarNovaAnalise = () => {
+    setShowConfirmNovaModal(false);
+    setDefenseResult(null);
+    setAnalise(null);
+    setIsPaid(false);
+    clearImage();
+  };
+
+  /* Desistiu de comecar de novo: volta para a escolha, sem perder nada. */
+  const handleCancelarNovaAnalise = () => {
+    setShowConfirmNovaModal(false);
+  };
+
+  /* Sair da retomada sem escolher: o usuario quer navegar ou enviar outro
+     documento. Nada e apagado — a defesa continua guardada. */
+  const handleFecharRetomada = () => {
+    setShowRetomarModal(false);
+  };
+
+  const handleNovaAnalise = () => {
+    clearImage();
+    setIsResultModalOpen(false);
+    setRejeicaoInfo(null);
+    setSelectedTipo(null);
+    setIsUploadModalOpen(false);
+  };
+
+  const closeResultModal = () => {
+    /* Com a defesa paga em tela, fechar significa encerrar: confirma antes,
+       porque a peca sai do aparelho e nao ha como recuperar. */
+    if (defenseResult && isPaid) {
+      setShowConfirmFecharDefesa(true);
+      return;
+    }
+    setIsResultModalOpen(false);
+    if (analise && analise.houve_achado && !ehForaDaEsferaFederal(analise) && !isPaid && !error) {
+      setShowFomoBanner(true);
+    }
+  };
+
+  /* Confirmou que salvou: encerra de vez. Some do storage, o fluxo volta ao
+     inicio e a retomada nao aparece mais numa proxima visita. */
+  const handleEncerrarDefesa = () => {
+    setShowConfirmFecharDefesa(false);
+    setIsResultModalOpen(false);
+    setShowRetomarModal(false);
+    setShowSuccessMessage(false);
+    setShowFomoBanner(false);
+    clearImage();
+  };
+
+  /* Ainda nao salvou: volta para a peca sem apagar nada. */
+  const handleVoltarParaDefesa = () => {
+    setShowConfirmFecharDefesa(false);
+  };
+
+  const processFile = (file: File) => {
+    track("ibama_upload", "ibama_2_documento_enviado", { file_type: file.type });
+    /* Enviar documento novo sempre recomeca do zero, mesmo com defesa
+       guardada: sem isso a tela ficava presa no resultado antigo. */
+    setShowRetomarModal(false);
+    setShowConfirmNovaModal(false);
+    setShowConfirmFecharDefesa(false);
+    setHasAnalyzed(false);
+    setImageFile(file);
+    setPreviewUrl(null);
+    setError(null);
+    setAnalise(null);
+    setDefenseResult(null);
+    setDefenseError(null);
+    setCheckoutError(null);
+    setRejeicaoInfo(null);
+    setIsPaid(false);
+    setIsResultModalOpen(false);
+    setShowSuccessMessage(false);
+    setShowFomoBanner(false);
+    setIsUploadModalOpen(false);
+    const reader = new FileReader();
+    reader.onload = () => {
+      const resultStr = reader.result as string;
+      setPreviewUrl(resultStr);
+      const base64Data = resultStr.split(",")[1];
+      analisarAuto(base64Data, file.type);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const analisarAuto = async (base64Data: string, mimeType: string) => {
+    setIsAnalyzing(true);
+    setError(null);
+    setAnalise(null);
+    setDefenseResult(null);
+    setDefenseError(null);
+    setRejeicaoInfo(null);
+    setIsPaid(false);
+    setIsResultModalOpen(true);
+    setShowSuccessMessage(false);
+    setShowFomoBanner(false);
+    let isBusinessError = false;
+    try {
+      const response = await fetch("/api/analyze-ibama", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ fileBase64: base64Data, mimeType }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(typeof data.error === "string" ? data.error : JSON.stringify(data.error));
+      if (data.error) throw new Error(data.error);
+
+      // Rejeições em string
+      if (typeof data.result === "string") {
+        const lower = data.result.toLowerCase();
+        if (lower.includes("documento_invalido")) {
+          isBusinessError = true;
+          track("ibama_analise_erro", "ibama_erro_documento_invalido", { tipo: "documento_invalido" });
+          throw new Error("O arquivo enviado não parece ser um auto de infração ambiental ou documento de processo do IBAMA. Confira o documento e tente novamente.");
+        }
+        if (lower.includes("documento_ilegivel")) {
+          isBusinessError = true;
+          track("ibama_analise_erro", "ibama_erro_documento_ilegivel", { tipo: "documento_ilegivel" });
+          throw new Error("Não conseguimos ler o documento. Envie um arquivo mais nítido ou o PDF original.");
+        }
+        throw new Error("Não foi possível concluir a análise. Tente novamente.");
+      }
+
+      const resultado = data.result as Analise;
+
+      // Nenhuma falha encontrada
+      if (!resultado.houve_achado || !resultado.achados || resultado.achados.length === 0) {
+        isBusinessError = true;
+        track("ibama_analise_inviavel", "ibama_3_sem_falha", { motivo: "sem_falha" });
+        setRejeicaoInfo({ tipo: "sem_vicio", motivo: resultado.resumo || "" });
+        setAnalise(resultado);
+        setIsResultModalOpen(true);
+        setIsAnalyzing(false);
+        return;
+      }
+
+      setAnalise(resultado);
+      const v = calcularViabilidade(resultado);
+      track("ibama_analise_viavel", "ibama_3_paywall_exibido", { viabilidade: v ? v.nivel : "Negada" });
+      setHasAnalyzed(true);
+      localStorage.setItem("ibama_saved_result", JSON.stringify(resultado));
+      setIsResultModalOpen(true);
+    } catch (err: any) {
+      console.error("Erro na Análise de IBAMA:", err);
+      if (!isBusinessError && typeof window !== "undefined" && window.gtag) {
+        window.gtag("event", "ibama_erro_sistema", { error_message: err.message });
+      }
+      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+        setError("Nossos servidores estão processando um alto volume de análises. Por favor, aguarde alguns segundos e tente novamente.");
+      } else {
+        setError(err.message || "Ocorreu um erro ao comunicar com o servidor.");
+      }
+      setIsResultModalOpen(true);
+    } finally {
+      setIsAnalyzing(false);
+    }
+  };
+
+  const handleCheckout = async () => {
+    if (!analise) return;
+    setIsCheckoutLoading(true);
+    setCheckoutError(null);
+    try {
+      const response = await fetch("/api/create-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: "comprador@checkmulta.com.br",
+          valor: preco,
+          descricao: "Defesa Auto Infracao IBAMA - CheckMulta",
+        }),
+      });
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("O servidor demorou para responder. Por favor, aguarde 1 minuto e clique novamente.");
+      }
+      const data = await response.json();
+      if (response.ok && data.qr_code) {
+        track("begin_checkout", "ibama_4_checkout_iniciado", { value: preco, currency: "BRL" });
+        setPaymentId(data.id);
+        try {
+          localStorage.setItem("ibama_pending_payment", JSON.stringify({
+            id: data.id,
+            ts: Date.now(),
+          }));
+        } catch {}
+        setQrCode(data.qr_code);
+        setQrCodeBase64(data.qr_code_base64);
+        setIsPixModalOpen(true);
+      } else {
+        setCheckoutError("Erro na integração com o Mercado Pago. Tente novamente ou fale com o suporte.");
+      }
+    } catch (err: any) {
+      setCheckoutError(err.message || "Falha de conexão. Verifique sua internet ou tente novamente.");
+    } finally {
+      setIsCheckoutLoading(false);
+    }
+  };
+
+  const simulateApprovedPayment = () => {
+    setIsPixModalOpen(false);
+    setIsCheckoutLoading(true);
+    setTimeout(() => {
+      setIsCheckoutLoading(false);
+      setIsPaid(true);
+      localStorage.setItem("ibama_paid_status", "true");
+      generateDefense();
+    }, 1500);
+  };
+
+  const generateDefense = async (overrideAnalise?: Analise) => {
+    const dataToUse = overrideAnalise || analise;
+    if (!dataToUse) return;
+    setIsGeneratingDefense(true);
+    setDefenseError(null);
+    setDefenseResult(null);
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 45000);
+    try {
+      const response = await fetch("/api/generate-defense-ibama", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ analise: dataToUse }),
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+      const data = await response.json();
+      if (!response.ok) throw new Error(typeof data.error === "string" ? data.error : JSON.stringify(data.error));
+      if (data.error) throw new Error(data.error);
+      setDefenseResult(data.result);
+      setShowSuccessMessage(true);
+      setShowFomoBanner(false);
+      /* NAO limpar o storage aqui. Se o usuario fechar a aba agora, ele perde a
+         peca que acabou de pagar. Guardamos o texto final e mantemos
+         saved_result e paid_status para permitir a retomada. Só o
+         pending_payment sai, porque o pagamento ja foi concluido. */
+      try {
+        localStorage.setItem("ibama_defense_result", data.result);
+      } catch {
+        /* storage cheio ou indisponivel: segue, o usuario ainda ve o texto na tela */
+      }
+      localStorage.removeItem("ibama_pending_payment");
+    } catch (err: any) {
+      clearTimeout(timeoutId);
+      if (err.name === "AbortError") setDefenseError("TIMEOUT");
+      else if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY"))) setDefenseError("SERVER_BUSY");
+      else setDefenseError("FALHA_GERACAO");
+    } finally {
+      setIsGeneratingDefense(false);
+    }
+  };
+
+  const handleCopy = async () => {
+    if (!defenseResult) return;
+    try {
+      await navigator.clipboard.writeText(defenseResult);
+      track("ibama_defesa_copiada", "ibama_6_defesa_copiada");
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch {}
+  };
+
+  const handleCopyPix = async () => {
+    if (!qrCode) return;
+    try {
+      await navigator.clipboard.writeText(qrCode);
+      setIsPixCopied(true);
+      setTimeout(() => setIsPixCopied(false), 2000);
+    } catch {}
+  };
+
+  const handleDownload = () => {
+    if (!defenseResult) return;
+    track("ibama_defesa_baixada", "ibama_6_defesa_baixada");
+    const blob = new Blob([defenseResult], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "defesa-auto-ibama.txt";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const formatTime = (seconds: number) => {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m}:${s < 10 ? "0" : ""}${s}`;
+  };
+
+  const viabilidade = calcularViabilidade(analise);
+  const preco = precoPara(analise);
+
+  // ─── RENDER ───────────────────────────────────────────────────────────────
+  return (
+    <div className="min-h-screen w-full bg-white text-slate-900">
+
+      {/* HEADER */}
+      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+          <a href="/" className="flex items-center">
+            <img
+              src="/checkmulta-logo.webp"
+              alt="CheckMulta"
+              width="600"
+              height="200"
+              className="h-14 w-auto object-contain md:h-20"
+            />
+          </a>
+
+          <nav className="hidden items-center gap-5 text-sm font-medium text-slate-600 lg:flex">
+            <a href="#como-funciona" className="transition hover:text-emerald-600">Como funciona</a>
+            <a href="#seguranca" className="transition hover:text-emerald-600">Segurança</a>
+            <a href="#faq-ibama" className="transition hover:text-emerald-600">Dúvidas</a>
+            <a href="/ibama/blog" className="transition hover:text-emerald-600">Blog</a>
+            <a href="/multa-de-transito" className="transition hover:text-emerald-600">Trânsito</a>
+            <a href="/procon" className="transition hover:text-emerald-600">Procon</a>
+            <a href="/vigilancia-sanitaria" className="transition hover:text-emerald-600">Vigilância</a>
+            <a href="/energia" className="transition hover:text-emerald-600">Energia</a>
+            <button
+              onClick={() => setActiveModal("suporte")}
+              className="font-semibold text-emerald-600 transition hover:text-emerald-700"
+            >
+              Suporte
+            </button>
+          </nav>
+
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="flex rounded-lg p-2 text-slate-600 transition hover:bg-slate-50 hover:text-emerald-600 lg:hidden"
+            aria-label="Menu"
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="absolute left-0 top-full z-50 flex w-full flex-col space-y-2 border-b border-slate-200 bg-white p-4 shadow-lg lg:hidden"
+              >
+                <a href="#como-funciona" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Como funciona</a>
+                <a href="#seguranca" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Segurança</a>
+                <a href="#faq-ibama" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Dúvidas</a>
+                <a href="/ibama/blog" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Blog</a>
+                <a href="/multa-de-transito" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Trânsito</a>
+                <a href="/procon" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Procon</a>
+                <a href="/vigilancia-sanitaria" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Vigilância</a>
+                <a href="/energia" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">Energia</a>
+                <button
+                  onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
+                  className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-3 text-left font-semibold text-emerald-700 transition"
+                >
+                  <span>Central de suporte</span>
+                  <MessageSquare className="h-4 w-4" />
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </header>
+
+      {/* FOMO BANNER */}
+      <AnimatePresence>
+        {showFomoBanner && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            className="fixed bottom-0 left-0 z-30 flex w-full flex-col items-center justify-center gap-4 border-t border-amber-300 bg-amber-50 p-4 shadow-[0_-4px_20px_-8px_rgba(0,0,0,0.15)] sm:flex-row"
+          >
+            <div className="flex items-center gap-3 text-center sm:text-left">
+              <AlertCircle className="hidden h-5 w-5 flex-shrink-0 text-amber-600 sm:block" />
+              <p className="text-sm text-amber-900 sm:text-base">
+                <strong className="font-semibold">Análise concluída.</strong> O prazo de defesa está correndo.
+              </p>
+            </div>
+            <button
+              onClick={() => { setShowFomoBanner(false); setIsResultModalOpen(true); }}
+              className="w-full whitespace-nowrap rounded-lg bg-emerald-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 sm:w-auto"
+            >
+              Ver resultado
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* HERO */}
+      <section id="inicio" className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
+        <div className="mx-auto max-w-4xl px-4 py-14 text-center">
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-emerald-700">
+            <Leaf className="h-3.5 w-3.5" />
+            Para quem foi autuado pelo IBAMA
+          </div>
+
+          <h1 className="mb-4 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
+            Recebeu um auto de infração do IBAMA? Veja se o auto tem falha que
+            permite defesa, <span className="text-emerald-600">grátis</span>
+          </h1>
+
+          <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-slate-600">
+            Faça a análise gratuita do auto de infração ambiental. Nossa
+            inteligência artificial confere os requisitos formais do Decreto nº
+            6.514/2008, a competência do órgão e indícios de prescrição. Se não
+            encontrar falha, você não paga. A análise é grátis e sem cadastro.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600 sm:gap-6">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
+            </div>
+            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
+            <div className="flex items-center gap-2">
+              <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
+            </div>
+            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
+            <div className="flex items-center gap-2">
+              <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ÁREA PRINCIPAL */}
+      <section className="mx-auto max-w-3xl px-4 py-12">
+        {previewUrl ? (
+          <div className="rounded-xl border border-slate-200 bg-white p-8 text-center sm:p-10">
+            <motion.div key="preview" initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} className="space-y-4">
+              <div className="relative mx-auto flex max-w-xs justify-center overflow-hidden rounded-xl">
+                {imageFile?.type === "application/pdf" ? (
+                  <div className="flex h-32 w-32 items-center justify-center rounded-xl border border-slate-200 bg-slate-50">
+                    <FileText className="h-14 w-14 text-emerald-600" />
+                  </div>
+                ) : (
+                  <img src={previewUrl} alt="Preview do documento" className="h-auto max-h-48 w-full object-cover" />
+                )}
+              </div>
+
+              <p className="text-sm text-slate-600">{imageFile?.name}</p>
+
+              {!isAnalyzing && !hasAnalyzed && (
+                <button
+                  onClick={clearImage}
+                  className="relative z-10 text-sm text-slate-500 underline decoration-slate-300 underline-offset-4 transition hover:text-red-500"
+                  type="button"
+                >
+                  Excluir ou enviar outro documento
+                </button>
+              )}
+
+              {!isAnalyzing && hasAnalyzed && (
+                <div className="relative z-10 mt-4 flex w-full flex-row items-center justify-center gap-3">
+                  <button
+                    onClick={() => {
+                      if (analise || error) {
+                        setIsResultModalOpen(true);
+                        setShowFomoBanner(false);
+                      }
+                    }}
+                    className="whitespace-nowrap rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
+                    type="button"
+                  >
+                    Ver resultado novamente
+                  </button>
+                  <button
+                    onClick={clearImage}
+                    className="whitespace-nowrap rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
+                    type="button"
+                  >
+                    Novo documento
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          </div>
+        ) : (
+          <div className="text-center">
+            <div className="mb-8">
+              <h2 className="mb-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                Descubra <span className="text-emerald-600">agora</span> se dá para
+                recorrer
+              </h2>
+              <p className="text-base text-slate-600">
+                Selecione o documento que você recebeu para iniciar a análise gratuita:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {TIPOS_AUTUACAO.map((t) => (
+                <button
+                  key={t.id}
+                  onClick={() => handleTipoSelect(t.name)}
+                  className="group flex flex-col items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-white p-6 text-slate-800 transition hover:border-emerald-300 hover:shadow-md"
+                >
+                  <t.icon className="mb-1 h-8 w-8 text-slate-400 transition group-hover:text-emerald-600" />
+                  <div className="text-center">
+                    <span className="block text-[15px] font-bold leading-tight text-slate-900 group-hover:text-emerald-700">
+                      {t.name}
+                    </span>
+                    <span className="mt-1 block text-sm text-slate-500">{t.subtitle}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+
+      {/* COMO FUNCIONA */}
+      <section id="como-funciona" className="border-t border-slate-100 bg-slate-50">
+        <div className="mx-auto max-w-5xl px-4 py-16">
+          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+            Como funciona a <span className="text-emerald-600">análise</span>
+          </h2>
+
+          <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <UploadCloud className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">1. Envie o documento</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Suba o PDF ou a foto do auto de infração do IBAMA ou do documento do processo. Nenhum dado é armazenado.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <Search className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">2. A IA audita</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Conferimos as formalidades da inspeção e o cálculo do valor cobrado, ponto por ponto.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <FileText className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">3. Diagnóstico grátis</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Mostramos as falhas encontradas, com o trecho exato do documento, e se dá para recorrer.
+              </p>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
+            <div className="flex items-center gap-2.5 border-b border-slate-100 px-6 pb-4 pt-5">
+              <ShieldCheck className="h-4 w-4 flex-shrink-0 text-slate-400" />
+              <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                O que o diagnóstico pode revelar
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 divide-y divide-slate-100 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+              <div className="flex items-start gap-4 p-6">
+                <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50">
+                  <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+                </div>
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
+                    Chance alta
+                  </span>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                    Falha grave encontrada no auto. Fundamento consistente para pedir a anulação.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-6">
+                <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-amber-50">
+                  <AlertCircle className="h-5 w-5 text-amber-500" />
+                </div>
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wide text-amber-600">
+                    Chance média
+                  </span>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                    Há pontos questionáveis na autuação. Argumento possível.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-6">
+                <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-red-50">
+                  <AlertCircle className="h-5 w-5 text-red-400" />
+                </div>
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wide text-red-500">
+                    Chance baixa
+                  </span>
+                  <p className="mt-1 text-sm leading-relaxed text-slate-600">
+                    Caso mais limitado. Ainda é possível apresentar defesa. A decisão é sua.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* O QUE VERIFICAMOS */}
+      <section className="border-t border-slate-100 bg-white">
+        <div className="mx-auto max-w-5xl px-4 py-16">
+          <div className="mb-10 text-center">
+            <h2 className="mb-3 text-2xl font-bold text-slate-900 sm:text-3xl">
+              O que verificamos no seu <span className="text-emerald-600">auto de infração</span>
+            </h2>
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600">
+              A análise percorre as exigências do Decreto nº 6.514/2008 em três
+              frentes: os requisitos formais do auto, a competência do órgão e a
+              prescrição.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {[
+              { t: "Descrição clara da infração", d: "O auto deve descrever de forma clara e objetiva o que foi constatado. Descrição genérica, sem indicar a conduta e a extensão, contraria o art. 97 do Decreto nº 6.514/2008." },
+              { t: "Enquadramento legal correto", d: "O auto deve indicar o dispositivo infringido. Enquadramento incompatível com o fato descrito é vício do art. 97." },
+              { t: "Dimensionamento do dano", d: "Área estimada a olho, sem georreferenciamento ou levantamento técnico, é fragilidade relevante na prova da autuação." },
+              { t: "Laudo e prova técnica", d: "Autuação sem laudo de constatação ou relatório de fiscalização que a sustente fica sem suporte técnico." },
+              { t: "Competência do órgão", d: "Autuação por órgão sem competência para a matéria enseja nulidade, nos termos da LC 140/2011." },
+              { t: "Prescrição", d: "Auto lavrado mais de 5 anos após o fato, ou processo parado por mais de 3 anos, pode estar prescrito (art. 21 do Decreto nº 6.514/2008)." },
+            ].map((item) => (
+              <div key={item.t} className="rounded-xl border border-slate-200 bg-slate-50/60 p-5">
+                <h3 className="mb-1.5 font-bold text-slate-900">{item.t}</h3>
+                <p className="text-sm leading-relaxed text-slate-600">{item.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SEGURANÇA */}
+      <section id="seguranca" className="border-t border-slate-100 bg-slate-50">
+        <div className="mx-auto max-w-5xl px-4 py-16">
+          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+            Seus dados <span className="text-emerald-600">100% seguros</span>
+          </h2>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                <Lock className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">Zero armazenamento</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Não guardamos o seu auto de infração. O documento é processado na
+                memória do servidor e imediatamente deletado.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
+                <UserX className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">Sem cadastro</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Você não precisa criar conta nem informar dados pessoais para
+                verificar o auto. É direto ao ponto.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
+                <Route className="h-6 w-6" />
+              </div>
+              <h3 className="mb-2 text-base font-bold text-slate-900">Total transparência</h3>
+              <p className="text-sm leading-relaxed text-slate-600">
+                Atuamos como ferramenta tecnológica. A decisão sobre a defesa é da
+                autoridade julgadora do IBAMA.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CARROSSEL DE SERVIÇOS */}
+      <CarrosselServicos excluir={["ibama"]} />
+
+      {/* FAQ */}
+      <section id="faq-ibama" className="border-t border-slate-100 bg-white">
+        <div className="mx-auto max-w-4xl px-4 py-16">
+          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+            Dúvidas <span className="text-emerald-600">frequentes</span>
+          </h2>
+
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                Qual o prazo para apresentar defesa?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                O prazo é de 20 dias contados da ciência da autuação, mas pode ficar
+                suspenso quando há audiência de conciliação ambiental. Confira o
+                prazo no próprio auto e no sistema do IBAMA, e protocole o quanto
+                antes.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                O que acontece se eu não apresentar defesa?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                O processo é julgado sem a sua manifestação e a multa é consolidada,
+                podendo ser inscrita em dívida ativa e executada. Apresentar defesa
+                é o que garante o contraditório antes da decisão.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                Que tipo de falha pode anular o auto?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                Descrição genérica da infração, enquadramento incompatível com o
+                fato, ausência de laudo de constatação, área sem georreferenciamento,
+                autuação por órgão incompetente e prescrição são exemplos.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                O que é a prescrição do auto ambiental?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                A Administração tem 5 anos, contados do fato, para lavrar o auto, e o
+                processo não pode ficar parado por mais de 3 anos. Ultrapassados
+                esses prazos, há indício de prescrição, que pode levar ao
+                arquivamento. Um dos argumentos mais fortes em autos antigos.
+              </p>
+            </div>
+
+            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 md:col-span-2">
+              <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
+                Preciso de advogado para apresentar defesa?
+              </h3>
+              <p className="text-[15.5px] leading-relaxed text-slate-600">
+                Não é obrigatório na via administrativa: o próprio autuado pode
+                protocolar a defesa pelo sistema do IBAMA. Para autos de valor
+                elevado ou se o caso for para a Justiça, a consulta a um advogado é
+                fortemente recomendável.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTEÚDO SEO */}
+      <section className="border-t border-slate-100 bg-slate-50">
+        <div className="mx-auto max-w-3xl px-4 py-16">
+          <h2 className="mb-8 text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">
+            Como se defender de um{" "}
+            <span className="text-emerald-600">auto de infração do IBAMA</span>
+          </h2>
+
+          <div className="max-w-none">
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              O auto de infração ambiental é um ato administrativo vinculado: para
+              ser válido, precisa cumprir requisitos formais previstos no Decreto nº
+              6.514/2008. A ausência de qualquer desses requisitos pode fundamentar
+              a nulidade do auto.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              Os requisitos formais do auto
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              O art. 97 do Decreto nº 6.514/2008 exige que o auto seja lavrado em
+              impresso próprio, com a identificação do autuado, a descrição clara e
+              objetiva da infração constatada e a indicação dos dispositivos legais
+              infringidos, sem emendas ou rasuras que comprometam sua validade. A
+              descrição genérica, o enquadramento incompatível com o fato ou a
+              ausência de laudo de constatação são vícios frequentes.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              A prescrição: o argumento mais forte em autos antigos
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              O art. 21 do Decreto nº 6.514/2008 estabelece que a Administração tem
+              cinco anos, contados do fato, para apurar a infração. Além disso, o
+              processo não pode ficar parado por mais de três anos. A chamada
+              prescrição intercorrente. Boa parte dos autos antigos pendentes de
+              julgamento está prescrita pela inércia do próprio órgão, e essa é uma
+              das razões mais consistentes de anulação.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              A competência do órgão autuante
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              A Lei Complementar nº 140/2011 reparte a competência de fiscalização
+              ambiental entre União, estados e municípios. A autuação por órgão sem
+              competência para a matéria pode ensejar nulidade. Esta análise é
+              voltada ao auto federal, lavrado pelo IBAMA; autos estaduais ou
+              municipais seguem legislação própria.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              O prazo de defesa
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              O art. 113 do Decreto nº 6.514/2008 assegura o prazo de vinte dias,
+              contados da ciência da autuação, para apresentar defesa. Esse prazo
+              pode ficar suspenso quando há agendamento de audiência de conciliação
+              ambiental. Confira sempre o prazo indicado no próprio auto.
+            </p>
+
+            <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
+              Como o CheckMulta ajuda
+            </h3>
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              O CheckMulta analisa gratuitamente o seu auto e aponta as falhas
+              encontradas, sempre citando o trecho exato que as fundamenta. Havendo
+              falha, geramos uma{" "}
+              <strong className="font-semibold text-slate-900">
+                defesa administrativa completa, com fatos, fundamentos e pedidos
+              </strong>
+              , pronta para você revisar e protocolar no sistema do IBAMA. Nossa
+              ferramenta informa e instrumentaliza. Não presta consultoria jurídica
+              nem representação.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      
+      {/* FOOTER */}
+      <footer className="border-t border-slate-200 bg-white">
+        <div className="mx-auto max-w-4xl px-4 py-10 text-center">
+          <div className="mb-6 flex items-center justify-center">
+            <img
+              src="/checkmulta-logo.webp"
+              alt="CheckMulta"
+              width="600"
+              height="200"
+              className="h-12 w-auto object-contain opacity-60 grayscale transition duration-300 hover:opacity-100 hover:grayscale-0 md:h-16"
+            />
+          </div>
+
+          <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
+            <a href="/multa-de-transito" className="text-slate-600 transition hover:text-emerald-600">
+              Multas de trânsito
+            </a>
+            <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
+              Procon
+            </a>
+            <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
+              Vigilância Sanitária
+            </a>
+            <a href="/energia" className="text-slate-600 transition hover:text-emerald-600">
+              Conta de luz
+            </a>
+            <a href="/blog" className="text-slate-600 transition hover:text-emerald-600">
+              Blog
+            </a>
+          </nav>
+
+          <p className="mx-auto max-w-3xl text-xs leading-relaxed text-slate-500">
+            <strong className="font-semibold text-slate-700">Transparência e privacidade:</strong>{" "}
+            nosso sistema atua como organizador tecnológico com base no Decreto nº
+            6.514/2008 e na Lei nº 9.605/98. Não prestamos consultoria jurídica nem
+            representação. A decisão sobre a defesa é da autoridade julgadora do
+            IBAMA. Não exigimos cadastro e não armazenamos o seu documento.
+          </p>
+
+          <p className="mt-4 text-xs text-slate-400">
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
+          </p>
+
+          <div className="mt-5 flex justify-center gap-6 text-xs font-medium text-slate-400">
+            <button onClick={() => setActiveModal("termos")} className="transition hover:text-slate-600">Termos</button>
+            <button onClick={() => setActiveModal("privacidade")} className="transition hover:text-slate-600">Privacidade</button>
+            <button onClick={() => setActiveModal("aviso")} className="transition hover:text-slate-600">Legal</button>
+            <button onClick={() => setActiveModal("suporte")} className="text-emerald-600 transition hover:text-emerald-700">Suporte</button>
+          </div>
+        </div>
+      </footer>
+      {/* MODAL DE UPLOAD */}
+      <AnimatePresence>
+        {isUploadModalOpen && (
+          <div className="fixed inset-0 z-[55] overflow-y-auto bg-slate-900/70 backdrop-blur-sm">
+            <div className="min-h-full flex items-center justify-center p-4">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96, y: 16 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.96, y: 16 }}
+                transition={{ duration: 0.2 }}
+                className="relative w-full max-w-sm overflow-hidden rounded-xl bg-white shadow-xl"
+              >
+                <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+                  <div>
+                    <p className="mb-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-600">Análise gratuita</p>
+                    <h3 className="text-base font-bold leading-tight text-slate-900">{selectedTipo}</h3>
+                  </div>
+                  <button onClick={() => setIsUploadModalOpen(false)} className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
+                    <X className="h-5 w-5" />
+                  </button>
+                </div>
+
+                <div className="space-y-4 p-5">
+                  <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3">
+                    <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-500" />
+                    <p className="text-xs leading-relaxed text-amber-800">
+                      Envie o <strong className="font-semibold">PDF original</strong> sempre que possível. Se for foto, deixe o texto completo e legível.
+                    </p>
+                  </div>
+
+                  <div className="group relative cursor-pointer rounded-lg border-2 border-dashed border-emerald-300 bg-emerald-50/30 text-center transition hover:border-emerald-500 hover:bg-emerald-50/60">
+                    <input
+                      type="file"
+                      ref={fileInputRef}
+                      onChange={handleFileSelect}
+                      accept="image/*,application/pdf"
+                      className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0 disabled:cursor-not-allowed"
+                      disabled={isAnalyzing || isPaid}
+                      title="Clique para enviar o documento"
+                    />
+                    <div className="pointer-events-none flex flex-col items-center justify-center space-y-3 py-8">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white transition duration-200 group-hover:scale-105">
+                        <UploadCloud className="h-7 w-7" />
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-slate-900">Auto de infração ou documento do processo</p>
+                        <p className="mt-0.5 text-xs text-slate-500">PDF, JPG ou PNG. Documento completo</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-center gap-1.5 text-slate-400">
+                    <Lock className="h-3 w-3" />
+                    <p className="text-[11px]">Documento deletado imediatamente após a análise</p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* MODAIS LEGAIS E SUPORTE */}
+      <AnimatePresence>
+        {activeModal && (
+          <div className="fixed inset-0 z-[60] overflow-y-auto bg-slate-900/60 backdrop-blur-md">
+            <div className="min-h-full flex items-center justify-center p-4 sm:p-6">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                className="relative flex w-full max-w-md flex-col rounded-xl bg-white p-6 shadow-xl sm:p-8"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button onClick={() => setActiveModal(null)} className="absolute right-4 top-4 z-10 rounded-full p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
+                  <X className="h-5 w-5" />
+                </button>
+                <div className="mb-4 pr-8">
+                  {activeModal === "aviso" && <h3 className="text-lg font-bold text-slate-900">Aviso jurídico</h3>}
+                  {activeModal === "termos" && <h3 className="text-lg font-bold text-slate-900">Termos de uso</h3>}
+                  {activeModal === "privacidade" && <h3 className="text-lg font-bold text-slate-900">Política de privacidade</h3>}
+                  {activeModal === "suporte" && <h3 className="text-lg font-bold text-slate-900">Central de suporte</h3>}
+                </div>
+                <div className="space-y-3 text-[15px] leading-relaxed text-slate-600">
+                  {activeModal === "aviso" && <p>Este documento é um modelo referencial gerado automaticamente por inteligência artificial e não constitui consultoria jurídica. Não somos um escritório de advocacia e não representamos você juridicamente. <strong className="font-semibold text-slate-900">A decisão sobre a defesa é da autoridade julgadora do IBAMA.</strong> Confira sempre o prazo e a forma de protocolo indicados no próprio auto.</p>}
+                  {activeModal === "termos" && <p>O acesso a esta ferramenta tem finalidade unicamente de auxílio referencial para formulação de teses administrativas. Não nos responsabilizamos por prazos excedidos, inserção de dados incorretos pelo usuário, forma de protocolo inadequada ou resultado das decisões proferidas pelo órgão julgador. Para casos de maior complexidade ou valor elevado, recomendamos a consulta a um advogado.</p>}
+                  {activeModal === "privacidade" && <p>Sua privacidade é absoluta. Não possuímos banco de dados, nem realizamos registros do documento enviado, dos seus dados ou da defesa gerada. O processamento é de caráter transitório para elaboração do documento, que é imediatamente apagado após o fechamento da página.</p>}
+                  {activeModal === "suporte" && (
+                    <div className="space-y-5 pt-1">
+                      <p className="text-[15px] text-slate-600">Selecione o canal de atendimento para falar com o nosso time:</p>
+                      <div className="flex flex-col gap-3">
+                        <a href="https://wa.me/5513996485501?text=Olá!%20Preciso%20de%20ajuda%20com%20a%20análise%20do%20auto%20do%20IBAMA." target="_blank" rel="noopener noreferrer" className="flex w-full items-center gap-3 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-left text-emerald-900 transition hover:bg-emerald-100">
+                          <MessageSquare className="h-5 w-5 flex-shrink-0 text-emerald-600" />
+                          <div><strong className="block text-sm font-semibold">Atendimento via WhatsApp</strong><span className="text-xs text-emerald-700">Fale direto com um analista</span></div>
+                        </a>
+                        <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" className="flex w-full items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-left text-slate-900 transition hover:bg-slate-100">
+                          <ClipboardList className="h-5 w-5 flex-shrink-0 text-slate-500" />
+                          <div><strong className="block text-sm font-semibold">Abrir chamado técnico</strong><span className="text-xs text-slate-600">Reembolsos ou falhas</span></div>
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                {activeModal !== "suporte" && (
+                  <button onClick={() => setActiveModal(null)} className="mt-7 w-full rounded-lg bg-slate-900 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">Entendi</button>
+                )}
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* MODAL DE RESULTADO */}
+      <AnimatePresence>
+        {isResultModalOpen && (
+          <div className="fixed inset-0 z-[45] overflow-y-auto bg-slate-900/60 backdrop-blur-md">
+            <div className="min-h-full flex items-center justify-center p-4 sm:p-6 py-12">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                className={`relative flex w-full max-w-3xl flex-col rounded-xl shadow-xl ${error ? "border border-red-200 bg-white p-8" : "bg-white p-6 sm:p-10"}`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <button onClick={closeResultModal} className="absolute right-4 top-4 z-10 rounded-full p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
+                  <X className="h-5 w-5" />
+                </button>
+
+                <div className="mt-4 w-full space-y-6">
+
+                  {/* LOADING DA ANÁLISE */}
+                  {isAnalyzing && (
+                    <div className="mx-auto flex max-w-md flex-col items-center justify-center space-y-6 p-6">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                        <Search className="h-10 w-10 animate-pulse" />
+                      </div>
+                      <h3 className="text-center text-xl font-bold text-slate-900">Processando documento</h3>
+                      <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+                        <motion.div className="absolute left-0 top-0 h-full w-1/2 rounded-full bg-emerald-600" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                      </div>
+                      <div className="flex min-h-[60px] items-center justify-center">
+                        <AnimatePresence mode="wait">
+                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="text-center text-base font-semibold text-emerald-700">
+                            {LOADER_MESSAGES[loaderIndex]}
+                          </motion.p>
+                        </AnimatePresence>
+                      </div>
+                      <p className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-center text-sm leading-relaxed text-slate-600">
+                        A IA está lendo o documento em alta resolução. <strong className="font-semibold text-slate-900">Isso pode levar cerca de 1 minuto.</strong> Não feche a tela.
+                      </p>
+                    </div>
+                  )}
+
+                  {/* ERRO */}
+                  {error && (
+                    <div className="flex flex-col items-center space-y-4 text-center">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-50 text-red-600">
+                        <AlertCircle className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <h3 className="mb-2 text-lg font-bold text-slate-900">Análise indisponível</h3>
+                        <p className="leading-relaxed text-slate-600">{error}</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* REJEIÇÃO: SEM VÍCIO */}
+                  {!error && !isAnalyzing && rejeicaoInfo && rejeicaoInfo.tipo === "sem_vicio" && (
+                    <div className="mx-auto flex max-w-md flex-col items-center space-y-5 py-4 text-center">
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                        <ShieldCheck className="h-10 w-10" />
+                      </div>
+                      <div>
+                        <h3 className="mb-2 text-lg font-bold text-slate-900">Não encontramos falha para recorrer</h3>
+                        <p className="leading-relaxed text-slate-600">
+                          Analisamos o documento ponto por ponto e <strong className="font-semibold text-slate-900">não encontramos falha</strong> entre os pontos verificados. O auto aparenta cumprir as exigências do Decreto nº 6.514/2008.
+                        </p>
+                        <p className="mt-3 text-sm leading-relaxed text-slate-500">
+                          Como não encontramos falha, não há cobrança. Optamos por informá-lo com franqueza, em vez de elaborar uma defesa sem fundamento real. Esse é o critério que aplicamos em toda análise.
+                        </p>
+                      </div>
+                      <div className="w-full rounded-lg border border-slate-200 bg-slate-50 p-4 text-left">
+                        <p className="text-sm leading-relaxed text-slate-600">
+                          <strong className="font-semibold text-slate-900">Importante:</strong> isso não significa que a autuação seja necessariamente procedente. Significa que as falhas que analisamos não foram encontradas. Se a empresa discorda do mérito da autuação, recomendamos a consulta a um advogado.
+                        </p>
+                      </div>
+                      <button onClick={handleNovaAnalise} className="mt-2 rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800">
+                        Analisar outro auto
+                      </button>
+                    </div>
+                  )}
+
+                  {/* AUTO DE ÓRGÃO ESTADUAL OU MUNICIPAL — informa e não cobra */}
+                  {analise && ehForaDaEsferaFederal(analise) && !isAnalyzing && !error && !rejeicaoInfo && (
+                    <div className="mx-auto max-w-lg space-y-5 py-4 text-center">
+                      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-amber-50">
+                        <AlertCircle className="h-8 w-8 text-amber-600" />
+                      </div>
+
+                      <h3 className="text-xl font-bold text-slate-900">
+                        Este auto não é do IBAMA
+                      </h3>
+
+                      <p className="text-sm leading-relaxed text-slate-600">
+                        {analise.orgao_autuante
+                          ? `O documento foi lavrado por ${analise.orgao_autuante}, que é um órgão `
+                          : "O documento foi lavrado por um órgão "}
+                        {(analise.esfera || "").toLowerCase() === "municipal" ? "municipal" : "estadual"}.
+                        Nossa análise confere o auto contra a legislação federal, que não se
+                        aplica diretamente nesse caso. O órgão emissor tem norma, prazo de
+                        defesa e forma de protocolo próprios.
+                      </p>
+
+                      <div className="rounded-lg border border-slate-200 bg-slate-50 p-4 text-left">
+                        <p className="text-sm leading-relaxed text-slate-600">
+                          <strong className="font-semibold text-slate-900">
+                            Por isso não cobramos nada aqui.
+                          </strong>{" "}
+                          Uma peça redigida pela norma federal sairia com o prazo e o
+                          endereço errados, e você poderia perder o prazo real. Confira no
+                          próprio auto qual é o prazo e onde protocolar, ou procure um
+                          advogado da sua região.
+                        </p>
+                      </div>
+
+                      <button
+                        onClick={handleNovaAnalise}
+                        className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                        type="button"
+                      >
+                        <PlusCircle className="h-4 w-4" />
+                        Analisar outro auto
+                      </button>
+                    </div>
+                  )}
+
+                  {/* RESULTADO COM PAYWALL */}
+                  {analise && analise.houve_achado && !ehForaDaEsferaFederal(analise) && !isPaid && !isAnalyzing && !error && !rejeicaoInfo && (
+                    <div className="space-y-6">
+
+                      {/* Dados do processo */}
+                      {(analise.autuado || analise.orgao_autuante || analise.numero_auto) && (
+                        <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
+                          <p className="mb-4 text-[11px] font-semibold uppercase tracking-wide text-slate-400">Documento analisado</p>
+                          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                            {analise.autuado && (
+                              <div className="flex items-start gap-2.5">
+                                <Building2 className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" />
+                                <div>
+                                  <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Autuado</p>
+                                  <p className="text-[13px] font-bold leading-snug text-slate-900">{analise.autuado}</p>
+                                </div>
+                              </div>
+                            )}
+                            {analise.orgao_autuante && (
+                              <div className="flex items-start gap-2.5">
+                                <Scale className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" />
+                                <div>
+                                  <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Órgão autuante</p>
+                                  <p className="text-[13px] font-bold leading-snug text-slate-900">{analise.orgao_autuante}</p>
+                                </div>
+                              </div>
+                            )}
+                            {analise.numero_auto && (
+                              <div className="flex items-start gap-2.5">
+                                <FileText className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" />
+                                <div>
+                                  <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Número do auto</p>
+                                  <p className="text-[13px] font-bold leading-snug text-slate-900">{analise.numero_auto}</p>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+
+                          {analise.infracao_descrita && (
+                            <div className="mt-4 flex items-start gap-3 border-t border-slate-200 pt-4">
+                              <FileWarning className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
+                              <div>
+                                <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Infração descrita</p>
+                                <p className="mt-0.5 text-[13px] leading-relaxed text-slate-700">{analise.infracao_descrita}</p>
+                              </div>
+                            </div>
+                          )}
+
+                          {typeof analise.valor_multa === "number" && (
+                            <div className="mt-4 flex items-start gap-3 border-t border-slate-200 pt-4">
+                              <Receipt className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                              <div>
+                                <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Valor da multa</p>
+                                <p className="mt-0.5 text-[13px] font-bold leading-relaxed text-slate-900">{formatarValorMulta(analise.valor_multa)}</p>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Título com viabilidade */}
+                      <div className="flex items-start space-x-4">
+                        <CheckCircle2 className={`mt-1 h-7 w-7 flex-shrink-0 ${viabilidade?.nivel === "Baixa" ? "text-amber-500" : "text-emerald-600"}`} />
+                        <div>
+                          <h2 className="mb-2 text-xl font-bold leading-tight text-slate-900 sm:text-2xl">
+                            {viabilidade?.nivel === "Baixa" ? (
+                              <>Analisamos o auto e há um <span className="text-amber-600">ângulo possível</span></>
+                            ) : (
+                              <>Encontramos <span className="text-emerald-600">falha</span> neste auto</>
+                            )}
+                          </h2>
+                          <p className="leading-relaxed text-slate-600">{analise.resumo}</p>
+                        </div>
+                      </div>
+
+                      {/* Contadores */}
+                      <div className="flex flex-wrap gap-2.5">
+                        {analise.quantidade_criticos > 0 && (
+                          <span className="rounded-lg border border-red-200 bg-red-50 px-3.5 py-1.5 text-xs font-semibold text-red-700">
+                            {analise.quantidade_criticos} crítico(s)
+                          </span>
+                        )}
+                        {analise.quantidade_atencao > 0 && (
+                          <span className="rounded-lg border border-amber-200 bg-amber-50 px-3.5 py-1.5 text-xs font-semibold text-amber-700">
+                            {analise.quantidade_atencao} de atenção
+                          </span>
+                        )}
+                        {analise.quantidade_verificar > 0 && (
+                          <span className="rounded-lg border border-sky-200 bg-sky-50 px-3.5 py-1.5 text-xs font-semibold text-sky-700">
+                            {analise.quantidade_verificar} a verificar
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Achados */}
+                      <div className="space-y-4 rounded-lg border border-slate-200 bg-slate-50 p-5 text-left">
+                        <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">O que a análise encontrou no seu auto</p>
+                        {analise.achados.map((achado, i) => {
+                          const est = ESTILOS_GRAVIDADE[achado.gravidade] || ESTILOS_GRAVIDADE.verificar;
+                          return (
+                            <div key={i} className={`rounded-r-lg border-l-4 bg-white p-4 ${est.borda}`}>
+                              <div className="mb-2.5 flex items-start gap-2.5">
+                                <AlertCircle className={`mt-0.5 h-5 w-5 flex-shrink-0 ${est.corIcone}`} />
+                                <div>
+                                  <h3 className="text-[15px] font-bold leading-snug text-slate-900">{achado.titulo}</h3>
+                                  <span className={`text-[10px] font-semibold uppercase tracking-wide ${est.texto}`}>{est.rotulo}</span>
+                                </div>
+                              </div>
+                              <div className="mb-2.5 pl-7">
+                                <p className="mb-1 text-[10px] font-semibold uppercase tracking-wide text-slate-400">Trecho do documento</p>
+                                <p className="border-l-2 border-slate-200 pl-3 text-[13px] italic leading-relaxed text-slate-600">
+                                  {achado.trecho_documento}
+                                </p>
+                              </div>
+                              <p className="pl-7 text-[13px] leading-relaxed text-slate-700 sm:text-sm">{achado.explicacao}</p>
+                              {achado.base_legal && (
+                                <p className="mt-1.5 pl-7 text-[11px] text-slate-500">{achado.base_legal}</p>
+                              )}
+                            </div>
+                          );
+                        })}
+
+                        {viabilidade && (
+                          <div className={`inline-flex items-center gap-2 rounded-lg border px-3.5 py-2 ${viabilidade.bg} ${viabilidade.borda}`}>
+                            <ShieldCheck className={`h-4 w-4 ${viabilidade.cor}`} />
+                            <span className="text-[11px] font-semibold uppercase tracking-wide text-slate-500">Chance de recorrer:</span>
+                            <span className={`text-sm font-bold uppercase ${viabilidade.cor}`}>{viabilidade.nivel}</span>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Oferta */}
+
+                      {/* AVISO DE TRANSPARÊNCIA — só quando a chance é baixa */}
+                      {viabilidade?.nivel === "Baixa" && (
+                        <div className="rounded-lg border border-amber-200 bg-amber-50/60 p-5 text-left">
+                          <h3 className="mb-2 text-base font-bold text-slate-900">
+                            Encontramos um ponto para arguir. E queremos ser claros sobre ele
+                          </h3>
+                          <p className="text-sm leading-relaxed text-slate-700">
+                            A falha identificada é de natureza formal e pode ser arguida na
+                            defesa, mas não é do tipo que costuma levar à anulação direta.
+                            Ainda assim, apresentar defesa tem valor: o processo passa a exigir
+                            manifestação fundamentada da autoridade, e a penalidade não se
+                            consolida sem o contraditório.
+                          </p>
+                          <p className="mt-2.5 text-sm leading-relaxed text-slate-600">
+                            A decisão é sua. Se preferir, consulte um advogado antes de seguir.
+                          </p>
+                        </div>
+                      )}
+
+                      <div className="rounded-lg border border-emerald-200 bg-emerald-50/50 p-5 text-left">
+                        <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-slate-900 sm:text-lg">
+                          <Scale className="h-5 w-5 text-emerald-600" /> O que você recebe por R$ {formatarPreco(preco)}
+                        </h3>
+                        <ul className="space-y-3 text-[13px] text-slate-700 sm:text-[15px]">
+                          <li className="flex items-start gap-3">
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <span>Defesa administrativa completa, com fatos, fundamentos e pedidos</span>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <span>Cada ponto fundamentado no Decreto nº 6.514/2008, com o trecho do seu documento</span>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <span>Pedido subsidiário de atenuantes ou de conversão da multa em serviços ambientais</span>
+                          </li>
+                          <li className="flex items-start gap-3">
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <span>Entrega imediata após o pagamento. Pronta para preencher e protocolar</span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
+                        <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
+                        <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
+                          <strong className="font-semibold">Por que vale a pena:</strong> contratar um advogado ambiental para uma defesa costuma custar a partir de R$ 2.000. Aqui, o valor varia com o tamanho do auto. E você só paga quando encontramos falha concreta. A peça é fundamentada no Decreto nº 6.514/2008; a decisão cabe à autoridade julgadora do IBAMA. Confira o prazo e a forma de protocolo no próprio auto.
+                        </p>
+                      </div>
+
+                      {checkoutError && (
+                        <div className="flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 p-3.5 text-red-700">
+                          <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0" />
+                          <p className="text-sm font-semibold">{checkoutError}</p>
+                        </div>
+                      )}
+
+                      <button
+                        onClick={handleCheckout}
+                        disabled={isCheckoutLoading}
+                        className="flex w-full flex-col items-center justify-center rounded-lg bg-emerald-600 px-4 py-4 font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-75"
+                      >
+                        <div className="flex flex-row items-center justify-center gap-2 text-center text-lg leading-tight">
+                          {isCheckoutLoading ? <Loader2 className="h-6 w-6 flex-shrink-0 animate-spin" /> : <Scale className="h-6 w-6 flex-shrink-0" />}
+                          <span>{isCheckoutLoading ? "Gerando PIX..." : "Gerar minha defesa agora"}</span>
+                        </div>
+                        <span className="mt-1 text-sm font-normal text-emerald-50">Pagamento único · R$ {formatarPreco(preco)} · Entrega imediata</span>
+                      </button>
+                      <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
+                        <p className="mb-1 text-[11px] font-bold uppercase tracking-wide text-amber-900 sm:text-xs">
+                          O que você está contratando
+                        </p>
+                        <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
+                          Uma peça de defesa fundamentada nas falhas encontradas no seu
+                          documento. A decisão final é do órgão julgador. Nenhuma defesa
+                          garante a anulação.
+                        </p>
+                      </div>
+                      <p className="mt-2 text-center text-[11px] text-slate-400">CheckMulta Tecnologia. CNPJ 63.524.338/0001-62</p>
+                    </div>
+                  )}
+
+                  {/* LOADING DA GERAÇÃO */}
+                  {isGeneratingDefense && (
+                    <div className="mx-auto flex max-w-md flex-col items-center justify-center space-y-6 p-8">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                        <FileText className="h-10 w-10 animate-bounce" />
+                      </div>
+                      <h3 className="text-center text-xl font-bold text-slate-900">Redigindo sua defesa</h3>
+                      <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+                        <motion.div className="absolute left-0 top-0 h-full w-1/2 rounded-full bg-emerald-600" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                      </div>
+                      <div className="flex min-h-[60px] items-center justify-center">
+                        <AnimatePresence mode="wait">
+                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="text-center text-base font-semibold text-emerald-700">
+                            {LOADER_MESSAGES[loaderIndex]}
+                          </motion.p>
+                        </AnimatePresence>
+                      </div>
+                      <div className="w-full rounded-lg border border-emerald-200 bg-emerald-50 p-4">
+                        <p className="flex items-center justify-center gap-2 text-center text-base font-bold text-emerald-800">
+                          <ShieldCheck className="h-5 w-5" /> Pagamento confirmado
+                        </p>
+                        <p className="mt-1 text-center text-sm text-emerald-700">Por favor, aguarde e não feche esta janela.</p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ERRO NA GERAÇÃO */}
+                  {defenseError && (
+                    <div className="flex flex-col items-center space-y-4 rounded-lg border border-red-200 bg-red-50 p-8 text-center">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-red-600">
+                        <AlertCircle className="h-8 w-8" />
+                      </div>
+                      <div>
+                        <h3 className="mb-2 text-lg font-bold text-slate-900">Falha na geração da defesa</h3>
+                        <p className="leading-relaxed text-slate-700">
+                          Ocorreu uma instabilidade, mas <strong className="font-semibold text-slate-900">o seu pagamento está seguro.</strong> Use o botão abaixo para receber seu arquivo pelo suporte.
+                        </p>
+                      </div>
+                      <a href="https://wa.me/5513996485501?text=Olá!%20Eu%20paguei%20pela%20defesa%20do%20auto%20do%20IBAMA%20mas%20a%20tela%20deu%20erro%20ao%20carregar.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700">
+                        <MessageSquare className="h-5 w-5" /> Falar com o suporte no WhatsApp
+                      </a>
+                    </div>
+                  )}
+
+                  {/* TELA DE SUCESSO */}
+                  {defenseResult && showSuccessMessage && (
+                    <div className="mx-auto flex w-full max-w-md flex-col items-center space-y-5 p-4 text-center sm:space-y-6 sm:p-10">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                        <CheckCircle2 className="h-12 w-12" />
+                      </div>
+                      <div>
+                        <h3 className="mb-3 text-2xl font-bold text-slate-900">Defesa pronta</h3>
+                        <p className="text-base leading-relaxed text-slate-600">
+                          Sua defesa administrativa foi gerada. Na próxima tela, copie o texto ou baixe o arquivo.
+                        </p>
+                      </div>
+                      <div className="mt-4 flex w-full flex-col items-center gap-3 sm:mt-6 sm:gap-4">
+                        <button
+                          onClick={() => setShowSuccessMessage(false)}
+                          className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-3.5 text-base font-semibold text-white transition hover:bg-emerald-700"
+                        >
+                          Ver minha defesa <Check className="h-5 w-5" />
+                        </button>
+                        <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-emerald-600">
+                          Precisa de ajuda? Fale com o suporte.
+                        </button>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* DEFESA GERADA */}
+                  {defenseResult && !showSuccessMessage && (
+                    <div className="flex flex-col space-y-6">
+                      <div className="flex items-center justify-center space-x-3 border-b border-slate-200 pb-4">
+                        <Scale className="h-6 w-6 text-slate-700" />
+                        <h2 className="text-center text-xl font-bold text-slate-900">Sua defesa administrativa</h2>
+                      </div>
+                      <div className="mb-4 mt-2 rounded-r-lg border-l-4 border-amber-400 bg-amber-50 p-4">
+                        <p className="text-sm leading-relaxed text-amber-800">
+                          <strong className="font-semibold">Atenção:</strong> revise o documento e substitua todos os campos em{" "}
+                          <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos seus dados reais antes de protocolar. Confirme o prazo e a forma de protocolo na notificação recebida.
+                        </p>
+                      </div>
+                      <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">
+                        <div className="whitespace-pre-wrap text-left text-[15px] leading-relaxed md:text-base">
+                          {formatDocumentText(defenseResult)}
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-center gap-4 border-t border-slate-200 pt-6">
+                        <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
+                          <button onClick={handleCopy} className="flex w-full items-center justify-center space-x-2 rounded-lg border border-slate-300 bg-white px-8 py-3.5 text-base font-semibold text-slate-800 transition hover:bg-slate-50 sm:w-auto">
+                            {isCopied ? <><Check className="h-5 w-5 text-emerald-600" /><span className="text-emerald-600">Copiado</span></> : <><Copy className="h-5 w-5 text-slate-500" /><span>Copiar defesa</span></>}
+                          </button>
+                          <button onClick={handleDownload} className="flex w-full items-center justify-center space-x-2 rounded-lg bg-emerald-600 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-emerald-700 sm:w-auto">
+                            <Download className="h-5 w-5" /><span>Baixar .txt</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* MODAL DO PIX */}
+      <AnimatePresence>
+        {isPixModalOpen && (
+          <div className="fixed inset-0 z-[100] overflow-y-auto bg-slate-900/60 backdrop-blur-sm">
+            <div className="min-h-full flex items-center justify-center p-4">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                className="relative w-11/12 max-w-sm rounded-xl bg-white p-6 shadow-xl"
+              >
+                <button onClick={() => setIsPixModalOpen(false)} className="absolute right-4 top-4 rounded-full p-2 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
+                  <X className="h-5 w-5" />
+                </button>
+                <div className="space-y-5 text-center">
+                  <div
+                    className="flex cursor-pointer items-center justify-center gap-2 py-2"
+                    onClick={() => {
+                      setSecretClickCount((prev) => {
+                        if (prev + 1 >= 5) { simulateApprovedPayment(); return 0; }
+                        return prev + 1;
+                      });
+                    }}
+                  >
+                    <Lock className="h-3.5 w-3.5 text-slate-400" />
+                    <span className="text-xs text-slate-400">Pagamento seguro · Criptografia SSL</span>
+                  </div>
+                  <div>
+                    <h3 className="text-3xl font-bold tracking-tight text-slate-900">R$ {formatarPreco(preco)}</h3>
+                    <p className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500">Defesa administrativa</p>
+                    <p className="mt-1.5 text-[11px] text-slate-400">CheckMulta Tecnologia. CNPJ 63.524.338/0001-62</p>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 rounded-lg border border-amber-200 bg-amber-50 py-2.5 font-semibold text-amber-700">
+                    <Timer className="h-5 w-5" />
+                    <span className="text-sm">Expira em {formatTime(pixTimeLeft)}</span>
+                  </div>
+                  <div className="flex justify-center py-2">
+                    <div className="flex h-48 w-48 items-center justify-center rounded-lg border-2 border-slate-200 bg-white">
+                      {qrCodeBase64 ? (
+                        <img src={`data:image/png;base64,${qrCodeBase64}`} alt="QR Code" width="192" height="192" className="h-full w-full rounded-lg object-contain p-2" />
+                      ) : (
+                        <QrCode className="h-24 w-24 animate-pulse text-slate-200" />
+                      )}
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2 rounded-lg border border-slate-200 bg-slate-50 p-2.5">
+                      <p className="flex-1 truncate px-2 text-left font-mono text-sm text-slate-500">{qrCode || "Gerando Pix..."}</p>
+                      <button onClick={handleCopyPix} className="rounded-lg border border-slate-200 bg-white p-2.5 text-slate-700 transition hover:border-emerald-300 hover:text-emerald-600">
+                        {isPixCopied ? <Check className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />}
+                      </button>
+                    </div>
+                    <div className="flex items-start gap-2.5 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-left">
+                      <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                      <p className="text-[11px] leading-relaxed text-emerald-900">
+                        <strong className="font-semibold">Garantia técnica:</strong> se a defesa não for liberada em 10 segundos após o pagamento, garantimos reembolso via PIX.
+                      </p>
+                    </div>
+                    <div className="flex items-start gap-2.5 rounded-lg border border-slate-200 bg-slate-50 p-3 text-left">
+                      <Lock className="mt-0.5 h-4 w-4 flex-shrink-0 text-slate-500" />
+                      <p className="text-[10px] leading-relaxed text-slate-600">
+                        O recebedor identificado no seu aplicativo bancário será <strong className="font-semibold text-slate-900">CheckMulta Tecnologia</strong>. CNPJ 63.524.338/0001-62.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center gap-2 border-t border-slate-100 pt-4 text-sm font-medium text-slate-500">
+                    <RefreshCcw className="h-4 w-4 animate-spin text-emerald-600" />
+                    Aguardando o pagamento...
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* ─── RETOMADA DE SESSÃO ─────────────────────────────────────────── */}
+      <AnimatePresence>
+        {showRetomarModal && (
+          <div className="fixed inset-0 z-[70] flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
+            >
+              <div className="mb-5 flex items-start justify-between">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50">
+                  <FileText className="h-6 w-6 text-emerald-600" />
+                </div>
+                <button
+                  onClick={handleFecharRetomada}
+                  className="rounded-lg p-2 text-slate-400 transition hover:bg-slate-50 hover:text-slate-600"
+                  aria-label="Fechar"
+                  type="button"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 sm:text-xl">
+                Você tem uma defesa pronta
+              </h3>
+              <p className="mb-6 text-sm leading-relaxed text-slate-600">
+                Encontramos a análise do auto
+                {analise?.numero_auto ? ` nº ${analise.numero_auto}` : ""} que você já
+                pagou. Pode abrir a peça novamente ou começar uma análise nova.
+              </p>
+
+              <div className="space-y-3">
+                <button
+                  onClick={handleAbrirDefesaSalva}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                >
+                  Abrir minha defesa
+                  <FileText className="h-4 w-4" />
+                </button>
+
+                <button
+                  onClick={handlePedirNovaAnalise}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
+                >
+                  <PlusCircle className="h-4 w-4" />
+                  Analisar outro auto
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* ─── CONFIRMAÇÃO ANTES DE DESCARTAR A PEÇA PAGA ─────────────────── */}
+      <AnimatePresence>
+        {showConfirmNovaModal && (
+          <div className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
+            >
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50">
+                <ShieldAlert className="h-6 w-6 text-amber-600" />
+              </div>
+
+              <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 sm:text-xl">
+                Você vai perder a defesa atual
+              </h3>
+              <p className="mb-6 text-sm leading-relaxed text-slate-600">
+                Ao começar uma análise nova, a peça que você já pagou é apagada deste
+                aparelho e não poderá ser recuperada. Se ainda não salvou o texto,
+                volte e copie antes de prosseguir.
+              </p>
+
+              <div className="space-y-3">
+                <button
+                  onClick={handleCancelarNovaAnalise}
+                  className="w-full rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                >
+                  Não, manter minha defesa
+                </button>
+
+                <button
+                  onClick={handleConfirmarNovaAnalise}
+                  className="w-full rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50"
+                >
+                  Sim, quero analisar outro auto
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* --- CONFIRMACAO AO ENCERRAR A CONSULTA DA DEFESA --- */}
+      <AnimatePresence>
+        {showConfirmFecharDefesa && (
+          <div className="fixed inset-0 z-[90] flex items-center justify-center bg-slate-900/60 p-4 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: 12 }}
+              className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
+            >
+              <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50">
+                <AlertCircle className="h-6 w-6 text-amber-600" />
+              </div>
+
+              <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 sm:text-xl">
+                Você já salvou o arquivo?
+              </h3>
+              <p className="mb-6 text-sm leading-relaxed text-slate-600">
+                Ao fechar, a defesa é apagada deste aparelho e não poderá ser
+                recuperada. Seria necessário fazer uma nova análise. Se ainda não
+                copiou ou baixou o texto, volte e salve antes.
+              </p>
+
+              <div className="space-y-3">
+                <button
+                  onClick={handleVoltarParaDefesa}
+                  className="w-full rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                  type="button"
+                >
+                  Voltar e salvar
+                </button>
+
+                <button
+                  onClick={handleEncerrarDefesa}
+                  className="w-full rounded-xl border border-slate-300 px-6 py-3.5 text-sm font-semibold text-slate-600 transition hover:bg-slate-50"
+                  type="button"
+                >
+                  Já salvei, pode fechar
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+    </div>
+  );
 }
-
-Regras dos campos:
-- "resumo": 2 a 3 frases ao leigo. Sem achado, explique que o auto aparenta cumprir as
-  formalidades.
-- Campos de identificação não encontrados: string vazia "". Nunca invente.
-- "valor_multa": SOMENTE o valor monetário da multa, como número puro, sem símbolo e sem
-  separador de milhar (ex: 8500.00). É o valor em reais da penalidade — NÃO coloque aqui a
-  descrição da infração nem qualquer texto. Se o auto traz "Multa no valor de R$ 8.500,00",
-  o campo recebe 8500.00. Esse campo define o preço do produto: NUNCA estime nem arredonde;
-  se não houver valor legível, use null.
-- "dispositivo": o item da lista fechada em texto curto (ex.: "Art. 97 do Decreto nº
-  6.514/2008"). Sem dispositivo na lista fechada, use "" — jamais invente artigo.
-- As três quantidades batem com a contagem real do array "achados".
-- "houve_achado": false somente com "achados" vazio.
-
-Nunca envolva o JSON em blocos de código e nunca escreva comentários dentro dele.
-`;
-
-// =====================================================================
-// 2ª ETAPA — GERAÇÃO DA DEFESA ADMINISTRATIVA (produto pago)
-// =====================================================================
-
-export const promptGenerateDefenseIbama = (dados: string) => `
-Você redige uma DEFESA ADMINISTRATIVA dirigida ao IBAMA, contestando um auto de infração
-ambiental federal.
-
-Segue o JSON da análise técnica já realizada. Use APENAS os achados registrados nele. É
-proibido criar achado novo, supor fato não registrado ou afirmar ausência que não conste
-do JSON.
-
-<<<ANALISE>>>
-${dados}
-<<<FIM DA ANALISE>>>
-
-=====================================================================
-NATUREZA DA PEÇA
-=====================================================================
-
-É defesa administrativa protocolada no processo sancionador do IBAMA (pelo SEI ou canal
-indicado no auto). Não é petição judicial: não use "Excelentíssimo", "MM. Juízo" nem
-estrutura processual civil. Ao final, informe de forma discreta que é peça de elaboração
-própria do autuado, sem constituição de advogado.
-
-=====================================================================
-LISTA FECHADA DE DISPOSITIVOS
-=====================================================================
-
-Vale exatamente a lista da análise: arts. 96, 97, 98, 97-A, 100 §2º, 113, 21 e §§, 22 do
-Decreto 6.514/2008; arts. 14 e 72 §4º da Lei 9.605/98; art. 53 da Lei 9.784/99 (sempre com
-"aplicável subsidiariamente"); arts. 7º e 17 da LC 140/2011. Nenhum outro número de artigo.
-É PROIBIDO citar norma estadual/municipal, IN estadual ou resolução CONAMA por número. Se
-um argumento precisar de fundamento fora da lista, descreva a exigência em palavras.
-
-=====================================================================
-REGRAS DE PRAZO — CRÍTICO
-=====================================================================
-
-NUNCA afirme um número específico de dias como se fosse definitivo. O prazo de defesa é de
-20 dias da ciência (art. 113), MAS pode estar sobrestado pela audiência de conciliação
-ambiental (art. 97-A, § 1º). Oriente sempre o autuado a conferir o prazo e a forma de
-protocolo no próprio auto e no sistema do IBAMA, e a protocolar o quanto antes.
-
-=====================================================================
-ESTRUTURA DA PEÇA
-=====================================================================
-
-1. IDENTIFICAÇÃO — órgão (IBAMA), autuado, número do auto e data da lavratura, conforme os
-   dados extraídos. Campo ausente no JSON: [PREENCHER: descrição do campo].
-2. DOS FATOS — narrativa curta e objetiva do que consta no auto: o que foi apontado, qual
-   enquadramento, qual valor. Sem adjetivos.
-3. DAS RAZÕES DE DEFESA — um subtítulo por achado, na ordem: prescrição primeiro (se
-   houver, é prejudicial de mérito), depois competência, depois formalidades. Em cada um:
-   (a) o que a norma exige, com o dispositivo da lista; (b) o que consta ou falta no
-   documento, reproduzindo o "trecho_documento"; (c) a consequência (nulidade, prescrição
-   ou fragilidade da prova).
-4. DOS PEDIDOS — nesta ordem, conforme os achados:
-   - reconhecimento da prescrição e arquivamento, quando houver achado de prescrição
-     (fundamento: art. 21 do Decreto 6.514/2008 e, na intercorrente, o § 2º);
-   - declaração de nulidade do auto por VÍCIO FORMAL, quando houver achado do art. 97
-     (fundamento: art. 97 c/c art. 100, § 2º, do Decreto 6.514/2008);
-   - declaração de nulidade por INCOMPETÊNCIA, quando for esse o achado — e neste caso o
-     fundamento é a LC 140/2011 (arts. 7º e 17) c/c o art. 53 da Lei 9.784/99, aplicável
-     subsidiariamente. É PROIBIDO fundamentar incompetência no art. 97: aquele artigo
-     trata dos requisitos formais do auto, não da atribuição do órgão;
-   - subsidiariamente, quando cabível e apenas se o JSON indicar atenuantes ou base para
-     isso, a aplicação de atenuantes (art. 14 da Lei 9.605/98) ou a conversão da multa em
-     serviços ambientais (art. 72, § 4º);
-   - produção de prova, se pertinente.
-
-   PROPORÇÃO ENTRE ACHADO E PEDIDO. O pedido não pode ser mais forte que a gravidade do
-   achado que o sustenta. Achado "critico" autoriza pedir nulidade ou arquivamento. Achado
-   "atencao" NÃO autoriza: dele só cabe pedido de que o órgão junte ou esclareça o ponto,
-   ou menção como reforço dentro de outro pedido. É PROIBIDO pedir arquivamento do processo
-   com base em achado de gravidade "atencao" — em especial o de suporte probatório, que é
-   fragilidade de prova e não vício do auto. Achado "verificar" não gera pedido próprio.
-5. DO ENCAMINHAMENTO — SEÇÃO OBRIGATÓRIA, presente em TODA peça, sem exceção, qualquer que
-   seja o achado. Deve conter: (a) o prazo de defesa de VINTE DIAS contados da ciência da
-   autuação, conforme o art. 113 do Decreto 6.514/2008; (b) a ressalva de que o prazo pode
-   estar sobrestado por audiência de conciliação ambiental (art. 97-A, § 1º), devendo o
-   autuado conferir no próprio auto; (c) a orientação de protocolar no processo pelo
-   SEI/IBAMA ou canal indicado no auto, guardando o comprovante; (d) a menção de que a via
-   judicial permanece disponível. Omitir esta seção faz o autuado perder o prazo — é a
-   falha mais grave possível na peça.
-
-=====================================================================
-REGRAS DE REDAÇÃO
-=====================================================================
-
-- Registro profissional e elevado, impessoal, sem agressividade.
-- Não prometa resultado. Escreva "o auto não observou o disposto em...", não "será
-  anulado com certeza".
-- Não impute crime ou má-fé ao agente.
-- Não oriente a descumprir embargo, apreensão ou outra medida vigente — a discussão é a
-  validade do auto.
-- Não invente valores, datas, coordenadas ou números de processo.
-- Texto corrido em português do Brasil, pronto para o autuado revisar e protocolar.
-
-Retorne apenas o texto da peça, sem comentários e sem markdown.
-`;
-
-// =====================================================================
-// 3ª ETAPA — REVISOR JURÍDICO
-// =====================================================================
-
-export const promptRevisorIbama = (texto: string, dados: string) => `
-Você é o revisor jurídico da vertical ambiental federal (IBAMA). Sua função é auditar,
-corrigir e devolver o texto abaixo — nunca reescrever o estilo nem acrescentar argumentos.
-
-<<<TEXTO A REVISAR>>>
-${texto}
-<<<FIM DO TEXTO>>>
-
-<<<ANALISE QUE ORIGINOU O TEXTO>>>
-${dados}
-<<<FIM DA ANALISE>>>
-
-CHECAGENS OBRIGATÓRIAS
-
-1. CITAÇÕES. Só podem permanecer: arts. 96, 97, 98, 97-A, 100 §2º, 113, 21 e §§, 22 do
-   Decreto 6.514/2008; arts. 14 e 72 §4º da Lei 9.605/98; art. 53 da Lei 9.784/99; arts.
-   7º e 17 da LC 140/2011. REMOVA qualquer norma estadual/municipal, IN estadual,
-   resolução CONAMA por número ou artigo fora da lista, convertendo em descrição sem
-   número.
-2. RÓTULO CORRETO. Confira o conteúdo de cada artigo citado. Em especial: o prazo de
-   defesa de 20 dias é o art. 113 (NÃO o art. 96, que é a lavratura/ciência); os requisitos
-   formais do auto são o art. 97; a prescrição é o art. 21 (5 anos punitiva; § 2º
-   intercorrente de 3 anos). Artigo com rótulo trocado deve ser corrigido ou removido.
-2.1. ART. 97 ESTENDIDO — CHECAGEM CRÍTICA. O art. 97 exige APENAS quatro coisas: impresso
-   próprio, identificação do autuado, descrição clara e objetiva da infração, e indicação
-   dos dispositivos infringidos (sem emendas/rasuras). Se o texto atribuir ao art. 97
-   qualquer outra exigência — laudo de constatação, coordenadas, georreferenciamento,
-   dimensionamento do dano, prova pericial, "elementos que comprovem a materialidade" —
-   isso é conteúdo INVENTADO dentro de um artigo real: reescreva o argumento sem o número
-   do artigo, como fragilidade probatória. Se o texto fundamentar INCOMPETÊNCIA no art. 97,
-   troque o fundamento para LC 140/2011 (arts. 7º e 17) c/c art. 53 da Lei 9.784/99.
-   Marque "aprovado" como false sempre que aplicar esta correção.
-3. PRAZO. Se o texto cravar um número de dias como definitivo sem ressalvar a possibilidade
-   de sobrestamento pela conciliação (art. 97-A, § 1º), ajuste para orientar a conferir o
-   prazo no auto.
-4. COMPETÊNCIA. Se a análise indicar que o auto é estadual ou municipal, o texto NÃO pode
-   afirmar nulidade com base no Decreto 6.514/08 como se fosse federal — reescreva como
-   orientação para conferir a norma do órgão emissor.
-5. FIDELIDADE AOS ACHADOS. Todo argumento deve corresponder a um achado do JSON. Argumento
-   sem lastro deve ser removido.
-5.1. COERÊNCIA DO TRECHO. Se o trecho citado contradiz o argumento, remova o argumento.
-5.1.1. DISPOSITIVO AUSENTE INFLADO. Se o texto sustentar como razão de defesa a "ausência
-   de indicação do dispositivo legal" com base em "informação ausente", mas o auto na
-   verdade descreve a conduta e traz enquadramento, REMOVA esse argumento — é vício
-   inventado para reforçar a peça. Mantenha apenas os argumentos com lastro real.
-5.2. DOCUMENTO AUSENTE. Se o texto afirmar defeito no auto mas o documento analisado não
-   for o auto, reescreva como orientação para conferir o auto original.
-6. PROMESSAS. Remova promessa de resultado, imputação de crime/má-fé, e qualquer
-   orientação para descumprir medida ambiental vigente (embargo, apreensão).
-7. DADOS INVENTADOS. Valores, datas, coordenadas ou números não constantes do JSON viram
-   [PREENCHER: descrição do campo].
-8. SEÇÃO DE ENCAMINHAMENTO OBRIGATÓRIA. Verifique se a peça traz a seção final de
-   encaminhamento com o prazo de VINTE DIAS (art. 113), a ressalva do sobrestamento por
-   audiência de conciliação (art. 97-A, § 1º), a orientação de protocolo pelo SEI/IBAMA
-   com guarda do comprovante, e a menção à via judicial. Se estiver ausente ou incompleta,
-   ACRESCENTE a seção — esta é a única hipótese em que você pode acrescentar conteúdo ao
-   texto. Sem ela o autuado perde o prazo.
-9. PROPORÇÃO ENTRE GRAVIDADE E PEDIDO. Cruze cada pedido com a gravidade do achado que o
-   sustenta no JSON. Se a peça pedir nulidade ou arquivamento com base em achado cuja
-   gravidade seja "atencao" ou "verificar", REDUZA o pedido: converta em pedido de que o
-   órgão junte ou esclareça o ponto, ou incorpore como reforço de outro pedido amparado em
-   achado "critico". Pedir arquivamento por fragilidade probatória é desproporcional e
-   enfraquece a peça inteira perante o julgador.
-
-SAÍDA
-
-Responda EXCLUSIVAMENTE com JSON válido, sem markdown:
-
-{
-  "aprovado": true | false,
-  "correcoes_aplicadas": [string],
-  "texto_final": string
-}
-
-"aprovado" é false quando você removeu argumento inteiro ou citação por erro de rótulo —
-o texto corrigido vai igualmente em "texto_final". Nunca devolva "texto_final" vazio.
-`;
