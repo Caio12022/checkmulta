@@ -195,6 +195,10 @@ A2. Há indicação do dispositivo legal/regulamentar infringido? O art. 97, IV 
     de nulidade fundado no A1 — mas o A2, isolado, continua sendo no máximo "atencao".
 A5. O auto contém emendas ou rasuras que comprometam a validade, ou falta identificação
     do autuado?
+    ATENÇÃO À CITAÇÃO: a falta de identificação do autuado é o inciso II. Já a proibição
+    de emendas e rasuras NÃO é inciso nenhum — ela está no FECHO DO CAPUT do art. 97,
+    depois da lista de incisos. Ao reportar rasura, cite "art. 97, caput, parte final, do
+    Decreto nº 6.514/2008", nunca "art. 97, inciso I" (o inciso I é o impresso próprio).
 
 BLOCO A-2 — suporte probatório (NÃO É O ART. 97)
 
@@ -569,6 +573,11 @@ CHECAGENS OBRIGATÓRIAS
    do artigo, como fragilidade probatória. Se o texto fundamentar INCOMPETÊNCIA no art. 97,
    troque o fundamento para LC 140/2011 (arts. 7º e 17) c/c art. 53 da Lei 9.784/99.
    Marque "aprovado" como false sempre que aplicar esta correção.
+2.2. INCISO CORRETO DO ART. 97. Confira o inciso citado: I = impresso próprio;
+   II = identificação do autuado; III = descrição clara e objetiva; IV = indicação dos
+   dispositivos infringidos. A vedação a emendas e rasuras está no FECHO DO CAPUT, e não
+   em inciso: se o texto citar "art. 97, inciso I" para rasura, corrija para "art. 97,
+   caput, parte final".
 3. PRAZO. Se o texto cravar um número de dias como definitivo sem ressalvar a possibilidade
    de sobrestamento pela conciliação (art. 97-A, § 1º), ajuste para orientar a conferir o
    prazo no auto.
