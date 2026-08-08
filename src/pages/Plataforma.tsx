@@ -148,7 +148,7 @@ const FAQ = [
 ];
 
 const TITULO =
-  "CheckMulta — Defesa de autos de infração e notificações administrativas";
+  "CheckMulta. Defesa de autos de infração e notificações administrativas";
 const DESCRICAO =
   "Recebeu um auto de infração ou uma notificação de órgão público? Analisamos o documento gratuitamente e apontamos se há falha que permite recorrer. Trânsito, Procon, Vigilância Sanitária, energia elétrica e meio ambiente.";
 const CANONICAL = "https://checkmulta.com.br/";
@@ -508,7 +508,7 @@ export default function Plataforma() {
                 <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-red-700">
                   <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0" />
                   O endereço está incompleto. Sem número nem ponto de
-                  referência, não dá para saber onde a multa foi aplicada — e
+                  referência, não dá para saber onde a multa foi aplicada. E
                   isso é motivo de anulação.
                 </p>
               </div>
@@ -824,7 +824,7 @@ export default function Plataforma() {
           </p>
 
           <p className="mt-4 text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>
