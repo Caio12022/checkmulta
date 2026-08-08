@@ -393,6 +393,7 @@ fora_escopo_penal
 Nos demais casos, responda com este objeto:
 
 {
+  "transcricao_documento": string,
   "resumo": string,
   "orgao_autuante": string,
   "esfera": "federal" | "estadual" | "municipal" | "",
@@ -419,6 +420,13 @@ Nos demais casos, responda com este objeto:
 }
 
 Regras dos campos:
+- "transcricao_documento": TODO o texto que você conseguiu ler no documento, transcrito
+  fielmente, na ordem em que aparece, incluindo cabeçalho, campos, descrição, datas,
+  valores, histórico de movimentação e observações. Não resuma, não interprete, não
+  corrija. Este campo é conferido por auditoria automática: todo trecho citado nos
+  achados é procurado aqui, e o achado é descartado se o trecho não for encontrado.
+  Transcrição incompleta faz achados legítimos serem perdidos. Se o documento estiver
+  ilegível, este campo fica vazio.
 - "resumo": 2 a 3 frases ao leigo. Sem achado, explique que o auto aparenta cumprir as
   formalidades.
 - Campos de identificação não encontrados: string vazia "". Nunca invente.
