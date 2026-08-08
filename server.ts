@@ -510,6 +510,28 @@ async function startServer() {
   // Diagnóstico DOSADO: mostra qual campo falhou e que é grave (a "pista"),
   // mas NÃO entrega a tese jurídica articulada (isso é o produto pago).
   // ==========================================
+
+/*
+   Palavras de recusa devolvidas pela IA como texto solto, sem JSON.
+
+   Alem das duas classicas (invalido / ilegivel), o prompt do IBAMA passou a
+   devolver recusas por ESCOPO: documento legitimo, mas de tema que a
+   plataforma nao analisa (dosimetria, merito, cautelar, execucao fiscal,
+   penal). Antes essas palavras nao constavam aqui, caiam no JSON.parse e o
+   usuario via "Falha ao processar a analise" — como se fosse erro de sistema.
+*/
+const RECUSAS_EM_TEXTO = [
+  "documento_invalido",
+  "documento_ilegivel",
+  "fora_escopo_dosimetria",
+  "fora_escopo_merito",
+  "fora_escopo_cautelar",
+  "fora_escopo_execucao",
+  "fora_escopo_penal",
+];
+
+const ehRecusaEmTexto = (t: string) => RECUSAS_EM_TEXTO.includes(t.trim().toLowerCase());
+
   app.post("/api/analyze-ticket", async (req, res) => {
     try {
       const { imageBase64, mimeType = "image/jpeg" } = req.body;
@@ -595,7 +617,7 @@ const prompt = PROMPT_ANALYZE_PROCON;
       let resultText = (response.text || "").trim();
 
       // Casos de rejeição direta
-      if (resultText === "documento_invalido" || resultText === "documento_ilegivel") {
+      if (ehRecusaEmTexto(resultText)) {
         return res.json({ result: resultText });
       }
 
@@ -694,7 +716,7 @@ const prompt = PROMPT_ANALYZE_VIGILANCIA;
       let resultText = (response.text || "").trim();
 
       // Casos de rejeição direta
-      if (resultText === "documento_invalido" || resultText === "documento_ilegivel") {
+      if (ehRecusaEmTexto(resultText)) {
         return res.json({ result: resultText });
       }
 
@@ -786,7 +808,7 @@ const prompt = promptGenerateDefenseVigilancia(dados);
 
       let resultText = (response.text || "").trim();
 
-      if (resultText === "documento_invalido" || resultText === "documento_ilegivel") {
+      if (ehRecusaEmTexto(resultText)) {
         return res.json({ result: resultText });
       }
 
@@ -801,7 +823,7 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       }
 
       // Rejeição vinda dentro do JSON
-      if (parsed.status === "documento_invalido" || parsed.status === "documento_ilegivel") {
+      if (parsed.status && ehRecusaEmTexto(parsed.status)) {
         return res.json({ result: parsed.status });
       }
 
@@ -892,7 +914,7 @@ const prompt = promptGenerateDefenseVigilancia(dados);
 
       let resultText = (response.text || "").trim();
 
-      if (resultText === "documento_invalido" || resultText === "documento_ilegivel") {
+      if (ehRecusaEmTexto(resultText)) {
         return res.json({ result: resultText });
       }
 
@@ -906,7 +928,7 @@ const prompt = promptGenerateDefenseVigilancia(dados);
         return res.status(500).json({ error: "Falha ao processar a análise. Tente novamente." });
       }
 
-      if (parsed.status === "documento_invalido" || parsed.status === "documento_ilegivel") {
+      if (parsed.status && ehRecusaEmTexto(parsed.status)) {
         return res.json({ result: parsed.status });
       }
 
