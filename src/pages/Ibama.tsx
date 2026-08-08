@@ -251,6 +251,10 @@ export default function Ibama() {
   /* Aviso antes de encerrar a consulta da defesa: fechar o modal apaga a peca
      deste aparelho, entao o usuario confirma que ja salvou o texto. */
   const [showConfirmFecharDefesa, setShowConfirmFecharDefesa] = useState(false);
+  /* Recusa por escopo nao e erro: a analise funcionou e concluiu que o
+     documento nao e do tipo que tratamos. Precisa de titulo e cor proprios,
+     senao "Analise indisponivel" faz parecer falha do site. */
+  const [ehForaDeEscopo, setEhForaDeEscopo] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -490,6 +494,7 @@ useEffect(() => {
     setShowConfirmNovaModal(false);
     setShowConfirmFecharDefesa(false);
     setHasAnalyzed(false);
+    setEhForaDeEscopo(false);
     setImageFile(file);
     setPreviewUrl(null);
     setError(null);
@@ -569,6 +574,7 @@ useEffect(() => {
         const chaveEscopo = Object.keys(foraDeEscopo).find((k) => lower.includes(k));
         if (chaveEscopo) {
           isBusinessError = true;
+          setEhForaDeEscopo(true);
           track("ibama_analise_erro", "ibama_fora_escopo", { tipo: chaveEscopo });
           throw new Error(foraDeEscopo[chaveEscopo]);
         }
@@ -1487,15 +1493,23 @@ useEffect(() => {
                     </div>
                   )}
 
-                  {/* ERRO */}
+                  {/* ERRO — e, em amarelo, a recusa por escopo */}
                   {error && (
                     <div className="flex flex-col items-center space-y-4 text-center">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-50 text-red-600">
+                      <div className={`flex h-16 w-16 items-center justify-center rounded-full ${ehForaDeEscopo ? "bg-amber-50 text-amber-600" : "bg-red-50 text-red-600"}`}>
                         <AlertCircle className="h-8 w-8" />
                       </div>
                       <div>
-                        <h3 className="mb-2 text-lg font-bold text-slate-900">Análise indisponível</h3>
+                        <h3 className="mb-2 text-lg font-bold text-slate-900">
+                          {ehForaDeEscopo ? "Não trabalhamos com este tipo de documento" : "Análise indisponível"}
+                        </h3>
                         <p className="leading-relaxed text-slate-600">{error}</p>
+                        {ehForaDeEscopo && (
+                          <p className="mt-3 text-sm text-slate-500">
+                            Nada foi cobrado. Se você tiver um auto de infração do IBAMA,
+                            pode enviá-lo para análise.
+                          </p>
+                        )}
                       </div>
                     </div>
                   )}
