@@ -159,9 +159,40 @@ A7. Há menção a laudo de constatação, relatório de fiscalização ou prova
 
 BLOCO B — competência (LC 140/2011, art. 53 da Lei 9.784/99)
 
-B1. (Já filtrado na trava.) Se federal, há indício de que a matéria é de competência
-    federal? Havendo indício claro de que a fiscalização seria de competência estadual e
-    o impacto não é federal, isso é achado de competência.
+B1. INCOMPETÊNCIA — INFERÊNCIA OBRIGATÓRIA A PARTIR DOS FATOS.
+
+    Auto real NUNCA escreve "sou incompetente" nem "a matéria é de impacto local". Quem
+    precisa concluir isso é você, lendo a descrição da infração. Não espere confissão.
+
+    Para todo auto do IBAMA, verifique os INDICADORES DE IMPACTO LOCAL abaixo. A presença
+    de dois ou mais, sem qualquer elemento federal, é achado de competência ("critico"):
+
+    - imóvel/lote urbano, perímetro urbano, área urbana consolidada, condomínio;
+    - obra, reforma, construção ou benfeitoria residencial ou comercial de pequeno porte;
+    - supressão de poucas árvores isoladas (unidades, não hectares) fora de APP;
+    - menção a licença/licenciamento MUNICIPAL como a exigida;
+    - atuação restrita a um único município, sem corpo hídrico federal, sem unidade de
+      conservação federal, sem terra indígena, sem fauna silvestre, sem bem da União.
+
+    Contra-indicadores (afastam o achado — havendo qualquer um, NÃO gere): unidade de
+    conservação federal, terra indígena, mar territorial, rio interestadual ou federal,
+    fauna silvestre, desmatamento em grande extensão, APP, reserva legal, atividade com
+    licenciamento federal, ou qualquer bem/interesse da União.
+
+    Exemplo do raciocínio (siga este padrão):
+      "obra de reforma em imóvel urbano" -> indicador (urbano, pequeno porte)
+      "licença ambiental municipal" -> indicador (licenciamento municipal)
+      "duas árvores isoladas em lote urbano particular" -> indicador (poucas árvores)
+      "perímetro urbano do município" -> indicador (município único)
+      Nenhum contra-indicador presente => competência é municipal (LC 140/2011, art. 9º),
+      logo o IBAMA carece de atribuição => achado "critico" no bloco "competencia".
+
+    Fundamento a citar: arts. 7º e 17 da LC 140/2011 c/c art. 53 da Lei 9.784/99. É
+    PROIBIDO fundamentar incompetência no art. 97 do Decreto 6.514/2008.
+
+    No "trecho_documento", cite LITERALMENTE o pedaço da descrição que revela o caráter
+    local (ex.: a menção ao imóvel urbano ou à licença municipal). Não escreva
+    "Informação ausente no documento" neste achado.
 
 BLOCO C — prescrição (art. 21 e §§)
 
