@@ -12,6 +12,52 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "documentos-indispensaveis-para-sua-defesa-em-um-auto-sanitario",
+    titulo: "Documentos indispensáveis para sua defesa em um auto sanitário",
+    descricao: "Recebeu uma autuação da Vigilância Sanitária? Saiba quais documentos organizar para estruturar sua defesa. Acesse o CheckMulta para análise gratuita.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "6 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-emerald-50 to-teal-50",
+    palavrasChave: ["auto de infração vigilância sanitária", "como recorrer multa sanitária", "defesa administrativa vigilância", "documentação defesa sanitária"],
+    conteudo: `## A importância da organização documental
+
+Receber um auto de infração da Vigilância Sanitária é um momento crítico para qualquer estabelecimento. A notificação formal inicia um processo administrativo onde o direito ao contraditório e à ampla defesa são pilares fundamentais, conforme assegurado por princípios do direito administrativo, como a legalidade, a ampla defesa e o contraditório. Para estruturar uma argumentação sólida, a reunião de evidências documentais é a primeira etapa necessária.
+
+Muitos gestores, ao serem autuados, focam apenas em retrucar as alegações da fiscalização. No entanto, o processo administrativo exige o preenchimento de requisitos formais e a comprovação de fatos. A Lei 6.437/77, em seu art. 13, estabelece os requisitos obrigatórios do auto de infração. Caso esses elementos não estejam presentes ou estejam incorretos, há fundamento para questionar a validade do documento.
+
+## Documentos essenciais para a defesa
+
+Ao preparar a defesa, o responsável pelo estabelecimento deve reunir um dossiê organizado. A documentação deve ser dividida entre elementos formais (que questionam a validade do auto) e elementos materiais (que tratam da correção das irregularidades).
+
+- Cópia integral do auto de infração: O documento entregue pelo fiscal é o ponto de partida. Verifique se nele constam os requisitos formais previstos no art. 13 da Lei 6.437/77. Erros no preenchimento ou falta de informações obrigatórias podem ser levantados.
+- Licenças e autorizações vigentes: Documentos que comprovem a regularidade administrativa da empresa perante o órgão sanitário demonstram a boa-fé e o cumprimento das normas sanitárias vigentes.
+- Registros de controle interno: Manuais de boas práticas, planilhas de controle de temperatura, registros de higienização e outros documentos que comprovem o monitoramento constante das normas pela empresa.
+- Evidências da correção de irregularidades: Caso a autuação relate desconformidades, é importante documentar a correção. Utilize registros fotográficos de antes e depois, notas fiscais de compra de insumos ou equipamentos novos, contratos de dedetização e laudos técnicos. Esses documentos podem auxiliar na fundamentação de um pedido de reconsideração ou de reinspeção junto à autoridade competente.
+
+## A relevância do procedimento administrativo
+
+O processo administrativo deve respeitar o art. 2º da Lei 9.784/99 (aplicável subsidiariamente), que determina critérios como a motivação e a proporcionalidade. Em caso de penalidades, a autoridade deve observar o art. 6º da Lei 6.437/77, que define os critérios de graduação da pena, como a gravidade do fato, o antecedente do infrator e a situação econômica do estabelecimento, além do art. 2º da mesma lei, que traz o rol de penalidades.
+
+É fundamental destacar que a aplicação subsidiária da Lei 9.784/99 (arts. 2º e 50) garante que o processo observe a razoabilidade e o devido processo legal, permitindo que o estabelecimento seja penalizado apenas após a correta apreciação dos fatos e das provas trazidas pela defesa.
+
+## Prazos e procedimentos
+
+O prazo para a apresentação de defesa varia, pois cada ente federativo possui competência para legislar sobre seus próprios processos administrativos. Embora a Lei 6.437/77 preveja em seu art. 22 o prazo de defesa, é indispensável conferir o prazo exato estipulado no verso ou no corpo do auto de infração recebido. O descumprimento dos prazos pode resultar na perda da oportunidade de questionar a autuação.
+
+Caso tenha ocorrido interdição, observe que, segundo o art. 23, § 4º da Lei 6.437/77, a medida cautelar possui limite de tempo. É indispensável aguardar a desinterdição oficial pelo órgão sanitário antes de retomar qualquer atividade. A regularização deve ser acompanhada de pedido formal de reinspeção, utilizando a documentação de correção como suporte ao requerimento.
+
+## Como proceder com sua análise
+
+Organizar a documentação é o passo inicial para exercer sua defesa. Lembre-se que cada processo possui particularidades e a estratégia pode ser baseada nas circunstâncias atenuantes (art. 7º da Lei 6.437/77) ou agravantes (art. 8º da mesma lei) presentes no caso.
+
+A análise técnica do auto de infração permite verificar se a autuação apresenta falhas formais ou materiais capazes de fundamentar um recurso administrativo, respeitando as normas de competência (art. 14), as formas de notificação (art. 17), o rito recursal (art. 30) e os prazos prescricionais (art. 38) previstos na Lei 6.437/77.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "manual-de-boas-praticas-o-que-o-seu-estabelecimento-deve-manter",
     titulo: "Manual de Boas Práticas: O Que o Seu Estabelecimento Deve Manter",
     descricao: "Saiba quais documentos e registros compõem o Manual de Boas Práticas e como a falta deles pode gerar autuações. Analise seu auto de infração gratuitamente.",
