@@ -2051,6 +2051,16 @@ if (!v) return null;
                         </div>
                         <span className="mt-1 text-sm font-normal text-emerald-50">Pagamento único · R$ {precoDefesa.toFixed(2).replace(".", ",")} · Entrega imediata</span>
                       </button>
+                      <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
+                        <p className="mb-1 text-[11px] font-bold uppercase tracking-wide text-amber-900 sm:text-xs">
+                          O que você está contratando
+                        </p>
+                        <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
+                          Uma peça de defesa fundamentada nas falhas encontradas no seu
+                          documento. A decisão final é do órgão julgador — nenhuma defesa
+                          garante a anulação.
+                        </p>
+                      </div>
                       <p className="mt-2 text-center text-[11px] text-slate-400">CheckMulta Tecnologia — CNPJ 63.524.338/0001-62</p>
                     </div>
                   )}
