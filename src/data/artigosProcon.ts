@@ -12,6 +12,64 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "como-contar-o-prazo-de-defesa-apos-a-notificacao-do-procon",
+    titulo: "Como contar o prazo de defesa após a notificação do Procon",
+    descricao: "Entenda as regras para a contagem do prazo de defesa em processos administrativos do Procon e evite a perda de prazos. Analise seu auto de infração agora.",
+    categoria: "Prazos e Procedimento",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["prazo defesa procon", "como responder auto de infração", "processo administrativo procon"],
+    conteudo: `## A importância da contagem correta do prazo
+
+Receber um auto de infração é uma situação que exige atenção imediata de qualquer gestor. O início do processo administrativo sancionador, previsto no art. 33 do Decreto 2.181/97, dá à empresa o direito ao contraditório e à ampla defesa. Contudo, o exercício desse direito está condicionado ao cumprimento rigoroso dos prazos estabelecidos pelo órgão que emitiu a autuação.
+
+Perder o prazo de defesa administrativa pode levar à revelia, situação em que a empresa perde a oportunidade de apresentar argumentos, provas e atenuantes que poderiam influenciar a penalidade imposta. Antes do início do processo, o órgão pode realizar uma averiguação preliminar, conforme prevê o art. 33-A do referido decreto.
+
+## O que diz a legislação sobre a notificação
+
+A notificação formal é o marco inicial para a apresentação de defesa. É a partir do momento em que a empresa é cientificada que a contagem do tempo começa a correr.
+
+Um ponto de atenção indispensável reside no fato de que os prazos podem variar conforme a esfera do Procon autuante. Portanto, a regra de ouro é: não assuma prazos com base em pesquisas genéricas. O prazo correto para o seu caso específico é aquele que consta expressamente no próprio auto de infração ou na notificação recebida.
+
+## Como iniciar a contagem
+
+A contagem do prazo processual administrativo geralmente exclui o dia do começo e inclui o dia do vencimento. Se o prazo cair em um dia em que não há expediente no órgão, a contagem é prorrogada até o primeiro dia útil subsequente.
+
+No entanto, é preciso observar a forma como a notificação foi entregue. A cientificação para defesa é um dos requisitos obrigatórios do auto de infração, conforme o art. 35, inciso I, do Decreto 2.181/97. Se a notificação foi enviada pelos Correios, o comprovante de recebimento é o documento que define o marco inicial. Se foi entregue pessoalmente, a data da assinatura do recebedor é o que vale.
+
+## Atenção aos requisitos do auto
+
+Antes de focar no prazo, verifique se o documento respeita os requisitos formais. O art. 35, inciso I, do Decreto 2.181/97 determina que o auto de infração deve conter, obrigatoriamente: 
+- Local, data e hora;
+- Qualificação do autuado;
+- Descrição do fato;
+- Dispositivo legal infringido;
+- Intimação;
+- Identificação, assinatura e matrícula do agente;
+- Designação do órgão julgador;
+- Assinatura do autuado;
+- Cientificação para defesa.
+
+Caso falte algum desses elementos, pode haver margem para questionar a validade do ato. Vale lembrar, contudo, que conforme o art. 48 do mesmo decreto, a inobservância de forma só gera nulidade se houver prejuízo para a defesa.
+
+## Considerações sobre a fiscalização e sanções
+
+Empresas devem estar atentas ao art. 38-A do Decreto 2.181/97, que institui a fiscalização orientadora e o critério de dupla visita para atividade de risco leve, cuja inobservância implica nulidade do auto (§ 2º), além de garantir tratamento diferenciado a ME e EPP (§ 3º).
+
+Lembre-se que o art. 5º do Decreto 2.181/97 estabelece a competência dos órgãos para apurar e punir. Na dosimetria, devem ser observados os arts. 24 a 28, que tratam da graduação da pena, atenuantes, agravantes, reincidência e fixação da multa. Ressalte-se que, conforme o art. 26-A, as atenuantes e agravantes são taxativas e, segundo o art. 28-A, há vedação a valorar o mesmo elemento duas vezes na dosimetria.
+
+## O que fazer após a defesa
+
+Se a defesa for protocolada dentro do prazo e o processo seguir seu curso, a empresa deve acompanhar a decisão. Caso haja condenação, o art. 49 do Decreto 2.181/97 permite o recurso em 10 dias, com efeito suspensivo em caso de multa. O não recolhimento da multa em 30 dias leva à inscrição em dívida ativa, conforme o art. 55.
+
+A análise técnica dos fatos é fundamental para uma defesa consistente. Caso precise avaliar o auto de infração recebido, busque o suporte de um profissional especializado para verificar se a autuação apresenta pontos de atenção que merecem ser abordados em sua manifestação.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "como-ler-e-interpretar-um-auto-de-infracao-do-procon-em-2026",
     titulo: "Como ler e interpretar um auto de infração do Procon em 2026",
     descricao: "Recebeu uma autuação e não sabe o que fazer? Aprenda a identificar os requisitos obrigatórios e os pontos de atenção em seu auto de infração. Verifique grátis.",
