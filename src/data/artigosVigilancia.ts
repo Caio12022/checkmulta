@@ -12,6 +12,59 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "como-ler-e-interpretar-um-auto-de-infracao-da-vigilancia-sanitaria",
+    titulo: "Como ler e interpretar um auto de infração da Vigilância Sanitária",
+    descricao: "Recebeu uma autuação? Entenda os elementos obrigatórios de um auto de infração sanitária e como analisar o documento. Solicite uma análise gratuita hoje.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "5 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["auto de infração vigilância sanitária", "como recorrer multa sanitária", "processo administrativo sanitário", "irregularidade vigilância sanitária"],
+    conteudo: `## Compreendendo o Auto de Infração
+
+Receber um auto de infração da Vigilância Sanitária gera apreensão, especialmente para gestores que desconhecem os ritos do processo administrativo. A primeira etapa para qualquer providência é a leitura técnica e precisa do documento. Um auto de infração é o ato administrativo que formaliza uma suposta irregularidade sanitária.
+
+## Requisitos essenciais de validade
+
+A validade de um auto de infração depende do cumprimento de requisitos formais. Conforme previsto na Lei 6.437/77, em seu art. 13, um auto de infração deve conter obrigatoriamente:
+
+- Identificação do estabelecimento autuado;
+- Descrição clara da infração cometida;
+- Dispositivo legal que define a conduta como infração;
+- Local, data e hora da lavratura;
+- Identificação da autoridade sanitária autuante;
+- Assinatura do autuado ou, na sua recusa, de testemunhas.
+
+A ausência ou o preenchimento incorreto de qualquer destes itens pode comprometer a eficácia do documento. A falta de motivação clara sobre os fatos observados fere princípios como o da motivação e o devido processo legal, garantias fundamentais em qualquer esfera administrativa.
+
+## Classificação e gravidade da infração
+
+Ao ler o auto, verifique como o agente enquadrou a conduta. A Lei 6.437/77 estabelece, no art. 4º, a classificação das infrações em leves, graves ou gravíssimas. Essa classificação impacta a dosimetria da penalidade, observando os critérios de graduação descritos no art. 6º da mesma norma, como a gravidade do fato e os antecedentes do infrator (art. 2º).
+
+É importante identificar se o fiscal considerou circunstâncias atenuantes (art. 7º) ou agravantes (art. 8º), além de verificar a competência da autoridade autuante (art. 14). Esses fatores podem influenciar o valor final da sanção, caso o auto siga para a fase de julgamento.
+
+## O que observar após o recebimento
+
+Após o recebimento do auto, o estabelecimento deve agir com cautela:
+
+- Verifique a forma de notificação: O art. 17 da Lei 6.437/77 prevê os meios legais de notificação, essenciais para garantir o exercício do contraditório e da ampla defesa.
+- Identifique o prazo: A legislação sanitária é descentralizada. Embora a Lei 6.437/77 (art. 22) preveja o prazo de 15 dias para defesa, cada ente federativo pode possuir regulamentação própria. Confira sempre o prazo estipulado no próprio documento.
+- Documente a correção: Em caso de interdição cautelar (art. 23, § 4º da Lei 6.437/77), o estabelecimento deve permanecer com suas atividades suspensas até que ocorra a liberação oficial pelo órgão competente. A retomada de operações sem a devida autorização configura nova irregularidade. Reúna registros fotográficos, notas fiscais, laudos técnicos e comprovantes de higienização para requerer a reinspeção.
+- Atenção aos prazos recursais: Caso a decisão final não seja favorável, o art. 30 da Lei 6.437/77 prevê o cabimento de recurso. Além disso, atente-se ao prazo de 30 dias para o pagamento de multas (art. 33) e ao prazo prescricional de 5 anos (art. 38).
+
+## Aplicação subsidiária da norma federal
+
+Em processos administrativos, aplicam-se subsidiariamente os princípios da Lei 9.784/99 (aplicável subsidiariamente). Esta norma reforça o dever de clareza, a necessidade de fundamentação nas decisões (art. 50, aplicável subsidiariamente) e a observância dos princípios da legalidade, razoabilidade e proporcionalidade (art. 2º, aplicável subsidiariamente). Caso o auto apresente vício formal ou não explique adequadamente os motivos da autuação, esses princípios servem como fundamento para questionar o procedimento em sede de defesa administrativa.
+
+## A importância da análise técnica
+
+A leitura de um auto de infração exige atenção aos detalhes. Erros de digitação, descrição genérica de irregularidades ou desrespeito aos prazos são pontos que podem ser arguidos em uma defesa técnica. O objetivo da defesa é o exercício legítimo do contraditório, visando garantir que o estabelecimento seja julgado com base na realidade dos fatos e no estrito cumprimento da lei.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "documentos-indispensaveis-para-sua-defesa-em-um-auto-sanitario",
     titulo: "Documentos indispensáveis para sua defesa em um auto sanitário",
     descricao: "Recebeu uma autuação da Vigilância Sanitária? Saiba quais documentos organizar para estruturar sua defesa. Acesse o CheckMulta para análise gratuita.",
