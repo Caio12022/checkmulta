@@ -12,6 +12,54 @@ export interface ArtigoIbama {
 
 export const artigosIbama: ArtigoIbama[] = [
   {
+    slug: "conciliacao-ambiental-ou-defesa-como-decidir-no-processo-do-ibama",
+    titulo: "Conciliação Ambiental ou Defesa: como decidir no processo do IBAMA",
+    descricao: "Entenda quando a conciliação ambiental é vantajosa e quando a defesa técnica é o caminho indicado. Analise seu auto de infração gratuitamente no CheckMulta.",
+    categoria: "Alternativas",
+    tempoLeitura: "6 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["conciliação ambiental IBAMA", "defesa auto de infração ambiental", "prazo de defesa IBAMA", "nulidade auto de infração federal"],
+    conteudo: `## A escolha estratégica na esfera federal
+
+Ao receber um auto de infração ambiental lavrado pelo IBAMA, o autuado se depara com um cruzamento decisivo: seguir para a audiência de conciliação ou apresentar defesa administrativa imediata. Esta escolha não é meramente procedimental; ela impacta a estratégia de proteção dos seus interesses e a possibilidade de resolução do conflito administrativo.
+
+É fundamental destacar que o Decreto 6.514/2008 rege os processos administrativos federais. Caso você tenha sido autuado por um órgão estadual ou municipal, as regras aqui expostas não se aplicam, pois tais entes seguem normas próprias.
+
+## O papel da conciliação ambiental
+
+A audiência de conciliação ambiental, prevista no art. 97-A do Decreto 6.514/2008, foi desenhada para buscar a resolução célere dos conflitos. O § 1º do mesmo artigo estabelece uma regra relevante: o agendamento da audiência pode sobrestar a fluência do prazo de defesa. Isso significa que, ao optar pela conciliação, o prazo de vinte dias previsto no art. 113 deve ser conferido no próprio auto para confirmar a suspensão.
+
+A conciliação pode ser viável quando se busca uma forma de composição, como a conversão da multa simples em serviços de preservação, melhoria e recuperação ambiental, nos termos do art. 72, § 4º da Lei 9.605/98. É uma via que pode permitir o encerramento do litígio administrativo sem o desgaste de um processo contencioso prolongado.
+
+## Quando a defesa técnica é importante
+
+Por outro lado, a defesa administrativa é o caminho indicado quando o auto de infração apresenta vícios de legalidade ou falhas procedimentais que podem fundamentar o pedido de anulação. De acordo com o art. 53 da Lei 9.784/99, aplicável subsidiariamente, a Administração pode anular seus atos eivados de vício de legalidade.
+
+### Pontos de atenção para a defesa:
+
+- **Requisitos Formais:** O art. 97 do Decreto 6.514/2008 estabelece requisitos obrigatórios, como a descrição clara da infração e a identificação precisa do autuado. Vícios nesses pontos, conforme o art. 100, § 2º, podem levar à nulidade do auto.
+- **Competência:** Com base nos arts. 7º e 17 da LC 140/2011, a atuação de um ente incompetente pode tornar o auto nulo. É essencial verificar se a fiscalização ocorreu na esfera de competência correta do IBAMA.
+- **Prescrição:** A prescrição punitiva ocorre em cinco anos da prática do ato (art. 21). Além disso, existe a prescrição intercorrente, prevista no art. 21, § 2º, que ocorre quando o processo permanece parado por três anos sem movimentação. Se o caso se enquadrar nesses prazos, a defesa é o meio para pleitear o encerramento do feito.
+- **Circunstâncias Atenuantes:** A defesa permite que sejam apresentadas as circunstâncias atenuantes descritas no art. 14 da Lei 9.605/98, que podem auxiliar na redução do valor da sanção aplicada.
+
+## Diferenciando as estratégias
+
+A decisão entre conciliar ou defender não deve ser baseada em suposições. Enquanto a conciliação foca no encerramento simplificado, a defesa técnica foca na análise minuciosa da validade do auto de infração (art. 96, referente à lavratura/ciência, e art. 97 do Decreto 6.514/2008). Se houver indícios de que o auto foi lavrado por agente incompetente ou que a descrição da infração é vaga, a estratégia de defesa ganha relevância, pois o objetivo é apontar falhas que podem impedir a manutenção da penalidade.
+
+É importante lembrar que a defesa técnica não autoriza o descumprimento de medidas restritivas em vigor. O embargo ou a apreensão devem ser respeitados enquanto não houver decisão administrativa ou judicial em sentido contrário, pois a defesa visa discutir a validade da punição, e não suplantar as normas de proteção ambiental vigentes.
+
+## Como prosseguir
+
+Antes de optar pela audiência de conciliação, é prudente realizar uma triagem técnica do auto de infração. Verificar se os requisitos do art. 97 do Decreto 6.514/2008 foram observados e se não há risco de prescrição (art. 21) é o primeiro passo para analisar o exercício do direito de defesa.
+
+No CheckMulta, é possível enviar o auto de infração para receber uma análise que aponte se ele apresenta falhas capazes de fundamentar a defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "processo-administrativo-sancionador-federal-do-ibama-entenda-o-fluxo",
     titulo: "Processo Administrativo Sancionador Federal do IBAMA: Entenda o Fluxo",
     descricao: "Recebeu um auto de infração do IBAMA? Conheça as etapas do processo administrativo federal, prazos e direitos legais. Solicite uma análise gratuita hoje.",
