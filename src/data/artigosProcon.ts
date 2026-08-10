@@ -12,6 +12,45 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "a-nulidade-por-ausencia-de-motivacao-em-decisoes-do-procon",
+    titulo: "A nulidade por ausência de motivação em decisões do Procon",
+    descricao: "Recebeu uma decisão do Procon sem fundamentação clara? Entenda como a falta de motivação pode gerar a nulidade do processo. Analise seu auto gratuitamente.",
+    categoria: "Vícios e Nulidades",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["decisão Procon sem motivação", "nulidade processo administrativo Procon", "vício em auto de infração", "defesa processo Procon"],
+    conteudo: `## O dever de motivar atos administrativos
+
+No âmbito do processo administrativo sancionador, a atuação dos órgãos de proteção ao consumidor não é absoluta. O poder de punir, conferido aos órgãos para apurar e punir conforme o art. 5º do Decreto 2.181/97, deve ser exercido dentro de limites rígidos definidos pela legalidade e pelo devido processo legal. Um dos pilares fundamentais da administração pública é o dever de motivar as suas decisões, o que significa que o órgão não pode simplesmente aplicar uma sanção sem explicar, de forma clara e detalhada, os motivos de fato e de direito que levaram a essa conclusão.
+
+Quando uma empresa recebe uma decisão que carece de motivação expressa, ou que apresenta uma fundamentação genérica, há um vício grave que pode comprometer a validade do ato. A ausência de motivação impede que o administrado compreenda as razões pelas quais foi penalizado, impossibilitando o exercício pleno da ampla defesa e do contraditório.
+
+## A estrutura da decisão e a dosimetria da pena
+
+O processo administrativo é regido por normas que garantem o equilíbrio entre a proteção ao consumidor e o direito das empresas. O Decreto 2.181/97 estabelece, nos arts. 24 a 28, a graduação da pena, atenuantes, agravantes, reincidência e fixação da multa. Além disso, o art. 26-A determina que as atenuantes e agravantes são taxativas, não podendo o fiscal ou o julgador decidir com base em subjetividades.
+
+Se a decisão final do processo não esclarece como esses critérios foram aplicados, ocorre uma falha estrutural. O art. 28-A do mesmo decreto reforça a vedação a valorar o mesmo elemento duas vezes na dosimetria. Se a decisão for omissa quanto a esses critérios, ou se não demonstrar o cálculo da multa de maneira individualizada, a empresa pode encontrar argumentos para questionar a integridade do ato administrativo.
+
+## Nulidades e a importância da defesa
+
+É importante destacar que, conforme o art. 48 do Decreto 2.181/97, a inobservância de forma só gera nulidade se houver prejuízo para a defesa. Ainda assim, a falta de motivação pode ser interpretada como um prejuízo ao contraditório, pois retira da empresa a oportunidade de contestar fundamentos que sequer foram expostos.
+
+Adicionalmente, deve-se observar a etapa de averiguação preliminar (art. 33-A) e a fiscalização orientadora, que prevê o critério de dupla visita para atividade de risco leve, cuja inobservância implica nulidade do auto (§ 2º), além de tratamento diferenciado a ME e EPP (§ 3º), tudo conforme o art. 38-A. É fundamental verificar se, desde o início do processo administrativo sancionador (art. 33), os requisitos obrigatórios do auto de infração foram observados, sendo eles: local, data e hora; qualificação do autuado; descrição do fato; dispositivo legal infringido; intimação; identificação, assinatura e matrícula do agente; designação do órgão julgador; assinatura do autuado; cientificação para defesa (art. 35, inciso I). Caso tais elementos não estejam presentes, o processo pode ser alvo de questionamento na esfera administrativa ou judicial.
+
+## Como proceder diante de uma decisão omissa
+
+Caso a empresa tenha sido autuada e receba uma decisão que não contenha uma justificativa clara para a sanção imposta, o caminho é utilizar os meios de recurso previstos. O art. 49 do Decreto 2.181/97 estabelece o recurso em 10 dias, com efeito suspensivo em caso de multa. Vale ressaltar que os prazos para defesa variam conforme o órgão competente; por isso, a empresa deve sempre conferir a notificação oficial para identificar o prazo exato para a apresentação da sua defesa. Vale lembrar que, se a multa não for recolhida no prazo de 30 dias, o débito será objeto de inscrição em dívida ativa (art. 55).
+
+Identificar vícios de motivação exige uma leitura técnica e atenta do conteúdo do auto de infração e da decisão administrativa. Muitas vezes, o que parece ser apenas um erro de digitação ou um despacho padrão esconde nulidades que poderiam ser exploradas tecnicamente na defesa administrativa.
+
+A análise do auto de infração pode auxiliar a identificar se a autuação apresenta vício formal ou falta de motivação que possa ser arguida em sua defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "como-contar-o-prazo-de-defesa-apos-a-notificacao-do-procon",
     titulo: "Como contar o prazo de defesa após a notificação do Procon",
     descricao: "Entenda as regras para a contagem do prazo de defesa em processos administrativos do Procon e evite a perda de prazos. Analise seu auto de infração agora.",
