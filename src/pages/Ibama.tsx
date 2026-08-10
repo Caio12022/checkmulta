@@ -9,7 +9,8 @@ import {
   Scale, QrCode, X, Copy, Download, Check, Search, FileText,
   Lock, UserX, Route, RefreshCcw, MessageSquare,
   ClipboardList, Menu, Timer, Building2, Leaf,
-  ShieldAlert, FileWarning, PlusCircle, UploadCloud, Receipt
+  ShieldAlert, FileWarning, PlusCircle, UploadCloud, Receipt,
+  ExternalLink, Send
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
@@ -200,6 +201,35 @@ const ESTILOS_GRAVIDADE = {
     rotulo: "Verificar", corIcone: "text-sky-600",
   },
 };
+
+/* Para onde enviar a defesa pronta. IBAMA é federal e o caminho de
+   protocolo é único (SEI/IBAMA), diferente de verticais estaduais/
+   municipais como Procon ou Vigilância — por isso é um passo a passo
+   fixo aqui, sem precisar de lógica por estado (a parte mais simples
+   de padronizar entre as cinco verticais). Links para páginas oficiais
+   do gov.br, que se mantêm corretas mesmo se o processo interno mudar. */
+const PASSO_A_PASSO_IBAMA = [
+  {
+    titulo: "Confirme o prazo no seu auto",
+    texto: "O prazo padrão é de 20 dias contados da ciência da autuação (art. 113 do Decreto nº 6.514/2008), mas pode estar suspenso se houver audiência de conciliação ambiental agendada (art. 97-A). Confira a data exata impressa no seu documento.",
+  },
+  {
+    titulo: "Cadastre-se como usuário externo no SEI/IBAMA",
+    texto: "Se ainda não tiver acesso, é necessário se cadastrar antes de conseguir enviar a defesa pelo sistema eletrônico.",
+    href: "https://www.gov.br/ibama/pt-br/assuntos/notas/2020/sei-ibama-modulo-de-peticionamento-eletronico-disponivel-para-usuarios-externos-cadastrados",
+    linkTexto: "Como funciona o cadastro de usuário externo",
+  },
+  {
+    titulo: "Localize o seu processo",
+    texto: "Use o Portal do Autuado para consultar o andamento e confirmar o número do processo antes de protocolar.",
+    href: "https://autuacoes.ibama.gov.br/",
+    linkTexto: "Portal do Autuado (IBAMA)",
+  },
+  {
+    titulo: "Anexe a defesa e protocole",
+    texto: "Envie o arquivo baixado abaixo pelo sistema eletrônico e guarde o comprovante de protocolo.",
+  },
+];
 
 // ─── COMPONENTE PRINCIPAL ──────────────────────────────────────────────────
 export default function Ibama() {
@@ -1882,6 +1912,42 @@ useEffect(() => {
                           <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos seus dados reais antes de protocolar. Confirme o prazo e a forma de protocolo na notificação recebida.
                         </p>
                       </div>
+                      <div className="rounded-r-lg border-l-4 border-emerald-400 bg-emerald-50 p-4">
+                        <div className="mb-3 flex items-center gap-2">
+                          <Send className="h-4 w-4 flex-shrink-0 text-emerald-700" />
+                          <p className="text-sm font-semibold text-emerald-900">Para onde enviar essa defesa</p>
+                        </div>
+                        <p className="mb-4 text-sm leading-relaxed text-emerald-800">
+                          O IBAMA é órgão federal, então o caminho de protocolo é único em todo o Brasil — feito pelo processo eletrônico (SEI/IBAMA). Siga os passos abaixo:
+                        </p>
+                        <ol className="space-y-4">
+                          {PASSO_A_PASSO_IBAMA.map((p, i) => (
+                            <li key={p.titulo} className="flex gap-3">
+                              <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-emerald-600 text-xs font-bold text-white">
+                                {i + 1}
+                              </span>
+                              <div>
+                                <p className="text-sm font-semibold text-emerald-900">{p.titulo}</p>
+                                <p className="mt-0.5 text-sm leading-relaxed text-emerald-800">{p.texto}</p>
+                                {p.href ? (
+                                  <a
+                                    href={p.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 underline decoration-emerald-300 underline-offset-4 transition hover:text-emerald-800 hover:decoration-emerald-700"
+                                  >
+                                    {p.linkTexto}
+                                    <ExternalLink className="h-3.5 w-3.5" />
+                                  </a>
+                                ) : null}
+                              </div>
+                            </li>
+                          ))}
+                        </ol>
+                        <p className="mt-4 text-xs leading-relaxed text-emerald-700">
+                          Confirme sempre o canal de protocolo indicado no seu auto de infração — ele pode variar conforme a unidade do IBAMA responsável.
+                        </p>
+                      </div>
                       <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">
                         <div className="whitespace-pre-wrap text-left text-[15px] leading-relaxed md:text-base">
                           {formatDocumentText(defenseResult)}
@@ -1896,6 +1962,9 @@ useEffect(() => {
                             <Download className="h-5 w-5" /><span>Baixar .txt</span>
                           </button>
                         </div>
+                        <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-emerald-600">
+                          Precisa de ajuda? Fale com o suporte.
+                        </button>
                       </div>
                     </div>
                   )}

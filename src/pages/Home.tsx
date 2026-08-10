@@ -9,7 +9,8 @@ import {
   Scale, QrCode, X, Copy, Download, Check, Search, FileText,
   Lock, UserX, Route, ArrowDown, RefreshCcw, MessageSquare,
   ClipboardList, Menu, Timer, Camera, TrafficCone, Car,
-  Smartphone, Map, PlusCircle, Calendar, DollarSign, Tag, Building2
+  Smartphone, Map, PlusCircle, Calendar, DollarSign, Tag, Building2,
+  Send, ExternalLink
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
@@ -228,6 +229,22 @@ const BLOG_GUIAS = [
   { titulo: "Como recorrer de multa: passo a passo", slug: "como-recorrer-multa-transito-passo-a-passo" },
   { titulo: "Artigo 280 do CTB: o que é", slug: "artigo-280-ctb-o-que-e" },
   { titulo: "Multa de lombada eletrônica: como recorrer", slug: "multa-lombada-eletronica-como-recorrer" },
+];
+
+/* Para onde enviar a defesa pronta. Trânsito é a vertical mais fragmentada:
+   o órgão autuador pode ser a PRF (federal, com canal único nacional — só
+   aqui cabe link direto), o DETRAN de qualquer um dos 27 estados, ou uma
+   prefeitura. Não dá pra listar todo estado/município sem o bloco virar um
+   índice — por isso PRF é concreta e o resto fica em orientação genérica. */
+const LINKS_TRANSITO_PRF = [
+  {
+    texto: "Apresentar defesa contra a autuação (PRF)",
+    href: "https://www.gov.br/pt-br/servicos/apresentar-defesa-contra-autuacao-de-transito-transporte-da-PRF",
+  },
+  {
+    texto: "Apresentar recurso contra a penalidade (PRF)",
+    href: "https://www.gov.br/pt-br/servicos/apresentar-recurso-contra-penalidade-de-multa-de-transito-transporte-da-prf",
+  },
 ];
 
 // ─── COMPONENTE PRINCIPAL ──────────────────────────────────────────────────
@@ -2146,6 +2163,34 @@ if (!v) return null;
                         <p className="text-sm leading-relaxed text-amber-800">
                           <strong className="font-semibold">Atenção:</strong> revise o documento abaixo e substitua todos os campos em{" "}
                           <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos seus dados reais antes de protocolar.
+                        </p>
+                      </div>
+                      <div className="rounded-r-lg border-l-4 border-emerald-400 bg-emerald-50 p-4">
+                        <div className="mb-3 flex items-center gap-2">
+                          <Send className="h-4 w-4 flex-shrink-0 text-emerald-700" />
+                          <p className="text-sm font-semibold text-emerald-900">Para onde enviar essa defesa</p>
+                        </div>
+                        <p className="text-sm leading-relaxed text-emerald-800">
+                          O canal de protocolo depende de quem te multou. Se foi a{" "}
+                          <strong className="font-semibold">PRF (rodovia federal)</strong>, use os links oficiais abaixo:
+                        </p>
+                        <ul className="mt-2 space-y-1.5">
+                          {LINKS_TRANSITO_PRF.map((l) => (
+                            <li key={l.href}>
+                              <a
+                                href={l.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 underline decoration-emerald-300 underline-offset-4 transition hover:text-emerald-800 hover:decoration-emerald-700"
+                              >
+                                {l.texto}
+                                <ExternalLink className="h-3.5 w-3.5" />
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                        <p className="mt-3 text-sm leading-relaxed text-emerald-800">
+                          Se foi o <strong className="font-semibold">DETRAN do seu estado ou a prefeitura</strong>, cada um tem seu próprio site de protocolo — o endereço costuma constar na notificação recebida. Recurso indeferido nessa 1ª instância (JARI) segue para o CETRAN/CONTRANDIFE do seu estado.
                         </p>
                       </div>
                       <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">

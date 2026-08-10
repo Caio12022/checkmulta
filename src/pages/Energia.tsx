@@ -9,7 +9,8 @@ import {
   Scale, QrCode, X, Copy, Download, Check, Search, FileText,
   Lock, UserX, Route, RefreshCcw, MessageSquare,
   ClipboardList, Menu, Timer, Building2, Zap,
-  Gauge, FileWarning, PlusCircle, Clock, UploadCloud, Receipt
+  Gauge, FileWarning, PlusCircle, Clock, UploadCloud, Receipt,
+  Send, ExternalLink
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
@@ -142,6 +143,16 @@ const ESTILOS_GRAVIDADE = {
     borda: "border-l-sky-500", texto: "text-sky-700",
     rotulo: "Verificar", corIcone: "text-sky-600",
   },
+};
+
+/* Para onde enviar a defesa pronta. Energia não é fragmentada por
+   estado/município como as outras verticais — é por DISTRIBUIDORA (dezenas
+   no Brasil), então não há um link único de protocolo. O que É universal é
+   o canal de escalonamento (ANEEL), usado quando a distribuidora não
+   responde — por isso ele entra como link concreto. */
+const LINK_ANEEL_RECLAME = {
+  texto: "Reclame da Distribuidora — ANEEL",
+  href: "https://www.gov.br/aneel/pt-br/canais_atendimento/reclame-da-distribuidora",
 };
 
 // ─── COMPONENTE PRINCIPAL ──────────────────────────────────────────────────
@@ -1735,6 +1746,27 @@ useEffect(() => {
                           <strong className="font-semibold">Atenção:</strong> revise o documento e substitua todos os campos em{" "}
                           <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos seus dados reais antes de protocolar. Confirme o prazo e a forma de protocolo na notificação recebida.
                         </p>
+                      </div>
+                      <div className="rounded-r-lg border-l-4 border-emerald-400 bg-emerald-50 p-4">
+                        <div className="mb-2 flex items-center gap-2">
+                          <Send className="h-4 w-4 flex-shrink-0 text-emerald-700" />
+                          <p className="text-sm font-semibold text-emerald-900">Para onde enviar essa defesa</p>
+                        </div>
+                        <p className="text-sm leading-relaxed text-emerald-800">
+                          Protocole direto com a distribuidora, pelo canal de atendimento ou ouvidoria indicado na fatura ou no TOI recebido. A perícia do medidor, quando cabível, pode ser solicitada em até 15 dias do recebimento do TOI (art. 592 da REN ANEEL nº 1.000/2021).
+                        </p>
+                        <p className="mt-2 text-sm leading-relaxed text-emerald-800">
+                          Se a distribuidora não responder, o canal de escalonamento é a própria ANEEL:
+                        </p>
+                        <a
+                          href={LINK_ANEEL_RECLAME.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 underline decoration-emerald-300 underline-offset-4 transition hover:text-emerald-800 hover:decoration-emerald-700"
+                        >
+                          {LINK_ANEEL_RECLAME.texto}
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
                       </div>
                       <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">
                         <div className="whitespace-pre-wrap text-left text-[15px] leading-relaxed md:text-base">
