@@ -9,7 +9,8 @@ import {
   Scale, QrCode, X, Copy, Download, Check, Search, FileText,
   Lock, UserX, Route, RefreshCcw, MessageSquare,
   ClipboardList, Menu, Timer, Building2, Megaphone,
-  PackageX, Receipt, PlusCircle, Clock, UploadCloud
+  PackageX, Receipt, PlusCircle, Clock, UploadCloud,
+  Send, ExternalLink
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
@@ -128,6 +129,16 @@ const ESTILOS_GRAVIDADE = {
     borda: "border-l-sky-500", fundo: "bg-sky-50", texto: "text-sky-700",
     rotulo: "Verificar", corIcone: "text-sky-600",
   },
+};
+
+/* Para onde enviar a defesa pronta. Procon não tem canal nacional de
+   protocolo — cada Procon (estadual ou municipal) tem o seu. Diferente do
+   IBAMA, não existe um link único que sirva pra todos, então o bloco fica
+   curto e genérico, com a Senacon só como referência institucional (ela
+   não recebe protocolo de defesa). */
+const LINK_PROCON_REFERENCIA = {
+  texto: "Defesa do Consumidor — Ministério da Justiça (Senacon)",
+  href: "https://www.gov.br/mj/pt-br/assuntos/seus-direitos/consumidor/defesadoconsumidor",
 };
 
 // ─── COMPONENTE PRINCIPAL ──────────────────────────────────────────────────
@@ -1739,6 +1750,24 @@ export default function Procon() {
                           <strong className="font-semibold">Atenção:</strong> revise o documento e substitua todos os campos em{" "}
                           <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos dados reais da empresa antes de protocolar. Confirme o prazo e a forma de protocolo junto ao Procon emissor.
                         </p>
+                      </div>
+                      <div className="rounded-r-lg border-l-4 border-emerald-400 bg-emerald-50 p-4">
+                        <div className="mb-2 flex items-center gap-2">
+                          <Send className="h-4 w-4 flex-shrink-0 text-emerald-700" />
+                          <p className="text-sm font-semibold text-emerald-900">Para onde enviar essa defesa</p>
+                        </div>
+                        <p className="text-sm leading-relaxed text-emerald-800">
+                          Cada Procon (estadual ou municipal) tem seu próprio sistema de protocolo — o endereço costuma constar no auto de infração ou no site do Procon que autuou a empresa. A Secretaria Nacional do Consumidor coordena a política nacional, mas não centraliza o protocolo de defesas:
+                        </p>
+                        <a
+                          href={LINK_PROCON_REFERENCIA.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 underline decoration-emerald-300 underline-offset-4 transition hover:text-emerald-800 hover:decoration-emerald-700"
+                        >
+                          {LINK_PROCON_REFERENCIA.texto}
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
                       </div>
                       <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">
                         <div className="whitespace-pre-wrap text-left text-[15px] leading-relaxed md:text-base">

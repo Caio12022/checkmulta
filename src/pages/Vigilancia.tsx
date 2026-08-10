@@ -9,7 +9,8 @@ import {
   Scale, QrCode, X, Copy, Download, Check, Search, FileText,
   Lock, UserX, Route, RefreshCcw, MessageSquare,
   ClipboardList, Menu, Timer, Building2, UtensilsCrossed,
-  PackageX, FileWarning, PlusCircle, Clock, UploadCloud
+  PackageX, FileWarning, PlusCircle, Clock, UploadCloud,
+  Send, ExternalLink
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
@@ -128,6 +129,15 @@ const ESTILOS_GRAVIDADE = {
     borda: "border-l-sky-500", texto: "text-sky-700",
     rotulo: "Verificar", corIcone: "text-sky-600",
   },
+};
+
+/* Para onde enviar a defesa pronta. Vigilância Sanitária é a vertical mais
+   fragmentada (fiscalização municipal ou estadual, sem canal nacional de
+   protocolo) — por isso o bloco fica curto, com o catálogo de serviços do
+   gov.br como referência única em vez de listar cada município/estado. */
+const LINK_VIGILANCIA_REFERENCIA = {
+  texto: "Apresentar defesa de auto de infração sanitária — gov.br",
+  href: "https://www.gov.br/pt-br/servicos/apresentar-defesa-de-auto-de-infracao-sanitaria",
 };
 
 // ─── COMPONENTE PRINCIPAL ──────────────────────────────────────────────────
@@ -1730,6 +1740,24 @@ useEffect(() => {
                           <strong className="font-semibold">Atenção:</strong> revise o documento e substitua todos os campos em{" "}
                           <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos dados reais da empresa antes de protocolar. Confirme o prazo e a forma de protocolo junto ao órgão de vigilância sanitária emissor.
                         </p>
+                      </div>
+                      <div className="rounded-r-lg border-l-4 border-emerald-400 bg-emerald-50 p-4">
+                        <div className="mb-2 flex items-center gap-2">
+                          <Send className="h-4 w-4 flex-shrink-0 text-emerald-700" />
+                          <p className="text-sm font-semibold text-emerald-900">Para onde enviar essa defesa</p>
+                        </div>
+                        <p className="text-sm leading-relaxed text-emerald-800">
+                          A vigilância sanitária que autuou sua empresa pode ser municipal ou estadual, e cada uma tem seu próprio canal de protocolo — confira o endereço indicado no auto de infração recebido. O gov.br tem um catálogo geral do serviço:
+                        </p>
+                        <a
+                          href={LINK_VIGILANCIA_REFERENCIA.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 underline decoration-emerald-300 underline-offset-4 transition hover:text-emerald-800 hover:decoration-emerald-700"
+                        >
+                          {LINK_VIGILANCIA_REFERENCIA.texto}
+                          <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
                       </div>
                       <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">
                         <div className="whitespace-pre-wrap text-left text-[15px] leading-relaxed md:text-base">
