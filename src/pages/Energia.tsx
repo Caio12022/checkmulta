@@ -1782,6 +1782,9 @@ useEffect(() => {
                             <Download className="h-5 w-5" /><span>Baixar .txt</span>
                           </button>
                         </div>
+                        <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-emerald-600">
+                          Precisa de ajuda? Fale com o suporte.
+                        </button>
                       </div>
                     </div>
                   )}
