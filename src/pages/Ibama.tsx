@@ -9,7 +9,8 @@ import {
   Scale, QrCode, X, Copy, Download, Check, Search, FileText,
   Lock, UserX, Route, RefreshCcw, MessageSquare,
   ClipboardList, Menu, Timer, Building2, Leaf,
-  ShieldAlert, FileWarning, PlusCircle, UploadCloud, Receipt
+  ShieldAlert, FileWarning, PlusCircle, UploadCloud, Receipt,
+  ExternalLink, Send
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
@@ -200,6 +201,24 @@ const ESTILOS_GRAVIDADE = {
     rotulo: "Verificar", corIcone: "text-sky-600",
   },
 };
+
+/* Para onde enviar a defesa pronta. IBAMA é federal e o caminho de
+   protocolo é único (SEI/IBAMA), diferente de verticais estaduais/
+   municipais como Procon ou Vigilância — por isso é só uma lista fixa
+   aqui, sem precisar de lógica por estado. Links para páginas oficiais
+   do gov.br, que se mantêm corretas mesmo se o processo interno mudar. */
+const PROXIMO_PASSO_IBAMA = [
+  {
+    texto: "Portal do Autuado (IBAMA)",
+    href: "https://autuacoes.ibama.gov.br/",
+    descricao: "Consulte o andamento do seu processo e as opções de peticionamento eletrônico.",
+  },
+  {
+    texto: "Processo sancionador ambiental — passo a passo oficial",
+    href: "https://www.gov.br/ibama/pt-br/assuntos/processo-sancionador-ambiental/informacoes-gerais",
+    descricao: "Página do IBAMA com as instruções atualizadas para protocolar pelo SEI (Sistema Eletrônico de Informações).",
+  },
+];
 
 // ─── COMPONENTE PRINCIPAL ──────────────────────────────────────────────────
 export default function Ibama() {
@@ -1880,6 +1899,34 @@ useEffect(() => {
                         <p className="text-sm leading-relaxed text-amber-800">
                           <strong className="font-semibold">Atenção:</strong> revise o documento e substitua todos os campos em{" "}
                           <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos seus dados reais antes de protocolar. Confirme o prazo e a forma de protocolo na notificação recebida.
+                        </p>
+                      </div>
+                      <div className="rounded-r-lg border-l-4 border-emerald-400 bg-emerald-50 p-4">
+                        <div className="mb-2 flex items-center gap-2">
+                          <Send className="h-4 w-4 flex-shrink-0 text-emerald-700" />
+                          <p className="text-sm font-semibold text-emerald-900">Para onde enviar essa defesa</p>
+                        </div>
+                        <p className="mb-3 text-sm leading-relaxed text-emerald-800">
+                          O IBAMA é órgão federal e o protocolo é feito pelo processo eletrônico (SEI/IBAMA). Use os links oficiais abaixo para localizar o seu processo e enviar a defesa:
+                        </p>
+                        <ul className="space-y-2">
+                          {PROXIMO_PASSO_IBAMA.map((l) => (
+                            <li key={l.href}>
+                              <a
+                                href={l.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 underline decoration-emerald-300 underline-offset-4 transition hover:text-emerald-800 hover:decoration-emerald-700"
+                              >
+                                {l.texto}
+                                <ExternalLink className="h-3.5 w-3.5" />
+                              </a>
+                              <p className="text-sm leading-relaxed text-emerald-800">{l.descricao}</p>
+                            </li>
+                          ))}
+                        </ul>
+                        <p className="mt-3 text-xs leading-relaxed text-emerald-700">
+                          Confirme sempre o canal de protocolo indicado no seu auto de infração — ele pode variar conforme a unidade do IBAMA responsável.
                         </p>
                       </div>
                       <div className="mx-auto w-full rounded-lg border border-slate-200 bg-slate-50 p-4 font-serif text-slate-800 sm:p-8">
