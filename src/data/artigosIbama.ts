@@ -12,6 +12,51 @@ export interface ArtigoIbama {
 
 export const artigosIbama: ArtigoIbama[] = [
   {
+    slug: "nulidade-por-incompetencia-do-orgao-autuante-no-ibama",
+    titulo: "Nulidade por incompetência do órgão autuante no IBAMA",
+    descricao: "Entenda como a regra de competência da LC 140/2011 pode impactar a validade do seu auto de infração ambiental do IBAMA. Analise seu auto gratuitamente.",
+    categoria: "Competência",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["nulidade auto infracao", "competencia IBAMA", "LC 140/2011", "defesa auto infracao ambiental"],
+    conteudo: `## A importância da competência administrativa
+
+No processo administrativo federal, a competência é um dos pressupostos de validade de qualquer ato praticado pelo poder público. Quando um agente do IBAMA lavra um auto de infração, ele deve estar estritamente dentro dos limites da repartição de competências estabelecida pela legislação federal. A atuação de um ente que não possui atribuição legal para fiscalizar determinada atividade ou território pode configurar um vício de legalidade, sendo passível de questionamento quanto à sua validade.
+
+## O que diz a LC 140/2011
+
+A Lei Complementar nº 140/2011 é o diploma fundamental que define as atribuições fiscalizatórias da União, dos Estados e dos Municípios. Conforme previsto no art. 7º e no art. 17 deste dispositivo, a repartição de competências é o critério que define qual ente possui atribuição para autuar determinado infrator. Quando um órgão atua fora de sua esfera de competência, o ato administrativo pode perder sua sustentação jurídica. A Administração Pública tem o dever, amparada pelo art. 53 da Lei nº 9.784/99, de revisar seus atos eivados de vício de legalidade.
+
+## Diferença entre autos federais e estaduais
+
+É indispensável que o autuado identifique a origem do auto de infração. Este conteúdo restringe-se exclusivamente aos autos lavrados pelo IBAMA, que é um órgão federal. Se o documento foi emitido por órgão ambiental estadual ou municipal, as normas aqui citadas não se aplicam, sendo necessário verificar a legislação específica do ente autuante, bem como as normas gerais aplicáveis àquela esfera. O Decreto nº 6.514/2008 é a norma que regula o processo sancionador federal e não possui alcance sobre infrações apuradas por órgãos estaduais ou municipais, que seguem regramentos próprios.
+
+## Requisitos formais e o art. 97 do Decreto 6.514/2008
+
+Além da competência, o auto de infração deve obedecer rigorosamente aos requisitos formais descritos no art. 97 do Decreto nº 6.514/2008, que trata dos requisitos formais do auto. O referido dispositivo exige que o documento contenha a identificação clara do autuado e a descrição objetiva da infração, além da indicação correta dos dispositivos legais infringidos. Caso o auto apresente vício insanável, conforme o art. 100, § 2º, do mesmo decreto, pode ser declarada a nulidade, podendo a Administração lavrar um novo auto, desde que ainda não tenha ocorrido a prescrição.
+
+## Prazos e procedimentos relevantes
+
+Ao receber um auto de infração, o autuado deve estar atento ao prazo de defesa de vinte dias, conforme estabelece o art. 113 do Decreto nº 6.514/2008. É fundamental conferir no próprio auto a existência de agendamento de audiência de conciliação ambiental, uma vez que o art. 97-A, § 1º, prevê o sobrestamento da fluência deste prazo. 
+
+Quanto à prescrição, existem duas contagens distintas no Decreto nº 6.514/2008:
+- Prescrição punitiva: cinco anos contados da prática ou cessação do ato, nos termos do art. 21.
+- Prescrição intercorrente: três anos sem movimentação do processo, conforme o art. 21, § 2º.
+
+Para a dosimetria da sanção, podem ser consideradas as atenuantes previstas no art. 14 da Lei nº 9.605/98, e a possibilidade de conversão em serviços de preservação, melhoria e recuperação da qualidade do meio ambiente, conforme o art. 72, § 4º, da mesma lei. Ressalta-se que a lavratura e ciência do auto seguem o rito do art. 96 do Decreto nº 6.514/2008.
+
+## Considerações sobre a defesa
+
+Discutir a competência do órgão não significa desobedecer medidas acautelatórias. Embargos, apreensões ou outras determinações vigentes devem ser respeitados enquanto se discute a validade do procedimento administrativo pelas vias legais. A estratégia de defesa deve ser pautada nos fatos e na correta aplicação das normas federais, buscando demonstrar, quando for o caso, a existência de vícios que comprometam o auto.
+
+É possível enviar o auto de infração ambiental para análise técnica, visando verificar se o documento apresenta falhas capazes de fundamentar a estratégia de defesa administrativa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "conciliacao-ambiental-ou-defesa-como-decidir-no-processo-do-ibama",
     titulo: "Conciliação Ambiental ou Defesa: como decidir no processo do IBAMA",
     descricao: "Entenda quando a conciliação ambiental é vantajosa e quando a defesa técnica é o caminho indicado. Analise seu auto de infração gratuitamente no CheckMulta.",
