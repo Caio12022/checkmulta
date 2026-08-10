@@ -12,6 +12,49 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "auto-de-infracao-sem-identificacao-do-agente-entenda-as-implicacoes",
+    titulo: "Auto de infração sem identificação do agente: entenda as implicações",
+    descricao: "Recebeu um auto de infração da Vigilância Sanitária sem o nome ou assinatura do fiscal? Entenda por que este requisito é essencial e como questionar.",
+    categoria: "Falhas do Auto",
+    tempoLeitura: "4 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-slate-50 to-gray-50",
+    palavrasChave: ["auto de infração vigilância sanitária", "falhas auto de infração", "defesa administrativa vigilância sanitária", "validade auto de infração"],
+    conteudo: `## A importância da identificação do agente no auto de infração
+
+O auto de infração é o documento formal que inaugura o processo administrativo sanitário. Ele carrega a presunção de legitimidade e veracidade dos atos administrativos, mas, para que tenha plena validade jurídica, deve observar requisitos formais rigorosos. Entre essas exigências, a correta identificação da autoridade ou do agente que lavrou o documento é fundamental para a preservação do devido processo legal.
+
+Quando um estabelecimento comercial, como um restaurante, farmácia ou clínica, recebe uma autuação, é indispensável verificar se todos os elementos de validade estão presentes. A ausência de identificação clara e legível do agente fiscalizador pode comprometer a capacidade do autuado de exercer o seu direito ao contraditório e à ampla defesa.
+
+## Requisitos formais do auto de infração
+
+A Lei 6.437/77, que rege as infrações à legislação sanitária, estabelece em seu art. 13 os requisitos obrigatórios para a lavratura do auto de infração. Este dispositivo legal determina que o documento deve conter elementos precisos para que o autuado compreenda quem realizou a inspeção e a autuação. A omissão da identidade do agente fiscalizador pode conflitar com a clareza e a transparência que devem nortear o agir do Estado.
+
+Além das normas sanitárias, o processo administrativo rege-se subsidiariamente pela Lei 9.784/99 (aplicável subsidiariamente), que reforça o princípio da motivação e a necessidade de identificação clara dos atos praticados pelos órgãos públicos. Segundo o art. 2º desta norma (aplicável subsidiariamente), a administração pública deve atuar com objetividade, o que inclui a identificação inequívoca de seus agentes.
+
+## Por que a identificação é um requisito de validade?
+
+A identificação do fiscal não é uma mera formalidade burocrática. Ela atende a princípios basilares do Direito Administrativo, como a impessoalidade e a publicidade. Sem o nome ou a identificação funcional do agente, o estabelecimento pode ficar impossibilitado de verificar a competência da autoridade para realizar o ato, bem como de questionar eventuais irregularidades cometidas durante a fiscalização.
+
+Se o documento não possibilita identificar quem o assinou ou quem realizou a inspeção, há fundamento para questionar a integridade do auto de infração. Esse vício pode ser arguido em sede de defesa administrativa, alegando que o documento carece de elementos que podem ser considerados indispensáveis para a sua validade, o que eventualmente prejudica o exercício da defesa e a compreensão da autuação pelo administrado.
+
+## O que fazer ao identificar esta falha?
+
+Ao receber um auto de infração sem a devida identificação, o primeiro passo é manter a calma e não ignorar o documento. A ausência de identificação do agente pode ser apontada na peça de defesa, solicitando que a autoridade julgadora verifique a regularidade do ato. Lembre-se de que os prazos variam de acordo com a legislação específica do ente federativo, sendo indispensável conferir o prazo estipulado no próprio auto de infração para a apresentação de sua defesa.
+
+Caso haja qualquer irregularidade sanitária apontada, documente todas as correções realizadas com fotografias, notas fiscais e laudos técnicos. Esta documentação é importante para a instrução do seu processo e para fundamentar pedidos de reinspeção, caso necessário. Ressalte-se que, em caso de interdição, a retomada das atividades deve ocorrer apenas após a liberação oficial pelo órgão competente, mediante o devido processo de desinterdição.
+
+## A busca por regularidade
+
+O controle da legalidade dos atos da administração é um direito do administrado. Ao apontar uma falha formal, como a falta de identificação, o estabelecimento busca assegurar que o processo administrativo siga estritamente o que a lei determina, respeitando os princípios da proporcionalidade e da razoabilidade.
+
+É possível buscar uma análise técnica do auto de infração da Vigilância Sanitária para verificar se a autuação apresenta falhas formais que possam ser utilizadas em sua defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "como-ler-e-interpretar-um-auto-de-infracao-da-vigilancia-sanitaria",
     titulo: "Como ler e interpretar um auto de infração da Vigilância Sanitária",
     descricao: "Recebeu uma autuação? Entenda os elementos obrigatórios de um auto de infração sanitária e como analisar o documento. Solicite uma análise gratuita hoje.",
