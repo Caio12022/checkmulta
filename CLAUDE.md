@@ -62,20 +62,35 @@ por vertical, sempre com pesquisa de fontes oficiais antes de publicar (mesmo
 cuidado da auditoria de citação legal — nunca linkar ou instruir sem
 confirmar).
 
-- **IBAMA — feito.** Federal, caminho de protocolo único em todo o Brasil
-  (SEI/IBAMA), por isso foi a vertical mais simples e o ponto de partida.
-  Implementado como passo a passo numerado (confirmar prazo → cadastro de
-  usuário externo no SEI → localizar processo no Portal do Autuado → anexar
-  e protocolar), acima do texto da defesa, com link de suporte discreto
-  abaixo dos botões de copiar/baixar. Ver bloco `PASSO_A_PASSO_IBAMA` em
-  `src/pages/Ibama.tsx`.
-- **Trânsito, Procon, Vigilância, Energia — pendente.** Cada uma tem
-  protocolo fragmentado por estado/município (Trânsito varia por
-  DETRAN/PRF/prefeitura; Procon varia por estado; Vigilância é a mais
-  fragmentada, municipal/estadual; Energia é direto com a distribuidora e
-  tem prazo específico de perícia do medidor). Construir uma de cada vez,
-  replicando o padrão do IBAMA, com pesquisa de portais oficiais antes de
-  cada implementação.
+**Status: feito nas 5 verticais.** Regra de tamanho combinada com o Caio:
+até 4-5 links concretos, lista direto; acima disso (ex.: DETRAN de cada
+estado), vira orientação genérica em vez de listar tudo — o bloco não pode
+ficar grande.
+
+- **IBAMA** (`src/pages/Ibama.tsx`, `PASSO_A_PASSO_IBAMA`) — federal, único
+  caminho de protocolo em todo o Brasil (SEI/IBAMA). Por isso é a única
+  vertical com passo a passo numerado completo (confirmar prazo → cadastro
+  de usuário externo no SEI → localizar processo no Portal do Autuado →
+  anexar e protocolar). Também ganhou link de suporte discreto abaixo dos
+  botões de copiar/baixar (as outras 4 já tinham esse link).
+- **Trânsito** (`src/pages/Home.tsx`, `LINKS_TRANSITO_PRF`) — só a PRF
+  (rodovia federal) tem link direto/nacional; DETRAN estadual e prefeitura
+  ficam com orientação genérica (27+ estados, não dá pra listar).
+- **Procon** (`src/pages/Procon.tsx`, `LINK_PROCON_REFERENCIA`) — sem canal
+  nacional de protocolo; Senacon/MJ entra só como referência institucional,
+  não como onde protocolar.
+- **Vigilância Sanitária** (`src/pages/Vigilancia.tsx`,
+  `LINK_VIGILANCIA_REFERENCIA`) — a mais fragmentada (municipal/estadual);
+  usa o catálogo de serviço do gov.br como referência única.
+- **Energia** (`src/pages/Energia.tsx`, `LINK_ANEEL_RECLAME`) — fragmentada
+  por distribuidora (dezenas, não por estado); orientação é protocolar
+  direto com a distribuidora, com a ANEEL como canal de escalonamento se
+  ela não responder.
+
+Todos os links foram validados por pesquisa (WebSearch), não por acesso
+direto — o proxy de rede deste ambiente bloqueia `gov.br` e outros domínios
+oficiais para `WebFetch`. Se algum precisar de checagem futura, use
+`WebSearch` ou peça para o Caio confirmar manualmente.
 
 ## Coisas já resolvidas (não repetir)
 
