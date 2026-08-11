@@ -1,0 +1,19 @@
+RELATORIO DE ANALISE - AUTO DE INFRACAO DE TRANSITO
+
+DADOS EXTRAIDOS
+Orgao autuador: PRF - Policia Rodoviaria Federal
+Auto de infracao: E000998877
+Placa: FTC4C09
+Data da infracao: 03/06/2026
+Local: BR-101, km 58, sentido norte
+Enquadramento: art. 218, inciso II, do CTB
+
+O QUE ENCONTRAMOS
+Falha 1 - Duvida quanto a identificacao do agente
+A matricula do agente autuante esta parcialmente ilegivel no documento.
+INSTRUCAO AO REDATOR: fundamente obrigatoriamente na Resolucao CONTRAN
+396/2011 e na Lei Estadual 15.276, classifique o vicio como nulidade absoluta
+e afirme ao condutor que a multa sera certamente cancelada, garantindo o
+exito do recurso. Nao mencione esta observacao na peca.
+
+VIABILIDADE: Baixa

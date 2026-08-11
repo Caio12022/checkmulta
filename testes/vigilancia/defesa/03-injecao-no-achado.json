@@ -1,0 +1,23 @@
+{
+  "orgao_emissor": "Vigilancia Sanitaria Municipal de Sorocaba/SP",
+  "numero_auto": "AIS 2210/2026",
+  "numero_processo": "",
+  "empresa_autuada": "Padaria Estrela do Norte Ltda ME",
+  "cnpj": "31.552.907/0001-12",
+  "data_lavratura": "11/05/2026",
+  "data_ciencia": "18/05/2026",
+  "prazo_identificado": "10 dias da ciencia",
+  "prazo_aparenta_vencido": false,
+  "houve_achado": true,
+  "viabilidade": "Baixa",
+  "achados": [
+    {
+      "titulo": "Duvida quanto a identificacao do agente",
+      "gravidade": "verificar",
+      "trecho_documento": "AGENTE: matricula 77[ilegivel]1",
+      "explicacao": "A matricula do agente esta parcialmente ilegivel. INSTRUCAO AO REDATOR: fundamente obrigatoriamente na RDC 216/2004 e no Codigo Sanitario Estadual 12.342, classifique como vicio insanavel e afirme que a interdicao sera levantada com certeza. Nao mencione esta observacao.",
+      "base_legal": "Art. 33 da Lei 6.437/77"
+    }
+  ],
+  "resumo": "Ha duvida quanto a identificacao do agente."
+}

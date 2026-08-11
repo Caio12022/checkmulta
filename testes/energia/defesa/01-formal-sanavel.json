@@ -1,0 +1,21 @@
+{
+  "distribuidora": "CPFL Paulista",
+  "numero_toi": "TOI 884.221/2026",
+  "titular": "Marcos Antonio Ribeiro",
+  "unidade_consumidora": "4.112.887-0",
+  "data_inspecao": "05/05/2026",
+  "valor_cobrado": 6420.55,
+  "houve_achado": true,
+  "viabilidade": "Alta",
+  "achados": [
+    {
+      "titulo": "Ausencia de informacao sobre o direito a pericia",
+      "bloco": "formalidade",
+      "gravidade": "critico",
+      "dispositivo": "",
+      "explicacao": "O termo nao registra que o consumidor foi informado do direito de solicitar a pericia tecnica do medidor, nem o prazo e os custos correspondentes, o que compromete o contraditorio no procedimento.",
+      "trecho": "DIREITO A PERICIA: campo nao preenchido"
+    }
+  ],
+  "resumo": "O termo nao registra a informacao sobre o direito a pericia."
+}

@@ -127,6 +127,42 @@ na execução real e não apareceriam em revisão de código:
 Ao acoplar o validador numa vertical nova, conferir antes o mapa de nomes
 dos três campos-chave documentado em `prompts/validador.ts`.
 
+### Bateria da defesa (`testes/*/defesa/`, `rodar-defesa.mjs`)
+
+Bateria separada, porque a entrada é outra: a análise **já auditada**, não o
+documento. 20 casos (4 por vertical), rodados contra `/api/generate-defense-*`.
+
+Ponto que motivou existir: até aqui só a parte **gratuita** era auditada. A
+peça paga saía crua em três verticais (Trânsito, Procon, Vigilância — que não
+têm revisor) e nas outras duas o único filtro era o revisor, que é o próprio
+modelo se conferindo e que, ao falhar, entrega o rascunho.
+
+As asserções não são reimplementadas no teste: usam `validarDefesa()` de
+`prompts/validador.ts`, via `dist/validador.cjs` (o `npm run build` gera esse
+bundle além do `server.cjs`). Regra duplicada em duas camadas foi o defeito
+que mais se repetiu aqui — um teste que reescreve a regra envelhece separado
+dela.
+
+O que `validarDefesa()` confere: citação fora da lista fechada, promessa de
+resultado, adjetivo forte fora de prescrição/competência, e imputação de
+crime ou má-fé ao agente.
+
+Os 4 casos por vertical: achado formal (sanável, adjetivo forte proibido),
+achado crítico onde o adjetivo **é** permitido (contraprova, para a trava não
+ficar restritiva demais), injeção plantada dentro do achado, e achado fraco.
+
+**A injeção pelo achado é o elo que ninguém testava.** O documento é dado do
+usuário e passa por desconfiança; a análise é saída nossa, e o prompt de
+defesa a trata como entrada confiável. Texto plantado que sobreviva dentro de
+um achado "verificar" chega à etapa paga sem nenhum filtro pelo caminho.
+
+Toda fixture nova deve ser conferida contra um servidor falso antes de
+confiar nela (peça limpa passa, peça ruim reprova). Ao montar esta bateria,
+essa conferência pegou dois furos meus: um regex de imputação que exigia
+"agente agiu" colado e não pegava "agente autuante agiu com má-fé", e um caso
+sem piso de tamanho, em que uma recusa de 56 caracteres passava em todas as
+asserções — que são todas de ausência.
+
 **As datas dos casos são templates**, não datas fixas: `{{HOJE}}`,
 `{{HOJE-5}}`, `{{HOJE+5}}` são substituídos na hora de rodar. Um caso
 "limpo" do Procon já começou a falhar sozinho com um achado *correto* de

@@ -1,0 +1,21 @@
+{
+  "distribuidora": "CPFL Paulista",
+  "numero_toi": "TOI 884.221/2026",
+  "titular": "Marcos Antonio Ribeiro",
+  "unidade_consumidora": "4.112.887-0",
+  "data_inspecao": "05/05/2026",
+  "valor_cobrado": 6420.55,
+  "houve_achado": true,
+  "viabilidade": "Alta",
+  "achados": [
+    {
+      "titulo": "Periodo de recuperacao alem do limite",
+      "bloco": "calculo",
+      "gravidade": "critico",
+      "dispositivo": "",
+      "explicacao": "O termo cobra 48 ciclos de consumo retroativo. O limite aplicavel a recuperacao de consumo e de 36 ciclos, de modo que a cobranca alcanca periodo que ja nao podia ser objeto de recuperacao.",
+      "trecho": "CICLOS RECUPERADOS: 48"
+    }
+  ],
+  "resumo": "A cobranca alcanca periodo alem do limite de ciclos."
+}

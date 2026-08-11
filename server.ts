@@ -13,7 +13,7 @@ import { infracoes, calcularValor, formatarReal, NOMES_GRAVIDADE } from "./src/d
 import { PROMPT_ANALYZE_TICKET, promptGenerateDefense } from "./prompts/transito";
 import { PROMPT_ANALYZE_PROCON, promptGenerateDefenseProcon } from "./prompts/procon";
 import { PROMPT_ANALYZE_VIGILANCIA, promptGenerateDefenseVigilancia } from "./prompts/vigilancia";
-import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry, comDataDeHoje, ehAvisoDeCorte, sobrecarregado, cotaDiariaEsgotada } from "./prompts/validador";
+import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry, comDataDeHoje, ehAvisoDeCorte, sobrecarregado, cotaDiariaEsgotada, validarDefesa, type Vertical } from "./prompts/validador";
 import { PROMPT_ANALYZE_ENERGIA, promptGenerateDefenseEnergia, promptRevisorEnergia } from "./prompts/energia";
 import { PROMPT_ANALYZE_IBAMA, promptGenerateDefenseIbama, promptRevisorIbama } from "./prompts/ibama";
 let aiClient: GoogleGenAI | null = null;
@@ -25,6 +25,37 @@ function getAIClient() {
     aiClient = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
   }
   return aiClient;
+}
+
+/**
+ * Auditoria da peça de defesa — por enquanto OBSERVAÇÃO, não bloqueio.
+ *
+ * validarDefesa() confere no código o que os prompts de defesa proíbem:
+ * citação fora da lista fechada, promessa de resultado, adjetivo forte onde o
+ * vício é sanável, e imputação de crime ou má-fé ao agente.
+ *
+ * Aqui ela só registra. Bloquear ou mandar regerar muda o que o cliente
+ * recebe, e ainda não há uma única medição do quanto isso dispara na prática —
+ * a bateria de defesa foi escrita hoje e não rodou contra o modelo. Ligar a
+ * trava antes de medir arrisca o erro que já custou correção neste projeto:
+ * trava restritiva demais que mata peça legítima.
+ *
+ * O log é o próximo dado: com ele e com a bateria dá para decidir com
+ * evidência qual violação merece virar bloqueio.
+ */
+function auditarPeca(peca: string, vertical: Vertical, entrada: any): void {
+  try {
+    const violacoes = validarDefesa(peca, vertical, entrada);
+    if (violacoes.length > 0) {
+      console.warn(
+        `DEFESA ${vertical}: ${violacoes.length} violação(ões) na peça gerada -> ` +
+          violacoes.map((v) => `${v.regra} (${v.detalhe})`).join(" | ")
+      );
+    }
+  } catch (e) {
+    // Auditoria nunca pode derrubar a entrega de uma peça já paga.
+    console.warn("Falha ao auditar a peça:", e);
+  }
 }
 
 const mpClient = new MercadoPagoConfig({
@@ -586,7 +617,9 @@ const prompt = promptGenerateDefense(extractedData);
       }));
 
       const resultText = response.text || "";
-      res.json({ result: resultText.trim() });
+      const peca = resultText.trim();
+      auditarPeca(peca, "transito", extractedData);
+      res.json({ result: peca });
     } catch (err: any) {
       console.error("API Error in generate-defense:", err);
       if (cotaDiariaEsgotada(err)) {
@@ -692,7 +725,9 @@ const prompt = promptGenerateDefenseProcon(dados);
       }));
 
       const resultText = response.text || "";
-      res.json({ result: resultText.trim() });
+      const peca = resultText.trim();
+      auditarPeca(peca, "procon", analise);
+      res.json({ result: peca });
     } catch (err: any) {
       console.error("API Error in generate-defense-procon:", err);
       if (cotaDiariaEsgotada(err)) {
@@ -796,7 +831,9 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       }));
 
       const resultText = response.text || "";
-      res.json({ result: resultText.trim() });
+      const peca = resultText.trim();
+      auditarPeca(peca, "vigilancia", analise);
+      res.json({ result: peca });
     } catch (err: any) {
       console.error("API Error in generate-defense-vigilancia:", err);
       if (cotaDiariaEsgotada(err)) {
@@ -932,6 +969,7 @@ const prompt = promptGenerateDefenseVigilancia(dados);
         console.warn("Energia: revisor falhou, entregando rascunho.", e);
       }
 
+      auditarPeca(textoFinal, "energia", analise);
       res.json({ result: textoFinal });
     } catch (err: any) {
       console.error("API Error in generate-defense-energia:", err);
@@ -1057,6 +1095,7 @@ const prompt = promptGenerateDefenseVigilancia(dados);
         console.warn("IBAMA: revisor falhou, entregando rascunho.", e);
       }
 
+      auditarPeca(textoFinal, "ibama", analise);
       res.json({ result: textoFinal });
     } catch (err: any) {
       console.error("API Error in generate-defense-ibama:", err);

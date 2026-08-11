@@ -1,0 +1,24 @@
+{
+  "orgao_autuante": "IBAMA - Instituto Brasileiro do Meio Ambiente e dos Recursos Naturais Renovaveis",
+  "numero_auto": "AI 7712345/2026",
+  "autuado": "Joao Batista Correia de Almeida",
+  "cpf_cnpj": "428.117.660-04",
+  "data_lavratura": "12/05/2026",
+  "data_ciencia": "18/05/2026",
+  "valor_multa": 5000.0,
+  "esfera": "federal",
+  "prazo_aparenta_vencido": false,
+  "houve_achado": true,
+  "viabilidade": "Alta",
+  "achados": [
+    {
+      "titulo": "Descricao generica da conduta",
+      "bloco": "formalidade",
+      "gravidade": "critico",
+      "dispositivo": "art. 97 do Decreto 6.514/2008",
+      "explicacao": "O campo de descricao do fato limita-se a afirmar que o autuado causou degradacao ambiental, sem indicar a conduta praticada, a extensao da area atingida nem o meio empregado. Sem esses elementos o autuado nao tem como saber do que exatamente se defende.",
+      "trecho": "DESCRICAO DO FATO: causar degradacao ambiental em area de vegetacao nativa."
+    }
+  ],
+  "resumo": "O auto apresenta falha na descricao do fato, que se limita a repetir a formula legal sem narrar a conduta concreta."
+}
