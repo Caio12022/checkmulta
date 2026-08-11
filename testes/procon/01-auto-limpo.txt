@@ -8,15 +8,15 @@ AUTUADA: SUPERMERCADOS VILA NOVA LTDA
 CNPJ: 44.221.905/0001-18
 ENDERECO: Av. Brasil, 2210, Centro, Campinas/SP
 
-DATA DA LAVRATURA: 22/01/2026
-DATA DA CIENCIA DA AUTUADA: 27/01/2026
+DATA DA LAVRATURA: {{HOJE-6}}
+DATA DA CIENCIA DA AUTUADA: {{HOJE-3}}
 
 DESCRICAO DOS FATOS:
-Em fiscalizacao realizada em 22/01/2026, as 10h35, constatou-se a
+Em fiscalizacao realizada em {{HOJE-6}}, as 10h35, constatou-se a
 exposicao a venda de 128 (cento e vinte e oito) unidades de produtos
 alimenticios com prazo de validade expirado, sendo 64 unidades de
-iogurte da marca X, vencidas em 12/01/2026, e 64 unidades de pao de
-forma da marca Y, vencidas em 15/01/2026, todas dispostas em gondola de
+iogurte da marca X, vencidas em {{HOJE-20}}, e 64 unidades de pao de
+forma da marca Y, vencidas em {{HOJE-17}}, todas dispostas em gondola de
 livre acesso ao consumidor no setor de laticinios e padaria. Os produtos
 foram fotografados e apreendidos conforme Termo de Apreensao 12/2026.
 

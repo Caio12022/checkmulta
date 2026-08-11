@@ -8,9 +8,9 @@ CNPJ: 18.220.774/0001-55
 ENDERECO: Rua Barao de Jaguara, 880, Centro, Campinas/SP
 LICENCA SANITARIA: 2210/2025, vigente
 
-DATA DA INSPECAO: 28/01/2026   HORA: 14h20
-DATA DA LAVRATURA: 28/01/2026
-DATA DA CIENCIA DO AUTUADO: 28/01/2026, recebido por Joao Batista Alves,
+DATA DA INSPECAO: {{HOJE-4}}   HORA: 14h20
+DATA DA LAVRATURA: {{HOJE-4}}
+DATA DA CIENCIA DO AUTUADO: {{HOJE-4}}, recebido por Joao Batista Alves,
 gerente, mediante assinatura no verso.
 
 DESCRICAO DOS FATOS:

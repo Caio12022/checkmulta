@@ -5,11 +5,11 @@ UNIDADE CONSUMIDORA: 5.220.114-8
 TITULAR: EDUARDO FONTANA MACHADO
 ENDERECO: Rua Padre Anchieta, 902, Bigorrilho, Curitiba/PR
 
-DATA DESTE AVISO: 09/02/2026
+DATA DESTE AVISO: {{HOJE-1}}
 
 COMUNICADO:
 Fica V.Sa. NOTIFICADO de que o fornecimento de energia eletrica desta
-unidade consumidora sera SUSPENSO a partir de 16/02/2026, caso nao seja
+unidade consumidora sera SUSPENSO a partir de {{HOJE+5}}, caso nao seja
 regularizado o debito abaixo discriminado.
 
 DEBITO EM ABERTO:
@@ -17,7 +17,7 @@ Recuperacao de consumo - TOI n 447.330/2026 ...... R$ 5.487,90
 Fatura 01/2026 em atraso ......................... R$   412,33
 TOTAL ............................................ R$ 5.900,23
 
-PRAZO PARA REGULARIZACAO: ate 15/02/2026.
+PRAZO PARA REGULARIZACAO: ate {{HOJE+4}}.
 
 RELIGACAO: apos a quitacao integral do debito ou formalizacao de acordo,
 a religacao sera efetuada nos prazos regulamentares, mediante cobranca da

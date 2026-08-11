@@ -33,6 +33,31 @@ const PAUSA_MS = Number(process.env.PAUSA_MS || 4000);
 
 const esperar = (ms) => new Promise((r) => setTimeout(r, ms));
 
+/**
+ * Datas relativas nos documentos de teste.
+ *
+ * Os autos usam marcadores como {{HOJE-5}} (cinco dias atrás), {{HOJE+7}}
+ * (daqui a sete dias) e {{HOJE}}, substituídos por dd/mm/aaaa no momento
+ * da execução.
+ *
+ * Sem isso a bateria apodrece: uma data escrita fixa envelhece a cada dia,
+ * e um auto que hoje está no prazo passa a estar vencido daqui a alguns
+ * meses. Foi exatamente o que aconteceu — um auto "limpo" começou a
+ * acusar prazo expirado meses depois de escrito, e a falha parecia do
+ * sistema quando era do próprio teste.
+ *
+ * Datas ABSOLUTAS continuam válidas quando o que importa é o intervalo
+ * entre duas datas do próprio documento, e não a distância até hoje —
+ * é o caso da prescrição, onde se compara o fato com a lavratura.
+ */
+function aplicarDatas(texto) {
+  return texto.replace(/\{\{HOJE(?:([+-])(\d+))?\}\}/g, (_, sinal, dias) => {
+    const d = new Date();
+    if (dias) d.setDate(d.getDate() + (sinal === "+" ? 1 : -1) * Number(dias));
+    return d.toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" });
+  });
+}
+
 function verticaisDisponiveis() {
   return readdirSync(AQUI, { withFileTypes: true })
     .filter((d) => d.isDirectory() && existsSync(join(AQUI, d.name, "casos.json")))
@@ -151,7 +176,7 @@ async function rodarVertical(vertical) {
   const falhas = [];
 
   for (const caso of manifesto.casos) {
-    const conteudo = readFileSync(join(AQUI, vertical, caso.arquivo), "utf-8");
+    const conteudo = aplicarDatas(readFileSync(join(AQUI, vertical, caso.arquivo), "utf-8"));
 
     let resposta;
     try {

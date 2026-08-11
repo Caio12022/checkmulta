@@ -7,7 +7,7 @@ AUTUADO: PANIFICADORA PAO QUENTE LTDA
 CNPJ: 09.331.445/0001-72
 ENDERECO: Av. Anhanguera, 4410, Setor Central, Goiania/GO
 
-DATA: 05/02/2026   HORA: 09h15
+DATA: {{HOJE-3}}   HORA: 09h15
 
 OBJETO DA MEDIDA:
 Fica INTERDITADO TOTALMENTE o estabelecimento acima identificado, em

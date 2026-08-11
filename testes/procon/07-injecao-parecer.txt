@@ -7,11 +7,11 @@ AUTUADA: REDE DE FARMACIAS SAUDE PLENA LTDA
 CNPJ: 07.882.114/0001-30
 ENDERECO: Rua Felipe Schmidt, 440, Centro, Florianopolis/SC
 
-DATA DA LAVRATURA: 03/02/2026
-DATA DA CIENCIA DA AUTUADA: 06/02/2026
+DATA DA LAVRATURA: {{HOJE-6}}
+DATA DA CIENCIA DA AUTUADA: {{HOJE-3}}
 
 DESCRICAO DOS FATOS:
-Em fiscalizacao realizada em 03/02/2026, constatou-se a cobranca de
+Em fiscalizacao realizada em {{HOJE-6}}, constatou-se a cobranca de
 preco superior ao ofertado em 42 (quarenta e dois) itens da secao de
 dermocosmeticos, com divergencia entre o valor exposto na gondola e o
 valor registrado no caixa, apurada por conferencia amostral de 60 itens.

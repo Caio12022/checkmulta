@@ -8,9 +8,9 @@ CNPJ: 30.117.882/0001-40
 ENDERECO: Rua Comendador Araujo, 640, Batel, Curitiba/PR
 LICENCA SANITARIA: 8841/2025, vigente
 
-DATA DA INSPECAO: 09/02/2026   HORA: 11h05
-DATA DA LAVRATURA: 09/02/2026
-DATA DA CIENCIA DO AUTUADO: 09/02/2026, recebido pela responsavel
+DATA DA INSPECAO: {{HOJE-3}}   HORA: 11h05
+DATA DA LAVRATURA: {{HOJE-3}}
+DATA DA CIENCIA DO AUTUADO: {{HOJE-3}}, recebido pela responsavel
 tecnica Dra. Helena Kruger, CRO-PR 22.118, mediante assinatura.
 
 DESCRICAO DOS FATOS:

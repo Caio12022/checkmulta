@@ -7,8 +7,8 @@ AUTUADA: LOJAS ELETRO NORDESTE LTDA
 CNPJ: 22.114.800/0001-63
 ENDERECO: Av. Bezerra de Menezes, 1200, Fortaleza/CE
 
-DATA DA LAVRATURA: 02/02/2026
-DATA DA CIENCIA: 05/02/2026
+DATA DA LAVRATURA: {{HOJE-6}}
+DATA DA CIENCIA: {{HOJE-3}}
 
 DESCRICAO DOS FATOS:
 Recusa de cumprimento de oferta veiculada em encarte promocional,
