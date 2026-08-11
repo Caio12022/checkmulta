@@ -1,0 +1,23 @@
+COMPANHIA DE ELETRICIDADE DO ESTADO DE SAO PAULO
+FATURA DE ENERGIA ELETRICA
+
+UNIDADE CONSUMIDORA: 3.117.446-2
+TITULAR: RENATA GOMES PEREIRA
+ENDERECO: Rua Sete de Abril, 45, Centro, Sorocaba/SP
+CLASSE: Residencial   GRUPO: B1
+
+REFERENTE A: 02/2026
+VENCIMENTO: 12/03/2026
+LEITURA ANTERIOR: 14/01/2026 - 8.442 kWh
+LEITURA ATUAL: 13/02/2026 - 8.771 kWh
+CONSUMO DO MES: 329 kWh
+
+VALORES:
+Energia eletrica consumida ................. R$ 268,44
+Bandeira tarifaria vermelha patamar 1 ...... R$ 29,61
+Contribuicao iluminacao publica ............ R$ 18,90
+TOTAL A PAGAR .............................. R$ 316,95
+
+Historico de consumo (kWh): 02/25 291 | 03/25 305 | 04/25 288
+05/25 276 | 06/25 264 | 07/25 259 | 08/25 271 | 09/25 283
+10/25 298 | 11/25 312 | 12/25 341 | 01/26 318

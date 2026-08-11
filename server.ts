@@ -13,7 +13,7 @@ import { infracoes, calcularValor, formatarReal, NOMES_GRAVIDADE } from "./src/d
 import { PROMPT_ANALYZE_TICKET, promptGenerateDefense } from "./prompts/transito";
 import { PROMPT_ANALYZE_PROCON, promptGenerateDefenseProcon } from "./prompts/procon";
 import { PROMPT_ANALYZE_VIGILANCIA, promptGenerateDefenseVigilancia } from "./prompts/vigilancia";
-import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry } from "./prompts/validador";
+import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry, comDataDeHoje } from "./prompts/validador";
 import { PROMPT_ANALYZE_ENERGIA, promptGenerateDefenseEnergia, promptRevisorEnergia } from "./prompts/energia";
 import { PROMPT_ANALYZE_IBAMA, promptGenerateDefenseIbama, promptRevisorIbama } from "./prompts/ibama";
 let aiClient: GoogleGenAI | null = null;
@@ -539,7 +539,7 @@ const ehRecusaEmTexto = (t: string) => RECUSAS_EM_TEXTO.includes(t.trim().toLowe
 
       const ai = getAIClient();
 
-      const prompt = PROMPT_ANALYZE_TICKET;
+      const prompt = comDataDeHoje(PROMPT_ANALYZE_TICKET);
 
       const response = await gerarComRetry(() => ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
@@ -604,7 +604,7 @@ const prompt = promptGenerateDefense(extractedData);
 
       const ai = getAIClient();
 
-const prompt = PROMPT_ANALYZE_PROCON;
+const prompt = comDataDeHoje(PROMPT_ANALYZE_PROCON);
 
       const response = await gerarComRetry(() => ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
@@ -703,7 +703,7 @@ const prompt = promptGenerateDefenseProcon(dados);
 
       const ai = getAIClient();
 
-const prompt = PROMPT_ANALYZE_VIGILANCIA;
+const prompt = comDataDeHoje(PROMPT_ANALYZE_VIGILANCIA);
 
       const response = await gerarComRetry(() => ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
@@ -796,7 +796,7 @@ const prompt = promptGenerateDefenseVigilancia(dados);
 
       const ai = getAIClient();
 
-      const prompt = PROMPT_ANALYZE_ENERGIA;
+      const prompt = comDataDeHoje(PROMPT_ANALYZE_ENERGIA);
 
       const response = await gerarComRetry(() => ai.models.generateContent({
         model: "gemini-3.1-flash-lite",
@@ -827,10 +827,23 @@ const prompt = promptGenerateDefenseVigilancia(dados);
         return res.json({ result: parsed.status });
       }
 
-      // TODO: acoplar validarAnaliseJSON(parsed, "energia") quando o validador
-      // conhecer a vertical de energia. Ver observação abaixo.
+      /* Auditoria programática. A Energia era a única vertical paga que entregava
+         a saída do modelo sem conferência: todo achado dependia de o modelo
+         obedecer ao prompt. O acoplamento exigiu antes que o prompt passasse a
+         devolver "transcricao_documento" — sem ela, o validador considera todo
+         documento ilegível e a vertical inteira para de funcionar. */
+      const auditoria = validarAnaliseJSON(parsed, "energia");
+      if (auditoria.ilegivel) {
+        return res.json({ result: "documento_ilegivel" });
+      }
+      if (auditoria.invalido) {
+        return res.json({ result: "documento_invalido" });
+      }
+      if (auditoria.descartados > 0) {
+        console.warn(`ENERGIA: ${auditoria.descartados} achado(s) descartado(s) na auditoria.`);
+      }
 
-      res.json({ result: parsed });
+      res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-energia:", err);
       if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
@@ -902,7 +915,7 @@ const prompt = promptGenerateDefenseVigilancia(dados);
 
       const ai = getAIClient();
 
-      const prompt = PROMPT_ANALYZE_IBAMA;
+      const prompt = comDataDeHoje(PROMPT_ANALYZE_IBAMA);
 
       const response = await gerarComRetry(() => ai.models.generateContent({
         model: "gemini-3.1-flash-lite",

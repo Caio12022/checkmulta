@@ -9,6 +9,39 @@
  */
 
 // ============================================================
+// 0. DATA DE HOJE
+// ============================================================
+
+/**
+ * O modelo não sabe em que dia está sendo executado. Sem isso, é impossível
+ * julgar tempestividade: o prazo de defesa se conta da ciência, e só se sabe
+ * se ele venceu comparando com a data de hoje.
+ *
+ * Antes desta função, a única vertical com trava de prazo (trânsito) usava
+ * um ano fixo no texto do prompt — uma regra que expira sozinha na virada
+ * do ano e passa a deixar autos vencidos seguirem para a venda.
+ *
+ * Fuso de São Paulo porque o servidor roda em UTC e o público é brasileiro;
+ * um dia de diferença importa quando o prazo está no limite.
+ */
+export function dataDeHoje(): string {
+  return new Date().toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" });
+}
+
+/**
+ * Prefixo aplicado a todo prompt de análise. Fica no topo, antes do papel do
+ * analista, para que a data esteja disponível em qualquer raciocínio de prazo.
+ */
+export function comDataDeHoje(prompt: string): string {
+  return `DATA DE HOJE: ${dataDeHoje()} (formato dd/mm/aaaa).
+Use esta data, e somente ela, sempre que precisar saber em que dia a análise
+está sendo feita — inclusive para calcular se algum prazo já venceu. Não
+suponha outra data a partir do conteúdo do documento.
+
+${prompt}`;
+}
+
+// ============================================================
 // 1. NORMALIZAÇÃO
 // ============================================================
 
@@ -421,14 +454,28 @@ export function validarAnaliseJSON(
     ? parsed.transcricao_documento
     : "";
 
-  /* Cada vertical batizou os campos de identificação à sua maneira. Procon e
-     Vigilância usam orgao_emissor / empresa_autuada; IBAMA usa orgao_autuante /
-     autuado; Energia usa distribuidora. Aceitamos todos os apelidos para que a
-     trava de legibilidade funcione igual em qualquer rota. */
+  /* Cada vertical batizou os campos de identificação à sua maneira, e a trava
+     de legibilidade exige pelo menos DOIS deles preenchidos. Os três apelidos
+     precisam estar completos, senão a vertical inteira passa a recusar todo
+     documento como ilegível — foi o que aconteceu com a Energia, que só tinha
+     "distribuidora" mapeado e cujos outros dois campos se chamam numero_toi e
+     titular, não numero_auto e autuado.
+
+     Mapa atual, conferido contra o schema de saída de cada prompt:
+       Procon      orgao_emissor   / numero_auto / empresa_autuada
+       Vigilância  orgao_emissor   / numero_auto / empresa_autuada
+       IBAMA       orgao_autuante  / numero_auto / autuado
+       Energia     distribuidora   / numero_toi  / titular
+
+     "estabelecimento_autuado" segue aceito por compatibilidade, mas hoje
+     nenhum prompt o devolve.
+
+     Vertical nova: conferir os três nomes aqui ANTES de acoplar o validador. */
   const camposChave = [
     parsed?.orgao_emissor || parsed?.orgao_autuante || parsed?.distribuidora,
-    parsed?.numero_auto,
-    parsed?.empresa_autuada || parsed?.estabelecimento_autuado || parsed?.autuado,
+    parsed?.numero_auto || parsed?.numero_toi,
+    parsed?.empresa_autuada || parsed?.estabelecimento_autuado || parsed?.autuado ||
+      parsed?.titular,
   ].filter((v) => typeof v === "string") as string[];
 
   // ORDEM DAS TRAVAS (a ordem importa):

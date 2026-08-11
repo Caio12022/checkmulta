@@ -1,0 +1,41 @@
+COMPANHIA DE ELETRICIDADE DO ESTADO DE SAO PAULO
+TERMO DE OCORRENCIA E INSPECAO - TOI N 884.221/2026
+
+UNIDADE CONSUMIDORA: 4.112.887-0
+TITULAR: MARCOS ANTONIO RIBEIRO
+CPF: 187.442.309-11
+ENDERECO: Rua das Acacias, 214, Jardim Aurora, Piracicaba/SP
+CLASSE: Residencial   GRUPO: B1
+
+DATA DA INSPECAO: 14/01/2026   HORA: 10h20
+INSPECAO ACOMPANHADA POR: Marcos Antonio Ribeiro (titular)
+ASSINATURA DE RECEBIMENTO: assinado pelo titular no ato
+COPIA ENTREGUE AO CONSUMIDOR: sim, no ato da inspecao
+
+IRREGULARIDADE CONSTATADA:
+Desvio de condutor na entrada da medicao, anterior ao medidor, com
+derivacao aparente para o quadro interno. Registro fotografico anexo
+(fotos 1 a 4). Medidor n 8842119, marca Nansen, retirado no ato.
+
+ACONDICIONAMENTO DO MEDIDOR: medidor acondicionado em involucro lacrado
+sob o lacre n 552.118, na presenca do consumidor.
+
+DIREITO A PERICIA: o consumidor foi informado de que pode solicitar, no
+prazo de 15 dias contados do recebimento deste termo, a verificacao ou a
+pericia metrologica do medidor junto ao INMETRO ou orgao delegado,
+ficando ciente dos custos de frete e da pericia, e da possibilidade de
+indicar assistente tecnico de sua escolha.
+
+AVALIACAO TECNICA: relatorio de avaliacao tecnica n 41/2026 anexo, com
+analise do historico de consumo dos ultimos 12 ciclos e das grandezas
+eletricas medidas no local.
+
+CRITERIO DE CALCULO: media dos tres maiores consumos verificados nos 12
+ciclos anteriores a constatacao (ciclos 01/2025 a 12/2025).
+MEMORIA DE CALCULO: anexa, discriminada ciclo a ciclo.
+
+PERIODO RECUPERADO: 6 (seis) ciclos, de 07/2025 a 12/2025.
+VALOR APURADO: R$ 3.212,45
+CUSTO ADMINISTRATIVO: nao cobrado.
+
+INSPETOR: Jose Almir Fontes - Matricula 22.118
