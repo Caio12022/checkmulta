@@ -112,6 +112,23 @@ function conferir(espera, corpo, status) {
     );
   }
 
+  /* Campos da própria análise, e não dos achados. Serve para travas que a
+     tela lê direto do JSON — o caso mais importante é "esfera": é por ele
+     que Ibama.tsx bloqueia a venda quando o auto é estadual ou municipal.
+     Sem conferir isso, um auto estadual poderia sair sem achado nenhum e o
+     teste passaria, mesmo com a trava de competência quebrada. */
+  if (espera.campos && typeof espera.campos === "object") {
+    for (const [campo, valor] of Object.entries(espera.campos)) {
+      const obtido = resultado[campo];
+      const bate =
+        typeof obtido === "string" &&
+        obtido.toLowerCase().includes(String(valor).toLowerCase());
+      if (!bate) {
+        problemas.push(`campo "${campo}": esperava "${valor}", veio "${obtido}"`);
+      }
+    }
+  }
+
   if (Array.isArray(espera.blocos_esperados) && espera.blocos_esperados.length > 0) {
     const blocos = new Set(criticos.map((a) => a?.bloco));
     const bateu = espera.blocos_esperados.some((b) => blocos.has(b));

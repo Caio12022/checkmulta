@@ -1,0 +1,28 @@
+DEPARTAMENTO ESTADUAL DE TRANSITO DE SAO PAULO
+DETRAN/SP
+
+NOTIFICACAO DE AUTUACAO
+AUTO DE INFRACAO DE TRANSITO N AB1234567
+
+PROPRIETARIO: CARLOS EDUARDO MOREIRA
+CPF: 331.209.487-55
+VEICULO: FIAT ARGO 1.0 - PLACA GHT4A21 - RENAVAM 01288440917
+CONDUTOR: nao identificado
+
+DATA DA INFRACAO: 22/01/2026    HORA: 14h37
+LOCAL: Av. Bandeirantes, altura do n 1200, Sao Paulo/SP
+
+DESCRICAO DA INFRACAO:
+Transitar em velocidade superior a maxima permitida em ate 20%.
+Velocidade aferida: 74 km/h. Velocidade permitida na via: 60 km/h.
+Velocidade considerada apos descontada a tolerancia: 68 km/h.
+Equipamento: radar fixo, marca XYZ, aferido pelo INMETRO em 08/2025,
+certificado n 4417/2025.
+
+ENQUADRAMENTO: art. 218, inciso I, do Codigo de Transito Brasileiro
+(Lei n 9.503/97). Infracao MEDIA. 4 pontos na CNH.
+
+VALOR DA MULTA: R$ 130,16
+
+PRAZO PARA DEFESA PREVIA: conforme data indicada nesta notificacao.
+Recurso a JARI apos a aplicacao da penalidade.
