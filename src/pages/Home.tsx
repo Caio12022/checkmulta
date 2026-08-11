@@ -368,6 +368,36 @@ export default function App() {
       if (existing) existing.remove();
     };
   }, []);
+  // ─── SCHEMA SoftwareApplication — descreve o produto de trânsito ──────────
+  useEffect(() => {
+    const appSchema = {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "CheckMulta",
+      "operatingSystem": "WebBrowser",
+      "applicationCategory": "LegalApplication",
+      "url": "https://checkmulta.com.br/multa-de-transito",
+      "description": "Plataforma de inteligência artificial que audita autos de infração de trânsito e elabora defesas prévias baseadas no Código de Trânsito Brasileiro.",
+      "offers": {
+        "@type": "Offer",
+        "price": "19.90",
+        "priceCurrency": "BRL"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "CheckMulta"
+      }
+    };
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "software-schema-home";
+    script.text = JSON.stringify(appSchema);
+    document.head.appendChild(script);
+    return () => {
+      const existing = document.getElementById("software-schema-home");
+      if (existing) existing.remove();
+    };
+  }, []);
   useEffect(() => {
     // Prioridade 1: a defesa final já tinha sido gerada e paga. Mostra
     // direto, sem chamar a IA de novo — cobre fechar a aba DEPOIS que o

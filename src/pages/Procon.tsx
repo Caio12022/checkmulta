@@ -204,6 +204,64 @@ export default function Procon() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // ─── EFEITOS ─────────────────────────────────────────────────────────────
+  // ─── SCHEMA FAQPage — faz a IA e o Google entenderem as perguntas de baixo ──
+  useEffect(() => {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qual o prazo para apresentar defesa no Procon?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O Decreto federal 2.181/97 prevê 20 dias, mas há Procons estaduais com prazo próprio. O Procon-SP, por exemplo, adota 15 dias. Confira sempre o prazo indicado no seu auto de infração."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que acontece se a empresa não apresentar defesa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O processo é julgado sem a manifestação da empresa e a multa é fixada. Não recolhido o valor no prazo, o débito pode ser inscrito em dívida ativa e cobrado judicialmente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que tipo de vício pode anular o auto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Conduta descrita de forma genérica, ausência de capitulação legal, notificação irregular, incompetência do órgão e falta de fundamentação da multa são exemplos tratados no Decreto 2.181/97."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "É possível reduzir o valor da multa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. O art. 57 do CDC exige que a multa considere gravidade, vantagem auferida e condição econômica. Se a estimativa de faturamento estiver equivocada, ela pode ser impugnada com documentos contábeis."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Preciso de advogado para apresentar defesa administrativa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não é obrigatório na esfera administrativa. A empresa pode apresentar defesa por meio de seu representante legal. Para casos de maior complexidade ou valor elevado, a consulta a um advogado é recomendável."
+          }
+        }
+      ]
+    };
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "faq-schema-procon";
+    script.text = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+    return () => {
+      const existing = document.getElementById("faq-schema-procon");
+      if (existing) existing.remove();
+    };
+  }, []);
   useEffect(() => {
     // Prioridade 1: a defesa final já tinha sido gerada e paga. Mostra
     // direto, sem chamar a IA de novo — cobre fechar a aba DEPOIS que o

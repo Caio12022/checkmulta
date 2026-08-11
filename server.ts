@@ -488,6 +488,20 @@ async function startServer() {
   });
 
   // ==========================================
+  // REDIRECT 301: blog antigo (/blog/...) -> /multa-de-transito/blog/...
+  // O blog de trânsito mudou de endereço. Sem redirect de servidor, o Google
+  // mantém as URLs antigas indexadas apontando pra um conteúdo genérico
+  // (a home), em vez de transferir o valor de rank pra URL nova.
+  // ==========================================
+  app.get("/blog/categoria/:categoria", (req, res) => {
+    res.redirect(301, `/multa-de-transito/blog/categoria/${req.params.categoria}`);
+  });
+
+  app.get("/blog/:slug", (req, res) => {
+    res.redirect(301, `/multa-de-transito/blog/${req.params.slug}`);
+  });
+
+  // ==========================================
   // ROTA: GERAR PIX (MERCADO PAGO)
   // Aceita valor variável. Padrão 19.90 (CheckMulta trânsito).
   // Procon usa 99.00, enviado pelo front.

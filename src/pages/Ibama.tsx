@@ -294,6 +294,64 @@ export default function Ibama() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // ─── EFEITOS ─────────────────────────────────────────────────────────────
+  // ─── SCHEMA FAQPage — faz a IA e o Google entenderem as perguntas de baixo ──
+  useEffect(() => {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qual o prazo para apresentar defesa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O prazo é de 20 dias contados da ciência da autuação, mas pode ficar suspenso quando há audiência de conciliação ambiental. Confira o prazo no próprio auto e no sistema do IBAMA, e protocole o quanto antes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que acontece se eu não apresentar defesa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O processo é julgado sem a sua manifestação e a multa é consolidada, podendo ser inscrita em dívida ativa e executada. Apresentar defesa é o que garante o contraditório antes da decisão."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que tipo de falha pode anular o auto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Descrição genérica da infração, enquadramento incompatível com o fato, ausência de laudo de constatação, área sem georreferenciamento, autuação por órgão incompetente e prescrição são exemplos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que é a prescrição do auto ambiental?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Administração tem 5 anos, contados do fato, para lavrar o auto, e o processo não pode ficar parado por mais de 3 anos. Ultrapassados esses prazos, há indício de prescrição, que pode levar ao arquivamento. Um dos argumentos mais fortes em autos antigos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Preciso de advogado para apresentar defesa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não é obrigatório na via administrativa: o próprio autuado pode protocolar a defesa pelo sistema do IBAMA. Para autos de valor elevado ou se o caso for para a Justiça, a consulta a um advogado é fortemente recomendável."
+          }
+        }
+      ]
+    };
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "faq-schema-ibama";
+    script.text = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+    return () => {
+      const existing = document.getElementById("faq-schema-ibama");
+      if (existing) existing.remove();
+    };
+  }, []);
   useEffect(() => {
     const savedResult = localStorage.getItem("ibama_saved_result");
     const savedPaidStatus = localStorage.getItem("ibama_paid_status");

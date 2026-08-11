@@ -214,6 +214,64 @@ export default function Energia() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // ─── EFEITOS ─────────────────────────────────────────────────────────────
+  // ─── SCHEMA FAQPage — faz a IA e o Google entenderem as perguntas de baixo ──
+  useEffect(() => {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qual o prazo para contestar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O prazo consta da própria notificação que você recebeu. Confira o documento e, em caso de dúvida, confirme junto à distribuidora. Protocole o quanto antes: a contestação em aberto é o que sustenta o pedido de suspensão da cobrança."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que acontece se eu não contestar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O débito é lançado na fatura e passa a ser cobrado como dívida comum, com risco de negativação e de suspensão do fornecimento. Contestar formalmente é o que interrompe esse caminho automático."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que tipo de falha derruba a cobrança?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TOI lavrado sem o consumidor nem acompanhante, alegação de violação do medidor sem avaliação técnica, perícia em laboratório sem aviso prévio da data, ausência de memória de cálculo e cobrança de período longo sem demonstrar quando a irregularidade começou."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Podem cortar minha luz por causa desse débito?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Os tribunais têm entendido que a distribuidora não pode interromper o fornecimento com base em débito originado de TOI emitido em desacordo com a Resolução ANEEL nº 1.000/2021. Continue pagando as faturas normais de consumo. A discussão é só sobre o retroativo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Preciso de advogado para contestar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não na via administrativa: o próprio consumidor protocola a reclamação na distribuidora e, se necessário, na ouvidoria e na ANEEL. Para valores altos ou se o caso for para a Justiça, a consulta a um advogado é fortemente recomendável."
+          }
+        }
+      ]
+    };
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "faq-schema-energia";
+    script.text = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+    return () => {
+      const existing = document.getElementById("faq-schema-energia");
+      if (existing) existing.remove();
+    };
+  }, []);
   useEffect(() => {
     const savedDefense = localStorage.getItem("energia_defense_result");
     const savedResult = localStorage.getItem("energia_saved_result");

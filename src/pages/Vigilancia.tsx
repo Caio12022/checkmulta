@@ -203,6 +203,64 @@ export default function Vigilancia() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // ─── EFEITOS ─────────────────────────────────────────────────────────────
+  // ─── SCHEMA FAQPage — faz a IA e o Google entenderem as perguntas de baixo ──
+  useEffect(() => {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qual o prazo para apresentar defesa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O prazo varia conforme o órgão emissor, porque cada estado e município possui código sanitário próprio. Confira sempre o prazo indicado no seu auto de infração e, em caso de dúvida, confirme junto ao órgão."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O que acontece se não apresentar defesa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O processo é julgado sem a manifestação do estabelecimento e a penalidade é aplicada. Além da multa, a legislação sanitária prevê advertência, apreensão, interdição e cancelamento de licença."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Que tipo de falha pode anular o auto?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Descrição genérica da irregularidade, ausência de indicação da norma violada, intimação irregular, falta de identificação do agente e penalidade desproporcional são exemplos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dá para recorrer de uma interdição?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. Além da defesa, é possível requerer reinspeção demonstrando que as condições foram regularizadas. A proporcionalidade da medida também pode ser questionada."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Preciso de advogado para apresentar defesa administrativa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não é obrigatório na esfera administrativa. O estabelecimento pode apresentar defesa por meio de seu representante legal. Em casos de interdição ou risco de cancelamento de licença, a consulta a um advogado é fortemente recomendável."
+          }
+        }
+      ]
+    };
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "faq-schema-vigilancia";
+    script.text = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+    return () => {
+      const existing = document.getElementById("faq-schema-vigilancia");
+      if (existing) existing.remove();
+    };
+  }, []);
   useEffect(() => {
     // Prioridade 1: a defesa final já tinha sido gerada e paga. Mostra
     // direto, sem chamar a IA de novo — cobre fechar a aba DEPOIS que o
