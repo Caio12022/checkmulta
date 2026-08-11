@@ -502,8 +502,27 @@ const RE_TITULO_CORTE = new RegExp(
   ].join("|")
 );
 
+/* O documento que se identifica como TOI não é aviso de corte, por mais que
+   fale de suspensão adiante. Sem este desempate, um TOI de cabeçalho curto com
+   a observação "o não pagamento poderá acarretar a suspensão do fornecimento"
+   logo no início era recusado por escopo — trava restritiva demais matando
+   caso legítimo, que é erro pior do que não ter trava. */
+const RE_SE_DIZ_TOI =
+  /termo\s+de\s+ocorrencia|\btoi\b|termo\s+de\s+inspecao|recuperacao\s+de\s+consumo/;
+
 export function ehAvisoDeCorte(transcricao: string): boolean {
-  const cabecalho = normalizar(transcricao).slice(0, 400);
+  /* Só o CABEÇALHO, e contado em linhas — não em caracteres. A janela de 400
+     caracteres alcançava o corpo de documentos com cabeçalho curto, e é no
+     corpo que o TOI comum avisa sobre suspensão. O que caracteriza o aviso de
+     corte é o assunto ser o corte, e isso se lê no título. */
+  const linhas = (transcricao || "")
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .slice(0, 6);
+
+  const cabecalho = normalizar(linhas.join(" "));
+  if (RE_SE_DIZ_TOI.test(cabecalho)) return false;
   return RE_TITULO_CORTE.test(cabecalho);
 }
 

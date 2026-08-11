@@ -21,6 +21,21 @@ name: Bateria de testes de analise
         options: ["", "analise", "defesa", "ambas"]
 
 jobs:
+  # Testes de unidade do validador. Nao chamam IA: rodam em segundos, sao
+  # deterministicos e cobrem os DOIS lados de cada trava (pegou o ruim E
+  # liberou o legitimo). Rodam antes da bateria porque uma falha aqui e sempre
+  # defeito, nunca variacao do modelo — e nao gasta cota para descobrir isso.
+  unidade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "20"
+      - run: npm install
+      - run: npm run build
+      - run: node testes/unidade.mjs
+
   # As cinco verticais sao independentes entre si, mas rodavam em fila: 92
   # chamadas sequenciais ao Gemini passavam de 50 minutos em dia de pico de
   # demanda. Bateria lenta e bateria que a gente evita rodar, e o valor dela
@@ -45,7 +60,7 @@ jobs:
           echo "Vai rodar: $lista"
 
   bateria:
-    needs: escolher
+    needs: [escolher, unidade]
     runs-on: ubuntu-latest
     strategy:
       # Uma vertical vermelha nao pode cancelar as outras: o que interessa e o
@@ -110,11 +125,12 @@ jobs:
 
   # Um lugar so para olhar o resultado, em vez de abrir as cinco matrizes.
   resultado:
-    needs: bateria
+    needs: [unidade, bateria]
     if: always()
     runs-on: ubuntu-latest
     steps:
       - name: Consolidar
         run: |
-          echo "Resultado da bateria: ${{ needs.bateria.result }}"
-          [ "${{ needs.bateria.result }}" = "success" ]
+          echo "Unidade: ${{ needs.unidade.result }}"
+          echo "Bateria: ${{ needs.bateria.result }}"
+          [ "${{ needs.unidade.result }}" = "success" ] && [ "${{ needs.bateria.result }}" = "success" ]
