@@ -17,10 +17,26 @@
 const RE_SOBRECARGA =
   /503|UNAVAILABLE|overloaded|high demand|429|RESOURCE_EXHAUSTED|SERVER_BUSY|exhausted/i;
 
-export function ehSobrecarga(err: any): boolean {
-  if (!err) return false;
-  const texto = typeof err === "string"
+/**
+ * Cota diária do projeto esgotada. Diferente de pico de demanda: não passa em
+ * segundos, passa na virada do dia. Dizer "aguarde alguns segundos" aqui é
+ * mandar a pessoa tentar de novo para receber o mesmo erro.
+ */
+const RE_COTA_DIARIA = /QUOTA_DIARIA|PerDay|per day|requests per day/i;
+
+function textoDoErro(err: any): string {
+  if (!err) return "";
+  return typeof err === "string"
     ? err
     : `${err?.message || ""} ${err?.status || ""} ${err?.error || ""}`;
-  return RE_SOBRECARGA.test(texto);
+}
+
+export function ehCotaDiaria(err: any): boolean {
+  return RE_COTA_DIARIA.test(textoDoErro(err));
+}
+
+export function ehSobrecarga(err: any): boolean {
+  if (!err) return false;
+  if (ehCotaDiaria(err)) return false;
+  return RE_SOBRECARGA.test(textoDoErro(err));
 }

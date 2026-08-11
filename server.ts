@@ -13,7 +13,7 @@ import { infracoes, calcularValor, formatarReal, NOMES_GRAVIDADE } from "./src/d
 import { PROMPT_ANALYZE_TICKET, promptGenerateDefense } from "./prompts/transito";
 import { PROMPT_ANALYZE_PROCON, promptGenerateDefenseProcon } from "./prompts/procon";
 import { PROMPT_ANALYZE_VIGILANCIA, promptGenerateDefenseVigilancia } from "./prompts/vigilancia";
-import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry, comDataDeHoje, ehAvisoDeCorte, sobrecarregado } from "./prompts/validador";
+import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry, comDataDeHoje, ehAvisoDeCorte, sobrecarregado, cotaDiariaEsgotada } from "./prompts/validador";
 import { PROMPT_ANALYZE_ENERGIA, promptGenerateDefenseEnergia, promptRevisorEnergia } from "./prompts/energia";
 import { PROMPT_ANALYZE_IBAMA, promptGenerateDefenseIbama, promptRevisorIbama } from "./prompts/ibama";
 let aiClient: GoogleGenAI | null = null;
@@ -555,6 +555,10 @@ const ehRecusaEmTexto = (t: string) => RECUSAS_EM_TEXTO.includes(t.trim().toLowe
       res.json({ result: resultText });
     } catch (err: any) {
       console.error("API Error in analyze-ticket:", err);
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
       if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
@@ -585,6 +589,10 @@ const prompt = promptGenerateDefense(extractedData);
       res.json({ result: resultText.trim() });
     } catch (err: any) {
       console.error("API Error in generate-defense:", err);
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
       if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
@@ -652,6 +660,10 @@ const prompt = comDataDeHoje(PROMPT_ANALYZE_PROCON);
       res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-procon:", err);
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
       if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
@@ -683,6 +695,10 @@ const prompt = promptGenerateDefenseProcon(dados);
       res.json({ result: resultText.trim() });
     } catch (err: any) {
       console.error("API Error in generate-defense-procon:", err);
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
       if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
@@ -748,6 +764,10 @@ const prompt = comDataDeHoje(PROMPT_ANALYZE_VIGILANCIA);
       res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-vigilancia:", err);
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
       if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
@@ -779,6 +799,10 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: resultText.trim() });
     } catch (err: any) {
       console.error("API Error in generate-defense-vigilancia:", err);
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
       if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
@@ -855,6 +879,10 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-energia:", err);
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
       if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
@@ -907,6 +935,10 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: textoFinal });
     } catch (err: any) {
       console.error("API Error in generate-defense-energia:", err);
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
       if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
@@ -973,6 +1005,10 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-ibama:", err);
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
       if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
@@ -1024,6 +1060,10 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: textoFinal });
     } catch (err: any) {
       console.error("API Error in generate-defense-ibama:", err);
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
       if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }

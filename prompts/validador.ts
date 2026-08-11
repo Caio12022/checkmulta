@@ -819,9 +819,33 @@ function temOutroVicio(relatorio: string): boolean {
 // 9. RETRY COM ESPERA (erro 503 / modelo sobrecarregado)
 // ============================================================
 
+function textoDoErro(err: any): string {
+  return `${err?.message || ""} ${err?.status || ""} ${JSON.stringify(err?.error || {})}`;
+}
+
+/**
+ * Cota DIÁRIA do projeto esgotada — coisa diferente de pico de demanda.
+ *
+ * O 429 do Gemini cobre dois casos que não se parecem em nada:
+ *   - cota por MINUTO estourada: passa sozinha em segundos, repetir resolve;
+ *   - cota por DIA estourada: não passa hoje, repetir é só fazer o usuário
+ *     esperar para receber o mesmo erro.
+ *
+ * Quem distingue é o quotaId ("GenerateRequestsPerDayPerProjectPerModel").
+ * Sem essa separação, quem clicou em analisar espera os 76s inteiros do
+ * retry para então ver a mensagem de erro — e no caso da defesa paga, espera
+ * isso depois de já ter pago.
+ */
+export function cotaDiariaEsgotada(err: any): boolean {
+  return /PerDay|per day|requests per day/i.test(textoDoErro(err));
+}
+
 export function sobrecarregado(err: any): boolean {
-  const m = `${err?.message || ""} ${err?.status || ""} ${JSON.stringify(err?.error || {})}`;
-  return /503|UNAVAILABLE|overloaded|high demand|429|RESOURCE_EXHAUSTED|SERVER_BUSY/i.test(m);
+  // Cota do dia não é sobrecarga: não adianta repetir, e o tratamento é outro.
+  if (cotaDiariaEsgotada(err)) return false;
+  return /503|UNAVAILABLE|overloaded|high demand|429|RESOURCE_EXHAUSTED|SERVER_BUSY/i.test(
+    textoDoErro(err)
+  );
 }
 
 const espera = (ms: number) => new Promise((r) => setTimeout(r, ms));
