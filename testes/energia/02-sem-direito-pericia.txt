@@ -1,0 +1,24 @@
+DISTRIBUIDORA DE ENERGIA DO NORDESTE S.A.
+TERMO DE OCORRENCIA E INSPECAO - TOI N 220.774/2026
+
+UNIDADE CONSUMIDORA: 7.339.201-4
+TITULAR: LUCIA HELENA BARROS DA COSTA
+CPF: 662.008.117-30
+ENDERECO: Trav. Sao Bento, 88, Bairro Uniao, Recife/PE
+CLASSE: Residencial   GRUPO: B1
+
+DATA DA INSPECAO: 08/02/2026   HORA: 09h05
+INSPECAO ACOMPANHADA POR: nao consta
+ASSINATURA DE RECEBIMENTO: nao consta assinatura
+
+IRREGULARIDADE CONSTATADA:
+Lacre da caixa de medicao violado. Medidor n 4471002 apresentando
+indicios de adulteracao no sistema de registro.
+
+MEDIDOR RETIRADO: sim, n 4471002.
+
+CRITERIO DE CALCULO: media dos tres maiores consumos.
+PERIODO RECUPERADO: 12 (doze) ciclos, de 02/2025 a 01/2026.
+VALOR APURADO: R$ 8.940,00
+
+INSPETOR: Carlos Eduardo Menezes - Matricula 9.014

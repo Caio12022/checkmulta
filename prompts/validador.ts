@@ -9,6 +9,39 @@
  */
 
 // ============================================================
+// 0. DATA DE HOJE
+// ============================================================
+
+/**
+ * O modelo não sabe em que dia está sendo executado. Sem isso, é impossível
+ * julgar tempestividade: o prazo de defesa se conta da ciência, e só se sabe
+ * se ele venceu comparando com a data de hoje.
+ *
+ * Antes desta função, a única vertical com trava de prazo (trânsito) usava
+ * um ano fixo no texto do prompt — uma regra que expira sozinha na virada
+ * do ano e passa a deixar autos vencidos seguirem para a venda.
+ *
+ * Fuso de São Paulo porque o servidor roda em UTC e o público é brasileiro;
+ * um dia de diferença importa quando o prazo está no limite.
+ */
+export function dataDeHoje(): string {
+  return new Date().toLocaleDateString("pt-BR", { timeZone: "America/Sao_Paulo" });
+}
+
+/**
+ * Prefixo aplicado a todo prompt de análise. Fica no topo, antes do papel do
+ * analista, para que a data esteja disponível em qualquer raciocínio de prazo.
+ */
+export function comDataDeHoje(prompt: string): string {
+  return `DATA DE HOJE: ${dataDeHoje()} (formato dd/mm/aaaa).
+Use esta data, e somente ela, sempre que precisar saber em que dia a análise
+está sendo feita — inclusive para calcular se algum prazo já venceu. Não
+suponha outra data a partir do conteúdo do documento.
+
+${prompt}`;
+}
+
+// ============================================================
 // 1. NORMALIZAÇÃO
 // ============================================================
 
