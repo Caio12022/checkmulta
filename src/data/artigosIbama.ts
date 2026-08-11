@@ -12,6 +12,47 @@ export interface ArtigoIbama {
 
 export const artigosIbama: ArtigoIbama[] = [
   {
+    slug: "conversao-de-multa-do-ibama-em-servicos-de-recuperacao-ambiental",
+    titulo: "Conversão de multa do IBAMA em serviços de recuperação ambiental",
+    descricao: "Entenda como funciona a conversão da multa ambiental do IBAMA em serviços de recuperação. Veja requisitos e analise seu auto de infração gratuitamente.",
+    categoria: "Alternativas",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🌳",
+    imagemBg: "from-emerald-50 to-green-50",
+    palavrasChave: ["conversão de multa IBAMA", "serviços de recuperação ambiental", "defesa auto de infração", "multa ambiental federal"],
+    conteudo: `## A conversão da multa como alternativa estratégica
+
+A aplicação de um auto de infração ambiental pelo IBAMA gera, para o autuado, o dever de pagar o valor estipulado ou apresentar defesa administrativa. É fundamental observar o prazo de vinte dias, previsto no art. 113 do Decreto 6.514/2008. No entanto, a legislação federal oferece uma via alternativa para o cumprimento da obrigação pecuniária: a conversão da multa simples em serviços de preservação, melhoria e recuperação da qualidade do meio ambiente, prevista no art. 72, § 4º, da Lei 9.605/98.
+
+Este mecanismo permite que o autuado, em vez de realizar o pagamento em pecúnia, execute projetos que tragam benefícios concretos ao ecossistema. É importante esclarecer que essa possibilidade não representa o perdão da sanção, mas uma forma de execução do objeto da penalidade sob a supervisão do órgão ambiental.
+
+## Requisitos e procedimentos
+
+Para que o pleito de conversão seja analisado, o processo administrativo deve respeitar os trâmites legais. O auto de infração, instrumento inicial do procedimento, deve atender aos requisitos formais estabelecidos pelo art. 97 do Decreto 6.514/2008, que exige a descrição clara da conduta, a identificação do autuado e a citação dos dispositivos legais infringidos. Caso o auto apresente vícios, a revisão pode ser arguida, conforme o art. 100, § 2º, do mesmo decreto e, subsidiariamente, o art. 53 da Lei 9.784/99, que trata do poder-dever da Administração de rever seus atos.
+
+Além dos aspectos formais, deve-se observar o prazo de defesa de vinte dias (art. 113 do Decreto 6.514/2008). Contudo, é necessário verificar no próprio documento se houve o agendamento de audiência de conciliação ambiental, pois, nos termos do art. 97-A, § 1º, do referido decreto, o agendamento sobresta o prazo para a apresentação da peça defensiva.
+
+## Pontos de atenção no processo administrativo
+
+Antes de optar pela conversão, é recomendável realizar uma análise técnica do auto de infração. Muitas vezes, o documento pode apresentar irregularidades que viabilizam questionamentos quanto à validade da sanção.
+
+- Competência: A atuação de um ente desprovido de competência legal, conforme as diretrizes da LC 140/2011 (arts. 7º e 17), pode fundamentar contestações. Ressalte-se que a norma federal citada aplica-se ao IBAMA. Se o auto for lavrado por órgão estadual ou municipal, a legislação de conversão e os ritos seguem norma própria do ente emitente.
+- Prescrição: O art. 21 do Decreto 6.514/2008 estabelece a prescrição da pretensão punitiva de cinco anos para a lavratura do auto. Além disso, a prescrição intercorrente, prevista no § 2º do mesmo artigo, ocorre em três anos caso o processo administrativo permaneça paralisado.
+- Proporcionalidade: A análise do caso concreto pode revelar atenuantes, conforme previsto no art. 14 da Lei 9.605/98, que podem ser consideradas pela autoridade julgadora no cálculo da sanção.
+
+## Observações sobre a defesa
+
+A opção pela conversão não deve ser confundida com a aceitação tácita da infração. A defesa técnica permite questionar a validade do auto por vícios formais e, subsidiariamente, requerer a conversão da multa. É essencial que o autuado não ignore os prazos processuais e mantenha as medidas preventivas, como embargo ou apreensão, estritamente em conformidade. A discussão administrativa não autoriza o descumprimento de obrigações ambientais vigentes ou o rompimento de embargos.
+
+A verificação de nulidades, como a descrição deficiente da infração (art. 97) ou a inobservância do rito de lavratura e ciência (art. 96), compõe a estrutura da estratégia de resposta ao IBAMA. A análise da higidez do auto sob a ótica do Decreto 6.514/2008 é um passo recomendável para a segurança jurídica da estratégia de defesa.
+
+Interessados podem encaminhar o auto de infração para uma análise técnica que aponte se o documento apresenta elementos passíveis de discussão jurídica.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "nulidade-por-incompetencia-do-orgao-autuante-no-ibama",
     titulo: "Nulidade por incompetência do órgão autuante no IBAMA",
     descricao: "Entenda como a regra de competência da LC 140/2011 pode impactar a validade do seu auto de infração ambiental do IBAMA. Analise seu auto gratuitamente.",
