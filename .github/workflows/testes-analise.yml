@@ -1,0 +1,55 @@
+name: Bateria de testes de analise
+
+# Roda apenas sob comando. A bateria consome chamadas de IA (uma por caso),
+# entao nao faz sentido disparar a cada push.
+"on":
+  workflow_dispatch:
+    inputs:
+      vertical:
+        description: "Vertical a testar (ibama, transito, procon, vigilancia, energia). Vazio roda todas."
+        required: false
+        default: ""
+
+jobs:
+  bateria:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o codigo
+        uses: actions/checkout@v4
+
+      - name: Preparar o Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Instalar dependencias
+        run: npm install
+
+      # Build de producao: a bateria roda contra o mesmo caminho de codigo
+      # que atende o site no ar, e nao contra o servidor de desenvolvimento.
+      - name: Compilar
+        run: npm run build
+
+      - name: Subir o servidor
+        run: |
+          nohup npm start > /tmp/servidor.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -sf -o /dev/null http://localhost:3000/; then
+              echo "Servidor no ar."
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "Servidor nao subiu a tempo. Log:"
+          cat /tmp/servidor.log
+          exit 1
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NODE_ENV: production
+
+      - name: Rodar a bateria
+        run: node testes/rodar.mjs ${{ github.event.inputs.vertical }}
+
+      - name: Log do servidor (quando algo falha)
+        if: failure()
+        run: tail -100 /tmp/servidor.log

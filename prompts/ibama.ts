@@ -172,6 +172,10 @@ P5. Incompetência do IBAMA por impacto estritamente local — LC 140/2011 c/c a
     Lei 9.784/99.
 P6. Falta de identificação do autuado, ou emendas e rasuras que comprometam a validade —
     art. 97, I e II.
+P7. Fragilidade probatória (BLOCO A-2): o auto não menciona laudo de constatação,
+    relatório de fiscalização, georreferenciamento ou dimensionamento do dano. NÃO cita
+    dispositivo (campo "dispositivo" fica vazio) e o teto de gravidade é "atencao" —
+    nunca "critico", porque a prova pode estar no processo e não no corpo do auto.
 
 Por que a lista é fechada: fora dela, você não tem no documento os elementos para
 sustentar a conclusão, e um achado inventado custa muito mais caro do que uma venda
@@ -388,13 +392,20 @@ D1. O documento informa corretamente o prazo de defesa e a forma de protocolo? N
 =====================================================================
 
 "critico"  — o vício, sozinho, pode levar à nulidade do auto ou ao reconhecimento da
-             prescrição. Exemplos: descrição genérica que impede a ampla defesa; ausência
-             total de laudo/prova técnica; enquadramento incompatível com o fato; indício
-             de prescrição (5 anos até a lavratura ou 3 anos de processo parado);
-             incompetência do ente autuante.
+             prescrição. A lista é TAXATIVA — só estes podem ser "critico":
+             (a) descrição genérica que impede a ampla defesa (P1);
+             (b) prescrição da pretensão punitiva, 5 anos até a lavratura (P3);
+             (c) prescrição intercorrente, 3 anos de processo parado (P4);
+             (d) incompetência do ente autuante (P5);
+             (e) falta de identificação do autuado, ou rasura/emenda que efetivamente
+                 comprometa a validade do auto (P6).
+             Fora desses, NENHUM achado pode receber "critico".
+             Em especial, NUNCA são "critico": ausência de laudo, de prova técnica, de
+             georreferenciamento ou de dimensionamento do dano (BLOCO A-2, teto
+             "atencao"), nem enquadramento ausente ou vazio (P2, teto "atencao").
 "atencao"  — fragilidade relevante e defensável, que isoladamente pode não anular.
-             Exemplo: área dimensionada por estimativa sem georreferenciamento, quando há
-             algum outro elemento de prova.
+             Exemplos: área dimensionada por estimativa sem georreferenciamento; auto sem
+             menção a laudo; enquadramento ausente ou preenchido com fórmula vazia.
 "verificar"— imprecisão menor, campo mal preenchido, ou o aviso de auto estadual/municipal.
 
 =====================================================================
