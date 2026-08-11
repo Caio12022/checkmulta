@@ -72,12 +72,17 @@ function verticaisDisponiveis() {
     .map((d) => d.name);
 }
 
-async function analisar(rota, conteudo) {
+/* O nome do campo do documento muda entre rotas: a de trânsito nasceu antes
+   das outras e espera "imageBase64", as demais esperam "fileBase64". Mandar o
+   nome errado devolve HTTP 400 antes de a IA ver qualquer coisa — foi assim
+   que a primeira execução da bateria de trânsito reprovou os 6 casos sem
+   testar nada. Cada manifesto declara o nome que a sua rota usa. */
+async function analisar(rota, conteudo, campoArquivo) {
   const resposta = await fetch(`${BASE_URL}${rota}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      fileBase64: Buffer.from(conteudo, "utf-8").toString("base64"),
+      [campoArquivo || "fileBase64"]: Buffer.from(conteudo, "utf-8").toString("base64"),
       mimeType: "text/plain",
     }),
   });
@@ -227,7 +232,7 @@ async function rodarVertical(vertical) {
     for (let tentativa = 1; tentativa <= REPETICOES; tentativa++) {
       let resposta;
       try {
-        resposta = await analisar(manifesto.rota, conteudo);
+        resposta = await analisar(manifesto.rota, conteudo, manifesto.campo_arquivo);
       } catch (err) {
         problemasDoCaso.push(`execução ${tentativa}: falha de rede: ${err.message}`);
         await esperar(PAUSA_MS);
