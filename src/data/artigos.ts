@@ -12,6 +12,54 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "parar-na-faixa-de-pedestres-da-multa-entenda-seus-direitos",
+    titulo: "Parar na faixa de pedestres dá multa? Entenda seus direitos",
+    descricao: "Recebeu uma multa por parar sobre a faixa de pedestres? Saiba como funciona a fiscalização, os riscos e como o CheckMulta analisa seu caso gratuitamente.",
+    categoria: "Comportamento no Trânsito",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🚶",
+    imagemBg: "from-amber-600 to-amber-800",
+    conteudo: `## Parar sobre a faixa de pedestres: uma infração comum mas evitável
+
+No dia a dia do trânsito brasileiro, é muito comum observar condutores que, por pressa ou distração, acabam imobilizando o veículo sobre a faixa destinada à travessia de pedestres. Seja em um cruzamento congestionado ou durante uma parada rápida para desembarque, essa conduta é considerada uma infração de trânsito. O Código de Trânsito Brasileiro é claro ao priorizar a segurança do pedestre, que é o elo mais frágil na mobilidade urbana.
+
+## O que a legislação diz sobre a faixa de pedestres?
+
+As normas vigentes estabelecem que o condutor deve manter o veículo sempre afastado da faixa de pedestres, permitindo que as pessoas atravessem com segurança e visibilidade. Parar o carro, mesmo que parcialmente, sobre esse dispositivo de sinalização atrapalha a mobilidade de quem anda a pé, força pessoas a desviarem para o meio da via e aumenta consideravelmente o risco de atropelamentos.
+
+É importante destacar que a infração ocorre no momento em que o veículo é imobilizado sobre a faixa. Muitas vezes, o condutor entra em uma via e, devido ao tráfego intenso, acaba ficando travado exatamente em cima da marcação de pedestres. Mesmo que a intenção não tenha sido obstruir a passagem, a infração pode ser registrada pelo agente de trânsito ou por equipamentos de fiscalização eletrônica.
+
+## Como funciona a fiscalização?
+
+Existem duas formas principais de registro dessa infração:
+
+* **Agente de trânsito:** O agente observa o veículo imobilizado sobre a faixa e lavra o auto de infração presencialmente.
+* **Fiscalização eletrônica:** Sensores e câmeras em cruzamentos inteligentes podem detectar a imobilidade do veículo em áreas proibidas, como as faixas de pedestres, gerando o registro automático.
+
+## Posso recorrer de uma multa por parar na faixa?
+
+Sim, todo cidadão tem o direito constitucional à ampla defesa. Se você recebeu uma notificação de autuação, é possível apresentar defesa prévia e, posteriormente, recursos administrativos. O sucesso de um recurso depende da identificação de erros formais no preenchimento do auto de infração ou da comprovação de situações que justificaram a parada.
+
+Algumas falhas comuns que podem invalidar o registro incluem:
+
+- Informações inconsistentes no auto de infração (como placa, marca ou modelo do veículo).
+- Falta de clareza na descrição da infração pelo agente.
+- Ausência de sinalização adequada ou mal conservada no local (o que dificulta a identificação da faixa).
+- Erros nos prazos de notificação enviada pelo órgão autuador.
+
+## A importância da segurança viária
+
+Mais do que evitar multas e penalidades, respeitar a faixa de pedestres é uma questão de cidadania. Quando o motorista deixa o espaço da faixa livre, ele garante que crianças, idosos e pessoas com mobilidade reduzida possam circular com dignidade. A educação no trânsito é o caminho para reduzir o número de acidentes e tornar as vias mais humanas.
+
+## Como proceder ao receber uma notificação?
+
+Se você foi notificado e acredita que houve algum erro ou injustiça na aplicação da multa, o ideal é avaliar cuidadosamente os detalhes do documento. A legislação brasileira é complexa e muitos motoristas acabam pagando multas que poderiam ser anuladas por erros administrativos dos órgãos de trânsito.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Nossa tecnologia simplifica a interpretação dos dados, permitindo que você saiba exatamente quais são as suas chances reais de sucesso antes de iniciar o processo de defesa.`,
+    palavrasChave: ["multa faixa de pedestres", "recurso de multa", "infrações de trânsito", "defesa de multa"],
+  },
+
+  {
     slug: "farol-queimado-da-multa-entenda-como-evitar-problemas",
     titulo: "Farol queimado dá multa? Entenda como evitar problemas",
     descricao: "Recebeu uma multa por lâmpada queimada? Saiba o que a lei diz, quais as consequências e como o CheckMulta pode analisar seu caso gratuitamente agora.",
