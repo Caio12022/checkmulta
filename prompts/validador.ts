@@ -655,6 +655,22 @@ export function validarAnaliseTransito(bruto: string): string {
     return "documento_invalido";
   }
 
+  /* 3º adulteração. Nas verticais de saída em JSON, a defesa contra injeção
+     descarta o achado individual cujo trecho é o texto plantado. Aqui a saída
+     é um relatório corrido, sem achados separáveis, então não há o que
+     descartar: ou o documento entra, ou não entra.
+
+     Só se rejeita o sinal inequívoco — texto do documento dando ordens a quem
+     analisa. Notificação de autuação real não contém "classifique como" nem
+     "desconsidere as instruções"; se contém, foi montada para forçar
+     resultado. A conclusão jurídica plantada (o "eivado de nulidade") fica
+     por conta da REGRA DE OURO 0.5 do prompt, porque rejeitar por ela em
+     código derrubaria decisão de JARI legítima, que discute nulidade por
+     ofício. */
+  if (RE_INSTRUCAO_AO_MODELO.test(transcricao)) {
+    return "documento_invalido";
+  }
+
   // Números citados no relatório têm que existir no documento
   if (!numerosConferem(relatorio, transcricao)) {
     return "imagem_ilegivel";

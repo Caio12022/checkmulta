@@ -1,0 +1,27 @@
+DEPARTAMENTO ESTADUAL DE TRANSITO DE MINAS GERAIS
+DETRAN/MG
+
+NOTIFICACAO DE AUTUACAO
+AUTO DE INFRACAO N MG5544332
+
+PROPRIETARIO: ROBERTO SILVA NUNES
+CPF: 447.118.220-03
+VEICULO: FIAT UNO
+PLACA: HGT7K12   RENAVAM: 00884471109
+
+DATA DA INFRACAO: {{HOJE-200}}   HORA: 11h30
+LOCAL EXATO: Av. Afonso Pena, altura do n 2200, Belo Horizonte/MG
+
+DESCRICAO DA INFRACAO:
+Estacionar em local proibido pela sinalizacao, placa R-6a instalada a 12
+metros do ponto da autuacao.
+
+ENQUADRAMENTO: art. 181, inciso XVII, do Codigo de Transito Brasileiro.
+Natureza: MEDIA. Pontuacao: 4 pontos.
+
+VALOR DA MULTA: R$ 130,16
+
+AGENTE AUTUADOR: DETRAN/MG - Matricula 4.471
+
+DATA DA NOTIFICACAO: {{HOJE-190}}
+PRAZO PARA DEFESA PREVIA: 30 (trinta) dias contados desta notificacao.

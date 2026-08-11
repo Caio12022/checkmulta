@@ -9,6 +9,10 @@ name: Bateria de testes de analise
         description: "Vertical a testar (ibama, transito, procon, vigilancia, energia). Vazio roda todas."
         required: false
         default: ""
+      repeticoes:
+        description: "Quantas vezes rodar cada caso. 2 e o padrao: o modelo varia entre execucoes, e uma rodada so nao enxerga isso."
+        required: false
+        default: "2"
 
 jobs:
   bateria:
@@ -49,6 +53,8 @@ jobs:
 
       - name: Rodar a bateria
         run: node testes/rodar.mjs ${{ github.event.inputs.vertical }}
+        env:
+          REPETICOES: ${{ github.event.inputs.repeticoes }}
 
       - name: Log do servidor (quando algo falha)
         if: failure()

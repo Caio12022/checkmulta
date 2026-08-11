@@ -31,6 +31,14 @@ const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
    defeito do prompt. */
 const PAUSA_MS = Number(process.env.PAUSA_MS || 4000);
 
+/* Quantas vezes cada caso é executado. O modelo não é determinístico nem com
+   temperatura 0: o mesmo documento passou numa execução e reprovou na
+   seguinte, tanto no caso de injeção da Energia quanto no achado de
+   dosimetria do Procon. Uma rodada só não enxerga esse tipo de defeito, e foi
+   assim que ele escapou para a main. Um caso só é aprovado quando passa em
+   TODAS as repetições. */
+const REPETICOES = Math.max(1, Number(process.env.REPETICOES || 1));
+
 const esperar = (ms) => new Promise((r) => setTimeout(r, ms));
 
 /**
@@ -99,6 +107,29 @@ function conferir(espera, corpo, status) {
     }
     if (!resultado.toLowerCase().includes(espera.valor.toLowerCase())) {
       problemas.push(`esperava a recusa "${espera.valor}", veio "${resultado}"`);
+    }
+    return problemas;
+  }
+
+  /* Trânsito devolve o relatório como texto corrido, não como JSON de
+     achados — é a única vertical assim. Aqui não dá para contar críticos nem
+     olhar blocos; o que se confere é a presença ou ausência de marcadores no
+     relatório. */
+  if (espera.tipo === "texto") {
+    if (typeof resultado !== "string") {
+      problemas.push("esperava relatório em texto, veio um objeto");
+      return problemas;
+    }
+    const t = resultado.toLowerCase();
+    for (const marca of espera.contem || []) {
+      if (!t.includes(marca.toLowerCase())) {
+        problemas.push(`o relatório deveria conter "${marca}" e não contém`);
+      }
+    }
+    for (const marca of espera.nao_contem || []) {
+      if (t.includes(marca.toLowerCase())) {
+        problemas.push(`o relatório NÃO deveria conter "${marca}", mas contém`);
+      }
     }
     return problemas;
   }
@@ -191,29 +222,35 @@ async function rodarVertical(vertical) {
 
   for (const caso of manifesto.casos) {
     const conteudo = aplicarDatas(readFileSync(join(AQUI, vertical, caso.arquivo), "utf-8"));
+    const problemasDoCaso = [];
 
-    let resposta;
-    try {
-      resposta = await analisar(manifesto.rota, conteudo);
-    } catch (err) {
-      console.log(`  [ERRO] ${caso.arquivo} -> falha de rede: ${err.message}`);
-      falhas.push({ ...caso, problemas: [`falha de rede: ${err.message}`] });
+    for (let tentativa = 1; tentativa <= REPETICOES; tentativa++) {
+      let resposta;
+      try {
+        resposta = await analisar(manifesto.rota, conteudo);
+      } catch (err) {
+        problemasDoCaso.push(`execução ${tentativa}: falha de rede: ${err.message}`);
+        await esperar(PAUSA_MS);
+        continue;
+      }
+
+      const problemas = conferir(caso.espera, resposta.corpo, resposta.status);
+      for (const p of problemas) {
+        problemasDoCaso.push(REPETICOES > 1 ? `execução ${tentativa}: ${p}` : p);
+      }
+
       await esperar(PAUSA_MS);
-      continue;
     }
 
-    const problemas = conferir(caso.espera, resposta.corpo, resposta.status);
-
-    if (problemas.length === 0) {
-      console.log(`  [OK]    ${caso.arquivo}`);
+    const sufixo = REPETICOES > 1 ? ` (${REPETICOES} execuções)` : "";
+    if (problemasDoCaso.length === 0) {
+      console.log(`  [OK]    ${caso.arquivo}${sufixo}`);
     } else {
-      console.log(`  [FALHA] ${caso.arquivo}`);
+      console.log(`  [FALHA] ${caso.arquivo}${sufixo}`);
       console.log(`          objetivo: ${caso.objetivo}`);
-      for (const p of problemas) console.log(`          -> ${p}`);
-      falhas.push({ ...caso, problemas });
+      for (const p of problemasDoCaso) console.log(`          -> ${p}`);
+      falhas.push({ ...caso, problemas: problemasDoCaso });
     }
-
-    await esperar(PAUSA_MS);
   }
 
   return falhas;
