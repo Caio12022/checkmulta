@@ -54,6 +54,43 @@ vai passar por ajustes e testes — não tratar como "terminado".
   de pastas do projeto — pode assumir que ele entende o resultado, não
   precisa simplificar demais as explicações técnicas.
 
+### Escolha de modelo — avisar ANTES de começar a tarefa
+
+O Caio paga por cota semanal e o Opus tem balde próprio, menor. Ele pediu
+explicitamente: **antes de entrar numa tarefa, dizer se dá para trocar de
+modelo.** Uma linha, no começo, do tipo "isso aqui roda bem em Sonnet, vale
+trocar antes de eu começar".
+
+Usar **Opus** quando errar é caro e o erro é difícil de enxergar:
+auditar prompt jurídico, calibrar trava, decidir arquitetura, investigar
+defeito intermitente, analisar risco. Foi Opus que achou que o gabarito da
+defesa de trânsito mandava escrever "manifestamente nula por vício
+insanável" em toda peça paga.
+
+Usar **Sonnet** no trabalho mecânico, que é a maior parte: disparar bateria e
+ler resultado, aplicar correção já decidida, mexer em layout e CSS, escrever
+fixture, ajustar copy, rodar preview e tirar print.
+
+Outras duas economias que valem: sessão nova para assunto novo (o contexto
+longo é reprocessado a cada mensagem, e este `CLAUDE.md` devolve o contexto
+sozinho), e **não despejar log inteiro na conversa** — filtrar antes de
+trazer. Uma sessão inteira já foi encarecida por tail de 140 linhas do
+Actions repetidas vezes.
+
+## Dados do cliente: NÃO guardar (decisão do Caio)
+
+Nada de armazenar documento analisado, análise ou peça gerada. Auto de
+infração carrega CPF, CNPJ, endereço e placa: guardar isso cria exposição de
+LGPD maior do que o risco que o histórico evitaria.
+
+A política que substitui o histórico é **reembolso sem discussão**. O ticket
+é baixo (~R$ 19 no trânsito) e o Caio é explícito: se o cliente reclamar,
+devolve e pronto. Cliente reembolsado não vira reclamação no Procon.
+
+Consequência prática: qualquer proposta futura de "salvar o histórico do
+usuário" precisa passar por ele antes. No plano mensal com login isso volta
+à mesa, e aí é decisão consciente, não efeito colateral.
+
 ## Frente em andamento: "links úteis" / orientação de protocolo
 
 Depois que a defesa é gerada, a tela mostrava só o texto pra copiar — sem
