@@ -520,8 +520,6 @@ export default function Procon() {
         const foraDeEscopo: Record<string, string> = {
           fora_escopo_execucao:
             "Esta multa já está inscrita em dívida ativa ou em cobrança judicial. A fase administrativa se encerrou e uma defesa não teria mais efeito. O caminho agora é judicial: procure um advogado.",
-          fora_escopo_cautelar:
-            "Este é um termo de interdição, apreensão ou medida equivalente, que segue regras e prazos próprios, distintos do auto de infração. Não analisamos esse tipo de documento. Procure orientação jurídica com urgência, porque os prazos costumam ser curtos.",
         };
 
         const chaveEscopo = Object.keys(foraDeEscopo).find((k) => lower.includes(k));
