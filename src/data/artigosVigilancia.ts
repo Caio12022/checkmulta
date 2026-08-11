@@ -12,6 +12,52 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "cancelamento-de-licenca-sanitaria-o-que-fazer-e-como-reverter",
+    titulo: "Cancelamento de licença sanitária: o que fazer e como reverter",
+    descricao: "Recebeu o cancelamento da sua licença sanitária? Entenda os fundamentos legais para recorrer e como regularizar sua situação. Verifique seu auto conosco.",
+    categoria: "Penalidades",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🚫",
+    imagemBg: "from-rose-50 to-pink-50",
+    palavrasChave: ["cancelamento licença sanitária", "auto de infração vigilância sanitária", "recurso administrativo licença", "defesa vigilância sanitária"],
+    conteudo: `## O impacto do cancelamento da licença sanitária
+
+O cancelamento da licença sanitária representa uma das medidas mais severas aplicáveis pela autoridade competente. Quando um estabelecimento tem sua licença cassada ou cancelada, a operação perde sua autorização formal para funcionamento. Essa penalidade não ocorre de forma aleatória, mas é o desfecho de um processo administrativo que aponta irregularidades persistentes ou falhas graves que colocam em risco a saúde da população.
+
+Para o empresário, essa situação gera prejuízos, como a suspensão das atividades e danos à reputação da marca. No entanto, o ordenamento jurídico brasileiro prevê mecanismos para que o estabelecimento possa exercer seu direito de defesa e buscar a reavaliação do cenário, desde que haja fundamentação técnica e jurídica adequada.
+
+## A base legal das penalidades
+
+A aplicação de sanções, incluindo o cancelamento da licença, deve observar a Lei 6.437/77. De acordo com o art. 2º desta norma, que traz o rol de penalidades, a cassação da autorização de funcionamento é aplicada mediante a devida motivação. O art. 4º estabelece que as infrações são classificadas conforme sua gravidade, sendo que a reincidência e a extensão dos fatos são elementos determinantes para a graduação da pena, conforme o art. 6º. Atenuantes e agravantes, previstos respectivamente nos arts. 7º e 8º, também devem ser considerados.
+
+É fundamental compreender que o processo administrativo não é uma ferramenta de imposição arbitrária. A autoridade deve obedecer ao disposto na Lei 9.784/99 (aplicável subsidiariamente), que garante ao administrado os princípios do devido processo legal, do contraditório e da ampla defesa. O art. 50 da referida lei (aplicável subsidiariamente) exige que todos os atos administrativos, especialmente os que restringem direitos, sejam devidamente motivados, ou seja, a autoridade deve explicar de maneira clara as razões fáticas e jurídicas que levaram ao cancelamento.
+
+## Como proceder após o recebimento da notificação
+
+Ao receber a notificação do cancelamento, o primeiro passo é analisar a regularidade do auto de infração. O documento deve preencher os requisitos obrigatórios previstos no art. 13 da Lei 6.437/77. Caso esses requisitos não estejam presentes, há possibilidade de questionar a validade da autuação.
+
+Sobre os prazos de defesa, eles variam conforme a legislação local, visto que a fragmentação das normas sanitárias faz com que órgãos federais, estaduais e municipais possuam autonomia normativa. Portanto, é imprescindível verificar o prazo estipulado no próprio auto de infração. O art. 22 da Lei 6.437/77 serve como referência quanto ao prazo de defesa, mas a contagem deve sempre observar o que determina a legislação específica que rege o seu processo.
+
+## Estratégias para revisão e regularização
+
+Para buscar a reversão do cenário, a estratégia pode ser dividida em duas frentes:
+
+- Regularização fática: O estabelecimento deve buscar sanar as irregularidades apontadas. É recomendável documentar todo o processo de adequação, por meio de registros fotográficos, notas fiscais, laudos técnicos e comprovantes de limpeza. Essa documentação servirá de suporte para o pedido de reinspeção.
+- Defesa técnica: Pode-se utilizar o recurso administrativo, previsto no art. 30 da Lei 6.437/77, para apontar possíveis vícios no processo. É possível arguir em defesa a ausência de motivação, a desproporcionalidade da pena e a violação aos princípios da razoabilidade e da legalidade.
+
+Lembre-se de que, enquanto a situação não for regularizada e uma nova inspeção não for aprovada pelo órgão, a operação do estabelecimento permanece irregular. Jamais retome atividades antes da liberação oficial pelo órgão sanitário, sob pena de incorrer em novas autuações ou sanções agravadas.
+
+## O papel do controle processual
+
+A análise detalhada do auto de infração é fundamental para a construção de uma defesa consistente. Verificar se a autoridade respeitou o art. 17 quanto à notificação ou se o processo seguiu os critérios de graduação do art. 6º da Lei 6.437/77 pode oferecer elementos para a rediscussão da penalidade aplicada. A autoridade deve ainda observar o art. 3º quanto à imputabilidade e o art. 38 sobre a prescrição em 5 anos.
+
+A análise técnica do auto de infração da Vigilância Sanitária pode indicar se a autuação apresenta falhas capazes de fundamentar um recurso administrativo.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "auto-de-infracao-sem-identificacao-do-agente-entenda-as-implicacoes",
     titulo: "Auto de infração sem identificação do agente: entenda as implicações",
     descricao: "Recebeu um auto de infração da Vigilância Sanitária sem o nome ou assinatura do fiscal? Entenda por que este requisito é essencial e como questionar.",
