@@ -177,6 +177,23 @@ forma); e os casos de injeção exigiam achado zero quando o que caracteriza
 o ataque é produzir achado **crítico** — achado fraco e não relacionado, que
 o validador rebaixa para "verificar", não veio do texto plantado.
 
+## Rumo do produto (decidido pelo Caio, ainda não implementado)
+
+**O avulso continua como está, e é intocável:** a pessoa entra, sobe a multa,
+vê se dá para recorrer, paga e vai embora. **Sem login.** Qualquer coisa que
+adicione fricção nesse caminho está fora.
+
+**Em cima disso entra um plano mensal**, aí sim com login (Google e Apple),
+na faixa de R$ 100/mês, dando acesso às consultas das 5 verticais. O público
+é quem tem exposição recorrente e em mais de uma frente ao mesmo tempo —
+exemplo do Caio: um restaurante pega multa de transporte de carga, Vigilância
+Sanitária e Procon; frota pega trânsito em volume.
+
+Ou seja: as 5 verticais deixam de ser 5 produtos separados e viram **uma
+assinatura só**. Isso já estava no projeto antes do código existir.
+
+Ordem: só depois que a parte de análise e defesa estiver fechada e testada.
+
 ## PENDENTE — rodar a bateria de defesa contra o modelo
 
 **É a prioridade quando a cota virar.** A defesa é onde entra o dinheiro, e
