@@ -106,12 +106,20 @@ function conferir(espera, corpo, status) {
   const resultado = corpo.result;
 
   if (espera.tipo === "recusa") {
+    /* "valores" aceita mais de uma recusa quando o que importa é o efeito, não
+       a etiqueta. É o caso do documento adulterado no trânsito: tanto
+       "documento_invalido" quanto "rejeicao_sem_falha" impedem a venda e não
+       geram achado a partir do texto plantado, que é o requisito real. */
+    const aceitos = Array.isArray(espera.valores) ? espera.valores : [espera.valor];
+    const rotulo = aceitos.join(" ou ");
+
     if (typeof resultado !== "string") {
-      problemas.push(`esperava a recusa "${espera.valor}", veio uma análise completa`);
+      problemas.push(`esperava a recusa "${rotulo}", veio uma análise completa`);
       return problemas;
     }
-    if (!resultado.toLowerCase().includes(espera.valor.toLowerCase())) {
-      problemas.push(`esperava a recusa "${espera.valor}", veio "${resultado}"`);
+    const bateu = aceitos.some((v) => resultado.toLowerCase().includes(String(v).toLowerCase()));
+    if (!bateu) {
+      problemas.push(`esperava a recusa "${rotulo}", veio "${resultado}"`);
     }
     return problemas;
   }

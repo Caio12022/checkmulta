@@ -156,11 +156,26 @@ Tom: amigo que entende explicando, não advogado escrevendo petição.]
 - VIABILIDADE DO RECURSO: [APENAS uma palavra: Alta, Média ou Baixa]
 
 [MARCADOR DE VENCIMENTO]:
-Após TODO o relatório acima, compare a data da infração (ou a da notificação, quando constar) com a DATA DE HOJE
-informada no topo deste prompt. Se o prazo de defesa ou recurso já tiver se encerrado, escreva na última linha
-APENAS: rejeicao_prazo_expirado
-Na dúvida sobre a contagem, NÃO escreva o marcador: bloquear a venda de quem ainda está no prazo é pior do que
-deixar passar um caso duvidoso, que segue avisado pelo aviso de prazo na tela.
+Após TODO o relatório acima, execute OBRIGATORIAMENTE este procedimento. Não é opcional e não pode ser pulado:
+
+1. Localize a data de NOTIFICAÇÃO. Se o documento não trouxer, use a data da infração.
+2. Localize o prazo indicado no documento. Se não houver, use 30 dias.
+3. Some o prazo à data do passo 1.
+4. Compare o resultado com a DATA DE HOJE informada no topo deste prompt.
+5. Se a DATA DE HOJE já passou do resultado, escreva na última linha APENAS: rejeicao_prazo_expirado
+
+Exemplo do cálculo (siga este raciocínio):
+  Notificação em 10/01/2026, prazo de 30 dias -> vence em 09/02/2026
+  DATA DE HOJE é 20/07/2026 -> passou -> escreva rejeicao_prazo_expirado
+
+A conta é aritmética, não julgamento: quando as datas estão legíveis e o vencimento
+ficou para trás, o marcador é OBRIGATÓRIO. Vender recurso fora do prazo faz a pessoa
+pagar por uma peça que o órgão rejeita sem ler o mérito.
+
+A ressalva da dúvida vale SOMENTE quando falta informação: data de notificação ilegível
+ou ausente, ou mais de uma data possível sem como decidir. Nesses casos NÃO escreva o
+marcador — bloquear quem ainda está no prazo é o erro oposto e igualmente ruim. Dúvida é
+não conseguir fazer a conta, não é achar o resultado desconfortável.
 Se o prazo estiver em dia, não escreva esta string.
 
 [TRANSCRIÇÃO — SEMPRE POR ÚLTIMO]:
