@@ -154,6 +154,20 @@ function conferir(espera, corpo, status) {
     }
   }
 
+  /* Campos booleanos da análise. Hoje o único é prazo_aparenta_vencido, que
+     decide se a oferta aparece — precisa ser conferido nos dois sentidos:
+     true no auto vencido (senão vendemos peça intempestiva) e false no auto
+     dentro do prazo (senão bloqueamos venda legítima, que é o erro oposto e
+     igualmente ruim). */
+  if (espera.campos_bool && typeof espera.campos_bool === "object") {
+    for (const [campo, valor] of Object.entries(espera.campos_bool)) {
+      const obtido = resultado[campo] === true;
+      if (obtido !== valor) {
+        problemas.push(`campo "${campo}": esperava ${valor}, veio ${resultado[campo]}`);
+      }
+    }
+  }
+
   if (Array.isArray(espera.blocos_esperados) && espera.blocos_esperados.length > 0) {
     const blocos = new Set(criticos.map((a) => a?.bloco));
     const bateu = espera.blocos_esperados.some((b) => blocos.has(b));

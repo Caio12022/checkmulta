@@ -249,10 +249,29 @@ Responda APENAS com um objeto JSON válido, sem texto antes ou depois, sem marca
   "quantidade_criticos": 0,
   "quantidade_atencao": 0,
   "quantidade_verificar": 0,
-  "houve_achado": true
+  "houve_achado": true,
+  "prazo_aparenta_vencido": false,
+  "prazo_detalhe": ""
 }
 
 Regras do JSON:
+- "prazo_aparenta_vencido" e "prazo_detalhe": TRAVA DE VENDA. Compare a data de ciência
+  do documento com a DATA DE HOJE informada no topo deste prompt.
+  Use o prazo indicado no próprio documento. Se não houver, considere 20 dias corridos
+  da ciência (art. 42 do Decreto 2.181/97) — mas lembre que Procons estaduais adotam
+  prazo próprio, como os 15 dias do Procon-SP. Se o documento não indicar o prazo e
+  você não souber qual Procon é, marque false.
+  Se a janela já tiver se encerrado, marque true e explique em "prazo_detalhe", em uma
+  frase e em linguagem simples, quais datas você usou na conta.
+  REGRAS ABSOLUTAS deste campo:
+  1. NA DÚVIDA, MARQUE false. Se a data de ciência não estiver legível, se houver mais de
+     uma data possível, ou se o prazo aplicável não estiver claro, marque false. Bloquear
+     quem ainda está no prazo é pior do que deixar passar um caso duvidoso.
+  2. Isso NUNCA é achado. Não é defeito do documento, é circunstância de quem recebeu.
+     É PROIBIDO criar achado de prazo vencido — a informação vive só neste campo.
+  3. Marcar true NÃO encerra a análise. Continue examinando o documento normalmente e
+     preencha os achados como sempre: a pessoa tem direito de saber o que havia no auto,
+     mesmo sem poder mais apresentar defesa.
 - "gravidade" só aceita: "critico", "atencao" ou "verificar".
 - Se não encontrar nenhum vício: "achados" vazio, "houve_achado": false, e explique no resumo que não foram identificados vícios formais entre os pontos verificados.
 - Todo achado DEVE ter "trecho_documento" preenchido com texto real do documento.
