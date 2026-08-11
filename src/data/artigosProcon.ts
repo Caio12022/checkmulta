@@ -12,6 +12,56 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "multa-desproporcional-do-procon-como-questionar-o-valor-excessivo",
+    titulo: "Multa desproporcional do Procon: como questionar o valor excessivo",
+    descricao: "Recebeu uma multa alta do Procon? Entenda os critérios de dosimetria e como contestar valores desproporcionais. Analise seu auto gratuitamente no CheckMulta.",
+    categoria: "Dosimetria da Multa",
+    tempoLeitura: "6 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["multa Procon valor excessivo", "dosimetria multa administrativa", "recurso auto de infração Procon", "defesa administrativa Procon"],
+    conteudo: `## A Dosimetria da Multa no Processo Administrativo
+
+Quando uma empresa recebe um auto de infração do Procon, o foco inicial costuma ser a discussão sobre a ocorrência ou não da infração. Contudo, em muitos casos, mesmo que a irregularidade tenha existido, o valor da multa fixado pelo órgão pode mostrar-se excessivo ou desprovido de fundamentação técnica adequada. É aqui que entra o conceito de dosimetria da multa.
+
+A dosimetria é o cálculo que o agente fiscalizador utiliza para definir o valor da sanção pecuniária. Esse cálculo não pode ser arbitrário. Ele deve observar critérios objetivos estabelecidos pelo Decreto 2.181/97, que define a competência dos órgãos para apurar e punir (art. 5º).
+
+## Critérios de Fixação da Pena
+
+Conforme o Decreto 2.181/97, a aplicação da penalidade deve observar a graduação da pena, atenuantes, agravantes, reincidência e fixação da multa (arts. 24 a 28). Para que a multa seja legítima, a autoridade deve ponderar esses fatores de maneira fundamentada.
+
+Um ponto fundamental que muitas empresas ignoram é que, segundo o art. 26-A do Decreto 2.181/97, as atenuantes e agravantes são taxativas. Isso significa que o Procon não pode criar agravantes que não estejam expressamente previstas em lei para elevar o valor da multa. Além disso, o art. 28-A do mesmo diploma estabelece a vedação a valorar o mesmo elemento duas vezes na dosimetria, o que configura a prática de bis in idem, que eleva artificialmente o valor da sanção.
+
+## Quando questionar o valor da multa?
+
+Existem diversos cenários em que o questionamento da dosimetria é recomendável para assegurar a justiça administrativa:
+
+- Ausência de fundamentação: Quando o auto de infração ou a decisão administrativa não explica claramente como o valor foi atingido.
+- Desconsideração da condição econômica: Quando o cálculo ignora o porte da empresa ou a sua capacidade financeira real.
+- Valorização indevida: Quando fatores que deveriam ser neutros são utilizados para agravar a pena.
+- Desrespeito à dupla visita: Caso a empresa se enquadre em atividade de risco leve e não tenha sido notificada previamente para sanar a irregularidade, conforme o art. 38-A do Decreto 2.181/97, cuja inobservância implica nulidade do auto (§ 2º) e tratamento diferenciado a ME e EPP (§ 3º), a própria sanção pode ser questionada.
+
+## Como proceder após o recebimento do auto
+
+O processo administrativo sancionador segue etapas ritos próprios, iniciados desde o art. 33, mediante averiguação preliminar (art. 33-A). O primeiro passo é verificar se o auto de infração atende aos requisitos obrigatórios elencados no art. 35, inciso I (local, data e hora; qualificação do autuado; descrição do fato; dispositivo legal infringido; intimação; identificação, assinatura e matrícula do agente; designação do órgão julgador; assinatura do autuado; cientificação para defesa). A falha na descrição do fato ou na fundamentação legal pode comprometer o processo.
+
+Ao notar que o valor da multa é desproporcional, a empresa deve apresentar sua defesa administrativa dentro do prazo indicado no auto, uma vez que a legislação prevê variações conforme o órgão competente. O art. 49 garante que, caso a defesa seja rejeitada e a multa mantida, o recurso interposto no prazo de 10 dias terá efeito suspensivo.
+
+Lembre-se que, conforme o art. 48, a inobservância de forma só gera nulidade se houver prejuízo para a defesa. Portanto, o argumento deve ser técnico e voltado para demonstrar que o valor arbitrado não guarda proporção com a conduta ou que a metodologia de cálculo foi equivocada.
+
+## O risco da inércia
+
+Se a multa não for devidamente questionada no prazo adequado ou se o pagamento não for realizado em 30 dias após a decisão final, o crédito será inscrito em dívida ativa, conforme o art. 55. Isso pode gerar restrições de crédito para a empresa e a cobrança judicial.
+
+Diante de um auto de infração, a cautela e a análise técnica são as melhores ferramentas de gestão. Não ignore uma notificação de multa, mas também não aceite valores desproporcionais sem submetê-los a uma revisão administrativa fundamentada na legislação de defesa do consumidor.
+
+Caso receba um auto de infração do Procon, a análise técnica especializada pode identificar se a autuação apresenta vício formal ou problemas na dosimetria da multa que possam justificar uma defesa administrativa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "a-nulidade-por-ausencia-de-motivacao-em-decisoes-do-procon",
     titulo: "A nulidade por ausência de motivação em decisões do Procon",
     descricao: "Recebeu uma decisão do Procon sem fundamentação clara? Entenda como a falta de motivação pode gerar a nulidade do processo. Analise seu auto gratuitamente.",
