@@ -165,6 +165,10 @@ export default function Energia() {
   const [error, setError] = useState<string | null>(null);
 
   const [rejeicaoInfo, setRejeicaoInfo] = useState<{ tipo: "sem_vicio"; motivo: string } | null>(null);
+  /* Recusa por escopo nao e erro: a analise funcionou e concluiu que o
+     documento nao e do tipo que tratamos. Precisa de titulo e cor proprios,
+     senao "Analise indisponivel" faz parecer falha do site. */
+  const [ehForaDeEscopo, setEhForaDeEscopo] = useState(false);
   const [secretClickCount, setSecretClickCount] = useState(0);
 
   const [isGeneratingDefense, setIsGeneratingDefense] = useState(false);
@@ -440,6 +444,7 @@ useEffect(() => {
     setShowConfirmNovaModal(false);
     setShowConfirmFecharDefesa(false);
     setHasAnalyzed(false);
+    setEhForaDeEscopo(false);
     setImageFile(file);
     setPreviewUrl(null);
     setError(null);
@@ -498,6 +503,26 @@ useEffect(() => {
           track("energia_analise_erro", "energia_erro_documento_ilegivel", { tipo: "documento_ilegivel" });
           throw new Error("Não conseguimos ler o documento. Envie um arquivo mais nítido ou o PDF original.");
         }
+
+        /* Recusa por ESCOPO. Diferente de "não encontramos falha": aqui o
+           documento é legítimo, mas trata de tema que não analisamos. Sem
+           este tratamento, esses casos caíam no erro genérico abaixo e
+           pareciam falha do site — justamente quando o usuário tem pressa. */
+        const foraDeEscopo: Record<string, string> = {
+          fora_escopo_execucao:
+            "Esta cobrança já está sendo discutida em juízo. Uma contestação junto à distribuidora não substitui a defesa no processo judicial, e o prazo lá é fatal. Procure um advogado com urgência.",
+          fora_escopo_cautelar:
+            "Este é um aviso de suspensão ou corte do fornecimento, que segue regras e prazos próprios, normalmente de poucos dias. Não analisamos esse tipo de documento. Entre em contato com a distribuidora imediatamente e, se o corte já tiver ocorrido, procure orientação com urgência.",
+        };
+
+        const chaveEscopo = Object.keys(foraDeEscopo).find((k) => lower.includes(k));
+        if (chaveEscopo) {
+          isBusinessError = true;
+          setEhForaDeEscopo(true);
+          track("energia_analise_erro", "energia_fora_escopo", { tipo: chaveEscopo });
+          throw new Error(foraDeEscopo[chaveEscopo]);
+        }
+
         throw new Error("Não foi possível concluir a análise. Tente novamente.");
       }
 
@@ -1423,12 +1448,20 @@ useEffect(() => {
                   {/* ERRO */}
                   {error && (
                     <div className="flex flex-col items-center space-y-4 text-center">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-50 text-red-600">
+                      <div className={`flex h-16 w-16 items-center justify-center rounded-full ${ehForaDeEscopo ? "bg-amber-50 text-amber-600" : "bg-red-50 text-red-600"}`}>
                         <AlertCircle className="h-8 w-8" />
                       </div>
                       <div>
-                        <h3 className="mb-2 text-lg font-bold text-slate-900">Análise indisponível</h3>
+                        <h3 className="mb-2 text-lg font-bold text-slate-900">
+                          {ehForaDeEscopo ? "Não trabalhamos com este tipo de documento" : "Análise indisponível"}
+                        </h3>
                         <p className="leading-relaxed text-slate-600">{error}</p>
+                        {ehForaDeEscopo && (
+                          <p className="mt-3 text-sm text-slate-500">
+                            Nada foi cobrado. Se você tiver um TOI ou uma notificação de
+                            recuperação de consumo, pode enviá-lo para análise.
+                          </p>
+                        )}
                       </div>
                     </div>
                   )}
