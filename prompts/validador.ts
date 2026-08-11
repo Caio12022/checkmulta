@@ -315,6 +315,49 @@ const MARCAS_NAO_VERIFICAVEL = [
   "antecedentes",
 ];
 
+/**
+ * Achado de dosimetria contradito pelo próprio documento.
+ *
+ * A lei exige que o auto INDIQUE os critérios da pena (gravidade, vantagem
+ * auferida, condição econômica, porte), não que exiba a conta. Mesmo assim o
+ * modelo insiste, de forma intermitente, em apontar "ausência de detalhamento
+ * da dosimetria" em autos que declaram os critérios — um achado que nasceria
+ * em quase todo documento, porque auto nenhum costuma mostrar a aritmética.
+ *
+ * A proibição já existe nos prompts do Procon e da Vigilância e reduziu a
+ * frequência, mas não eliminou: o mesmo caso passou numa execução e reprovou
+ * na seguinte. Daí a trava em código — a mesma lição da defesa contra injeção,
+ * onde a camada de prompt sozinha também não bastou.
+ */
+const MARCAS_ACHADO_DOSIMETRIA = [
+  "dosimetria", "memoria de calculo", "fundamentacao do valor",
+  "criterios que levaram ao valor", "gradacao da pena", "calculo da multa",
+  "quantum", "valor da multa",
+];
+
+const MARCAS_CRITERIOS_NO_DOCUMENTO = [
+  "gravidade", "vantagem auferida", "condicao economica",
+  "capacidade economica", "porte", "antecedentes",
+];
+
+export function dosimetriaContraditada(achado: any, transcricao: string): boolean {
+  const texto = normalizar(`${achado?.titulo || ""} ${achado?.explicacao || ""}`);
+
+  const alegaAusencia =
+    /ausencia|falta|nao consta|omissao|sem fundamenta|nao demonstra|nao detalha|nao explicita|generic/.test(
+      texto
+    );
+  const ehDosimetria = MARCAS_ACHADO_DOSIMETRIA.some((m) => texto.includes(normalizar(m)));
+  if (!alegaAusencia || !ehDosimetria) return false;
+
+  /* Só descarta quando o documento REALMENTE traz os critérios. Exigimos dois
+     para não derrubar achado legítimo em auto que menciona um termo de
+     passagem — e, se o auto de fato silencia, o achado continua válido. */
+  const t = normalizar(transcricao);
+  const presentes = MARCAS_CRITERIOS_NO_DOCUMENTO.filter((m) => t.includes(normalizar(m)));
+  return presentes.length >= 2;
+}
+
 export function ehNaoVerificavel(achado: any): boolean {
   const texto = normalizar(
     `${achado?.titulo || ""} ${achado?.explicacao || ""} ${achado?.base_legal || ""}`
@@ -517,6 +560,9 @@ export function validarAnaliseJSON(
       .filter((v: any) => typeof v === "string")
       .join(" ");
     if (!citacaoPermitida(citacao, vertical, transcricao)) continue;
+
+    // TRAVA 3-B — achado de dosimetria que o próprio documento desmente
+    if (dosimetriaContraditada(a, transcricao)) continue;
 
     // TRAVA 4 — gravidade dentro do vocabulário aceito
     if (!["critico", "atencao", "verificar"].includes(a.gravidade)) {

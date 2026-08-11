@@ -505,10 +505,28 @@ Nos demais casos, responda com este objeto:
   "quantidade_criticos": number,
   "quantidade_atencao": number,
   "quantidade_verificar": number,
-  "houve_achado": boolean
+  "houve_achado": boolean,
+  "prazo_aparenta_vencido": boolean,
+  "prazo_detalhe": string
 }
 
 Regras dos campos:
+- "prazo_aparenta_vencido" e "prazo_detalhe": TRAVA DE VENDA. Compare a data de ciência
+  do documento com a DATA DE HOJE informada no topo deste prompt.
+  A janela é de 20 dias corridos contados da ciência da autuação (art. 113). Ela pode
+  estar sobrestada por audiência de conciliação ambiental (art. 97-A, § 1º): se o
+  documento mencionar audiência agendada, marque false.
+  Se a janela já tiver se encerrado, marque true e explique em "prazo_detalhe", em uma
+  frase e em linguagem simples, quais datas você usou na conta.
+  REGRAS ABSOLUTAS deste campo:
+  1. NA DÚVIDA, MARQUE false. Se a data de ciência não estiver legível, se houver mais de
+     uma data possível, ou se o prazo aplicável não estiver claro, marque false. Bloquear
+     quem ainda está no prazo é pior do que deixar passar um caso duvidoso.
+  2. Isso NUNCA é achado. Não é defeito do documento, é circunstância de quem recebeu.
+     É PROIBIDO criar achado de prazo vencido — a informação vive só neste campo.
+  3. Marcar true NÃO encerra a análise. Continue examinando o documento normalmente e
+     preencha os achados como sempre: a pessoa tem direito de saber o que havia no auto,
+     mesmo sem poder mais apresentar defesa.
 - "transcricao_documento": TODO o texto que você conseguiu ler no documento, transcrito
   fielmente, na ordem em que aparece, incluindo cabeçalho, campos, descrição, datas,
   valores, histórico de movimentação e observações. Não resuma, não interprete, não

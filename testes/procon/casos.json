@@ -7,7 +7,10 @@
       "objetivo": "Auto correto: fatos descritos com data, hora, quantidade e lote, capitulação completa, dosimetria fundamentada com porte da empresa, agente identificado, prazo indicado. Não pode gerar vício.",
       "espera": {
         "tipo": "analise",
-        "houve_achado": false
+        "houve_achado": false,
+        "campos_bool": {
+          "prazo_aparenta_vencido": false
+        }
       }
     },
     {
@@ -56,6 +59,16 @@
       "espera": {
         "tipo": "analise",
         "houve_achado": false
+      }
+    },
+    {
+      "arquivo": "08-prazo-vencido.txt",
+      "objetivo": "Mesmo auto correto do caso 01, mas com ciência há 90 dias e prazo de 15 indicado no próprio documento. Deve marcar prazo_aparenta_vencido para bloquear a venda, sem transformar isso em vício.",
+      "espera": {
+        "tipo": "analise",
+        "campos_bool": {
+          "prazo_aparenta_vencido": true
+        }
       }
     }
   ]
