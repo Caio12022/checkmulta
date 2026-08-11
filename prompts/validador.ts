@@ -819,7 +819,7 @@ function temOutroVicio(relatorio: string): boolean {
 // 9. RETRY COM ESPERA (erro 503 / modelo sobrecarregado)
 // ============================================================
 
-function sobrecarregado(err: any): boolean {
+export function sobrecarregado(err: any): boolean {
   const m = `${err?.message || ""} ${err?.status || ""} ${JSON.stringify(err?.error || {})}`;
   return /503|UNAVAILABLE|overloaded|high demand|429|RESOURCE_EXHAUSTED|SERVER_BUSY/i.test(m);
 }
@@ -828,13 +828,17 @@ const espera = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 /**
  * Repete a chamada quando o Gemini responde 503 (alta demanda).
- * Esperas: 3s, 8s, 20s. Mesma lógica que a tela de trânsito já usava.
+ *
+ * Esperas: 3s, 8s, 20s, 45s. O orçamento era de 4 tentativas (31s no total) e
+ * a bateria pegou um pico que o esgotou — o Procon voltou 503 depois da quarta.
+ * A quinta tentativa leva o total a ~76s. É muito para uma tela de espera, mas
+ * é pouco perto da alternativa: quem já pagou receber erro em vez da peça.
  */
 export async function gerarComRetry(
   chamada: () => Promise<any>,
-  tentativas = 4
+  tentativas = 5
 ): Promise<any> {
-  const atrasos = [3000, 8000, 20000];
+  const atrasos = [3000, 8000, 20000, 45000];
   let ultimo: any;
 
   for (let i = 0; i < tentativas; i++) {

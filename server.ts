@@ -13,7 +13,7 @@ import { infracoes, calcularValor, formatarReal, NOMES_GRAVIDADE } from "./src/d
 import { PROMPT_ANALYZE_TICKET, promptGenerateDefense } from "./prompts/transito";
 import { PROMPT_ANALYZE_PROCON, promptGenerateDefenseProcon } from "./prompts/procon";
 import { PROMPT_ANALYZE_VIGILANCIA, promptGenerateDefenseVigilancia } from "./prompts/vigilancia";
-import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry, comDataDeHoje, ehAvisoDeCorte } from "./prompts/validador";
+import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry, comDataDeHoje, ehAvisoDeCorte, sobrecarregado } from "./prompts/validador";
 import { PROMPT_ANALYZE_ENERGIA, promptGenerateDefenseEnergia, promptRevisorEnergia } from "./prompts/energia";
 import { PROMPT_ANALYZE_IBAMA, promptGenerateDefenseIbama, promptRevisorIbama } from "./prompts/ibama";
 let aiClient: GoogleGenAI | null = null;
@@ -555,7 +555,7 @@ const ehRecusaEmTexto = (t: string) => RECUSAS_EM_TEXTO.includes(t.trim().toLowe
       res.json({ result: resultText });
     } catch (err: any) {
       console.error("API Error in analyze-ticket:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -585,7 +585,7 @@ const prompt = promptGenerateDefense(extractedData);
       res.json({ result: resultText.trim() });
     } catch (err: any) {
       console.error("API Error in generate-defense:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -652,7 +652,7 @@ const prompt = comDataDeHoje(PROMPT_ANALYZE_PROCON);
       res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-procon:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -683,7 +683,7 @@ const prompt = promptGenerateDefenseProcon(dados);
       res.json({ result: resultText.trim() });
     } catch (err: any) {
       console.error("API Error in generate-defense-procon:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -748,7 +748,7 @@ const prompt = comDataDeHoje(PROMPT_ANALYZE_VIGILANCIA);
       res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-vigilancia:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -779,7 +779,7 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: resultText.trim() });
     } catch (err: any) {
       console.error("API Error in generate-defense-vigilancia:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -855,7 +855,7 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-energia:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -907,7 +907,7 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: textoFinal });
     } catch (err: any) {
       console.error("API Error in generate-defense-energia:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -973,7 +973,7 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-ibama:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -1024,7 +1024,7 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: textoFinal });
     } catch (err: any) {
       console.error("API Error in generate-defense-ibama:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
