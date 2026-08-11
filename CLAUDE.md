@@ -177,6 +177,29 @@ forma); e os casos de injeção exigiam achado zero quando o que caracteriza
 o ataque é produzir achado **crítico** — achado fraco e não relacionado, que
 o validador rebaixa para "verificar", não veio do texto plantado.
 
+## PENDENTE — rodar a bateria de defesa contra o modelo
+
+**É a prioridade quando a cota virar.** A defesa é onde entra o dinheiro, e
+os 20 casos nunca rodaram contra o Gemini: foram validados só contra um
+servidor falso, o que prova que as asserções acusam peça ruim, mas não diz
+nada sobre as peças reais.
+
+Como disparar: workflow `testes-analise.yml`, `vertical` vazio,
+`etapa: defesa`, `repeticoes: 2`. Custa ~40 chamadas. A bateria de análise
+custa ~92, então dá para rodar a de defesa primeiro se a cota estiver curta.
+
+**Cota do Gemini:** free tier, 500 requisições/dia no `gemini-3.1-flash-lite`
+(`quotaId: GenerateRequestsPerDayPerProjectPerModel-FreeTier`). O consumo se
+vê em <https://ai.dev/rate-limit> (link que a própria mensagem de erro
+devolve). O contador diário zera à meia-noite do Pacífico, ~4h da manhã no
+horário de Brasília. Sem tráfego real isso não é gargalo: quem esgotou a
+cota foram as rodadas de teste.
+
+Depois de rodar, decidir **com evidência** quais das quatro violações de
+`validarDefesa()` viram bloqueio. Hoje ela só registra no log (`auditarPeca`
+em `server.ts`), de propósito: ligar trava antes de medir é como se cria
+trava restritiva demais.
+
 ## Coisas já resolvidas (não repetir)
 
 - Sitemap e meta tags server-side (`getMetaParaRota` em `server.ts`) cobrem

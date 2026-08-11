@@ -187,6 +187,36 @@ teste("adjetivo forte em vício sanável é pego", () => {
   ok(regras(v).includes("adjetivo_exagerado"), "art. 97 é sanável, adjetivo não cabe");
 });
 
+teste("'vício de forma insanável' é pego (variante que escapava)", () => {
+  /* O gabarito da defesa de trânsito trazia esta frase em texto FIXO, então
+     toda peça paga saía com ela. O regex original exigia "vício insanável"
+     colado e deixava passar as duas variantes com palavras no meio. */
+  const v = V.validarDefesa(
+    "Ocorre que a referida autuacao e manifestamente nula por vicio de forma insanavel.",
+    "transito",
+    "relatorio com falha de local impreciso"
+  );
+  ok(regras(v).includes("adjetivo_exagerado"), "deveria pegar 'vício de forma insanável'");
+});
+
+teste("'vício formal insanável' também é pego", () => {
+  const v = V.validarDefesa(
+    "No caso em tela, verifica-se vicio formal insanavel no preenchimento do auto.",
+    "transito",
+    "relatorio com falha de local impreciso"
+  );
+  ok(regras(v).includes("adjetivo_exagerado"), "deveria pegar 'vício formal insanável'");
+});
+
+teste("'vício formal' sozinho é permitido (linguagem calibrada)", () => {
+  const v = V.validarDefesa(
+    "No caso em tela, verifica-se vicio formal no preenchimento do auto de infracao.",
+    "transito",
+    "relatorio com falha de local impreciso"
+  );
+  ok(!regras(v).includes("adjetivo_exagerado"), "a linguagem calibrada não pode ser acusada");
+});
+
 teste("adjetivo forte em prescrição é PERMITIDO (contraprova)", () => {
   const v = V.validarDefesa(
     "Trata-se de vicio insanavel, pois a pretensao punitiva ja estava prescrita.",

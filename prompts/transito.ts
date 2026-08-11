@@ -202,9 +202,9 @@ em face do Auto de Infração de Trânsito nº [AIT], lavrado em [DATA], pelos f
 1. DOS FATOS E DO DIREITO
 O requerente foi autuado em [DATA], às [HORA], no local [LOCAL], por suposta infração descrita como: [INFRAÇÃO].
 
-Ocorre que a referida autuação é manifestamente nula por vício de forma insanável. Conforme preconiza o Artigo 280 do Código de Trânsito Brasileiro (CTB) e as diretrizes vinculantes do Manual Brasileiro de Fiscalização de Trânsito (MBFT), o ato administrativo de autuação exige fundamentação e motivação completa por parte do agente fiscalizador. 
+Ocorre que a referida autuação apresenta vício formal em seus requisitos essenciais. Conforme preconiza o Artigo 280 do Código de Trânsito Brasileiro (CTB) e as diretrizes vinculantes do Manual Brasileiro de Fiscalização de Trânsito (MBFT), o ato administrativo de autuação exige fundamentação e motivação completa por parte do agente fiscalizador.
 
-No caso em tela, verifica-se vício formal insanável no preenchimento do auto de infração. [AQUI VOCÊ DEVE DESCREVER, DE FORMA TÉCNICA E ESPECÍFICA, EXATAMENTE A FALHA APONTADA NO RESUMO DA ANÁLISE ACIMA — e nenhuma outra. Explique qual campo ou requisito falhou, por que a ausência ou incorreção desse elemento compromete a validade do ato, e de que modo isso impede o pleno exercício da defesa. Se a análise apontou mais de uma falha, trate cada uma em parágrafo próprio.] A presunção de legitimidade do ato administrativo não é absoluta e resta mitigada quando a autoridade falha em cumprir os requisitos imperativos de forma estabelecidos em lei, tornando a autuação inconsistente e irregular.
+No caso em tela, verifica-se vício formal no preenchimento do auto de infração. [AQUI VOCÊ DEVE DESCREVER, DE FORMA TÉCNICA E ESPECÍFICA, EXATAMENTE A FALHA APONTADA NO RESUMO DA ANÁLISE ACIMA — e nenhuma outra. Explique qual campo ou requisito falhou, por que a ausência ou incorreção desse elemento compromete a validade do ato, e de que modo isso impede o pleno exercício da defesa. Se a análise apontou mais de uma falha, trate cada uma em parágrafo próprio.] A presunção de legitimidade do ato administrativo não é absoluta e resta mitigada quando a autoridade falha em cumprir os requisitos imperativos de forma estabelecidos em lei, tornando a autuação inconsistente e irregular.
 
 Nos termos do Artigo 281, § 1º, inciso I, do CTB (dispositivo renumerado do parágrafo único pela Lei nº 14.304/2022), a autoridade de trânsito possui o dever de arquivar o auto de infração e julgar seu registro insubsistente sempre que este seja considerado inconsistente ou irregular.
 
@@ -218,4 +218,37 @@ Nestes termos, pede deferimento.
 
 __________________________________________
 [NOME DO CONDUTOR]
-Requerente`;
+Requerente
+
+=====================================================================
+REGRAS DE REDAÇÃO — VALEM SOBRE O GABARITO
+=====================================================================
+
+O gabarito acima é a ESTRUTURA da peça, não um texto a ser copiado sem
+juízo. Quando ele conflitar com as regras abaixo, valem as regras.
+
+- CALIBRAGEM DE ADJETIVOS. É PROIBIDO escrever "vício insanável", "vício de
+  forma insanável", "nulidade absoluta", "manifestamente nulo",
+  "manifestamente ilegal", "flagrantemente nulo" ou equivalentes para os
+  vícios de forma do auto (local impreciso, descrição genérica, ausência de
+  identificação do agente, dados do equipamento). Esses vícios são, em regra,
+  SANÁVEIS: a Administração pode convalidar. Escreva "vício formal" e deixe a
+  consequência para o pedido.
+  O exagero entrega ao julgador um motivo fácil para desqualificar a peça
+  inteira, inclusive a parte boa — e o próprio art. 281, § 1º, I, do CTB fala
+  em auto "inconsistente ou irregular", não em nulidade insanável. A
+  linguagem calibrada é, aqui, também a mais fiel à lei.
+  A expressão só cabe quando a falha for de PRAZO (decadência do direito de
+  autuar, art. 281) ou de competência do órgão, casos em que não há o que
+  convalidar.
+
+- NÃO PROMETA RESULTADO. Escreva "o auto não observou o disposto em...", nunca
+  "será anulado", "certamente será cancelado" ou "garantimos o êxito". Quem
+  decide é a autoridade de trânsito, e prometer desfecho é o oposto da
+  transparência que o produto promete.
+
+- NÃO IMPUTE crime, fraude ou má-fé ao agente autuante. Aponte a falha do ato,
+  não a intenção de quem o lavrou.
+
+- NÃO INVENTE dados. Placa, datas, local, número do auto e valores só podem
+  aparecer se estiverem no resumo da análise fornecido.`;

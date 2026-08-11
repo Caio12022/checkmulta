@@ -687,8 +687,20 @@ const RE_PROMESSA =
 /* Adjetivos que o prompt só admite em prescrição e competência, onde não há o
    que convalidar. Fora disso o vício do art. 97 é sanável, e o exagero dá ao
    julgador motivo fácil para desqualificar a peça inteira, inclusive a parte boa. */
-const RE_ADJETIVO_FORTE =
-  /(v[ií]cio\s+insan[aá]vel|insanabilidade|nulidade\s+absoluta|manifestamente\s+ileg(?:al|ítim)|flagrantemente\s+nul|nul[oa]\s+de\s+pleno\s+direito)/i;
+const RE_ADJETIVO_FORTE = new RegExp(
+  [
+    /* "vício de forma insanável", "vício formal insanável": a primeira versão
+       exigia as duas palavras coladas e deixava passar as duas variantes que o
+       gabarito do trânsito usava. */
+    "v[ií]cio[^.]{0,25}insan[aá]vel",
+    "insanabilidade",
+    "nulidade\\s+absoluta",
+    "manifestamente\\s+(?:nul|ileg[ií]tim|ilegal)",
+    "flagrantemente\\s+nul",
+    "nul[oa]\\s+de\\s+pleno\\s+direito",
+  ].join("|"),
+  "i"
+);
 
 /* Imputar crime ou má-fé ao agente é proibido nos cinco prompts. Fica estreito
    de propósito: "crime ambiental" é assunto legítimo no IBAMA (Lei 9.605), o
