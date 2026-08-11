@@ -258,11 +258,11 @@ export default function Plataforma() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 antialiased">
+    <div className="min-h-screen bg-white text-stone-900 antialiased">
       {/* ---------------------------------------------------------------- */}
       {/* Cabecalho                                                         */}
       {/* ---------------------------------------------------------------- */}
-      <header className="sticky top-0 z-40 border-b border-slate-200 bg-white">
+      <header className="sticky top-0 z-40 border-b border-stone-200 bg-white">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <a href="/" className="flex items-center">
             <img
@@ -274,7 +274,7 @@ export default function Plataforma() {
             />
           </a>
 
-          <nav className="hidden items-center gap-5 text-sm font-medium text-slate-600 lg:flex">
+          <nav className="hidden items-center gap-5 text-sm font-medium text-stone-600 lg:flex">
             <a href="#areas" className="transition hover:text-emerald-600">
               Áreas
             </a>
@@ -302,46 +302,46 @@ export default function Plataforma() {
 
           <button
             onClick={() => setMenuAberto(!menuAberto)}
-            className="flex rounded-lg p-2 text-slate-600 transition hover:bg-slate-50 hover:text-emerald-600 lg:hidden"
+            className="flex rounded-lg p-2 text-stone-600 transition hover:bg-stone-50 hover:text-emerald-600 lg:hidden"
             aria-label="Menu"
           >
             {menuAberto ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
 
           {menuAberto ? (
-            <div className="absolute left-0 top-full z-50 flex w-full flex-col space-y-2 border-b border-slate-200 bg-white p-4 shadow-lg lg:hidden">
+            <div className="absolute left-0 top-full z-50 flex w-full flex-col space-y-2 border-b border-stone-200 bg-white p-4 shadow-lg lg:hidden">
               <a
                 href="#areas"
                 onClick={() => setMenuAberto(false)}
-                className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50"
+                className="rounded-lg px-3 py-2.5 font-medium text-stone-700 transition hover:bg-stone-50"
               >
                 Áreas
               </a>
               <a
                 href="#como-funciona"
                 onClick={() => setMenuAberto(false)}
-                className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50"
+                className="rounded-lg px-3 py-2.5 font-medium text-stone-700 transition hover:bg-stone-50"
               >
                 Como funciona
               </a>
               <a
                 href="#ferramentas"
                 onClick={() => setMenuAberto(false)}
-                className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50"
+                className="rounded-lg px-3 py-2.5 font-medium text-stone-700 transition hover:bg-stone-50"
               >
                 Ferramentas
               </a>
               <a
                 href="#duvidas"
                 onClick={() => setMenuAberto(false)}
-                className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50"
+                className="rounded-lg px-3 py-2.5 font-medium text-stone-700 transition hover:bg-stone-50"
               >
                 Dúvidas
               </a>
               <a
                 href="/multa-de-transito/blog"
                 onClick={() => setMenuAberto(false)}
-                className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50"
+                className="rounded-lg px-3 py-2.5 font-medium text-stone-700 transition hover:bg-stone-50"
               >
                 Blog
               </a>
@@ -363,10 +363,10 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Triagem                                                           */}
       {/* ---------------------------------------------------------------- */}
-      <section className="relative overflow-hidden border-b border-slate-200">
+      <section className="relative overflow-hidden border-b border-stone-200">
         {/* Fundo hexagonal sutil — decorativo, não interativo */}
         <svg
-          className="pointer-events-none absolute inset-0 h-full w-full text-slate-200"
+          className="pointer-events-none absolute inset-0 h-full w-full text-stone-200"
           aria-hidden="true"
         >
           <defs>
@@ -390,21 +390,21 @@ export default function Plataforma() {
         </svg>
 
         <div className="relative mx-auto max-w-4xl px-5 py-14 text-center sm:py-20">
-          <p className="mb-6 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+          <p className="mb-6 font-mono text-[11px] uppercase tracking-widest text-stone-400">
             CheckMulta Tecnologia · CNPJ 63.524.338/0001-62
           </p>
 
-          <h1 className="text-3xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-5xl">
+          <h1 className="font-display text-3xl font-semibold leading-tight tracking-tight text-stone-900 sm:text-5xl">
             Quem te <span className="text-emerald-600">autuou?</span>
           </h1>
 
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-stone-600 sm:text-lg">
             Escolha o órgão, envie o documento e receba a análise gratuita.
             Apontamos, com o trecho citado, se existe falha formal que permita
             recorrer.
           </p>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-600">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-stone-600">
             <span className="flex items-center gap-2">
               <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
             </span>
@@ -424,25 +424,25 @@ export default function Plataforma() {
                 <a
                   key={v.id}
                   href={v.href}
-                  className="group flex items-center gap-4 rounded-lg border border-slate-200 bg-white p-5 transition-colors hover:border-emerald-700 hover:bg-emerald-50/40"
+                  className="group flex items-center gap-4 rounded-lg border border-stone-200 bg-white p-5 transition-colors hover:border-emerald-700 hover:bg-emerald-50/40"
                 >
                   <span
                     className="h-12 w-1 flex-shrink-0 rounded-full"
                     style={{ backgroundColor: v.cor.faixa }}
                   />
                   <span className="min-w-0 flex-1">
-                    <span className="block text-base font-semibold text-slate-900 group-hover:text-emerald-800">
+                    <span className="block text-base font-semibold text-stone-900 group-hover:text-emerald-800">
                       {o ? o.orgao : v.titulo}
                     </span>
-                    <span className="mt-1 block text-sm text-slate-600">
+                    <span className="mt-1 block text-sm text-stone-600">
                       {o ? o.oque : v.resumo}
                     </span>
-                    <span className="mt-1 block font-mono text-xs tracking-wide text-slate-400">
+                    <span className="mt-1 block font-mono text-xs tracking-wide text-stone-400">
                       {o ? o.lei : v.baseLegal}
                     </span>
                   </span>
                   {Icone ? (
-                    <Icone className="h-8 w-8 flex-shrink-0 text-slate-300 transition-colors group-hover:text-emerald-600" />
+                    <Icone className="h-8 w-8 flex-shrink-0 text-stone-300 transition-colors group-hover:text-emerald-600" />
                   ) : null}
                 </a>
               );
@@ -450,18 +450,18 @@ export default function Plataforma() {
 
             <a
               href="#areas"
-              className="flex items-center gap-4 rounded-lg border border-dashed border-slate-300 bg-white p-5 transition-colors hover:border-slate-400 hover:bg-slate-50"
+              className="flex items-center gap-4 rounded-lg border border-dashed border-stone-300 bg-white p-5 transition-colors hover:border-stone-400 hover:bg-stone-50"
             >
-              <span className="h-12 w-1 flex-shrink-0 rounded-full bg-slate-200" />
+              <span className="h-12 w-1 flex-shrink-0 rounded-full bg-stone-200" />
               <span className="min-w-0 flex-1">
-                <span className="block text-base font-semibold text-slate-700">
+                <span className="block text-base font-semibold text-stone-700">
                   Não sei quem me multou
                 </span>
-                <span className="mt-1 block text-sm text-slate-600">
+                <span className="mt-1 block text-sm text-stone-600">
                   Ver todas as áreas e descobrir
                 </span>
               </span>
-              <HelpCircle className="h-8 w-8 flex-shrink-0 text-slate-300" />
+              <HelpCircle className="h-8 w-8 flex-shrink-0 text-stone-300" />
             </a>
           </div>
         </div>
@@ -470,36 +470,36 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Demonstracao: documento marcado                                   */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-b border-slate-200 bg-slate-50">
+      <section className="border-b border-stone-200 bg-stone-50">
         <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:py-20 lg:grid-cols-2 lg:items-center lg:gap-16">
           <div>
-            <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+            <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-stone-400">
               O que você recebe
             </p>
-            <h2 className="text-2xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-3xl">
+            <h2 className="font-display text-2xl font-semibold leading-tight tracking-tight text-stone-900 sm:text-3xl">
               Toda multa tem regras para ser aplicada. Quando o órgão erra, ela
               pode ser <span className="text-emerald-600">derrubada</span>
             </h2>
-            <p className="mt-5 text-base leading-relaxed text-slate-600">
+            <p className="mt-5 text-base leading-relaxed text-stone-600">
               Nós lemos o seu documento linha por linha e apontamos cada erro
               que encontramos, em português claro, dizendo qual regra foi
               descumprida e por que aquilo é um problema.
             </p>
-            <p className="mt-5 text-base leading-relaxed text-slate-600">
+            <p className="mt-5 text-base leading-relaxed text-stone-600">
               Se não houver erro nenhum, a gente fala isso na cara e não cobra
               nada.
             </p>
           </div>
 
           {/* Peca de demonstracao. Conteudo ilustrativo. */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="mb-6 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+          <div className="rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+            <p className="mb-6 font-mono text-[11px] uppercase tracking-widest text-stone-400">
               Exemplo de análise
             </p>
 
             <div className="space-y-5">
               <div>
-                <p className="font-mono text-[11px] uppercase tracking-wide text-slate-400">
+                <p className="font-mono text-[11px] uppercase tracking-wide text-stone-400">
                   Onde a multa foi aplicada
                 </p>
                 <p className="mt-1 inline-block rounded bg-red-50 px-2 py-1 text-sm font-medium text-red-800">
@@ -513,8 +513,8 @@ export default function Plataforma() {
                 </p>
               </div>
 
-              <div className="border-t border-slate-100 pt-5">
-                <p className="font-mono text-[11px] uppercase tracking-wide text-slate-400">
+              <div className="border-t border-stone-100 pt-5">
+                <p className="font-mono text-[11px] uppercase tracking-wide text-stone-400">
                   Quem aplicou
                 </p>
                 <p className="mt-1 inline-block rounded bg-amber-50 px-2 py-1 text-sm font-medium text-amber-800">
@@ -527,14 +527,14 @@ export default function Plataforma() {
                 </p>
               </div>
 
-              <div className="border-t border-slate-100 pt-5">
-                <p className="font-mono text-[11px] uppercase tracking-wide text-slate-400">
+              <div className="border-t border-stone-100 pt-5">
+                <p className="font-mono text-[11px] uppercase tracking-wide text-stone-400">
                   Quando você foi avisado
                 </p>
-                <p className="mt-1 text-sm font-medium text-slate-900">
+                <p className="mt-1 text-sm font-medium text-stone-900">
                   14/03/2026
                 </p>
-                <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-slate-500">
+                <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-stone-500">
                   <Check className="mt-0.5 h-4 w-4 flex-shrink-0" />
                   O aviso chegou dentro do prazo. Aqui está tudo certo, e a
                   gente diz isso também.
@@ -542,7 +542,7 @@ export default function Plataforma() {
               </div>
             </div>
 
-            <p className="mt-6 border-t border-slate-100 pt-5 text-xs leading-relaxed text-slate-500">
+            <p className="mt-6 border-t border-stone-100 pt-5 text-xs leading-relaxed text-stone-500">
               Exemplo ilustrativo. Cada área é analisada segundo a lei do órgão
               que aplicou a multa.
             </p>
@@ -553,15 +553,15 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Areas atendidas                                                   */}
       {/* ---------------------------------------------------------------- */}
-      <section id="areas" className="border-b border-slate-200">
+      <section id="areas" className="border-b border-stone-200">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
-          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-slate-400">
+          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-stone-400">
             Áreas atendidas
           </p>
-          <h2 className="mx-auto mb-4 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 className="font-display mx-auto mb-4 max-w-2xl text-center text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">
             Cada órgão tem uma lei. Cada lei tem um <span className="text-emerald-600">agente</span>
           </h2>
-          <p className="mx-auto mb-12 max-w-2xl text-center text-base leading-relaxed text-slate-600">
+          <p className="mx-auto mb-12 max-w-2xl text-center text-base leading-relaxed text-stone-600">
             Não usamos a mesma análise para tudo. Abra a área correspondente ao
             documento que você recebeu para ver tudo o que cobrimos.
           </p>
@@ -570,7 +570,7 @@ export default function Plataforma() {
             {VERTICAIS.map((v) => (
               <details
                 key={v.id}
-                className="group overflow-hidden rounded-xl border border-slate-200 transition-colors hover:border-slate-300"
+                className="group overflow-hidden rounded-xl border border-stone-200 transition-colors hover:border-stone-300"
               >
                 <div
                   className="h-1 w-full"
@@ -586,26 +586,26 @@ export default function Plataforma() {
                       >
                         {v.publico}
                       </p>
-                      <h3 className="mt-2 text-lg font-semibold tracking-tight text-slate-900">
+                      <h3 className="font-display mt-2 text-lg font-semibold tracking-tight text-stone-900">
                         {v.titulo}
                       </h3>
                     </div>
-                    <ChevronDown className="mt-1 h-5 w-5 flex-shrink-0 text-slate-300 transition-transform duration-300 group-open:rotate-180" />
+                    <ChevronDown className="mt-1 h-5 w-5 flex-shrink-0 text-stone-300 transition-transform duration-300 group-open:rotate-180" />
                   </div>
 
-                  <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                  <p className="mt-3 text-sm leading-relaxed text-stone-600">
                     {v.resumo}
                   </p>
 
                   {/* Previa: o que costuma falhar nesta area */}
-                  <p className="mt-5 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+                  <p className="mt-5 font-mono text-[11px] uppercase tracking-widest text-stone-400">
                     O que costuma falhar aqui
                   </p>
                   <ul className="mt-2 space-y-1.5">
                     {v.especialidades.slice(0, 3).map((e) => (
                       <li
                         key={e.texto}
-                        className="flex items-start gap-2 text-sm text-slate-600"
+                        className="flex items-start gap-2 text-sm text-stone-600"
                       >
                         <span
                           className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full"
@@ -618,11 +618,11 @@ export default function Plataforma() {
                 </summary>
 
                 <div className="px-6 pb-6">
-                  <p className="border-t border-slate-100 pt-5 text-sm leading-relaxed text-slate-700">
+                  <p className="border-t border-stone-100 pt-5 text-sm leading-relaxed text-stone-700">
                     {v.detalhe}
                   </p>
 
-                  <p className="mb-3 mt-6 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+                  <p className="mb-3 mt-6 font-mono text-[11px] uppercase tracking-widest text-stone-400">
                     Todas as situações analisadas
                   </p>
                   <ul className="space-y-2">
@@ -631,22 +631,22 @@ export default function Plataforma() {
                         {e.href ? (
                           <a
                             href={e.href}
-                            className="text-slate-600 underline decoration-slate-200 underline-offset-4 transition-colors hover:text-emerald-700 hover:decoration-emerald-700"
+                            className="text-stone-600 underline decoration-stone-200 underline-offset-4 transition-colors hover:text-emerald-700 hover:decoration-emerald-700"
                           >
                             {e.texto}
                           </a>
                         ) : (
-                          <span className="text-slate-600">{e.texto}</span>
+                          <span className="text-stone-600">{e.texto}</span>
                         )}
                       </li>
                     ))}
                   </ul>
 
-                  <p className="mt-6 font-mono text-[11px] leading-relaxed tracking-wide text-slate-400">
+                  <p className="mt-6 font-mono text-[11px] leading-relaxed tracking-wide text-stone-400">
                     {v.baseLegal}
                   </p>
 
-                  <div className="mt-6 flex flex-wrap items-center gap-5 border-t border-slate-100 pt-5">
+                  <div className="mt-6 flex flex-wrap items-center gap-5 border-t border-stone-100 pt-5">
                     <a
                       href={v.href}
                       className="rounded-lg bg-emerald-700 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-800"
@@ -656,14 +656,14 @@ export default function Plataforma() {
                     {v.hrefBlog ? (
                       <a
                         href={v.hrefBlog}
-                        className="text-sm font-semibold text-slate-600 underline decoration-slate-300 underline-offset-4 transition-colors hover:text-emerald-700"
+                        className="text-sm font-semibold text-stone-600 underline decoration-stone-300 underline-offset-4 transition-colors hover:text-emerald-700"
                       >
                         Ler os artigos
                       </a>
                     ) : null}
                   </div>
 
-                  <p className="mt-4 font-mono text-[11px] uppercase tracking-widest text-slate-400">
+                  <p className="mt-4 font-mono text-[11px] uppercase tracking-widest text-stone-400">
                     Análise gratuita · defesa {v.preco}
                   </p>
                 </div>
@@ -676,28 +676,28 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Processo                                                          */}
       {/* ---------------------------------------------------------------- */}
-      <section id="como-funciona" className="border-b border-slate-200 bg-slate-50">
+      <section id="como-funciona" className="border-b border-stone-200 bg-stone-50">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
-          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-slate-400">
+          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-stone-400">
             Como funciona
           </p>
-          <h2 className="mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 className="font-display mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">
             Três etapas, nessa <span className="text-emerald-600">ordem</span>
           </h2>
 
           <ol className="grid gap-10 text-center sm:grid-cols-3">
             {PASSOS.map((p) => (
               <li key={p.numero} className="flex flex-col items-center">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 bg-white text-emerald-700">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-stone-300 bg-white text-emerald-700">
                   <p.Icone className="h-5 w-5" strokeWidth={1.5} />
                 </div>
                 <span className="font-mono text-xs tracking-widest text-emerald-700">
                   {p.numero}
                 </span>
-                <h3 className="mt-2 text-lg font-semibold tracking-tight text-slate-900">
+                <h3 className="font-display mt-2 text-lg font-semibold tracking-tight text-stone-900">
                   {p.titulo}
                 </h3>
-                <p className="mt-3 max-w-xs text-base leading-relaxed text-slate-600">
+                <p className="mt-3 max-w-xs text-base leading-relaxed text-stone-600">
                   {p.texto}
                 </p>
               </li>
@@ -709,22 +709,22 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Ferramentas                                                       */}
       {/* ---------------------------------------------------------------- */}
-      <section id="ferramentas" className="border-b border-slate-200">
+      <section id="ferramentas" className="border-b border-stone-200">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
-          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-slate-400">
+          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-stone-400">
             Ferramentas gratuitas
           </p>
-          <h2 className="mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 className="font-display mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">
             Consulte antes de precisar <span className="text-emerald-600">recorrer</span>
           </h2>
 
           <div className="grid gap-10 sm:grid-cols-2">
             {FERRAMENTAS.map((f) => (
-              <div key={f.id} className="border-t border-slate-900 pt-5">
-                <h3 className="text-base font-semibold tracking-tight text-slate-900">
+              <div key={f.id} className="border-t border-stone-900 pt-5">
+                <h3 className="font-display text-base font-semibold tracking-tight text-stone-900">
                   {f.titulo}
                 </h3>
-                <p className="mt-3 max-w-md text-sm leading-relaxed text-slate-600">
+                <p className="mt-3 max-w-md text-sm leading-relaxed text-stone-600">
                   {f.resumo}
                 </p>
                 <a
@@ -742,26 +742,26 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Perguntas frequentes                                              */}
       {/* ---------------------------------------------------------------- */}
-      <section id="duvidas" className="border-b border-slate-200 bg-slate-50">
+      <section id="duvidas" className="border-b border-stone-200 bg-stone-50">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
-          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-slate-400">
+          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-stone-400">
             Perguntas frequentes
           </p>
-          <h2 className="mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-slate-900 sm:text-3xl">
+          <h2 className="font-display mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">
             O que costuma gerar <span className="text-emerald-600">dúvida</span>
           </h2>
 
-          <div className="mx-auto max-w-3xl border-t border-slate-200">
+          <div className="mx-auto max-w-3xl border-t border-stone-200">
             {FAQ.map((f) => (
               <details
                 key={f.pergunta}
-                className="group border-b border-slate-200"
+                className="group border-b border-stone-200"
               >
-                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-base font-medium text-slate-900 transition-colors hover:text-emerald-700 [&::-webkit-details-marker]:hidden">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-base font-medium text-stone-900 transition-colors hover:text-emerald-700 [&::-webkit-details-marker]:hidden">
                   {f.pergunta}
-                  <ChevronDown className="mt-1 h-4 w-4 flex-shrink-0 text-slate-300 transition-transform duration-300 group-open:rotate-180" />
+                  <ChevronDown className="mt-1 h-4 w-4 flex-shrink-0 text-stone-300 transition-transform duration-300 group-open:rotate-180" />
                 </summary>
-                <p className="max-w-2xl pb-6 text-sm leading-relaxed text-slate-600">
+                <p className="max-w-2xl pb-6 text-sm leading-relaxed text-stone-600">
                   {f.resposta}
                 </p>
               </details>
@@ -773,7 +773,7 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Rodape                                                            */}
       {/* ---------------------------------------------------------------- */}
-      <footer className="border-t border-slate-200 bg-white">
+      <footer className="border-t border-stone-200 bg-white">
         <div className="mx-auto max-w-4xl px-4 py-12 text-center">
           <div className="mb-6 flex items-center justify-center">
             <img
@@ -790,14 +790,14 @@ export default function Plataforma() {
               <a
                 key={v.id}
                 href={v.href}
-                className="text-slate-600 transition hover:text-emerald-600"
+                className="text-stone-600 transition hover:text-emerald-600"
               >
                 {v.titulo}
               </a>
             ))}
           </nav>
 
-          <nav className="mb-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-slate-500">
+          <nav className="mb-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-stone-500">
             {FERRAMENTAS.map((f) => (
               <a
                 key={f.id}
@@ -812,8 +812,8 @@ export default function Plataforma() {
             </a>
           </nav>
 
-          <p className="mx-auto max-w-3xl text-xs leading-relaxed text-slate-500">
-            <strong className="font-semibold text-slate-700">
+          <p className="mx-auto max-w-3xl text-xs leading-relaxed text-stone-500">
+            <strong className="font-semibold text-stone-700">
               Transparência e privacidade:
             </strong>{" "}
             o CheckMulta presta serviço de análise documental e elaboração de
@@ -823,7 +823,7 @@ export default function Plataforma() {
             cadastro e não armazenamos o seu documento.
           </p>
 
-          <p className="mt-4 text-xs text-slate-400">
+          <p className="mt-4 text-xs text-stone-400">
             CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
