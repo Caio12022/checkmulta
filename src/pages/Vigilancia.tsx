@@ -150,6 +150,10 @@ export default function Vigilancia() {
   const [error, setError] = useState<string | null>(null);
 
   const [rejeicaoInfo, setRejeicaoInfo] = useState<{ tipo: "sem_vicio"; motivo: string } | null>(null);
+  /* Recusa por escopo nao e erro: a analise funcionou e concluiu que o
+     documento nao e do tipo que tratamos. Titulo e cor proprios, senao
+     "Analise indisponivel" faz parecer falha do site. */
+  const [ehForaDeEscopo, setEhForaDeEscopo] = useState(false);
   const [secretClickCount, setSecretClickCount] = useState(0);
 
   const [isGeneratingDefense, setIsGeneratingDefense] = useState(false);
@@ -440,6 +444,7 @@ useEffect(() => {
     setShowConfirmNovaModal(false);
     setShowConfirmFecharDefesa(false);
     setHasAnalyzed(false);
+    setEhForaDeEscopo(false);
     setImageFile(file);
     setPreviewUrl(null);
     setError(null);
@@ -498,6 +503,26 @@ useEffect(() => {
           track("vigilancia_analise_erro", "vigilancia_erro_documento_ilegivel", { tipo: "documento_ilegivel" });
           throw new Error("Não conseguimos ler o documento. Envie um arquivo mais nítido ou o PDF original.");
         }
+
+        /* Recusa por ESCOPO. Diferente de "nao encontramos falha": aqui o
+           documento e legitimo, mas trata de tema que nao analisamos. Sem
+           este tratamento caia no erro generico abaixo e parecia falha do
+           site — justamente quando o usuario tem pressa. */
+        const foraDeEscopo: Record<string, string> = {
+          fora_escopo_execucao:
+            "Esta multa já está inscrita em dívida ativa ou em cobrança judicial. A fase administrativa se encerrou e uma defesa não teria mais efeito. O caminho agora é judicial: procure um advogado.",
+          fora_escopo_penal:
+            "Este documento é da esfera criminal, não administrativa. Não analisamos matéria penal. Procure um advogado o quanto antes: prazos criminais são curtos e a defesa exige representação.",
+        };
+
+        const chaveEscopo = Object.keys(foraDeEscopo).find((k) => lower.includes(k));
+        if (chaveEscopo) {
+          isBusinessError = true;
+          setEhForaDeEscopo(true);
+          track("vigilancia_analise_erro", "vigilancia_fora_escopo", { tipo: chaveEscopo });
+          throw new Error(foraDeEscopo[chaveEscopo]);
+        }
+
         throw new Error("Não foi possível concluir a análise. Tente novamente.");
       }
 
@@ -1418,12 +1443,19 @@ useEffect(() => {
                   {/* ERRO */}
                   {error && (
                     <div className="flex flex-col items-center space-y-4 text-center">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-50 text-red-600">
+                      <div className={`flex h-16 w-16 items-center justify-center rounded-full ${ehForaDeEscopo ? "bg-amber-50 text-amber-600" : "bg-red-50 text-red-600"}`}>
                         <AlertCircle className="h-8 w-8" />
                       </div>
                       <div>
-                        <h3 className="mb-2 text-lg font-bold text-slate-900">Análise indisponível</h3>
+                        <h3 className="mb-2 text-lg font-bold text-slate-900">
+                          {ehForaDeEscopo ? "Não trabalhamos com este tipo de documento" : "Análise indisponível"}
+                        </h3>
                         <p className="leading-relaxed text-slate-600">{error}</p>
+                        {ehForaDeEscopo && (
+                          <p className="mt-3 text-sm text-slate-500">
+                            Nada foi cobrado. Se você tiver um auto de infração ou termo de interdição da vigilância sanitária, pode enviá-lo para análise.
+                          </p>
+                        )}
                       </div>
                     </div>
                   )}
