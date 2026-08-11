@@ -16,6 +16,7 @@ import { writeFileSync, unlinkSync } from "fs";
 import { execSync } from "child_process";
 import { tmpdir } from "os";
 import { join } from "path";
+import { validarArtigoBlog, type ViolacaoDefesa } from "../prompts/validador";
 
 // ============================================================
 // CONFIGURAÇÃO - você pode ajustar estas listas quando quiser
@@ -370,7 +371,7 @@ async function abrirPRdeRevisao(
 // ============================================================
 async function produzirArtigo(
   existentes: Set<string>
-): Promise<{ bloco: string; slug: string; titulo: string } | null> {
+): Promise<{ bloco: string; slug: string; titulo: string; violacoesLegais: ViolacaoDefesa[] } | null> {
   const pauta = PAUTAS[Math.floor(Math.random() * PAUTAS.length)];
   console.log(`  Tema: ${pauta.tema}`);
   console.log(`  Categoria: ${pauta.categoria}`);
@@ -404,7 +405,13 @@ async function produzirArtigo(
   console.log("  Revisando (checagem juridica)...");
   artigo.conteudo = await revisarArtigo(String(artigo.conteudo));
 
-  return { bloco: montarBloco(artigo, slug), slug, titulo: artigo.titulo };
+  console.log("  Auditando (segunda camada, em codigo)...");
+  const violacoesLegais = validarArtigoBlog(String(artigo.conteudo), "transito", pauta.tema);
+  if (violacoesLegais.length > 0) {
+    console.log(`  Auditoria reprovou: ${violacoesLegais.map((v) => v.regra).join(", ")}`);
+  }
+
+  return { bloco: montarBloco(artigo, slug), slug, titulo: artigo.titulo, violacoesLegais };
 }
 
 // ============================================================
@@ -420,6 +427,7 @@ async function main() {
 
   let conteudoAcumulado = conteudo;
   const titulosGerados: string[] = [];
+  const violacoesTotais: { titulo: string; violacoes: ViolacaoDefesa[] }[] = [];
 
   // 2. gera os artigos
   for (let i = 1; i <= ARTIGOS_POR_EXECUCAO; i++) {
@@ -431,6 +439,9 @@ async function main() {
       conteudoAcumulado = inserirArtigo(conteudoAcumulado, resultado.bloco);
       existentes.add(resultado.slug);
       titulosGerados.push(resultado.titulo);
+      if (resultado.violacoesLegais.length > 0) {
+        violacoesTotais.push({ titulo: resultado.titulo, violacoes: resultado.violacoesLegais });
+      }
       console.log(`  OK: ${resultado.titulo}`);
     } catch (err: any) {
       console.error(`  Falhou: ${err.message}. Seguindo para o proximo.`);
@@ -443,23 +454,37 @@ async function main() {
     throw new Error("Nenhum artigo foi gerado com sucesso nesta execucao.");
   }
 
-  // 3. valida a sintaxe antes de publicar
+  // 3. valida a sintaxe e a auditoria juridica antes de publicar
   console.log(`\n${titulosGerados.length} artigo(s) montado(s). Validando sintaxe...`);
   const validacao = validarSintaxe(conteudoAcumulado);
+  const reprovadoNaAuditoria = violacoesTotais.length > 0;
 
-  if (validacao.ok) {
+  if (validacao.ok && !reprovadoNaAuditoria) {
     console.log("Validacao OK. Commitando direto na main...");
     await commitarNaMain(conteudoAcumulado, sha, titulosGerados);
     console.log(`Publicado(s) automaticamente ${titulosGerados.length} artigo(s):`);
     titulosGerados.forEach((t) => console.log(`   - ${t}`));
   } else {
-    console.error("VALIDACAO FALHOU. Nada foi enviado para a main.");
-    console.error(validacao.erro);
+    const motivos: string[] = [];
+    if (!validacao.ok) {
+      console.error("VALIDACAO DE SINTAXE FALHOU.");
+      motivos.push(`SINTAXE:\n${validacao.erro}`);
+    }
+    if (reprovadoNaAuditoria) {
+      console.error("AUDITORIA JURIDICA REPROVOU.");
+      motivos.push(
+        "AUDITORIA JURIDICA:\n" +
+          violacoesTotais
+            .map((v) => `${v.titulo}: ` + v.violacoes.map((x) => `${x.regra} (${x.detalhe})`).join("; "))
+            .join("\n")
+      );
+    }
+    console.error("Nada foi enviado para a main.");
     const url = await abrirPRdeRevisao(
       conteudoAcumulado,
       sha,
       titulosGerados,
-      validacao.erro || ""
+      motivos.join("\n\n")
     );
     console.log(`Pull Request aberto para revisao manual: ${url}`);
     process.exit(1);

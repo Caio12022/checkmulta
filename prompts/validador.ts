@@ -173,10 +173,19 @@ const ARTIGOS_PERMITIDOS: Partial<Record<Vertical, string[]>> = {
   ],
 };
 
-/** Extrai números de lei/decreto mencionados num texto. */
+/**
+ * Extrai números de lei/decreto mencionados num texto.
+ *
+ * "lei" também é substantivo comum ("a lei prevê", "essa legislação") — sem
+ * cuidado, a janela de proximidade com o número casa "lei" de uma frase com
+ * um número de OUTRA frase, sempre que os dois calharem de estar a menos de
+ * 20 caracteres um do outro. Ponto final, interrogação, exclamação e quebra
+ * de linha fecham a janela: uma citação de verdade nunca tem esse tipo de
+ * corte entre a palavra e o número.
+ */
 function diplomasCitados(texto: string): string[] {
   const achados: string[] = [];
-  const re = /(?:lei|decreto|lei\s+complementar|lc)[^\d]{0,20}(\d{1,3}(?:\.\d{3})*)/gi;
+  const re = /(?:lei|decreto|lei\s+complementar|lc)[^\d.!?\n]{0,20}(\d{1,3}(?:\.\d{3})*)/gi;
   let m: RegExpExecArray | null;
   while ((m = re.exec(texto || "")) !== null) achados.push(m[1]);
   return achados;
@@ -775,6 +784,71 @@ export function validarDefesa(
   }
 
   const imputacao = peca.match(RE_IMPUTACAO);
+  if (imputacao) {
+    violacoes.push({ regra: "imputacao_ao_agente", detalhe: imputacao[0] });
+  }
+
+  return violacoes;
+}
+
+// ============================================================
+// 7-C. AUDITORIA DO ARTIGO DE BLOG (segunda camada dos robôs)
+// ============================================================
+
+/**
+ * Os robôs de artigo (robo-procon, robo-vigilancia, robo-energia, robo-ibama,
+ * robo de trânsito) já têm uma correção em prompt (revisarArtigo: o próprio
+ * modelo relê e tenta corrigir a si mesmo). Isso é só a primeira camada — a
+ * mesma lição já registrada neste arquivo (dosimetria, injeção, aviso de
+ * corte) é que correção só em prompt reduz a frequência do erro, não
+ * elimina, porque o modelo varia entre execuções. Esta função é a segunda
+ * camada, em código, para o conteúdo do blog.
+ *
+ * Reaproveita as mesmas regras de validarDefesa (citação, promessa de
+ * resultado, adjetivo forte, imputação ao agente) em vez de duplicá-las —
+ * regra duplicada em duas camadas foi o defeito que mais se repetiu aqui.
+ *
+ * Duas diferenças em relação a validarDefesa, pela natureza do conteúdo:
+ *
+ *   - Sem documento de referência. A defesa paga responde a um auto
+ *     específico, então uma citação fora da lista fechada ainda pode ser
+ *     aceita se estiver escrita no próprio documento. O artigo de blog não
+ *     tem documento nenhum por trás — é conteúdo genérico da vertical — então
+ *     a lista fechada vale sem exceção (referência vazia).
+ *
+ *   - Sem achados. cabeAdjetivoForte olha o array de achados da análise para
+ *     decidir se o tema é prescrição/competência; o blog não tem achados,
+ *     só o tema da pauta. Por isso aqui o teste é direto no tema.
+ */
+export function validarArtigoBlog(
+  conteudo: string,
+  vertical: Vertical,
+  tema: string
+): ViolacaoDefesa[] {
+  const violacoes: ViolacaoDefesa[] = [];
+  const texto = conteudo || "";
+
+  if (!citacaoPermitida(texto, vertical, "")) {
+    violacoes.push({
+      regra: "citacao_fora_da_lista",
+      detalhe: "o artigo cita norma ou artigo fora da lista fechada da vertical",
+    });
+  }
+
+  const promessa = texto.match(RE_PROMESSA);
+  if (promessa) {
+    violacoes.push({ regra: "promessa_de_resultado", detalhe: promessa[0] });
+  }
+
+  const adjetivo = texto.match(RE_ADJETIVO_FORTE);
+  if (adjetivo && !RE_TEMA_INSANAVEL.test(tema || "")) {
+    violacoes.push({
+      regra: "adjetivo_exagerado",
+      detalhe: `"${adjetivo[0]}" num artigo fora do tema prescrição/competência`,
+    });
+  }
+
+  const imputacao = texto.match(RE_IMPUTACAO);
   if (imputacao) {
     violacoes.push({ regra: "imputacao_ao_agente", detalhe: imputacao[0] });
   }
