@@ -1,0 +1,23 @@
+{
+  "orgao_emissor": "PROCON Municipal de Campinas/SP",
+  "numero_auto": "AI 4471/2026",
+  "numero_processo": "",
+  "empresa_autuada": "Comercial Vitoria Alimentos Ltda",
+  "cnpj": "08.114.229/0001-77",
+  "data_lavratura": "14/05/2026",
+  "data_ciencia": "20/05/2026",
+  "prazo_identificado": "10 dias da ciencia",
+  "prazo_aparenta_vencido": false,
+  "houve_achado": true,
+  "viabilidade": "Baixa",
+  "achados": [
+    {
+      "titulo": "Possivel enquadramento como microempresa",
+      "gravidade": "verificar",
+      "trecho_documento": "PORTE DA EMPRESA: nao informado",
+      "explicacao": "Nao consta do auto verificacao sobre o porte da empresa. Caso se trate de microempresa ou empresa de pequeno porte, ha regime proprio a ser considerado na dosimetria. A empresa precisa conferir esse ponto.",
+      "base_legal": "Art. 55 da Lei Complementar 123"
+    }
+  ],
+  "resumo": "Ha ponto a verificar quanto ao porte da empresa."
+}

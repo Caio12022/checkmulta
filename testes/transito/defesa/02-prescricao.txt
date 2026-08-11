@@ -1,0 +1,19 @@
+RELATORIO DE ANALISE - AUTO DE INFRACAO DE TRANSITO
+
+DADOS EXTRAIDOS
+Orgao autuador: DETRAN
+Auto de infracao: D778294113
+Placa: LMV2B88
+Data da infracao: 08/02/2025
+Local: Rodovia SP-330, km 102
+Enquadramento: art. 218, inciso I, do CTB
+
+O QUE ENCONTRAMOS
+Falha 1 - Notificacao da autuacao fora do prazo legal
+A infracao ocorreu em 08/02/2025 e a notificacao da autuacao so foi expedida
+em 20/10/2025, mais de oito meses depois. O art. 281, paragrafo unico, inciso
+II, do CTB determina o arquivamento do auto quando a notificacao nao e
+expedida em ate trinta dias, hipotese em que ocorre a decadencia do direito
+de autuar.
+
+VIABILIDADE: Alta

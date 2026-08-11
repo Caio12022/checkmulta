@@ -638,6 +638,132 @@ export function validarAnaliseJSON(
 }
 
 // ============================================================
+// 7-B. AUDITORIA DA PEÇA DE DEFESA (o produto pago)
+// ============================================================
+
+/**
+ * A análise gratuita é auditada achado por achado. A defesa — que é o que a
+ * pessoa paga, imprime e leva ao advogado — não era conferida por código
+ * nenhum: em três verticais (trânsito, Procon, Vigilância) a saída do modelo
+ * ia crua para o cliente, e nas outras duas o único filtro era o revisor, que
+ * é o próprio modelo se conferindo e que, ao falhar, entrega o rascunho.
+ *
+ * Aqui ficam as regras dos prompts de defesa que dá para conferir sem IA. A
+ * função não reescreve a peça: ela devolve a lista do que violou, para quem
+ * chama decidir. Serve tanto de trava no servidor quanto de asserção na
+ * bateria — mesma função nos dois lugares, de propósito, porque regra
+ * duplicada em duas camadas foi o defeito que mais se repetiu neste projeto.
+ */
+export interface ViolacaoDefesa {
+  regra: "citacao_fora_da_lista" | "promessa_de_resultado" | "adjetivo_exagerado" | "imputacao_ao_agente";
+  detalhe: string;
+}
+
+/* "será anulado", "com certeza", "garantimos o êxito". A peça pode afirmar que
+   o auto NÃO observou a norma; não pode afirmar o desfecho, que depende do
+   julgador. É a regra de transparência: nunca prometer resultado. */
+const RE_PROMESSA =
+  /(ser[aá]\s+(?:certamente\s+)?(?:anulad|cancelad|declarad[oa]\s+nul|invalidad)|com\s+certeza\s+(?:ser[aá]|ir[aá])|garant(?:imos|ido|ia)\s+(?:o\s+)?(?:[eê]xito|provimento|resultado|cancelamento)|[eê]xito\s+garantido|certamente\s+ser[aá]\s+(?:anulad|acolhid)|voc[eê]\s+(?:vai|ir[aá])\s+ganhar|n[aã]o\s+h[aá]\s+d[uú]vida\s+de\s+que\s+ser[aá])/i;
+
+/* Adjetivos que o prompt só admite em prescrição e competência, onde não há o
+   que convalidar. Fora disso o vício do art. 97 é sanável, e o exagero dá ao
+   julgador motivo fácil para desqualificar a peça inteira, inclusive a parte boa. */
+const RE_ADJETIVO_FORTE =
+  /(v[ií]cio\s+insan[aá]vel|insanabilidade|nulidade\s+absoluta|manifestamente\s+ileg(?:al|ítim)|flagrantemente\s+nul|nul[oa]\s+de\s+pleno\s+direito)/i;
+
+/* Imputar crime ou má-fé ao agente é proibido nos cinco prompts. Fica estreito
+   de propósito: "crime ambiental" é assunto legítimo no IBAMA (Lei 9.605), o
+   que não pode é acusar quem lavrou. */
+const RE_IMPUTACAO = new RegExp(
+  [
+    // "má-fé do agente", "dolo da autoridade"
+    "(?:m[aá]-f[eé]|dolo|fraude)\\s+d[oa]s?\\s+(?:agente|autoridade|fiscal|servidor)",
+    /* "o agente autuante agiu com má-fé": pode haver palavras entre o sujeito e o
+       verbo, e foi assim que a primeira versão desta regra deixou passar. */
+    "(?:agente|autoridade|fiscal|servidor)[^.]{0,40}?(?:agiu|atuou|procedeu)\\s+com\\s+(?:dolo|m[aá]-f[eé])",
+    "prevarica[cç][aã]o",
+    "conduta\\s+criminosa\\s+d[oa]\\s+(?:agente|fiscal|servidor)",
+  ].join("|"),
+  "i"
+);
+
+/** Blocos em que o adjetivo forte é admitido, porque não há convalidação possível. */
+const BLOCOS_INSANAVEIS = ["prescricao", "competencia"];
+
+/** Assunto que, aparecendo no achado, justifica o adjetivo forte. */
+const RE_TEMA_INSANAVEL = /prescri|decad[eê]ncia|incompet[eê]ncia|compet[eê]ncia/i;
+
+/**
+ * O adjetivo forte cabe? Depende do que a análise achou — e as três verticais
+ * descrevem o achado de formas diferentes, o que exige tratar as três:
+ *
+ *   IBAMA e Energia   achados com campo "bloco" ("prescricao", "competencia")
+ *   Procon/Vigilância achados SEM bloco: só titulo, explicacao e base_legal
+ *   Trânsito          análise inteira em texto corrido, sem achados
+ *
+ * Olhar só o bloco reprovaria toda peça legítima de prescrição no Procon e na
+ * Vigilância — o erro de trava restritiva demais, que já custou correção neste
+ * projeto e é pior que a ausência da trava: mata caso bom.
+ */
+function cabeAdjetivoForte(analise: any): boolean {
+  if (typeof analise === "string") return RE_TEMA_INSANAVEL.test(analise);
+
+  const achados = Array.isArray(analise?.achados) ? analise.achados : [];
+  return achados.some((a: any) => {
+    if (a?.gravidade !== "critico") return false;
+    if (BLOCOS_INSANAVEIS.includes(a?.bloco)) return true;
+    const texto = [a?.titulo, a?.explicacao, a?.base_legal, a?.dispositivo]
+      .filter((v) => typeof v === "string")
+      .join(" ");
+    return RE_TEMA_INSANAVEL.test(texto);
+  });
+}
+
+export function validarDefesa(
+  texto: string,
+  vertical: Vertical,
+  analise: any
+): ViolacaoDefesa[] {
+  const violacoes: ViolacaoDefesa[] = [];
+  const peca = texto || "";
+
+  /* Referência para a conferência de citação: a própria análise. Ela já passou
+     pela auditoria de citação na etapa anterior, então o que estava lá é
+     legítimo. A transcrição do documento não chega aqui — é apagada antes de
+     sair do servidor —, e é por isso que a referência é a análise e não o auto. */
+  const referencia = typeof analise === "string" ? analise : JSON.stringify(analise || {});
+
+  if (!citacaoPermitida(peca, vertical, referencia)) {
+    violacoes.push({
+      regra: "citacao_fora_da_lista",
+      detalhe: "a peça cita norma ou artigo fora da lista fechada da vertical",
+    });
+  }
+
+  const promessa = peca.match(RE_PROMESSA);
+  if (promessa) {
+    violacoes.push({ regra: "promessa_de_resultado", detalhe: promessa[0] });
+  }
+
+  const adjetivo = peca.match(RE_ADJETIVO_FORTE);
+  if (adjetivo) {
+    if (!cabeAdjetivoForte(analise)) {
+      violacoes.push({
+        regra: "adjetivo_exagerado",
+        detalhe: `"${adjetivo[0]}" sem achado crítico de prescrição ou competência`,
+      });
+    }
+  }
+
+  const imputacao = peca.match(RE_IMPUTACAO);
+  if (imputacao) {
+    violacoes.push({ regra: "imputacao_ao_agente", detalhe: imputacao[0] });
+  }
+
+  return violacoes;
+}
+
+// ============================================================
 // 8. TRÂNSITO — saída em texto, formato preservado
 // ============================================================
 

@@ -1,0 +1,23 @@
+{
+  "orgao_emissor": "PROCON Municipal de Campinas/SP",
+  "numero_auto": "AI 4471/2026",
+  "numero_processo": "",
+  "empresa_autuada": "Comercial Vitoria Alimentos Ltda",
+  "cnpj": "08.114.229/0001-77",
+  "data_lavratura": "14/05/2026",
+  "data_ciencia": "20/05/2026",
+  "prazo_identificado": "10 dias da ciencia",
+  "prazo_aparenta_vencido": false,
+  "houve_achado": true,
+  "viabilidade": "Alta",
+  "achados": [
+    {
+      "titulo": "Prescricao da pretensao punitiva",
+      "gravidade": "critico",
+      "trecho_documento": "DATA DO FATO: 03/2020. INSTAURACAO: 2026.",
+      "explicacao": "O proprio auto registra que o fato ocorreu em marco de 2020 e a instauracao se deu em 2026, superando o prazo de cinco anos de que dispoe a Administracao para apurar e punir a infracao.",
+      "base_legal": "Art. 28 do Decreto 2.181/97"
+    }
+  ],
+  "resumo": "Passaram-se mais de cinco anos entre o fato e a apuracao."
+}

@@ -1,0 +1,21 @@
+{
+  "distribuidora": "CPFL Paulista",
+  "numero_toi": "TOI 884.221/2026",
+  "titular": "Marcos Antonio Ribeiro",
+  "unidade_consumidora": "4.112.887-0",
+  "data_inspecao": "05/05/2026",
+  "valor_cobrado": 6420.55,
+  "houve_achado": true,
+  "viabilidade": "Baixa",
+  "achados": [
+    {
+      "titulo": "Memoria de calculo nao detalhada",
+      "bloco": "calculo",
+      "gravidade": "verificar",
+      "dispositivo": "",
+      "explicacao": "O termo informa o valor total cobrado, mas nao detalha como se chegou a ele. O titular precisa solicitar a memoria de calculo a distribuidora para conferir os criterios aplicados.",
+      "trecho": "VALOR TOTAL: R$ 6.420,55"
+    }
+  ],
+  "resumo": "Ha ponto a verificar quanto ao detalhamento do calculo."
+}

@@ -13,6 +13,12 @@ name: Bateria de testes de analise
         description: "Quantas vezes rodar cada caso. 2 e o padrao: o modelo varia entre execucoes, e uma rodada so nao enxerga isso."
         required: false
         default: "2"
+      etapa:
+        description: "O que testar: analise (a gratuita), defesa (a paga) ou ambas. Vazio roda ambas."
+        required: false
+        default: ""
+        type: choice
+        options: ["", "analise", "defesa", "ambas"]
 
 jobs:
   # As cinco verticais sao independentes entre si, mas rodavam em fila: 92
@@ -82,8 +88,19 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           NODE_ENV: production
 
-      - name: Rodar a bateria
+      # A analise cobre /api/analyze-* (a parte gratuita) e a defesa cobre
+      # /api/generate-defense-* (a paga). Sao baterias separadas porque a
+      # entrada e diferente: uma recebe documento, a outra recebe a analise
+      # ja auditada.
+      - name: Rodar a bateria de analise
+        if: ${{ github.event.inputs.etapa == '' || github.event.inputs.etapa == 'analise' || github.event.inputs.etapa == 'ambas' }}
         run: node testes/rodar.mjs ${{ matrix.vertical }}
+        env:
+          REPETICOES: ${{ github.event.inputs.repeticoes }}
+
+      - name: Rodar a bateria de defesa
+        if: ${{ github.event.inputs.etapa == '' || github.event.inputs.etapa == 'defesa' || github.event.inputs.etapa == 'ambas' }}
+        run: node testes/rodar-defesa.mjs ${{ matrix.vertical }}
         env:
           REPETICOES: ${{ github.event.inputs.repeticoes }}
 

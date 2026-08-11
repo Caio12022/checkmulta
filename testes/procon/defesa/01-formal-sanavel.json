@@ -1,0 +1,23 @@
+{
+  "orgao_emissor": "PROCON Municipal de Campinas/SP",
+  "numero_auto": "AI 4471/2026",
+  "numero_processo": "",
+  "empresa_autuada": "Comercial Vitoria Alimentos Ltda",
+  "cnpj": "08.114.229/0001-77",
+  "data_lavratura": "14/05/2026",
+  "data_ciencia": "20/05/2026",
+  "prazo_identificado": "10 dias da ciencia",
+  "prazo_aparenta_vencido": false,
+  "houve_achado": true,
+  "viabilidade": "Alta",
+  "achados": [
+    {
+      "titulo": "Descricao generica da conduta",
+      "gravidade": "critico",
+      "trecho_documento": "DESCRICAO: pratica abusiva em desfavor do consumidor.",
+      "explicacao": "O auto limita-se a afirmar pratica abusiva, sem indicar qual conduta foi praticada, quando, nem em relacao a qual consumidor. Sem esses elementos a empresa nao tem como se defender do fato concreto.",
+      "base_legal": "Art. 35, inciso I, do Decreto 2.181/97"
+    }
+  ],
+  "resumo": "O auto descreve a conduta de forma generica."
+}

@@ -1,0 +1,24 @@
+{
+  "orgao_autuante": "IBAMA - Instituto Brasileiro do Meio Ambiente e dos Recursos Naturais Renovaveis",
+  "numero_auto": "AI 6690221/2025",
+  "autuado": "Agropecuaria Serra Verde Ltda",
+  "cpf_cnpj": "17.229.884/0001-60",
+  "data_lavratura": "22/07/2025",
+  "data_ciencia": "29/07/2025",
+  "valor_multa": 42000.0,
+  "esfera": "federal",
+  "prazo_aparenta_vencido": false,
+  "houve_achado": true,
+  "viabilidade": "Alta",
+  "achados": [
+    {
+      "titulo": "Prescricao da pretensao punitiva",
+      "bloco": "prescricao",
+      "gravidade": "critico",
+      "dispositivo": "art. 21 do Decreto 6.514/2008",
+      "explicacao": "O proprio auto registra que o fato cessou em abril de 2018, e a lavratura ocorreu em julho de 2025. Passaram-se mais de cinco anos entre a cessacao da conduta e a apuracao, prazo alem do qual a Administracao nao pode mais punir.",
+      "trecho": "DATA DA CESSACAO DA CONDUTA: 04/2018. DATA DA LAVRATURA: 22/07/2025."
+    }
+  ],
+  "resumo": "Entre a cessacao do fato e a lavratura do auto passaram-se mais de cinco anos."
+}

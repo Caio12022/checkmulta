@@ -1,0 +1,21 @@
+RELATORIO DE ANALISE - AUTO DE INFRACAO DE TRANSITO
+
+DADOS EXTRAIDOS
+Orgao autuador: PRF - Policia Rodoviaria Federal
+Auto de infracao: E000123456
+Placa: RQP7A21
+Data da infracao: 12/05/2026
+Local: BR-116, km 214, sentido Sao Paulo
+Enquadramento: art. 218, inciso II, do CTB
+Descricao: transitar em velocidade superior a maxima permitida em ate 20%
+
+O QUE ENCONTRAMOS
+Falha 1 - Local da infracao sem referencia precisa
+O campo de local registra apenas "Avenida Central, s/n", sem numero, sem
+referencia de cruzamento e sem sentido de trafego. A indicacao imprecisa do
+local dificulta a verificacao das condicoes em que a infracao teria ocorrido.
+
+Falha 2 - Identificacao do agente incompleta
+A matricula do agente autuante esta parcialmente ilegivel no documento.
+
+VIABILIDADE: Media
