@@ -14,7 +14,7 @@
       "gravidade": "verificar",
       "dispositivo": "",
       "explicacao": "O termo informa o valor total cobrado, mas nao detalha como se chegou a ele. O titular precisa solicitar a memoria de calculo a distribuidora para conferir os criterios aplicados.",
-      "trecho": "VALOR TOTAL: R$ 6.420,55"
+      "trecho_documento": "VALOR TOTAL: R$ 6.420,55"
     }
   ],
   "resumo": "Ha ponto a verificar quanto ao detalhamento do calculo."

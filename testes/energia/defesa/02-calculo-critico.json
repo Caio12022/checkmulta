@@ -14,7 +14,7 @@
       "gravidade": "critico",
       "dispositivo": "",
       "explicacao": "O termo cobra 48 ciclos de consumo retroativo. O limite aplicavel a recuperacao de consumo e de 36 ciclos, de modo que a cobranca alcanca periodo que ja nao podia ser objeto de recuperacao.",
-      "trecho": "CICLOS RECUPERADOS: 48"
+      "trecho_documento": "CICLOS RECUPERADOS: 48"
     }
   ],
   "resumo": "A cobranca alcanca periodo alem do limite de ciclos."

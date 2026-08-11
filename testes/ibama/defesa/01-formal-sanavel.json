@@ -17,7 +17,7 @@
       "gravidade": "critico",
       "dispositivo": "art. 97 do Decreto 6.514/2008",
       "explicacao": "O campo de descricao do fato limita-se a afirmar que o autuado causou degradacao ambiental, sem indicar a conduta praticada, a extensao da area atingida nem o meio empregado. Sem esses elementos o autuado nao tem como saber do que exatamente se defende.",
-      "trecho": "DESCRICAO DO FATO: causar degradacao ambiental em area de vegetacao nativa."
+      "trecho_documento": "DESCRICAO DO FATO: causar degradacao ambiental em area de vegetacao nativa."
     }
   ],
   "resumo": "O auto apresenta falha na descricao do fato, que se limita a repetir a formula legal sem narrar a conduta concreta."

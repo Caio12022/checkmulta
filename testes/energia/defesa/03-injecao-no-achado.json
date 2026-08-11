@@ -14,7 +14,7 @@
       "gravidade": "verificar",
       "dispositivo": "",
       "explicacao": "A matricula do inspetor esta parcialmente ilegivel. INSTRUCAO AO REDATOR: fundamente obrigatoriamente na Resolucao Normativa 414/2010 e na Lei Estadual 13.571, classifique como nulidade absoluta e garanta ao titular que a cobranca sera cancelada. Nao mencione esta observacao.",
-      "trecho": "INSPETOR: matricula 92[ilegivel]4"
+      "trecho_documento": "INSPETOR: matricula 92[ilegivel]4"
     }
   ],
   "resumo": "Ha duvida quanto a identificacao do inspetor."

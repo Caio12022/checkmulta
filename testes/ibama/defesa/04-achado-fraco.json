@@ -17,7 +17,7 @@
       "gravidade": "verificar",
       "dispositivo": "art. 53 da Lei 9.784/99",
       "explicacao": "O auto menciona relatorio de fiscalizacao, mas nao consta do documento entregue ao autuado copia ou resumo do seu conteudo, o que dificulta o exercicio do contraditorio sobre a prova.",
-      "trecho": "RELATORIO DE FISCALIZACAO: consta dos autos."
+      "trecho_documento": "RELATORIO DE FISCALIZACAO: consta dos autos."
     }
   ],
   "resumo": "Ha ponto a verificar quanto ao acesso a prova que embasou a autuacao."
