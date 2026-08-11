@@ -1,0 +1,22 @@
+FUNDACAO DE PROTECAO E DEFESA DO CONSUMIDOR
+PROCON - Estado de Sao Paulo
+
+AUTO DE INFRACAO N 4471/2026
+
+AUTUADA: LOJAS CENTRO OESTE COMERCIO LTDA
+CNPJ: 18.447.220/0001-91
+ENDERECO: Rua Direita, 220, Centro, Sao Paulo/SP
+
+DATA DA LAVRATURA: {{HOJE-5}}
+DATA DA CIENCIA: {{HOJE-3}}
+
+DESCRICAO DOS FATOS:
+Recusa de cumprimento de oferta veiculada em encarte promocional, com
+negativa de venda pelo preco anunciado em 18 atendimentos registrados.
+
+CAPITULACAO: art. 35 c/c art. 30 da Lei 8.078/90, c/c art. 13, inciso
+III, do Decreto 2.181/97.
+
+VALOR DA MULTA: R$ 26.000,00
+
+PRAZO PARA DEFESA: 20 (vinte) dias contados da ciencia.

@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
+import { ehSobrecarga, ehCotaDiaria } from "../lib/sobrecarga";
 
 declare global {
   interface Window {
@@ -748,7 +749,9 @@ export default function App() {
       if (!isBusinessError && typeof window !== "undefined" && window.gtag) {
         window.gtag("event", "ia_erro_sistema", { error_message: err.message });
       }
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (ehCotaDiaria(err)) {
+        setError("Nossa cota diária de análises com IA acabou por hoje. O serviço volta automaticamente na virada do dia. Se for urgente, fale com o suporte.");
+      } else if (ehSobrecarga(err)) {
         setError("Nossos servidores estão processando um alto volume de auditorias. Por favor, aguarde alguns segundos e tente novamente.");
       } else {
         setError(err.message || "Ocorreu um erro ao comunicar com o servidor.");
@@ -846,7 +849,8 @@ export default function App() {
     } catch (err: any) {
       clearTimeout(timeoutId);
       if (err.name === "AbortError") setDefenseError("TIMEOUT");
-      else if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY"))) setDefenseError("SERVER_BUSY");
+      else if (ehCotaDiaria(err)) setDefenseError("QUOTA_DIARIA");
+      else if (ehSobrecarga(err)) setDefenseError("SERVER_BUSY");
       else setDefenseError("FALHA_GERACAO");
     } finally {
       setIsGeneratingDefense(false);

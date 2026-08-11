@@ -9,16 +9,51 @@ name: Bateria de testes de analise
         description: "Vertical a testar (ibama, transito, procon, vigilancia, energia). Vazio roda todas."
         required: false
         default: ""
+      repeticoes:
+        description: "Quantas vezes rodar cada caso. 2 e o padrao: o modelo varia entre execucoes, e uma rodada so nao enxerga isso."
+        required: false
+        default: "2"
 
 jobs:
-  bateria:
+  # As cinco verticais sao independentes entre si, mas rodavam em fila: 92
+  # chamadas sequenciais ao Gemini passavam de 50 minutos em dia de pico de
+  # demanda. Bateria lenta e bateria que a gente evita rodar, e o valor dela
+  # vem de rodar sempre. Aqui a lista de verticais vira matriz.
+  escolher:
     runs-on: ubuntu-latest
+    outputs:
+      verticais: ${{ steps.montar.outputs.verticais }}
+    steps:
+      - name: Montar a lista de verticais
+        id: montar
+        env:
+          ALVO: ${{ github.event.inputs.vertical }}
+        run: |
+          alvo=$(echo "$ALVO" | tr '[:upper:]' '[:lower:]' | tr -d '[:space:]')
+          if [ -z "$alvo" ]; then
+            lista='["ibama","transito","procon","vigilancia","energia"]'
+          else
+            lista="[\"$alvo\"]"
+          fi
+          echo "verticais=$lista" >> "$GITHUB_OUTPUT"
+          echo "Vai rodar: $lista"
+
+  bateria:
+    needs: escolher
+    runs-on: ubuntu-latest
+    strategy:
+      # Uma vertical vermelha nao pode cancelar as outras: o que interessa e o
+      # quadro completo, nao a primeira falha.
+      fail-fast: false
+      matrix:
+        vertical: ${{ fromJSON(needs.escolher.outputs.verticais) }}
+    name: bateria (${{ matrix.vertical }})
     steps:
       - name: Baixar o codigo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Preparar o Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: "20"
 
@@ -48,8 +83,21 @@ jobs:
           NODE_ENV: production
 
       - name: Rodar a bateria
-        run: node testes/rodar.mjs ${{ github.event.inputs.vertical }}
+        run: node testes/rodar.mjs ${{ matrix.vertical }}
+        env:
+          REPETICOES: ${{ github.event.inputs.repeticoes }}
 
       - name: Log do servidor (quando algo falha)
         if: failure()
         run: tail -100 /tmp/servidor.log
+
+  # Um lugar so para olhar o resultado, em vez de abrir as cinco matrizes.
+  resultado:
+    needs: bateria
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Consolidar
+        run: |
+          echo "Resultado da bateria: ${{ needs.bateria.result }}"
+          [ "${{ needs.bateria.result }}" = "success" ]

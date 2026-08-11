@@ -468,6 +468,46 @@ export function documentoIlegivel(transcricao: string, camposChave: string[]): b
 }
 
 // ============================================================
+// 5-B. AVISO DE CORTE — TRIAGEM DE ESCOPO NO CÓDIGO
+// ============================================================
+
+/**
+ * O PASSO 0 do prompt da Energia já manda recusar aviso de suspensão do
+ * fornecimento. Mas a bateria pegou o modelo deixando passar em uma de duas
+ * execuções do MESMO documento: na segunda, o aviso de corte voltou como
+ * análise completa de TOI.
+ *
+ * É o pior erro que esta vertical pode cometer. O aviso de corte tem prazo de
+ * poucos dias e o desfecho é ficar sem luz; entregar a ele um relatório de
+ * "achados na recuperação de consumo" faz a pessoa discutir o mérito do TOI
+ * enquanto o prazo do corte corre. Gate só de prompt reduz a frequência, não
+ * elimina — mesma conclusão a que já se chegou na dosimetria e na injeção.
+ *
+ * O sinal é o TÍTULO, não a menção. Um TOI comum costuma avisar que o não
+ * pagamento pode levar à suspensão, e essa frase aparece no corpo — por isso a
+ * checagem olha apenas o cabeçalho e exige que o assunto do documento seja o
+ * corte. Sem esse recorte, a trava recusaria TOI legítimo.
+ */
+/* A ação tem que estar amarrada ao FORNECIMENTO. "suspensão" sozinha aparece em
+   contexto inocente (suspensão de prazo, suspensão do faturamento); o que
+   caracteriza o documento é suspender/cortar/desligar o fornecimento ou a
+   energia. "aviso de corte" e "religação" entram porque, sozinhas, já nomeiam
+   o documento. */
+const RE_TITULO_CORTE = new RegExp(
+  [
+    "\\b(suspensao|suspenso|corte|desligamento|interrupcao)\\s+(do|de|da|no)\\s+(fornecimento|energia)",
+    "\\baviso\\s+de\\s+(corte|suspensao|desligamento)",
+    "\\bfornecimento\\s+[a-z ]{0,20}\\b(suspenso|cortado|interrompido|desligado)",
+    "\\breligacao\\b",
+  ].join("|")
+);
+
+export function ehAvisoDeCorte(transcricao: string): boolean {
+  const cabecalho = normalizar(transcricao).slice(0, 400);
+  return RE_TITULO_CORTE.test(cabecalho);
+}
+
+// ============================================================
 // 6. VIABILIDADE RECALCULADA NO SERVIDOR
 // ============================================================
 
@@ -655,6 +695,22 @@ export function validarAnaliseTransito(bruto: string): string {
     return "documento_invalido";
   }
 
+  /* 3º adulteração. Nas verticais de saída em JSON, a defesa contra injeção
+     descarta o achado individual cujo trecho é o texto plantado. Aqui a saída
+     é um relatório corrido, sem achados separáveis, então não há o que
+     descartar: ou o documento entra, ou não entra.
+
+     Só se rejeita o sinal inequívoco — texto do documento dando ordens a quem
+     analisa. Notificação de autuação real não contém "classifique como" nem
+     "desconsidere as instruções"; se contém, foi montada para forçar
+     resultado. A conclusão jurídica plantada (o "eivado de nulidade") fica
+     por conta da REGRA DE OURO 0.5 do prompt, porque rejeitar por ela em
+     código derrubaria decisão de JARI legítima, que discute nulidade por
+     ofício. */
+  if (RE_INSTRUCAO_AO_MODELO.test(transcricao)) {
+    return "documento_invalido";
+  }
+
   // Números citados no relatório têm que existir no documento
   if (!numerosConferem(relatorio, transcricao)) {
     return "imagem_ilegivel";
@@ -763,22 +819,50 @@ function temOutroVicio(relatorio: string): boolean {
 // 9. RETRY COM ESPERA (erro 503 / modelo sobrecarregado)
 // ============================================================
 
-function sobrecarregado(err: any): boolean {
-  const m = `${err?.message || ""} ${err?.status || ""} ${JSON.stringify(err?.error || {})}`;
-  return /503|UNAVAILABLE|overloaded|high demand|429|RESOURCE_EXHAUSTED|SERVER_BUSY/i.test(m);
+function textoDoErro(err: any): string {
+  return `${err?.message || ""} ${err?.status || ""} ${JSON.stringify(err?.error || {})}`;
+}
+
+/**
+ * Cota DIÁRIA do projeto esgotada — coisa diferente de pico de demanda.
+ *
+ * O 429 do Gemini cobre dois casos que não se parecem em nada:
+ *   - cota por MINUTO estourada: passa sozinha em segundos, repetir resolve;
+ *   - cota por DIA estourada: não passa hoje, repetir é só fazer o usuário
+ *     esperar para receber o mesmo erro.
+ *
+ * Quem distingue é o quotaId ("GenerateRequestsPerDayPerProjectPerModel").
+ * Sem essa separação, quem clicou em analisar espera os 76s inteiros do
+ * retry para então ver a mensagem de erro — e no caso da defesa paga, espera
+ * isso depois de já ter pago.
+ */
+export function cotaDiariaEsgotada(err: any): boolean {
+  return /PerDay|per day|requests per day/i.test(textoDoErro(err));
+}
+
+export function sobrecarregado(err: any): boolean {
+  // Cota do dia não é sobrecarga: não adianta repetir, e o tratamento é outro.
+  if (cotaDiariaEsgotada(err)) return false;
+  return /503|UNAVAILABLE|overloaded|high demand|429|RESOURCE_EXHAUSTED|SERVER_BUSY/i.test(
+    textoDoErro(err)
+  );
 }
 
 const espera = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 /**
  * Repete a chamada quando o Gemini responde 503 (alta demanda).
- * Esperas: 3s, 8s, 20s. Mesma lógica que a tela de trânsito já usava.
+ *
+ * Esperas: 3s, 8s, 20s, 45s. O orçamento era de 4 tentativas (31s no total) e
+ * a bateria pegou um pico que o esgotou — o Procon voltou 503 depois da quarta.
+ * A quinta tentativa leva o total a ~76s. É muito para uma tela de espera, mas
+ * é pouco perto da alternativa: quem já pagou receber erro em vez da peça.
  */
 export async function gerarComRetry(
   chamada: () => Promise<any>,
-  tentativas = 4
+  tentativas = 5
 ): Promise<any> {
-  const atrasos = [3000, 8000, 20000];
+  const atrasos = [3000, 8000, 20000, 45000];
   let ultimo: any;
 
   for (let i = 0; i < tentativas; i++) {

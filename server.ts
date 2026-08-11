@@ -13,7 +13,7 @@ import { infracoes, calcularValor, formatarReal, NOMES_GRAVIDADE } from "./src/d
 import { PROMPT_ANALYZE_TICKET, promptGenerateDefense } from "./prompts/transito";
 import { PROMPT_ANALYZE_PROCON, promptGenerateDefenseProcon } from "./prompts/procon";
 import { PROMPT_ANALYZE_VIGILANCIA, promptGenerateDefenseVigilancia } from "./prompts/vigilancia";
-import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry, comDataDeHoje } from "./prompts/validador";
+import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry, comDataDeHoje, ehAvisoDeCorte, sobrecarregado, cotaDiariaEsgotada } from "./prompts/validador";
 import { PROMPT_ANALYZE_ENERGIA, promptGenerateDefenseEnergia, promptRevisorEnergia } from "./prompts/energia";
 import { PROMPT_ANALYZE_IBAMA, promptGenerateDefenseIbama, promptRevisorIbama } from "./prompts/ibama";
 let aiClient: GoogleGenAI | null = null;
@@ -555,7 +555,11 @@ const ehRecusaEmTexto = (t: string) => RECUSAS_EM_TEXTO.includes(t.trim().toLowe
       res.json({ result: resultText });
     } catch (err: any) {
       console.error("API Error in analyze-ticket:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -585,7 +589,11 @@ const prompt = promptGenerateDefense(extractedData);
       res.json({ result: resultText.trim() });
     } catch (err: any) {
       console.error("API Error in generate-defense:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -652,7 +660,11 @@ const prompt = comDataDeHoje(PROMPT_ANALYZE_PROCON);
       res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-procon:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -683,7 +695,11 @@ const prompt = promptGenerateDefenseProcon(dados);
       res.json({ result: resultText.trim() });
     } catch (err: any) {
       console.error("API Error in generate-defense-procon:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -748,7 +764,11 @@ const prompt = comDataDeHoje(PROMPT_ANALYZE_VIGILANCIA);
       res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-vigilancia:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -779,7 +799,11 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: resultText.trim() });
     } catch (err: any) {
       console.error("API Error in generate-defense-vigilancia:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -827,6 +851,15 @@ const prompt = promptGenerateDefenseVigilancia(dados);
         return res.json({ result: parsed.status });
       }
 
+      /* Aviso de corte que escapou do PASSO 0. O prompt manda recusar, e o
+         modelo obedece quase sempre — mas a bateria pegou uma escapada em duas
+         execuções do mesmo documento. Aqui o custo do erro é alto demais para
+         depender só do prompt: o prazo do corte é de dias, e um relatório de
+         achados no TOI faz a pessoa discutir o mérito enquanto a luz cai. */
+      if (ehAvisoDeCorte(parsed?.transcricao_documento || "")) {
+        return res.json({ result: "fora_escopo_cautelar" });
+      }
+
       /* Auditoria programática. A Energia era a única vertical paga que entregava
          a saída do modelo sem conferência: todo achado dependia de o modelo
          obedecer ao prompt. O acoplamento exigiu antes que o prompt passasse a
@@ -846,7 +879,11 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-energia:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -898,7 +935,11 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: textoFinal });
     } catch (err: any) {
       console.error("API Error in generate-defense-energia:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -964,7 +1005,11 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: auditoria.parsed });
     } catch (err: any) {
       console.error("API Error in analyze-ibama:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });
@@ -1015,7 +1060,11 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       res.json({ result: textoFinal });
     } catch (err: any) {
       console.error("API Error in generate-defense-ibama:", err);
-      if (err.message && (err.message.includes("429") || err.message.includes("SERVER_BUSY") || err.message.includes("exhausted"))) {
+      if (cotaDiariaEsgotada(err)) {
+        console.error("COTA DIARIA DO GEMINI ESGOTADA. As analises param ate a virada do dia.");
+        return res.status(429).json({ error: "QUOTA_DIARIA" });
+      }
+      if (sobrecarregado(err)) {
         return res.status(429).json({ error: "SERVER_BUSY" });
       }
       res.status(500).json({ error: err.message || "Internal server error" });

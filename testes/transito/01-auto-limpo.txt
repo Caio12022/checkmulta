@@ -1,0 +1,35 @@
+POLICIA RODOVIARIA FEDERAL
+MINISTERIO DA JUSTICA E SEGURANCA PUBLICA
+
+NOTIFICACAO DE AUTUACAO
+AUTO DE INFRACAO N F1234567890
+
+PROPRIETARIO: ANTONIO CARLOS FERREIRA
+CPF: 118.447.220-95
+VEICULO: TOYOTA COROLLA XEI 2.0
+PLACA: RTA5B67   RENAVAM: 01288447019
+MUNICIPIO DE REGISTRO: Londrina/PR
+
+DATA DA INFRACAO: {{HOJE-8}}   HORA: 16h42
+LOCAL EXATO: BR-369, km 142,3, sentido crescente, Cambe/PR
+
+DESCRICAO DA INFRACAO:
+Transitar em velocidade superior a maxima permitida em ate 20%.
+Velocidade permitida na via: 80 km/h
+Velocidade medida: 91 km/h
+Velocidade considerada apos desconto da tolerancia legal: 86 km/h
+
+EQUIPAMENTO MEDIDOR: radar fixo, marca Velokontrol, modelo VK-200,
+numero de serie 44718-B, aferido pelo INMETRO em {{HOJE-190}},
+certificado de verificacao n 8842/2026, valido por 12 meses.
+
+ENQUADRAMENTO: art. 218, inciso I, do Codigo de Transito Brasileiro
+(Lei n 9.503/97). Natureza: MEDIA. Pontuacao: 4 pontos.
+
+VALOR DA MULTA: R$ 130,16
+
+AGENTE AUTUADOR: PRF - Matricula 1.884.207
+
+DATA DA NOTIFICACAO: {{HOJE-5}}
+PRAZO PARA DEFESA PREVIA: 30 (trinta) dias contados desta notificacao,
+conforme art. 281, paragrafo unico, inciso II, do CTB.
