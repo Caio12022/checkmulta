@@ -92,6 +92,30 @@ direto — o proxy de rede deste ambiente bloqueia `gov.br` e outros domínios
 oficiais para `WebFetch`. Se algum precisar de checagem futura, use
 `WebSearch` ou peça para o Caio confirmar manualmente.
 
+## Bateria de testes (`testes/`)
+
+Rede de segurança da parte mais sensível do produto. Casos sintéticos por
+vertical, com resultado esperado declarado em `casos.json`, rodados contra
+a rota HTTP real (não contra o Gemini direto, para cobrir também o
+validador e as recusas).
+
+**Estado:** IBAMA 14/14, Energia 9/9. Faltam Trânsito, Procon e Vigilância.
+
+**Como rodar:** eu disparo pela API do GitHub, escolhendo a branch — o Caio
+não precisa mexer na tela do Actions. Rodar sempre a bateria da vertical
+mexida *e* a do IBAMA, que é o molde, antes de mergear.
+
+Regra que se provou necessária: **não mergear mudança de prompt ou de
+validador sem a bateria passar.** Dois defeitos da Energia só apareceram
+na execução real e não apareceriam em revisão de código:
+1. o prompt não devolvia `transcricao_documento`, que o validador audita;
+2. o validador não conhecia dois dos três campos-chave da vertical
+   (`numero_toi`, `titular`), o que fazia recusar toda análise como
+   ilegível.
+
+Ao acoplar o validador numa vertical nova, conferir antes o mapa de nomes
+dos três campos-chave documentado em `prompts/validador.ts`.
+
 ## Coisas já resolvidas (não repetir)
 
 - Sitemap e meta tags server-side (`getMetaParaRota` em `server.ts`) cobrem
@@ -104,4 +128,26 @@ oficiais para `WebFetch`. Se algum precisar de checagem futura, use
   verticais: proibição colocada em um prompt não vale pros outros dois.
 - Defesa contra prompt injection dentro do documento (nota técnica/parecer
   plantado no auto) — camada de prompt + camada de código (validador
-  programático), não só uma das duas.
+  programático), não só uma das duas. Já vale para IBAMA e Energia.
+- Data de hoje injetada nos 5 prompts de análise (`comDataDeHoje` em
+  `prompts/validador.ts`). Sem ela é impossível julgar tempestividade, e a
+  única trava de prazo existente dependia de um ano escrito fixo no prompt.
+- Trânsito: a venda passou a ser de fato bloqueada com prazo vencido. O
+  marcador já existia, mas só mostrava uma tarja — o botão de pagar
+  continuava clicável.
+- Energia: validador acoplado (era a última vertical paga sem auditoria),
+  mais triagem de escopo para cobrança judicializada e aviso de corte.
+
+## Prazo vencido: a regra NÃO é igual em todas as verticais
+
+No Trânsito e no IBAMA, perder o prazo mata o direito de defesa — ali
+prazo vencido bloqueia a venda, mostrando a análise gratuita e escondendo
+a oferta. Na Energia não existe preclusão equivalente: a janela de 15 dias
+é só para pedir a perícia do medidor, e os defeitos de forma e de cálculo
+do TOI continuam válidos depois disso, com contestação possível na
+distribuidora, na ANEEL e em juízo. Lá a janela vencida entra como
+observação no resumo, nunca como achado nem como bloqueio.
+
+Antes de replicar a trava de prazo em Procon e Vigilância, verificar caso
+a caso se o prazo é preclusivo — aplicar a regra do Trânsito onde ela não
+cabe trava caso legítimo.
