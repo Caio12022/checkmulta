@@ -164,10 +164,14 @@ async function rodarVertical(vertical) {
 }
 
 async function main() {
-  const alvo = process.argv[2];
-  const verticais = alvo ? [alvo] : verticaisDisponiveis();
+  /* O nome vem digitado à mão no formulário do workflow, então normalizamos:
+     "Ibama", " ibama " e "IBAMA" têm que funcionar igual. Sem isso, o teste
+     falha por causa da caixa da letra e parece defeito do prompt. */
+  const alvo = (process.argv[2] || "").trim().toLowerCase();
+  const disponiveis = verticaisDisponiveis();
+  const verticais = alvo ? [alvo] : disponiveis;
 
-  if (verticais.length === 0) {
+  if (disponiveis.length === 0) {
     console.error("Nenhuma vertical com casos.json encontrada em testes/.");
     process.exit(1);
   }
@@ -178,6 +182,7 @@ async function main() {
   for (const v of verticais) {
     if (!existsSync(join(AQUI, v, "casos.json"))) {
       console.error(`Vertical "${v}" não tem casos.json.`);
+      console.error(`Disponíveis: ${disponiveis.join(", ")}`);
       process.exit(1);
     }
     const manifesto = JSON.parse(readFileSync(join(AQUI, v, "casos.json"), "utf-8"));
