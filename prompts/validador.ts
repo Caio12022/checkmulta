@@ -454,14 +454,28 @@ export function validarAnaliseJSON(
     ? parsed.transcricao_documento
     : "";
 
-  /* Cada vertical batizou os campos de identificação à sua maneira. Procon e
-     Vigilância usam orgao_emissor / empresa_autuada; IBAMA usa orgao_autuante /
-     autuado; Energia usa distribuidora. Aceitamos todos os apelidos para que a
-     trava de legibilidade funcione igual em qualquer rota. */
+  /* Cada vertical batizou os campos de identificação à sua maneira, e a trava
+     de legibilidade exige pelo menos DOIS deles preenchidos. Os três apelidos
+     precisam estar completos, senão a vertical inteira passa a recusar todo
+     documento como ilegível — foi o que aconteceu com a Energia, que só tinha
+     "distribuidora" mapeado e cujos outros dois campos se chamam numero_toi e
+     titular, não numero_auto e autuado.
+
+     Mapa atual, conferido contra o schema de saída de cada prompt:
+       Procon      orgao_emissor   / numero_auto / empresa_autuada
+       Vigilância  orgao_emissor   / numero_auto / empresa_autuada
+       IBAMA       orgao_autuante  / numero_auto / autuado
+       Energia     distribuidora   / numero_toi  / titular
+
+     "estabelecimento_autuado" segue aceito por compatibilidade, mas hoje
+     nenhum prompt o devolve.
+
+     Vertical nova: conferir os três nomes aqui ANTES de acoplar o validador. */
   const camposChave = [
     parsed?.orgao_emissor || parsed?.orgao_autuante || parsed?.distribuidora,
-    parsed?.numero_auto,
-    parsed?.empresa_autuada || parsed?.estabelecimento_autuado || parsed?.autuado,
+    parsed?.numero_auto || parsed?.numero_toi,
+    parsed?.empresa_autuada || parsed?.estabelecimento_autuado || parsed?.autuado ||
+      parsed?.titular,
   ].filter((v) => typeof v === "string") as string[];
 
   // ORDEM DAS TRAVAS (a ordem importa):
