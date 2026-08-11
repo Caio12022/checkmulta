@@ -7,7 +7,7 @@ CNPJ: 12.448.900/0001-55
 ENDERECO: Av. Goias, 1180, Setor Central, Goiania/GO
 CLASSE: Comercial   GRUPO: B3
 
-DATA DA INSPECAO: 21/01/2026
+DATA DA INSPECAO: {{HOJE-5}}
 INSPECAO ACOMPANHADA POR: Antonio Peres, gerente da loja
 ASSINATURA DE RECEBIMENTO: assinado por Antonio Peres
 COPIA ENTREGUE: sim

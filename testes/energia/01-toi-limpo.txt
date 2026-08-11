@@ -7,7 +7,7 @@ CPF: 187.442.309-11
 ENDERECO: Rua das Acacias, 214, Jardim Aurora, Piracicaba/SP
 CLASSE: Residencial   GRUPO: B1
 
-DATA DA INSPECAO: 14/01/2026   HORA: 10h20
+DATA DA INSPECAO: {{HOJE-5}}   HORA: 10h20
 INSPECAO ACOMPANHADA POR: Marcos Antonio Ribeiro (titular)
 ASSINATURA DE RECEBIMENTO: assinado pelo titular no ato
 COPIA ENTREGUE AO CONSUMIDOR: sim, no ato da inspecao

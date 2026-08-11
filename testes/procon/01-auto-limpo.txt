@@ -1,0 +1,36 @@
+FUNDACAO DE PROTECAO E DEFESA DO CONSUMIDOR
+PROCON - Estado de Sao Paulo
+
+AUTO DE INFRACAO N 1188/2026
+PROCESSO ADMINISTRATIVO N 0442.001188/2026
+
+AUTUADA: SUPERMERCADOS VILA NOVA LTDA
+CNPJ: 44.221.905/0001-18
+ENDERECO: Av. Brasil, 2210, Centro, Campinas/SP
+
+DATA DA LAVRATURA: {{HOJE-6}}
+DATA DA CIENCIA DA AUTUADA: {{HOJE-3}}
+
+DESCRICAO DOS FATOS:
+Em fiscalizacao realizada em {{HOJE-6}}, as 10h35, constatou-se a
+exposicao a venda de 128 (cento e vinte e oito) unidades de produtos
+alimenticios com prazo de validade expirado, sendo 64 unidades de
+iogurte da marca X, vencidas em {{HOJE-20}}, e 64 unidades de pao de
+forma da marca Y, vencidas em {{HOJE-17}}, todas dispostas em gondola de
+livre acesso ao consumidor no setor de laticinios e padaria. Os produtos
+foram fotografados e apreendidos conforme Termo de Apreensao 12/2026.
+
+CAPITULACAO: art. 18, caput, c/c art. 39, inciso VIII, da Lei 8.078/90,
+c/c art. 13, inciso IV, do Decreto 2.181/97.
+
+DOSIMETRIA: multa fixada considerando a gravidade da conduta, a vantagem
+auferida e a condicao economica da autuada, nos termos do art. 57 do CDC
+e dos arts. 24 a 28 do Decreto 2.181/97. Porte considerado: empresa de
+grande porte, faturamento declarado em 2025.
+
+VALOR DA MULTA: R$ 42.800,00
+
+PRAZO PARA DEFESA: 15 (quinze) dias contados da ciencia, nos termos da
+Lei Estadual 10.177/98.
+
+AGENTE FISCAL: Beatriz Almeida Rangel - Matricula 4.482

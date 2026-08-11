@@ -7,7 +7,7 @@ CPF: 445.116.220-77
 ENDERECO: Rua Padre Anchieta, 902, Bigorrilho, Curitiba/PR
 CLASSE: Residencial   GRUPO: B1
 
-DATA DA INSPECAO: 03/02/2026   HORA: 15h40
+DATA DA INSPECAO: {{HOJE-5}}   HORA: 15h40
 INSPECAO ACOMPANHADA POR: Eduardo Fontana Machado (titular)
 ASSINATURA DE RECEBIMENTO: assinado pelo titular no ato
 COPIA ENTREGUE AO CONSUMIDOR: sim, no ato da inspecao
@@ -33,7 +33,13 @@ CRITERIO DE CALCULO: media dos tres maiores consumos dos 12 ciclos
 anteriores a constatacao.
 MEMORIA DE CALCULO: anexa, discriminada ciclo a ciclo.
 
-PERIODO RECUPERADO: 8 (oito) ciclos, de 06/2025 a 01/2026.
+MARCO INICIAL DA IRREGULARIDADE: demonstrado a partir de 06/2025 pelo
+historico de consumo, que registra queda abrupta de media 480 kWh/mes
+(ciclos 01/2025 a 05/2025) para media 92 kWh/mes a partir de 06/2025,
+conforme grafico e tabela anexos.
+
+PERIODO RECUPERADO: 8 (oito) ciclos, de 06/2025 a 01/2026, coincidentes
+com o marco inicial demonstrado acima.
 VALOR APURADO: R$ 5.487,90
 CUSTO ADMINISTRATIVO: nao cobrado.
 

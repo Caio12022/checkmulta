@@ -7,7 +7,7 @@ CPF: 662.008.117-30
 ENDERECO: Trav. Sao Bento, 88, Bairro Uniao, Recife/PE
 CLASSE: Residencial   GRUPO: B1
 
-DATA DA INSPECAO: 08/02/2026   HORA: 09h05
+DATA DA INSPECAO: {{HOJE-5}}   HORA: 09h05
 INSPECAO ACOMPANHADA POR: nao consta
 ASSINATURA DE RECEBIMENTO: nao consta assinatura
 

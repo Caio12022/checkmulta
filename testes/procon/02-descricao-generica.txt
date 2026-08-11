@@ -1,0 +1,23 @@
+PROCON MUNICIPAL DE UBERLANDIA
+COORDENADORIA DE PROTECAO E DEFESA DO CONSUMIDOR
+
+AUTO DE INFRACAO N 0331/2026
+
+AUTUADA: COMERCIO DE MOVEIS PLANEJADOS SUL LTDA
+CNPJ: 21.554.008/0001-90
+ENDERECO: Rua Machado de Assis, 118, Bairro Fundinho, Uberlandia/MG
+
+DATA DA LAVRATURA: {{HOJE-6}}
+DATA DA CIENCIA DA AUTUADA: {{HOJE-3}}
+
+DESCRICAO DOS FATOS:
+Pratica abusiva em relacao de consumo. Descumprimento da legislacao
+consumerista.
+
+CAPITULACAO: Lei 8.078/90.
+
+VALOR DA MULTA: R$ 15.000,00
+
+PRAZO PARA DEFESA: 20 (vinte) dias contados da ciencia.
+
+AGENTE FISCAL: nao identificado
