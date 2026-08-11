@@ -26,7 +26,7 @@
     },
     {
       "arquivo": "03-prazo-vencido.txt",
-      "objetivo": "Auto notificado há 190 dias, com prazo de 30. A análise gratuita continua, mas o marcador de prazo expirado precisa aparecer para a tela esconder a oferta — sem ele, vende-se recurso que será rejeitado por intempestividade.",
+      "objetivo": "Auto COM defeito real (local 'Avenida Central, s/n' sem referência, descrição genérica, agente ilegível) E notificado há 190 dias, com prazo de 30. É o caso que importa: sem o marcador, este documento venderia um recurso que o órgão rejeita por intempestividade sem ler o mérito. A primeira versão deste caso usava um auto correto, e por isso não testava nada: auto sem falha não gera venda de qualquer forma.",
       "espera": {
         "tipo": "texto",
         "contem": [

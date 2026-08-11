@@ -10,18 +10,17 @@ VEICULO: FIAT UNO
 PLACA: HGT7K12   RENAVAM: 00884471109
 
 DATA DA INFRACAO: {{HOJE-200}}   HORA: 11h30
-LOCAL EXATO: Av. Afonso Pena, altura do n 2200, Belo Horizonte/MG
+LOCAL: Avenida Central, s/n
 
 DESCRICAO DA INFRACAO:
-Estacionar em local proibido pela sinalizacao, placa R-6a instalada a 12
-metros do ponto da autuacao.
+Estacionar em desacordo com a regulamentacao.
 
-ENQUADRAMENTO: art. 181, inciso XVII, do Codigo de Transito Brasileiro.
+ENQUADRAMENTO: art. 181 do Codigo de Transito Brasileiro.
 Natureza: MEDIA. Pontuacao: 4 pontos.
 
 VALOR DA MULTA: R$ 130,16
 
-AGENTE AUTUADOR: DETRAN/MG - Matricula 4.471
+AGENTE AUTUADOR: matricula ilegivel
 
 DATA DA NOTIFICACAO: {{HOJE-190}}
 PRAZO PARA DEFESA PREVIA: 30 (trinta) dias contados desta notificacao.
