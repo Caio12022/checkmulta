@@ -13,7 +13,7 @@ import { infracoes, calcularValor, formatarReal, NOMES_GRAVIDADE } from "./src/d
 import { PROMPT_ANALYZE_TICKET, promptGenerateDefense } from "./prompts/transito";
 import { PROMPT_ANALYZE_PROCON, promptGenerateDefenseProcon } from "./prompts/procon";
 import { PROMPT_ANALYZE_VIGILANCIA, promptGenerateDefenseVigilancia } from "./prompts/vigilancia";
-import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry, comDataDeHoje } from "./prompts/validador";
+import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry, comDataDeHoje, ehAvisoDeCorte } from "./prompts/validador";
 import { PROMPT_ANALYZE_ENERGIA, promptGenerateDefenseEnergia, promptRevisorEnergia } from "./prompts/energia";
 import { PROMPT_ANALYZE_IBAMA, promptGenerateDefenseIbama, promptRevisorIbama } from "./prompts/ibama";
 let aiClient: GoogleGenAI | null = null;
@@ -825,6 +825,15 @@ const prompt = promptGenerateDefenseVigilancia(dados);
       // Rejeição vinda dentro do JSON
       if (parsed.status && ehRecusaEmTexto(parsed.status)) {
         return res.json({ result: parsed.status });
+      }
+
+      /* Aviso de corte que escapou do PASSO 0. O prompt manda recusar, e o
+         modelo obedece quase sempre — mas a bateria pegou uma escapada em duas
+         execuções do mesmo documento. Aqui o custo do erro é alto demais para
+         depender só do prompt: o prazo do corte é de dias, e um relatório de
+         achados no TOI faz a pessoa discutir o mérito enquanto a luz cai. */
+      if (ehAvisoDeCorte(parsed?.transcricao_documento || "")) {
+        return res.json({ result: "fora_escopo_cautelar" });
       }
 
       /* Auditoria programática. A Energia era a única vertical paga que entregava

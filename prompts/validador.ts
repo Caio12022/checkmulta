@@ -468,6 +468,46 @@ export function documentoIlegivel(transcricao: string, camposChave: string[]): b
 }
 
 // ============================================================
+// 5-B. AVISO DE CORTE — TRIAGEM DE ESCOPO NO CÓDIGO
+// ============================================================
+
+/**
+ * O PASSO 0 do prompt da Energia já manda recusar aviso de suspensão do
+ * fornecimento. Mas a bateria pegou o modelo deixando passar em uma de duas
+ * execuções do MESMO documento: na segunda, o aviso de corte voltou como
+ * análise completa de TOI.
+ *
+ * É o pior erro que esta vertical pode cometer. O aviso de corte tem prazo de
+ * poucos dias e o desfecho é ficar sem luz; entregar a ele um relatório de
+ * "achados na recuperação de consumo" faz a pessoa discutir o mérito do TOI
+ * enquanto o prazo do corte corre. Gate só de prompt reduz a frequência, não
+ * elimina — mesma conclusão a que já se chegou na dosimetria e na injeção.
+ *
+ * O sinal é o TÍTULO, não a menção. Um TOI comum costuma avisar que o não
+ * pagamento pode levar à suspensão, e essa frase aparece no corpo — por isso a
+ * checagem olha apenas o cabeçalho e exige que o assunto do documento seja o
+ * corte. Sem esse recorte, a trava recusaria TOI legítimo.
+ */
+/* A ação tem que estar amarrada ao FORNECIMENTO. "suspensão" sozinha aparece em
+   contexto inocente (suspensão de prazo, suspensão do faturamento); o que
+   caracteriza o documento é suspender/cortar/desligar o fornecimento ou a
+   energia. "aviso de corte" e "religação" entram porque, sozinhas, já nomeiam
+   o documento. */
+const RE_TITULO_CORTE = new RegExp(
+  [
+    "\\b(suspensao|suspenso|corte|desligamento|interrupcao)\\s+(do|de|da|no)\\s+(fornecimento|energia)",
+    "\\baviso\\s+de\\s+(corte|suspensao|desligamento)",
+    "\\bfornecimento\\s+[a-z ]{0,20}\\b(suspenso|cortado|interrompido|desligado)",
+    "\\breligacao\\b",
+  ].join("|")
+);
+
+export function ehAvisoDeCorte(transcricao: string): boolean {
+  const cabecalho = normalizar(transcricao).slice(0, 400);
+  return RE_TITULO_CORTE.test(cabecalho);
+}
+
+// ============================================================
 // 6. VIABILIDADE RECALCULADA NO SERVIDOR
 // ============================================================
 
