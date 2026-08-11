@@ -99,11 +99,22 @@ vertical, com resultado esperado declarado em `casos.json`, rodados contra
 a rota HTTP real (não contra o Gemini direto, para cobrir também o
 validador e as recusas).
 
-**Estado:** IBAMA 14/14, Energia 9/9. Faltam Trânsito, Procon e Vigilância.
+**Estado: as 5 verticais cobertas, 46 casos.** IBAMA 15, Procon 8,
+Vigilância 8, Energia 9, Trânsito 6. Cada vertical tem auto limpo (para
+pegar falso positivo), os defeitos que ela deve achar, documento de outra
+vertical, ilegível, fora de escopo, prazo vencido e um caso de injeção.
 
-**Como rodar:** eu disparo pela API do GitHub, escolhendo a branch — o Caio
-não precisa mexer na tela do Actions. Rodar sempre a bateria da vertical
-mexida *e* a do IBAMA, que é o molde, antes de mergear.
+**Como rodar:** eu disparo pela API do GitHub (`actions_run_trigger`,
+workflow `testes-analise.yml`), escolhendo a branch — o Caio não precisa
+mexer na tela do Actions. Campo `vertical` **vazio** roda todas; preenchido
+roda uma só (`ibama`, `transito`, `procon`, `vigilancia`, `energia` — não
+existe o valor "todas", ele derruba a execução). Rodar sempre a bateria da
+vertical mexida *e* a do IBAMA, que é o molde, antes de mergear.
+
+`repeticoes` é 2 por padrão, e não por preciosismo: **o modelo varia entre
+execuções mesmo a temperatura 0.** Três defeitos reais só apareceram na
+segunda passada do mesmo documento — injeção na Energia, dosimetria no
+Procon e o aviso de corte. Uma rodada só não enxerga isso.
 
 Regra que se provou necessária: **não mergear mudança de prompt ou de
 validador sem a bateria passar.** Dois defeitos da Energia só apareceram
@@ -115,6 +126,20 @@ na execução real e não apareceriam em revisão de código:
 
 Ao acoplar o validador numa vertical nova, conferir antes o mapa de nomes
 dos três campos-chave documentado em `prompts/validador.ts`.
+
+**As datas dos casos são templates**, não datas fixas: `{{HOJE}}`,
+`{{HOJE-5}}`, `{{HOJE+5}}` são substituídos na hora de rodar. Um caso
+"limpo" do Procon já começou a falhar sozinho com um achado *correto* de
+prazo expirado, porque a data escrita no arquivo tinha envelhecido.
+
+**Quase metade das falhas da bateria foram erro meu de teste, não defeito
+do produto** — fixture mal montada ou asserção medindo a coisa errada. Antes
+de mexer no prompt por causa de uma falha, conferir se o caso testa mesmo o
+que diz testar. Dois exemplos: o caso de prazo do Trânsito era um auto
+*sem defeito*, então não testava nada (auto limpo não vende de qualquer
+forma); e os casos de injeção exigiam achado zero quando o que caracteriza
+o ataque é produzir achado **crítico** — achado fraco e não relacionado, que
+o validador rebaixa para "verificar", não veio do texto plantado.
 
 ## Coisas já resolvidas (não repetir)
 
@@ -128,7 +153,14 @@ dos três campos-chave documentado em `prompts/validador.ts`.
   verticais: proibição colocada em um prompt não vale pros outros dois.
 - Defesa contra prompt injection dentro do documento (nota técnica/parecer
   plantado no auto) — camada de prompt + camada de código (validador
-  programático), não só uma das duas. Já vale para IBAMA e Energia.
+  programático), não só uma das duas. Vale para as 5 verticais.
+- Triagem de escopo (PASSO 0) nas 5 verticais: dívida ativa/execução,
+  peça judicial e medida cautelar são recusadas em vez de analisadas.
+  Cuidado que já custou correção: **o que é cautelar numa vertical é o
+  produto principal de outra.** Interdição na Vigilância está DENTRO do
+  escopo (a defesa discute proporcionalidade e o teto de 90 dias do art. 23
+  §4), e apreensão no Procon também (art. 56 do CDC). Só embargo do IBAMA,
+  aviso de corte da Energia e peça judicial saem por escopo.
 - Data de hoje injetada nos 5 prompts de análise (`comDataDeHoje` em
   `prompts/validador.ts`). Sem ela é impossível julgar tempestividade, e a
   única trava de prazo existente dependia de um ano escrito fixo no prompt.
@@ -137,6 +169,25 @@ dos três campos-chave documentado em `prompts/validador.ts`.
   continuava clicável.
 - Energia: validador acoplado (era a última vertical paga sem auditoria),
   mais triagem de escopo para cobrança judicializada e aviso de corte.
+- Aviso de corte da Energia tem trava dupla: PASSO 0 no prompt **mais**
+  `ehAvisoDeCorte()` no validador. O prompt sozinho deixou passar em 1 de 2
+  execuções do mesmo documento, e ali o erro é grave — o prazo do corte é
+  de dias, e um relatório de achados no TOI faz a pessoa discutir o mérito
+  enquanto a luz cai.
+
+## Dois defeitos que se repetem (reconhecer de longe)
+
+**1. Regra jurídica certa, com hipótese sem porteiro.** O prompt descreve
+corretamente quando a tese cabe, mas o "como aplicar" não manda conferir se
+a hipótese aconteceu — então o achado nasce em quase todo documento.
+Aconteceu 3× (dupla visita no Procon, dosimetria 2×). O conserto é um passo
+explícito de verificação antes de levantar a tese, e não abrandar o texto.
+
+**2. Proibição que só existe numa camada.** Regra colocada no prompt de
+análise não vale para o de defesa nem para o de revisor; e proibição só de
+prompt reduz a frequência mas não elimina, porque o modelo varia entre
+execuções. Quando a falha é **intermitente**, prompt não basta: entra trava
+de código. Já foi assim na injeção, na dosimetria e no aviso de corte.
 
 ## Prazo vencido: a regra NÃO é igual em todas as verticais
 
