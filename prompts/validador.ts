@@ -185,7 +185,7 @@ const ARTIGOS_PERMITIDOS: Partial<Record<Vertical, string[]>> = {
  */
 function diplomasCitados(texto: string): string[] {
   const achados: string[] = [];
-  const re = /(?:lei|decreto|lei\s+complementar|lc)[^\d.!?\n]{0,20}(\d{1,3}(?:\.\d{3})*)/gi;
+  const re = /(?:lei|decreto|lei\s+complementar|lc)[^\d.!?\n():;]{0,20}(\d{1,3}(?:\.\d{3})*)/gi;
   let m: RegExpExecArray | null;
   while ((m = re.exec(texto || "")) !== null) achados.push(m[1]);
   return achados;
@@ -195,9 +195,15 @@ function diplomasCitados(texto: string): string[] {
  * Tipos de norma que nenhuma vertical pode citar por número: resolução,
  * RDC, portaria, instrução normativa, deliberação, súmula, código estadual
  * ou municipal. Só passam se o número estiver escrito no próprio documento.
+ *
+ * Sem o abreviativo solto "IN": rodando contra 251 artigos de blog, ele
+ * casou com o "in" de "in loco" e com o prefixo de "início" — a busca é
+ * case-insensitive e o \b do JavaScript não reconhece letra acentuada como
+ * caractere de palavra, então "in|ício" já conta como fronteira. A forma por
+ * extenso ("instrução normativa") continua coberta.
  */
 const RE_NORMA_PROIBIDA =
-  /(resolu[cç][aã]o|\bRDC\b|portaria|instru[cç][aã]o\s+normativa|\bIN\b|delibera[cç][aã]o|s[uú]mula|c[oó]digo\s+(?:sanit[aá]rio|de\s+posturas)|lei\s+(?:estadual|municipal|complementar\s+estadual))[^\d]{0,25}(\d{1,5}(?:[./]\d{1,4})*)/gi;
+  /(resolu[cç][aã]o|\bRDC\b|portaria|instru[cç][aã]o\s+normativa|delibera[cç][aã]o|s[uú]mula|c[oó]digo\s+(?:sanit[aá]rio|de\s+posturas)|lei\s+(?:estadual|municipal|complementar\s+estadual))[^\d.!?\n():;]{0,25}(\d{1,5}(?:[./]\d{1,4})*)/gi;
 
 function normasProibidasCitadas(texto: string): string[] {
   const achados: string[] = [];
@@ -796,6 +802,51 @@ export function validarDefesa(
 // ============================================================
 
 /**
+ * Citação legal permitida para BLOG — diferente de citacaoPermitida (usada
+ * pela análise e pela defesa) em dois pontos, descobertos rodando esta
+ * função contra os 251 artigos já publicados antes de confiar nela:
+ *
+ *   - Sem checagem de número de ARTIGO. ARTIGOS_PERMITIDOS é a lista
+ *     estreita de dispositivos usados para apontar vício FORMAL numa peça
+ *     de defesa — não é, e nunca teve a pretensão de ser, a lista de todo
+ *     artigo real da lei. Um artigo de blog educativo cobre o Código inteiro
+ *     (ex.: "Art. 307 do CTB — dirigir com CNH suspensa é crime"), e testar
+ *     contra a lista estreita reprovava artigo verdadeiro e correto: 44 dos
+ *     148 artigos de trânsito reprovariam por citar um Art. real do CTB que
+ *     simplesmente não está na lista de vícios formais.
+ *
+ *   - Resolução-base da vertical citada por NOME segue permitida. A trava
+ *     geral contra resolução/RDC/portaria (RE_NORMA_PROIBIDA) existe porque,
+ *     numa análise ou defesa, essa citação teria que vir do documento — e
+ *     normalmente não vem. Mas o próprio prompt da Energia manda citar a
+ *     REN 1.000/2021 da ANEEL por nome, porque ela é a norma-base da
+ *     vertical inteira (não um dispositivo do documento). Sem esta exceção,
+ *     7 dos 8 artigos de Energia reprovariam por citar corretamente a única
+ *     norma que sustenta o vertical inteiro.
+ *
+ * Diploma (lei/decreto por número) continua na lista fechada de sempre: essa
+ * parte não gerou nenhum falso positivo nos 251 artigos testados.
+ */
+const RESOLUCAO_BASE_DA_VERTICAL: Partial<Record<Vertical, string>> = {
+  energia: "10002021", // REN 1.000/2021 da ANEEL, dígitos só
+};
+
+function citacaoPermitidaBlog(texto: string, vertical: Vertical): boolean {
+  for (const n of normasProibidasCitadas(texto)) {
+    const limpo = n.replace(/[^\d]/g, "");
+    if (limpo && limpo !== RESOLUCAO_BASE_DA_VERTICAL[vertical]) return false;
+  }
+
+  for (const d of diplomasCitados(texto)) {
+    const limpo = d.replace(/\./g, "");
+    const permitido = DIPLOMAS_PERMITIDOS[vertical].some((p) => p.replace(/\./g, "") === limpo);
+    if (!permitido) return false;
+  }
+
+  return true;
+}
+
+/**
  * Os robôs de artigo (robo-procon, robo-vigilancia, robo-energia, robo-ibama,
  * robo de trânsito) já têm uma correção em prompt (revisarArtigo: o próprio
  * modelo relê e tenta corrigir a si mesmo). Isso é só a primeira camada — a
@@ -804,21 +855,10 @@ export function validarDefesa(
  * elimina, porque o modelo varia entre execuções. Esta função é a segunda
  * camada, em código, para o conteúdo do blog.
  *
- * Reaproveita as mesmas regras de validarDefesa (citação, promessa de
- * resultado, adjetivo forte, imputação ao agente) em vez de duplicá-las —
- * regra duplicada em duas camadas foi o defeito que mais se repetiu aqui.
- *
- * Duas diferenças em relação a validarDefesa, pela natureza do conteúdo:
- *
- *   - Sem documento de referência. A defesa paga responde a um auto
- *     específico, então uma citação fora da lista fechada ainda pode ser
- *     aceita se estiver escrita no próprio documento. O artigo de blog não
- *     tem documento nenhum por trás — é conteúdo genérico da vertical — então
- *     a lista fechada vale sem exceção (referência vazia).
- *
- *   - Sem achados. cabeAdjetivoForte olha o array de achados da análise para
- *     decidir se o tema é prescrição/competência; o blog não tem achados,
- *     só o tema da pauta. Por isso aqui o teste é direto no tema.
+ * Reaproveita RE_PROMESSA, RE_ADJETIVO_FORTE e RE_IMPUTACAO de validarDefesa
+ * em vez de duplicá-las — regra duplicada em duas camadas foi o defeito que
+ * mais se repetiu aqui. A citação legal É diferente de propósito, e por isso
+ * NÃO reaproveita citacaoPermitida (ver citacaoPermitidaBlog logo abaixo).
  */
 export function validarArtigoBlog(
   conteudo: string,
@@ -828,10 +868,10 @@ export function validarArtigoBlog(
   const violacoes: ViolacaoDefesa[] = [];
   const texto = conteudo || "";
 
-  if (!citacaoPermitida(texto, vertical, "")) {
+  if (!citacaoPermitidaBlog(texto, vertical)) {
     violacoes.push({
       regra: "citacao_fora_da_lista",
-      detalhe: "o artigo cita norma ou artigo fora da lista fechada da vertical",
+      detalhe: "o artigo cita lei, decreto ou resolução fora da lista fechada da vertical",
     });
   }
 

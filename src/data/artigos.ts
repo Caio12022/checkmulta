@@ -221,7 +221,7 @@ Atualmente, a maioria dos órgãos de trânsito disponibiliza plataformas online
 Ao verificar o sistema, você encontrará diversos termos técnicos. É comum encontrar status como 'Em análise', 'Em fase de julgamento' ou 'Recurso deferido/indeferido'. 
 
 * **Em análise:** Significa que o órgão recebeu sua defesa e ela está na fila para ser lida e avaliada pelos agentes ou pela junta julgadora.
-* **Deferido:** Esta é a notícia que todo condutor deseja. Significa que os argumentos foram aceitos e a penalidade será cancelada.
+* **Deferido:** Esta é a notícia que todo condutor deseja. Significa que os argumentos foram aceitos e a penalidade é cancelada.
 * **Indeferido:** O recurso não foi aceito. Nesse caso, a legislação de trânsito prevê que você tem o direito de recorrer para instâncias superiores, dentro do prazo legal, caso ainda existam argumentos técnicos não apreciados.
 
 ## Dicas para não se perder nos prazos
@@ -438,7 +438,7 @@ O processo de defesa costuma seguir uma lógica hierárquica. Primeiro, o recurs
 
 * **Em análise:** seu recurso foi recebido e está aguardando a vez na fila dos julgadores.
 * **Em diligência:** o órgão solicitou informações extras ou documentos complementares.
-* **Deferido:** a defesa foi aceita e a multa será cancelada ou os pontos não serão computados.
+* **Deferido:** a defesa foi aceita e a multa é cancelada ou os pontos não são computados.
 * **Indeferido:** o recurso foi negado. Neste caso, observe se ainda há instâncias superiores para recorrer.
 
 ## Por que a notificação é essencial?
@@ -491,7 +491,7 @@ Para consultar o status do seu recurso, você geralmente precisará dos seguinte
 Ao inserir esses dados nos campos indicados, o sistema retornará o status atual da sua solicitação. Os termos mais comuns que você pode encontrar são:
 
 - **Em análise:** O órgão de trânsito ainda está avaliando as suas alegações e os documentos anexados.
-- **Deferido:** A sua defesa foi aceita e a multa será cancelada, com a pontuação sendo removida do prontuário.
+- **Deferido:** A sua defesa foi aceita e a multa é cancelada, com a pontuação sendo removida do prontuário.
 - **Indeferido:** O recurso foi negado. Neste caso, é importante verificar se ainda existe a possibilidade de recorrer a uma instância superior, conforme previsto na legislação.
 - **Em diligência:** O órgão solicitou mais informações ou documentos para prosseguir com a análise.
 
@@ -1636,7 +1636,7 @@ Nossa IA analisa seu auto gratuitamente em menos de 1 minuto e diz se há base f
 
 O **Artigo 280 do Código de Trânsito Brasileiro** é a base legal de qualquer recurso de multa. Ele define os requisitos obrigatórios que todo auto de infração deve conter para ser considerado válido.
 
-Se qualquer um desses requisitos estiver ausente, incorreto ou ilegível, o auto é **nulo de pleno direito** — ou seja, a multa pode ser cancelada.
+Se qualquer um desses requisitos estiver ausente, incorreto ou ilegível, isso pode comprometer a validade do auto — ou seja, abre margem para pedir o cancelamento da multa.
 
 ## Os requisitos obrigatórios do Art. 280
 
@@ -1977,7 +1977,7 @@ Nossa IA analisa o auto gratuitamente e te ajuda a decidir qual caminho é melho
     conteudo: `
 ## Multa de pedágio: quando acontece?
 
-A multa por evasão de pedágio (Art. 162-A do CTB, inserido pela Lei 14.599/2023) é aplicada quando o veículo passa pela praça de pedágio sem efetuar o pagamento — seja na cancela tradicional, no sistema free flow (cobrança automática) ou no tag eletrônico.
+A multa por evasão de pedágio (Art. 209-A do CTB, inserido pela Lei 14.157/2021) é aplicada quando o veículo passa pela praça de pedágio sem efetuar o pagamento — seja na cancela tradicional, no sistema free flow (cobrança automática) ou no tag eletrônico.
 
 ## Tipos de cobrança e suas particularidades
 
@@ -2292,7 +2292,7 @@ As câmeras de semáforo precisam de homologação do INMETRO assim como os rada
 O sistema precisa registrar que o sinal estava vermelho no exato momento da passagem. Falha na sincronização entre câmera e controlador semafórico invalida a prova.
 
 ### 3. Tempo de amarelo insuficiente
-A Resolução CONTRAN nº 796/2020 define tempos mínimos para o sinal amarelo. Se o amarelo durou menos que o mínimo legal, o condutor não teve tempo suficiente para parar e a autuação é questionável.
+O Manual Brasileiro de Sinalização Semafórica, regulamentado pela Resolução CONTRAN nº 973/2022, define tempos mínimos para o sinal amarelo, que variam de acordo com a velocidade máxima da via. Se o amarelo durou menos que o mínimo previsto, o condutor não teve tempo suficiente para parar e a autuação é questionável.
 
 ### 4. Imagem que não identifica claramente a placa
 A foto deve mostrar claramente a placa do veículo. Imagem borrada, com reflexo ou parcialmente encoberta invalida a prova.
@@ -2953,7 +2953,7 @@ O processo de recurso para motos segue as mesmas regras do CTB que para carros �
 ## Infrações mais comuns para motociclistas
 
 ### Condução entre faixas (corredor)
-O CTB não proíbe expressamente a condução entre faixas — existe uma lacuna legal. A Resolução CONTRAN nº 528/2015 trata do assunto mas com linguagem ambígua. Muitos recursos baseados nessa ambiguidade são providos.
+O CTB não proíbe expressamente a condução entre faixas — existe uma lacuna legal. Já houve tentativa de regulamentar a prática por lei, mas o dispositivo foi vetado. Sem previsão específica, autuações por esse motivo costumam ser questionáveis, e muitos recursos baseados nessa lacuna são providos.
 
 ### Não usar colete refletivo
 Obrigatório para motociclistas em rodovias. Dentro do perímetro urbano, a exigência é diferente. Verifique se a infração ocorreu em local onde o colete era realmente obrigatório.
@@ -6960,19 +6960,19 @@ Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuaç�
   },
   {
     slug: "quantos-pontos-suspende-cnh-2026",
-    titulo: "Quantos Pontos Suspende a CNH em 2026? Nova Regra Explicada",
-    descricao: "Nova regra de 2026: a CNH pode ser suspensa com 20, 30 ou 40 pontos conforme suas infrações gravíssimas. Analise sua multa grátis e veja se dá para cancelá-la.",
+    titulo: "Quantos Pontos Suspende a CNH em 2026? Regra Escalonada Explicada",
+    descricao: "A CNH pode ser suspensa com 20, 30 ou 40 pontos, conforme suas infrações gravíssimas dos últimos 12 meses. Analise sua multa grátis e veja se dá para cancelá-la.",
     categoria: "CNH e Pontos",
     tempoLeitura: "5 min",
     imagemEmoji: "⚠️",
     imagemBg: "from-red-600 to-orange-700",
     palavrasChave: ["quantos pontos suspende CNH 2026", "CNH suspensa 20 pontos 2026", "nova regra pontos CNH 2026", "limite pontos CNH 2026", "suspensão CNH 20 30 40 pontos"],
     conteudo: `
-## A regra dos pontos mudou em 2026
+## O limite de pontos não é mais fixo
 
-Desde o início de 2026, com a aplicação prática da **Resolução nº 1.020/2025 do CONTRAN**, o limite de pontos para suspensão da CNH deixou de ser fixo. Agora ele é **escalonado**: pode ser 40, 30 ou 20 pontos, dependendo de quantas infrações gravíssimas você cometeu nos últimos 12 meses.
+Desde a Lei nº 14.071/2020, em vigor desde 2021, o limite de pontos para suspensão da CNH deixou de ser fixo em 40. Ele é **escalonado**: pode ser 40, 30 ou 20 pontos, dependendo de quantas infrações gravíssimas você cometeu nos últimos 12 meses.
 
-Importante: a lei em si (Lei nº 14.071/2020) não mudou. O que mudou foi a forma como os DETRANs aplicam a regra na prática, de forma mais rigorosa e automática.
+Muita gente ainda não percebeu essa mudança porque, na prática, ela só afeta quem realmente acumula infração gravíssima — para o motorista sem gravíssima no período, o limite continua sendo 40.
 
 ## Os três limites de pontos em 2026
 

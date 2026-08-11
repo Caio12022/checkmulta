@@ -308,7 +308,7 @@ Cada auto traz a informação do prazo e da forma de apresentar defesa. O sistem
 
 ## E se o prazo já passou
 
-Mesmo que o prazo de defesa tenha se esgotado, nem tudo está perdido: há o recurso contra a decisão, e há questões que podem ser suscitadas a qualquer tempo, como a prescrição e a nulidade por vício insanável. Um caso encerrado na esfera administrativa ainda pode ser discutido judicialmente.
+Mesmo que o prazo de defesa tenha se esgotado, nem tudo está perdido: há o recurso contra a decisão, e há questões que podem ser suscitadas a qualquer tempo, como a prescrição. Um caso encerrado na esfera administrativa ainda pode ser discutido judicialmente.
 
 ## Não deixe para a última hora
 
@@ -392,7 +392,7 @@ E acrescenta: o auto não deve conter emendas ou rasuras que comprometam sua val
 
 ## O efeito da falha
 
-A constatação de vício insanável impõe a nulidade do auto. Vale notar: a nulidade não impede necessariamente que a Administração lavre um novo auto, desde que dentro do prazo de prescrição. Mas o auto viciado, em si, não se sustenta.
+Um vício desse tipo pode fundamentar a nulidade do auto. Vale notar: a nulidade não impede necessariamente que a Administração lavre um novo auto, desde que dentro do prazo de prescrição. Mas o auto viciado, em si, não se sustenta.
 
 ## Como verificar no seu caso
 
