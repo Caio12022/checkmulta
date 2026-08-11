@@ -1887,8 +1887,16 @@ export default function App() {
                         <div className="flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 p-4">
                           <AlertCircle className="h-6 w-6 flex-shrink-0 text-red-600" />
                           <div>
-                            <p className="font-semibold text-red-800">Atenção: esta multa está vencida.</p>
-                            <p className="mt-1 text-sm text-red-700">Este documento é para fins de análise e consulta.</p>
+                            <p className="font-semibold text-red-800">Atenção: o prazo desta multa aparenta estar vencido.</p>
+                            <p className="mt-1 text-sm text-red-700">
+                              Por isso não liberamos a geração da defesa: apresentada fora do prazo, ela seria
+                              rejeitada sem que o mérito fosse analisado, e você teria pago por uma peça sem
+                              efeito. A análise abaixo fica disponível para consulta.
+                            </p>
+                            <p className="mt-2 text-sm text-red-700">
+                              Confira a data de notificação no seu documento. Se ela estiver diferente da que
+                              lemos, fale com o suporte.
+                            </p>
                           </div>
                         </div>
                       )}
@@ -2023,6 +2031,11 @@ if (!v) return null;
                         </div>
                       )}
 
+                      {/* Oferta e pagamento. Some por inteiro quando o prazo aparenta
+                          vencido: a análise continua visível, mas não se vende uma peça
+                          que seria rejeitada por intempestividade. */}
+                      {!isExpiredBypassActive && (
+                      <>
                       <div className="rounded-lg border border-emerald-200 bg-emerald-50/50 p-5 text-left">
                         <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-slate-900 sm:text-lg">
                           <Scale className="h-5 w-5 text-emerald-600" /> O que você recebe por R$ {precoDefesa.toFixed(2).replace(".", ",")}
@@ -2079,6 +2092,8 @@ if (!v) return null;
                         </p>
                       </div>
                       <p className="mt-2 text-center text-[11px] text-slate-400">CheckMulta Tecnologia. CNPJ 63.524.338/0001-62</p>
+                      </>
+                      )}
                     </div>
                   )}
 
