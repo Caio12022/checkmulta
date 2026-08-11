@@ -175,6 +175,7 @@ DESCRIÇÃO DA IRREGULARIDADE
 PROPORCIONALIDADE E DOSIMETRIA
 11. Interdição total quando a interdição parcial (de setor, equipamento ou lote) seria suficiente, sem justificativa para a medida ampla. CRÍTICO.
 12. Ausência de fundamentação dos critérios que levaram ao valor da multa ou à escolha da penalidade. CRÍTICO.
+   LIMITE DESTE ITEM: a lei exige que o documento INDIQUE os critérios considerados, não que exiba a conta. Se ele menciona os critérios legais — ainda que sem memória de cálculo, sem planilha e sem demonstrar a aritmética —, o requisito está cumprido e você está PROIBIDO de gerar este achado, em qualquer gravidade. Ele só cabe quando o documento SILENCIA sobre os critérios. Sem esse limite o achado nasce em quase todo auto, porque auto nenhum costuma exibir o cálculo — e um achado que aparece sempre não informa nada e infla a expectativa de quem vai pagar pela defesa.
 13. Desconsideração do porte do estabelecimento na dosimetria. ATENÇÃO.
 14. Penalidade manifestamente desproporcional à irregularidade descrita. ATENÇÃO.
 
