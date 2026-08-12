@@ -15,6 +15,10 @@ import {
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
 import { ehSobrecarga, ehCotaDiaria } from "../lib/sobrecarga";
+import HeroFluxo from "../components/HeroFluxo";
+import EscolhaOrgao from "../components/EscolhaOrgao";
+import ComoFuncionaScroll from "../components/ComoFuncionaScroll";
+import Reveal from "../components/Reveal";
 
 declare global {
   interface Window {
@@ -860,42 +864,50 @@ export default function Procon() {
         )}
       </AnimatePresence>
 
-      {/* HERO */}
-      <section id="inicio" className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
-        <div className="mx-auto max-w-4xl px-4 py-14 text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-emerald-700">
-            <Building2 className="h-3.5 w-3.5" />
-            Para empresas autuadas
-          </div>
-
-          <h1 className="mb-4 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
-            Sua empresa foi multada pelo Procon? Veja se dá para recorrer,{" "}
-            <span className="text-emerald-600">grátis</span>
-          </h1>
-
-          <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-slate-600">
-            Faça a análise gratuita do auto de infração. Nossa inteligência
-            artificial verifica 16 pontos do processo, com base no Código de
-            Defesa do Consumidor e no Decreto 2.181/97, em busca da falha que
-            permite recorrer. Se não encontrar nada, você não paga. A análise é
-            grátis e sem cadastro.
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600 sm:gap-6">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
-            </div>
-            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
-            <div className="flex items-center gap-2">
-              <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
-            </div>
-            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
-            <div className="flex items-center gap-2">
-              <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* HERO — o H1 de SEO vira o título do próprio HeroFluxo, em vez de
+          duplicar título em dois blocos separados. */}
+      <div id="inicio">
+        <HeroFluxo
+          tagSecao="Para empresas autuadas"
+          titulo={
+            <>
+              Sua empresa foi multada pelo Procon? Veja se dá para recorrer,{" "}
+              <span className="text-emerald-600">grátis</span>
+            </>
+          }
+          descricao={
+            <>
+              Análise gratuita do auto de infração à luz do CDC e do Decreto
+              2.181/97. Se não encontrar falha, você não paga nada.
+              <span className="mt-3 flex flex-wrap items-center gap-3 text-sm text-stone-500 sm:gap-5">
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
+                </span>
+              </span>
+            </>
+          }
+          mensagemChat="Recebi um auto de infração do Procon e não sei se dá pra recorrer, pode analisar pra mim?"
+          rotuloFase2="Cruzar com o CDC"
+          itensChecklist={[
+            "Publicidade enganosa",
+            "Produto impróprio",
+            "Cobrança indevida",
+            "Outras autuações",
+          ]}
+          resultado={{
+            badge: "Viabilidade alta",
+            titulo: "Encontramos uma falha no auto",
+            texto:
+              "Falha grave encontrada no auto de infração — fundamento consistente para pedir a anulação. Geramos a defesa administrativa pronta para protocolar.",
+          }}
+        />
+      </div>
 
       {/* ÁREA PRINCIPAL */}
       <section className="mx-auto max-w-3xl px-4 py-12">
@@ -953,8 +965,8 @@ export default function Procon() {
           <div className="text-center">
             <div className="mb-8">
               <h2 className="mb-2 text-2xl font-bold text-slate-900 sm:text-3xl">
-                Descubra <span className="text-emerald-600">agora</span> se dá
-                para recorrer
+                Suba <span className="text-emerald-600">agora</span> o auto e
+                verifique se dá para recorrer
               </h2>
               <p className="text-base text-slate-600">
                 Selecione o tipo de autuação para iniciar a análise gratuita:
@@ -982,45 +994,12 @@ export default function Procon() {
         )}
       </section>
 
-      {/* COMO FUNCIONA */}
-      <section id="como-funciona" className="border-t border-slate-100 bg-slate-50">
+      {/* COMO FUNCIONA — mesmo mecanismo de scroll fixo (pin/scrub) usado na
+          home e no trânsito. */}
+      <ComoFuncionaScroll />
+
+      <section className="border-t border-slate-100 bg-slate-50">
         <div className="mx-auto max-w-5xl px-4 py-16">
-          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-            Como funciona a <span className="text-emerald-600">análise</span>
-          </h2>
-
-          <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <UploadCloud className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-base font-bold text-slate-900">1. Envie o auto</h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Suba o PDF ou a foto do auto de infração recebido do Procon. Nenhum dado é armazenado.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <Search className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-base font-bold text-slate-900">2. A IA audita</h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Verificamos 16 pontos do processo administrativo com base no CDC e no Decreto 2.181/97.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <FileText className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-base font-bold text-slate-900">3. Diagnóstico grátis</h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Mostramos as falhas encontradas, com o trecho exato do documento, e se dá para recorrer.
-              </p>
-            </div>
-          </div>
-
           <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
             <div className="flex items-center gap-2.5 border-b border-slate-100 px-6 pb-4 pt-5">
               <ShieldCheck className="h-4 w-4 flex-shrink-0 text-slate-400" />
@@ -1030,7 +1009,7 @@ export default function Procon() {
             </div>
 
             <div className="grid grid-cols-1 divide-y divide-slate-100 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-              <div className="flex items-start gap-4 p-6">
+              <Reveal className="flex items-start gap-4 p-6" delay={0}>
                 <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50">
                   <CheckCircle2 className="h-5 w-5 text-emerald-600" />
                 </div>
@@ -1042,9 +1021,9 @@ export default function Procon() {
                     Falha grave encontrada no auto. Fundamento consistente para pedir a anulação.
                   </p>
                 </div>
-              </div>
+              </Reveal>
 
-              <div className="flex items-start gap-4 p-6">
+              <Reveal className="flex items-start gap-4 p-6" delay={0.08}>
                 <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-amber-50">
                   <AlertCircle className="h-5 w-5 text-amber-500" />
                 </div>
@@ -1056,9 +1035,9 @@ export default function Procon() {
                     Há pontos questionáveis, especialmente na dosimetria. Argumento possível, não garantido.
                   </p>
                 </div>
-              </div>
+              </Reveal>
 
-              <div className="flex items-start gap-4 p-6">
+              <Reveal className="flex items-start gap-4 p-6" delay={0.16}>
                 <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-red-50">
                   <AlertCircle className="h-5 w-5 text-red-400" />
                 </div>
@@ -1070,7 +1049,7 @@ export default function Procon() {
                     Caso mais limitado. Ainda possível arguir. A decisão é da empresa.
                   </p>
                 </div>
-              </div>
+              </Reveal>
             </div>
           </div>
         </div>
@@ -1098,15 +1077,24 @@ export default function Procon() {
               { t: "Dosimetria da multa", d: "Ausência de fundamentação dos critérios do art. 57 do CDC, desconsideração do porte da empresa e estimativa de faturamento sem base documental." },
               { t: "Regularidade do processo", d: "Cerceamento do contraditório, decisão sem motivação expressa e ausência de investigação preliminar quando cabível." },
               { t: "Vícios formais do auto", d: "Ausência de data, local, número de processo, qualificação completa da autuada ou rasuras não ressalvadas." },
-            ].map((item) => (
-              <div key={item.t} className="rounded-xl border border-slate-200 bg-slate-50/60 p-5">
+            ].map((item, i) => (
+              <Reveal key={item.t} delay={(i % 2) * 0.08} className="rounded-xl border border-slate-200 bg-slate-50/60 p-5">
                 <h3 className="mb-1.5 font-bold text-slate-900">{item.t}</h3>
                 <p className="text-sm leading-relaxed text-slate-600">{item.d}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
+
+      <EscolhaOrgao
+        titulo={
+          <>
+            Descubra se ela pode ser <span className="text-emerald-600">anulada</span>
+          </>
+        }
+        subtitulo="A mesma análise gratuita vale para multa de trânsito, Procon, vigilância sanitária, energia e Ibama."
+      />
 
       {/* SEGURANÇA */}
       <section id="seguranca" className="border-t border-slate-100 bg-slate-50">
@@ -1116,7 +1104,7 @@ export default function Procon() {
           </h2>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-white p-6 text-center">
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                 <Lock className="h-6 w-6" />
               </div>
@@ -1125,9 +1113,9 @@ export default function Procon() {
                 Não guardamos o auto de infração da sua empresa. O documento é processado na memória
                 do servidor e imediatamente deletado.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+            <Reveal delay={0.08} className="rounded-xl border border-slate-200 bg-white p-6 text-center">
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
                 <UserX className="h-6 w-6" />
               </div>
@@ -1136,9 +1124,9 @@ export default function Procon() {
                 Você não precisa criar conta nem informar dados da empresa para verificar o auto.
                 É direto ao ponto.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+            <Reveal delay={0.16} className="rounded-xl border border-slate-200 bg-white p-6 text-center">
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
                 <Route className="h-6 w-6" />
               </div>
@@ -1147,13 +1135,15 @@ export default function Procon() {
                 Atuamos como ferramenta tecnológica baseada no CDC e no Decreto 2.181/97. A decisão
                 final é do órgão julgador.
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* CARROSSEL DE SERVIÇOS */}
-      <CarrosselServicos excluir={["procon"]} />
+      <Reveal>
+        <CarrosselServicos excluir={["procon"]} />
+      </Reveal>
 
       {/* FAQ */}
       <section id="faq-procon" className="border-t border-slate-100 bg-white">
@@ -1163,7 +1153,7 @@ export default function Procon() {
           </h2>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 Qual o prazo para apresentar defesa no Procon?
               </h3>
@@ -1172,9 +1162,9 @@ export default function Procon() {
                 O Procon-SP, por exemplo, adota 15 dias. Confira sempre o prazo indicado no seu auto
                 de infração.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+            <Reveal delay={0.06} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 O que acontece se a empresa não apresentar defesa?
               </h3>
@@ -1182,9 +1172,9 @@ export default function Procon() {
                 O processo é julgado sem a manifestação da empresa e a multa é fixada. Não recolhido
                 o valor no prazo, o débito pode ser inscrito em dívida ativa e cobrado judicialmente.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 Que tipo de vício pode anular o auto?
               </h3>
@@ -1193,9 +1183,9 @@ export default function Procon() {
                 irregular, incompetência do órgão e falta de fundamentação da multa são exemplos
                 tratados no Decreto 2.181/97.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+            <Reveal delay={0.06} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 É possível reduzir o valor da multa?
               </h3>
@@ -1204,9 +1194,9 @@ export default function Procon() {
                 condição econômica. Se a estimativa de faturamento estiver equivocada, ela pode ser
                 impugnada com documentos contábeis.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 md:col-span-2">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 md:col-span-2">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 Preciso de advogado para apresentar defesa administrativa?
               </h3>
@@ -1215,7 +1205,7 @@ export default function Procon() {
                 de seu representante legal. Para casos de maior complexidade ou valor elevado, a
                 consulta a um advogado é recomendável.
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -1228,7 +1218,7 @@ export default function Procon() {
             <span className="text-emerald-600">Procon</span>
           </h2>
 
-          <div className="max-w-none">
+          <Reveal className="max-w-none" amount={0.15}>
             <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
               Quando uma empresa é autuada pelo Procon, instaura-se um{" "}
               <strong className="font-semibold text-slate-900">processo administrativo sancionador</strong>,
@@ -1306,7 +1296,7 @@ export default function Procon() {
               , pronta para a empresa preencher e protocolar. Nossa ferramenta informa e
               instrumentaliza. Não presta consultoria jurídica nem representação processual.
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
