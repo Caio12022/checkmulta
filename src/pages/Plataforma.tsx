@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Lenis from "lenis";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ChevronDown,
   AlertTriangle,
@@ -8,6 +10,7 @@ import {
   Upload,
   Search,
   FileText,
+  Download,
   Menu,
   X,
   MessageSquare,
@@ -22,6 +25,8 @@ import {
   HelpCircle,
 } from "lucide-react";
 import { VERTICAIS, FERRAMENTAS } from "../data/verticais";
+
+gsap.registerPlugin(ScrollTrigger);
 
 /**
  * Home institucional do CheckMulta (home-mãe).
@@ -94,24 +99,27 @@ const ICONES_ORGAO: Record<string, React.ComponentType<{ className?: string }>> 
 const PASSOS = [
   {
     numero: "01",
-    Icone: Upload,
-    titulo: "Envie o documento",
+    titulo: "Envie sua multa",
     texto:
       "Tire uma foto do papel que você recebeu, ou anexe o arquivo. Não precisa criar conta nem informar dados pessoais.",
   },
   {
     numero: "02",
-    Icone: Search,
-    titulo: "Receba a análise",
+    titulo: "Nossa IA lê cada linha",
     texto:
-      "Lemos o documento inteiro à luz da lei do órgão que aplicou a multa e mostramos, em português claro, cada erro encontrado.",
+      "Comparamos o seu documento com a lei do órgão que aplicou a multa, procurando erro formal que permita recorrer.",
   },
   {
     numero: "03",
-    Icone: FileText,
-    titulo: "Obtenha a defesa",
+    titulo: "Veja o que encontramos",
     texto:
-      "Havendo erro, entregamos o recurso escrito e pronto para você protocolar. Se não houver, dizemos isso e não cobramos nada.",
+      "Mostramos, em português claro, cada falha encontrada — ou dizemos que está tudo certo, sem cobrar nada.",
+  },
+  {
+    numero: "04",
+    titulo: "Baixe sua defesa pronta",
+    texto:
+      "Havendo falha, geramos o texto da defesa, fundamentado e pronto para você protocolar no órgão.",
   },
 ];
 
@@ -157,23 +165,72 @@ const ORIGEM = "https://checkmulta.com.br";
 
 export default function Plataforma() {
   const [menuAberto, setMenuAberto] = useState(false);
+  const passosRef = useRef<HTMLDivElement>(null);
+
+  // Anima a seção "Como funciona": a linha do trilho enche conforme a
+  // seção inteira é rolada, e cada número acende (fica verde) quando o
+  // respectivo passo entra na tela — mesma lógica da seção "process" do
+  // site de referência (auxia.io), adaptada e simplificada.
+  useEffect(() => {
+    if (!passosRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.to(".passo-linha-preenchida", {
+        height: "100%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".passo-trilho",
+          start: "top 65%",
+          end: "bottom 65%",
+          scrub: 0.6,
+        },
+      });
+
+      gsap.utils.toArray<HTMLElement>(".passo-item").forEach((item) => {
+        const numero = item.querySelector(".passo-numero");
+        const conteudo = item.querySelector(".passo-conteudo");
+
+        gsap.fromTo(
+          conteudo,
+          { opacity: 0, y: 24, filter: "blur(6px)" },
+          {
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: { trigger: item, start: "top 75%" },
+          }
+        );
+
+        ScrollTrigger.create({
+          trigger: item,
+          start: "top 60%",
+          end: "bottom 40%",
+          toggleClass: { targets: numero, className: "is-ativo" },
+        });
+      });
+    }, passosRef);
+
+    return () => ctx.revert();
+  }, []);
 
   // Scroll suave só nesta página (prévia — ver CLAUDE.md antes de espalhar).
+  // Integrado ao GSAP/ScrollTrigger: sem isso, a animação por scroll da seção
+  // "Como funciona" fica fora de sincronia com a posição real da tela.
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     });
 
-    let frameId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      frameId = requestAnimationFrame(raf);
-    }
-    frameId = requestAnimationFrame(raf);
+    lenis.on("scroll", ScrollTrigger.update);
+
+    const tick = (time: number) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
-      cancelAnimationFrame(frameId);
+      gsap.ticker.remove(tick);
       lenis.destroy();
     };
   }, []);
@@ -695,35 +752,115 @@ export default function Plataforma() {
       </section>
 
       {/* ---------------------------------------------------------------- */}
-      {/* Processo                                                          */}
+      {/* Processo — trilho animado por scroll. Mockups são ilustrativos.   */}
       {/* ---------------------------------------------------------------- */}
       <section id="como-funciona" className="border-b border-stone-200 bg-stone-50">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
+        <div ref={passosRef} className="mx-auto max-w-5xl px-5 py-16 sm:py-20">
           <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-stone-400">
             Como funciona
           </p>
-          <h2 className="font-display mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">
-            Três etapas, nessa <span className="text-emerald-600">ordem</span>
+          <h2 className="font-display mx-auto mb-16 max-w-2xl text-center text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">
+            Da multa à defesa, em <span className="text-emerald-600">quatro passos</span>
           </h2>
 
-          <ol className="grid gap-10 text-center sm:grid-cols-3">
-            {PASSOS.map((p) => (
-              <li key={p.numero} className="flex flex-col items-center">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-stone-300 bg-white text-emerald-700">
-                  <p.Icone className="h-5 w-5" strokeWidth={1.5} />
+          <div className="passo-trilho relative">
+            <div className="absolute left-6 top-2 bottom-2 w-px bg-stone-200 sm:left-7" />
+            <div
+              className="passo-linha-preenchida absolute left-6 top-2 w-px bg-emerald-600 sm:left-7"
+              style={{ height: 0 }}
+            />
+
+            <div className="space-y-14 sm:space-y-16">
+              {PASSOS.map((p) => (
+                <div key={p.numero} className="passo-item relative flex gap-6 sm:gap-10">
+                  <div className="passo-numero relative z-10 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border border-stone-300 bg-white font-mono text-sm font-semibold text-stone-400 sm:h-14 sm:w-14">
+                    {p.numero}
+                  </div>
+
+                  <div className="passo-conteudo grid flex-1 items-center gap-6 sm:grid-cols-2 sm:gap-10">
+                    <div>
+                      <h3 className="font-display text-lg font-semibold tracking-tight text-stone-900 sm:text-xl">
+                        {p.titulo}
+                      </h3>
+                      <p className="mt-2 max-w-sm text-base leading-relaxed text-stone-600">
+                        {p.texto}
+                      </p>
+                    </div>
+
+                    {p.numero === "01" && (
+                      <div className="rounded-xl border-2 border-dashed border-stone-300 bg-white p-8 text-center">
+                        <Upload className="mx-auto h-8 w-8 text-stone-300" strokeWidth={1.5} />
+                        <p className="mt-3 text-sm font-medium text-stone-700">
+                          Arraste o PDF ou a foto aqui
+                        </p>
+                        <p className="mt-1 text-xs text-stone-400">
+                          ou clique para escolher o arquivo
+                        </p>
+                      </div>
+                    )}
+
+                    {p.numero === "02" && (
+                      <div className="rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+                        <p className="font-mono text-[10px] uppercase tracking-widest text-stone-400">
+                          Lendo o documento
+                        </p>
+                        <div className="mt-4 space-y-2">
+                          <div className="h-2 w-full rounded bg-stone-100" />
+                          <div className="h-2 w-4/5 rounded bg-stone-100" />
+                          <div className="h-2 w-full rounded bg-red-100" />
+                          <div className="h-2 w-2/3 rounded bg-stone-100" />
+                        </div>
+                        <p className="mt-4 flex items-center gap-2 text-xs text-red-700">
+                          <AlertTriangle className="h-3.5 w-3.5 flex-shrink-0" />
+                          comparando com a lei do órgão…
+                        </p>
+                      </div>
+                    )}
+
+                    {p.numero === "03" && (
+                      <div className="rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+                        <p className="font-mono text-[10px] uppercase tracking-widest text-stone-400">
+                          2 falhas encontradas
+                        </p>
+                        <ul className="mt-4 space-y-3">
+                          <li className="flex items-start gap-2 text-sm text-stone-700">
+                            <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-500" />
+                            Endereço incompleto no auto
+                          </li>
+                          <li className="flex items-start gap-2 text-sm text-stone-700">
+                            <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-500" />
+                            Notificação fora do prazo
+                          </li>
+                        </ul>
+                      </div>
+                    )}
+
+                    {p.numero === "04" && (
+                      <div className="rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-emerald-50 text-emerald-700">
+                            <FileText className="h-5 w-5" />
+                          </div>
+                          <div className="min-w-0">
+                            <p className="truncate text-sm font-medium text-stone-900">
+                              defesa-de-multa.pdf
+                            </p>
+                            <p className="text-xs text-stone-400">Pronta para protocolar</p>
+                          </div>
+                        </div>
+                        <button
+                          type="button"
+                          className="mt-4 flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white"
+                        >
+                          <Download className="h-4 w-4" /> Baixar defesa
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <span className="font-mono text-xs tracking-widest text-emerald-700">
-                  {p.numero}
-                </span>
-                <h3 className="font-display mt-2 text-lg font-semibold tracking-tight text-stone-900">
-                  {p.titulo}
-                </h3>
-                <p className="mt-3 max-w-xs text-base leading-relaxed text-stone-600">
-                  {p.texto}
-                </p>
-              </li>
-            ))}
-          </ol>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
