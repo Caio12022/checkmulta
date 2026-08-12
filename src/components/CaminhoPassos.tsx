@@ -29,13 +29,27 @@ export type PassoCaminho = {
   titulo: string;
   /** Corpo do cartão. */
   texto: string;
+  /** Mockup ilustrado do passo (mesmo usado no "como funciona" da home) —
+   * sem ele o cartão fica só texto, bem mais pobre que o original. */
+  Mockup?: React.ComponentType;
 };
 
-const ALTURA_PARADA = 440;
+const ALTURA_PARADA = 760;
 const AMPLITUDE = 265;
 const RAIO = 30;
-const LARGURA_CARTAO = 380;
+const LARGURA_CARTAO = 440;
 const LARGURA = 1120;
+
+/**
+ * O traço só passa pelo x de cada parada (o "destino") durante uma janela
+ * vertical — antes disso ele ainda está saindo do centro. A pílula e o
+ * cartão precisam nascer DENTRO dessa janela, senão aparecem grudados no
+ * centro enquanto o traço já foi para o lado (ou vice-versa). Câlculo vem
+ * direto da geometria de montarCaminho: o traço fica exatamente em x =
+ * destino entre y' = 0.45*ALTURA+RAIO e y' = ALTURA-RAIO.
+ */
+const JANELA_INICIO = ALTURA_PARADA * 0.45 + RAIO;
+const TOPO_PARADA = JANELA_INICIO + 30;
 
 function montarCaminho(paradas: number, largura: number) {
   const meio = largura / 2;
@@ -239,7 +253,7 @@ export default function CaminhoPassos({
                 data-solido="false"
                 className="group absolute"
                 style={{
-                  top: i * ALTURA_PARADA + 74,
+                  top: i * ALTURA_PARADA + TOPO_PARADA,
                   width: LARGURA_CARTAO,
                   left:
                     LARGURA / 2 +
@@ -270,6 +284,11 @@ export default function CaminhoPassos({
                       "rgba(0,0,0,0.02) 0px 100px 40px, rgba(0,0,0,0.06) 0px 56px 34px, rgba(0,0,0,0.09) 0px 6px 12px",
                   }}
                 >
+                  {p.Mockup && (
+                    <div className="mb-5 h-64 overflow-hidden rounded-xl">
+                      <p.Mockup />
+                    </div>
+                  )}
                   <p className="font-mono text-[11px] uppercase tracking-widest text-stone-400">
                     {p.titulo}
                   </p>
@@ -330,6 +349,11 @@ export default function CaminhoPassos({
                 </p>
 
                 <div className="mt-3 rounded-2xl border border-stone-200 bg-white p-5 opacity-40 blur-[2px] transition-all duration-700 group-data-[solido=true]:opacity-100 group-data-[solido=true]:blur-none">
+                  {p.Mockup && (
+                    <div className="mb-4 h-52 overflow-hidden rounded-xl">
+                      <p.Mockup />
+                    </div>
+                  )}
                   <p className="font-mono text-[11px] uppercase tracking-widest text-stone-400">
                     {p.titulo}
                   </p>

@@ -63,7 +63,7 @@ type Etapa = {
   Mockup: React.ComponentType;
 };
 
-function MockupEnvio() {
+export function MockupEnvio() {
   return (
     <div className="flex h-full flex-col justify-center gap-5 rounded-3xl border border-stone-200 bg-white p-6 sm:p-8"
       style={SOMBRA_CARD}>
@@ -89,7 +89,7 @@ function MockupEnvio() {
   );
 }
 
-function MockupAnalise() {
+export function MockupAnalise() {
   return (
     <div className="relative flex h-full flex-col justify-center gap-3 overflow-hidden rounded-3xl border border-stone-200 bg-white p-6 sm:p-8"
       style={SOMBRA_CARD}>
@@ -117,7 +117,7 @@ function MockupAnalise() {
   );
 }
 
-function MockupAchado() {
+export function MockupAchado() {
   return (
     <div className="flex h-full flex-col justify-center gap-5 rounded-3xl border border-stone-200 bg-white p-6 sm:p-8"
       style={SOMBRA_CARD}>
@@ -141,7 +141,7 @@ function MockupAchado() {
   );
 }
 
-function MockupDefesa() {
+export function MockupDefesa() {
   return (
     <div className="flex h-full flex-col justify-center gap-5 rounded-3xl border border-stone-200 bg-white p-6 sm:p-8"
       style={SOMBRA_CARD}>

@@ -43,6 +43,13 @@ const FASES = ["Enviar", "Identificar órgão", "Analisar", "Resultado"];
 
 /** Conteúdo por página: os textos mudam, a mecânica (acima) não. */
 export type HeroFluxoProps = {
+  /** Tag mono acima do título. */
+  tagSecao?: string;
+  /** Título da seção — em páginas de vertical já definida, pode ser o
+   * próprio H1 de SEO, para não duplicar título em dois blocos. */
+  titulo?: React.ReactNode;
+  /** Parágrafo de apoio abaixo do título. */
+  descricao?: React.ReactNode;
   /** Fala na caixa flutuante (fase 1). */
   mensagemChat?: string;
   /** Rótulo do stepper na fase 2 — "Identificar órgão" só faz sentido na
@@ -155,6 +162,13 @@ const T = {
 };
 
 export default function HeroFluxo({
+  tagSecao = "Analisador de autos de infração",
+  titulo = (
+    <>
+      Descubra se a sua multa tem <span className="text-emerald-600">erro</span>
+    </>
+  ),
+  descricao = "Leitura do documento à luz da lei do órgão que autuou. Gratuita em todas as áreas — você só paga se houver falha.",
   mensagemChat = "Recebi uma multa e não sei se ela tem algum erro. Pode analisar pra mim?",
   rotuloFase2 = "Identificar órgão",
   itensChecklist = VERTICAIS.map((v) => v.titulo),
@@ -430,14 +444,13 @@ export default function HeroFluxo({
         {/* Chamada da seção */}
         <div className="mx-auto mb-10 w-full max-w-[1300px] px-6 xl:mb-14 xl:px-8">
           <p className="font-mono text-[11px] uppercase tracking-widest text-emerald-700">
-            Analisador de autos de infração
+            {tagSecao}
           </p>
           <p className="font-display mt-3 max-w-xl text-3xl font-semibold leading-tight tracking-tight text-stone-900 sm:text-4xl">
-            Descubra se a sua multa tem <span className="text-emerald-600">erro</span>
+            {titulo}
           </p>
           <p className="mt-4 max-w-lg text-base leading-relaxed text-stone-600">
-            Leitura do documento à luz da lei do órgão que autuou. Gratuita em
-            todas as áreas — você só paga se houver falha.
+            {descricao}
           </p>
         </div>
 

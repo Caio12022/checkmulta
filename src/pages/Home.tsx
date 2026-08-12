@@ -18,6 +18,7 @@ import { ehSobrecarga, ehCotaDiaria } from "../lib/sobrecarga";
 import HeroFluxo from "../components/HeroFluxo";
 import EscolhaOrgao from "../components/EscolhaOrgao";
 import CaminhoPassos from "../components/CaminhoPassos";
+import { MockupEnvio, MockupAnalise, MockupAchado } from "../components/ComoFuncionaScroll";
 
 declare global {
   interface Window {
@@ -1029,38 +1030,35 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* HERO */}
-      <section id="inicio" className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
-        <div className="mx-auto max-w-4xl px-4 py-14 text-center">
-          <h1 className="mb-4 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
+      {/* HERO — o H1 de SEO vira o título do próprio HeroFluxo, em vez de
+          duplicar título em dois blocos separados. */}
+      <div id="inicio">
+        <HeroFluxo
+        titulo={
+          <>
             Consulta de multa de trânsito online: descubra se a sua dá pra
             recorrer, <span className="text-emerald-600">grátis</span>
-          </h1>
-
-          <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-slate-600">
+          </>
+        }
+        descricao={
+          <>
             Faça a análise gratuita da sua multa. Nossa inteligência artificial
-            cruza o auto de infração com o Código de Trânsito Brasileiro (CTB) e o
-            MBFT, campo por campo, em busca do erro formal que pode anular a
-            autuação. Se não encontrar falha, você não paga nada. A análise é grátis e sem cadastro.
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600 sm:gap-6">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
-            </div>
-            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
-            <div className="flex items-center gap-2">
-              <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
-            </div>
-            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
-            <div className="flex items-center gap-2">
-              <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <HeroFluxo
+            cruza o auto de infração com o Código de Trânsito Brasileiro (CTB) e
+            o MBFT, campo por campo, em busca do erro formal que pode anular a
+            autuação. Se não encontrar falha, você não paga nada.
+            <span className="mt-3 flex flex-wrap items-center gap-3 text-sm text-stone-500 sm:gap-5">
+              <span className="flex items-center gap-1.5">
+                <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
+              </span>
+            </span>
+          </>
+        }
         mensagemChat="Recebi uma multa de trânsito e não sei se tem erro, pode analisar pra mim?"
         rotuloFase2="Cruzar com o CTB"
         itensChecklist={[
@@ -1076,7 +1074,8 @@ export default function App() {
           texto:
             "Erro formal grave encontrado no auto de infração — boas chances de anulação da multa. Geramos o recurso pronto para protocolar.",
         }}
-      />
+        />
+      </div>
 
       {/* ÁREA PRINCIPAL — upload ou preview */}
       <section className="mx-auto max-w-3xl px-4 py-12">
@@ -1143,8 +1142,8 @@ export default function App() {
           <div className="text-center">
             <div className="mb-8">
               <h2 className="mb-2 text-2xl font-bold text-slate-900 sm:text-3xl">
-                Descubra <span className="text-emerald-600">agora</span> se sua
-                multa pode ser anulada
+                Suba <span className="text-emerald-600">agora</span> sua multa
+                e verifique se ela pode ser anulada
               </h2>
               <p className="text-base text-slate-600">
                 Selecione o tipo de infração para iniciar a análise gratuita:
@@ -1199,6 +1198,7 @@ export default function App() {
               titulo: "Envie a foto",
               texto:
                 "Tire uma foto ou suba o PDF do auto de infração. Nenhum dado é armazenado.",
+              Mockup: MockupEnvio,
             },
             {
               Icone: Search,
@@ -1207,6 +1207,7 @@ export default function App() {
               titulo: "Cruzamento com o CTB",
               texto:
                 "Cruzamos cada campo com o Código de Trânsito Brasileiro e o Manual Brasileiro de Fiscalização (MBFT).",
+              Mockup: MockupAnalise,
             },
             {
               Icone: FileText,
@@ -1215,6 +1216,7 @@ export default function App() {
               titulo: "Diagnóstico grátis",
               texto:
                 "Revelamos a falha encontrada e o nível de viabilidade do seu recurso.",
+              Mockup: MockupAchado,
             },
           ]}
         />
