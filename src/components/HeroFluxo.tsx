@@ -103,8 +103,9 @@ const CONFERENCIAS = [
 ];
 
 /**
- * Deslocamento da esteira em cada fase, no desktop (px). No celular ele é
- * medido em tempo real — ver o contexto (max-width: 767px) no efeito.
+ * Deslocamento da esteira em cada fase, na tela larga (px). Abaixo de
+ * 1280px ele é medido em tempo real — as quatro colunas somam ~1220px, e
+ * numa faixa mais estreita elas simplesmente não caberiam lado a lado.
  */
 const DESLOCAMENTO_DESKTOP = [60, 40, 0, -40];
 
@@ -199,6 +200,11 @@ export default function HeroFluxo() {
      * celular cabe uma por vez, então cada fase centraliza a sua.
      */
     const montarCiclo = (deslocamento: number[]) => {
+      // Posição da fase 1. Sem isto a esteira começa em x=0: a primeira fase
+      // nunca é levada ao lugar dela, porque o primeiro tween da timeline só
+      // acontece na fase 2 — e ela ficava fora de centro na tela estreita.
+      gsap.set(esteiraRef.current, { x: deslocamento[0] });
+
       // Preenche o trilho até o centro do selo da fase indicada. Medido na
       // hora porque o selo ativo muda de largura ao expandir o rótulo.
       const preencherTrilho = (indice: number) => {
@@ -350,10 +356,11 @@ export default function HeroFluxo() {
       };
     };
 
-    mm.add("(min-width: 768px)", () => montarCiclo(DESLOCAMENTO_DESKTOP));
+    mm.add("(min-width: 1280px)", () => montarCiclo(DESLOCAMENTO_DESKTOP));
 
-    mm.add("(max-width: 767px)", () => {
-      // No celular as colunas são medidas de verdade em vez de chutadas:
+    mm.add("(max-width: 1279px)", () => {
+      // Fora da tela larga as colunas são medidas de verdade em vez de
+      // chutadas:
       // largura de tela varia demais para número fixo, e um erro aqui deixa
       // a fase ativa metade fora do quadro.
       const esteira = esteiraRef.current;
@@ -388,9 +395,9 @@ export default function HeroFluxo() {
     <section ref={secaoRef} className="relative overflow-hidden border-b border-stone-200 bg-stone-50">
       {/* Um layout só para celular e desktop: manter duas árvores separadas
           foi o que deixou o celular parado enquanto o desktop animava. */}
-      <div className="py-14 md:py-20">
+      <div className="py-14 xl:py-20">
         {/* Chamada da seção */}
-        <div className="mx-auto mb-10 w-full max-w-[1300px] px-6 md:mb-14 md:px-8">
+        <div className="mx-auto mb-10 w-full max-w-[1300px] px-6 xl:mb-14 xl:px-8">
           <p className="font-mono text-[11px] uppercase tracking-widest text-emerald-700">
             Analisador de autos de infração
           </p>
@@ -406,12 +413,12 @@ export default function HeroFluxo() {
         {/* Linha do topo — selo ativo expande o rótulo, trilho preenche até ele. */}
         <div
           ref={stepperRef}
-          className="relative mx-auto mb-10 flex w-full max-w-[1300px] items-center gap-2 px-6 md:mb-14 md:gap-3 md:px-8"
+          className="relative mx-auto mb-10 flex w-full max-w-[1300px] items-center gap-2 px-6 xl:mb-14 xl:gap-3 xl:px-8"
         >
-          <div className="absolute left-6 right-6 top-1/2 h-0.5 -translate-y-1/2 bg-stone-200 md:left-8 md:right-8" />
+          <div className="absolute left-6 right-6 top-1/2 h-0.5 -translate-y-1/2 bg-stone-200 xl:left-8 xl:right-8" />
           <div
             ref={trilhoFillRef}
-            className="absolute left-6 top-1/2 h-0.5 w-0 -translate-y-1/2 bg-emerald-600 md:left-8"
+            className="absolute left-6 top-1/2 h-0.5 w-0 -translate-y-1/2 bg-emerald-600 xl:left-8"
           />
           {FASES.map((fase, i) => (
             <div
@@ -430,10 +437,10 @@ export default function HeroFluxo() {
                 ref={(el) => {
                   rotulosRef.current[i] = el;
                 }}
-                className="inline-block overflow-hidden whitespace-nowrap"
+                className="flex items-center overflow-hidden whitespace-nowrap"
                 style={{ width: 0 }}
               >
-                <span className="pl-2 pr-0.5 font-mono text-[10px] uppercase tracking-widest text-white">
+                <span className="pl-2 pr-0.5 font-mono text-[10px] uppercase leading-none tracking-widest text-white">
                   {fase}
                 </span>
               </span>
@@ -444,8 +451,8 @@ export default function HeroFluxo() {
         {/* Esteira: as 4 fases numa fileira só, que desliza para a esquerda.
             O pai é quem recorta e quem dá a largura de referência usada para
             centralizar a fase ativa no celular. */}
-        <div className="mx-auto w-full max-w-[1300px] overflow-hidden px-6 md:px-8">
-          <div ref={esteiraRef} className="flex items-start gap-8 md:gap-14">
+        <div className="mx-auto w-full max-w-[1300px] overflow-hidden px-6 xl:px-8">
+          <div ref={esteiraRef} className="flex items-start gap-8 xl:gap-14">
           {/* Fase 1 — único cartão flutuante da sequência */}
           <div
             ref={(el) => {
@@ -454,7 +461,7 @@ export default function HeroFluxo() {
             }}
             data-solido="false"
             data-cartao="sim"
-            className="w-60 flex-shrink-0 rounded-2xl border border-stone-200 bg-white p-4 md:w-64"
+            className="w-60 flex-shrink-0 rounded-2xl border border-stone-200 bg-white p-4 xl:w-64"
             style={{ ...SOMBRA_CARD, opacity: 0.3, filter: "blur(2px)" }}
           >
             <p className="text-sm leading-relaxed text-stone-800">
@@ -477,7 +484,7 @@ export default function HeroFluxo() {
             ref={(el) => {
               colunasRef.current[1] = el;
             }}
-            className="w-60 flex-shrink-0 space-y-2 md:w-64"
+            className="w-60 flex-shrink-0 space-y-2 xl:w-64"
           >
             {VERTICAIS.map((v, i) => (
               <li
@@ -544,7 +551,7 @@ export default function HeroFluxo() {
             }}
             data-solido="false"
             data-cartao="sim"
-            className="w-72 flex-shrink-0 overflow-hidden rounded-2xl border border-stone-200 bg-white md:w-80"
+            className="w-72 flex-shrink-0 overflow-hidden rounded-2xl border border-stone-200 bg-white xl:w-80"
             style={{ ...SOMBRA_CARD, opacity: 0.3, filter: "blur(3px)" }}
           >
             <IlustracaoAchado />

@@ -131,7 +131,7 @@ export default function CaminhoVerticais() {
 
     const mm = gsap.matchMedia();
 
-    mm.add("(min-width: 768px)", () => {
+    mm.add("(min-width: 1280px)", () => {
       gsap.set(tracoRef.current, { strokeDashoffset: 100 });
 
       // O traço acompanha o scroll da seção inteira.
@@ -167,7 +167,7 @@ export default function CaminhoVerticais() {
       };
     });
 
-    mm.add("(max-width: 767px)", () => {
+    mm.add("(max-width: 1279px)", () => {
       // Mesma ideia do desktop, com a linha reta: altura preenchida pelo
       // progresso do scroll, paradas acendendo ao entrar na tela.
       const st = ScrollTrigger.create({
@@ -225,7 +225,7 @@ export default function CaminhoVerticais() {
       </div>
 
       {/* Desktop: caminho serpenteando, desenhado conforme rola. */}
-      <div className="relative hidden pb-24 pt-16 md:block">
+      <div className="relative hidden pb-24 pt-16 xl:block">
         <svg
           className="pointer-events-none absolute left-1/2 top-16 -translate-x-1/2"
           width={LARGURA}
@@ -333,11 +333,12 @@ export default function CaminhoVerticais() {
       </div>
 
       {/* Mobile: mesma matéria, empilhada, sem caminho. */}
-      {/* Celular: o mesmo caminho, só que reto. A linha desce pela lateral e
-          é preenchida conforme a pessoa rola; cada parada sai do fantasma ao
-          entrar na tela. Ziguezague não cabe em 390px — o que cabe é a
-          progressão, que é o que a seção precisa comunicar. */}
-      <div className="mx-auto max-w-md px-5 py-12 md:hidden">
+      {/* Telas até 1280px: o mesmo caminho, só que reto. A linha desce pela
+          lateral e é preenchida conforme a pessoa rola; cada parada sai do
+          fantasma ao entrar na tela. O ziguezague tem 1120px de largura fixa
+          e, abaixo disso, jogava metade dos cartões fora da tela — o que
+          cabe é a progressão, que é o que a seção precisa comunicar. */}
+      <div className="mx-auto max-w-md px-5 py-12 xl:hidden">
         <div className="relative">
           <div className="absolute bottom-4 left-[15px] top-4 w-0.5 bg-stone-200" />
           <div

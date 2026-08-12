@@ -4,7 +4,7 @@ import { VERTICAIS, FERRAMENTAS } from "../data/verticais";
 import ComoFuncionaScroll from "../components/ComoFuncionaScroll";
 import HeroFluxo from "../components/HeroFluxo";
 import CaminhoVerticais from "../components/CaminhoVerticais";
-import FaixaOrgaos from "../components/FaixaOrgaos";
+import EscolhaOrgao from "../components/EscolhaOrgao";
 
 /**
  * Home institucional do CheckMulta (home-mãe).
@@ -20,10 +20,11 @@ import FaixaOrgaos from "../components/FaixaOrgaos";
  * Indexação: os itens usam <details>/<summary> nativos. O texto fica sempre
  * presente no HTML, mesmo com o item fechado.
  *
- * Estrutura, de cima para baixo: abertura animada, faixa fina com os órgãos
- * cobertos, as quatro etapas do processo, o caminho que mostra por que cada
- * área tem análise própria, as áreas em cartões, as ferramentas e as
- * dúvidas. Os fundos alternam claro/escuro para separar um bloco do outro.
+ * Estrutura, de cima para baixo: abertura animada, escolha do órgão (porta
+ * de entrada de cada funil), as quatro etapas do processo, o caminho que
+ * mostra por que cada área tem análise própria, as áreas em cartões, as
+ * ferramentas e as dúvidas. Os fundos alternam claro/escuro para separar um
+ * bloco do outro.
  *
  * Todos os textos das áreas vêm de src/data/verticais.ts — vertical nova
  * aparece aqui sozinha, sem editar este arquivo.
@@ -281,9 +282,9 @@ export default function Plataforma() {
       <HeroFluxo />
 
       {/* ---------------------------------------------------------------- */}
-      {/* Faixa de orgaos (quem te autuou), fina e correndo                */}
+      {/* Escolha do orgao (quem te autuou) — porta de entrada de cada funil                */}
       {/* ---------------------------------------------------------------- */}
-      <FaixaOrgaos />
+      <EscolhaOrgao />
 
       {/* ---------------------------------------------------------------- */}
       {/* Processo                                                          */}

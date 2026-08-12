@@ -411,9 +411,13 @@ export default function ComoFuncionaScroll() {
         });
       };
 
+      // Só roda e trackpad. Incluir "touch" aqui era o que travava a página
+      // em tela sensível ao toque: cada arrasto virava um salto e o
+      // preventDefault comia a rolagem, então a seção animava mas a página
+      // não descia. Em toque, o scrub normal já dá conta.
       const obs = Observer.create({
         target: window,
-        type: "wheel,touch,pointer",
+        type: "wheel",
         tolerance: 8,
         preventDefault: false,
         onDown: (self) => tentarSalto(self, 1),
