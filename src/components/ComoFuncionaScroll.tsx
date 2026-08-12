@@ -218,12 +218,21 @@ export default function ComoFuncionaScroll() {
   const textoRefs = useRef<(HTMLParagraphElement | null)[]>([]);
   const visualRefs = useRef<(HTMLDivElement | null)[]>([]);
   const legendaRef = useRef<HTMLSpanElement>(null);
+  const etapaMobileRefs = useRef<(HTMLLIElement | null)[]>([]);
 
   useEffect(() => {
     const reduzMovimento = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    if (reduzMovimento) return;
+    if (reduzMovimento) {
+      // Sem o gatilho de scroll, as etapas do celular ficariam apagadas para
+      // sempre: o estado inicial delas é fantasma, e quem acende é a
+      // animação. Aqui elas já nascem acesas.
+      etapaMobileRefs.current.forEach((el) => {
+        if (el) el.dataset.solido = "true";
+      });
+      return;
+    }
 
     const mm = gsap.matchMedia();
 
@@ -432,6 +441,22 @@ export default function ComoFuncionaScroll() {
       };
     });
 
+    mm.add("(max-width: 1023px)", () => {
+      const gatilhos = etapaMobileRefs.current.map((el) =>
+        el
+          ? ScrollTrigger.create({
+              trigger: el,
+              start: "top 80%",
+              once: true,
+              onEnter: () => {
+                el.dataset.solido = "true";
+              },
+            })
+          : null,
+      );
+      return () => gatilhos.forEach((g) => g?.kill());
+    });
+
     return () => mm.revert();
   }, []);
 
@@ -449,12 +474,21 @@ export default function ComoFuncionaScroll() {
         </p>
       </div>
 
-      {/* Mobile / tablet: lista estática empilhada, sem pin nem scrub. */}
+      {/* Mobile / tablet: lista empilhada, sem pin nem scrub — cada etapa
+          sai do fantasma ao entrar na tela, para o bloco não ficar parado
+          justo onde entra a maior parte do público. */}
       <div className="mx-auto max-w-2xl px-5 pb-16 lg:hidden">
         <ol className="space-y-10">
-          {ETAPAS.map((e) => (
-            <li key={e.numero} className="flex gap-5">
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border border-emerald-700 bg-emerald-700 text-white">
+          {ETAPAS.map((e, i) => (
+            <li
+              key={e.numero}
+              ref={(el) => {
+                etapaMobileRefs.current[i] = el;
+              }}
+              data-solido="false"
+              className="group flex gap-5"
+            >
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border transition-colors duration-500 group-data-[solido=false]:border-stone-300 group-data-[solido=false]:bg-stone-50 group-data-[solido=false]:text-stone-300 group-data-[solido=true]:border-emerald-700 group-data-[solido=true]:bg-emerald-700 group-data-[solido=true]:text-white">
                 <e.Icone className="h-5 w-5" strokeWidth={1.5} />
               </div>
               <div className="min-w-0 flex-1">
@@ -467,7 +501,7 @@ export default function ComoFuncionaScroll() {
                 <p className="mt-2 text-base leading-relaxed text-stone-600">
                   {e.texto}
                 </p>
-                <div className="mt-4 h-56">
+                <div className="mt-4 h-56 opacity-40 blur-[2px] transition-all duration-700 group-data-[solido=true]:opacity-100 group-data-[solido=true]:blur-none">
                   <e.Mockup />
                 </div>
               </div>

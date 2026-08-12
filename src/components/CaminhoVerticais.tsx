@@ -110,6 +110,8 @@ export default function CaminhoVerticais() {
   const secaoRef = useRef<HTMLDivElement>(null);
   const tracoRef = useRef<SVGPathElement>(null);
   const paradaRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const trilhoMobileRef = useRef<HTMLDivElement>(null);
+  const paradaMobileRefs = useRef<(HTMLLIElement | null)[]>([]);
 
   useEffect(() => {
     const reduzMovimento = window.matchMedia(
@@ -117,10 +119,13 @@ export default function CaminhoVerticais() {
     ).matches;
 
     if (reduzMovimento) {
-      paradaRefs.current.forEach((el) => {
+      [...paradaRefs.current, ...paradaMobileRefs.current].forEach((el) => {
         if (el) el.dataset.solido = "true";
       });
       if (tracoRef.current) gsap.set(tracoRef.current, { strokeDashoffset: 0 });
+      if (trilhoMobileRef.current) {
+        gsap.set(trilhoMobileRef.current, { height: "100%" });
+      }
       return;
     }
 
@@ -148,6 +153,42 @@ export default function CaminhoVerticais() {
           ? ScrollTrigger.create({
               trigger: el,
               start: "top 78%",
+              once: true,
+              onEnter: () => {
+                el.dataset.solido = "true";
+              },
+            })
+          : null,
+      );
+
+      return () => {
+        st.kill();
+        gatilhos.forEach((g) => g?.kill());
+      };
+    });
+
+    mm.add("(max-width: 767px)", () => {
+      // Mesma ideia do desktop, com a linha reta: altura preenchida pelo
+      // progresso do scroll, paradas acendendo ao entrar na tela.
+      const st = ScrollTrigger.create({
+        trigger: secaoRef.current,
+        start: "top 70%",
+        end: "bottom 90%",
+        scrub: 0.5,
+        onUpdate: (self) => {
+          if (trilhoMobileRef.current) {
+            gsap.set(trilhoMobileRef.current, {
+              height: `${self.progress * 100}%`,
+            });
+          }
+        },
+      });
+
+      const gatilhos = paradaMobileRefs.current.map((el) =>
+        el
+          ? ScrollTrigger.create({
+              trigger: el,
+              start: "top 82%",
               once: true,
               onEnter: () => {
                 el.dataset.solido = "true";
@@ -292,40 +333,68 @@ export default function CaminhoVerticais() {
       </div>
 
       {/* Mobile: mesma matéria, empilhada, sem caminho. */}
+      {/* Celular: o mesmo caminho, só que reto. A linha desce pela lateral e
+          é preenchida conforme a pessoa rola; cada parada sai do fantasma ao
+          entrar na tela. Ziguezague não cabe em 390px — o que cabe é a
+          progressão, que é o que a seção precisa comunicar. */}
       <div className="mx-auto max-w-md px-5 py-12 md:hidden">
-        <ol className="space-y-6">
-          {VERTICAIS.map((v) => {
-            const Icone = ICONES[v.id];
-            return (
-              <li
-                key={v.id}
-                className="rounded-2xl border border-stone-200 bg-white p-5"
-              >
-                <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-emerald-700 px-3 py-1.5">
-                  {Icone ? (
-                    <Icone className="h-3.5 w-3.5 text-white" strokeWidth={2} />
-                  ) : null}
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-white">
-                    {v.titulo}
-                  </span>
-                </div>
-                <p className="text-sm leading-relaxed text-stone-700">
-                  {v.resumo}
-                </p>
-                <p className="mt-3 font-mono text-[10px] leading-relaxed tracking-wide text-stone-400">
-                  {v.baseLegal}
-                </p>
-                <a
-                  href={v.href}
-                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700"
+        <div className="relative">
+          <div className="absolute bottom-4 left-[15px] top-4 w-0.5 bg-stone-200" />
+          <div
+            ref={trilhoMobileRef}
+            className="absolute left-[15px] top-4 w-0.5 origin-top bg-emerald-600"
+            style={{ height: 0 }}
+          />
+
+          <ol className="relative space-y-8">
+            {VERTICAIS.map((v, i) => {
+              const Icone = ICONES[v.id];
+              return (
+                <li
+                  key={v.id}
+                  ref={(el) => {
+                    paradaMobileRefs.current[i] = el;
+                  }}
+                  data-solido="false"
+                  className="group relative pl-11"
                 >
-                  {v.botao}
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </a>
-              </li>
-            );
-          })}
-        </ol>
+                  {/* Marco da parada, sobre a linha */}
+                  <span className="absolute left-0 top-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-stone-200 bg-stone-50 transition-colors duration-500 group-data-[solido=true]:border-emerald-700 group-data-[solido=true]:bg-emerald-700">
+                    {Icone ? (
+                      <Icone
+                        className="h-3.5 w-3.5 text-stone-300 transition-colors duration-500 group-data-[solido=true]:text-white"
+                        strokeWidth={2}
+                      />
+                    ) : null}
+                  </span>
+
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-stone-300 transition-colors duration-500 group-data-[solido=true]:text-stone-500">
+                    {ROTULO_TRECHO[v.id]}
+                  </p>
+                  <p className="font-mono mt-1 text-xs uppercase tracking-widest text-stone-400 transition-colors duration-500 group-data-[solido=true]:text-emerald-700">
+                    {v.titulo}
+                  </p>
+
+                  <div className="mt-3 rounded-2xl border border-stone-200 bg-white p-5 opacity-40 blur-[2px] transition-all duration-700 group-data-[solido=true]:opacity-100 group-data-[solido=true]:blur-none">
+                    <p className="text-sm leading-relaxed text-stone-700">
+                      {v.resumo}
+                    </p>
+                    <p className="mt-3 font-mono text-[10px] leading-relaxed tracking-wide text-stone-400">
+                      {v.baseLegal}
+                    </p>
+                    <a
+                      href={v.href}
+                      className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700"
+                    >
+                      {v.botao}
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
       </div>
     </section>
   );

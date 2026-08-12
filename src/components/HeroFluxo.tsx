@@ -102,8 +102,11 @@ const CONFERENCIAS = [
   ["Como foi descrito", "Falha de forma no auto"],
 ];
 
-/** Deslocamento da esteira em cada fase (px). A fileira anda para a esquerda. */
-const DESLOCAMENTO = [0, 0, -150, -320];
+/**
+ * Deslocamento da esteira em cada fase, no desktop (px). No celular ele é
+ * medido em tempo real — ver o contexto (max-width: 767px) no efeito.
+ */
+const DESLOCAMENTO_DESKTOP = [60, 40, 0, -40];
 
 /**
  * Cronograma do ciclo, em segundos. Reunido num lugar só porque os tempos
@@ -135,6 +138,8 @@ export default function HeroFluxo() {
   const linhasVerticalRef = useRef<(HTMLLIElement | null)[]>([]);
   const conferenciaRef = useRef<(HTMLDivElement | null)[]>([]);
   const resultadoRef = useRef<HTMLDivElement>(null);
+  /** As 4 colunas da esteira, na ordem — usadas para centralizar no celular. */
+  const colunasRef = useRef<(HTMLDivElement | HTMLUListElement | null)[]>([]);
 
   useEffect(() => {
     const reduzMovimento = window.matchMedia(
@@ -187,7 +192,13 @@ export default function HeroFluxo() {
 
     const mm = gsap.matchMedia();
 
-    mm.add("(min-width: 768px)", () => {
+    /**
+     * Monta o ciclo inteiro. Recebe de fora quanto a esteira anda em cada
+     * fase, que é a única coisa que muda entre telas: no desktop as quatro
+     * colunas cabem quase todas de uma vez e a esteira só se ajusta; no
+     * celular cabe uma por vez, então cada fase centraliza a sua.
+     */
+    const montarCiclo = (deslocamento: number[]) => {
       // Preenche o trilho até o centro do selo da fase indicada. Medido na
       // hora porque o selo ativo muda de largura ao expandir o rótulo.
       const preencherTrilho = (indice: number) => {
@@ -246,7 +257,7 @@ export default function HeroFluxo() {
         });
         rotulosRef.current.forEach((el) => el && gsap.set(el, { width: 0 }));
         if (trilhoFillRef.current) gsap.set(trilhoFillRef.current, { width: 0 });
-        gsap.set(esteiraRef.current, { x: 0 });
+        gsap.set(esteiraRef.current, { x: deslocamento[0] });
       };
 
       const tl = gsap.timeline({
@@ -275,6 +286,7 @@ export default function HeroFluxo() {
         marcarSolido(cartaoRef.current);
       })
         // Fase 2 — as verticais pensam e acendem uma de cada vez.
+        .to(esteiraRef.current, { x: deslocamento[1], duration: 0.9 }, T.fase2)
         .call(
           () => {
             ativarSelo(1);
@@ -284,7 +296,7 @@ export default function HeroFluxo() {
           T.fase2,
         )
         // Fase 3 — a esteira anda e as conferências acendem.
-        .to(esteiraRef.current, { x: DESLOCAMENTO[2], duration: 0.9 }, T.fase3)
+        .to(esteiraRef.current, { x: deslocamento[2], duration: 0.9 }, T.fase3)
         .call(
           () => {
             ativarSelo(2);
@@ -294,7 +306,7 @@ export default function HeroFluxo() {
           T.fase3,
         )
         // Fase 4 — a esteira anda de novo e a peça final acende.
-        .to(esteiraRef.current, { x: DESLOCAMENTO[3], duration: 0.9 }, T.fase4)
+        .to(esteiraRef.current, { x: deslocamento[3], duration: 0.9 }, T.fase4)
         .call(
           () => {
             ativarSelo(3);
@@ -307,7 +319,7 @@ export default function HeroFluxo() {
         // Fechamento: segura a peça pronta, apaga suave e recomeça.
         .to(
           esteiraRef.current,
-          { opacity: 0, x: DESLOCAMENTO[3] - 70, duration: 0.9, ease: "power2.in" },
+          { opacity: 0, x: deslocamento[3] - 70, duration: 0.9, ease: "power2.in" },
           T.fechamento,
         )
         .to(
@@ -336,6 +348,37 @@ export default function HeroFluxo() {
       return () => {
         tl.kill();
       };
+    };
+
+    mm.add("(min-width: 768px)", () => montarCiclo(DESLOCAMENTO_DESKTOP));
+
+    mm.add("(max-width: 767px)", () => {
+      // No celular as colunas são medidas de verdade em vez de chutadas:
+      // largura de tela varia demais para número fixo, e um erro aqui deixa
+      // a fase ativa metade fora do quadro.
+      const esteira = esteiraRef.current;
+      const visivel = esteira?.parentElement;
+      if (!esteira || !visivel) return;
+
+      gsap.set(esteira, { x: 0 });
+      const base = esteira.getBoundingClientRect().left;
+
+      // Largura ÚTIL, sem o padding do recorte. Usar clientWidth cru joga a
+      // coluna para a direita pela metade do padding — a conta tem de ser
+      // feita na mesma caixa em que a esteira começa, que é a de conteúdo.
+      const estilo = getComputedStyle(visivel);
+      const larguraUtil =
+        visivel.clientWidth -
+        parseFloat(estilo.paddingLeft) -
+        parseFloat(estilo.paddingRight);
+
+      const deslocamento = colunasRef.current.map((el) => {
+        if (!el) return 0;
+        const r = el.getBoundingClientRect();
+        return -(r.left - base) + (larguraUtil - r.width) / 2;
+      });
+
+      return montarCiclo(deslocamento);
     });
 
     return () => mm.revert();
@@ -343,29 +386,32 @@ export default function HeroFluxo() {
 
   return (
     <section ref={secaoRef} className="relative overflow-hidden border-b border-stone-200 bg-stone-50">
-      {/* Mobile: peça final estática, sem esteira. */}
-      <div className="mx-auto max-w-md px-5 py-16 md:hidden">
-        <p className="mb-6 text-center font-mono text-[11px] uppercase tracking-widest text-stone-400">
-          Como a análise funciona
-        </p>
-        <div className="rounded-3xl border border-stone-200 bg-white p-6" style={SOMBRA_CARD}>
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide text-red-700">
-            1 falha encontrada
-          </span>
-          <p className="mt-4 text-base leading-relaxed text-stone-700">
-            Encontramos um possível vício formal no seu documento. Explicamos
-            qual é, com o trecho que comprova, antes de qualquer cobrança.
+      {/* Um layout só para celular e desktop: manter duas árvores separadas
+          foi o que deixou o celular parado enquanto o desktop animava. */}
+      <div className="py-14 md:py-20">
+        {/* Chamada da seção */}
+        <div className="mx-auto mb-10 w-full max-w-[1300px] px-6 md:mb-14 md:px-8">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-emerald-700">
+            Analisador de autos de infração
+          </p>
+          <p className="font-display mt-3 max-w-xl text-3xl font-semibold leading-tight tracking-tight text-stone-900 sm:text-4xl">
+            Descubra se a sua multa tem <span className="text-emerald-600">erro</span>
+          </p>
+          <p className="mt-4 max-w-lg text-base leading-relaxed text-stone-600">
+            Leitura do documento à luz da lei do órgão que autuou. Gratuita em
+            todas as áreas — você só paga se houver falha.
           </p>
         </div>
-      </div>
 
-      <div className="hidden py-20 md:block">
         {/* Linha do topo — selo ativo expande o rótulo, trilho preenche até ele. */}
-        <div ref={stepperRef} className="relative mb-14 flex items-center gap-3 px-8">
-          <div className="absolute left-8 right-8 top-1/2 h-0.5 -translate-y-1/2 bg-stone-200" />
+        <div
+          ref={stepperRef}
+          className="relative mx-auto mb-10 flex w-full max-w-[1300px] items-center gap-2 px-6 md:mb-14 md:gap-3 md:px-8"
+        >
+          <div className="absolute left-6 right-6 top-1/2 h-0.5 -translate-y-1/2 bg-stone-200 md:left-8 md:right-8" />
           <div
             ref={trilhoFillRef}
-            className="absolute left-8 top-1/2 h-0.5 w-0 -translate-y-1/2 bg-emerald-600"
+            className="absolute left-6 top-1/2 h-0.5 w-0 -translate-y-1/2 bg-emerald-600 md:left-8"
           />
           {FASES.map((fase, i) => (
             <div
@@ -395,14 +441,20 @@ export default function HeroFluxo() {
           ))}
         </div>
 
-        {/* Esteira: as 4 fases numa fileira só, que desliza para a esquerda. */}
-        <div ref={esteiraRef} className="flex items-start gap-14 pl-8">
+        {/* Esteira: as 4 fases numa fileira só, que desliza para a esquerda.
+            O pai é quem recorta e quem dá a largura de referência usada para
+            centralizar a fase ativa no celular. */}
+        <div className="mx-auto w-full max-w-[1300px] overflow-hidden px-6 md:px-8">
+          <div ref={esteiraRef} className="flex items-start gap-8 md:gap-14">
           {/* Fase 1 — único cartão flutuante da sequência */}
           <div
-            ref={cartaoRef}
+            ref={(el) => {
+              cartaoRef.current = el;
+              colunasRef.current[0] = el;
+            }}
             data-solido="false"
             data-cartao="sim"
-            className="w-64 flex-shrink-0 rounded-2xl border border-stone-200 bg-white p-4"
+            className="w-60 flex-shrink-0 rounded-2xl border border-stone-200 bg-white p-4 md:w-64"
             style={{ ...SOMBRA_CARD, opacity: 0.3, filter: "blur(2px)" }}
           >
             <p className="text-sm leading-relaxed text-stone-800">
@@ -421,7 +473,12 @@ export default function HeroFluxo() {
               Um atributo só, com valores exclusivos: duas classes que possam
               casar ao mesmo tempo empatam em especificidade e o vencedor
               passa a depender da ordem do CSS gerado. */}
-          <ul className="w-64 flex-shrink-0 space-y-2">
+          <ul
+            ref={(el) => {
+              colunasRef.current[1] = el;
+            }}
+            className="w-60 flex-shrink-0 space-y-2 md:w-64"
+          >
             {VERTICAIS.map((v, i) => (
               <li
                 key={v.id}
@@ -450,7 +507,12 @@ export default function HeroFluxo() {
           </ul>
 
           {/* Fase 3 — texto solto, sem cartão. Acende um de cada vez. */}
-          <div className="w-56 flex-shrink-0 space-y-6 pt-1">
+          <div
+            ref={(el) => {
+              colunasRef.current[2] = el;
+            }}
+            className="w-56 flex-shrink-0 space-y-6 pt-1"
+          >
             {CONFERENCIAS.map(([titulo, detalhe], i) => (
               <div
                 key={titulo}
@@ -476,10 +538,13 @@ export default function HeroFluxo() {
 
           {/* Fase 4 — peça ilustrada, maior. */}
           <div
-            ref={resultadoRef}
+            ref={(el) => {
+              resultadoRef.current = el;
+              colunasRef.current[3] = el;
+            }}
             data-solido="false"
             data-cartao="sim"
-            className="w-80 flex-shrink-0 overflow-hidden rounded-2xl border border-stone-200 bg-white"
+            className="w-72 flex-shrink-0 overflow-hidden rounded-2xl border border-stone-200 bg-white md:w-80"
             style={{ ...SOMBRA_CARD, opacity: 0.3, filter: "blur(3px)" }}
           >
             <IlustracaoAchado />
@@ -504,6 +569,7 @@ export default function HeroFluxo() {
                 Ver o achado →
               </span>
             </div>
+          </div>
           </div>
         </div>
       </div>
