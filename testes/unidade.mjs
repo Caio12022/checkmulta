@@ -247,6 +247,52 @@ teste("descrever o erro do agente sem imputar má-fé é permitido", () => {
 });
 
 // ============================================================
+// DIPLOMAS_PERMITIDOS do trânsito — as duas citações que a
+// bateria de defesa provou faltarem, e a contraprova
+// ============================================================
+
+/* Trânsito é a única vertical cuja análise é texto corrido, não objeto. */
+const analiseTransitoPrescricao = `RELATORIO DE ANALISE - AUTO DE INFRACAO DE TRANSITO
+Enquadramento: art. 218, inciso I, do CTB
+Falha 1 - Notificacao da autuacao expedida fora do prazo do art. 281 do CTB,
+o que caracteriza a decadencia do direito de autuar.`;
+
+teste("trânsito: Decreto 20.910/32 é citação legítima em prescrição", () => {
+  /* Faltava na lista: o caso de contraprova de prescrição da bateria de defesa
+     reprovava SEMPRE, e não por variação do modelo. */
+  const v = V.validarDefesa(
+    "Aplica-se o Decreto 20.910/32, que fixa em cinco anos a prescricao contra a Fazenda Publica.",
+    "transito",
+    analiseTransitoPrescricao
+  );
+  ok(!regras(v).includes("citacao_fora_da_lista"), "20.910/32 é a base da prescrição quinquenal");
+});
+
+teste("trânsito: Lei 14.304/2022 é citação legítima (renumerou o art. 281 do CTB)", () => {
+  /* A lei renumerou o parágrafo único do art. 281 para §1º, vigente desde
+     23/08/2022 — confirmado por pesquisa. A peça cita ao justificar a
+     numeração do dispositivo, e a citação é correta, não alucinação. */
+  const v = V.validarDefesa(
+    "O art. 281, § 1º, inciso II, do CTB, na redacao dada pela Lei 14.304/2022, determina o arquivamento.",
+    "transito",
+    analiseTransitoPrescricao
+  );
+  ok(!regras(v).includes("citacao_fora_da_lista"), "a renumeração do art. 281 é real e citável");
+});
+
+teste("trânsito: diploma fora da lista continua sendo pego (contraprova)", () => {
+  /* O lado que impede o conserto de virar abertura da lista inteira. A Lei
+     14.599/2023 aplicada a pedágio foi alucinação real, corrigida nos artigos
+     já publicados. */
+  const v = V.validarDefesa(
+    "A autuacao contraria a Lei 14.599/2023 e a Resolucao CONTRAN 396/2011.",
+    "transito",
+    analiseTransitoPrescricao
+  );
+  ok(regras(v).includes("citacao_fora_da_lista"), "diploma fora da lista tem que reprovar");
+});
+
+// ============================================================
 // documentoIlegivel — os dois lados
 // ============================================================
 
