@@ -15,6 +15,10 @@ import {
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
 import { ehSobrecarga, ehCotaDiaria } from "../lib/sobrecarga";
+import HeroFluxo from "../components/HeroFluxo";
+import EscolhaOrgao from "../components/EscolhaOrgao";
+import ComoFuncionaScroll from "../components/ComoFuncionaScroll";
+import Reveal from "../components/Reveal";
 declare global {
   interface Window {
     dataLayer: any[];
@@ -852,42 +856,51 @@ useEffect(() => {
         )}
       </AnimatePresence>
 
-      {/* HERO */}
-      <section id="inicio" className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
-        <div className="mx-auto max-w-4xl px-4 py-14 text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-emerald-700">
-            <Zap className="h-3.5 w-3.5" />
-            Para quem recebeu cobrança retroativa
-          </div>
-
-          <h1 className="mb-4 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
-            A distribuidora acusou irregularidade no seu medidor? Veja se a
-            cobrança tem falha, <span className="text-emerald-600">grátis</span>
-          </h1>
-
-          <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-slate-600">
-            Faça a análise gratuita do Termo de Ocorrência e Inspeção (TOI) ou da
-            fatura de recuperação de consumo. Nossa inteligência artificial confere
-            as exigências da Resolução ANEEL nº 1.000/2021 e o cálculo do valor
-            cobrado. Se não encontrar falha, você não paga. A análise é grátis e
-            sem cadastro.
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600 sm:gap-6">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
-            </div>
-            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
-            <div className="flex items-center gap-2">
-              <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
-            </div>
-            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
-            <div className="flex items-center gap-2">
-              <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* HERO — o H1 de SEO vira o título do próprio HeroFluxo, em vez de
+          duplicar título em dois blocos separados. */}
+      <div id="inicio">
+        <HeroFluxo
+          tagSecao="Para quem recebeu cobrança retroativa"
+          titulo={
+            <>
+              A distribuidora acusou irregularidade no seu medidor? Veja se a
+              cobrança tem falha, <span className="text-emerald-600">grátis</span>
+            </>
+          }
+          descricao={
+            <>
+              Análise gratuita do TOI ou da fatura de recuperação de consumo, à
+              luz da Resolução ANEEL nº 1.000/2021. Se não encontrar falha, você
+              não paga nada.
+              <span className="mt-3 flex flex-wrap items-center gap-3 text-sm text-stone-500 sm:gap-5">
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
+                </span>
+              </span>
+            </>
+          }
+          mensagemChat="Recebi uma cobrança retroativa de energia e não sei se ela tem falha, pode analisar pra mim?"
+          rotuloFase2="Cruzar com a ANEEL"
+          itensChecklist={[
+            "Termo de Ocorrência (TOI)",
+            "Notificação de cobrança",
+            "Fatura com valor retroativo",
+            "Outros documentos",
+          ]}
+          resultado={{
+            badge: "Chance alta",
+            titulo: "Encontramos uma falha na cobrança",
+            texto:
+              "Falha grave encontrada no documento — fundamento consistente para contestar a cobrança. Geramos a reclamação administrativa pronta para protocolar.",
+          }}
+        />
+      </div>
 
       {/* ÁREA PRINCIPAL */}
       <section className="mx-auto max-w-3xl px-4 py-12">
@@ -945,8 +958,8 @@ useEffect(() => {
           <div className="text-center">
             <div className="mb-8">
               <h2 className="mb-2 text-2xl font-bold text-slate-900 sm:text-3xl">
-                Descubra <span className="text-emerald-600">agora</span> se dá para
-                recorrer
+                Suba <span className="text-emerald-600">agora</span> o documento
+                e verifique se dá para contestar
               </h2>
               <p className="text-base text-slate-600">
                 Selecione o documento que você recebeu para iniciar a análise gratuita:
@@ -974,45 +987,12 @@ useEffect(() => {
         )}
       </section>
 
-      {/* COMO FUNCIONA */}
-      <section id="como-funciona" className="border-t border-slate-100 bg-slate-50">
+      {/* COMO FUNCIONA — mesmo mecanismo de scroll fixo (pin/scrub) usado na
+          home e nas outras verticais. */}
+      <ComoFuncionaScroll />
+
+      <section className="border-t border-slate-100 bg-slate-50">
         <div className="mx-auto max-w-5xl px-4 py-16">
-          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-            Como funciona a <span className="text-emerald-600">análise</span>
-          </h2>
-
-          <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <UploadCloud className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-base font-bold text-slate-900">1. Envie o documento</h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Suba o PDF ou a foto do TOI, da notificação de cobrança ou da fatura retroativa. Nenhum dado é armazenado.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <Search className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-base font-bold text-slate-900">2. A IA audita</h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Conferimos as formalidades da inspeção e o cálculo do valor cobrado, ponto por ponto.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <FileText className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-base font-bold text-slate-900">3. Diagnóstico grátis</h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Mostramos as falhas encontradas, com o trecho exato do documento, e se dá para recorrer.
-              </p>
-            </div>
-          </div>
-
           <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
             <div className="flex items-center gap-2.5 border-b border-slate-100 px-6 pb-4 pt-5">
               <ShieldCheck className="h-4 w-4 flex-shrink-0 text-slate-400" />
@@ -1022,7 +1002,7 @@ useEffect(() => {
             </div>
 
             <div className="grid grid-cols-1 divide-y divide-slate-100 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-              <div className="flex items-start gap-4 p-6">
+              <Reveal delay={0} className="flex items-start gap-4 p-6">
                 <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50">
                   <CheckCircle2 className="h-5 w-5 text-emerald-600" />
                 </div>
@@ -1034,9 +1014,9 @@ useEffect(() => {
                     Falha grave encontrada no auto. Fundamento consistente para pedir a anulação.
                   </p>
                 </div>
-              </div>
+              </Reveal>
 
-              <div className="flex items-start gap-4 p-6">
+              <Reveal delay={0.08} className="flex items-start gap-4 p-6">
                 <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-amber-50">
                   <AlertCircle className="h-5 w-5 text-amber-500" />
                 </div>
@@ -1048,9 +1028,9 @@ useEffect(() => {
                     Há pontos questionáveis, especialmente no período cobrado. Argumento possível.
                   </p>
                 </div>
-              </div>
+              </Reveal>
 
-              <div className="flex items-start gap-4 p-6">
+              <Reveal delay={0.16} className="flex items-start gap-4 p-6">
                 <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-red-50">
                   <AlertCircle className="h-5 w-5 text-red-400" />
                 </div>
@@ -1062,7 +1042,7 @@ useEffect(() => {
                     Caso mais limitado. Ainda é possível contestar. A decisão é sua.
                   </p>
                 </div>
-              </div>
+              </Reveal>
             </div>
           </div>
         </div>
@@ -1089,15 +1069,24 @@ useEffect(() => {
               { t: "Avaliação técnica do medidor", d: "Alegação de violação do medidor sem relatório de avaliação técnica ou perícia contraria o art. 590, III." },
               { t: "Período retroativo cobrado", d: "Cobrança de muitos meses sem demonstrar quando a irregularidade começou. Sem essa demonstração, o art. 596, § 1º limita a 6 ciclos." },
               { t: "Critério e memória de cálculo", d: "Ausência de memória descritiva que permita reproduzir o valor, ou critério do art. 595 aplicado fora das condições que ele exige." },
-            ].map((item) => (
-              <div key={item.t} className="rounded-xl border border-slate-200 bg-slate-50/60 p-5">
+            ].map((item, i) => (
+              <Reveal key={item.t} delay={(i % 2) * 0.08} className="rounded-xl border border-slate-200 bg-slate-50/60 p-5">
                 <h3 className="mb-1.5 font-bold text-slate-900">{item.t}</h3>
                 <p className="text-sm leading-relaxed text-slate-600">{item.d}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
+
+      <EscolhaOrgao
+        titulo={
+          <>
+            Descubra se ela pode ser <span className="text-emerald-600">anulada</span>
+          </>
+        }
+        subtitulo="A mesma análise gratuita vale para multa de trânsito, Procon, vigilância sanitária, energia e Ibama."
+      />
 
       {/* SEGURANÇA */}
       <section id="seguranca" className="border-t border-slate-100 bg-slate-50">
@@ -1107,7 +1096,7 @@ useEffect(() => {
           </h2>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-white p-6 text-center">
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                 <Lock className="h-6 w-6" />
               </div>
@@ -1116,9 +1105,9 @@ useEffect(() => {
                 Não guardamos o seu termo de ocorrência nem a sua fatura. O documento
                 é processado na memória do servidor e imediatamente deletado.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+            <Reveal delay={0.08} className="rounded-xl border border-slate-200 bg-white p-6 text-center">
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
                 <UserX className="h-6 w-6" />
               </div>
@@ -1127,9 +1116,9 @@ useEffect(() => {
                 Você não precisa criar conta nem informar dados pessoais para
                 verificar a cobrança. É direto ao ponto.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+            <Reveal delay={0.16} className="rounded-xl border border-slate-200 bg-white p-6 text-center">
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
                 <Route className="h-6 w-6" />
               </div>
@@ -1138,13 +1127,15 @@ useEffect(() => {
                 Atuamos como ferramenta tecnológica. A decisão sobre a reclamação é
                 da distribuidora e, em grau seguinte, da ANEEL.
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* CARROSSEL DE SERVIÇOS */}
-      <CarrosselServicos excluir={["energia"]} />
+      <Reveal>
+        <CarrosselServicos excluir={["energia"]} />
+      </Reveal>
 
       {/* FAQ */}
       <section id="faq-energia" className="border-t border-slate-100 bg-white">
@@ -1154,7 +1145,7 @@ useEffect(() => {
           </h2>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 Qual o prazo para contestar?
               </h3>
@@ -1164,9 +1155,9 @@ useEffect(() => {
                 Protocole o quanto antes: a contestação em aberto é o que sustenta
                 o pedido de suspensão da cobrança.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+            <Reveal delay={0.06} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 O que acontece se eu não contestar?
               </h3>
@@ -1175,9 +1166,9 @@ useEffect(() => {
                 comum, com risco de negativação e de suspensão do fornecimento.
                 Contestar formalmente é o que interrompe esse caminho automático.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 Que tipo de falha derruba a cobrança?
               </h3>
@@ -1187,9 +1178,9 @@ useEffect(() => {
                 prévio da data, ausência de memória de cálculo e cobrança de
                 período longo sem demonstrar quando a irregularidade começou.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+            <Reveal delay={0.06} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 Podem cortar minha luz por causa desse débito?
               </h3>
@@ -1199,9 +1190,9 @@ useEffect(() => {
                 desacordo com a Resolução ANEEL nº 1.000/2021. Continue pagando as
                 faturas normais de consumo. A discussão é só sobre o retroativo.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 md:col-span-2">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 md:col-span-2">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 Preciso de advogado para contestar?
               </h3>
@@ -1211,7 +1202,7 @@ useEffect(() => {
                 ANEEL. Para valores altos ou se o caso for para a Justiça, a
                 consulta a um advogado é fortemente recomendável.
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -1224,7 +1215,7 @@ useEffect(() => {
             <span className="text-emerald-600">recuperação de consumo</span>
           </h2>
 
-          <div className="max-w-none">
+          <Reveal className="max-w-none" amount={0.15}>
             <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
               Quando a distribuidora suspeita de irregularidade no medidor, ela
               lavra um{" "}
@@ -1297,11 +1288,11 @@ useEffect(() => {
               , pronta para você preencher e protocolar. Nossa ferramenta informa e
               instrumentaliza. Não presta consultoria jurídica nem representação.
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      
+
       {/* FOOTER */}
       <footer className="border-t border-slate-200 bg-white">
         <div className="mx-auto max-w-4xl px-4 py-10 text-center">
