@@ -46,11 +46,13 @@ const ROTULO_TRECHO: Record<string, string> = {
 };
 
 /** Altura de cada parada (px). Define o desenho do caminho e o espaçamento. */
-const ALTURA_PARADA = 300;
+const ALTURA_PARADA = 440;
 /** Meia-largura do ziguezague (px), do centro para cada lado. */
-const AMPLITUDE = 190;
+const AMPLITUDE = 265;
 /** Raio das curvas do traço. */
-const RAIO = 26;
+const RAIO = 30;
+/** Largura do cartão de cada parada (px). */
+const LARGURA_CARTAO = 380;
 
 /**
  * Monta o traço em ziguezague: desce, curva para um lado, atravessa, curva
@@ -101,7 +103,7 @@ function montarCaminho(paradas: number, largura: number) {
   return { d: partes.join(" "), altura: y + sobra };
 }
 
-const LARGURA = 900;
+const LARGURA = 1120;
 const { d: CAMINHO, altura: ALTURA_TOTAL } = montarCaminho(VERTICAIS.length, LARGURA);
 
 export default function CaminhoVerticais() {
@@ -215,29 +217,31 @@ export default function CaminhoVerticais() {
                   paradaRefs.current[i] = el;
                 }}
                 data-solido="false"
-                className="group absolute w-72"
+                className="group absolute"
                 style={{
-                  top: i * ALTURA_PARADA + 68,
-                  left: paraDireita
-                    ? LARGURA / 2 + AMPLITUDE - 144
-                    : LARGURA / 2 - AMPLITUDE - 144,
+                  top: i * ALTURA_PARADA + 74,
+                  width: LARGURA_CARTAO,
+                  left:
+                    LARGURA / 2 +
+                    (paraDireita ? AMPLITUDE : -AMPLITUDE) -
+                    LARGURA_CARTAO / 2,
                 }}
               >
                 {/* Rótulo do trecho, escrito sobre a linha */}
-                <p className="mb-4 text-center font-mono text-[10px] uppercase tracking-widest text-stone-300 transition-colors duration-500 group-data-[solido=true]:text-stone-500">
+                <p className="mb-5 text-center font-mono text-[11px] uppercase tracking-widest text-stone-300 transition-colors duration-500 group-data-[solido=true]:text-stone-500">
                   <span className="bg-stone-50 px-2">{ROTULO_TRECHO[v.id]}</span>
                 </p>
 
                 {/* Pílula da parada */}
                 <div className="flex justify-center">
-                  <div className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-stone-100 px-4 py-2 transition-colors duration-500 group-data-[solido=true]:border-emerald-700 group-data-[solido=true]:bg-emerald-700">
+                  <div className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-stone-100 px-5 py-2.5 transition-colors duration-500 group-data-[solido=true]:border-emerald-700 group-data-[solido=true]:bg-emerald-700">
                     {Icone ? (
                       <Icone
-                        className="h-3.5 w-3.5 text-stone-300 transition-colors duration-500 group-data-[solido=true]:text-white"
+                        className="h-4 w-4 text-stone-300 transition-colors duration-500 group-data-[solido=true]:text-white"
                         strokeWidth={2}
                       />
                     ) : null}
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-stone-300 transition-colors duration-500 group-data-[solido=true]:text-white">
+                    <span className="font-mono text-xs uppercase tracking-widest text-stone-300 transition-colors duration-500 group-data-[solido=true]:text-white">
                       {v.titulo}
                     </span>
                   </div>
@@ -245,27 +249,27 @@ export default function CaminhoVerticais() {
 
                 {/* Cartão da parada */}
                 <div
-                  className="mt-5 rounded-2xl border border-stone-200 bg-white p-5 opacity-40 blur-[2px] transition-all duration-700 group-data-[solido=true]:opacity-100 group-data-[solido=true]:blur-none"
+                  className="mt-6 rounded-2xl border border-stone-200 bg-white p-7 opacity-40 blur-[2px] transition-all duration-700 group-data-[solido=true]:opacity-100 group-data-[solido=true]:blur-none"
                   style={{
                     boxShadow:
                       "rgba(0,0,0,0.02) 0px 100px 40px, rgba(0,0,0,0.06) 0px 56px 34px, rgba(0,0,0,0.09) 0px 6px 12px",
                   }}
                 >
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-stone-400">
+                  <p className="font-mono text-[11px] uppercase tracking-widest text-stone-400">
                     {v.publico}
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-stone-700">
+                  <p className="mt-3 text-base leading-relaxed text-stone-700">
                     {v.resumo}
                   </p>
-                  <p className="mt-4 border-t border-stone-100 pt-3 font-mono text-[10px] leading-relaxed tracking-wide text-stone-400">
+                  <p className="mt-5 border-t border-stone-100 pt-4 font-mono text-[11px] leading-relaxed tracking-wide text-stone-400">
                     {v.baseLegal}
                   </p>
                   <a
                     href={v.href}
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 transition-colors hover:text-emerald-800"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 transition-colors hover:text-emerald-800"
                   >
                     {v.botao}
-                    <ArrowRight className="h-3.5 w-3.5" />
+                    <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
               </div>

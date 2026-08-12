@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowUp, Check, Loader, ShieldCheck, Zap } from "lucide-react";
+import { ArrowUp, Check, Loader2, ShieldCheck, Zap } from "lucide-react";
 import { VERTICAIS } from "../data/verticais";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -105,8 +105,24 @@ const CONFERENCIAS = [
 /** Deslocamento da esteira em cada fase (px). A fileira anda para a esquerda. */
 const DESLOCAMENTO = [0, 0, -150, -320];
 
-/** Segundos até começar o fechamento — tempo de leitura da peça pronta. */
-const FECHAMENTO = 5.2;
+/**
+ * Cronograma do ciclo, em segundos. Reunido num lugar só porque os tempos
+ * dependem uns dos outros: mexer num número solto espalhado pela timeline
+ * desencaixa a fase seguinte sem avisar.
+ */
+const T = {
+  fase2: 1.2,
+  /** Quando a primeira vertical começa a "pensar". */
+  itemInicio: 1.5,
+  /** Intervalo entre uma vertical e a seguinte. */
+  itemPasso: 0.55,
+  /** Quanto tempo o anel gira antes de virar visto. */
+  itemPensa: 0.45,
+  fase3: 4.6,
+  fase4: 6.2,
+  /** Início do fechamento — inclui o tempo de leitura da peça pronta. */
+  fechamento: 8.8,
+};
 
 export default function HeroFluxo() {
   const secaoRef = useRef<HTMLDivElement>(null);
@@ -151,9 +167,11 @@ export default function HeroFluxo() {
       [
         cartaoRef.current,
         resultadoRef.current,
-        ...linhasVerticalRef.current,
         ...conferenciaRef.current,
       ].forEach(marcarSolido);
+      linhasVerticalRef.current.forEach((el) => {
+        if (el) el.dataset.fase = "feito";
+      });
       const ultimo = selosRef.current.length - 1;
       selosRef.current.forEach((el, i) => {
         if (el) el.dataset.estado = i === ultimo ? "ativo" : "feito";
@@ -217,8 +235,11 @@ export default function HeroFluxo() {
           el.dataset.solido = "false";
           gsap.set(el, { opacity: 0.3, filter: `blur(${i === 0 ? 2 : 3}px)` });
         });
-        [...linhasVerticalRef.current, ...conferenciaRef.current].forEach((el) => {
+        conferenciaRef.current.forEach((el) => {
           if (el) el.dataset.solido = "false";
+        });
+        linhasVerticalRef.current.forEach((el) => {
+          if (el) el.dataset.fase = "espera";
         });
         selosRef.current.forEach((el) => {
           if (el) el.dataset.estado = "futuro";
@@ -253,27 +274,27 @@ export default function HeroFluxo() {
         preencherTrilho(0);
         marcarSolido(cartaoRef.current);
       })
-        // Fase 2 — as verticais acendem uma de cada vez.
+        // Fase 2 — as verticais pensam e acendem uma de cada vez.
         .call(
           () => {
             ativarSelo(1);
             preencherTrilho(1);
           },
           [],
-          0.7,
+          T.fase2,
         )
         // Fase 3 — a esteira anda e as conferências acendem.
-        .to(esteiraRef.current, { x: DESLOCAMENTO[2], duration: 0.7 }, 1.7)
+        .to(esteiraRef.current, { x: DESLOCAMENTO[2], duration: 0.9 }, T.fase3)
         .call(
           () => {
             ativarSelo(2);
             preencherTrilho(2);
           },
           [],
-          1.7,
+          T.fase3,
         )
         // Fase 4 — a esteira anda de novo e a peça final acende.
-        .to(esteiraRef.current, { x: DESLOCAMENTO[3], duration: 0.7 }, 2.7)
+        .to(esteiraRef.current, { x: DESLOCAMENTO[3], duration: 0.9 }, T.fase4)
         .call(
           () => {
             ativarSelo(3);
@@ -281,28 +302,36 @@ export default function HeroFluxo() {
             marcarSolido(resultadoRef.current);
           },
           [],
-          2.75,
+          T.fase4 + 0.05,
         )
         // Fechamento: segura a peça pronta, apaga suave e recomeça.
         .to(
           esteiraRef.current,
           { opacity: 0, x: DESLOCAMENTO[3] - 70, duration: 0.9, ease: "power2.in" },
-          FECHAMENTO,
+          T.fechamento,
         )
         .to(
           [trilhoFillRef.current, ...rotulosRef.current],
           { width: 0, duration: 0.6 },
-          FECHAMENTO + 0.2,
+          T.fechamento + 0.2,
         )
-        .call(reiniciarCiclo, [], FECHAMENTO + 0.9)
+        .call(reiniciarCiclo, [], T.fechamento + 0.9)
         .to(
           esteiraRef.current,
           { opacity: 1, duration: 0.6, ease: "power2.out" },
-          FECHAMENTO + 0.95,
+          T.fechamento + 0.95,
         );
 
-      solidificarEmSerie(linhasVerticalRef.current, 0.75);
-      solidificarEmSerie(conferenciaRef.current, 1.85, 0.18);
+      // Cada vertical primeiro "pensa" (anel girando) e só então recebe o
+      // visto — é o passo que faz a lista parecer conferência de verdade em
+      // vez de cinco vistos aparecendo de enfeite.
+      linhasVerticalRef.current.forEach((el, i) => {
+        const inicio = T.itemInicio + i * T.itemPasso;
+        tl.call(() => el && (el.dataset.fase = "pensa"), [], inicio);
+        tl.call(() => el && (el.dataset.fase = "feito"), [], inicio + T.itemPensa);
+      });
+
+      solidificarEmSerie(conferenciaRef.current, T.fase3 + 0.35, 0.45);
 
       return () => {
         tl.kill();
@@ -387,7 +416,11 @@ export default function HeroFluxo() {
             </div>
           </div>
 
-          {/* Fase 2 — solto no fundo, sem cartão. Acende um de cada vez. */}
+          {/* Fase 2 — solto no fundo, sem cartão. Três estados por linha:
+              espera (anel parado), pensa (anel girando) e feito (visto).
+              Um atributo só, com valores exclusivos: duas classes que possam
+              casar ao mesmo tempo empatam em especificidade e o vencedor
+              passa a depender da ordem do CSS gerado. */}
           <ul className="w-64 flex-shrink-0 space-y-2">
             {VERTICAIS.map((v, i) => (
               <li
@@ -395,15 +428,21 @@ export default function HeroFluxo() {
                 ref={(el) => {
                   linhasVerticalRef.current[i] = el;
                 }}
-                data-solido="false"
-                className="group flex items-center gap-2 rounded-full border border-stone-200 px-3 py-1.5 transition-colors duration-500 data-[solido=true]:border-emerald-200"
+                data-fase="espera"
+                className="group flex items-center gap-2 rounded-full border px-3 py-1.5 transition-colors duration-500 data-[fase=espera]:border-stone-200 data-[fase=pensa]:border-stone-300 data-[fase=feito]:border-emerald-200"
               >
-                <Loader className="h-3 w-3 flex-shrink-0 animate-spin text-stone-300 group-data-[solido=true]:hidden" />
-                <Check
-                  className="hidden h-3 w-3 flex-shrink-0 text-emerald-600 group-data-[solido=true]:block"
-                  strokeWidth={3}
-                />
-                <span className="font-mono text-[11px] uppercase tracking-wide text-stone-300 transition-colors duration-500 group-data-[solido=true]:text-stone-700">
+                <span className="relative flex h-3.5 w-3.5 flex-shrink-0 items-center justify-center">
+                  <span className="absolute inset-0 hidden rounded-full border-2 border-stone-200 group-data-[fase=espera]:block" />
+                  <Loader2
+                    className="absolute inset-0 hidden h-3.5 w-3.5 animate-spin text-emerald-600 group-data-[fase=pensa]:block"
+                    strokeWidth={2.5}
+                  />
+                  <Check
+                    className="hidden h-3 w-3 text-emerald-600 group-data-[fase=feito]:block"
+                    strokeWidth={3}
+                  />
+                </span>
+                <span className="font-mono text-[11px] uppercase tracking-wide transition-colors duration-500 group-data-[fase=espera]:text-stone-300 group-data-[fase=pensa]:text-stone-500 group-data-[fase=feito]:text-stone-700">
                   {v.titulo}
                 </span>
               </li>
