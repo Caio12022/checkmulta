@@ -4,9 +4,6 @@ import {
   AlertTriangle,
   AlertCircle,
   Check,
-  Upload,
-  Search,
-  FileText,
   Menu,
   X,
   MessageSquare,
@@ -21,6 +18,7 @@ import {
   HelpCircle,
 } from "lucide-react";
 import { VERTICAIS, FERRAMENTAS } from "../data/verticais";
+import ComoFuncionaScroll from "../components/ComoFuncionaScroll";
 
 /**
  * Home institucional do CheckMulta (home-mãe).
@@ -89,30 +87,6 @@ const ICONES_ORGAO: Record<string, React.ComponentType<{ className?: string }>> 
   energia: Zap,
   ibama: Leaf,
 };
-
-const PASSOS = [
-  {
-    numero: "01",
-    Icone: Upload,
-    titulo: "Envie o documento",
-    texto:
-      "Tire uma foto do papel que você recebeu, ou anexe o arquivo. Não precisa criar conta nem informar dados pessoais.",
-  },
-  {
-    numero: "02",
-    Icone: Search,
-    titulo: "Receba a análise",
-    texto:
-      "Lemos o documento inteiro à luz da lei do órgão que aplicou a multa e mostramos, em português claro, cada erro encontrado.",
-  },
-  {
-    numero: "03",
-    Icone: FileText,
-    titulo: "Obtenha a defesa",
-    texto:
-      "Havendo erro, entregamos o recurso escrito e pronto para você protocolar. Se não houver, dizemos isso e não cobramos nada.",
-  },
-];
 
 const FAQ = [
   {
@@ -676,35 +650,7 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Processo                                                          */}
       {/* ---------------------------------------------------------------- */}
-      <section id="como-funciona" className="border-b border-stone-200 bg-stone-50">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
-          <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-stone-400">
-            Como funciona
-          </p>
-          <h2 className="font-display mx-auto mb-12 max-w-2xl text-center text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">
-            Três etapas, nessa <span className="text-emerald-600">ordem</span>
-          </h2>
-
-          <ol className="grid gap-10 text-center sm:grid-cols-3">
-            {PASSOS.map((p) => (
-              <li key={p.numero} className="flex flex-col items-center">
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-stone-300 bg-white text-emerald-700">
-                  <p.Icone className="h-5 w-5" strokeWidth={1.5} />
-                </div>
-                <span className="font-mono text-xs tracking-widest text-emerald-700">
-                  {p.numero}
-                </span>
-                <h3 className="font-display mt-2 text-lg font-semibold tracking-tight text-stone-900">
-                  {p.titulo}
-                </h3>
-                <p className="mt-3 max-w-xs text-base leading-relaxed text-stone-600">
-                  {p.texto}
-                </p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <ComoFuncionaScroll />
 
       {/* ---------------------------------------------------------------- */}
       {/* Ferramentas                                                       */}

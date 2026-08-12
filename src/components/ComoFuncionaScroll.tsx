@@ -1,0 +1,462 @@
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
+import {
+  UploadCloud,
+  ScanSearch,
+  FileWarning,
+  FileCheck2,
+  Loader2,
+  AlertTriangle,
+  Copy,
+  Download,
+  Check,
+} from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
+/**
+ * Bloco "Como funciona" com transição scrubada por scroll (GSAP + ScrollTrigger).
+ *
+ * Mecânica (só em telas lg+; abaixo disso vira lista estática empilhada, sem
+ * pin nem scrub — pin em mobile costuma travar o scroll e não vale o custo):
+ *
+ * - Um container alto (N * 100vh) fica "grudado" (position: sticky) no topo.
+ *   O progresso de scroll dentro desse container dirige tudo: a barra ao lado
+ *   dos passos, qual passo está ativo, e o crossfade do painel visual.
+ * - Passo ativo ganha o selo preenchido e o título nasce letra por letra
+ *   (SplitText) a primeira vez que fica ativo. Passos já vistos ficam
+ *   revelados e escurecidos; os que ainda não chegaram ficam apagados.
+ * - O painel da direita troca de mockup com blur-in, um por etapa.
+ *
+ * Todo o conteúdo visual é ilustrativo (mockup desenhado, não print do
+ * produto) — os textos são placeholder e serão revisados depois.
+ */
+
+type Etapa = {
+  numero: string;
+  Icone: React.ComponentType<{ className?: string; strokeWidth?: number }>;
+  titulo: string;
+  texto: string;
+  legenda: string;
+  Mockup: React.ComponentType;
+};
+
+function MockupEnvio() {
+  return (
+    <div className="flex h-full flex-col justify-center gap-5 rounded-2xl border border-stone-200 bg-white p-6 shadow-xl shadow-stone-200/60 sm:p-8">
+      <div className="flex flex-col items-center gap-3 rounded-xl border-2 border-dashed border-stone-300 px-6 py-10 text-center">
+        <UploadCloud className="h-8 w-8 text-emerald-600" strokeWidth={1.5} />
+        <p className="text-sm font-medium text-stone-700">
+          Arraste o arquivo aqui ou toque para escolher
+        </p>
+        <p className="text-xs text-stone-400">Foto ou PDF · sem limite de páginas</p>
+      </div>
+      <div className="flex items-center gap-3 rounded-lg bg-stone-50 px-4 py-3">
+        <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-emerald-100 text-emerald-700">
+          <Check className="h-4 w-4" strokeWidth={2} />
+        </span>
+        <span className="min-w-0 flex-1">
+          <span className="block truncate text-sm font-medium text-stone-800">
+            multa-transito.pdf
+          </span>
+          <span className="block text-xs text-stone-400">2.1 MB · enviado</span>
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function MockupAnalise() {
+  return (
+    <div className="relative flex h-full flex-col justify-center gap-3 overflow-hidden rounded-2xl border border-stone-200 bg-white p-6 shadow-xl shadow-stone-200/60 sm:p-8">
+      <div className="mb-2 flex items-center gap-2">
+        <Loader2 className="h-4 w-4 animate-spin text-emerald-600" strokeWidth={2} />
+        <span className="font-mono text-[11px] uppercase tracking-widest text-emerald-700">
+          Analisando documento
+        </span>
+      </div>
+      {[92, 76, 88, 60, 84, 40].map((w, i) => (
+        <div key={i} className="h-3 rounded bg-stone-100" style={{ width: `${w}%` }} />
+      ))}
+      <div
+        className="pointer-events-none absolute inset-x-0 h-16 bg-gradient-to-b from-emerald-100/0 via-emerald-100/70 to-emerald-100/0"
+        style={{ animation: "cf-scan 2.4s ease-in-out infinite" }}
+      />
+      <style>{`
+        @keyframes cf-scan {
+          0% { transform: translateY(-20%); }
+          50% { transform: translateY(320%); }
+          100% { transform: translateY(-20%); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+function MockupAchado() {
+  return (
+    <div className="flex h-full flex-col justify-center gap-5 rounded-2xl border border-stone-200 bg-white p-6 shadow-xl shadow-stone-200/60 sm:p-8">
+      <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-red-50 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide text-red-700">
+        1 falha encontrada
+      </span>
+      <div>
+        <p className="font-mono text-[11px] uppercase tracking-wide text-stone-400">
+          Onde a multa foi aplicada
+        </p>
+        <p className="mt-1 inline-block rounded bg-red-50 px-2 py-1 text-sm font-medium text-red-800">
+          Av. Principal, s/n
+        </p>
+        <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-red-700">
+          <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+          Endereço incompleto — sem número nem ponto de referência. Motivo de
+          anulação.
+        </p>
+      </div>
+    </div>
+  );
+}
+
+function MockupDefesa() {
+  return (
+    <div className="flex h-full flex-col justify-center gap-5 rounded-2xl border border-stone-200 bg-white p-6 shadow-xl shadow-stone-200/60 sm:p-8">
+      <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-700 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide text-white">
+        <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
+        Defesa pronta
+      </span>
+      <div className="space-y-2">
+        <div className="h-3 w-1/3 rounded bg-stone-800" />
+        {[100, 96, 88, 100, 70].map((w, i) => (
+          <div key={i} className="h-2.5 rounded bg-stone-200" style={{ width: `${w}%` }} />
+        ))}
+      </div>
+      <div className="flex flex-wrap gap-3 border-t border-stone-100 pt-4">
+        <span className="inline-flex items-center gap-2 rounded-lg bg-emerald-700 px-4 py-2 text-xs font-semibold text-white">
+          <Copy className="h-3.5 w-3.5" /> Copiar texto
+        </span>
+        <span className="inline-flex items-center gap-2 rounded-lg border border-stone-200 px-4 py-2 text-xs font-semibold text-stone-700">
+          <Download className="h-3.5 w-3.5" /> Baixar PDF
+        </span>
+      </div>
+    </div>
+  );
+}
+
+const ETAPAS: Etapa[] = [
+  {
+    numero: "01",
+    Icone: UploadCloud,
+    titulo: "Envie a multa",
+    texto:
+      "Tire uma foto do papel que você recebeu ou anexe o arquivo. Não precisa criar conta nem informar dados pessoais.",
+    legenda: "Envio simples",
+    Mockup: MockupEnvio,
+  },
+  {
+    numero: "02",
+    Icone: ScanSearch,
+    titulo: "A IA analisa o documento",
+    texto:
+      "Lemos o auto de infração inteiro à luz da lei do órgão que autuou você, procurando falha formal linha por linha.",
+    legenda: "Leitura linha por linha",
+    Mockup: MockupAnalise,
+  },
+  {
+    numero: "03",
+    Icone: FileWarning,
+    titulo: "Veja a prévia do achado",
+    texto:
+      "Mostramos, em português claro, cada erro encontrado — com o trecho do documento que comprova. Sem erro, a gente diz isso também.",
+    legenda: "Achado explicado",
+    Mockup: MockupAchado,
+  },
+  {
+    numero: "04",
+    Icone: FileCheck2,
+    titulo: "Receba a defesa pronta",
+    texto:
+      "Havendo falha, entregamos a peça escrita e formatada, pronta para protocolar no órgão.",
+    legenda: "Pronto para protocolar",
+    Mockup: MockupDefesa,
+  },
+];
+
+export default function ComoFuncionaScroll() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const lineFillRef = useRef<HTMLDivElement>(null);
+  const badgeRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const tituloRefs = useRef<(HTMLHeadingElement | null)[]>([]);
+  const textoRefs = useRef<(HTMLParagraphElement | null)[]>([]);
+  const visualRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const legendaRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const reduzMovimento = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    if (reduzMovimento) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
+      const n = ETAPAS.length;
+      const revelados = new Set<number>([0]);
+      const splits: (SplitText | null)[] = [];
+      let ativo = 0;
+
+      // Estado inicial: passo 0 ativo, textos revelados; demais apagados.
+      tituloRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const split = new SplitText(el, { type: "chars" });
+        splits[i] = split;
+        gsap.set(split.chars, { opacity: i === 0 ? 1 : 0.18, y: 0 });
+      });
+      badgeRefs.current.forEach((el, i) => {
+        if (!el) return;
+        el.dataset.ativo = i === 0 ? "true" : "false";
+        el.dataset.visto = i === 0 ? "true" : "false";
+      });
+      textoRefs.current.forEach((el, i) => {
+        if (!el) return;
+        gsap.set(el, { opacity: i === 0 ? 1 : 0.35 });
+      });
+      visualRefs.current.forEach((el, i) => {
+        if (!el) return;
+        gsap.set(el, {
+          opacity: i === 0 ? 1 : 0,
+          filter: i === 0 ? "blur(0px)" : "blur(16px)",
+        });
+      });
+
+      const aplicarPasso = (indice: number) => {
+        if (indice === ativo) return;
+        const anterior = ativo;
+        ativo = indice;
+        revelados.add(indice);
+
+        if (legendaRef.current) {
+          gsap.to(legendaRef.current, {
+            opacity: 0,
+            duration: 0.15,
+            onComplete: () => {
+              if (legendaRef.current) {
+                legendaRef.current.textContent = ETAPAS[indice].legenda;
+              }
+              gsap.to(legendaRef.current, { opacity: 1, duration: 0.25 });
+            },
+          });
+        }
+
+        badgeRefs.current.forEach((el, i) => {
+          if (!el) return;
+          el.dataset.ativo = i === indice ? "true" : "false";
+          el.dataset.visto = revelados.has(i) ? "true" : "false";
+        });
+
+        textoRefs.current.forEach((el, i) => {
+          if (!el) return;
+          gsap.to(el, {
+            opacity: i === indice ? 1 : revelados.has(i) ? 0.55 : 0.35,
+            duration: 0.3,
+          });
+        });
+
+        const split = splits[indice];
+        if (split) {
+          gsap.fromTo(
+            split.chars,
+            { opacity: 0.18, y: 4 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.35,
+              stagger: 0.014,
+              ease: "power1.out",
+            },
+          );
+        }
+        splits.forEach((s, i) => {
+          if (!s || i === indice) return;
+          gsap.to(s.chars, {
+            opacity: revelados.has(i) ? 1 : 0.18,
+            duration: 0.25,
+          });
+        });
+
+        const visualSaindo = visualRefs.current[anterior];
+        const visualEntrando = visualRefs.current[indice];
+        if (visualSaindo) {
+          gsap.to(visualSaindo, {
+            opacity: 0,
+            filter: "blur(16px)",
+            duration: 0.35,
+            ease: "power1.in",
+          });
+        }
+        if (visualEntrando) {
+          gsap.fromTo(
+            visualEntrando,
+            { opacity: 0, filter: "blur(16px)" },
+            { opacity: 1, filter: "blur(0px)", duration: 0.55, ease: "power2.out" },
+          );
+        }
+      };
+
+      const st = ScrollTrigger.create({
+        trigger: trackRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.4,
+        onUpdate: (self) => {
+          const bruto = self.progress * n;
+          const indice = Math.min(n - 1, Math.floor(bruto));
+          aplicarPasso(indice);
+          if (lineFillRef.current) {
+            gsap.set(lineFillRef.current, {
+              height: `${Math.min(100, (bruto / n) * 100)}%`,
+            });
+          }
+        },
+      });
+
+      return () => {
+        st.kill();
+        splits.forEach((s) => s?.revert());
+      };
+    });
+
+    return () => mm.revert();
+  }, []);
+
+  return (
+    <section id="como-funciona" className="border-b border-stone-200 bg-stone-50">
+      <div className="mx-auto max-w-6xl px-5 pt-16 sm:pt-20">
+        <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-stone-400">
+          Como funciona
+        </p>
+        <h2 className="font-display mx-auto mb-4 max-w-2xl text-center text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">
+          Quatro etapas, nessa <span className="text-emerald-600">ordem</span>
+        </h2>
+        <p className="mx-auto mb-12 max-w-xl text-center text-base leading-relaxed text-stone-600 lg:mb-0">
+          Do documento que você recebeu até a defesa pronta para protocolar.
+        </p>
+      </div>
+
+      {/* Mobile / tablet: lista estática empilhada, sem pin nem scrub. */}
+      <div className="mx-auto max-w-2xl px-5 pb-16 lg:hidden">
+        <ol className="space-y-10">
+          {ETAPAS.map((e) => (
+            <li key={e.numero} className="flex gap-5">
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border border-emerald-700 bg-emerald-700 text-white">
+                <e.Icone className="h-5 w-5" strokeWidth={1.5} />
+              </div>
+              <div className="min-w-0 flex-1">
+                <span className="font-mono text-xs tracking-widest text-emerald-700">
+                  {e.numero}
+                </span>
+                <h3 className="font-display mt-1 text-lg font-semibold tracking-tight text-stone-900">
+                  {e.titulo}
+                </h3>
+                <p className="mt-2 text-base leading-relaxed text-stone-600">
+                  {e.texto}
+                </p>
+                <div className="mt-4 h-56">
+                  <e.Mockup />
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      {/* Desktop: track alto com painel grudado (sticky) + scroll scrubado. */}
+      <div
+        ref={trackRef}
+        className="relative hidden lg:block"
+        style={{ height: `${ETAPAS.length * 100}vh` }}
+      >
+        <div
+          ref={stickyRef}
+          className="sticky top-0 flex h-screen items-center overflow-hidden"
+        >
+          <div className="mx-auto grid w-full max-w-6xl grid-cols-[auto_1fr_1fr] gap-10 px-5 xl:gap-16">
+            {/* Linha de progresso vertical */}
+            <div className="relative w-px self-stretch bg-stone-200">
+              <div
+                ref={lineFillRef}
+                className="absolute left-0 top-0 w-px bg-emerald-600"
+                style={{ height: "0%" }}
+              />
+            </div>
+
+            {/* Coluna dos passos */}
+            <ol className="flex flex-col justify-center gap-9">
+              {ETAPAS.map((e, i) => (
+                <li key={e.numero} className="flex items-start gap-5">
+                  <div
+                    ref={(el) => {
+                      badgeRefs.current[i] = el;
+                    }}
+                    data-ativo={i === 0 ? "true" : "false"}
+                    className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border transition-colors duration-300 data-[ativo=true]:border-emerald-700 data-[ativo=true]:bg-emerald-700 data-[ativo=true]:text-white data-[ativo=false]:border-stone-300 data-[ativo=false]:bg-white data-[ativo=false]:text-stone-300 data-[visto=true]:border-emerald-700 data-[visto=true]:text-emerald-700"
+                  >
+                    <e.Icone className="h-5 w-5" strokeWidth={1.5} />
+                  </div>
+                  <div className="min-w-0 pt-1.5">
+                    <span className="font-mono text-xs tracking-widest text-emerald-700">
+                      {e.numero}
+                    </span>
+                    <h3
+                      ref={(el) => {
+                        tituloRefs.current[i] = el;
+                      }}
+                      className="font-display mt-1 text-xl font-semibold tracking-tight text-stone-900 xl:text-2xl"
+                    >
+                      {e.titulo}
+                    </h3>
+                    <p
+                      ref={(el) => {
+                        textoRefs.current[i] = el;
+                      }}
+                      className="mt-2 max-w-sm text-sm leading-relaxed text-stone-600"
+                    >
+                      {e.texto}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+
+            {/* Painel visual */}
+            <div className="flex flex-col justify-center">
+              <span
+                ref={legendaRef}
+                className="mb-4 inline-flex w-fit items-center gap-2 rounded-full bg-emerald-700 px-4 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-wide text-white"
+              >
+                {ETAPAS[0].legenda}
+              </span>
+              <div className="relative h-80 xl:h-96">
+                {ETAPAS.map((e, i) => (
+                  <div
+                    key={e.numero}
+                    ref={(el) => {
+                      visualRefs.current[i] = el;
+                    }}
+                    className="absolute inset-0"
+                  >
+                    <e.Mockup />
+                  </div>
+                ))}
+              </div>
+              <p className="mt-4 text-xs leading-relaxed text-stone-400">
+                Ilustração do fluxo. As telas variam conforme a área.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
