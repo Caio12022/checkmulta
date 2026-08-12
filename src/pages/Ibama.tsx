@@ -15,6 +15,10 @@ import {
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
 import { ehSobrecarga, ehCotaDiaria } from "../lib/sobrecarga";
+import HeroFluxo from "../components/HeroFluxo";
+import EscolhaOrgao from "../components/EscolhaOrgao";
+import ComoFuncionaScroll from "../components/ComoFuncionaScroll";
+import Reveal from "../components/Reveal";
 declare global {
   interface Window {
     dataLayer: any[];
@@ -942,41 +946,50 @@ useEffect(() => {
         )}
       </AnimatePresence>
 
-      {/* HERO */}
-      <section id="inicio" className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
-        <div className="mx-auto max-w-4xl px-4 py-14 text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-emerald-700">
-            <Leaf className="h-3.5 w-3.5" />
-            Para quem foi autuado pelo IBAMA
-          </div>
-
-          <h1 className="mb-4 text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
-            Recebeu um auto de infração do IBAMA? Veja se o auto tem falha que
-            permite defesa, <span className="text-emerald-600">grátis</span>
-          </h1>
-
-          <p className="mx-auto mb-8 max-w-2xl text-base leading-relaxed text-slate-600">
-            Faça a análise gratuita do auto de infração ambiental. Nossa
-            inteligência artificial confere os requisitos formais do Decreto nº
-            6.514/2008, a competência do órgão e indícios de prescrição. Se não
-            encontrar falha, você não paga. A análise é grátis e sem cadastro.
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-600 sm:gap-6">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
-            </div>
-            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
-            <div className="flex items-center gap-2">
-              <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
-            </div>
-            <div className="hidden h-4 w-px bg-slate-200 sm:block" />
-            <div className="flex items-center gap-2">
-              <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* HERO — o H1 de SEO vira o título do próprio HeroFluxo, em vez de
+          duplicar título em dois blocos separados. */}
+      <div id="inicio">
+        <HeroFluxo
+          tagSecao="Para quem foi autuado pelo IBAMA"
+          titulo={
+            <>
+              Recebeu um auto de infração do IBAMA? Veja se o auto tem falha
+              que permite defesa, <span className="text-emerald-600">grátis</span>
+            </>
+          }
+          descricao={
+            <>
+              Análise gratuita do auto de infração ambiental à luz do Decreto nº
+              6.514/2008. Se não encontrar falha, você não paga nada.
+              <span className="mt-3 flex flex-wrap items-center gap-3 text-sm text-stone-500 sm:gap-5">
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
+                </span>
+              </span>
+            </>
+          }
+          mensagemChat="Recebi um auto de infração do IBAMA e não sei se ele tem falha, pode analisar pra mim?"
+          rotuloFase2="Cruzar com o Decreto"
+          itensChecklist={[
+            "Auto de Infração",
+            "Notificação do processo",
+            "Termo de embargo",
+            "Outros documentos",
+          ]}
+          resultado={{
+            badge: "Chance alta",
+            titulo: "Encontramos uma falha no auto",
+            texto:
+              "Falha grave encontrada no auto de infração — fundamento consistente para apresentar defesa. Geramos a defesa administrativa pronta para protocolar.",
+          }}
+        />
+      </div>
 
       {/* ÁREA PRINCIPAL */}
       <section className="mx-auto max-w-3xl px-4 py-12">
@@ -1034,8 +1047,8 @@ useEffect(() => {
           <div className="text-center">
             <div className="mb-8">
               <h2 className="mb-2 text-2xl font-bold text-slate-900 sm:text-3xl">
-                Descubra <span className="text-emerald-600">agora</span> se dá para
-                recorrer
+                Suba <span className="text-emerald-600">agora</span> o documento
+                e verifique se dá para recorrer
               </h2>
               <p className="text-base text-slate-600">
                 Selecione o documento que você recebeu para iniciar a análise gratuita:
@@ -1063,45 +1076,12 @@ useEffect(() => {
         )}
       </section>
 
-      {/* COMO FUNCIONA */}
-      <section id="como-funciona" className="border-t border-slate-100 bg-slate-50">
+      {/* COMO FUNCIONA — mesmo mecanismo de scroll fixo (pin/scrub) usado na
+          home e nas outras verticais. */}
+      <ComoFuncionaScroll />
+
+      <section className="border-t border-slate-100 bg-slate-50">
         <div className="mx-auto max-w-5xl px-4 py-16">
-          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-            Como funciona a <span className="text-emerald-600">análise</span>
-          </h2>
-
-          <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <UploadCloud className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-base font-bold text-slate-900">1. Envie o documento</h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Suba o PDF ou a foto do auto de infração do IBAMA ou do documento do processo. Nenhum dado é armazenado.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <Search className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-base font-bold text-slate-900">2. A IA audita</h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Conferimos as formalidades da inspeção e o cálculo do valor cobrado, ponto por ponto.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <FileText className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-base font-bold text-slate-900">3. Diagnóstico grátis</h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Mostramos as falhas encontradas, com o trecho exato do documento, e se dá para recorrer.
-              </p>
-            </div>
-          </div>
-
           <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
             <div className="flex items-center gap-2.5 border-b border-slate-100 px-6 pb-4 pt-5">
               <ShieldCheck className="h-4 w-4 flex-shrink-0 text-slate-400" />
@@ -1111,7 +1091,7 @@ useEffect(() => {
             </div>
 
             <div className="grid grid-cols-1 divide-y divide-slate-100 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-              <div className="flex items-start gap-4 p-6">
+              <Reveal delay={0} className="flex items-start gap-4 p-6">
                 <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50">
                   <CheckCircle2 className="h-5 w-5 text-emerald-600" />
                 </div>
@@ -1123,9 +1103,9 @@ useEffect(() => {
                     Falha grave encontrada no auto. Fundamento consistente para pedir a anulação.
                   </p>
                 </div>
-              </div>
+              </Reveal>
 
-              <div className="flex items-start gap-4 p-6">
+              <Reveal delay={0.08} className="flex items-start gap-4 p-6">
                 <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-amber-50">
                   <AlertCircle className="h-5 w-5 text-amber-500" />
                 </div>
@@ -1137,9 +1117,9 @@ useEffect(() => {
                     Há pontos questionáveis na autuação. Argumento possível.
                   </p>
                 </div>
-              </div>
+              </Reveal>
 
-              <div className="flex items-start gap-4 p-6">
+              <Reveal delay={0.16} className="flex items-start gap-4 p-6">
                 <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-red-50">
                   <AlertCircle className="h-5 w-5 text-red-400" />
                 </div>
@@ -1151,7 +1131,7 @@ useEffect(() => {
                     Caso mais limitado. Ainda é possível apresentar defesa. A decisão é sua.
                   </p>
                 </div>
-              </div>
+              </Reveal>
             </div>
           </div>
         </div>
@@ -1179,15 +1159,24 @@ useEffect(() => {
               { t: "Laudo e prova técnica", d: "Autuação sem laudo de constatação ou relatório de fiscalização que a sustente fica sem suporte técnico." },
               { t: "Competência do órgão", d: "Autuação por órgão sem competência para a matéria enseja nulidade, nos termos da LC 140/2011." },
               { t: "Prescrição", d: "Auto lavrado mais de 5 anos após o fato, ou processo parado por mais de 3 anos, pode estar prescrito (art. 21 do Decreto nº 6.514/2008)." },
-            ].map((item) => (
-              <div key={item.t} className="rounded-xl border border-slate-200 bg-slate-50/60 p-5">
+            ].map((item, i) => (
+              <Reveal key={item.t} delay={(i % 2) * 0.08} className="rounded-xl border border-slate-200 bg-slate-50/60 p-5">
                 <h3 className="mb-1.5 font-bold text-slate-900">{item.t}</h3>
                 <p className="text-sm leading-relaxed text-slate-600">{item.d}</p>
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>
       </section>
+
+      <EscolhaOrgao
+        titulo={
+          <>
+            Descubra se ela pode ser <span className="text-emerald-600">anulada</span>
+          </>
+        }
+        subtitulo="A mesma análise gratuita vale para multa de trânsito, Procon, vigilância sanitária, energia e Ibama."
+      />
 
       {/* SEGURANÇA */}
       <section id="seguranca" className="border-t border-slate-100 bg-slate-50">
@@ -1197,7 +1186,7 @@ useEffect(() => {
           </h2>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-white p-6 text-center">
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                 <Lock className="h-6 w-6" />
               </div>
@@ -1206,9 +1195,9 @@ useEffect(() => {
                 Não guardamos o seu auto de infração. O documento é processado na
                 memória do servidor e imediatamente deletado.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+            <Reveal delay={0.08} className="rounded-xl border border-slate-200 bg-white p-6 text-center">
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
                 <UserX className="h-6 w-6" />
               </div>
@@ -1217,9 +1206,9 @@ useEffect(() => {
                 Você não precisa criar conta nem informar dados pessoais para
                 verificar o auto. É direto ao ponto.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
+            <Reveal delay={0.16} className="rounded-xl border border-slate-200 bg-white p-6 text-center">
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
                 <Route className="h-6 w-6" />
               </div>
@@ -1228,13 +1217,15 @@ useEffect(() => {
                 Atuamos como ferramenta tecnológica. A decisão sobre a defesa é da
                 autoridade julgadora do IBAMA.
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
 
       {/* CARROSSEL DE SERVIÇOS */}
-      <CarrosselServicos excluir={["ibama"]} />
+      <Reveal>
+        <CarrosselServicos excluir={["ibama"]} />
+      </Reveal>
 
       {/* FAQ */}
       <section id="faq-ibama" className="border-t border-slate-100 bg-white">
@@ -1244,7 +1235,7 @@ useEffect(() => {
           </h2>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 Qual o prazo para apresentar defesa?
               </h3>
@@ -1254,9 +1245,9 @@ useEffect(() => {
                 prazo no próprio auto e no sistema do IBAMA, e protocole o quanto
                 antes.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+            <Reveal delay={0.06} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 O que acontece se eu não apresentar defesa?
               </h3>
@@ -1265,9 +1256,9 @@ useEffect(() => {
                 podendo ser inscrita em dívida ativa e executada. Apresentar defesa
                 é o que garante o contraditório antes da decisão.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 Que tipo de falha pode anular o auto?
               </h3>
@@ -1276,9 +1267,9 @@ useEffect(() => {
                 fato, ausência de laudo de constatação, área sem georreferenciamento,
                 autuação por órgão incompetente e prescrição são exemplos.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
+            <Reveal delay={0.06} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 O que é a prescrição do auto ambiental?
               </h3>
@@ -1288,9 +1279,9 @@ useEffect(() => {
                 esses prazos, há indício de prescrição, que pode levar ao
                 arquivamento. Um dos argumentos mais fortes em autos antigos.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 md:col-span-2">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 md:col-span-2">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 Preciso de advogado para apresentar defesa?
               </h3>
@@ -1300,7 +1291,7 @@ useEffect(() => {
                 elevado ou se o caso for para a Justiça, a consulta a um advogado é
                 fortemente recomendável.
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -1313,7 +1304,7 @@ useEffect(() => {
             <span className="text-emerald-600">auto de infração do IBAMA</span>
           </h2>
 
-          <div className="max-w-none">
+          <Reveal className="max-w-none" amount={0.15}>
             <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
               O auto de infração ambiental é um ato administrativo vinculado: para
               ser válido, precisa cumprir requisitos formais previstos no Decreto nº
@@ -1380,11 +1371,11 @@ useEffect(() => {
               ferramenta informa e instrumentaliza. Não presta consultoria jurídica
               nem representação.
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
-      
+
       {/* FOOTER */}
       <footer className="border-t border-slate-200 bg-white">
         <div className="mx-auto max-w-4xl px-4 py-10 text-center">
