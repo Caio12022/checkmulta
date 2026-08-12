@@ -1,10 +1,6 @@
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Car, Scale, Droplet, Zap, Leaf, ArrowRight } from "lucide-react";
 import { VERTICAIS, type VerticalId } from "../data/verticais";
-
-gsap.registerPlugin(ScrollTrigger);
+import Reveal from "./Reveal";
 
 /**
  * "Quem te autuou?" — o ponto de entrada para cada vertical, no topo da
@@ -84,47 +80,8 @@ export default function EscolhaOrgao({
   ),
   subtitulo = "Toque no órgão que mandou o papel e vá direto para a análise da sua área.",
 }: EscolhaOrgaoProps) {
-  const secaoRef = useRef<HTMLElement>(null);
-  const cartoesRef = useRef<(HTMLAnchorElement | null)[]>([]);
-
-  useEffect(() => {
-    const reduzMovimento = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    if (reduzMovimento) return;
-
-    const cartoes = cartoesRef.current.filter(Boolean);
-    if (!cartoes.length) return;
-
-    // fromTo com immediateRender: false, e não gsap.from.
-    //
-    // gsap.from aplica o estado inicial no ato de criar o tween: se o gatilho
-    // não disparar — porque a seção já passou, porque o refresh não veio,
-    // porque o GSAP falhou — os cartões ficam em opacity 0 e a porta de
-    // entrada de cada vertical simplesmente desaparece. Assim o padrão é
-    // estar visível, e a animação é o extra.
-    const tween = gsap.fromTo(
-      cartoes,
-      { opacity: 0, y: 12 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.45,
-        stagger: 0.07,
-        ease: "power2.out",
-        immediateRender: false,
-        scrollTrigger: { trigger: secaoRef.current, start: "top 90%", once: true },
-      },
-    );
-
-    return () => {
-      tween.scrollTrigger?.kill();
-      tween.kill();
-    };
-  }, []);
-
   return (
-    <section ref={secaoRef} className="border-b border-stone-200 bg-white">
+    <section className="border-b border-stone-200 bg-white">
       <div className="mx-auto max-w-6xl px-5 py-12 sm:py-16">
         <div className="mb-8 text-center">
           <h2 className="font-display text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">
@@ -141,43 +98,41 @@ export default function EscolhaOrgao({
             const r = ROTULOS[v.id];
             if (!r) return null;
             return (
-              <a
-                key={v.id}
-                href={v.href}
-                ref={(el) => {
-                  cartoesRef.current[i] = el;
-                }}
-                className="group flex flex-col rounded-xl border border-stone-200 bg-white p-4 transition-colors hover:border-emerald-700 hover:bg-emerald-50/40"
-              >
-                <span className="mb-3 flex items-center justify-between">
-                  <span
-                    className="flex h-9 w-9 items-center justify-center rounded-lg"
-                    style={{ backgroundColor: v.cor.fundoIcone }}
-                  >
-                    {Icone ? (
-                      <Icone
-                        className="h-4 w-4"
-                        strokeWidth={2}
-                        // Cor própria da vertical: o fundo do quadrado é o
-                        // tom claro dela, e sem isto o traço herdaria a cor
-                        // do texto e sumiria contra esse fundo.
-                        style={{ color: v.cor.icone }}
-                      />
-                    ) : null}
+              <Reveal key={v.id} delay={(i % 5) * 0.07}>
+                <a
+                  href={v.href}
+                  className="group flex flex-col rounded-xl border border-stone-200 bg-white p-4 transition-colors hover:border-emerald-700 hover:bg-emerald-50/40"
+                >
+                  <span className="mb-3 flex items-center justify-between">
+                    <span
+                      className="flex h-9 w-9 items-center justify-center rounded-lg"
+                      style={{ backgroundColor: v.cor.fundoIcone }}
+                    >
+                      {Icone ? (
+                        <Icone
+                          className="h-4 w-4"
+                          strokeWidth={2}
+                          // Cor própria da vertical: o fundo do quadrado é o
+                          // tom claro dela, e sem isto o traço herdaria a cor
+                          // do texto e sumiria contra esse fundo.
+                          style={{ color: v.cor.icone }}
+                        />
+                      ) : null}
+                    </span>
+                    <ArrowRight className="h-4 w-4 text-stone-300 transition-colors group-hover:text-emerald-700" />
                   </span>
-                  <ArrowRight className="h-4 w-4 text-stone-300 transition-colors group-hover:text-emerald-700" />
-                </span>
 
-                <span className="block text-sm font-semibold leading-snug text-stone-900 group-hover:text-emerald-800">
-                  {r.quem}
-                </span>
-                <span className="mt-1 block text-sm leading-snug text-stone-600">
-                  {r.oque}
-                </span>
-                <span className="mt-3 block font-mono text-[10px] uppercase tracking-widest text-stone-400">
-                  {r.lei}
-                </span>
-              </a>
+                  <span className="block text-sm font-semibold leading-snug text-stone-900 group-hover:text-emerald-800">
+                    {r.quem}
+                  </span>
+                  <span className="mt-1 block text-sm leading-snug text-stone-600">
+                    {r.oque}
+                  </span>
+                  <span className="mt-3 block font-mono text-[10px] uppercase tracking-widest text-stone-400">
+                    {r.lei}
+                  </span>
+                </a>
+              </Reveal>
             );
           })}
         </div>
