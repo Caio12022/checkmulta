@@ -17,8 +17,7 @@ import CarrosselServicos from "../components/CarrosselServicos";
 import { ehSobrecarga, ehCotaDiaria } from "../lib/sobrecarga";
 import HeroFluxo from "../components/HeroFluxo";
 import EscolhaOrgao from "../components/EscolhaOrgao";
-import CaminhoPassos from "../components/CaminhoPassos";
-import { MockupEnvio, MockupAnalise, MockupAchado } from "../components/ComoFuncionaScroll";
+import ComoFuncionaScroll from "../components/ComoFuncionaScroll";
 
 declare global {
   interface Window {
@@ -1180,48 +1179,13 @@ export default function App() {
         subtitulo="A mesma análise gratuita vale para multa de trânsito, Procon, vigilância sanitária, energia e Ibama."
       />
 
-      {/* COMO FUNCIONA */}
-      <section id="como-funciona" className="border-t border-slate-100 bg-slate-50">
-        <CaminhoPassos
-          tagSecao="Como funciona"
-          titulo={
-            <>
-              Como funciona a <span className="text-emerald-600">análise</span>
-            </>
-          }
-          subtitulo="Três passos, sem cadastro, até o diagnóstico da sua multa."
-          passos={[
-            {
-              Icone: UploadCloud,
-              tag: "Passo 1",
-              rotulo: "Enviar",
-              titulo: "Envie a foto",
-              texto:
-                "Tire uma foto ou suba o PDF do auto de infração. Nenhum dado é armazenado.",
-              Mockup: MockupEnvio,
-            },
-            {
-              Icone: Search,
-              tag: "Passo 2",
-              rotulo: "A IA audita",
-              titulo: "Cruzamento com o CTB",
-              texto:
-                "Cruzamos cada campo com o Código de Trânsito Brasileiro e o Manual Brasileiro de Fiscalização (MBFT).",
-              Mockup: MockupAnalise,
-            },
-            {
-              Icone: FileText,
-              tag: "Passo 3",
-              rotulo: "Resultado",
-              titulo: "Diagnóstico grátis",
-              texto:
-                "Revelamos a falha encontrada e o nível de viabilidade do seu recurso.",
-              Mockup: MockupAchado,
-            },
-          ]}
-        />
+      {/* COMO FUNCIONA — mesmo mecanismo de scroll fixo (pin/scrub) da home,
+          reaproveitado como está por enquanto; texto específico de trânsito
+          entra quando a referência de imagem chegar. */}
+      <ComoFuncionaScroll />
 
-        <div className="mx-auto max-w-5xl px-4 pb-16">
+      <section className="border-t border-slate-100 bg-slate-50">
+        <div className="mx-auto max-w-5xl px-4 py-16">
           <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
             <div className="flex items-center gap-2.5 border-b border-slate-100 px-6 pb-4 pt-5">
               <ShieldCheck className="h-4 w-4 flex-shrink-0 text-slate-400" />
