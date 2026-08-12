@@ -92,9 +92,6 @@ function conferir(espera, corpo, status, vertical, entrada) {
   if (espera.sem_violacao) {
     for (const v of validarDefesa(peca, vertical, entrada)) {
       problemas.push(`${v.regra}: ${v.detalhe}`);
-      if (process.env.DEBUG_CITACAO && v.regra === "citacao_fora_da_lista") {
-        problemas.push(`PEÇA COMPLETA:\n${peca}`);
-      }
     }
   }
 

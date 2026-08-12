@@ -145,8 +145,13 @@ const DIPLOMAS_PERMITIDOS: Record<Vertical, string[]> = {
      tese central de qualquer defesa de prescrição em trânsito. Faltava aqui;
      achado rodando a bateria de defesa (caso "contraprova de prescrição")
      contra o modelo real: o caso reprovava sempre, não por variação, porque
-     a lista nunca incluiu essa citação legítima. */
-  transito: ["9503", "9.503", "20910", "20.910"],
+     a lista nunca incluiu essa citação legítima.
+     Lei 14.304/2022: renumerou o parágrafo único do art. 281 do CTB para
+     §1º (efeito a partir de 23/08/2022) — confirmado por pesquisa antes de
+     liberar. O mesmo caso de contraprova de prescrição cita essa lei ao
+     justificar a numeração do dispositivo, e a citação é correta, não
+     alucinação: reprovava pelo mesmo motivo do decreto acima. */
+  transito: ["9503", "9.503", "20910", "20.910", "14304", "14.304"],
   procon: ["8078", "8.078", "2181", "2.181", "10887", "10.887", "123", "13874", "13.874", "9784", "9.784"],
   vigilancia: ["6437", "6.437", "9784", "9.784"],
   /* Energia: REN 1.000/2021 da ANEEL é resolução — o prompt cita por nome, não
