@@ -1,36 +1,37 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowUp, Check, AlertTriangle, ShieldCheck, Zap } from "lucide-react";
+import { ArrowUp, Check, Loader, ShieldCheck, Zap } from "lucide-react";
 import { VERTICAIS } from "../data/verticais";
 
 gsap.registerPlugin(ScrollTrigger);
 
 /**
- * Abertura da Plataforma inspirada na seção hero do auxia.io.
+ * Abertura da Plataforma, reproduzindo a mecânica do hero do auxia.io.
  *
- * NÃO é scroll-driven — é uma animação automática e rápida, que toca uma
- * vez sozinha assim que o bloco entra na tela (a mecânica de "um gesto = um
- * passo" é exclusiva do bloco "Como funciona" logo abaixo, com lógica de
- * interação diferente).
+ * A mecânica foi tirada do vídeo de referência quadro a quadro (o .mht não
+ * guarda o JS do site, então a timeline foi remontada a partir do que o
+ * vídeo mostra). Três coisas definem o efeito:
  *
- * Duas peças, uma timeline só:
- * - Linha superior com 4 selos (igual ao "hero_lines"/hero_tag do site de
- *   referência): vai preenchendo e cada selo acende conforme a fase começa.
- * - Corpo: uma caixa flutuante com o passo 1 (hero_step1-wrapper,
- *   position: absolute, por cima) e um painel de 3 colunas lado a lado
- *   (hero_right — hero_step2/3/4) que se acumulam: uma vez revelada, a
- *   coluna anterior continua visível quando a próxima aparece — nada troca
- *   de lugar nem some. Passo 1 e passo 2 (coluna 1) entram JUNTOS.
+ * 1. UMA ESTEIRA HORIZONTAL, não uma troca de telas. Todas as 4 fases
+ *    ficam numa fileira só, e a fileira desliza para a esquerda conforme
+ *    avança — a fase que sai continua existindo, só sai de quadro.
  *
- * Mapeamento pro CheckMulta:
- *   passo 1 (flutuante) → enviar o documento
- *   coluna 1            → identificar o órgão (checklist, um item de cada vez)
- *   coluna 2            → ler a lei daquele órgão (achado de exemplo, pequeno)
- *   coluna 3            → resultado (achado, card maior — sem prometer êxito:
- *                         regra do projeto, "linguagem de possibilidade")
+ * 2. TUDO JÁ ESTÁ NA TELA DESDE O INÍCIO, em estado "fantasma" (cinza,
+ *    apagado). Nada entra deslizando: o que acontece é o item passar de
+ *    fantasma para sólido, UM DE CADA VEZ. No site, cada linha da lista
+ *    troca um spinner cinza por um ✓ colorido, de cima para baixo.
  *
- * Fica ACIMA da seção de triagem (grade dos 5 órgãos), que continua intacta.
+ * 3. SÓ A PRIMEIRA FASE É CARTÃO FLUTUANTE (fundo branco + sombra). As
+ *    fases 2 e 3 são conteúdo solto sobre o fundo da seção — sem cartão,
+ *    sem sombra. A fase 4 é a peça ilustrada.
+ *
+ * A linha do topo acompanha: o selo da fase ativa se expande e mostra o
+ * rótulo; os outros ficam como bolinha. O traço preenche até o selo ativo.
+ *
+ * Roda automática (ScrollTrigger só dispara uma vez, quando a seção entra
+ * na tela) — não é scroll-driven. A mecânica de "um gesto = um passo" é
+ * exclusiva do bloco "Como funciona", logo abaixo.
  */
 
 const SOMBRA_CARD = {
@@ -38,128 +39,175 @@ const SOMBRA_CARD = {
     "rgba(0,0,0,0.02) 0px 140px 56px, rgba(0,0,0,0.07) 0px 78px 47px, rgba(0,0,0,0.1) 0px 7px 14px, rgba(0,0,0,0.12) 0px 9px 19px",
 };
 
-const ETAPAS_STEPPER = ["Enviar", "Identificar órgão", "Ler a lei", "Resultado"];
+const FASES = ["Enviar", "Identificar órgão", "Analisar", "Resultado"];
+
+/** O que a análise confere — some como texto solto, igual às personas do site. */
+const CONFERENCIAS = [
+  ["Prazo de defesa", "Ainda aberto para recorrer"],
+  ["Quem autuou", "Competência do agente"],
+  ["Como foi descrito", "Falha de forma no auto"],
+];
+
+/** Deslocamento da esteira em cada fase (px). A fileira anda para a esquerda. */
+const DESLOCAMENTO = [0, 0, -150, -320];
 
 export default function HeroFluxo() {
   const secaoRef = useRef<HTMLDivElement>(null);
+  const esteiraRef = useRef<HTMLDivElement>(null);
   const stepperRef = useRef<HTMLDivElement>(null);
-  const lineSvgRef = useRef<SVGSVGElement>(null);
-  const lineTrackRef = useRef<SVGPathElement>(null);
-  const lineFillRef = useRef<SVGPathElement>(null);
+  const trilhoFillRef = useRef<HTMLDivElement>(null);
   const selosRef = useRef<(HTMLDivElement | null)[]>([]);
-  const flutuanteRef = useRef<HTMLDivElement>(null);
-  const colIdentificaRef = useRef<HTMLDivElement>(null);
-  const colLerLeiRef = useRef<HTMLDivElement>(null);
-  const colResultadoRef = useRef<HTMLDivElement>(null);
-  const itensChecklistRef = useRef<(HTMLLIElement | null)[]>([]);
+  const rotulosRef = useRef<(HTMLSpanElement | null)[]>([]);
+  const cartaoRef = useRef<HTMLDivElement>(null);
+  const linhasVerticalRef = useRef<(HTMLLIElement | null)[]>([]);
+  const conferenciaRef = useRef<(HTMLDivElement | null)[]>([]);
+  const resultadoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const reduzMovimento = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
 
-    const elementosAnimados = [
-      flutuanteRef.current,
-      colIdentificaRef.current,
-      colLerLeiRef.current,
-      colResultadoRef.current,
-      ...itensChecklistRef.current,
-    ];
+    /**
+     * Acende um elemento: liga o atributo que as classes de cor observam e,
+     * nos dois cartões, tira o desfoque via GSAP.
+     *
+     * O desfoque não sai por classe utilitária: `blur-[3px]` e o
+     * `data-[...]:blur-0` que deveria anulá-lo empatam, e o primeiro vence —
+     * o cartão ficava borrado para sempre, com o resto do estado correto.
+     */
+    const marcarSolido = (el: Element | null) => {
+      if (!(el instanceof HTMLElement)) return;
+      el.dataset.solido = "true";
+      if (el.dataset.cartao === "sim") {
+        gsap.to(el, {
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 0.6,
+          ease: "power2.out",
+        });
+      }
+    };
 
     if (reduzMovimento) {
-      // Estado final direto, sem animação.
-      gsap.set(elementosAnimados, { opacity: 1, x: 0, y: 0, filter: "blur(0px)" });
-      selosRef.current.forEach((el) => {
-        if (el) el.dataset.ativo = "true";
+      // Estado final direto: tudo sólido, esteira parada, trilho cheio.
+      [
+        cartaoRef.current,
+        resultadoRef.current,
+        ...linhasVerticalRef.current,
+        ...conferenciaRef.current,
+      ].forEach(marcarSolido);
+      const ultimo = selosRef.current.length - 1;
+      selosRef.current.forEach((el, i) => {
+        if (el) el.dataset.estado = i === ultimo ? "ativo" : "feito";
       });
-      if (lineFillRef.current) gsap.set(lineFillRef.current, { strokeDashoffset: 0 });
+      // Só o rótulo da última fase fica aberto — é o estado em que a
+      // animação termina.
+      rotulosRef.current.forEach(
+        (el, i) => el && gsap.set(el, { width: i === ultimo ? "auto" : 0 }),
+      );
+      if (trilhoFillRef.current) gsap.set(trilhoFillRef.current, { width: "100%" });
       return;
     }
 
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 768px)", () => {
-      // Mede a linha do stepper: um traço reto passando pelo centro dos 4 selos.
-      const medirLinha = () => {
-        const col = stepperRef.current;
-        const svg = lineSvgRef.current;
-        if (!col || !svg) return;
-        const colRect = col.getBoundingClientRect();
-        const centros = selosRef.current.map((el) => {
-          if (!el) return 0;
-          const r = el.getBoundingClientRect();
-          return r.left + r.width / 2 - colRect.left;
+      // Preenche o trilho até o centro do selo da fase indicada. Medido na
+      // hora porque o selo ativo muda de largura ao expandir o rótulo.
+      const preencherTrilho = (indice: number) => {
+        const stepper = stepperRef.current;
+        const selo = selosRef.current[indice];
+        const fill = trilhoFillRef.current;
+        if (!stepper || !selo || !fill) return;
+        const base = stepper.getBoundingClientRect();
+        const r = selo.getBoundingClientRect();
+        gsap.to(fill, {
+          width: r.left + r.width / 2 - base.left,
+          duration: 0.45,
+          ease: "power2.out",
         });
-        const cy = 18;
-        const d = `M ${centros[0]} ${cy} L ${centros[centros.length - 1]} ${cy}`;
-        svg.setAttribute("viewBox", `0 0 ${colRect.width} 36`);
-        lineTrackRef.current?.setAttribute("d", d);
-        lineFillRef.current?.setAttribute("d", d);
       };
-      medirLinha();
-      if (document.fonts?.ready) document.fonts.ready.then(medirLinha);
-      window.addEventListener("resize", medirLinha);
 
-      gsap.set(flutuanteRef.current, { opacity: 0, y: 14, filter: "blur(12px)" });
-      gsap.set(colIdentificaRef.current, { opacity: 0, y: 14, filter: "blur(12px)" });
-      gsap.set([colLerLeiRef.current, colResultadoRef.current], {
-        opacity: 0,
-        y: 14,
-        filter: "blur(12px)",
-      });
-      gsap.set(itensChecklistRef.current, { opacity: 0, x: -8 });
-
-      const acenderSelo = (i: number) => {
-        const el = selosRef.current[i];
-        if (el) el.dataset.ativo = "true";
+      // Um atributo só, com três valores — duas classes concorrentes
+      // (solido/ativo) empatam em especificidade e o vencedor passa a
+      // depender da ordem do CSS gerado.
+      const ativarSelo = (indice: number) => {
+        selosRef.current.forEach((el, i) => {
+          if (!el) return;
+          el.dataset.estado =
+            i === indice ? "ativo" : i < indice ? "feito" : "futuro";
+        });
+        rotulosRef.current.forEach((el, i) => {
+          if (!el) return;
+          gsap.to(el, {
+            width: i === indice ? "auto" : 0,
+            duration: 0.35,
+            ease: "power2.inOut",
+          });
+        });
       };
 
       const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: secaoRef.current,
-          start: "top 85%",
-          once: true,
-        },
-        defaults: { ease: "power2.out" },
+        scrollTrigger: { trigger: secaoRef.current, start: "top 80%", once: true },
+        defaults: { ease: "power2.inOut" },
       });
 
-      // Passo 1 (caixa flutuante) e passo 2 (checklist) entram juntos — a
-      // linha já pula pra metade (cobre os 2 primeiros selos de uma vez).
+      // Agenda os itens de uma lista para acender um de cada vez, dentro da
+      // própria timeline (não em delayedCall solto, que sobreviveria ao
+      // cleanup e continuaria escrevendo em nós já desmontados).
+      const solidificarEmSerie = (
+        els: (Element | null)[],
+        inicio: number,
+        intervalo = 0.13,
+      ) => {
+        els.forEach((el, i) => {
+          tl.call(() => marcarSolido(el), [], inicio + i * intervalo);
+        });
+      };
+
+      // Fase 1 — cartão flutuante.
       tl.call(() => {
-        acenderSelo(0);
-        acenderSelo(1);
-      }, [], 0)
-        .to(lineFillRef.current, { strokeDashoffset: 50, duration: 0.5 }, 0)
-        .to(
-          [flutuanteRef.current, colIdentificaRef.current],
-          { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.5 },
-          0,
+        ativarSelo(0);
+        preencherTrilho(0);
+        marcarSolido(cartaoRef.current);
+      })
+        // Fase 2 — as verticais acendem uma de cada vez.
+        .call(
+          () => {
+            ativarSelo(1);
+            preencherTrilho(1);
+          },
+          [],
+          0.7,
         )
-        .to(
-          itensChecklistRef.current,
-          { opacity: 1, x: 0, duration: 0.22, stagger: 0.05, ease: "power1.out" },
-          0.2,
+        // Fase 3 — a esteira anda e as conferências acendem.
+        .to(esteiraRef.current, { x: DESLOCAMENTO[2], duration: 0.7 }, 1.7)
+        .call(
+          () => {
+            ativarSelo(2);
+            preencherTrilho(2);
+          },
+          [],
+          1.7,
         )
-        // Passo 3 se soma.
-        .call(() => acenderSelo(2), [], 0.55)
-        .to(lineFillRef.current, { strokeDashoffset: 25, duration: 0.4 }, 0.55)
-        .to(
-          colLerLeiRef.current,
-          { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45 },
-          0.55,
-        )
-        // Passo 4 se soma.
-        .call(() => acenderSelo(3), [], 0.9)
-        .to(lineFillRef.current, { strokeDashoffset: 0, duration: 0.4 }, 0.9)
-        .to(
-          colResultadoRef.current,
-          { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45 },
-          0.9,
+        // Fase 4 — a esteira anda de novo e a peça final acende.
+        .to(esteiraRef.current, { x: DESLOCAMENTO[3], duration: 0.7 }, 2.7)
+        .call(
+          () => {
+            ativarSelo(3);
+            preencherTrilho(3);
+            marcarSolido(resultadoRef.current);
+          },
+          [],
+          2.75,
         );
+
+      solidificarEmSerie(linhasVerticalRef.current, 0.75);
+      solidificarEmSerie(conferenciaRef.current, 1.85, 0.18);
 
       return () => {
         tl.kill();
-        window.removeEventListener("resize", medirLinha);
       };
     });
 
@@ -167,16 +215,13 @@ export default function HeroFluxo() {
   }, []);
 
   return (
-    <section ref={secaoRef} className="relative border-b border-stone-200 bg-stone-50">
-      {/* Mobile: painel final estático, sem animação. */}
+    <section ref={secaoRef} className="relative overflow-hidden border-b border-stone-200 bg-stone-50">
+      {/* Mobile: peça final estática, sem esteira. */}
       <div className="mx-auto max-w-md px-5 py-16 md:hidden">
         <p className="mb-6 text-center font-mono text-[11px] uppercase tracking-widest text-stone-400">
           Como a análise funciona
         </p>
-        <div
-          className="rounded-3xl border border-stone-200 bg-white p-6"
-          style={SOMBRA_CARD}
-        >
+        <div className="rounded-3xl border border-stone-200 bg-white p-6" style={SOMBRA_CARD}>
           <span className="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide text-red-700">
             1 falha encontrada
           </span>
@@ -187,142 +232,138 @@ export default function HeroFluxo() {
         </div>
       </div>
 
-      {/* Desktop/tablet: stepper no topo + caixa flutuante + painel de 3 colunas. */}
-      <div className="hidden px-5 py-20 md:block">
-        <div className="mx-auto w-full max-w-5xl">
-          {/* Stepper horizontal — vai preenchendo conforme a timeline avança */}
-          <div ref={stepperRef} className="relative mb-16 flex items-center justify-center gap-3">
-            <svg
-              ref={lineSvgRef}
-              className="pointer-events-none absolute left-0 top-0 h-9 w-full"
-              preserveAspectRatio="none"
-              aria-hidden="true"
+      <div className="hidden py-20 md:block">
+        {/* Linha do topo — selo ativo expande o rótulo, trilho preenche até ele. */}
+        <div ref={stepperRef} className="relative mb-14 flex items-center gap-3 px-8">
+          <div className="absolute left-8 right-8 top-1/2 h-0.5 -translate-y-1/2 bg-stone-200" />
+          <div
+            ref={trilhoFillRef}
+            className="absolute left-8 top-1/2 h-0.5 w-0 -translate-y-1/2 bg-emerald-600"
+          />
+          {FASES.map((fase, i) => (
+            <div
+              key={fase}
+              ref={(el) => {
+                selosRef.current[i] = el;
+              }}
+              data-estado="futuro"
+              className="group relative z-10 flex h-8 items-center rounded-full border px-2.5 transition-colors duration-300 data-[estado=futuro]:border-stone-200 data-[estado=futuro]:bg-stone-100 data-[estado=feito]:border-emerald-200 data-[estado=feito]:bg-emerald-100 data-[estado=ativo]:border-emerald-700 data-[estado=ativo]:bg-emerald-700"
             >
-              <path ref={lineTrackRef} stroke="#e7e5e4" strokeWidth={2} fill="none" pathLength={100} />
-              <path
-                ref={lineFillRef}
-                stroke="#059669"
-                strokeWidth={2}
-                strokeLinecap="round"
-                fill="none"
-                pathLength={100}
-                strokeDasharray={100}
-                strokeDashoffset={100}
+              <Zap
+                className="h-3 w-3 flex-shrink-0 transition-colors duration-300 group-data-[estado=futuro]:text-stone-300 group-data-[estado=feito]:text-emerald-700 group-data-[estado=ativo]:text-white"
+                strokeWidth={2.5}
               />
-            </svg>
-            {ETAPAS_STEPPER.map((texto, i) => (
-              <div
-                key={texto}
+              <span
                 ref={(el) => {
-                  selosRef.current[i] = el;
+                  rotulosRef.current[i] = el;
                 }}
-                data-ativo="false"
-                className="group relative flex h-9 items-center gap-1.5 rounded-full border border-stone-300 bg-stone-50 px-3 transition-colors duration-300 data-[ativo=true]:border-emerald-700 data-[ativo=true]:bg-emerald-700"
+                className="inline-block overflow-hidden whitespace-nowrap"
+                style={{ width: 0 }}
               >
-                <Zap
-                  className="h-3 w-3 text-stone-400 group-data-[ativo=true]:text-white"
-                  strokeWidth={2.5}
-                />
-                <span className="font-mono text-[10px] uppercase tracking-widest text-stone-400 group-data-[ativo=true]:text-white">
-                  {texto}
+                <span className="pl-2 pr-0.5 font-mono text-[10px] uppercase tracking-widest text-white">
+                  {fase}
                 </span>
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Esteira: as 4 fases numa fileira só, que desliza para a esquerda. */}
+        <div ref={esteiraRef} className="flex items-start gap-14 pl-8">
+          {/* Fase 1 — único cartão flutuante da sequência */}
+          <div
+            ref={cartaoRef}
+            data-solido="false"
+            data-cartao="sim"
+            className="w-64 flex-shrink-0 rounded-2xl border border-stone-200 bg-white p-4"
+            style={{ ...SOMBRA_CARD, opacity: 0.3, filter: "blur(2px)" }}
+          >
+            <p className="text-sm leading-relaxed text-stone-800">
+              Recebi uma multa e não sei se ela tem algum erro. Pode analisar
+              pra mim?
+            </p>
+            <div className="mt-3 flex justify-end">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-700 text-white">
+                <ArrowUp className="h-3.5 w-3.5" strokeWidth={2.5} />
+              </span>
+            </div>
+          </div>
+
+          {/* Fase 2 — solto no fundo, sem cartão. Acende um de cada vez. */}
+          <ul className="w-64 flex-shrink-0 space-y-2">
+            {VERTICAIS.map((v, i) => (
+              <li
+                key={v.id}
+                ref={(el) => {
+                  linhasVerticalRef.current[i] = el;
+                }}
+                data-solido="false"
+                className="group flex items-center gap-2 rounded-full border border-stone-200 px-3 py-1.5 transition-colors duration-500 data-[solido=true]:border-emerald-200"
+              >
+                <Loader className="h-3 w-3 flex-shrink-0 animate-spin text-stone-300 group-data-[solido=true]:hidden" />
+                <Check
+                  className="hidden h-3 w-3 flex-shrink-0 text-emerald-600 group-data-[solido=true]:block"
+                  strokeWidth={3}
+                />
+                <span className="font-mono text-[11px] uppercase tracking-wide text-stone-300 transition-colors duration-500 group-data-[solido=true]:text-stone-700">
+                  {v.titulo}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Fase 3 — texto solto, sem cartão. Acende um de cada vez. */}
+          <div className="w-56 flex-shrink-0 space-y-6 pt-1">
+            {CONFERENCIAS.map(([titulo, detalhe], i) => (
+              <div
+                key={titulo}
+                ref={(el) => {
+                  conferenciaRef.current[i] = el;
+                }}
+                data-solido="false"
+                className="group flex gap-2"
+              >
+                <ShieldCheck
+                  className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-stone-200 transition-colors duration-500 group-data-[solido=true]:text-emerald-600"
+                  strokeWidth={2}
+                />
+                <div className="font-mono text-[11px] uppercase leading-relaxed tracking-wide text-stone-200 transition-colors duration-500 group-data-[solido=true]:text-stone-700">
+                  <div>{titulo}</div>
+                  <div className="text-stone-200 transition-colors duration-500 group-data-[solido=true]:text-stone-400">
+                    {detalhe}
+                  </div>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* Caixa flutuante + painel de 3 colunas — um bloco só */}
-          <div className="relative">
-            {/* Caixa flutuante — passo 1 (enviar) */}
-            <div ref={flutuanteRef} className="absolute left-0 top-0 z-10 w-64">
-              <div
-                className="rounded-2xl border border-stone-200 bg-white p-4"
-                style={SOMBRA_CARD}
-              >
-                <p className="text-sm leading-relaxed text-stone-800">
-                  Recebi uma multa e não sei se ela tem algum erro. Pode
-                  analisar pra mim?
-                </p>
-                <div className="mt-3 flex justify-end">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-700 text-white">
-                    <ArrowUp className="h-3.5 w-3.5" strokeWidth={2.5} />
-                  </span>
-                </div>
-              </div>
+          {/* Fase 4 — peça ilustrada, maior. */}
+          <div
+            ref={resultadoRef}
+            data-solido="false"
+            data-cartao="sim"
+            className="w-80 flex-shrink-0 overflow-hidden rounded-2xl border border-stone-200 bg-white"
+            style={{ ...SOMBRA_CARD, opacity: 0.3, filter: "blur(3px)" }}
+          >
+            <div className="flex h-28 items-center justify-center bg-gradient-to-br from-emerald-600 to-emerald-800">
+              <ShieldCheck className="h-10 w-10 text-white" strokeWidth={1.5} />
             </div>
-
-            {/* Painel em 3 colunas — passos 2, 3 e 4, somando-se um ao outro */}
-            <div className="flex flex-wrap items-start justify-end gap-6 pt-4">
-              <div
-                ref={colIdentificaRef}
-                className="w-64 rounded-2xl border border-stone-200 bg-white p-4"
-                style={SOMBRA_CARD}
-              >
-                <ul className="space-y-2">
-                  {VERTICAIS.map((v, i) => (
-                    <li
-                      key={v.id}
-                      ref={(el) => {
-                        itensChecklistRef.current[i] = el;
-                      }}
-                      className="flex items-center gap-2 rounded-full border border-stone-200 px-3 py-1.5"
-                    >
-                      <span className="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
-                        <Check className="h-2.5 w-2.5" strokeWidth={3} />
-                      </span>
-                      <span className="text-xs font-medium text-stone-700">
-                        {v.titulo}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div
-                ref={colLerLeiRef}
-                className="w-56 rounded-2xl border border-stone-200 bg-white p-4"
-                style={SOMBRA_CARD}
-              >
-                <p className="font-mono text-[10px] uppercase tracking-wide text-stone-400">
-                  Código de Defesa do Consumidor
-                </p>
-                <p className="mt-2 inline-block rounded bg-amber-50 px-2 py-1 text-xs font-medium text-amber-800">
-                  Sem data de resposta da empresa
-                </p>
-                <p className="mt-2 flex items-start gap-1.5 text-xs leading-relaxed text-amber-700">
-                  <AlertTriangle className="mt-0.5 h-3.5 w-3.5 flex-shrink-0" />
-                  Verifica se há possibilidade de recurso por falha de forma.
-                </p>
-              </div>
-
-              {/* Passo 4 — card maior, mais ilustrado (pedido explícito: "como se
-                  fosse uma imagem"). Sem quantificar chance de êxito: regra do
-                  projeto é nunca prometer resultado, só linguagem de possibilidade. */}
-              <div
-                ref={colResultadoRef}
-                className="w-80 overflow-hidden rounded-2xl border border-stone-200 bg-white"
-                style={SOMBRA_CARD}
-              >
-                <div className="flex h-28 items-center justify-center bg-gradient-to-br from-emerald-600 to-emerald-800">
-                  <ShieldCheck className="h-10 w-10 text-white" strokeWidth={1.5} />
-                </div>
-                <div className="p-5">
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wide text-red-700">
-                    1 falha encontrada
-                  </span>
-                  <p className="mt-3 text-sm leading-relaxed text-stone-700">
-                    Encontramos uma possível brecha legal no seu documento.
-                    Explicamos qual é antes de qualquer cobrança.
-                  </p>
-                </div>
-                <div className="flex items-center justify-between border-t border-stone-100 bg-stone-50 px-5 py-3">
-                  <span className="text-xs font-medium text-stone-500">
-                    Análise gratuita
-                  </span>
-                  <span className="text-xs font-semibold text-emerald-700">
-                    Ver o achado →
-                  </span>
-                </div>
-              </div>
+            <div className="p-5">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wide text-red-700">
+                1 falha encontrada
+              </span>
+              <p className="mt-3 text-sm leading-relaxed text-stone-700">
+                Encontramos uma possível brecha legal no seu documento.
+                Explicamos qual é antes de qualquer cobrança.
+              </p>
+            </div>
+            <div className="flex items-center justify-between border-t border-stone-100 bg-stone-50 px-5 py-3">
+              <span className="text-xs font-medium text-stone-500">
+                Análise gratuita
+              </span>
+              <span className="text-xs font-semibold text-emerald-700">
+                Ver o achado →
+              </span>
             </div>
           </div>
         </div>
