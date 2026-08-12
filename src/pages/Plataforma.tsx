@@ -20,6 +20,7 @@ import {
 import { VERTICAIS, FERRAMENTAS } from "../data/verticais";
 import ComoFuncionaScroll from "../components/ComoFuncionaScroll";
 import HeroFluxo from "../components/HeroFluxo";
+import CaminhoVerticais from "../components/CaminhoVerticais";
 
 /**
  * Home institucional do CheckMulta (home-mãe).
@@ -529,6 +530,11 @@ export default function Plataforma() {
           </div>
         </div>
       </section>
+
+      {/* ---------------------------------------------------------------- */}
+      {/* Caminho das verticais (por que cada area tem analise propria)     */}
+      {/* ---------------------------------------------------------------- */}
+      <CaminhoVerticais />
 
       {/* ---------------------------------------------------------------- */}
       {/* Areas atendidas                                                   */}
