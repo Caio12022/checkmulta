@@ -1184,7 +1184,13 @@ export default function App() {
             </div>
 
             <div className="grid grid-cols-1 divide-y divide-slate-100 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-              <div className="flex items-start gap-4 p-6">
+              <motion.div
+                className="flex items-start gap-4 p-6"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.45 }}
+              >
                 <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50">
                   <CheckCircle2 className="h-5 w-5 text-emerald-600" />
                 </div>
@@ -1196,9 +1202,15 @@ export default function App() {
                     Erro formal grave encontrado. Boas chances de anulação da multa.
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start gap-4 p-6">
+              <motion.div
+                className="flex items-start gap-4 p-6"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.45, delay: 0.08 }}
+              >
                 <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-amber-50">
                   <AlertCircle className="h-5 w-5 text-amber-500" />
                 </div>
@@ -1210,9 +1222,15 @@ export default function App() {
                     Há um ângulo de defesa possível, mas não garantido.
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start gap-4 p-6">
+              <motion.div
+                className="flex items-start gap-4 p-6"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.45, delay: 0.16 }}
+              >
                 <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-red-50">
                   <AlertCircle className="h-5 w-5 text-red-400" />
                 </div>
@@ -1224,7 +1242,7 @@ export default function App() {
                     Caso mais limitado. Ainda possível tentar. A decisão é sua.
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -1247,7 +1265,13 @@ export default function App() {
           </h2>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 text-center">
+            <motion.div
+              className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 text-center"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.45 }}
+            >
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                 <Lock className="h-6 w-6" />
               </div>
@@ -1256,9 +1280,15 @@ export default function App() {
                 Não guardamos a foto do seu documento. A imagem é processada na
                 memória do servidor e imediatamente deletada.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 text-center">
+            <motion.div
+              className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 text-center"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.45, delay: 0.08 }}
+            >
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-sky-50 text-sky-600">
                 <UserX className="h-6 w-6" />
               </div>
@@ -1267,9 +1297,15 @@ export default function App() {
                 Você não precisa criar conta, colocar e-mail ou senha para auditar
                 a sua multa. É direto ao ponto.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 text-center">
+            <motion.div
+              className="rounded-xl border border-slate-200 bg-slate-50/60 p-6 text-center"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.45, delay: 0.16 }}
+            >
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
                 <Route className="h-6 w-6" />
               </div>
@@ -1278,7 +1314,7 @@ export default function App() {
                 Atuamos como ferramenta tecnológica baseada no CTB. Nós criamos a
                 tese, mas a decisão final é do órgão julgador.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
