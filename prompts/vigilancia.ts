@@ -295,7 +295,8 @@ II — DOS FATOS
 [Resumo objetivo da autuação conforme descrita no auto.]
 
 III — DAS PRELIMINARES
-[Para cada falha de gravidade "critico" da análise, redija uma subseção numerada. Cada subseção deve: nomear a falha, transcrever entre aspas o trecho do documento, explicar tecnicamente por que configura vício do ato administrativo, e citar a base legal ou o princípio aplicável. Requerer ao final a nulidade do auto.]
+[SÓ escreva esta seção se houver ao menos uma falha de gravidade "critico" na análise. Se NÃO houver nenhuma, omita a seção inteira, não a substitua por texto genérico e NÃO peça nulidade em lugar nenhum da peça — sem falha crítica não há nulidade a arguir, e pedir assim mesmo transforma dúvida em certeza e desqualifica a peça.
+Havendo falha "critico": para cada uma, redija uma subseção numerada. Cada subseção deve: nomear a falha, transcrever entre aspas o trecho do documento, explicar tecnicamente por que configura vício do ato administrativo, e citar a base legal ou o princípio aplicável. Requerer ao final a nulidade do auto.]
 
 IV — DO MÉRITO
 [Para cada falha de gravidade "atencao" ou "verificar", redija uma subseção. Mesma estrutura: trecho, explicação, base legal. Inclua aqui os argumentos de proporcionalidade e dosimetria, requerendo subsidiariamente a redução ou substituição da penalidade.]
@@ -305,7 +306,7 @@ V — DAS PROVIDÊNCIAS ADOTADAS
 
 VI — DOS PEDIDOS
 Ante o exposto, requer:
-a) O acolhimento das preliminares arguidas, com a declaração de nulidade do Auto de Infração nº [NÚMERO] e o consequente arquivamento do processo administrativo;
+a) [Item APENAS para quando houver falha "critico". Sem falha crítica, omita esta alínea e comece o pedido pela alínea de mérito.] O acolhimento das preliminares arguidas, com a declaração de nulidade do Auto de Infração nº [NÚMERO] e o consequente arquivamento do processo administrativo;
 b) Subsidiariamente, caso superadas as preliminares, o acolhimento das razões de mérito para afastar a penalidade aplicada;
 c) Subsidiariamente, a substituição ou redução da penalidade, em observância aos princípios da proporcionalidade e da razoabilidade, considerando as providências já adotadas pelo estabelecimento;
 d) A realização de reinspeção, a fim de que seja constatada a regularização das condições apontadas;

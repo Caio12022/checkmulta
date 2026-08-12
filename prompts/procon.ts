@@ -317,14 +317,15 @@ II — DOS FATOS
 [Resumo objetivo da autuação conforme descrita no auto.]
 
 III — DAS PRELIMINARES
-[Para cada vício de gravidade "critico" da análise, redija uma subseção numerada. Cada subseção deve: nomear o vício, transcrever entre aspas o trecho do documento, explicar tecnicamente por que configura vício, e citar a base legal. Requerer ao final a nulidade do auto.]
+[SÓ escreva esta seção se houver ao menos um vício de gravidade "critico" na análise. Se NÃO houver nenhum, omita a seção inteira, não a substitua por texto genérico e NÃO peça nulidade em lugar nenhum da peça — sem vício crítico não há nulidade a arguir, e pedir assim mesmo transforma dúvida em certeza e desqualifica a peça.
+Havendo vício "critico": para cada um, redija uma subseção numerada. Cada subseção deve: nomear o vício, transcrever entre aspas o trecho do documento, explicar tecnicamente por que configura vício, e citar a base legal. Requerer ao final a nulidade do auto.]
 
 IV — DO MÉRITO
 [Para cada vício de gravidade "atencao" ou "verificar", redija uma subseção. Mesma estrutura: trecho, explicação, base legal. Inclua aqui os argumentos de dosimetria, requerendo subsidiariamente a redução da penalidade.]
 
 V — DOS PEDIDOS
 Ante o exposto, requer:
-a) O acolhimento das preliminares arguidas, com a declaração de nulidade do Auto de Infração nº [NÚMERO] e o consequente arquivamento do processo administrativo;
+a) [Item APENAS para quando houver vício "critico". Sem vício crítico, omita esta alínea e comece o pedido pela alínea de mérito.] O acolhimento das preliminares arguidas, com a declaração de nulidade do Auto de Infração nº [NÚMERO] e o consequente arquivamento do processo administrativo;
 b) Subsidiariamente, caso superadas as preliminares, o acolhimento das razões de mérito para afastar a penalidade aplicada;
 c) Subsidiariamente, a redução do valor da multa, em observância aos critérios do art. 57 da Lei 8.078/90 e dos arts. 24 a 28 do Decreto 2.181/97, considerando a condição econômica da autuada e a proporcionalidade da sanção;
 d) A produção de prova documental superveniente, bem como a juntada de cópia integral do processo administrativo, sob pena de cerceamento de defesa;
