@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { Observer } from "gsap/Observer";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import {
   UploadCloud,
   ScanSearch,
@@ -14,7 +16,7 @@ import {
   Check,
 } from "lucide-react";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger, SplitText, Observer, ScrollToPlugin);
 
 /**
  * Sombra multi-camada do card de referência (auxia.io, .process_image-wrapper),
@@ -34,8 +36,15 @@ const SOMBRA_CARD = {
  * pin nem scrub — pin em mobile costuma travar o scroll e não vale o custo):
  *
  * - Um container alto (N * 100vh) fica "grudado" (position: sticky) no topo.
- *   O progresso de scroll dentro desse container dirige tudo: a barra ao lado
- *   dos passos, qual passo está ativo, e o crossfade do painel visual.
+ *   O progresso de scroll dentro desse container é a fonte da verdade de
+ *   tudo: a linha que liga os selos, qual passo está ativo, e o crossfade
+ *   do painel visual (ScrollTrigger com scrub, sempre ativo).
+ * - Por cima disso, o Observer (também GSAP) intercepta cada gesto de
+ *   roda/trackpad/dedo enquanto o mouse está dentro da faixa pinada e troca
+ *   um scroll contínuo por um salto animado até o próximo (ou anterior)
+ *   passo — um gesto = um passo, nunca uma fração. Fora da faixa, ou no
+ *   primeiro/último passo tentando sair pela ponta, o Observer não
+ *   intercepta e o scroll da página segue normal.
  * - Passo ativo ganha o selo preenchido e o título nasce letra por letra
  *   (SplitText) a primeira vez que fica ativo. Passos já vistos ficam
  *   revelados e escurecidos; os que ainda não chegaram ficam apagados.
@@ -372,8 +381,52 @@ export default function ComoFuncionaScroll() {
         },
       });
 
+      // Um gesto = um passo. Enquanto o scroll estiver dentro da faixa
+      // pinada (st.isActive), cada roda/trackpad/dedo vira um salto animado
+      // até o próximo ponto de parada — não uma fração do scroll natural.
+      // Na ponta (primeiro ou último passo) tentando sair, não intercepta:
+      // o scroll da página segue seu curso normal.
+      let animandoSalto = false;
+
+      const irParaPasso = (indiceAlvo: number) => {
+        animandoSalto = true;
+        const alvoProgresso = indiceAlvo / (n - 1);
+        const alvoY = st.start + alvoProgresso * (st.end - st.start);
+        gsap.to(window, {
+          scrollTo: { y: alvoY, autoKill: false },
+          duration: 0.65,
+          ease: "power2.inOut",
+          onComplete: () => {
+            animandoSalto = false;
+          },
+        });
+      };
+
+      const obs = Observer.create({
+        target: window,
+        type: "wheel,touch,pointer",
+        tolerance: 8,
+        preventDefault: false,
+        onDown: (self) => tentarSalto(self, 1),
+        onUp: (self) => tentarSalto(self, -1),
+      });
+
+      function tentarSalto(self: Observer, direcao: 1 | -1) {
+        if (!st.isActive) return;
+        if (animandoSalto) {
+          self.event?.preventDefault?.();
+          return;
+        }
+        const indiceAtual = Math.round(st.progress * (n - 1));
+        const indiceAlvo = indiceAtual + direcao;
+        if (indiceAlvo < 0 || indiceAlvo > n - 1) return;
+        self.event?.preventDefault?.();
+        irParaPasso(indiceAlvo);
+      }
+
       return () => {
         st.kill();
+        obs.kill();
         window.removeEventListener("resize", medirLinha);
         splits.forEach((s) => s?.revert());
       };
