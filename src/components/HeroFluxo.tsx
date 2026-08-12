@@ -41,6 +41,60 @@ const SOMBRA_CARD = {
 
 const FASES = ["Enviar", "Identificar órgão", "Analisar", "Resultado"];
 
+/**
+ * Ilustração do topo da peça final: o auto de infração com o trecho
+ * defeituoso marcado e a lupa em cima dele. Desenho, não print — o layout
+ * do produto ainda vai mudar, e print viraria dívida na hora que mudasse.
+ */
+function IlustracaoAchado() {
+  return (
+    <div className="relative h-36 overflow-hidden bg-gradient-to-br from-emerald-600 to-emerald-800">
+      <svg
+        viewBox="0 0 320 144"
+        className="h-full w-full"
+        aria-hidden="true"
+        preserveAspectRatio="xMidYMid slice"
+      >
+        {/* Textura sutil de fundo */}
+        <g opacity="0.14" stroke="#fff" strokeWidth="1">
+          <path d="M0 34h320M0 74h320M0 114h320" />
+        </g>
+
+        {/* Folha do auto, levemente inclinada */}
+        <g transform="translate(96 16) rotate(-5 56 56)">
+          <rect width="128" height="126" rx="7" fill="#fffdf8" />
+          {/* cabeçalho do documento */}
+          <rect x="14" y="16" width="46" height="6" rx="3" fill="#0f766e" opacity="0.8" />
+          {/* linhas de texto */}
+          <g fill="#d6d3d1">
+            <rect x="14" y="34" width="100" height="5" rx="2.5" />
+            <rect x="14" y="46" width="86" height="5" rx="2.5" />
+            <rect x="14" y="76" width="94" height="5" rx="2.5" />
+            <rect x="14" y="88" width="70" height="5" rx="2.5" />
+            <rect x="14" y="100" width="88" height="5" rx="2.5" />
+          </g>
+          {/* o trecho com o defeito, destacado */}
+          <rect x="10" y="56" width="94" height="14" rx="4" fill="#fee2e2" />
+          <rect x="14" y="61" width="62" height="5" rx="2.5" fill="#dc2626" opacity="0.75" />
+          <rect x="10" y="56" width="2.5" height="14" rx="1.25" fill="#dc2626" />
+        </g>
+
+        {/* Lupa centrada no trecho destacado (≈153,79 no espaço do SVG) */}
+        <g transform="translate(153 79)">
+          <circle r="26" fill="#0f766e" opacity="0.22" />
+          <circle r="20" fill="none" stroke="#fff" strokeWidth="3.5" />
+          <path
+            d="M15 15l16 16"
+            stroke="#fff"
+            strokeWidth="5"
+            strokeLinecap="round"
+          />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
 /** O que a análise confere — some como texto solto, igual às personas do site. */
 const CONFERENCIAS = [
   ["Prazo de defesa", "Ainda aberto para recorrer"],
@@ -50,6 +104,9 @@ const CONFERENCIAS = [
 
 /** Deslocamento da esteira em cada fase (px). A fileira anda para a esquerda. */
 const DESLOCAMENTO = [0, 0, -150, -320];
+
+/** Segundos até começar o fechamento — tempo de leitura da peça pronta. */
+const FECHAMENTO = 5.2;
 
 export default function HeroFluxo() {
   const secaoRef = useRef<HTMLDivElement>(null);
@@ -148,9 +205,33 @@ export default function HeroFluxo() {
         });
       };
 
+      /**
+       * Fechamento do ciclo: devolve tudo ao estado fantasma para a volta
+       * do loop. Chamado com a esteira já invisível, então o corte não
+       * aparece — o que se vê é só o apagar e o reacender.
+       */
+      const reiniciarCiclo = () => {
+        gsap.killTweensOf([cartaoRef.current, resultadoRef.current]);
+        [cartaoRef.current, resultadoRef.current].forEach((el, i) => {
+          if (!el) return;
+          el.dataset.solido = "false";
+          gsap.set(el, { opacity: 0.3, filter: `blur(${i === 0 ? 2 : 3}px)` });
+        });
+        [...linhasVerticalRef.current, ...conferenciaRef.current].forEach((el) => {
+          if (el) el.dataset.solido = "false";
+        });
+        selosRef.current.forEach((el) => {
+          if (el) el.dataset.estado = "futuro";
+        });
+        rotulosRef.current.forEach((el) => el && gsap.set(el, { width: 0 }));
+        if (trilhoFillRef.current) gsap.set(trilhoFillRef.current, { width: 0 });
+        gsap.set(esteiraRef.current, { x: 0 });
+      };
+
       const tl = gsap.timeline({
         scrollTrigger: { trigger: secaoRef.current, start: "top 80%", once: true },
         defaults: { ease: "power2.inOut" },
+        repeat: -1,
       });
 
       // Agenda os itens de uma lista para acender um de cada vez, dentro da
@@ -201,6 +282,23 @@ export default function HeroFluxo() {
           },
           [],
           2.75,
+        )
+        // Fechamento: segura a peça pronta, apaga suave e recomeça.
+        .to(
+          esteiraRef.current,
+          { opacity: 0, x: DESLOCAMENTO[3] - 70, duration: 0.9, ease: "power2.in" },
+          FECHAMENTO,
+        )
+        .to(
+          [trilhoFillRef.current, ...rotulosRef.current],
+          { width: 0, duration: 0.6 },
+          FECHAMENTO + 0.2,
+        )
+        .call(reiniciarCiclo, [], FECHAMENTO + 0.9)
+        .to(
+          esteiraRef.current,
+          { opacity: 1, duration: 0.6, ease: "power2.out" },
+          FECHAMENTO + 0.95,
         );
 
       solidificarEmSerie(linhasVerticalRef.current, 0.75);
@@ -345,16 +443,18 @@ export default function HeroFluxo() {
             className="w-80 flex-shrink-0 overflow-hidden rounded-2xl border border-stone-200 bg-white"
             style={{ ...SOMBRA_CARD, opacity: 0.3, filter: "blur(3px)" }}
           >
-            <div className="flex h-28 items-center justify-center bg-gradient-to-br from-emerald-600 to-emerald-800">
-              <ShieldCheck className="h-10 w-10 text-white" strokeWidth={1.5} />
-            </div>
+            <IlustracaoAchado />
             <div className="p-5">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wide text-red-700">
                 1 falha encontrada
               </span>
-              <p className="mt-3 text-sm leading-relaxed text-stone-700">
-                Encontramos uma possível brecha legal no seu documento.
-                Explicamos qual é antes de qualquer cobrança.
+              <h3 className="font-display mt-3 text-lg font-semibold leading-snug tracking-tight text-stone-900">
+                Encontramos uma brecha legal
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                O endereço da autuação está incompleto — falha de forma que
+                abre espaço para recorrer. Geramos a defesa pronta para
+                protocolar.
               </p>
             </div>
             <div className="flex items-center justify-between border-t border-stone-100 bg-stone-50 px-5 py-3">
