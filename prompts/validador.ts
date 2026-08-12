@@ -141,7 +141,12 @@ export type Vertical = "transito" | "procon" | "vigilancia" | "energia" | "ibama
 
 /** Diplomas que cada vertical pode citar (identificados pelo número). */
 const DIPLOMAS_PERMITIDOS: Record<Vertical, string[]> = {
-  transito: ["9503", "9.503"],
+  /* Decreto 20.910/32: prescrição quinquenal contra a Fazenda Pública — a
+     tese central de qualquer defesa de prescrição em trânsito. Faltava aqui;
+     achado rodando a bateria de defesa (caso "contraprova de prescrição")
+     contra o modelo real: o caso reprovava sempre, não por variação, porque
+     a lista nunca incluiu essa citação legítima. */
+  transito: ["9503", "9.503", "20910", "20.910"],
   procon: ["8078", "8.078", "2181", "2.181", "10887", "10.887", "123", "13874", "13.874", "9784", "9.784"],
   vigilancia: ["6437", "6.437", "9784", "9.784"],
   /* Energia: REN 1.000/2021 da ANEEL é resolução — o prompt cita por nome, não
