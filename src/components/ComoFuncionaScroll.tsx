@@ -15,6 +15,7 @@ import {
   Download,
   Check,
 } from "lucide-react";
+import { CORES, type CorVertical } from "../lib/temaVertical";
 
 gsap.registerPlugin(ScrollTrigger, SplitText, Observer, ScrollToPlugin);
 
@@ -60,22 +61,23 @@ type Etapa = {
   titulo: string;
   texto: string;
   legenda: string;
-  Mockup: React.ComponentType;
+  Mockup: React.ComponentType<{ cor?: CorVertical }>;
 };
 
-export function MockupEnvio() {
+export function MockupEnvio({ cor = "emerald" }: { cor?: CorVertical }) {
+  const c = CORES[cor];
   return (
     <div className="flex h-full flex-col justify-center gap-5 rounded-3xl border border-stone-200 bg-white p-6 sm:p-8"
       style={SOMBRA_CARD}>
       <div className="flex flex-col items-center gap-3 rounded-xl border-2 border-dashed border-stone-300 px-6 py-10 text-center">
-        <UploadCloud className="h-8 w-8 text-emerald-600" strokeWidth={1.5} />
+        <UploadCloud className={`h-8 w-8 ${c.text600}`} strokeWidth={1.5} />
         <p className="text-sm font-medium text-stone-700">
           Arraste o arquivo aqui ou toque para escolher
         </p>
         <p className="text-xs text-stone-400">Foto ou PDF · sem limite de páginas</p>
       </div>
       <div className="flex items-center gap-3 rounded-lg bg-stone-50 px-4 py-3">
-        <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-emerald-100 text-emerald-700">
+        <span className={`flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md ${c.bg100} ${c.text700}`}>
           <Check className="h-4 w-4" strokeWidth={2} />
         </span>
         <span className="min-w-0 flex-1">
@@ -89,13 +91,14 @@ export function MockupEnvio() {
   );
 }
 
-export function MockupAnalise() {
+export function MockupAnalise({ cor = "emerald" }: { cor?: CorVertical }) {
+  const c = CORES[cor];
   return (
     <div className="relative flex h-full flex-col justify-center gap-3 overflow-hidden rounded-3xl border border-stone-200 bg-white p-6 sm:p-8"
       style={SOMBRA_CARD}>
       <div className="mb-2 flex items-center gap-2">
-        <Loader2 className="h-4 w-4 animate-spin text-emerald-600" strokeWidth={2} />
-        <span className="font-mono text-[11px] uppercase tracking-widest text-emerald-700">
+        <Loader2 className={`h-4 w-4 animate-spin ${c.text600}`} strokeWidth={2} />
+        <span className={`font-mono text-[11px] uppercase tracking-widest ${c.text700}`}>
           Analisando documento
         </span>
       </div>
@@ -103,7 +106,7 @@ export function MockupAnalise() {
         <div key={i} className="h-3 rounded bg-stone-100" style={{ width: `${w}%` }} />
       ))}
       <div
-        className="pointer-events-none absolute inset-x-0 h-16 bg-gradient-to-b from-emerald-100/0 via-emerald-100/70 to-emerald-100/0"
+        className={`pointer-events-none absolute inset-x-0 h-16 bg-gradient-to-b ${c.gradScan}`}
         style={{ animation: "cf-scan 2.4s ease-in-out infinite" }}
       />
       <style>{`
@@ -141,11 +144,12 @@ export function MockupAchado() {
   );
 }
 
-export function MockupDefesa() {
+export function MockupDefesa({ cor = "emerald" }: { cor?: CorVertical }) {
+  const c = CORES[cor];
   return (
     <div className="flex h-full flex-col justify-center gap-5 rounded-3xl border border-stone-200 bg-white p-6 sm:p-8"
       style={SOMBRA_CARD}>
-      <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-700 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide text-white">
+      <span className={`inline-flex w-fit items-center gap-1.5 rounded-full ${c.bg700} px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide text-white`}>
         <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
         Defesa pronta
       </span>
@@ -156,7 +160,7 @@ export function MockupDefesa() {
         ))}
       </div>
       <div className="flex flex-wrap gap-3 border-t border-stone-100 pt-4">
-        <span className="inline-flex items-center gap-2 rounded-lg bg-emerald-700 px-4 py-2 text-xs font-semibold text-white">
+        <span className={`inline-flex items-center gap-2 rounded-lg ${c.bg700} px-4 py-2 text-xs font-semibold text-white`}>
           <Copy className="h-3.5 w-3.5" /> Copiar texto
         </span>
         <span className="inline-flex items-center gap-2 rounded-lg border border-stone-200 px-4 py-2 text-xs font-semibold text-stone-700">
@@ -206,7 +210,8 @@ const ETAPAS: Etapa[] = [
   },
 ];
 
-export default function ComoFuncionaScroll() {
+export default function ComoFuncionaScroll({ cor = "emerald" }: { cor?: CorVertical }) {
+  const c = CORES[cor];
   const trackRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
   const stepsColRef = useRef<HTMLDivElement>(null);
@@ -471,7 +476,7 @@ export default function ComoFuncionaScroll() {
           Como funciona
         </p>
         <h2 className="font-display mx-auto mb-4 max-w-2xl text-center text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">
-          Quatro etapas, nessa <span className="text-emerald-600">ordem</span>
+          Quatro etapas, nessa <span className={c.text600}>ordem</span>
         </h2>
         <p className="mx-auto mb-12 max-w-xl text-center text-base leading-relaxed text-stone-600 lg:mb-0">
           Do documento que você recebeu até a defesa pronta para protocolar.
@@ -492,11 +497,11 @@ export default function ComoFuncionaScroll() {
               data-solido="false"
               className="group flex items-center gap-5"
             >
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border transition-colors duration-500 group-data-[solido=false]:border-stone-300 group-data-[solido=false]:bg-stone-50 group-data-[solido=false]:text-stone-300 group-data-[solido=true]:border-emerald-700 group-data-[solido=true]:bg-emerald-700 group-data-[solido=true]:text-white">
+              <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border transition-colors duration-500 group-data-[solido=false]:border-stone-300 group-data-[solido=false]:bg-stone-50 group-data-[solido=false]:text-stone-300 ${c.groupDataSolidoBorder700} ${c.groupDataSolidoBg700} group-data-[solido=true]:text-white`}>
                 <e.Icone className="h-5 w-5" strokeWidth={1.5} />
               </div>
               <div className="min-w-0 flex-1">
-                <span className="font-mono text-xs tracking-widest text-emerald-700">
+                <span className={`font-mono text-xs tracking-widest ${c.text700}`}>
                   {e.numero}
                 </span>
                 <h3 className="font-display mt-1 text-lg font-semibold tracking-tight text-stone-900">
@@ -506,7 +511,7 @@ export default function ComoFuncionaScroll() {
                   {e.texto}
                 </p>
                 <div className="mt-4 h-56 opacity-40 blur-[2px] transition-all duration-700 group-data-[solido=true]:opacity-100 group-data-[solido=true]:blur-none">
-                  <e.Mockup />
+                  <e.Mockup cor={cor} />
                 </div>
               </div>
             </li>
@@ -542,7 +547,7 @@ export default function ComoFuncionaScroll() {
                 />
                 <path
                   ref={lineFillRef}
-                  stroke="#059669"
+                  stroke={c.hex600}
                   strokeWidth={2}
                   strokeLinecap="round"
                   fill="none"
@@ -560,12 +565,12 @@ export default function ComoFuncionaScroll() {
                         badgeRefs.current[i] = el;
                       }}
                       data-ativo={i === 0 ? "true" : "false"}
-                      className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border bg-stone-50 transition-colors duration-300 data-[ativo=true]:border-emerald-700 data-[ativo=true]:bg-emerald-700 data-[ativo=true]:text-white data-[ativo=false]:border-stone-300 data-[ativo=false]:bg-stone-50 data-[ativo=false]:text-stone-300 data-[visto=true]:border-emerald-700 data-[visto=true]:text-emerald-700"
+                      className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border bg-stone-50 transition-colors duration-300 ${c.dataAtivoTrueBorder700} ${c.dataAtivoTrueBg700} data-[ativo=true]:text-white data-[ativo=false]:border-stone-300 data-[ativo=false]:bg-stone-50 data-[ativo=false]:text-stone-300 ${c.dataVistoBorder700} ${c.dataVistoText700}`}
                     >
                       <e.Icone className="h-5 w-5" strokeWidth={1.5} />
                     </div>
                     <div className="min-w-0 pt-1.5">
-                      <span className="font-mono text-xs tracking-widest text-emerald-700">
+                      <span className={`font-mono text-xs tracking-widest ${c.text700}`}>
                         {e.numero}
                       </span>
                       <h3
@@ -594,7 +599,7 @@ export default function ComoFuncionaScroll() {
             <div className="flex flex-col justify-center">
               <span
                 ref={legendaRef}
-                className="mb-4 inline-flex w-fit items-center gap-2 rounded-full bg-emerald-700 px-4 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-wide text-white"
+                className={`mb-4 inline-flex w-fit items-center gap-2 rounded-full ${c.bg700} px-4 py-1.5 font-mono text-[11px] font-semibold uppercase tracking-wide text-white`}
               >
                 {ETAPAS[0].legenda}
               </span>
@@ -607,7 +612,7 @@ export default function ComoFuncionaScroll() {
                     }}
                     className={i === 0 ? "absolute inset-0" : "absolute inset-0 opacity-0"}
                   >
-                    <e.Mockup />
+                    <e.Mockup cor={cor} />
                   </div>
                 ))}
               </div>

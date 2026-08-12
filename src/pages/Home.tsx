@@ -136,7 +136,7 @@ const formatDocumentText = (text: string) => {
     }
     if (part.trim().toUpperCase().startsWith("- STATUS DA ANÁLISE:")) {
       return (
-        <strong key={index} className="text-emerald-800 font-bold block mb-2 text-lg">
+        <strong key={index} className="text-blue-800 font-bold block mb-2 text-lg">
           {part}
         </strong>
       );
@@ -192,7 +192,7 @@ const extractViabilidade = (result: string): Viabilidade | null => {
   const m = result.match(/VIABILIDADE DO RECURSO:\s*([A-Za-zÀ-ú]+)/i);
   if (!m) return null;
   const raw = m[1].trim().toLowerCase();
-  if (raw.startsWith("alt")) return { nivel: "Alta", cor: "text-emerald-700", bg: "bg-emerald-50", borda: "border-emerald-200" };
+  if (raw.startsWith("alt")) return { nivel: "Alta", cor: "text-blue-700", bg: "bg-blue-50", borda: "border-blue-200" };
   if (raw.startsWith("méd") || raw.startsWith("med")) return { nivel: "Média", cor: "text-amber-700", bg: "bg-amber-50", borda: "border-amber-200" };
   if (raw.startsWith("baix")) return { nivel: "Baixa", cor: "text-red-700", bg: "bg-red-50", borda: "border-red-200" };
   return null;
@@ -946,20 +946,20 @@ export default function App() {
           </a>
 
           <nav className="hidden items-center gap-5 text-sm font-medium text-slate-600 lg:flex">
-            <a href="#como-funciona" className="transition hover:text-emerald-600">Como funciona</a>
-            <a href="#seguranca" className="transition hover:text-emerald-600">Segurança</a>
-            <a href="#guias" className="transition hover:text-emerald-600">Guias</a>
-            <a href="/simulador-pontos" className="transition hover:text-emerald-600">Simulador</a>
-            <a href="/infracao" className="transition hover:text-emerald-600">Códigos</a>
-            <a href="#faq-seo" className="transition hover:text-emerald-600">Dúvidas</a>
-            <a href="/multa-de-transito/blog" className="transition hover:text-emerald-600">Blog</a>
-            <a href="/procon" className="transition hover:text-emerald-600">Procon</a>
-            <a href="/vigilancia-sanitaria" className="transition hover:text-emerald-600">Vigilância</a>
-            <a href="/energia" className="transition hover:text-emerald-600">Energia</a>
-            <a href="/ibama" className="transition hover:text-emerald-600">IBAMA</a>
+            <a href="#como-funciona" className="transition hover:text-blue-600">Como funciona</a>
+            <a href="#seguranca" className="transition hover:text-blue-600">Segurança</a>
+            <a href="#guias" className="transition hover:text-blue-600">Guias</a>
+            <a href="/simulador-pontos" className="transition hover:text-blue-600">Simulador</a>
+            <a href="/infracao" className="transition hover:text-blue-600">Códigos</a>
+            <a href="#faq-seo" className="transition hover:text-blue-600">Dúvidas</a>
+            <a href="/multa-de-transito/blog" className="transition hover:text-blue-600">Blog</a>
+            <a href="/procon" className="transition hover:text-blue-600">Procon</a>
+            <a href="/vigilancia-sanitaria" className="transition hover:text-blue-600">Vigilância</a>
+            <a href="/energia" className="transition hover:text-blue-600">Energia</a>
+            <a href="/ibama" className="transition hover:text-blue-600">IBAMA</a>
             <button
               onClick={() => setActiveModal("suporte")}
-              className="font-semibold text-emerald-600 transition hover:text-emerald-700"
+              className="font-semibold text-blue-600 transition hover:text-blue-700"
             >
               Suporte
             </button>
@@ -967,7 +967,7 @@ export default function App() {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex rounded-lg p-2 text-slate-600 transition hover:bg-slate-50 hover:text-emerald-600 lg:hidden"
+            className="flex rounded-lg p-2 text-slate-600 transition hover:bg-slate-50 hover:text-blue-600 lg:hidden"
             aria-label="Menu"
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -994,7 +994,7 @@ export default function App() {
                 <a href="/ibama" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">IBAMA</a>
                 <button
                   onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
-                  className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-3 text-left font-semibold text-emerald-700 transition"
+                  className="flex items-center justify-between rounded-lg bg-blue-50 px-3 py-3 text-left font-semibold text-blue-700 transition"
                 >
                   <span>Central de suporte</span>
                   <MessageSquare className="h-4 w-4" />
@@ -1022,7 +1022,7 @@ export default function App() {
             </div>
             <button
               onClick={() => { setShowFomoBanner(false); setIsResultModalOpen(true); }}
-              className="w-full whitespace-nowrap rounded-lg bg-emerald-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 sm:w-auto"
+              className="w-full whitespace-nowrap rounded-lg bg-blue-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700 sm:w-auto"
             >
               Ver resultado
             </button>
@@ -1034,10 +1034,11 @@ export default function App() {
           duplicar título em dois blocos separados. */}
       <div id="inicio">
         <HeroFluxo
+        cor="blue"
         titulo={
           <>
             Consulta de multa de trânsito online: descubra se a sua dá pra
-            recorrer, <span className="text-emerald-600">grátis</span>
+            recorrer, <span className="text-blue-600">grátis</span>
           </>
         }
         descricao={
@@ -1046,13 +1047,13 @@ export default function App() {
             encontrar falha, você não paga nada.
             <span className="mt-3 flex flex-wrap items-center gap-3 text-sm text-stone-500 sm:gap-5">
               <span className="flex items-center gap-1.5">
-                <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
+                <ShieldCheck className="h-4 w-4 text-blue-600" /> Análise gratuita
               </span>
               <span className="flex items-center gap-1.5">
-                <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
+                <Lock className="h-4 w-4 text-blue-600" /> Sem cadastro
               </span>
               <span className="flex items-center gap-1.5">
-                <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
+                <Timer className="h-4 w-4 text-blue-600" /> Resultado imediato
               </span>
             </span>
           </>
@@ -1083,7 +1084,7 @@ export default function App() {
               <div className="relative mx-auto flex max-w-xs justify-center overflow-hidden rounded-xl">
                 {imageFile?.type === "application/pdf" ? (
                   <div className="flex h-32 w-32 items-center justify-center rounded-xl border border-slate-200 bg-slate-50">
-                    <FileText className="h-14 w-14 text-emerald-600" />
+                    <FileText className="h-14 w-14 text-blue-600" />
                   </div>
                 ) : (
                   <img src={previewUrl} alt="Preview da multa" className="h-auto max-h-48 w-full object-cover" />
@@ -1140,7 +1141,7 @@ export default function App() {
           <div className="text-center">
             <div className="mb-8">
               <h2 className="mb-2 text-2xl font-bold text-slate-900 sm:text-3xl">
-                Suba <span className="text-emerald-600">agora</span> sua multa
+                Suba <span className="text-blue-600">agora</span> sua multa
                 e verifique se ela pode ser anulada
               </h2>
               <p className="text-base text-slate-600">
@@ -1153,11 +1154,11 @@ export default function App() {
                 <button
                   key={v.id}
                   onClick={() => handleViolationSelect(v.name)}
-                  className="group flex flex-col items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-white p-6 text-slate-800 transition hover:border-emerald-300 hover:shadow-md"
+                  className="group flex flex-col items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-white p-6 text-slate-800 transition hover:border-blue-300 hover:shadow-md"
                 >
-                  <v.icon className="mb-1 h-8 w-8 text-slate-400 transition group-hover:text-emerald-600" />
+                  <v.icon className="mb-1 h-8 w-8 text-slate-400 transition group-hover:text-blue-600" />
                   <div className="text-center">
-                    <span className="block text-[15px] font-bold leading-tight text-slate-900 group-hover:text-emerald-700">
+                    <span className="block text-[15px] font-bold leading-tight text-slate-900 group-hover:text-blue-700">
                       {v.name}
                     </span>
                     <span className="mt-1 block text-sm text-slate-500">{v.subtitle}</span>
@@ -1172,7 +1173,7 @@ export default function App() {
       {/* COMO FUNCIONA — mesmo mecanismo de scroll fixo (pin/scrub) da home,
           reaproveitado como está por enquanto; texto específico de trânsito
           entra quando a referência de imagem chegar. */}
-      <ComoFuncionaScroll />
+      <ComoFuncionaScroll cor="blue" />
 
       <section className="border-t border-slate-100 bg-slate-50">
         <div className="mx-auto max-w-5xl px-4 py-16">
@@ -1192,11 +1193,11 @@ export default function App() {
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.45 }}
               >
-                <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50">
-                  <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+                <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50">
+                  <CheckCircle2 className="h-5 w-5 text-blue-600" />
                 </div>
                 <div>
-                  <span className="text-xs font-semibold uppercase tracking-wide text-emerald-700">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-blue-700">
                     Viabilidade alta
                   </span>
                   <p className="mt-1 text-sm leading-relaxed text-slate-600">
@@ -1250,9 +1251,10 @@ export default function App() {
       </section>
 
       <EscolhaOrgao
+        cor="blue"
         titulo={
           <>
-            Descubra se ela pode ser <span className="text-emerald-600">anulada</span>
+            Descubra se ela pode ser <span className="text-blue-600">anulada</span>
           </>
         }
         subtitulo="A mesma análise gratuita vale para multa de trânsito, Procon, vigilância sanitária, energia e Ibama."
@@ -1262,7 +1264,7 @@ export default function App() {
       <section id="seguranca" className="border-t border-slate-100 bg-white">
         <div className="mx-auto max-w-5xl px-4 py-16">
           <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-            Seus dados <span className="text-emerald-600">100% seguros</span>
+            Seus dados <span className="text-blue-600">100% seguros</span>
           </h2>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
@@ -1273,7 +1275,7 @@ export default function App() {
               viewport={{ once: true, amount: 0.4 }}
               transition={{ duration: 0.45 }}
             >
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                 <Lock className="h-6 w-6" />
               </div>
               <h3 className="mb-2 text-base font-bold text-slate-900">Zero armazenamento</h3>
@@ -1329,7 +1331,7 @@ export default function App() {
       <section id="faq-seo" className="border-t border-slate-100 bg-slate-50">
         <div className="mx-auto max-w-4xl px-4 py-16">
           <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-            Dúvidas <span className="text-emerald-600">frequentes</span>
+            Dúvidas <span className="text-blue-600">frequentes</span>
           </h2>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -1396,7 +1398,7 @@ export default function App() {
         <div className="mx-auto max-w-5xl px-4 py-16">
           <div className="mb-10 text-center">
             <h2 className="mb-3 text-2xl font-bold text-slate-900 sm:text-3xl">
-              Ferramentas <span className="text-emerald-600">gratuitas</span>
+              Ferramentas <span className="text-blue-600">gratuitas</span>
             </h2>
             <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600">
               Consulte, calcule e entenda sua situação antes mesmo de enviar o documento.
@@ -1405,11 +1407,11 @@ export default function App() {
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <Reveal delay={0}>
-              <a href="/simulador-pontos" className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-emerald-300 hover:shadow-md">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+              <a href="/simulador-pontos" className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-blue-300 hover:shadow-md">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                   <Scale className="h-6 w-6" />
                 </div>
-                <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 transition group-hover:text-emerald-700">
+                <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 transition group-hover:text-blue-700">
                   Simulador de pontos na CNH
                 </h3>
                 <p className="text-sm leading-relaxed text-slate-600">
@@ -1420,11 +1422,11 @@ export default function App() {
             </Reveal>
 
             <Reveal delay={0.08}>
-              <a href="/infracao" className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-emerald-300 hover:shadow-md">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+              <a href="/infracao" className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-blue-300 hover:shadow-md">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                   <FileText className="h-6 w-6" />
                 </div>
-                <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 transition group-hover:text-emerald-700">
+                <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 transition group-hover:text-blue-700">
                   Consulta de código de infração
                 </h3>
                 <p className="text-sm leading-relaxed text-slate-600">
@@ -1443,7 +1445,7 @@ export default function App() {
           <div className="mb-10 text-center">
             <h2 className="mb-3 text-2xl font-bold text-slate-900 sm:text-3xl">
               Guias para recorrer de multa por tipo de{" "}
-              <span className="text-emerald-600">infração</span>
+              <span className="text-blue-600">infração</span>
             </h2>
             <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600">
               Além da análise automática, reunimos guias completos sobre como
@@ -1457,12 +1459,12 @@ export default function App() {
               <Reveal key={guia.slug} delay={(i % 3) * 0.06}>
                 <a
                   href={`/blog/${guia.slug}`}
-                  className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-5 transition hover:border-emerald-300 hover:shadow-md"
+                  className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-5 transition hover:border-blue-300 hover:shadow-md"
                 >
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-50 text-emerald-600 transition group-hover:bg-emerald-50">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-50 text-blue-600 transition group-hover:bg-blue-50">
                     <FileText className="h-5 w-5" />
                   </div>
-                  <span className="text-sm font-bold leading-snug text-slate-800 transition group-hover:text-emerald-700">
+                  <span className="text-sm font-bold leading-snug text-slate-800 transition group-hover:text-blue-700">
                     {guia.titulo}
                   </span>
                 </a>
@@ -1488,7 +1490,7 @@ export default function App() {
         <div className="mx-auto max-w-3xl px-4 py-16">
           <h2 className="mb-3 text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">
             Como recorrer de uma multa de trânsito{" "}
-            <span className="text-emerald-600">no Brasil</span>
+            <span className="text-blue-600">no Brasil</span>
           </h2>
           <p className="mb-10 text-[16.5px] leading-[1.75] text-slate-600">
             Recorrer de uma multa é um direito garantido pelo Código de Trânsito
@@ -1500,7 +1502,7 @@ export default function App() {
           <div className="space-y-5">
             {/* Bloco 1 */}
             <Reveal delay={0} className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
-              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                 <Timer className="h-5 w-5" />
               </div>
               <div>
@@ -1521,7 +1523,7 @@ export default function App() {
 
             {/* Bloco 2 */}
             <Reveal delay={0} className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
-              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                 <FileText className="h-5 w-5" />
               </div>
               <div>
@@ -1542,7 +1544,7 @@ export default function App() {
 
             {/* Bloco 3 */}
             <Reveal delay={0} className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
-              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                 <Camera className="h-5 w-5" />
               </div>
               <div>
@@ -1561,7 +1563,7 @@ export default function App() {
 
             {/* Bloco 4 */}
             <Reveal delay={0} className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
-              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                 <ShieldCheck className="h-5 w-5" />
               </div>
               <div>
@@ -1579,8 +1581,8 @@ export default function App() {
             </Reveal>
 
             {/* Bloco 5 */}
-            <Reveal delay={0} className="flex gap-4 rounded-xl border border-emerald-200 bg-emerald-50/40 p-6 sm:gap-5 sm:p-7">
-              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+            <Reveal delay={0} className="flex gap-4 rounded-xl border border-blue-200 bg-blue-50/40 p-6 sm:gap-5 sm:p-7">
+              <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-blue-100 text-blue-700">
                 <Scale className="h-5 w-5" />
               </div>
               <div>
@@ -1615,19 +1617,19 @@ export default function App() {
           </div>
 
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
-            <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
+            <a href="/procon" className="text-slate-600 transition hover:text-blue-600">
               Procon
             </a>
-            <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
+            <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-blue-600">
               Vigilância Sanitária
             </a>
-            <a href="/energia" className="text-slate-600 transition hover:text-emerald-600">
+            <a href="/energia" className="text-slate-600 transition hover:text-blue-600">
               Conta de luz
             </a>
-            <a href="/ibama" className="text-slate-600 transition hover:text-emerald-600">
+            <a href="/ibama" className="text-slate-600 transition hover:text-blue-600">
               IBAMA
             </a>
-            <a href="/blog" className="text-slate-600 transition hover:text-emerald-600">
+            <a href="/blog" className="text-slate-600 transition hover:text-blue-600">
               Blog
             </a>
           </nav>
@@ -1648,7 +1650,7 @@ export default function App() {
             <button onClick={() => setActiveModal("termos")} className="transition hover:text-slate-600">Termos</button>
             <button onClick={() => setActiveModal("privacidade")} className="transition hover:text-slate-600">Privacidade</button>
             <button onClick={() => setActiveModal("aviso")} className="transition hover:text-slate-600">Legal</button>
-            <button onClick={() => setActiveModal("suporte")} className="text-emerald-600 transition hover:text-emerald-700">Suporte</button>
+            <button onClick={() => setActiveModal("suporte")} className="text-blue-600 transition hover:text-blue-700">Suporte</button>
           </div>
         </div>
       </footer>
@@ -1667,7 +1669,7 @@ export default function App() {
               >
                 <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
                   <div>
-                    <p className="mb-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-600">Análise gratuita</p>
+                    <p className="mb-0.5 text-[10px] font-semibold uppercase tracking-wide text-blue-600">Análise gratuita</p>
                     <h3 className="text-base font-bold leading-tight text-slate-900">{selectedViolation}</h3>
                   </div>
                   <button onClick={() => setIsUploadModalOpen(false)} className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
@@ -1684,7 +1686,7 @@ export default function App() {
                     </p>
                   </div>
 
-                  <div className="group relative cursor-pointer rounded-lg border-2 border-dashed border-emerald-300 bg-emerald-50/30 text-center transition hover:border-emerald-500 hover:bg-emerald-50/60">
+                  <div className="group relative cursor-pointer rounded-lg border-2 border-dashed border-blue-300 bg-blue-50/30 text-center transition hover:border-blue-500 hover:bg-blue-50/60">
                     <input
                       type="file"
                       ref={fileInputRef}
@@ -1696,7 +1698,7 @@ export default function App() {
                       title="Clique para enviar a foto"
                     />
                     <div className="pointer-events-none flex flex-col items-center justify-center space-y-3 py-8">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white transition duration-200 group-hover:scale-105">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white transition duration-200 group-hover:scale-105">
                         <Camera className="h-7 w-7" />
                       </div>
                       <div>
@@ -1746,9 +1748,9 @@ export default function App() {
                     <div className="space-y-5 pt-1">
                       <p className="text-[15px] text-slate-600">Selecione o canal de atendimento para falar com o nosso time:</p>
                       <div className="flex flex-col gap-3">
-                        <a href="https://wa.me/5513996485501?text=Olá!%20Preciso%20de%20ajuda%20com%20o%20CheckMulta." target="_blank" rel="noopener noreferrer" className="flex w-full items-center gap-3 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-left text-emerald-900 transition hover:bg-emerald-100">
-                          <MessageSquare className="h-5 w-5 flex-shrink-0 text-emerald-600" />
-                          <div><strong className="block text-sm font-semibold">Atendimento via WhatsApp</strong><span className="text-xs text-emerald-700">Fale direto com um analista</span></div>
+                        <a href="https://wa.me/5513996485501?text=Olá!%20Preciso%20de%20ajuda%20com%20o%20CheckMulta." target="_blank" rel="noopener noreferrer" className="flex w-full items-center gap-3 rounded-lg border border-blue-200 bg-blue-50 p-4 text-left text-blue-900 transition hover:bg-blue-100">
+                          <MessageSquare className="h-5 w-5 flex-shrink-0 text-blue-600" />
+                          <div><strong className="block text-sm font-semibold">Atendimento via WhatsApp</strong><span className="text-xs text-blue-700">Fale direto com um analista</span></div>
                         </a>
                         <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" className="flex w-full items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-left text-slate-900 transition hover:bg-slate-100">
                           <ClipboardList className="h-5 w-5 flex-shrink-0 text-slate-500" />
@@ -1788,16 +1790,16 @@ export default function App() {
                   {/* LOADING DA ANÁLISE */}
                   {isAnalyzing && (
                     <div className="mx-auto flex max-w-md flex-col items-center justify-center space-y-6 p-6">
-                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-blue-50 text-blue-600">
                         <Search className="h-10 w-10 animate-pulse" />
                       </div>
                       <h3 className="text-center text-xl font-bold text-slate-900">Processando documento</h3>
                       <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
-                        <motion.div className="absolute left-0 top-0 h-full w-1/2 rounded-full bg-emerald-600" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                        <motion.div className="absolute left-0 top-0 h-full w-1/2 rounded-full bg-blue-600" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
                       </div>
                       <div className="flex min-h-[60px] items-center justify-center">
                         <AnimatePresence mode="wait">
-                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="text-center text-base font-semibold text-emerald-700">
+                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="text-center text-base font-semibold text-blue-700">
                             {LOADER_MESSAGES[loaderIndex]}
                           </motion.p>
                         </AnimatePresence>
@@ -1827,7 +1829,7 @@ export default function App() {
 
                       {rejeicaoInfo.tipo === "sem_falha" && (
                         <>
-                          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-blue-50 text-blue-600">
                             <ShieldCheck className="h-10 w-10" />
                           </div>
                           <div>
@@ -1852,7 +1854,7 @@ export default function App() {
 
                       {rejeicaoInfo.tipo === "fora_escopo" && rejeicaoInfo.motivo.toLowerCase().includes("free flow") && (
                         <>
-                          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-blue-50 text-blue-600">
                             <ShieldCheck className="h-10 w-10" />
                           </div>
                           <div>
@@ -1869,9 +1871,9 @@ export default function App() {
                               cancelados, sem necessidade de recurso.
                             </p>
                           </div>
-                          <div className="w-full rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-left">
-                            <p className="mb-2 text-sm font-semibold text-emerald-900">O que fazer agora</p>
-                            <p className="text-sm leading-relaxed text-emerald-900">
+                          <div className="w-full rounded-lg border border-blue-200 bg-blue-50 p-4 text-left">
+                            <p className="mb-2 text-sm font-semibold text-blue-900">O que fazer agora</p>
+                            <p className="text-sm leading-relaxed text-blue-900">
                               Consulte os débitos de pedágio da sua placa junto à concessionária
                               da rodovia ou na plataforma oficial do governo, e pague a tarifa
                               dentro do prazo. Confirme a data limite vigente, pois o prazo é
@@ -1984,7 +1986,7 @@ export default function App() {
                             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
                               {multaData.placa && (
                                 <div className="flex items-center gap-2.5">
-                                  <Tag className="h-4 w-4 flex-shrink-0 text-emerald-600" />
+                                  <Tag className="h-4 w-4 flex-shrink-0 text-blue-600" />
                                   <div>
                                     <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Placa</p>
                                     <p className="text-[15px] font-bold text-slate-900">{multaData.placa}</p>
@@ -1993,7 +1995,7 @@ export default function App() {
                               )}
                               {multaData.data && (
                                 <div className="flex items-center gap-2.5">
-                                  <Calendar className="h-4 w-4 flex-shrink-0 text-emerald-600" />
+                                  <Calendar className="h-4 w-4 flex-shrink-0 text-blue-600" />
                                   <div>
                                     <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Data</p>
                                     <p className="text-[15px] font-bold text-slate-900">{multaData.data}</p>
@@ -2002,7 +2004,7 @@ export default function App() {
                               )}
                               {multaData.valor && (
                                 <div className="flex items-center gap-2.5">
-                                  <DollarSign className="h-4 w-4 flex-shrink-0 text-emerald-600" />
+                                  <DollarSign className="h-4 w-4 flex-shrink-0 text-blue-600" />
                                   <div>
                                     <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Valor</p>
                                     <p className="text-[15px] font-bold text-slate-900">R$ {multaData.valor}</p>
@@ -2011,7 +2013,7 @@ export default function App() {
                               )}
                               {multaData.ait && (
                                 <div className="flex items-center gap-2.5">
-                                  <FileText className="h-4 w-4 flex-shrink-0 text-emerald-600" />
+                                  <FileText className="h-4 w-4 flex-shrink-0 text-blue-600" />
                                   <div>
                                     <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">AIT</p>
                                     <p className="text-[13px] font-bold text-slate-900">{multaData.ait}</p>
@@ -2022,7 +2024,7 @@ export default function App() {
 
                             {deadline && (
                               <div className={`mt-4 flex items-center gap-3 border-t border-slate-200 pt-4 ${deadline.urgente ? "rounded-lg border border-amber-200 bg-amber-50 p-3" : ""}`}>
-                                <Timer className={`h-5 w-5 flex-shrink-0 ${deadline.urgente ? "text-amber-600" : "text-emerald-600"}`} />
+                                <Timer className={`h-5 w-5 flex-shrink-0 ${deadline.urgente ? "text-amber-600" : "text-blue-600"}`} />
                                 <div>
                                   <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Prazo para recurso</p>
                                   <p className={`text-[15px] font-bold ${deadline.urgente ? "text-amber-700" : "text-slate-900"}`}>
@@ -2046,13 +2048,13 @@ if (typeof window !== "undefined" && window.gtag) {
 const baixa = v?.nivel === "Baixa";
                         return (
                           <div className="flex items-start space-x-4">
-                            <CheckCircle2 className={`mt-1 h-7 w-7 flex-shrink-0 ${baixa ? "text-amber-500" : "text-emerald-600"}`} />
+                            <CheckCircle2 className={`mt-1 h-7 w-7 flex-shrink-0 ${baixa ? "text-amber-500" : "text-blue-600"}`} />
                             <div>
                               <h2 className="mb-2 text-xl font-bold leading-tight text-slate-900 sm:text-2xl">
                                 {baixa ? (
                                   <>Analisamos sua multa e há um <span className="text-amber-600">ângulo possível</span></>
                                 ) : (
-                                  <>Encontramos uma <span className="text-emerald-600">brecha legal</span> nesta multa</>
+                                  <>Encontramos uma <span className="text-blue-600">brecha legal</span> nesta multa</>
                                 )}
                               </h2>
                               <p className="leading-relaxed text-slate-600">
@@ -2108,21 +2110,21 @@ if (!v) return null;
                           que seria rejeitada por intempestividade. */}
                       {!isExpiredBypassActive && (
                       <>
-                      <div className="rounded-lg border border-emerald-200 bg-emerald-50/50 p-5 text-left">
+                      <div className="rounded-lg border border-blue-200 bg-blue-50/50 p-5 text-left">
                         <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-slate-900 sm:text-lg">
-                          <Scale className="h-5 w-5 text-emerald-600" /> O que você recebe por R$ {precoDefesa.toFixed(2).replace(".", ",")}
+                          <Scale className="h-5 w-5 text-blue-600" /> O que você recebe por R$ {precoDefesa.toFixed(2).replace(".", ",")}
                         </h3>
                         <ul className="space-y-3 text-[13px] text-slate-700 sm:text-[15px]">
                           <li className="flex items-start gap-3">
-                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-600" />
                             <span>Petição de defesa prévia completa, com fundamentação no Art. 280 do CTB e no MBFT</span>
                           </li>
                           <li className="flex items-start gap-3">
-                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-600" />
                             <span>Documento pronto para copiar e protocolar. Sem advogado necessário</span>
                           </li>
                           <li className="flex items-start gap-3">
-                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-600" />
                             <span>Entrega imediata após o pagamento. Gerado em segundos pela IA</span>
                           </li>
                         </ul>
@@ -2145,13 +2147,13 @@ if (!v) return null;
                       <button
                         onClick={handleCheckout}
                         disabled={isCheckoutLoading}
-                        className="flex w-full flex-col items-center justify-center rounded-lg bg-emerald-600 px-4 py-4 font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-75"
+                        className="flex w-full flex-col items-center justify-center rounded-lg bg-blue-600 px-4 py-4 font-semibold text-white transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-75"
                       >
                         <div className="flex flex-row items-center justify-center gap-2 text-center text-lg leading-tight">
                           {isCheckoutLoading ? <Loader2 className="h-6 w-6 flex-shrink-0 animate-spin" /> : <Scale className="h-6 w-6 flex-shrink-0" />}
                           <span>{isCheckoutLoading ? "Gerando PIX..." : "Gerar minha petição agora"}</span>
                         </div>
-                        <span className="mt-1 text-sm font-normal text-emerald-50">Pagamento único · R$ {precoDefesa.toFixed(2).replace(".", ",")} · Entrega imediata</span>
+                        <span className="mt-1 text-sm font-normal text-blue-50">Pagamento único · R$ {precoDefesa.toFixed(2).replace(".", ",")} · Entrega imediata</span>
                       </button>
                       <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
                         <p className="mb-1 text-[11px] font-bold uppercase tracking-wide text-amber-900 sm:text-xs">
@@ -2172,25 +2174,25 @@ if (!v) return null;
                   {/* LOADING DA GERAÇÃO DE DEFESA */}
                   {isGeneratingDefense && (
                     <div className="mx-auto flex max-w-md flex-col items-center justify-center space-y-6 p-8">
-                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-blue-50 text-blue-600">
                         <FileText className="h-10 w-10 animate-bounce" />
                       </div>
                       <h3 className="text-center text-xl font-bold text-slate-900">Redigindo sua defesa</h3>
                       <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
-                        <motion.div className="absolute left-0 top-0 h-full w-1/2 rounded-full bg-emerald-600" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                        <motion.div className="absolute left-0 top-0 h-full w-1/2 rounded-full bg-blue-600" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
                       </div>
                       <div className="flex min-h-[60px] items-center justify-center">
                         <AnimatePresence mode="wait">
-                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="text-center text-base font-semibold text-emerald-700">
+                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="text-center text-base font-semibold text-blue-700">
                             {LOADER_MESSAGES[loaderIndex]}
                           </motion.p>
                         </AnimatePresence>
                       </div>
-                      <div className="w-full rounded-lg border border-emerald-200 bg-emerald-50 p-4">
-                        <p className="flex items-center justify-center gap-2 text-center text-base font-bold text-emerald-800">
+                      <div className="w-full rounded-lg border border-blue-200 bg-blue-50 p-4">
+                        <p className="flex items-center justify-center gap-2 text-center text-base font-bold text-blue-800">
                           <ShieldCheck className="h-5 w-5" /> Pagamento confirmado
                         </p>
-                        <p className="mt-1 text-center text-sm text-emerald-700">Por favor, aguarde e não feche esta janela.</p>
+                        <p className="mt-1 text-center text-sm text-blue-700">Por favor, aguarde e não feche esta janela.</p>
                       </div>
                     </div>
                   )}
@@ -2207,7 +2209,7 @@ if (!v) return null;
                           Ocorreu uma instabilidade, mas <strong className="font-semibold text-slate-900">o seu pagamento está seguro.</strong> Use o botão abaixo para receber seu arquivo pelo suporte.
                         </p>
                       </div>
-                      <a href="https://wa.me/5513996485501?text=Olá!%20Eu%20paguei%20pelo%20recurso%20mas%20a%20tela%20deu%20erro%20ao%20carregar%20a%20petição.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700">
+                      <a href="https://wa.me/5513996485501?text=Olá!%20Eu%20paguei%20pelo%20recurso%20mas%20a%20tela%20deu%20erro%20ao%20carregar%20a%20petição.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700">
                         <MessageSquare className="h-5 w-5" /> Falar com o suporte no WhatsApp
                       </a>
                     </div>
@@ -2216,7 +2218,7 @@ if (!v) return null;
                   {/* TELA DE SUCESSO */}
                   {defenseResult && showSuccessMessage && (
                     <div className="mx-auto flex w-full max-w-md flex-col items-center space-y-5 p-4 text-center sm:space-y-6 sm:p-10">
-                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-blue-50 text-blue-600">
                         <CheckCircle2 className="h-12 w-12" />
                       </div>
                       <div>
@@ -2228,11 +2230,11 @@ if (!v) return null;
                       <div className="mt-4 flex w-full flex-col items-center gap-3 sm:mt-6 sm:gap-4">
                         <button
                           onClick={() => setShowSuccessMessage(false)}
-                          className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-3.5 text-base font-semibold text-white transition hover:bg-emerald-700"
+                          className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-4 py-3.5 text-base font-semibold text-white transition hover:bg-blue-700"
                         >
                           Ver minha petição <Check className="h-5 w-5" />
                         </button>
-                        <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-emerald-600">
+                        <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-blue-600">
                           Precisa de ajuda? Fale com o suporte.
                         </button>
                       </div>
@@ -2252,12 +2254,12 @@ if (!v) return null;
                           <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos seus dados reais antes de protocolar.
                         </p>
                       </div>
-                      <div className="rounded-r-lg border-l-4 border-emerald-400 bg-emerald-50 p-4">
+                      <div className="rounded-r-lg border-l-4 border-blue-400 bg-blue-50 p-4">
                         <div className="mb-3 flex items-center gap-2">
-                          <Send className="h-4 w-4 flex-shrink-0 text-emerald-700" />
-                          <p className="text-sm font-semibold text-emerald-900">Para onde enviar essa defesa</p>
+                          <Send className="h-4 w-4 flex-shrink-0 text-blue-700" />
+                          <p className="text-sm font-semibold text-blue-900">Para onde enviar essa defesa</p>
                         </div>
-                        <p className="text-sm leading-relaxed text-emerald-800">
+                        <p className="text-sm leading-relaxed text-blue-800">
                           O canal de protocolo depende de quem te multou. Se foi a{" "}
                           <strong className="font-semibold">PRF (rodovia federal)</strong>, use os links oficiais abaixo:
                         </p>
@@ -2268,7 +2270,7 @@ if (!v) return null;
                                 href={l.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 underline decoration-emerald-300 underline-offset-4 transition hover:text-emerald-800 hover:decoration-emerald-700"
+                                className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-700 underline decoration-blue-300 underline-offset-4 transition hover:text-blue-800 hover:decoration-blue-700"
                               >
                                 {l.texto}
                                 <ExternalLink className="h-3.5 w-3.5" />
@@ -2276,7 +2278,7 @@ if (!v) return null;
                             </li>
                           ))}
                         </ul>
-                        <p className="mt-3 text-sm leading-relaxed text-emerald-800">
+                        <p className="mt-3 text-sm leading-relaxed text-blue-800">
                           Se foi o <strong className="font-semibold">DETRAN do seu estado ou a prefeitura</strong>, cada um tem seu próprio site de protocolo — o endereço costuma constar na notificação recebida. Recurso indeferido nessa 1ª instância (JARI) segue para o CETRAN/CONTRANDIFE do seu estado.
                         </p>
                       </div>
@@ -2288,13 +2290,13 @@ if (!v) return null;
                       <div className="flex flex-col items-center gap-4 border-t border-slate-200 pt-6">
                         <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
                           <button onClick={handleCopy} className="flex w-full items-center justify-center space-x-2 rounded-lg border border-slate-300 bg-white px-8 py-3.5 text-base font-semibold text-slate-800 transition hover:bg-slate-50 sm:w-auto">
-                            {isCopied ? <><Check className="h-5 w-5 text-emerald-600" /><span className="text-emerald-600">Copiado</span></> : <><Copy className="h-5 w-5 text-slate-500" /><span>Copiar petição</span></>}
+                            {isCopied ? <><Check className="h-5 w-5 text-blue-600" /><span className="text-blue-600">Copiado</span></> : <><Copy className="h-5 w-5 text-slate-500" /><span>Copiar petição</span></>}
                           </button>
-                          <button onClick={handleDownload} className="flex w-full items-center justify-center space-x-2 rounded-lg bg-emerald-600 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-emerald-700 sm:w-auto">
+                          <button onClick={handleDownload} className="flex w-full items-center justify-center space-x-2 rounded-lg bg-blue-600 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-blue-700 sm:w-auto">
                             <Download className="h-5 w-5" /><span>Baixar .txt</span>
                           </button>
                         </div>
-                        <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-emerald-600">
+                        <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-blue-600">
                           Precisa de ajuda? Fale com o suporte.
                         </button>
                       </div>
@@ -2356,13 +2358,13 @@ if (!v) return null;
                   <div className="space-y-3">
                     <div className="flex items-center space-x-2 rounded-lg border border-slate-200 bg-slate-50 p-2.5">
                       <p className="flex-1 truncate px-2 text-left font-mono text-sm text-slate-500">{qrCode || "Gerando Pix..."}</p>
-                      <button onClick={handleCopyPix} className="rounded-lg border border-slate-200 bg-white p-2.5 text-slate-700 transition hover:border-emerald-300 hover:text-emerald-600">
-                        {isPixCopied ? <Check className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />}
+                      <button onClick={handleCopyPix} className="rounded-lg border border-slate-200 bg-white p-2.5 text-slate-700 transition hover:border-blue-300 hover:text-blue-600">
+                        {isPixCopied ? <Check className="h-4 w-4 text-blue-600" /> : <Copy className="h-4 w-4" />}
                       </button>
                     </div>
-                    <div className="flex items-start gap-2.5 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-left">
-                      <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
-                      <p className="text-[11px] leading-relaxed text-emerald-900">
+                    <div className="flex items-start gap-2.5 rounded-lg border border-blue-200 bg-blue-50 p-3 text-left">
+                      <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-600" />
+                      <p className="text-[11px] leading-relaxed text-blue-900">
                         <strong className="font-semibold">Garantia técnica:</strong> se a petição não for liberada em 10 segundos após o pagamento, garantimos reembolso via PIX.
                       </p>
                     </div>
@@ -2374,7 +2376,7 @@ if (!v) return null;
                     </div>
                   </div>
                   <div className="flex items-center justify-center gap-2 border-t border-slate-100 pt-4 text-sm font-medium text-slate-500">
-                    <RefreshCcw className="h-4 w-4 animate-spin text-emerald-600" />
+                    <RefreshCcw className="h-4 w-4 animate-spin text-blue-600" />
                     Aguardando o pagamento...
                   </div>
                 </div>
@@ -2395,8 +2397,8 @@ if (!v) return null;
               className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
             >
               <div className="mb-5 flex items-start justify-between">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50">
-                  <FileText className="h-6 w-6 text-emerald-600" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50">
+                  <FileText className="h-6 w-6 text-blue-600" />
                 </div>
                 <button
                   onClick={handleFecharRetomada}
@@ -2419,7 +2421,7 @@ if (!v) return null;
               <div className="space-y-3">
                 <button
                   onClick={handleAbrirDefesaSalva}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-blue-700"
                 >
                   Abrir minha defesa
                   <FileText className="h-4 w-4" />
@@ -2464,7 +2466,7 @@ if (!v) return null;
               <div className="space-y-3">
                 <button
                   onClick={handleCancelarNovaAnalise}
-                  className="w-full rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                  className="w-full rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-blue-700"
                 >
                   Não, manter minha defesa
                 </button>
@@ -2507,7 +2509,7 @@ if (!v) return null;
               <div className="space-y-3">
                 <button
                   onClick={handleVoltarParaDefesa}
-                  className="w-full rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                  className="w-full rounded-xl bg-blue-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-blue-700"
                   type="button"
                 >
                   Voltar e salvar

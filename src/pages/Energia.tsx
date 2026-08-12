@@ -95,7 +95,7 @@ type Viabilidade = { nivel: "Alta" | "Média" | "Baixa"; cor: string; bg: string
 const calcularViabilidade = (a: Analise | null): Viabilidade | null => {
   if (!a || !a.houve_achado) return null;
   if (a.quantidade_criticos > 0)
-    return { nivel: "Alta", cor: "text-emerald-700", bg: "bg-emerald-50", borda: "border-emerald-200" };
+    return { nivel: "Alta", cor: "text-amber-700", bg: "bg-amber-50", borda: "border-amber-200" };
   if (a.quantidade_atencao > 0)
     return { nivel: "Média", cor: "text-amber-700", bg: "bg-amber-50", borda: "border-amber-200" };
   return { nivel: "Baixa", cor: "text-red-700", bg: "bg-red-50", borda: "border-red-200" };
@@ -778,17 +778,17 @@ useEffect(() => {
           </a>
 
           <nav className="hidden items-center gap-5 text-sm font-medium text-slate-600 lg:flex">
-            <a href="#como-funciona" className="transition hover:text-emerald-600">Como funciona</a>
-            <a href="#seguranca" className="transition hover:text-emerald-600">Segurança</a>
-            <a href="#faq-energia" className="transition hover:text-emerald-600">Dúvidas</a>
-            <a href="/energia/blog" className="transition hover:text-emerald-600">Blog</a>
-            <a href="/multa-de-transito" className="transition hover:text-emerald-600">Trânsito</a>
-            <a href="/procon" className="transition hover:text-emerald-600">Procon</a>
-            <a href="/vigilancia-sanitaria" className="transition hover:text-emerald-600">Vigilância</a>
-            <a href="/ibama" className="transition hover:text-emerald-600">IBAMA</a>
+            <a href="#como-funciona" className="transition hover:text-amber-600">Como funciona</a>
+            <a href="#seguranca" className="transition hover:text-amber-600">Segurança</a>
+            <a href="#faq-energia" className="transition hover:text-amber-600">Dúvidas</a>
+            <a href="/energia/blog" className="transition hover:text-amber-600">Blog</a>
+            <a href="/multa-de-transito" className="transition hover:text-amber-600">Trânsito</a>
+            <a href="/procon" className="transition hover:text-amber-600">Procon</a>
+            <a href="/vigilancia-sanitaria" className="transition hover:text-amber-600">Vigilância</a>
+            <a href="/ibama" className="transition hover:text-amber-600">IBAMA</a>
             <button
               onClick={() => setActiveModal("suporte")}
-              className="font-semibold text-emerald-600 transition hover:text-emerald-700"
+              className="font-semibold text-amber-600 transition hover:text-amber-700"
             >
               Suporte
             </button>
@@ -796,7 +796,7 @@ useEffect(() => {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex rounded-lg p-2 text-slate-600 transition hover:bg-slate-50 hover:text-emerald-600 lg:hidden"
+            className="flex rounded-lg p-2 text-slate-600 transition hover:bg-slate-50 hover:text-amber-600 lg:hidden"
             aria-label="Menu"
           >
             {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -820,7 +820,7 @@ useEffect(() => {
                 <a href="/ibama" onClick={() => setIsMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 font-medium text-slate-700 transition hover:bg-slate-50">IBAMA</a>
                 <button
                   onClick={() => { setIsMobileMenuOpen(false); setActiveModal("suporte"); }}
-                  className="flex items-center justify-between rounded-lg bg-emerald-50 px-3 py-3 text-left font-semibold text-emerald-700 transition"
+                  className="flex items-center justify-between rounded-lg bg-amber-50 px-3 py-3 text-left font-semibold text-amber-700 transition"
                 >
                   <span>Central de suporte</span>
                   <MessageSquare className="h-4 w-4" />
@@ -848,7 +848,7 @@ useEffect(() => {
             </div>
             <button
               onClick={() => { setShowFomoBanner(false); setIsResultModalOpen(true); }}
-              className="w-full whitespace-nowrap rounded-lg bg-emerald-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700 sm:w-auto"
+              className="w-full whitespace-nowrap rounded-lg bg-amber-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-amber-700 sm:w-auto"
             >
               Ver resultado
             </button>
@@ -860,11 +860,12 @@ useEffect(() => {
           duplicar título em dois blocos separados. */}
       <div id="inicio">
         <HeroFluxo
+          cor="amber"
           tagSecao="Para quem recebeu cobrança retroativa"
           titulo={
             <>
               A distribuidora acusou irregularidade no seu medidor? Veja se a
-              cobrança tem falha, <span className="text-emerald-600">grátis</span>
+              cobrança tem falha, <span className="text-amber-600">grátis</span>
             </>
           }
           descricao={
@@ -874,13 +875,13 @@ useEffect(() => {
               não paga nada.
               <span className="mt-3 flex flex-wrap items-center gap-3 text-sm text-stone-500 sm:gap-5">
                 <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
+                  <ShieldCheck className="h-4 w-4 text-amber-600" /> Análise gratuita
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
+                  <Lock className="h-4 w-4 text-amber-600" /> Sem cadastro
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
+                  <Timer className="h-4 w-4 text-amber-600" /> Resultado imediato
                 </span>
               </span>
             </>
@@ -910,7 +911,7 @@ useEffect(() => {
               <div className="relative mx-auto flex max-w-xs justify-center overflow-hidden rounded-xl">
                 {imageFile?.type === "application/pdf" ? (
                   <div className="flex h-32 w-32 items-center justify-center rounded-xl border border-slate-200 bg-slate-50">
-                    <FileText className="h-14 w-14 text-emerald-600" />
+                    <FileText className="h-14 w-14 text-amber-600" />
                   </div>
                 ) : (
                   <img src={previewUrl} alt="Preview do documento" className="h-auto max-h-48 w-full object-cover" />
@@ -958,7 +959,7 @@ useEffect(() => {
           <div className="text-center">
             <div className="mb-8">
               <h2 className="mb-2 text-2xl font-bold text-slate-900 sm:text-3xl">
-                Suba <span className="text-emerald-600">agora</span> o documento
+                Suba <span className="text-amber-600">agora</span> o documento
                 e verifique se dá para contestar
               </h2>
               <p className="text-base text-slate-600">
@@ -971,11 +972,11 @@ useEffect(() => {
                 <button
                   key={t.id}
                   onClick={() => handleTipoSelect(t.name)}
-                  className="group flex flex-col items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-white p-6 text-slate-800 transition hover:border-emerald-300 hover:shadow-md"
+                  className="group flex flex-col items-center justify-center gap-2.5 rounded-xl border border-slate-200 bg-white p-6 text-slate-800 transition hover:border-amber-300 hover:shadow-md"
                 >
-                  <t.icon className="mb-1 h-8 w-8 text-slate-400 transition group-hover:text-emerald-600" />
+                  <t.icon className="mb-1 h-8 w-8 text-slate-400 transition group-hover:text-amber-600" />
                   <div className="text-center">
-                    <span className="block text-[15px] font-bold leading-tight text-slate-900 group-hover:text-emerald-700">
+                    <span className="block text-[15px] font-bold leading-tight text-slate-900 group-hover:text-amber-700">
                       {t.name}
                     </span>
                     <span className="mt-1 block text-sm text-slate-500">{t.subtitle}</span>
@@ -989,7 +990,7 @@ useEffect(() => {
 
       {/* COMO FUNCIONA — mesmo mecanismo de scroll fixo (pin/scrub) usado na
           home e nas outras verticais. */}
-      <ComoFuncionaScroll />
+      <ComoFuncionaScroll cor="amber" />
 
       <section className="border-t border-slate-100 bg-slate-50">
         <div className="mx-auto max-w-5xl px-4 py-16">
@@ -1053,7 +1054,7 @@ useEffect(() => {
         <div className="mx-auto max-w-5xl px-4 py-16">
           <div className="mb-10 text-center">
             <h2 className="mb-3 text-2xl font-bold text-slate-900 sm:text-3xl">
-              O que verificamos na sua <span className="text-emerald-600">cobrança</span>
+              O que verificamos na sua <span className="text-amber-600">cobrança</span>
             </h2>
             <p className="mx-auto max-w-2xl text-base leading-relaxed text-slate-600">
               A análise percorre as exigências da Resolução ANEEL nº 1.000/2021 em
@@ -1080,9 +1081,10 @@ useEffect(() => {
       </section>
 
       <EscolhaOrgao
+        cor="amber"
         titulo={
           <>
-            Descubra se ela pode ser <span className="text-emerald-600">anulada</span>
+            Descubra se ela pode ser <span className="text-amber-600">anulada</span>
           </>
         }
         subtitulo="A mesma análise gratuita vale para multa de trânsito, Procon, vigilância sanitária, energia e Ibama."
@@ -1092,12 +1094,12 @@ useEffect(() => {
       <section id="seguranca" className="border-t border-slate-100 bg-slate-50">
         <div className="mx-auto max-w-5xl px-4 py-16">
           <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-            Seus dados <span className="text-emerald-600">100% seguros</span>
+            Seus dados <span className="text-amber-600">100% seguros</span>
           </h2>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <Reveal delay={0} className="rounded-xl border border-slate-200 bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
                 <Lock className="h-6 w-6" />
               </div>
               <h3 className="mb-2 text-base font-bold text-slate-900">Zero armazenamento</h3>
@@ -1141,7 +1143,7 @@ useEffect(() => {
       <section id="faq-energia" className="border-t border-slate-100 bg-white">
         <div className="mx-auto max-w-4xl px-4 py-16">
           <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-            Dúvidas <span className="text-emerald-600">frequentes</span>
+            Dúvidas <span className="text-amber-600">frequentes</span>
           </h2>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
@@ -1212,7 +1214,7 @@ useEffect(() => {
         <div className="mx-auto max-w-3xl px-4 py-16">
           <h2 className="mb-8 text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">
             Como contestar uma cobrança de{" "}
-            <span className="text-emerald-600">recuperação de consumo</span>
+            <span className="text-amber-600">recuperação de consumo</span>
           </h2>
 
           <Reveal className="max-w-none" amount={0.15}>
@@ -1307,19 +1309,19 @@ useEffect(() => {
           </div>
 
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
-            <a href="/multa-de-transito" className="text-slate-600 transition hover:text-emerald-600">
+            <a href="/multa-de-transito" className="text-slate-600 transition hover:text-amber-600">
               Multas de trânsito
             </a>
-            <a href="/procon" className="text-slate-600 transition hover:text-emerald-600">
+            <a href="/procon" className="text-slate-600 transition hover:text-amber-600">
               Procon
             </a>
-            <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-emerald-600">
+            <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-amber-600">
               Vigilância Sanitária
             </a>
-            <a href="/ibama" className="text-slate-600 transition hover:text-emerald-600">
+            <a href="/ibama" className="text-slate-600 transition hover:text-amber-600">
               IBAMA
             </a>
-            <a href="/blog" className="text-slate-600 transition hover:text-emerald-600">
+            <a href="/blog" className="text-slate-600 transition hover:text-amber-600">
               Blog
             </a>
           </nav>
@@ -1341,7 +1343,7 @@ useEffect(() => {
             <button onClick={() => setActiveModal("termos")} className="transition hover:text-slate-600">Termos</button>
             <button onClick={() => setActiveModal("privacidade")} className="transition hover:text-slate-600">Privacidade</button>
             <button onClick={() => setActiveModal("aviso")} className="transition hover:text-slate-600">Legal</button>
-            <button onClick={() => setActiveModal("suporte")} className="text-emerald-600 transition hover:text-emerald-700">Suporte</button>
+            <button onClick={() => setActiveModal("suporte")} className="text-amber-600 transition hover:text-amber-700">Suporte</button>
           </div>
         </div>
       </footer>
@@ -1359,7 +1361,7 @@ useEffect(() => {
               >
                 <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
                   <div>
-                    <p className="mb-0.5 text-[10px] font-semibold uppercase tracking-wide text-emerald-600">Análise gratuita</p>
+                    <p className="mb-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-600">Análise gratuita</p>
                     <h3 className="text-base font-bold leading-tight text-slate-900">{selectedTipo}</h3>
                   </div>
                   <button onClick={() => setIsUploadModalOpen(false)} className="rounded-lg p-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-600">
@@ -1375,7 +1377,7 @@ useEffect(() => {
                     </p>
                   </div>
 
-                  <div className="group relative cursor-pointer rounded-lg border-2 border-dashed border-emerald-300 bg-emerald-50/30 text-center transition hover:border-emerald-500 hover:bg-emerald-50/60">
+                  <div className="group relative cursor-pointer rounded-lg border-2 border-dashed border-amber-300 bg-amber-50/30 text-center transition hover:border-amber-500 hover:bg-amber-50/60">
                     <input
                       type="file"
                       ref={fileInputRef}
@@ -1386,7 +1388,7 @@ useEffect(() => {
                       title="Clique para enviar o documento"
                     />
                     <div className="pointer-events-none flex flex-col items-center justify-center space-y-3 py-8">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white transition duration-200 group-hover:scale-105">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-amber-600 text-white transition duration-200 group-hover:scale-105">
                         <UploadCloud className="h-7 w-7" />
                       </div>
                       <div>
@@ -1436,9 +1438,9 @@ useEffect(() => {
                     <div className="space-y-5 pt-1">
                       <p className="text-[15px] text-slate-600">Selecione o canal de atendimento para falar com o nosso time:</p>
                       <div className="flex flex-col gap-3">
-                        <a href="https://wa.me/5513996485501?text=Olá!%20Preciso%20de%20ajuda%20com%20a%20análise%20da%20conta%20de%20luz." target="_blank" rel="noopener noreferrer" className="flex w-full items-center gap-3 rounded-lg border border-emerald-200 bg-emerald-50 p-4 text-left text-emerald-900 transition hover:bg-emerald-100">
-                          <MessageSquare className="h-5 w-5 flex-shrink-0 text-emerald-600" />
-                          <div><strong className="block text-sm font-semibold">Atendimento via WhatsApp</strong><span className="text-xs text-emerald-700">Fale direto com um analista</span></div>
+                        <a href="https://wa.me/5513996485501?text=Olá!%20Preciso%20de%20ajuda%20com%20a%20análise%20da%20conta%20de%20luz." target="_blank" rel="noopener noreferrer" className="flex w-full items-center gap-3 rounded-lg border border-amber-200 bg-amber-50 p-4 text-left text-amber-900 transition hover:bg-amber-100">
+                          <MessageSquare className="h-5 w-5 flex-shrink-0 text-amber-600" />
+                          <div><strong className="block text-sm font-semibold">Atendimento via WhatsApp</strong><span className="text-xs text-amber-700">Fale direto com um analista</span></div>
                         </a>
                         <a href="https://forms.google.com" target="_blank" rel="noopener noreferrer" className="flex w-full items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 p-4 text-left text-slate-900 transition hover:bg-slate-100">
                           <ClipboardList className="h-5 w-5 flex-shrink-0 text-slate-500" />
@@ -1478,16 +1480,16 @@ useEffect(() => {
                   {/* LOADING DA ANÁLISE */}
                   {isAnalyzing && (
                     <div className="mx-auto flex max-w-md flex-col items-center justify-center space-y-6 p-6">
-                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-amber-50 text-amber-600">
                         <Search className="h-10 w-10 animate-pulse" />
                       </div>
                       <h3 className="text-center text-xl font-bold text-slate-900">Processando documento</h3>
                       <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
-                        <motion.div className="absolute left-0 top-0 h-full w-1/2 rounded-full bg-emerald-600" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                        <motion.div className="absolute left-0 top-0 h-full w-1/2 rounded-full bg-amber-600" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
                       </div>
                       <div className="flex min-h-[60px] items-center justify-center">
                         <AnimatePresence mode="wait">
-                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="text-center text-base font-semibold text-emerald-700">
+                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="text-center text-base font-semibold text-amber-700">
                             {LOADER_MESSAGES[loaderIndex]}
                           </motion.p>
                         </AnimatePresence>
@@ -1522,7 +1524,7 @@ useEffect(() => {
                   {/* REJEIÇÃO: SEM VÍCIO */}
                   {!error && !isAnalyzing && rejeicaoInfo && rejeicaoInfo.tipo === "sem_vicio" && (
                     <div className="mx-auto flex max-w-md flex-col items-center space-y-5 py-4 text-center">
-                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-amber-50 text-amber-600">
                         <ShieldCheck className="h-10 w-10" />
                       </div>
                       <div>
@@ -1556,7 +1558,7 @@ useEffect(() => {
                           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                             {analise.titular && (
                               <div className="flex items-start gap-2.5">
-                                <Building2 className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" />
+                                <Building2 className="mt-1 h-4 w-4 flex-shrink-0 text-amber-600" />
                                 <div>
                                   <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Consumidor</p>
                                   <p className="text-[13px] font-bold leading-snug text-slate-900">{analise.titular}</p>
@@ -1565,7 +1567,7 @@ useEffect(() => {
                             )}
                             {analise.distribuidora && (
                               <div className="flex items-start gap-2.5">
-                                <Scale className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" />
+                                <Scale className="mt-1 h-4 w-4 flex-shrink-0 text-amber-600" />
                                 <div>
                                   <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Distribuidora</p>
                                   <p className="text-[13px] font-bold leading-snug text-slate-900">{analise.distribuidora}</p>
@@ -1574,7 +1576,7 @@ useEffect(() => {
                             )}
                             {analise.unidade_consumidora && (
                               <div className="flex items-start gap-2.5">
-                                <FileText className="mt-1 h-4 w-4 flex-shrink-0 text-emerald-600" />
+                                <FileText className="mt-1 h-4 w-4 flex-shrink-0 text-amber-600" />
                                 <div>
                                   <p className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Unidade consumidora</p>
                                   <p className="text-[13px] font-bold leading-snug text-slate-900">{analise.unidade_consumidora}</p>
@@ -1597,13 +1599,13 @@ useEffect(() => {
 
                       {/* Título com viabilidade */}
                       <div className="flex items-start space-x-4">
-                        <CheckCircle2 className={`mt-1 h-7 w-7 flex-shrink-0 ${viabilidade?.nivel === "Baixa" ? "text-amber-500" : "text-emerald-600"}`} />
+                        <CheckCircle2 className={`mt-1 h-7 w-7 flex-shrink-0 ${viabilidade?.nivel === "Baixa" ? "text-amber-500" : "text-amber-600"}`} />
                         <div>
                           <h2 className="mb-2 text-xl font-bold leading-tight text-slate-900 sm:text-2xl">
                             {viabilidade?.nivel === "Baixa" ? (
                               <>Analisamos a cobrança e há um <span className="text-amber-600">ângulo possível</span></>
                             ) : (
-                              <>Encontramos <span className="text-emerald-600">falha</span> nesta cobrança</>
+                              <>Encontramos <span className="text-amber-600">falha</span> nesta cobrança</>
                             )}
                           </h2>
                           <p className="leading-relaxed text-slate-600">{analise.resumo}</p>
@@ -1687,25 +1689,25 @@ useEffect(() => {
                         </div>
                       )}
 
-                      <div className="rounded-lg border border-emerald-200 bg-emerald-50/50 p-5 text-left">
+                      <div className="rounded-lg border border-amber-200 bg-amber-50/50 p-5 text-left">
                         <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-slate-900 sm:text-lg">
-                          <Scale className="h-5 w-5 text-emerald-600" /> O que você recebe por R$ {formatarPreco(preco)}
+                          <Scale className="h-5 w-5 text-amber-600" /> O que você recebe por R$ {formatarPreco(preco)}
                         </h3>
                         <ul className="space-y-3 text-[13px] text-slate-700 sm:text-[15px]">
                           <li className="flex items-start gap-3">
-                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
                             <span>Reclamação administrativa completa, com fatos, fundamentos e pedidos</span>
                           </li>
                           <li className="flex items-start gap-3">
-                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
                             <span>Cada ponto fundamentado na Resolução ANEEL nº 1.000/2021, com o trecho do seu documento</span>
                           </li>
                           <li className="flex items-start gap-3">
-                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
                             <span>Pedido subsidiário de revisão do cálculo e de limitação do período cobrado</span>
                           </li>
                           <li className="flex items-start gap-3">
-                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
+                            <Check className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
                             <span>Entrega imediata após o pagamento. Pronta para preencher e protocolar</span>
                           </li>
                         </ul>
@@ -1728,13 +1730,13 @@ useEffect(() => {
                       <button
                         onClick={handleCheckout}
                         disabled={isCheckoutLoading}
-                        className="flex w-full flex-col items-center justify-center rounded-lg bg-emerald-600 px-4 py-4 font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-75"
+                        className="flex w-full flex-col items-center justify-center rounded-lg bg-amber-600 px-4 py-4 font-semibold text-white transition hover:bg-amber-700 disabled:cursor-not-allowed disabled:opacity-75"
                       >
                         <div className="flex flex-row items-center justify-center gap-2 text-center text-lg leading-tight">
                           {isCheckoutLoading ? <Loader2 className="h-6 w-6 flex-shrink-0 animate-spin" /> : <Scale className="h-6 w-6 flex-shrink-0" />}
                           <span>{isCheckoutLoading ? "Gerando PIX..." : "Gerar minha defesa agora"}</span>
                         </div>
-                        <span className="mt-1 text-sm font-normal text-emerald-50">Pagamento único · R$ {formatarPreco(preco)} · Entrega imediata</span>
+                        <span className="mt-1 text-sm font-normal text-amber-50">Pagamento único · R$ {formatarPreco(preco)} · Entrega imediata</span>
                       </button>
                       <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
                         <p className="mb-1 text-[11px] font-bold uppercase tracking-wide text-amber-900 sm:text-xs">
@@ -1753,25 +1755,25 @@ useEffect(() => {
                   {/* LOADING DA GERAÇÃO */}
                   {isGeneratingDefense && (
                     <div className="mx-auto flex max-w-md flex-col items-center justify-center space-y-6 p-8">
-                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-amber-50 text-amber-600">
                         <FileText className="h-10 w-10 animate-bounce" />
                       </div>
                       <h3 className="text-center text-xl font-bold text-slate-900">Redigindo sua defesa</h3>
                       <div className="relative h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
-                        <motion.div className="absolute left-0 top-0 h-full w-1/2 rounded-full bg-emerald-600" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
+                        <motion.div className="absolute left-0 top-0 h-full w-1/2 rounded-full bg-amber-600" animate={{ x: ["-100%", "200%"] }} transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }} />
                       </div>
                       <div className="flex min-h-[60px] items-center justify-center">
                         <AnimatePresence mode="wait">
-                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="text-center text-base font-semibold text-emerald-700">
+                          <motion.p key={loaderIndex} initial={{ opacity: 0, y: 5 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.3 }} className="text-center text-base font-semibold text-amber-700">
                             {LOADER_MESSAGES[loaderIndex]}
                           </motion.p>
                         </AnimatePresence>
                       </div>
-                      <div className="w-full rounded-lg border border-emerald-200 bg-emerald-50 p-4">
-                        <p className="flex items-center justify-center gap-2 text-center text-base font-bold text-emerald-800">
+                      <div className="w-full rounded-lg border border-amber-200 bg-amber-50 p-4">
+                        <p className="flex items-center justify-center gap-2 text-center text-base font-bold text-amber-800">
                           <ShieldCheck className="h-5 w-5" /> Pagamento confirmado
                         </p>
-                        <p className="mt-1 text-center text-sm text-emerald-700">Por favor, aguarde e não feche esta janela.</p>
+                        <p className="mt-1 text-center text-sm text-amber-700">Por favor, aguarde e não feche esta janela.</p>
                       </div>
                     </div>
                   )}
@@ -1788,7 +1790,7 @@ useEffect(() => {
                           Ocorreu uma instabilidade, mas <strong className="font-semibold text-slate-900">o seu pagamento está seguro.</strong> Use o botão abaixo para receber seu arquivo pelo suporte.
                         </p>
                       </div>
-                      <a href="https://wa.me/5513996485501?text=Olá!%20Eu%20paguei%20pela%20contestação%20da%20conta%20de%20luz%20mas%20a%20tela%20deu%20erro%20ao%20carregar.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700">
+                      <a href="https://wa.me/5513996485501?text=Olá!%20Eu%20paguei%20pela%20contestação%20da%20conta%20de%20luz%20mas%20a%20tela%20deu%20erro%20ao%20carregar.%20Pode%20me%20ajudar?" target="_blank" rel="noopener noreferrer" className="mt-4 flex items-center gap-2 rounded-lg bg-amber-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-amber-700">
                         <MessageSquare className="h-5 w-5" /> Falar com o suporte no WhatsApp
                       </a>
                     </div>
@@ -1797,7 +1799,7 @@ useEffect(() => {
                   {/* TELA DE SUCESSO */}
                   {defenseResult && showSuccessMessage && (
                     <div className="mx-auto flex w-full max-w-md flex-col items-center space-y-5 p-4 text-center sm:space-y-6 sm:p-10">
-                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
+                      <div className="mb-2 flex h-20 w-20 items-center justify-center rounded-full bg-amber-50 text-amber-600">
                         <CheckCircle2 className="h-12 w-12" />
                       </div>
                       <div>
@@ -1809,11 +1811,11 @@ useEffect(() => {
                       <div className="mt-4 flex w-full flex-col items-center gap-3 sm:mt-6 sm:gap-4">
                         <button
                           onClick={() => setShowSuccessMessage(false)}
-                          className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-3.5 text-base font-semibold text-white transition hover:bg-emerald-700"
+                          className="flex w-full items-center justify-center gap-2 rounded-lg bg-amber-600 px-4 py-3.5 text-base font-semibold text-white transition hover:bg-amber-700"
                         >
                           Ver minha defesa <Check className="h-5 w-5" />
                         </button>
-                        <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-emerald-600">
+                        <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-amber-600">
                           Precisa de ajuda? Fale com o suporte.
                         </button>
                       </div>
@@ -1833,22 +1835,22 @@ useEffect(() => {
                           <span className="rounded bg-red-50 px-1 font-semibold text-red-600">vermelho</span> pelos seus dados reais antes de protocolar. Confirme o prazo e a forma de protocolo na notificação recebida.
                         </p>
                       </div>
-                      <div className="rounded-r-lg border-l-4 border-emerald-400 bg-emerald-50 p-4">
+                      <div className="rounded-r-lg border-l-4 border-amber-400 bg-amber-50 p-4">
                         <div className="mb-2 flex items-center gap-2">
-                          <Send className="h-4 w-4 flex-shrink-0 text-emerald-700" />
-                          <p className="text-sm font-semibold text-emerald-900">Para onde enviar essa defesa</p>
+                          <Send className="h-4 w-4 flex-shrink-0 text-amber-700" />
+                          <p className="text-sm font-semibold text-amber-900">Para onde enviar essa defesa</p>
                         </div>
-                        <p className="text-sm leading-relaxed text-emerald-800">
+                        <p className="text-sm leading-relaxed text-amber-800">
                           Protocole direto com a distribuidora, pelo canal de atendimento ou ouvidoria indicado na fatura ou no TOI recebido. A perícia do medidor, quando cabível, pode ser solicitada em até 15 dias do recebimento do TOI (art. 592 da REN ANEEL nº 1.000/2021).
                         </p>
-                        <p className="mt-2 text-sm leading-relaxed text-emerald-800">
+                        <p className="mt-2 text-sm leading-relaxed text-amber-800">
                           Se a distribuidora não responder, o canal de escalonamento é a própria ANEEL:
                         </p>
                         <a
                           href={LINK_ANEEL_RECLAME.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 underline decoration-emerald-300 underline-offset-4 transition hover:text-emerald-800 hover:decoration-emerald-700"
+                          className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-700 underline decoration-amber-300 underline-offset-4 transition hover:text-amber-800 hover:decoration-amber-700"
                         >
                           {LINK_ANEEL_RECLAME.texto}
                           <ExternalLink className="h-3.5 w-3.5" />
@@ -1862,13 +1864,13 @@ useEffect(() => {
                       <div className="flex flex-col items-center gap-4 border-t border-slate-200 pt-6">
                         <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
                           <button onClick={handleCopy} className="flex w-full items-center justify-center space-x-2 rounded-lg border border-slate-300 bg-white px-8 py-3.5 text-base font-semibold text-slate-800 transition hover:bg-slate-50 sm:w-auto">
-                            {isCopied ? <><Check className="h-5 w-5 text-emerald-600" /><span className="text-emerald-600">Copiado</span></> : <><Copy className="h-5 w-5 text-slate-500" /><span>Copiar defesa</span></>}
+                            {isCopied ? <><Check className="h-5 w-5 text-amber-600" /><span className="text-amber-600">Copiado</span></> : <><Copy className="h-5 w-5 text-slate-500" /><span>Copiar defesa</span></>}
                           </button>
-                          <button onClick={handleDownload} className="flex w-full items-center justify-center space-x-2 rounded-lg bg-emerald-600 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-emerald-700 sm:w-auto">
+                          <button onClick={handleDownload} className="flex w-full items-center justify-center space-x-2 rounded-lg bg-amber-600 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-amber-700 sm:w-auto">
                             <Download className="h-5 w-5" /><span>Baixar .txt</span>
                           </button>
                         </div>
-                        <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-emerald-600">
+                        <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-amber-600">
                           Precisa de ajuda? Fale com o suporte.
                         </button>
                       </div>
@@ -1930,13 +1932,13 @@ useEffect(() => {
                   <div className="space-y-3">
                     <div className="flex items-center space-x-2 rounded-lg border border-slate-200 bg-slate-50 p-2.5">
                       <p className="flex-1 truncate px-2 text-left font-mono text-sm text-slate-500">{qrCode || "Gerando Pix..."}</p>
-                      <button onClick={handleCopyPix} className="rounded-lg border border-slate-200 bg-white p-2.5 text-slate-700 transition hover:border-emerald-300 hover:text-emerald-600">
-                        {isPixCopied ? <Check className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />}
+                      <button onClick={handleCopyPix} className="rounded-lg border border-slate-200 bg-white p-2.5 text-slate-700 transition hover:border-amber-300 hover:text-amber-600">
+                        {isPixCopied ? <Check className="h-4 w-4 text-amber-600" /> : <Copy className="h-4 w-4" />}
                       </button>
                     </div>
-                    <div className="flex items-start gap-2.5 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-left">
-                      <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-emerald-600" />
-                      <p className="text-[11px] leading-relaxed text-emerald-900">
+                    <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3 text-left">
+                      <ShieldCheck className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
+                      <p className="text-[11px] leading-relaxed text-amber-900">
                         <strong className="font-semibold">Garantia técnica:</strong> se a defesa não for liberada em 10 segundos após o pagamento, garantimos reembolso via PIX.
                       </p>
                     </div>
@@ -1948,7 +1950,7 @@ useEffect(() => {
                     </div>
                   </div>
                   <div className="flex items-center justify-center gap-2 border-t border-slate-100 pt-4 text-sm font-medium text-slate-500">
-                    <RefreshCcw className="h-4 w-4 animate-spin text-emerald-600" />
+                    <RefreshCcw className="h-4 w-4 animate-spin text-amber-600" />
                     Aguardando o pagamento...
                   </div>
                 </div>
@@ -1969,8 +1971,8 @@ useEffect(() => {
               className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
             >
               <div className="mb-5 flex items-start justify-between">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50">
-                  <FileText className="h-6 w-6 text-emerald-600" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50">
+                  <FileText className="h-6 w-6 text-amber-600" />
                 </div>
                 <button
                   onClick={handleFecharRetomada}
@@ -1994,7 +1996,7 @@ useEffect(() => {
               <div className="space-y-3">
                 <button
                   onClick={handleAbrirDefesaSalva}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-amber-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-amber-700"
                 >
                   Abrir minha defesa
                   <FileText className="h-4 w-4" />
@@ -2039,7 +2041,7 @@ useEffect(() => {
               <div className="space-y-3">
                 <button
                   onClick={handleCancelarNovaAnalise}
-                  className="w-full rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                  className="w-full rounded-xl bg-amber-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-amber-700"
                 >
                   Não, manter minha defesa
                 </button>
@@ -2082,7 +2084,7 @@ useEffect(() => {
               <div className="space-y-3">
                 <button
                   onClick={handleVoltarParaDefesa}
-                  className="w-full rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                  className="w-full rounded-xl bg-amber-600 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-amber-700"
                   type="button"
                 >
                   Voltar e salvar

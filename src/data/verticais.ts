@@ -126,7 +126,7 @@ export const VERTICAIS: Vertical[] = [
     hrefBlog: "/multa-de-transito/blog",
     botao: "Analisar minha multa",
     Icone: Car,
-    cor: { faixa: "#10b981", icone: "#047857", fundoIcone: "#ecfdf5", texto: "#047857" },
+    cor: { faixa: "#3b82f6", icone: "#1d4ed8", fundoIcone: "#eff6ff", texto: "#1d4ed8" },
   },
   {
     id: "procon",
@@ -177,7 +177,7 @@ export const VERTICAIS: Vertical[] = [
     hrefBlog: "/procon/blog",
     botao: "Analisar o auto",
     Icone: Building2,
-    cor: { faixa: "#f59e0b", icone: "#b45309", fundoIcone: "#fffbeb", texto: "#b45309" },
+    cor: { faixa: "#f97316", icone: "#c2410c", fundoIcone: "#fff7ed", texto: "#c2410c" },
   },
   {
     id: "vigilancia",
@@ -228,7 +228,7 @@ export const VERTICAIS: Vertical[] = [
     hrefBlog: "/vigilancia-sanitaria/blog",
     botao: "Analisar o auto",
     Icone: ShieldCheck,
-    cor: { faixa: "#0ea5e9", icone: "#0369a1", fundoIcone: "#f0f9ff", texto: "#0369a1" },
+    cor: { faixa: "#ef4444", icone: "#b91c1c", fundoIcone: "#fef2f2", texto: "#b91c1c" },
   },
   {
     id: "energia",
@@ -279,7 +279,7 @@ export const VERTICAIS: Vertical[] = [
     hrefBlog: "/energia/blog",
     botao: "Analisar a cobrança",
     Icone: Zap,
-    cor: { faixa: "#eab308", icone: "#a16207", fundoIcone: "#fefce8", texto: "#a16207" },
+    cor: { faixa: "#f59e0b", icone: "#b45309", fundoIcone: "#fffbeb", texto: "#b45309" },
   },
   {
     id: "ibama",

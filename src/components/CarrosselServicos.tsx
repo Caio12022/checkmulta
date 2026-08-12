@@ -201,7 +201,8 @@ export default function CarrosselServicos({
                     <a
                       href={s.href}
                       tabIndex={visivel ? 0 : -1}
-                      className="w-full flex-shrink-0 rounded-lg bg-emerald-600 px-6 py-3 text-center text-sm font-semibold text-white transition hover:bg-emerald-700 sm:w-auto"
+                      style={{ backgroundColor: s.cor.icone }}
+                      className="w-full flex-shrink-0 rounded-lg px-6 py-3 text-center text-sm font-semibold text-white transition hover:brightness-110 sm:w-auto"
                     >
                       {s.botao}
                     </a>

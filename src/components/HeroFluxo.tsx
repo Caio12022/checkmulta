@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUp, Check, Loader2, ShieldCheck, Zap } from "lucide-react";
 import { VERTICAIS } from "../data/verticais";
+import { CORES, type CorVertical } from "../lib/temaVertical";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,6 +66,8 @@ export type HeroFluxoProps = {
     titulo: string;
     texto: string;
   };
+  /** Cor de destaque da página — cada vertical tem a sua. Padrão verde. */
+  cor?: CorVertical;
 };
 
 const RESULTADO_PADRAO = {
@@ -79,9 +82,10 @@ const RESULTADO_PADRAO = {
  * defeituoso marcado e a lupa em cima dele. Desenho, não print — o layout
  * do produto ainda vai mudar, e print viraria dívida na hora que mudasse.
  */
-function IlustracaoAchado() {
+function IlustracaoAchado({ cor }: { cor: CorVertical }) {
+  const c = CORES[cor];
   return (
-    <div className="relative h-36 overflow-hidden bg-gradient-to-br from-emerald-600 to-emerald-800">
+    <div className={`relative h-36 overflow-hidden bg-gradient-to-br ${c.gradAchado}`}>
       <svg
         viewBox="0 0 320 144"
         className="h-full w-full"
@@ -97,7 +101,7 @@ function IlustracaoAchado() {
         <g transform="translate(96 16) rotate(-5 56 56)">
           <rect width="128" height="126" rx="7" fill="#fffdf8" />
           {/* cabeçalho do documento */}
-          <rect x="14" y="16" width="46" height="6" rx="3" fill="#0f766e" opacity="0.8" />
+          <rect x="14" y="16" width="46" height="6" rx="3" fill={c.hex700} opacity="0.8" />
           {/* linhas de texto */}
           <g fill="#d6d3d1">
             <rect x="14" y="34" width="100" height="5" rx="2.5" />
@@ -114,7 +118,7 @@ function IlustracaoAchado() {
 
         {/* Lupa centrada no trecho destacado (≈153,79 no espaço do SVG) */}
         <g transform="translate(153 79)">
-          <circle r="26" fill="#0f766e" opacity="0.22" />
+          <circle r="26" fill={c.hex700} opacity="0.22" />
           <circle r="20" fill="none" stroke="#fff" strokeWidth="3.5" />
           <path
             d="M15 15l16 16"
@@ -173,7 +177,9 @@ export default function HeroFluxo({
   rotuloFase2 = "Identificar órgão",
   itensChecklist = VERTICAIS.map((v) => v.titulo),
   resultado = RESULTADO_PADRAO,
+  cor = "emerald",
 }: HeroFluxoProps) {
+  const c = CORES[cor];
   const secaoRef = useRef<HTMLDivElement>(null);
   const esteiraRef = useRef<HTMLDivElement>(null);
   const stepperRef = useRef<HTMLDivElement>(null);
@@ -443,7 +449,7 @@ export default function HeroFluxo({
       <div className="py-14 xl:py-20">
         {/* Chamada da seção */}
         <div className="mx-auto mb-10 w-full max-w-[1300px] px-6 xl:mb-14 xl:px-8">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-emerald-700">
+          <p className={`font-mono text-[11px] uppercase tracking-widest ${c.text700}`}>
             {tagSecao}
           </p>
           <p className="font-display mt-3 max-w-xl text-3xl font-semibold leading-tight tracking-tight text-stone-900 sm:text-4xl">
@@ -462,7 +468,7 @@ export default function HeroFluxo({
           <div className="absolute left-6 right-6 top-1/2 h-0.5 -translate-y-1/2 bg-stone-200 xl:left-8 xl:right-8" />
           <div
             ref={trilhoFillRef}
-            className="absolute left-6 top-1/2 h-0.5 w-0 -translate-y-1/2 bg-emerald-600 xl:left-8"
+            className={`absolute left-6 top-1/2 h-0.5 w-0 -translate-y-1/2 ${c.bg600} xl:left-8`}
           />
           {FASES.map((fase, i) => (
             <div
@@ -471,10 +477,10 @@ export default function HeroFluxo({
                 selosRef.current[i] = el;
               }}
               data-estado="futuro"
-              className="group relative z-10 flex h-8 items-center rounded-full border px-2.5 transition-colors duration-300 data-[estado=futuro]:border-stone-200 data-[estado=futuro]:bg-stone-100 data-[estado=feito]:border-emerald-200 data-[estado=feito]:bg-emerald-100 data-[estado=ativo]:border-emerald-700 data-[estado=ativo]:bg-emerald-700"
+              className={`group relative z-10 flex h-8 items-center rounded-full border px-2.5 transition-colors duration-300 data-[estado=futuro]:border-stone-200 data-[estado=futuro]:bg-stone-100 ${c.dataFeitoBorder200} ${c.dataFeitoBg100} ${c.dataAtivoBorder700} ${c.dataAtivoBg700}`}
             >
               <Zap
-                className="h-3 w-3 flex-shrink-0 transition-colors duration-300 group-data-[estado=futuro]:text-stone-300 group-data-[estado=feito]:text-emerald-700 group-data-[estado=ativo]:text-white"
+                className={`h-3 w-3 flex-shrink-0 transition-colors duration-300 group-data-[estado=futuro]:text-stone-300 ${c.groupDataFeitoText700} group-data-[estado=ativo]:text-white`}
                 strokeWidth={2.5}
               />
               <span
@@ -512,7 +518,7 @@ export default function HeroFluxo({
               {mensagemChat}
             </p>
             <div className="mt-3 flex justify-end">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-700 text-white">
+              <span className={`flex h-8 w-8 items-center justify-center rounded-lg ${c.bg700} text-white`}>
                 <ArrowUp className="h-3.5 w-3.5" strokeWidth={2.5} />
               </span>
             </div>
@@ -536,16 +542,16 @@ export default function HeroFluxo({
                   linhasVerticalRef.current[i] = el;
                 }}
                 data-fase="espera"
-                className="group flex items-center gap-2 rounded-full border px-3 py-1.5 transition-colors duration-500 data-[fase=espera]:border-stone-200 data-[fase=pensa]:border-stone-300 data-[fase=feito]:border-emerald-200"
+                className={`group flex items-center gap-2 rounded-full border px-3 py-1.5 transition-colors duration-500 data-[fase=espera]:border-stone-200 data-[fase=pensa]:border-stone-300 ${c.dataFaseFeitoBorder200}`}
               >
                 <span className="relative flex h-3.5 w-3.5 flex-shrink-0 items-center justify-center">
                   <span className="absolute inset-0 hidden rounded-full border-2 border-stone-200 group-data-[fase=espera]:block" />
                   <Loader2
-                    className="absolute inset-0 hidden h-3.5 w-3.5 animate-spin text-emerald-600 group-data-[fase=pensa]:block"
+                    className={`absolute inset-0 hidden h-3.5 w-3.5 animate-spin ${c.text600} group-data-[fase=pensa]:block`}
                     strokeWidth={2.5}
                   />
                   <Check
-                    className="hidden h-3 w-3 text-emerald-600 group-data-[fase=feito]:block"
+                    className={`hidden h-3 w-3 ${c.text600} group-data-[fase=feito]:block`}
                     strokeWidth={3}
                   />
                 </span>
@@ -573,7 +579,7 @@ export default function HeroFluxo({
                 className="group flex gap-2"
               >
                 <ShieldCheck
-                  className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-stone-200 transition-colors duration-500 group-data-[solido=true]:text-emerald-600"
+                  className={`mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-stone-200 transition-colors duration-500 ${c.groupDataSolidoText600}`}
                   strokeWidth={2}
                 />
                 <div className="font-mono text-[11px] uppercase leading-relaxed tracking-wide text-stone-200 transition-colors duration-500 group-data-[solido=true]:text-stone-700">
@@ -597,7 +603,7 @@ export default function HeroFluxo({
             className="w-72 flex-shrink-0 overflow-hidden rounded-2xl border border-stone-200 bg-white xl:w-80"
             style={{ ...SOMBRA_CARD, opacity: 0.3, filter: "blur(3px)" }}
           >
-            <IlustracaoAchado />
+            <IlustracaoAchado cor={cor} />
             <div className="p-5">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wide text-red-700">
                 {resultado.badge}
@@ -613,7 +619,7 @@ export default function HeroFluxo({
               <span className="text-xs font-medium text-stone-500">
                 Análise gratuita
               </span>
-              <span className="text-xs font-semibold text-emerald-700">
+              <span className={`text-xs font-semibold ${c.text700}`}>
                 Ver o achado →
               </span>
             </div>

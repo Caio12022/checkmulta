@@ -1,6 +1,7 @@
 import { Car, Scale, Droplet, Zap, Leaf, ArrowRight } from "lucide-react";
 import { VERTICAIS, type VerticalId } from "../data/verticais";
 import Reveal from "./Reveal";
+import { CORES, type CorVertical } from "../lib/temaVertical";
 
 /**
  * "Quem te autuou?" — o ponto de entrada para cada vertical, no topo da
@@ -70,6 +71,10 @@ export type EscolhaOrgaoProps = {
    * vender o cross-sell para as outras áreas — daí o texto ser trocável. */
   titulo?: React.ReactNode;
   subtitulo?: string;
+  /** Cor de destaque da página — cada vertical tem a sua. Padrão verde.
+   * Não afeta o ícone de cada cartão, que sempre usa a cor daquela vertical
+   * (v.cor), mesmo dentro de uma página de cor diferente. */
+  cor?: CorVertical;
 };
 
 export default function EscolhaOrgao({
@@ -79,7 +84,9 @@ export default function EscolhaOrgao({
     </>
   ),
   subtitulo = "Toque no órgão que mandou o papel e vá direto para a análise da sua área.",
+  cor = "emerald",
 }: EscolhaOrgaoProps) {
+  const c = CORES[cor];
   return (
     <section className="border-b border-stone-200 bg-white">
       <div className="mx-auto max-w-6xl px-5 py-12 sm:py-16">
@@ -101,7 +108,7 @@ export default function EscolhaOrgao({
               <Reveal key={v.id} delay={(i % 5) * 0.07}>
                 <a
                   href={v.href}
-                  className="group flex flex-col rounded-xl border border-stone-200 bg-white p-4 transition-colors hover:border-emerald-700 hover:bg-emerald-50/40"
+                  className={`group flex flex-col rounded-xl border border-stone-200 bg-white p-4 transition-colors ${c.hoverBorder700} ${c.hoverBg50_40}`}
                 >
                   <span className="mb-3 flex items-center justify-between">
                     <span
@@ -119,10 +126,10 @@ export default function EscolhaOrgao({
                         />
                       ) : null}
                     </span>
-                    <ArrowRight className="h-4 w-4 text-stone-300 transition-colors group-hover:text-emerald-700" />
+                    <ArrowRight className={`h-4 w-4 text-stone-300 transition-colors ${c.groupHoverText700}`} />
                   </span>
 
-                  <span className="block text-sm font-semibold leading-snug text-stone-900 group-hover:text-emerald-800">
+                  <span className={`block text-sm font-semibold leading-snug text-stone-900 ${c.groupHoverText800}`}>
                     {r.quem}
                   </span>
                   <span className="mt-1 block text-sm leading-snug text-stone-600">
@@ -141,7 +148,7 @@ export default function EscolhaOrgao({
           Não sabe qual é o seu caso?{" "}
           <a
             href="#areas"
-            className="font-semibold text-emerald-700 underline decoration-emerald-200 underline-offset-4 transition-colors hover:decoration-emerald-700"
+            className={`font-semibold ${c.text700} underline ${c.linkDecoration200} underline-offset-4 transition-colors ${c.linkHoverDecoration700}`}
           >
             Veja todas as áreas
           </a>
