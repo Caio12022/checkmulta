@@ -1,26 +1,10 @@
 import { useEffect, useState } from "react";
-import {
-  ChevronDown,
-  AlertTriangle,
-  AlertCircle,
-  Check,
-  Menu,
-  X,
-  MessageSquare,
-  ShieldCheck,
-  Lock,
-  Timer,
-  Car,
-  Scale,
-  Droplet,
-  Zap,
-  Leaf,
-  HelpCircle,
-} from "lucide-react";
+import { ChevronDown, Menu, X, MessageSquare } from "lucide-react";
 import { VERTICAIS, FERRAMENTAS } from "../data/verticais";
 import ComoFuncionaScroll from "../components/ComoFuncionaScroll";
 import HeroFluxo from "../components/HeroFluxo";
 import CaminhoVerticais from "../components/CaminhoVerticais";
+import FaixaOrgaos from "../components/FaixaOrgaos";
 
 /**
  * Home institucional do CheckMulta (home-mãe).
@@ -36,59 +20,14 @@ import CaminhoVerticais from "../components/CaminhoVerticais";
  * Indexação: os itens usam <details>/<summary> nativos. O texto fica sempre
  * presente no HTML, mesmo com o item fechado.
  *
- * Estrutura: triagem por órgão no topo (distribui o visitante em um clique),
- * seguida da demonstração do documento marcado (mostra o produto sem explicar),
- * e então as áreas em cartões.
+ * Estrutura, de cima para baixo: abertura animada, faixa fina com os órgãos
+ * cobertos, as quatro etapas do processo, o caminho que mostra por que cada
+ * área tem análise própria, as áreas em cartões, as ferramentas e as
+ * dúvidas. Os fundos alternam claro/escuro para separar um bloco do outro.
  *
- * Todos os textos das áreas vêm de src/data/verticais.ts. Vertical nova
- * aparece aqui sozinha, sem editar este arquivo — exceto o rótulo curto do
- * órgão na triagem, definido em ORGAOS logo abaixo.
+ * Todos os textos das áreas vêm de src/data/verticais.ts — vertical nova
+ * aparece aqui sozinha, sem editar este arquivo.
  */
-
-/**
- * Rótulos da triagem do topo.
- *
- * Regra de escrita: em cima a língua da pessoa (quem mandou o papel e o que
- * é esse papel), embaixo a lei. Quem chega aqui raramente sabe que o
- * documento se chama "auto de infração" — sabe que "levou uma multa do
- * Procon". O termo jurídico aparece depois, como prova de fundamento.
- */
-const ORGAOS: Record<string, { orgao: string; oque: string; lei: string }> = {
-  transito: {
-    orgao: "Detran, PRF ou prefeitura",
-    oque: "Multa de trânsito",
-    lei: "CTB",
-  },
-  procon: {
-    orgao: "Procon",
-    oque: "Multa por reclamação de cliente",
-    lei: "CDC",
-  },
-  vigilancia: {
-    orgao: "Vigilância Sanitária",
-    oque: "Auto de infração ou interdição",
-    lei: "Lei 6.437/77",
-  },
-  energia: {
-    orgao: "Companhia de luz",
-    oque: "Cobrança retroativa de energia",
-    lei: "REN 1.000/2021",
-  },
-  ibama: {
-    orgao: "Ibama",
-    oque: "Multa ambiental",
-    lei: "Decreto 6.514/08",
-  },
-};
-
-/** Ícone de cada vertical na grade de triagem. */
-const ICONES_ORGAO: Record<string, React.ComponentType<{ className?: string }>> = {
-  transito: Car,
-  procon: Scale,
-  vigilancia: Droplet,
-  energia: Zap,
-  ibama: Leaf,
-};
 
 const FAQ = [
   {
@@ -342,194 +281,14 @@ export default function Plataforma() {
       <HeroFluxo />
 
       {/* ---------------------------------------------------------------- */}
-      {/* Triagem                                                           */}
+      {/* Faixa de orgaos (quem te autuou), fina e correndo                */}
       {/* ---------------------------------------------------------------- */}
-      <section className="relative overflow-hidden border-b border-stone-200">
-        {/* Fundo hexagonal sutil — decorativo, não interativo */}
-        <svg
-          className="pointer-events-none absolute inset-0 h-full w-full text-stone-200"
-          aria-hidden="true"
-        >
-          <defs>
-            <pattern
-              id="hex-pattern"
-              width="56"
-              height="97"
-              patternUnits="userSpaceOnUse"
-              patternTransform="scale(1)"
-            >
-              <path
-                d="M28 0 L56 16 L56 48 L28 64 L0 48 L0 16 Z M28 64 L56 80 L56 112 L28 128 L0 112 L0 80 Z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1"
-                opacity="0.5"
-              />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hex-pattern)" />
-        </svg>
-
-        <div className="relative mx-auto max-w-4xl px-5 py-14 text-center sm:py-20">
-          <p className="mb-6 font-mono text-[11px] uppercase tracking-widest text-stone-400">
-            CheckMulta Tecnologia · CNPJ 63.524.338/0001-62
-          </p>
-
-          <h1 className="font-display text-3xl font-semibold leading-tight tracking-tight text-stone-900 sm:text-5xl">
-            Quem te <span className="text-emerald-600">autuou?</span>
-          </h1>
-
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-stone-600 sm:text-lg">
-            Escolha o órgão, envie o documento e receba a análise gratuita.
-            Apontamos, com o trecho citado, se existe falha formal que permita
-            recorrer.
-          </p>
-
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-stone-600">
-            <span className="flex items-center gap-2">
-              <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
-            </span>
-            <span className="flex items-center gap-2">
-              <Lock className="h-4 w-4 text-emerald-600" /> Sem cadastro
-            </span>
-            <span className="flex items-center gap-2">
-              <Timer className="h-4 w-4 text-emerald-600" /> Resultado imediato
-            </span>
-          </div>
-
-          <div className="mt-10 grid gap-3 text-left sm:grid-cols-2">
-            {VERTICAIS.map((v) => {
-              const o = ORGAOS[v.id];
-              const Icone = ICONES_ORGAO[v.id];
-              return (
-                <a
-                  key={v.id}
-                  href={v.href}
-                  className="group flex items-center gap-4 rounded-lg border border-stone-200 bg-white p-5 transition-colors hover:border-emerald-700 hover:bg-emerald-50/40"
-                >
-                  <span
-                    className="h-12 w-1 flex-shrink-0 rounded-full"
-                    style={{ backgroundColor: v.cor.faixa }}
-                  />
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-base font-semibold text-stone-900 group-hover:text-emerald-800">
-                      {o ? o.orgao : v.titulo}
-                    </span>
-                    <span className="mt-1 block text-sm text-stone-600">
-                      {o ? o.oque : v.resumo}
-                    </span>
-                    <span className="mt-1 block font-mono text-xs tracking-wide text-stone-400">
-                      {o ? o.lei : v.baseLegal}
-                    </span>
-                  </span>
-                  {Icone ? (
-                    <Icone className="h-8 w-8 flex-shrink-0 text-stone-300 transition-colors group-hover:text-emerald-600" />
-                  ) : null}
-                </a>
-              );
-            })}
-
-            <a
-              href="#areas"
-              className="flex items-center gap-4 rounded-lg border border-dashed border-stone-300 bg-white p-5 transition-colors hover:border-stone-400 hover:bg-stone-50"
-            >
-              <span className="h-12 w-1 flex-shrink-0 rounded-full bg-stone-200" />
-              <span className="min-w-0 flex-1">
-                <span className="block text-base font-semibold text-stone-700">
-                  Não sei quem me multou
-                </span>
-                <span className="mt-1 block text-sm text-stone-600">
-                  Ver todas as áreas e descobrir
-                </span>
-              </span>
-              <HelpCircle className="h-8 w-8 flex-shrink-0 text-stone-300" />
-            </a>
-          </div>
-        </div>
-      </section>
+      <FaixaOrgaos />
 
       {/* ---------------------------------------------------------------- */}
-      {/* Demonstracao: documento marcado                                   */}
+      {/* Processo                                                          */}
       {/* ---------------------------------------------------------------- */}
-      <section className="border-b border-stone-200 bg-stone-50">
-        <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 sm:py-20 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <div>
-            <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-stone-400">
-              O que você recebe
-            </p>
-            <h2 className="font-display text-2xl font-semibold leading-tight tracking-tight text-stone-900 sm:text-3xl">
-              Toda multa tem regras para ser aplicada. Quando o órgão erra, ela
-              pode ser <span className="text-emerald-600">derrubada</span>
-            </h2>
-            <p className="mt-5 text-base leading-relaxed text-stone-600">
-              Nós lemos o seu documento linha por linha e apontamos cada erro
-              que encontramos, em português claro, dizendo qual regra foi
-              descumprida e por que aquilo é um problema.
-            </p>
-            <p className="mt-5 text-base leading-relaxed text-stone-600">
-              Se não houver erro nenhum, a gente fala isso na cara e não cobra
-              nada.
-            </p>
-          </div>
-
-          {/* Peca de demonstracao. Conteudo ilustrativo. */}
-          <div className="rounded-xl border border-stone-200 bg-white p-6 shadow-sm">
-            <p className="mb-6 font-mono text-[11px] uppercase tracking-widest text-stone-400">
-              Exemplo de análise
-            </p>
-
-            <div className="space-y-5">
-              <div>
-                <p className="font-mono text-[11px] uppercase tracking-wide text-stone-400">
-                  Onde a multa foi aplicada
-                </p>
-                <p className="mt-1 inline-block rounded bg-red-50 px-2 py-1 text-sm font-medium text-red-800">
-                  Av. Principal, s/n
-                </p>
-                <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-red-700">
-                  <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                  O endereço está incompleto. Sem número nem ponto de
-                  referência, não dá para saber onde a multa foi aplicada. E
-                  isso é motivo de anulação.
-                </p>
-              </div>
-
-              <div className="border-t border-stone-100 pt-5">
-                <p className="font-mono text-[11px] uppercase tracking-wide text-stone-400">
-                  Quem aplicou
-                </p>
-                <p className="mt-1 inline-block rounded bg-amber-50 px-2 py-1 text-sm font-medium text-amber-800">
-                  Matrícula ilegível
-                </p>
-                <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-amber-700">
-                  <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                  Não dá para identificar o agente que aplicou a multa. Sozinho
-                  não derruba, mas reforça a defesa.
-                </p>
-              </div>
-
-              <div className="border-t border-stone-100 pt-5">
-                <p className="font-mono text-[11px] uppercase tracking-wide text-stone-400">
-                  Quando você foi avisado
-                </p>
-                <p className="mt-1 text-sm font-medium text-stone-900">
-                  14/03/2026
-                </p>
-                <p className="mt-2 flex items-start gap-2 text-sm leading-relaxed text-stone-500">
-                  <Check className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                  O aviso chegou dentro do prazo. Aqui está tudo certo, e a
-                  gente diz isso também.
-                </p>
-              </div>
-            </div>
-
-            <p className="mt-6 border-t border-stone-100 pt-5 text-xs leading-relaxed text-stone-500">
-              Exemplo ilustrativo. Cada área é analisada segundo a lei do órgão
-              que aplicou a multa.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ComoFuncionaScroll />
 
       {/* ---------------------------------------------------------------- */}
       {/* Caminho das verticais (por que cada area tem analise propria)     */}
@@ -539,7 +298,7 @@ export default function Plataforma() {
       {/* ---------------------------------------------------------------- */}
       {/* Areas atendidas                                                   */}
       {/* ---------------------------------------------------------------- */}
-      <section id="areas" className="border-b border-stone-200">
+      <section id="areas" className="border-b border-stone-200 bg-stone-50">
         <div className="mx-auto max-w-6xl px-5 py-16 sm:py-20">
           <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-stone-400">
             Áreas atendidas
@@ -658,11 +417,6 @@ export default function Plataforma() {
           </div>
         </div>
       </section>
-
-      {/* ---------------------------------------------------------------- */}
-      {/* Processo                                                          */}
-      {/* ---------------------------------------------------------------- */}
-      <ComoFuncionaScroll />
 
       {/* ---------------------------------------------------------------- */}
       {/* Ferramentas                                                       */}

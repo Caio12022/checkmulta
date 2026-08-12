@@ -209,7 +209,7 @@ export default function CaminhoVerticais() {
   return (
     <section
       ref={secaoRef}
-      className="relative overflow-hidden border-b border-stone-200 bg-stone-50"
+      className="relative overflow-hidden border-b border-stone-200 bg-white"
     >
       <div className="mx-auto max-w-6xl px-5 pt-16 sm:pt-20">
         <p className="mb-4 text-center font-mono text-[11px] uppercase tracking-widest text-stone-400">
@@ -270,7 +270,7 @@ export default function CaminhoVerticais() {
               >
                 {/* Rótulo do trecho, escrito sobre a linha */}
                 <p className="mb-5 text-center font-mono text-[11px] uppercase tracking-widest text-stone-300 transition-colors duration-500 group-data-[solido=true]:text-stone-500">
-                  <span className="bg-stone-50 px-2">{ROTULO_TRECHO[v.id]}</span>
+                  <span className="bg-white px-2">{ROTULO_TRECHO[v.id]}</span>
                 </p>
 
                 {/* Pílula da parada */}
@@ -359,7 +359,7 @@ export default function CaminhoVerticais() {
                   className="group relative pl-11"
                 >
                   {/* Marco da parada, sobre a linha */}
-                  <span className="absolute left-0 top-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-stone-200 bg-stone-50 transition-colors duration-500 group-data-[solido=true]:border-emerald-700 group-data-[solido=true]:bg-emerald-700">
+                  <span className="absolute left-0 top-1 flex h-8 w-8 items-center justify-center rounded-full border-2 border-stone-200 bg-white transition-colors duration-500 group-data-[solido=true]:border-emerald-700 group-data-[solido=true]:bg-emerald-700">
                     {Icone ? (
                       <Icone
                         className="h-3.5 w-3.5 text-stone-300 transition-colors duration-500 group-data-[solido=true]:text-white"
