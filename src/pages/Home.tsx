@@ -1041,10 +1041,8 @@ export default function App() {
         }
         descricao={
           <>
-            Faça a análise gratuita da sua multa. Nossa inteligência artificial
-            cruza o auto de infração com o Código de Trânsito Brasileiro (CTB) e
-            o MBFT, campo por campo, em busca do erro formal que pode anular a
-            autuação. Se não encontrar falha, você não paga nada.
+            Análise gratuita da sua multa à luz do CTB e do MBFT. Se não
+            encontrar falha, você não paga nada.
             <span className="mt-3 flex flex-wrap items-center gap-3 text-sm text-stone-500 sm:gap-5">
               <span className="flex items-center gap-1.5">
                 <ShieldCheck className="h-4 w-4 text-emerald-600" /> Análise gratuita
@@ -1170,15 +1168,6 @@ export default function App() {
         )}
       </section>
 
-      <EscolhaOrgao
-        titulo={
-          <>
-            Descubra se ela pode ser <span className="text-emerald-600">anulada</span>
-          </>
-        }
-        subtitulo="A mesma análise gratuita vale para multa de trânsito, Procon, vigilância sanitária, energia e Ibama."
-      />
-
       {/* COMO FUNCIONA — mesmo mecanismo de scroll fixo (pin/scrub) da home,
           reaproveitado como está por enquanto; texto específico de trânsito
           entra quando a referência de imagem chegar. */}
@@ -1240,6 +1229,15 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      <EscolhaOrgao
+        titulo={
+          <>
+            Descubra se ela pode ser <span className="text-emerald-600">anulada</span>
+          </>
+        }
+        subtitulo="A mesma análise gratuita vale para multa de trânsito, Procon, vigilância sanitária, energia e Ibama."
+      />
 
       {/* SEGURANÇA */}
       <section id="seguranca" className="border-t border-slate-100 bg-white">
