@@ -118,6 +118,7 @@ jobs:
         run: node testes/rodar-defesa.mjs ${{ matrix.vertical }}
         env:
           REPETICOES: ${{ github.event.inputs.repeticoes }}
+          DEBUG_CITACAO: "1"
 
       - name: Log do servidor (quando algo falha)
         if: failure()
