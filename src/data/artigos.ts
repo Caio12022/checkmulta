@@ -12,6 +12,51 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "recurso-de-multa-por-excesso-de-velocidade-como-recorrer",
+    titulo: "Recurso de multa por excesso de velocidade: como recorrer",
+    descricao: "Recebeu uma multa por excesso de velocidade em rodovia? Entenda como funciona o processo de defesa e quais falhas podem anular a infração. Analise grátis.",
+    categoria: "Velocidade",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🚔",
+    imagemBg: "from-red-600 to-red-800",
+    conteudo: `## Recurso de multa por excesso de velocidade: o que você precisa saber
+
+Receber uma notificação de autuação por excesso de velocidade em rodovias é uma situação comum, mas que gera muitas dúvidas entre os condutores. A tecnologia de fiscalização está cada vez mais precisa, porém, isso não significa que o auto de infração seja infalível. A legislação brasileira garante ao condutor o direito à ampla defesa, permitindo que qualquer cidadão conteste a penalidade caso identifique inconsistências no processo.
+
+## Por que o excesso de velocidade é fiscalizado?
+
+O limite de velocidade nas rodovias é definido com base em critérios técnicos de engenharia de tráfego, visando garantir a segurança de todos os usuários. Quando um condutor ultrapassa esses limites, ele não apenas descumpre uma norma administrativa, mas potencializa o risco de acidentes graves. No entanto, o sistema de autuação precisa seguir requisitos formais rígidos para ser considerado válido.
+
+## Principais pontos de atenção na sua multa
+
+Ao receber a notificação, o primeiro passo é a análise criteriosa dos dados presentes no documento. Nem toda multa aplicada é incontestável. Muitas vezes, a autuação pode ser cancelada devido a erros formais, como:
+
+* **Equipamentos sem aferição:** Todo radar ou medidor de velocidade deve estar com a certificação do órgão metrológico vigente. Se o equipamento estiver com o certificado vencido ou sem a devida homologação, a multa pode ser nula.
+* **Sinalização ausente ou deficiente:** A legislação exige que a via esteja devidamente sinalizada. Se o limite de velocidade não estiver claro, ou se a placa estiver encoberta por vegetação ou danificada, a autuação perde o seu fundamento.
+* **Inconsistências no auto de infração:** Erros no preenchimento de dados, como placa do veículo, modelo, cor ou local da infração, são vícios formais que tornam o auto de infração irregular.
+* **Notificações fora do prazo:** O órgão de trânsito possui prazos legais para realizar a expedição da notificação. Caso esse prazo seja ultrapassado, o direito de punir do Estado pode decair conforme as normas vigentes.
+
+## Como estruturar o seu recurso
+
+Um bom recurso não é baseado em justificativas subjetivas, como pressa ou emergência pessoal. Para que a autoridade de trânsito considere o pedido, é fundamental apresentar argumentos técnicos e documentais.
+
+1. **A Defesa Prévia:** Esta é a primeira oportunidade de apontar erros formais antes da imposição da penalidade. É o momento ideal para verificar se o auto de infração possui todas as informações obrigatórias.
+2. **Recurso em Primeira Instância (JARI):** Caso a defesa prévia seja negada, o condutor pode recorrer à Junta Administrativa de Recursos de Infrações. Aqui, é importante detalhar os pontos técnicos e, se necessário, anexar fotos ou documentos que comprovem a irregularidade da sinalização ou do equipamento.
+3. **Recurso em Segunda Instância:** Se a JARI também indeferir, ainda há a possibilidade de levar a discussão para a instância recursal superior, buscando uma nova reavaliação do caso.
+
+## Dicas para evitar erros comuns
+
+Muitos condutores perdem prazos ou enviam documentos incompletos, o que resulta no indeferimento automático. Lembre-se de sempre manter seu endereço atualizado junto ao órgão de trânsito e de acompanhar o andamento do processo. O uso de argumentos genéricos, obtidos sem qualquer adaptação ao caso concreto, também costuma ser ineficaz. O segredo está na personalização da defesa, focando nos fatos específicos daquela autuação.
+
+## Busque a análise correta
+
+Recorrer de uma multa por excesso de velocidade exige atenção aos detalhes e conhecimento das normas vigentes. Nem todo caso é passível de recurso, e saber identificar quando vale a pena prosseguir é fundamental para economizar tempo e recursos. 
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa, garantindo que você tenha um embasamento sólido antes de iniciar o processo de defesa.`,
+    palavrasChave: ["recurso de multa", "excesso de velocidade", "rodovia", "defesa de trânsito"],
+  },
+
+  {
     slug: "parar-na-faixa-de-pedestres-da-multa-entenda-seus-direitos",
     titulo: "Parar na faixa de pedestres dá multa? Entenda seus direitos",
     descricao: "Recebeu uma multa por parar sobre a faixa de pedestres? Saiba como funciona a fiscalização, os riscos e como o CheckMulta analisa seu caso gratuitamente.",
