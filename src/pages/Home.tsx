@@ -15,6 +15,9 @@ import {
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
 import { ehSobrecarga, ehCotaDiaria } from "../lib/sobrecarga";
+import HeroFluxo from "../components/HeroFluxo";
+import EscolhaOrgao from "../components/EscolhaOrgao";
+import CaminhoPassos from "../components/CaminhoPassos";
 
 declare global {
   interface Window {
@@ -1057,6 +1060,24 @@ export default function App() {
         </div>
       </section>
 
+      <HeroFluxo
+        mensagemChat="Recebi uma multa de trânsito e não sei se tem erro, pode analisar pra mim?"
+        rotuloFase2="Cruzar com o CTB"
+        itensChecklist={[
+          "Excesso de velocidade",
+          "Avanço de sinal",
+          "Estacionamento",
+          "Celular ou cinto",
+          "Evasão de pedágio",
+        ]}
+        resultado={{
+          badge: "Viabilidade alta",
+          titulo: "Encontramos uma brecha legal",
+          texto:
+            "Erro formal grave encontrado no auto de infração — boas chances de anulação da multa. Geramos o recurso pronto para protocolar.",
+        }}
+      />
+
       {/* ÁREA PRINCIPAL — upload ou preview */}
       <section className="mx-auto max-w-3xl px-4 py-12">
         {previewUrl ? (
@@ -1151,45 +1172,54 @@ export default function App() {
         )}
       </section>
 
+      <EscolhaOrgao
+        titulo={
+          <>
+            Descubra se ela pode ser <span className="text-emerald-600">anulada</span>
+          </>
+        }
+        subtitulo="A mesma análise gratuita vale para multa de trânsito, Procon, vigilância sanitária, energia e Ibama."
+      />
+
       {/* COMO FUNCIONA */}
       <section id="como-funciona" className="border-t border-slate-100 bg-slate-50">
-        <div className="mx-auto max-w-5xl px-4 py-16">
-          <h2 className="mb-10 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-            Como funciona a <span className="text-emerald-600">análise</span>
-          </h2>
+        <CaminhoPassos
+          tagSecao="Como funciona"
+          titulo={
+            <>
+              Como funciona a <span className="text-emerald-600">análise</span>
+            </>
+          }
+          subtitulo="Três passos, sem cadastro, até o diagnóstico da sua multa."
+          passos={[
+            {
+              Icone: UploadCloud,
+              tag: "Passo 1",
+              rotulo: "Enviar",
+              titulo: "Envie a foto",
+              texto:
+                "Tire uma foto ou suba o PDF do auto de infração. Nenhum dado é armazenado.",
+            },
+            {
+              Icone: Search,
+              tag: "Passo 2",
+              rotulo: "A IA audita",
+              titulo: "Cruzamento com o CTB",
+              texto:
+                "Cruzamos cada campo com o Código de Trânsito Brasileiro e o Manual Brasileiro de Fiscalização (MBFT).",
+            },
+            {
+              Icone: FileText,
+              tag: "Passo 3",
+              rotulo: "Resultado",
+              titulo: "Diagnóstico grátis",
+              texto:
+                "Revelamos a falha encontrada e o nível de viabilidade do seu recurso.",
+            },
+          ]}
+        />
 
-          <div className="mb-8 grid grid-cols-1 gap-6 sm:grid-cols-3">
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <UploadCloud className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-base font-bold text-slate-900">1. Envie a foto</h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Tire uma foto ou suba o PDF do auto de infração. Nenhum dado é armazenado.
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <Search className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-base font-bold text-slate-900">2. A IA audita</h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Cruzamos cada campo com o CTB e o Manual Brasileiro de Fiscalização (MBFT).
-              </p>
-            </div>
-
-            <div className="rounded-xl border border-slate-200 bg-white p-6 text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <FileText className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-base font-bold text-slate-900">3. Diagnóstico grátis</h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Revelamos a falha encontrada e o nível de viabilidade do seu recurso.
-              </p>
-            </div>
-          </div>
-
+        <div className="mx-auto max-w-5xl px-4 pb-16">
           <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
             <div className="flex items-center gap-2.5 border-b border-slate-100 px-6 pb-4 pt-5">
               <ShieldCheck className="h-4 w-4 flex-shrink-0 text-slate-400" />

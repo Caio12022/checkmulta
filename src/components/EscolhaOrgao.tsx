@@ -69,7 +69,21 @@ const ROTULOS: Record<VerticalId, { quem: string; oque: string; lei: string }> =
   },
 };
 
-export default function EscolhaOrgao() {
+export type EscolhaOrgaoProps = {
+  /** Título da seção. Outras páginas de vertical já sabem "quem", e querem
+   * vender o cross-sell para as outras áreas — daí o texto ser trocável. */
+  titulo?: React.ReactNode;
+  subtitulo?: string;
+};
+
+export default function EscolhaOrgao({
+  titulo = (
+    <>
+      Quem te <span className="text-emerald-600">autuou?</span>
+    </>
+  ),
+  subtitulo = "Toque no órgão que mandou o papel e vá direto para a análise da sua área.",
+}: EscolhaOrgaoProps) {
   const secaoRef = useRef<HTMLElement>(null);
   const cartoesRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
@@ -114,11 +128,10 @@ export default function EscolhaOrgao() {
       <div className="mx-auto max-w-6xl px-5 py-12 sm:py-16">
         <div className="mb-8 text-center">
           <h2 className="font-display text-2xl font-semibold tracking-tight text-stone-900 sm:text-3xl">
-            Quem te <span className="text-emerald-600">autuou?</span>
+            {titulo}
           </h2>
           <p className="mt-3 text-base leading-relaxed text-stone-600">
-            Toque no órgão que mandou o papel e vá direto para a análise da sua
-            área.
+            {subtitulo}
           </p>
         </div>
 

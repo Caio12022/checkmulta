@@ -41,6 +41,32 @@ const SOMBRA_CARD = {
 
 const FASES = ["Enviar", "Identificar órgão", "Analisar", "Resultado"];
 
+/** Conteúdo por página: os textos mudam, a mecânica (acima) não. */
+export type HeroFluxoProps = {
+  /** Fala na caixa flutuante (fase 1). */
+  mensagemChat?: string;
+  /** Rótulo do stepper na fase 2 — "Identificar órgão" só faz sentido na
+   * home, que ainda não sabe qual vertical é. Numa página de vertical já
+   * definida, o nome muda para o que a fase 2 realmente faz ali. */
+  rotuloFase2?: string;
+  /** Os 5 itens que acendem um a um na fase 2. Casa com T.itemPasso — cinco
+   * itens é o tempo pra que o cronograma foi calibrado. */
+  itensChecklist?: string[];
+  /** Peça final (fase 4). */
+  resultado?: {
+    badge: string;
+    titulo: string;
+    texto: string;
+  };
+};
+
+const RESULTADO_PADRAO = {
+  badge: "1 falha encontrada",
+  titulo: "Encontramos uma brecha legal",
+  texto:
+    "O endereço da autuação está incompleto — falha de forma que abre espaço para recorrer. Geramos a defesa pronta para protocolar.",
+};
+
 /**
  * Ilustração do topo da peça final: o auto de infração com o trecho
  * defeituoso marcado e a lupa em cima dele. Desenho, não print — o layout
@@ -128,7 +154,12 @@ const T = {
   fechamento: 8.8,
 };
 
-export default function HeroFluxo() {
+export default function HeroFluxo({
+  mensagemChat = "Recebi uma multa e não sei se ela tem algum erro. Pode analisar pra mim?",
+  rotuloFase2 = "Identificar órgão",
+  itensChecklist = VERTICAIS.map((v) => v.titulo),
+  resultado = RESULTADO_PADRAO,
+}: HeroFluxoProps) {
   const secaoRef = useRef<HTMLDivElement>(null);
   const esteiraRef = useRef<HTMLDivElement>(null);
   const stepperRef = useRef<HTMLDivElement>(null);
@@ -422,7 +453,7 @@ export default function HeroFluxo() {
           />
           {FASES.map((fase, i) => (
             <div
-              key={fase}
+              key={i}
               ref={(el) => {
                 selosRef.current[i] = el;
               }}
@@ -441,7 +472,7 @@ export default function HeroFluxo() {
                 style={{ width: 0 }}
               >
                 <span className="pl-2 pr-0.5 font-mono text-[10px] uppercase leading-none tracking-widest text-white">
-                  {fase}
+                  {i === 1 ? rotuloFase2 : fase}
                 </span>
               </span>
             </div>
@@ -465,8 +496,7 @@ export default function HeroFluxo() {
             style={{ ...SOMBRA_CARD, opacity: 0.3, filter: "blur(2px)" }}
           >
             <p className="text-sm leading-relaxed text-stone-800">
-              Recebi uma multa e não sei se ela tem algum erro. Pode analisar
-              pra mim?
+              {mensagemChat}
             </p>
             <div className="mt-3 flex justify-end">
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-700 text-white">
@@ -486,9 +516,9 @@ export default function HeroFluxo() {
             }}
             className="w-60 flex-shrink-0 space-y-2 xl:w-64"
           >
-            {VERTICAIS.map((v, i) => (
+            {itensChecklist.map((item, i) => (
               <li
-                key={v.id}
+                key={item}
                 ref={(el) => {
                   linhasVerticalRef.current[i] = el;
                 }}
@@ -507,7 +537,7 @@ export default function HeroFluxo() {
                   />
                 </span>
                 <span className="font-mono text-[11px] uppercase tracking-wide transition-colors duration-500 group-data-[fase=espera]:text-stone-300 group-data-[fase=pensa]:text-stone-500 group-data-[fase=feito]:text-stone-700">
-                  {v.titulo}
+                  {item}
                 </span>
               </li>
             ))}
@@ -557,15 +587,13 @@ export default function HeroFluxo() {
             <IlustracaoAchado />
             <div className="p-5">
               <span className="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-2.5 py-1 font-mono text-[10px] font-semibold uppercase tracking-wide text-red-700">
-                1 falha encontrada
+                {resultado.badge}
               </span>
               <h3 className="font-display mt-3 text-lg font-semibold leading-snug tracking-tight text-stone-900">
-                Encontramos uma brecha legal
+                {resultado.titulo}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                O endereço da autuação está incompleto — falha de forma que
-                abre espaço para recorrer. Geramos a defesa pronta para
-                protocolar.
+                {resultado.texto}
               </p>
             </div>
             <div className="flex items-center justify-between border-t border-stone-100 bg-stone-50 px-5 py-3">
