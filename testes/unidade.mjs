@@ -293,6 +293,55 @@ teste("trânsito: diploma fora da lista continua sendo pego (contraprova)", () =
 });
 
 // ============================================================
+// Resolução-base da vertical (Energia) — citar a REN 1.000/2021
+// é obrigação do prompt, mas a exceção não pode virar passe livre
+// ============================================================
+
+const analiseEnergia = {
+  achados: [
+    {
+      titulo: "Ausencia de informacao sobre o direito a pericia",
+      gravidade: "critico",
+      trecho_documento: "TERMO DE OCORRENCIA E INSPECAO - TOI N 884.221/2026",
+      explicacao: "O TOI nao informa o direito de solicitar a pericia do medidor.",
+      base_legal: "Art. 590 da REN ANEEL 1.000/2021",
+    },
+  ],
+};
+
+teste("energia: REN 1.000/2021 por número é permitida (é a norma-base)", () => {
+  /* O prompt da Energia manda citar com dispositivo: "Art. 590, III, da REN
+     ANEEL nº 1.000/2021". Sem a exceção o validador reprova a peça por
+     obedecer o proprio prompt. */
+  const v = V.validarDefesa(
+    "O procedimento nao observou o art. 590 da Resolucao Normativa ANEEL n 1.000/2021.",
+    "energia",
+    analiseEnergia
+  );
+  ok(!regras(v).includes("citacao_fora_da_lista"), "a norma-base da vertical é citável");
+});
+
+teste("energia: outra resolução/portaria continua proibida (contraprova)", () => {
+  /* A exceção é de UM número. Portaria plantada tem que continuar reprovando,
+     inclusive na Energia — é por ali que entra a injeção. */
+  const v = V.validarDefesa(
+    "O procedimento contraria a Portaria 789/2019 e a Resolucao Normativa 414/2010.",
+    "energia",
+    analiseEnergia
+  );
+  ok(regras(v).includes("citacao_fora_da_lista"), "só a norma-base é exceção, não qualquer resolução");
+});
+
+teste("a exceção da Energia NÃO vale para as outras verticais", () => {
+  const v = V.validarDefesa(
+    "O auto contraria a Resolucao 1.000/2021.",
+    "procon",
+    { achados: [{ titulo: "x", gravidade: "critico", explicacao: "y" }] }
+  );
+  ok(regras(v).includes("citacao_fora_da_lista"), "a exceção é por vertical, não global");
+});
+
+// ============================================================
 // documentoIlegivel — os dois lados
 // ============================================================
 

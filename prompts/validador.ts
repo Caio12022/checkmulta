@@ -154,8 +154,10 @@ const DIPLOMAS_PERMITIDOS: Record<Vertical, string[]> = {
   transito: ["9503", "9.503", "20910", "20.910", "14304", "14.304"],
   procon: ["8078", "8.078", "2181", "2.181", "10887", "10.887", "123", "13874", "13.874", "9784", "9.784"],
   vigilancia: ["6437", "6.437", "9784", "9.784"],
-  /* Energia: REN 1.000/2021 da ANEEL é resolução — o prompt cita por nome, não
-     por número. Restam CDC (subsidiário) e Lei 9.784/99. */
+  /* Energia: REN 1.000/2021 da ANEEL é resolução, e o prompt manda citá-la com
+     dispositivo ("Art. 590, III, da REN ANEEL nº 1.000/2021"). Ela não entra
+     aqui porque não é lei/decreto: passa por RESOLUCAO_BASE_DA_VERTICAL, mais
+     abaixo. Nesta lista restam CDC (subsidiário) e Lei 9.784/99. */
   energia: ["8078", "8.078", "9784", "9.784"],
   /* IBAMA: Decreto 6.514/2008 (base), Lei 9.605/98 (crimes/sanções ambientais),
      LC 140/2011 (competência) e Lei 9.784/99 (processo administrativo). */
@@ -235,6 +237,26 @@ function artigosCitados(texto: string): string[] {
 }
 
 /**
+ * Resolução-base da vertical: a única resolução que pode ser citada por número
+ * sem estar escrita no documento.
+ *
+ * A trava geral contra resolução/RDC/portaria existe porque essa citação
+ * normalmente teria que vir do documento, e quando não vem costuma ser
+ * invenção. A Energia é a exceção real: a REN 1.000/2021 da ANEEL é a norma
+ * que sustenta a vertical inteira, e o próprio prompt manda citá-la com
+ * dispositivo ("Art. 590, III, da REN ANEEL nº 1.000/2021"). Sem esta exceção
+ * o validador reprova a peça por seguir corretamente o próprio prompt — foi
+ * o que aconteceu em 2 dos 4 casos da bateria de defesa da Energia, nas duas
+ * execuções, enquanto o revisor tentava "consertar" a citação certa.
+ *
+ * A exceção é de UM número específico, não um passe livre: portaria ou lei
+ * estadual plantada continua reprovando, inclusive na Energia.
+ */
+const RESOLUCAO_BASE_DA_VERTICAL: Partial<Record<Vertical, string>> = {
+  energia: "10002021", // REN 1.000/2021 da ANEEL, dígitos só
+};
+
+/**
  * Confere se a citação legal é permitida.
  * Norma escrita no próprio documento é sempre permitida — nesse caso o
  * modelo apenas repete o que o auto diz.
@@ -249,10 +271,13 @@ export function citacaoPermitida(
 
   const alvo = normalizar(transcricao).replace(/\s/g, "");
 
-  // Resolução, RDC, portaria, súmula e afins: proibidas salvo se escritas no documento
+  // Resolução, RDC, portaria, súmula e afins: proibidas salvo se escritas no
+  // documento, ou se forem a resolução-base da própria vertical.
   for (const n of normasProibidasCitadas(texto)) {
     const limpo = n.replace(/[^\d]/g, "");
-    if (limpo && !alvo.includes(limpo)) return false;
+    if (!limpo) continue;
+    if (limpo === RESOLUCAO_BASE_DA_VERTICAL[vertical]) continue;
+    if (!alvo.includes(limpo)) return false;
   }
 
   for (const d of diplomasCitados(texto)) {
@@ -837,10 +862,6 @@ export function validarDefesa(
  * Diploma (lei/decreto por número) continua na lista fechada de sempre: essa
  * parte não gerou nenhum falso positivo nos 251 artigos testados.
  */
-const RESOLUCAO_BASE_DA_VERTICAL: Partial<Record<Vertical, string>> = {
-  energia: "10002021", // REN 1.000/2021 da ANEEL, dígitos só
-};
-
 function citacaoPermitidaBlog(texto: string, vertical: Vertical): boolean {
   for (const n of normasProibidasCitadas(texto)) {
     const limpo = n.replace(/[^\d]/g, "");
