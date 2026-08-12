@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Lenis from "lenis";
 import {
   ChevronDown,
   AlertTriangle,
@@ -156,6 +157,26 @@ const ORIGEM = "https://checkmulta.com.br";
 
 export default function Plataforma() {
   const [menuAberto, setMenuAberto] = useState(false);
+
+  // Scroll suave só nesta página (prévia — ver CLAUDE.md antes de espalhar).
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    });
+
+    let frameId: number;
+    function raf(time: number) {
+      lenis.raf(time);
+      frameId = requestAnimationFrame(raf);
+    }
+    frameId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(frameId);
+      lenis.destroy();
+    };
+  }, []);
 
   useEffect(() => {
     document.title = TITULO;
