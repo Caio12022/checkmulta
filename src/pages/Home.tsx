@@ -18,6 +18,7 @@ import { ehSobrecarga, ehCotaDiaria } from "../lib/sobrecarga";
 import HeroFluxo from "../components/HeroFluxo";
 import EscolhaOrgao from "../components/EscolhaOrgao";
 import ComoFuncionaScroll from "../components/ComoFuncionaScroll";
+import Reveal from "../components/Reveal";
 
 declare global {
   interface Window {
@@ -1320,7 +1321,9 @@ export default function App() {
       </section>
 
       {/* CARROSSEL DE SERVIÇOS */}
-      <CarrosselServicos />
+      <Reveal>
+        <CarrosselServicos />
+      </Reveal>
 
       {/* FAQ */}
       <section id="faq-seo" className="border-t border-slate-100 bg-slate-50">
@@ -1330,7 +1333,7 @@ export default function App() {
           </h2>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-            <div className="rounded-xl border border-slate-200 bg-white p-6">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-white p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 Como saber se ainda dá tempo de recorrer da multa?
               </h3>
@@ -1339,9 +1342,9 @@ export default function App() {
                 confirmar se você ainda está dentro do período válido para
                 apresentar defesa prévia ou recurso.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-6">
+            <Reveal delay={0.06} className="rounded-xl border border-slate-200 bg-white p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 Quais multas podem ser contestadas?
               </h3>
@@ -1350,9 +1353,9 @@ export default function App() {
                 autuação. Nosso foco é identificar falhas do agente de trânsito
                 baseadas no Manual Brasileiro de Fiscalização (MBFT).
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-6">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-white p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 Como funciona a análise da CheckMulta?
               </h3>
@@ -1361,9 +1364,9 @@ export default function App() {
                 com a legislação vigente em segundos e aponta se há viabilidade
                 legal para solicitar a anulação.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-6">
+            <Reveal delay={0.06} className="rounded-xl border border-slate-200 bg-white p-6">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 O que contém o relatório de contestação?
               </h3>
@@ -1372,9 +1375,9 @@ export default function App() {
                 fundamentada em leis, pronta para você preencher com seus dados
                 pessoais e protocolar no órgão autuador.
               </p>
-            </div>
+            </Reveal>
 
-            <div className="rounded-xl border border-slate-200 bg-white p-6 md:col-span-2">
+            <Reveal delay={0} className="rounded-xl border border-slate-200 bg-white p-6 md:col-span-2">
               <h3 className="mb-2 text-[15.5px] font-bold text-slate-900">
                 Vale a pena recorrer de uma multa?
               </h3>
@@ -1384,7 +1387,7 @@ export default function App() {
                 provar que a autuação foi feita corretamente. O que muitas vezes
                 não acontece.
               </p>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -1401,31 +1404,35 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <a href="/simulador-pontos" className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-emerald-300 hover:shadow-md">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <Scale className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 transition group-hover:text-emerald-700">
-                Simulador de pontos na CNH
-              </h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Some suas multas dos últimos 12 meses e veja quantos pontos faltam para a
-                suspensão. O limite muda conforme as infrações gravíssimas: 20, 30 ou 40.
-              </p>
-            </a>
+            <Reveal delay={0}>
+              <a href="/simulador-pontos" className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-emerald-300 hover:shadow-md">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                  <Scale className="h-6 w-6" />
+                </div>
+                <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 transition group-hover:text-emerald-700">
+                  Simulador de pontos na CNH
+                </h3>
+                <p className="text-sm leading-relaxed text-slate-600">
+                  Some suas multas dos últimos 12 meses e veja quantos pontos faltam para a
+                  suspensão. O limite muda conforme as infrações gravíssimas: 20, 30 ou 40.
+                </p>
+              </a>
+            </Reveal>
 
-            <a href="/infracao" className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-emerald-300 hover:shadow-md">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
-                <FileText className="h-6 w-6" />
-              </div>
-              <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 transition group-hover:text-emerald-700">
-                Consulta de código de infração
-              </h3>
-              <p className="text-sm leading-relaxed text-slate-600">
-                Digite o código que aparece no auto e veja valor, pontos na CNH, gravidade e
-                o artigo do CTB. São 258 infrações da tabela oficial.
-              </p>
-            </a>
+            <Reveal delay={0.08}>
+              <a href="/infracao" className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-emerald-300 hover:shadow-md">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                  <FileText className="h-6 w-6" />
+                </div>
+                <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 transition group-hover:text-emerald-700">
+                  Consulta de código de infração
+                </h3>
+                <p className="text-sm leading-relaxed text-slate-600">
+                  Digite o código que aparece no auto e veja valor, pontos na CNH, gravidade e
+                  o artigo do CTB. São 258 infrações da tabela oficial.
+                </p>
+              </a>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -1446,19 +1453,20 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {BLOG_GUIAS.map((guia) => (
-              <a
-                key={guia.slug}
-                href={`/blog/${guia.slug}`}
-                className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-5 transition hover:border-emerald-300 hover:shadow-md"
-              >
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-50 text-emerald-600 transition group-hover:bg-emerald-50">
-                  <FileText className="h-5 w-5" />
-                </div>
-                <span className="text-sm font-bold leading-snug text-slate-800 transition group-hover:text-emerald-700">
-                  {guia.titulo}
-                </span>
-              </a>
+            {BLOG_GUIAS.map((guia, i) => (
+              <Reveal key={guia.slug} delay={(i % 3) * 0.06}>
+                <a
+                  href={`/blog/${guia.slug}`}
+                  className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-5 transition hover:border-emerald-300 hover:shadow-md"
+                >
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-50 text-emerald-600 transition group-hover:bg-emerald-50">
+                    <FileText className="h-5 w-5" />
+                  </div>
+                  <span className="text-sm font-bold leading-snug text-slate-800 transition group-hover:text-emerald-700">
+                    {guia.titulo}
+                  </span>
+                </a>
+              </Reveal>
             ))}
           </div>
 
@@ -1491,7 +1499,7 @@ export default function App() {
 
           <div className="space-y-5">
             {/* Bloco 1 */}
-            <div className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
+            <Reveal delay={0} className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
               <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                 <Timer className="h-5 w-5" />
               </div>
@@ -1509,10 +1517,10 @@ export default function App() {
                   ser contestada na esfera administrativa.
                 </p>
               </div>
-            </div>
+            </Reveal>
 
             {/* Bloco 2 */}
-            <div className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
+            <Reveal delay={0} className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
               <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                 <FileText className="h-5 w-5" />
               </div>
@@ -1530,10 +1538,10 @@ export default function App() {
                   sozinha um pedido de anulação.
                 </p>
               </div>
-            </div>
+            </Reveal>
 
             {/* Bloco 3 */}
-            <div className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
+            <Reveal delay={0} className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
               <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                 <Camera className="h-5 w-5" />
               </div>
@@ -1549,10 +1557,10 @@ export default function App() {
                   é motivo válido para anular a multa de velocidade.
                 </p>
               </div>
-            </div>
+            </Reveal>
 
             {/* Bloco 4 */}
-            <div className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
+            <Reveal delay={0} className="flex gap-4 rounded-xl border border-slate-200 bg-white p-6 sm:gap-5 sm:p-7">
               <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
                 <ShieldCheck className="h-5 w-5" />
               </div>
@@ -1568,10 +1576,10 @@ export default function App() {
                   real de anular a autuação.
                 </p>
               </div>
-            </div>
+            </Reveal>
 
             {/* Bloco 5 */}
-            <div className="flex gap-4 rounded-xl border border-emerald-200 bg-emerald-50/40 p-6 sm:gap-5 sm:p-7">
+            <Reveal delay={0} className="flex gap-4 rounded-xl border border-emerald-200 bg-emerald-50/40 p-6 sm:gap-5 sm:p-7">
               <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
                 <Scale className="h-5 w-5" />
               </div>
@@ -1588,7 +1596,7 @@ export default function App() {
                   por R$ 19,90.
                 </p>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
