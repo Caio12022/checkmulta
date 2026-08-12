@@ -12,6 +12,49 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "recebeu-uma-multa-sanitaria-por-que-nao-pagar-imediatamente",
+    titulo: "Recebeu uma multa sanitária? Por que não pagar imediatamente",
+    descricao: "Autuado pela Vigilância Sanitária? Entenda por que o pagamento imediato da multa pode prejudicar seu negócio. Analise o auto antes de tomar decisões.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["auto de infração vigilância sanitária", "multa sanitária como recorrer", "defesa processo administrativo sanitário", "notificação vigilância sanitária"],
+    conteudo: `## Recebeu um auto de infração? Mantenha a calma
+
+É comum que, ao receber um auto de infração da Vigilância Sanitária, o responsável pelo estabelecimento sinta o desejo de pagar a multa imediatamente para encerrar o assunto. No entanto, o pagamento voluntário de uma multa administrativa, sem uma análise técnica prévia do documento, pode significar a perda de direitos importantes. O processo administrativo sanitário não é apenas uma cobrança financeira, mas um procedimento que deve seguir regras rígidas estabelecidas em lei.
+
+## O risco de antecipar o pagamento
+
+Ao pagar a multa antes de examinar se o auto foi lavrado corretamente, pode haver a renúncia ao direito de questionar possíveis nulidades no procedimento. O ordenamento jurídico brasileiro, por meio da Lei 9.784/99 (aplicável subsidiariamente), garante o direito ao contraditório e à ampla defesa. Quando um estabelecimento aceita a penalidade de forma imediata, ele pode limitar a possibilidade de discutir se a sanção aplicada respeitou os princípios da razoabilidade e da proporcionalidade.
+
+## O que deve ser analisado no auto de infração
+
+O auto de infração é o documento que dá início ao processo. Segundo a Lei 6.437/77, o auto deve conter requisitos obrigatórios, conforme o art. 13, que vão desde a identificação clara do infrator até a descrição detalhada do fato que motivou a autuação. A ausência desses requisitos pode comprometer a validade do auto.
+
+Além disso, a autoridade sanitária deve observar critérios rigorosos na aplicação da pena. De acordo com o art. 6º da Lei 6.437/77, a gradação da penalidade deve levar em conta critérios como a gravidade do fato, o antecedente do infrator e o resultado da infração. Caso a multa tenha sido aplicada sem considerar esses fatores, ou sem a devida motivação conforme determina o art. 50 da Lei 9.784/99 (aplicável subsidiariamente), há fundamento técnico para questionar o valor ou a própria validade da sanção.
+
+## A importância do devido processo legal
+
+O processo administrativo é regido pelo princípio do devido processo legal. Isso significa que a autoridade fiscalizadora deve seguir um rito que assegure ao autuado o direito de ser ouvido. A Lei 6.437/77 prevê o direito a apresentar defesa. Embora o art. 22 da referida lei mencione o prazo de 15 dias, é fundamental que o estabelecimento verifique o prazo indicado no próprio auto de infração e confirme junto ao órgão emissor, pois a legislação sanitária varia entre a União, estados e municípios.
+
+## Como proceder diante de uma autuação
+
+Se o seu estabelecimento recebeu uma notificação de irregularidade, o primeiro passo é a regularização técnica. Documente todo o processo de adequação: tire fotos das melhorias, guarde notas fiscais de serviços ou produtos adquiridos e mantenha laudos técnicos atualizados. Essa documentação é essencial caso seja necessário solicitar uma reinspeção ou fundamentar uma defesa administrativa.
+
+Se o auto de infração mencionou a interdição do estabelecimento, lembre-se que, conforme o art. 23, § 4º da Lei 6.437/77, a interdição cautelar possui limites temporais claros. Jamais retome as operações antes de obter a liberação oficial do órgão sanitário, pois a retomada irregular das atividades constitui grave infração que pode resultar em novas penalidades e implicações administrativas.
+
+## O contraditório como defesa do seu negócio
+
+Ao analisar o auto, é possível verificar se houve erro na classificação da infração (art. 4º), se as atenuantes (art. 7º) ou agravantes (art. 8º) da Lei 6.437/77 foram aplicadas corretamente e se a autoridade que assinou a penalidade possuía competência para tal (art. 14). O exercício do contraditório é um direito garantido, reforçado pela Lei 9.784/99 (aplicável subsidiariamente). 
+
+Também devem ser observadas as normas gerais sobre o rol de penalidades (art. 2º), o critério de imputabilidade (art. 3º), o rol de infrações (art. 10), as formas de notificação (art. 17), o direito a recurso (art. 30), o prazo de pagamento da multa (art. 33) e a prescrição quinquenal (art. 38), todos previstos na Lei 6.437/77.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "cancelamento-de-licenca-sanitaria-o-que-fazer-e-como-reverter",
     titulo: "Cancelamento de licença sanitária: o que fazer e como reverter",
     descricao: "Recebeu o cancelamento da sua licença sanitária? Entenda os fundamentos legais para recorrer e como regularizar sua situação. Verifique seu auto conosco.",
