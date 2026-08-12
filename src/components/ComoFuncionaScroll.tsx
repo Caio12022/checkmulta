@@ -490,7 +490,7 @@ export default function ComoFuncionaScroll() {
                 etapaMobileRefs.current[i] = el;
               }}
               data-solido="false"
-              className="group flex gap-5"
+              className="group flex items-center gap-5"
             >
               <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border transition-colors duration-500 group-data-[solido=false]:border-stone-300 group-data-[solido=false]:bg-stone-50 group-data-[solido=false]:text-stone-300 group-data-[solido=true]:border-emerald-700 group-data-[solido=true]:bg-emerald-700 group-data-[solido=true]:text-white">
                 <e.Icone className="h-5 w-5" strokeWidth={1.5} />
