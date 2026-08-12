@@ -17,6 +17,17 @@ import {
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 /**
+ * Sombra multi-camada do card de referência (auxia.io, .process_image-wrapper),
+ * com os deslocamentos/blur reduzidos na mesma proporção da diferença de
+ * tamanho do card (lá é ~1630px de largura; aqui é ~500px) — a receita
+ * original aplicada sem ajuste ficava praticamente invisível num card menor.
+ */
+const SOMBRA_CARD = {
+  boxShadow:
+    "rgba(0,0,0,0.02) 0px 140px 56px, rgba(0,0,0,0.07) 0px 78px 47px, rgba(0,0,0,0.1) 0px 7px 14px, rgba(0,0,0,0.12) 0px 9px 19px",
+};
+
+/**
  * Bloco "Como funciona" com transição scrubada por scroll (GSAP + ScrollTrigger).
  *
  * Mecânica (só em telas lg+; abaixo disso vira lista estática empilhada, sem
@@ -45,7 +56,8 @@ type Etapa = {
 
 function MockupEnvio() {
   return (
-    <div className="flex h-full flex-col justify-center gap-5 rounded-2xl border border-stone-200 bg-white p-6 shadow-xl shadow-stone-200/60 sm:p-8">
+    <div className="flex h-full flex-col justify-center gap-5 rounded-3xl border border-stone-200 bg-white p-6 sm:p-8"
+      style={SOMBRA_CARD}>
       <div className="flex flex-col items-center gap-3 rounded-xl border-2 border-dashed border-stone-300 px-6 py-10 text-center">
         <UploadCloud className="h-8 w-8 text-emerald-600" strokeWidth={1.5} />
         <p className="text-sm font-medium text-stone-700">
@@ -70,7 +82,8 @@ function MockupEnvio() {
 
 function MockupAnalise() {
   return (
-    <div className="relative flex h-full flex-col justify-center gap-3 overflow-hidden rounded-2xl border border-stone-200 bg-white p-6 shadow-xl shadow-stone-200/60 sm:p-8">
+    <div className="relative flex h-full flex-col justify-center gap-3 overflow-hidden rounded-3xl border border-stone-200 bg-white p-6 sm:p-8"
+      style={SOMBRA_CARD}>
       <div className="mb-2 flex items-center gap-2">
         <Loader2 className="h-4 w-4 animate-spin text-emerald-600" strokeWidth={2} />
         <span className="font-mono text-[11px] uppercase tracking-widest text-emerald-700">
@@ -97,7 +110,8 @@ function MockupAnalise() {
 
 function MockupAchado() {
   return (
-    <div className="flex h-full flex-col justify-center gap-5 rounded-2xl border border-stone-200 bg-white p-6 shadow-xl shadow-stone-200/60 sm:p-8">
+    <div className="flex h-full flex-col justify-center gap-5 rounded-3xl border border-stone-200 bg-white p-6 sm:p-8"
+      style={SOMBRA_CARD}>
       <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-red-50 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide text-red-700">
         1 falha encontrada
       </span>
@@ -120,7 +134,8 @@ function MockupAchado() {
 
 function MockupDefesa() {
   return (
-    <div className="flex h-full flex-col justify-center gap-5 rounded-2xl border border-stone-200 bg-white p-6 shadow-xl shadow-stone-200/60 sm:p-8">
+    <div className="flex h-full flex-col justify-center gap-5 rounded-3xl border border-stone-200 bg-white p-6 sm:p-8"
+      style={SOMBRA_CARD}>
       <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-700 px-3 py-1 font-mono text-[11px] font-semibold uppercase tracking-wide text-white">
         <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
         Defesa pronta
@@ -185,7 +200,10 @@ const ETAPAS: Etapa[] = [
 export default function ComoFuncionaScroll() {
   const trackRef = useRef<HTMLDivElement>(null);
   const stickyRef = useRef<HTMLDivElement>(null);
-  const lineFillRef = useRef<HTMLDivElement>(null);
+  const stepsColRef = useRef<HTMLDivElement>(null);
+  const lineSvgRef = useRef<SVGSVGElement>(null);
+  const lineTrackRef = useRef<SVGPathElement>(null);
+  const lineFillRef = useRef<SVGPathElement>(null);
   const badgeRefs = useRef<(HTMLDivElement | null)[]>([]);
   const tituloRefs = useRef<(HTMLHeadingElement | null)[]>([]);
   const textoRefs = useRef<(HTMLParagraphElement | null)[]>([]);
@@ -211,7 +229,11 @@ export default function ComoFuncionaScroll() {
         if (!el) return;
         const split = new SplitText(el, { type: "chars" });
         splits[i] = split;
-        gsap.set(split.chars, { opacity: i === 0 ? 1 : 0.18, y: 0 });
+        gsap.set(split.chars, {
+          opacity: i === 0 ? 1 : 0.18,
+          y: 0,
+          filter: i === 0 ? "blur(0px)" : "blur(2px)",
+        });
       });
       badgeRefs.current.forEach((el, i) => {
         if (!el) return;
@@ -229,6 +251,33 @@ export default function ComoFuncionaScroll() {
           filter: i === 0 ? "blur(0px)" : "blur(16px)",
         });
       });
+
+      // Linha que liga os selos: um traço reto passando pelo centro do
+      // primeiro ao último selo. Medido em pixels reais (não fração fixa),
+      // porque a altura de cada passo varia com o tamanho do texto.
+      const medirLinha = () => {
+        const coluna = stepsColRef.current;
+        const svg = lineSvgRef.current;
+        if (!coluna || !svg) return;
+        const colRect = coluna.getBoundingClientRect();
+        const centros = badgeRefs.current.map((el) => {
+          if (!el) return 0;
+          const r = el.getBoundingClientRect();
+          return r.top + r.height / 2 - colRect.top;
+        });
+        const cx = 22;
+        const y0 = centros[0];
+        const y1 = centros[centros.length - 1];
+        const d = `M ${cx} ${y0} L ${cx} ${y1}`;
+        svg.setAttribute("viewBox", `0 0 44 ${colRect.height}`);
+        lineTrackRef.current?.setAttribute("d", d);
+        lineFillRef.current?.setAttribute("d", d);
+      };
+      medirLinha();
+      if (document.fonts?.ready) {
+        document.fonts.ready.then(medirLinha);
+      }
+      window.addEventListener("resize", medirLinha);
 
       const aplicarPasso = (indice: number) => {
         if (indice === ativo) return;
@@ -267,10 +316,11 @@ export default function ComoFuncionaScroll() {
         if (split) {
           gsap.fromTo(
             split.chars,
-            { opacity: 0.18, y: 4 },
+            { opacity: 0.18, y: 4, filter: "blur(2px)" },
             {
               opacity: 1,
               y: 0,
+              filter: "blur(0px)",
               duration: 0.35,
               stagger: 0.014,
               ease: "power1.out",
@@ -314,8 +364,9 @@ export default function ComoFuncionaScroll() {
           const indice = Math.min(n - 1, Math.floor(bruto));
           aplicarPasso(indice);
           if (lineFillRef.current) {
+            const percentual = Math.min(100, (bruto / n) * 100);
             gsap.set(lineFillRef.current, {
-              height: `${Math.min(100, (bruto / n) * 100)}%`,
+              strokeDashoffset: 100 - percentual,
             });
           }
         },
@@ -323,6 +374,7 @@ export default function ComoFuncionaScroll() {
 
       return () => {
         st.kill();
+        window.removeEventListener("resize", medirLinha);
         splits.forEach((s) => s?.revert());
       };
     });
@@ -381,53 +433,71 @@ export default function ComoFuncionaScroll() {
           ref={stickyRef}
           className="sticky top-0 flex h-screen items-center overflow-hidden"
         >
-          <div className="mx-auto grid w-full max-w-6xl grid-cols-[auto_1fr_1fr] gap-10 px-5 xl:gap-16">
-            {/* Linha de progresso vertical */}
-            <div className="relative w-px self-stretch bg-stone-200">
-              <div
-                ref={lineFillRef}
-                className="absolute left-0 top-0 w-px bg-emerald-600"
-                style={{ height: "0%" }}
-              />
-            </div>
+          <div className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-10 px-5 lg:grid-cols-2 xl:gap-16">
+            {/* Coluna dos passos, com a linha ligando os selos por trás */}
+            <div ref={stepsColRef} className="relative">
+              <svg
+                ref={lineSvgRef}
+                className="pointer-events-none absolute left-0 top-0 h-full w-11"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path
+                  ref={lineTrackRef}
+                  stroke="#e7e5e4"
+                  strokeWidth={2}
+                  fill="none"
+                  pathLength={100}
+                />
+                <path
+                  ref={lineFillRef}
+                  stroke="#059669"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  fill="none"
+                  pathLength={100}
+                  strokeDasharray={100}
+                  strokeDashoffset={100}
+                />
+              </svg>
 
-            {/* Coluna dos passos */}
-            <ol className="flex flex-col justify-center gap-9">
-              {ETAPAS.map((e, i) => (
-                <li key={e.numero} className="flex items-start gap-5">
-                  <div
-                    ref={(el) => {
-                      badgeRefs.current[i] = el;
-                    }}
-                    data-ativo={i === 0 ? "true" : "false"}
-                    className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border transition-colors duration-300 data-[ativo=true]:border-emerald-700 data-[ativo=true]:bg-emerald-700 data-[ativo=true]:text-white data-[ativo=false]:border-stone-300 data-[ativo=false]:bg-white data-[ativo=false]:text-stone-300 data-[visto=true]:border-emerald-700 data-[visto=true]:text-emerald-700"
-                  >
-                    <e.Icone className="h-5 w-5" strokeWidth={1.5} />
-                  </div>
-                  <div className="min-w-0 pt-1.5">
-                    <span className="font-mono text-xs tracking-widest text-emerald-700">
-                      {e.numero}
-                    </span>
-                    <h3
+              <ol className="relative flex flex-col justify-center gap-9">
+                {ETAPAS.map((e, i) => (
+                  <li key={e.numero} className="flex items-start gap-5">
+                    <div
                       ref={(el) => {
-                        tituloRefs.current[i] = el;
+                        badgeRefs.current[i] = el;
                       }}
-                      className="font-display mt-1 text-xl font-semibold tracking-tight text-stone-900 xl:text-2xl"
+                      data-ativo={i === 0 ? "true" : "false"}
+                      className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border bg-stone-50 transition-colors duration-300 data-[ativo=true]:border-emerald-700 data-[ativo=true]:bg-emerald-700 data-[ativo=true]:text-white data-[ativo=false]:border-stone-300 data-[ativo=false]:bg-stone-50 data-[ativo=false]:text-stone-300 data-[visto=true]:border-emerald-700 data-[visto=true]:text-emerald-700"
                     >
-                      {e.titulo}
-                    </h3>
-                    <p
-                      ref={(el) => {
-                        textoRefs.current[i] = el;
-                      }}
-                      className="mt-2 max-w-sm text-sm leading-relaxed text-stone-600"
-                    >
-                      {e.texto}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+                      <e.Icone className="h-5 w-5" strokeWidth={1.5} />
+                    </div>
+                    <div className="min-w-0 pt-1.5">
+                      <span className="font-mono text-xs tracking-widest text-emerald-700">
+                        {e.numero}
+                      </span>
+                      <h3
+                        ref={(el) => {
+                          tituloRefs.current[i] = el;
+                        }}
+                        className="font-display mt-1 text-xl font-semibold tracking-tight text-stone-900 xl:text-2xl"
+                      >
+                        {e.titulo}
+                      </h3>
+                      <p
+                        ref={(el) => {
+                          textoRefs.current[i] = el;
+                        }}
+                        className="mt-2 max-w-sm text-sm leading-relaxed text-stone-600"
+                      >
+                        {e.texto}
+                      </p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
 
             {/* Painel visual */}
             <div className="flex flex-col justify-center">
