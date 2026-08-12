@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { VERTICAIS, FERRAMENTAS } from "../data/verticais";
 import ComoFuncionaScroll from "../components/ComoFuncionaScroll";
+import HeroFluxo from "../components/HeroFluxo";
 
 /**
  * Home institucional do CheckMulta (home-mãe).
@@ -333,6 +334,11 @@ export default function Plataforma() {
           ) : null}
         </div>
       </header>
+
+      {/* ---------------------------------------------------------------- */}
+      {/* Abertura animada (inspirada no hero do auxia.io)                  */}
+      {/* ---------------------------------------------------------------- */}
+      <HeroFluxo />
 
       {/* ---------------------------------------------------------------- */}
       {/* Triagem                                                           */}

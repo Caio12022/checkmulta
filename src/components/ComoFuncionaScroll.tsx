@@ -567,7 +567,7 @@ export default function ComoFuncionaScroll() {
                     ref={(el) => {
                       visualRefs.current[i] = el;
                     }}
-                    className="absolute inset-0"
+                    className={i === 0 ? "absolute inset-0" : "absolute inset-0 opacity-0"}
                   >
                     <e.Mockup />
                   </div>
