@@ -12,6 +12,49 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "decisao-do-procon-sem-motivacao-como-identificar-esse-vicio",
+    titulo: "Decisão do Procon sem motivação: como identificar esse vício",
+    descricao: "Recebeu uma decisão do Procon sem justificativa clara? Entenda como a falta de motivação afeta a validade da sanção. Envie seu auto para análise gratuita.",
+    categoria: "Vícios e Nulidades",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["decisão Procon sem fundamento", "nulidade multa Procon", "motivação ato administrativo", "processo administrativo Procon"],
+    conteudo: `## A importância da motivação no processo administrativo
+
+No Direito Administrativo, a motivação é o requisito essencial que obriga a autoridade pública a explicar, de forma lógica e fundamentada, as razões de fato e de direito que levaram a uma determinada decisão. Conforme o art. 5º do Decreto 2.181/97, cabe aos órgãos competentes apurar e punir infrações. Quando uma empresa recebe uma decisão do Procon, o documento não pode se limitar a repetir termos genéricos ou apenas citar artigos de lei sem conectar os fatos ao caso concreto.
+
+A ausência de uma fundamentação clara e específica torna o ato administrativo viciado. Para o gestor ou proprietário de empresa, essa falha não é apenas um detalhe burocrático: é a violação do direito ao contraditório e à ampla defesa, pois, sem saber exatamente por que a sanção foi aplicada, a empresa fica impedida de formular uma defesa técnica eficiente.
+
+## O papel da legislação na dosimetria da pena
+
+O processo administrativo sancionador, regulado pelo Decreto 2.181/97, estabelece critérios rígidos para que o Procon possa impor penalidades. A autoridade administrativa, ao decidir, deve observar os arts. 24 a 28, que tratam da graduação da pena, atenuantes, agravantes, reincidência e fixação da multa.
+
+Se a decisão não explica como o órgão chegou ao valor da multa, desconsiderando as atenuantes e agravantes que são taxativas conforme o art. 26-A, ou se incorre em erro ao valorar o mesmo elemento duas vezes na dosimetria, vedado pelo art. 28-A, a decisão apresenta um vício grave. A motivação deve explicitar por que um critério foi aplicado em detrimento de outro, sob pena de arbítrio.
+
+## Quando a falta de motivação gera nulidade
+
+Nem toda irregularidade formal resulta automaticamente na anulação de um processo. O art. 48 do Decreto 2.181/97 estabelece que a inobservância de forma só gera nulidade se houver prejuízo para a defesa. No caso da ausência de motivação, o prejuízo pode ser configurado, pois a empresa é privada de entender os fundamentos da punição.
+
+O processo administrativo inicia-se na forma do art. 33, podendo haver uma averiguação preliminar conforme o art. 33-A. O auto de infração, que formaliza a autuação, deve observar os requisitos obrigatórios do art. 35, inciso I, como local, data e hora; qualificação do autuado; descrição do fato; dispositivo legal infringido; intimação; identificação, assinatura e matrícula do agente; designação do órgão julgador; assinatura do autuado; e cientificação para defesa. Além disso, a fiscalização orientadora e o critério de dupla visita devem ser observados para atividades de risco leve, com tratamento diferenciado a ME e EPP, conforme o art. 38-A. Se o auto é genérico ou ignora tais ritos, a defesa administrativa pode apresentar fundamentos para questionar a validade da sanção.
+
+## Como proceder ao identificar a falha
+
+Ao receber uma decisão, o primeiro passo é verificar se houve o preenchimento de todos os requisitos legais. Se a empresa entende que a autoridade não fundamentou adequadamente a sanção, pode recorrer administrativamente. O prazo para esse recurso é de 10 dias, conforme o art. 49, e em casos de multa, esse recurso possui efeito suspensivo. É indispensável conferir o prazo de defesa indicado no próprio documento recebido, pois normas estaduais podem prever contagens distintas.
+
+Caso a multa não seja recolhida no prazo indicado no auto ou em até 30 dias após a notificação, o débito poderá ser inscrito em dívida ativa, conforme o art. 55 do decreto, o que gera consequências financeiras e burocráticas mais severas para o negócio.
+
+## Análise especializada do seu auto
+
+A verificação de vícios em decisões do Procon exige uma análise técnica cuidadosa. Identificar se houve falha na fundamentação ou na dosimetria da pena pode ser determinante para a estratégia de defesa da sua empresa.
+
+Empresas interessadas podem enviar o auto de infração para uma análise técnica que verifica se a autuação apresenta vício formal ou outros problemas passíveis de questionamento em sua defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "multa-desproporcional-do-procon-como-questionar-o-valor-excessivo",
     titulo: "Multa desproporcional do Procon: como questionar o valor excessivo",
     descricao: "Recebeu uma multa alta do Procon? Entenda os critérios de dosimetria e como contestar valores desproporcionais. Analise seu auto gratuitamente no CheckMulta.",
