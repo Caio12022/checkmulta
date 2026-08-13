@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Building2, Scale, FileText, ShieldCheck, Zap, Car, Leaf, DollarSign, Gauge, BookOpen } from "lucide-react";
+import { Building2, Scale, FileText, ShieldCheck, Zap, Car, Leaf, DollarSign, Gauge, BookOpen, CalendarClock } from "lucide-react";
 
 /**
  * Carrossel de serviços do CheckMulta.
@@ -15,7 +15,7 @@ import { Building2, Scale, FileText, ShieldCheck, Zap, Car, Leaf, DollarSign, Ga
  *
  * Ordem fixa dos itens de vertical: transito, procon, vigilancia, energia,
  * ibama. Ferramentas (simulador, codigos, calculadora, calculadora-toi,
- * glossario-procon) sempre por último.
+ * glossario-procon, prazo-procon, prazo-vigilancia) sempre por último.
  */
 
 export type ServicoId =
@@ -28,7 +28,9 @@ export type ServicoId =
   | "codigos"
   | "calculadora"
   | "calculadora-toi"
-  | "glossario-procon";
+  | "glossario-procon"
+  | "prazo-procon"
+  | "prazo-vigilancia";
 
 interface Servico {
   id: ServicoId;
@@ -152,6 +154,28 @@ const SERVICOS: Servico[] = [
     botao: "Consultar glossário",
     Icone: BookOpen,
     cor: { faixa: "#f59e0b", icone: "#b45309", fundoIcone: "#fffbeb", texto: "#b45309" },
+  },
+  {
+    id: "prazo-procon",
+    eyebrow: "Ferramenta gratuita",
+    titulo: "Até quando você pode apresentar defesa no Procon?",
+    texto:
+      "O prazo varia por Procon. Informe a data que recebeu a notificação e o número de dias do seu auto, e calcule a data-limite.",
+    href: "/procon/prazo-de-defesa",
+    botao: "Calcular prazo",
+    Icone: CalendarClock,
+    cor: { faixa: "#f59e0b", icone: "#b45309", fundoIcone: "#fffbeb", texto: "#b45309" },
+  },
+  {
+    id: "prazo-vigilancia",
+    eyebrow: "Ferramenta gratuita",
+    titulo: "Até quando você pode apresentar defesa na Vigilância Sanitária?",
+    texto:
+      "O prazo varia por estado e município. Informe a data que recebeu a notificação e o número de dias do seu auto, e calcule a data-limite.",
+    href: "/vigilancia-sanitaria/prazo-de-defesa",
+    botao: "Calcular prazo",
+    Icone: CalendarClock,
+    cor: { faixa: "#ef4444", icone: "#b91c1c", fundoIcone: "#fef2f2", texto: "#b91c1c" },
   },
 ];
 

@@ -1273,6 +1273,13 @@ export default function Procon() {
               fundamental conferir o prazo indicado no próprio auto de infração e, em caso de dúvida,
               confirmar junto ao órgão emissor.
             </p>
+            <a
+              href="/procon/prazo-de-defesa"
+              className="mb-4 inline-flex items-center gap-1.5 text-sm font-semibold text-orange-600 hover:text-orange-700"
+            >
+              Calcular a data-limite da sua defesa
+              <ArrowRight className="h-3.5 w-3.5" />
+            </a>
 
             <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
               Como é calculado o valor da multa
@@ -1344,6 +1351,12 @@ export default function Procon() {
             </a>
             <a href="/procon/glossario" className="text-slate-600 transition hover:text-orange-600">
               Glossário do CDC
+            </a>
+            <a
+              href="/procon/prazo-de-defesa"
+              className="text-slate-600 transition hover:text-orange-600"
+            >
+              Prazo de defesa
             </a>
             <a href="/vigilancia-sanitaria" className="text-slate-600 transition hover:text-orange-600">
               Vigilância Sanitária

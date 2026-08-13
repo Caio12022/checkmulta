@@ -23,6 +23,8 @@ import CalculadoraDesconto from "./pages/CalculadoraDesconto";
 import CalculadoraToi from "./pages/CalculadoraToi";
 import ProconGlossario from "./pages/ProconGlossario";
 import ProconGlossarioDetalhe from "./pages/ProconGlossarioDetalhe";
+import ProconPrazoDefesa from "./pages/ProconPrazoDefesa";
+import VigilanciaPrazoDefesa from "./pages/VigilanciaPrazoDefesa";
 import Plataforma from "./pages/Plataforma";
 import BlogGeral from "./pages/BlogGeral";
 /* Sobe a página ao trocar de rota */
@@ -128,6 +130,7 @@ export default function App() {
         <Route path="/procon/blog/:slug" element={<BlogPostProconWrapper />} />
         <Route path="/procon/glossario" element={<ProconGlossario />} />
         <Route path="/procon/glossario/:slug" element={<ProconGlossarioDetalhe />} />
+        <Route path="/procon/prazo-de-defesa" element={<ProconPrazoDefesa />} />
         {/* CheckMulta — Vigilância Sanitária */}
         <Route path="/vigilancia-sanitaria" element={<Vigilancia />} />
         <Route path="/vigilancia-sanitaria/blog" element={<BlogVigilancia />} />
@@ -135,6 +138,7 @@ export default function App() {
           path="/vigilancia-sanitaria/blog/:slug"
           element={<BlogPostVigilanciaWrapper />}
         />
+        <Route path="/vigilancia-sanitaria/prazo-de-defesa" element={<VigilanciaPrazoDefesa />} />
         {/* CheckMulta — Energia elétrica (TOI) */}
         <Route path="/energia" element={<Energia />} />
         <Route path="/energia/blog" element={<BlogEnergia />} />

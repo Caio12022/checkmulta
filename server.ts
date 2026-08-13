@@ -253,6 +253,29 @@ function metaGlossarioProcon(pathname: string): MetaInfo | null {
   };
 }
 
+function metaPrazoDefesa(pathname: string): MetaInfo | null {
+  if (pathname === "/procon/prazo-de-defesa" || pathname === "/procon/prazo-de-defesa/") {
+    return {
+      title: "Calculadora de prazo de defesa do Procon | CheckMulta",
+      description:
+        "Calcule a data-limite para apresentar defesa no Procon a partir do prazo indicado no seu auto de infração. O prazo varia por Procon — a ferramenta só faz a conta com o número que você já encontrou no documento. Grátis.",
+      url: `${BASE_URL}/procon/prazo-de-defesa`,
+    };
+  }
+  if (
+    pathname === "/vigilancia-sanitaria/prazo-de-defesa" ||
+    pathname === "/vigilancia-sanitaria/prazo-de-defesa/"
+  ) {
+    return {
+      title: "Calculadora de prazo de defesa da Vigilância Sanitária | CheckMulta",
+      description:
+        "Calcule a data-limite para apresentar defesa na Vigilância Sanitária a partir do prazo indicado no seu auto de infração. O prazo varia por órgão emissor — a ferramenta só faz a conta com o número que você já encontrou no documento. Grátis.",
+      url: `${BASE_URL}/vigilancia-sanitaria/prazo-de-defesa`,
+    };
+  }
+  return null;
+}
+
 function metaInfracao(pathname: string): MetaInfo | null {
   if (pathname === "/infracao" || pathname === "/infracao/") {
     return {
@@ -323,6 +346,8 @@ function getMetaParaRota(pathname: string): MetaInfo {
   if (metaCalcToi) return metaCalcToi;
   const metaGlossario = metaGlossarioProcon(pathname);
   if (metaGlossario) return metaGlossario;
+  const metaPrazo = metaPrazoDefesa(pathname);
+  if (metaPrazo) return metaPrazo;
 
   // Blog-mãe: reúne as cinco verticais
   if (pathname === "/blog" || pathname === "/blog/") {
@@ -562,6 +587,14 @@ function gerarSitemap(): string {
       priority: "0.6",
       changefreq: "monthly",
     });
+  });
+
+  // Calculadoras de prazo de defesa (Procon e Vigilância)
+  urls.push({ loc: `${BASE_URL}/procon/prazo-de-defesa`, priority: "0.8", changefreq: "monthly" });
+  urls.push({
+    loc: `${BASE_URL}/vigilancia-sanitaria/prazo-de-defesa`,
+    priority: "0.8",
+    changefreq: "monthly",
   });
 
   // Consulta de infrações
