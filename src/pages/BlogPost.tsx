@@ -1,6 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { useEffect, useState, type ReactElement } from "react";
-import { Clock, ArrowRight, ChevronRight, ShieldCheck } from "lucide-react";
+import { Clock, ArrowRight, ChevronRight, ShieldCheck, Lock, Timer } from "lucide-react";
 import { artigos } from "../data/artigos";
 import { getFaq } from "../data/faqs";
 import { aplicarLinksInternos } from "../data/linksInternos";
@@ -475,7 +475,7 @@ export default function BlogPost() {
         <div className="mx-auto max-w-3xl px-4 py-2.5 text-center text-[13px] text-emerald-800">
           O prazo para recorrer é curto.{" "}
           <Link
-            to="/multa-de-transito"
+            to="/multa-de-transito?analisar=1"
             onClick={() => cta("barra_urgencia")}
             className="font-semibold underline"
           >
@@ -547,8 +547,19 @@ export default function BlogPost() {
             Nossa IA verifica grátis se há erro formal no auto de infração. Mais
             de 400 multas já analisadas, sem cadastro.
           </p>
+          <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-500">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" /> Análise gratuita
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Lock className="h-3.5 w-3.5 text-emerald-600" /> Sem cadastro
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Timer className="h-3.5 w-3.5 text-emerald-600" /> Resultado imediato
+            </span>
+          </div>
           <Link
-            to="/multa-de-transito"
+            to="/multa-de-transito?analisar=1"
             onClick={() => cta("topo")}
             className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
@@ -606,7 +617,7 @@ export default function BlogPost() {
             houver falha, você não paga nada.
           </p>
           <Link
-            to="/multa-de-transito"
+            to="/multa-de-transito?analisar=1"
             onClick={() => cta("final")}
             className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
@@ -709,7 +720,7 @@ export default function BlogPost() {
         }`}
       >
         <Link
-          to="/multa-de-transito"
+          to="/multa-de-transito?analisar=1"
           onClick={() => cta("flutuante")}
           className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:bg-emerald-700"
         >

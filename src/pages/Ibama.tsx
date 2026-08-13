@@ -463,6 +463,23 @@ useEffect(() => {
       localStorage.removeItem("ibama_pending_payment");
     }
   }, []);
+
+  // Deep-link do blog: "?analisar=1" pula a landing e rola direto para a
+  // escolha do documento — poupa o clique de achar essa área depois do CTA
+  // do artigo.
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("analisar") !== "1") return;
+    const t = setTimeout(() => {
+      const alvo = document.getElementById("enviar-documento");
+      if (!alvo) return;
+      // Desconta a altura do header fixo (sticky top-0), senão o título
+      // fica escondido atrás dele.
+      const y = alvo.getBoundingClientRect().top + window.scrollY - 90;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }, 250);
+    return () => clearTimeout(t);
+  }, []);
+
   // ─── HANDLERS ────────────────────────────────────────────────────────────
   const handleTipoSelect = (tipoName: string) => {
     setSelectedTipo(tipoName);
@@ -992,7 +1009,7 @@ useEffect(() => {
       </div>
 
       {/* ÁREA PRINCIPAL */}
-      <section className="mx-auto max-w-3xl px-4 py-12">
+      <section id="enviar-documento" className="mx-auto max-w-3xl px-4 py-12">
         {previewUrl ? (
           <div className="rounded-xl border border-slate-200 bg-white p-8 text-center sm:p-10">
             <motion.div key="preview" initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} className="space-y-4">

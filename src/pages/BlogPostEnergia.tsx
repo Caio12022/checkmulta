@@ -1,11 +1,32 @@
-import { useEffect, type ReactElement } from "react";
+import { useEffect, useState, type ReactElement } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Clock, ArrowRight, ChevronRight } from "lucide-react";
+import { Clock, ArrowRight, ChevronRight, ShieldCheck, Lock, Timer } from "lucide-react";
 import {
   artigosEnergia,
   getArtigoEnergiaPorSlug,
 } from "../data/artigosEnergia";
 import { selo } from "../data/revisao";
+
+// Permite chamar o gtag do GA4 sem quebrar a tipagem do TypeScript
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
+
+/**
+ * Registra o clique em um CTA do blog no GA4.
+ * "local" identifica qual dos CTAs foi clicado (topo, final, flutuante, barra).
+ */
+function rastrearCTA(local: string, slugArtigo: string, categoria: string) {
+  if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    window.gtag("event", "cta_blog_click", {
+      cta_local: local,
+      artigo_slug: slugArtigo,
+      artigo_categoria: categoria,
+    });
+  }
+}
 
 /* ---------- Renderizador de markdown simples ---------- */
 
@@ -148,6 +169,19 @@ export default function BlogPostEnergia() {
     (artigo as { dataPublicacao?: string } | undefined)?.dataPublicacao
   );
 
+  const [mostrarFlutuante, setMostrarFlutuante] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      const altura = document.body.scrollHeight - window.innerHeight;
+      // Aparece após rolar 15% e some perto do fim (últimos 12%)
+      setMostrarFlutuante(y > altura * 0.15 && y < altura * 0.88);
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [slug]);
+
   useEffect(() => {
     if (!artigo) return;
 
@@ -265,6 +299,9 @@ export default function BlogPostEnergia() {
     );
   }
 
+  // Atalho para não repetir slug e categoria em cada CTA
+  const cta = (local: string) => rastrearCTA(local, artigo.slug, artigo.categoria);
+
   /* ---------- Artigo ---------- */
 
   return (
@@ -297,7 +334,11 @@ export default function BlogPostEnergia() {
       <div className="border-b border-emerald-100 bg-emerald-50">
         <div className="mx-auto max-w-3xl px-4 py-2.5 text-center text-[13px] text-emerald-800">
           O prazo para contestar está na sua notificação.{" "}
-          <Link to="/energia" className="font-semibold underline">
+          <Link
+            to="/energia?analisar=1"
+            onClick={() => cta("barra_urgencia")}
+            className="font-semibold underline"
+          >
             Verifique agora se a cobrança tem falha
           </Link>
         </div>
@@ -352,8 +393,20 @@ export default function BlogPostEnergia() {
             Envie o TOI ou a notificação e veja grátis se a cobrança tem
             falha.
           </p>
+          <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-500">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" /> Análise gratuita
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Lock className="h-3.5 w-3.5 text-emerald-600" /> Sem cadastro
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Timer className="h-3.5 w-3.5 text-emerald-600" /> Resultado imediato
+            </span>
+          </div>
           <Link
-            to="/energia"
+            to="/energia?analisar=1"
+            onClick={() => cta("topo")}
             className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
             Analisar grátis
@@ -374,7 +427,8 @@ export default function BlogPostEnergia() {
             cobrança. Se não houver, você não paga nada.
           </p>
           <Link
-            to="/energia"
+            to="/energia?analisar=1"
+            onClick={() => cta("final")}
             className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-7 py-3 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
             Começar análise gratuita
@@ -427,6 +481,25 @@ export default function BlogPostEnergia() {
           </div>
         </section>
       )}
+
+      {/* Botão flutuante */}
+      <div
+        className={`fixed bottom-4 left-1/2 z-50 w-full max-w-md -translate-x-1/2 px-4 transition-all duration-300 ${
+          mostrarFlutuante
+            ? "translate-y-0 opacity-100"
+            : "pointer-events-none translate-y-16 opacity-0"
+        }`}
+      >
+        <Link
+          to="/energia?analisar=1"
+          onClick={() => cta("flutuante")}
+          className="flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition hover:bg-emerald-700"
+        >
+          <ShieldCheck className="h-4 w-4" />
+          Analisar grátis
+          <ArrowRight className="h-4 w-4" />
+        </Link>
+      </div>
 
       {/* Rodapé */}
       <footer className="border-t border-slate-200 bg-white">
