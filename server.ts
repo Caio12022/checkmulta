@@ -203,6 +203,17 @@ function metaSimulador(pathname: string): MetaInfo | null {
   };
 }
 
+function metaCalculadora(pathname: string): MetaInfo | null {
+  if (pathname !== "/calculadora-desconto-multa" && pathname !== "/calculadora-desconto-multa/")
+    return null;
+  return {
+    title: "Calculadora de desconto de multa: quanto você paga com 20% ou 40% | CheckMulta",
+    description:
+      "Calcule o valor da sua multa de trânsito com 20% ou 40% de desconto, conforme o art. 284 do CTB. Entenda a diferença entre os dois — e o que cada um exige. Grátis.",
+    url: `${BASE_URL}/calculadora-desconto-multa`,
+  };
+}
+
 function metaInfracao(pathname: string): MetaInfo | null {
   if (pathname === "/infracao" || pathname === "/infracao/") {
     return {
@@ -267,6 +278,8 @@ function getMetaParaRota(pathname: string): MetaInfo {
   if (metaInfra) return metaInfra;
   const metaSim = metaSimulador(pathname);
   if (metaSim) return metaSim;
+  const metaCalc = metaCalculadora(pathname);
+  if (metaCalc) return metaCalc;
 
   // Blog-mãe: reúne as cinco verticais
   if (pathname === "/blog" || pathname === "/blog/") {
@@ -491,7 +504,10 @@ function gerarSitemap(): string {
 
 // Simulador de pontos
   urls.push({ loc: `${BASE_URL}/simulador-pontos`, priority: "0.9", changefreq: "monthly" });
-  
+
+  // Calculadora de desconto de multa
+  urls.push({ loc: `${BASE_URL}/calculadora-desconto-multa`, priority: "0.9", changefreq: "monthly" });
+
   // Consulta de infrações
   urls.push({ loc: `${BASE_URL}/infracao`, priority: "0.9", changefreq: "monthly" });
   infracoes.forEach((i) => {

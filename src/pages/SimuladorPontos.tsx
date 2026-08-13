@@ -724,7 +724,8 @@ export default function SimuladorPontos() {
               Os pontos deixam de contar 12 meses depois da{" "}
               <strong className="font-semibold text-slate-800">data da infração</strong>, não
               da data do pagamento. Quitar a multa não antecipa a saída dos pontos, e o
-              desconto de 40% do art. 284 do CTB também não interfere na pontuação.
+              desconto por pagamento antecipado (art. 284 do CTB) também não interfere na
+              pontuação.
             </p>
           </div>
         </section>
@@ -825,6 +826,12 @@ export default function SimuladorPontos() {
             </Link>
             <Link to="/infracao" className="text-slate-600 transition hover:text-emerald-600">
               Consulta de infrações
+            </Link>
+            <Link
+              to="/calculadora-desconto-multa"
+              className="text-slate-600 transition hover:text-emerald-600"
+            >
+              Calculadora de desconto
             </Link>
             <Link to="/blog" className="text-slate-600 transition hover:text-emerald-600">
               Blog

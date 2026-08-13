@@ -2622,50 +2622,49 @@ Se você comprou um veículo usado e o vendedor não transferiu o documento, as 
     conteudo: `
 ## Desconto de 40% na multa: isso existe de verdade?
 
-Sim, existe. E muita gente perde esse benefício por não saber que tem prazo curto.
+Existe, mas não é o único desconto — e a condição pega muita gente de surpresa. O Art. 284 do CTB, na redação da Lei 14.599/2023, prevê **dois** descontos diferentes:
 
-O desconto está previsto no Art. 284-A do CTB e é aplicado automaticamente para quem aderiu ao **SNE (Sistema de Notificação Eletrônica)** e paga a multa dentro de 15 dias úteis do recebimento da notificação eletrônica.
+- **20% de desconto**: pague até a data de vencimento da notificação. Não exige cadastro prévio nenhum, e você continua podendo recorrer.
+- **40% de desconto**: só para quem já havia aderido ao **SNE (Sistema de Notificação Eletrônica)** **antes** de a autuação desta multa ser notificada, e que declara, ao pagar, que **desiste de defesa prévia e de recurso**.
 
 ## Como funciona o SNE
 
-O SNE é um sistema voluntário onde o condutor opta por receber todas as notificações de multa eletronicamente, pelo portal do Senatran, em vez de esperar a carta pelos Correios.
+O SNE é um sistema voluntário em que o condutor opta por receber notificações de multa eletronicamente, pelo portal do Senatran, em vez de esperar a carta dos Correios. A adesão precisa ser feita **com antecedência** — não adianta aderir depois de já ter recebido a notificação de uma multa específica, porque o desconto de 40% dessa multa já não se aplica mais.
 
-Vantagens:
-- Desconto de 40% no valor da multa se pagar em até 15 dias úteis
+Vantagens de estar no SNE:
+- Acesso ao desconto de 40% nas próximas autuações, se optar por não recorrer
 - Notificação imediata (sem depender dos Correios)
-- Prazo de recurso começa a contar de forma transparente
 - Acesso a todas as notificações em um só lugar
 
 ## Como aderir ao SNE
 
-1. Acesse **portalservicos.senatran.serpro.gov.br**
+1. Acesse **portalservicos.senatran.serpro.gov.br** ou o app **CNH Digital**
 2. Faça login com sua conta gov.br
 3. Acesse "Sistema de Notificação Eletrônica"
 4. Selecione os veículos que deseja incluir
 5. Confirme a adesão
 
-A adesão é gratuita e pode ser cancelada a qualquer momento.
+A adesão é gratuita, vale para autuações futuras e pode ser cancelada a qualquer momento.
 
 ## Quais multas têm desconto?
 
-O desconto de 40% se aplica a multas federais (PRF, DNIT) e estaduais, desde que o estado tenha aderido ao SNE. A maioria dos estados já participa.
-
-Multas municipais (prefeituras) seguem regras próprias — consulte o órgão de trânsito da sua cidade.
+O desconto de 20% (pagamento até o vencimento) vale para qualquer multa. Já o de 40% depende de o órgão autuador (federal, estadual ou municipal) ter aderido ao SNE — a maioria dos estados já participa; confira o seu.
 
 ## E se eu quiser recorrer em vez de pagar?
 
-Você não precisa escolher entre o desconto e o recurso. Se preferir contestar a multa, apresente a defesa prévia dentro do prazo de 15 dias. O recurso suspende o pagamento — e se você ganhar, não paga nada.
-
-O desconto só faz sentido se você decidiu **não recorrer** e quer minimizar o valor da multa.
+Aqui está o ponto que mais gera confusão: **o desconto de 40% e o recurso são excludentes.** Para ter os 40%, você declara no ato que não vai recorrer. Se ainda não decidiu, ou se quer manter a porta aberta, o desconto de 20% é o caminho — ele não fecha o direito de recorrer depois.
 
 ## Comparando as opções
 
 Para uma multa gravíssima de R$ 293,47:
-- Com desconto SNE: R$ 176,08
-- Sem desconto (pagamento normal): R$ 293,47
-- Recorrendo e ganhando: R$ 0,00
 
-Nossa IA analisa gratuitamente se há base para recurso. Se não houver, o desconto de 40% é o caminho mais inteligente.
+| Opção | Valor final | Mantém direito de recorrer? |
+|-------|-------------|------------------------------|
+| Pagar com 20% (até o vencimento) | R$ 234,78 | Sim |
+| Pagar com 40% (SNE prévio) | R$ 176,08 | Não |
+| Recorrer e ganhar | R$ 0,00 | — |
+
+Nossa IA analisa gratuitamente se há base para recurso. Se não houver, um dos dois descontos é o caminho mais inteligente — o de 20% se você ainda tem dúvida, o de 40% se já decidiu não contestar.
     `
   },
   {
@@ -3308,7 +3307,7 @@ Em muitos casos, sim — pelos seguintes motivos:
 3. O processo é gratuito
 4. Mesmo com 30% de chance, o risco zero compensa a tentativa
 
-A única situação em que não vale é quando a multa claramente não tem vício formal, os pontos já expiraram e você prefere pagar logo com desconto de 40%.
+A única situação em que não vale é quando a multa claramente não tem vício formal, os pontos já expiraram e você prefere pagar logo com o desconto disponível.
     `
   },
   {
@@ -3582,7 +3581,7 @@ Cada estado tem seu próprio app do DETRAN com funcionalidades variadas. Os mais
 **Estados com apps mais completos:** SP, RJ, MG, RS, PR.
 
 ### SNE — Sistema de Notificação Eletrônica
-Não é um app separado, mas está integrado ao portal Gov.br. Permite receber notificações de multa eletronicamente com desconto de 40% para pagamento rápido.
+Não é um app separado, mas está integrado ao portal Gov.br. Permite receber notificações de multa eletronicamente e, para quem aderiu antes da autuação e opta por não recorrer, dá acesso ao desconto de 40% no pagamento (contra 20% de quem só paga em dia).
 
 ## Apps de terceiros úteis
 
@@ -6914,39 +6913,40 @@ Nossa Inteligência Artificial verifica automaticamente cada inciso do Art. 280 
 
 O valor de **R$ 293,47** corresponde às infrações de natureza **gravíssima** no CTB — como avançar sinal vermelho, usar celular ao volante, excesso de velocidade acima de 50% e dirigir sem CNH. Além do valor, geram 7 pontos na CNH.
 
-## Como conseguir 40% de desconto
+## Existem dois descontos, não só um
 
-O desconto de 40% está previsto no **Art. 284-A do CTB** e é concedido para quem aderiu ao **SNE (Sistema de Notificação Eletrônica)** e paga a multa dentro do prazo de 15 dias úteis do recebimento da notificação eletrônica.
+O **Art. 284 do CTB**, na redação da Lei 14.599/2023, prevê dois descontos diferentes, com condições bem distintas:
 
-Com o desconto, a multa gravíssima de R$ 293,47 cai para **R$ 176,08**.
+- **20% de desconto** (paga R$ 234,78): basta quitar a multa até a data de vencimento da notificação. Não exige nenhum cadastro prévio, e **você continua podendo recorrer** — se o recurso for aceito depois, o valor pago é devolvido.
+- **40% de desconto** (paga R$ 176,08): só para quem já havia aderido ao **SNE (Sistema de Notificação Eletrônica)** **antes** de a autuação ser notificada, e que declara, no ato do pagamento, que **desiste de apresentar defesa prévia e recurso**.
 
-## Qual a vantagem de pagar a multa antecipadamente?
+## Qual a vantagem de pagar com o desconto maior?
 
-Pagar antecipadamente pelo SNE tem vantagens claras:
+O desconto de 40% é maior, mas custa o seu direito de defesa:
 
 - **Economia de 40%** no valor da multa
-- **Notificação imediata** (sem esperar os Correios)
-- **Controle transparente** dos prazos
+- Em troca, você **abre mão de contestar** essa autuação
 
-Mas atenção: pagar significa **assumir a infração**. Você abre mão do direito de recorrer. Por isso, só vale pagar com desconto se você já decidiu que **não vai contestar** a multa.
+Só vale a pena se você já decidiu, sem dúvida, que não vai recorrer. Se ainda não tem certeza, o desconto de 20% é o caminho mais seguro: garante uma redução no valor sem fechar a porta do recurso.
 
-## Como aderir ao SNE e pagar com desconto
+## Como aderir ao SNE para o desconto de 40%
 
-1. Acesse o portal **gov.br** ou o app Carteira Digital de Trânsito
-2. Adira ao Sistema de Notificação Eletrônica (SNE)
-3. Selecione os veículos que deseja incluir
-4. Ao receber uma notificação, pague dentro de 15 dias úteis
-5. O desconto de 40% é aplicado automaticamente no boleto
+A adesão precisa ser feita **antes** de qualquer multa ser autuada — não dá para aderir depois de já ter recebido a notificação desta multa específica.
+
+1. Baixe o app **CNH Digital** (antiga Carteira Digital de Trânsito) ou acesse o portal **gov.br**
+2. Adira ao Sistema de Notificação Eletrônica (SNE) para os seus veículos
+3. A partir da adesão, as próximas autuações passam a te dar a opção do desconto de 40%, mediante a desistência de defesa e recurso
+4. Se você perdeu o prazo de adesão para esta multa, ainda dá para pagar com 20% de desconto até o vencimento, sem abrir mão do recurso
 
 ## Pagar com desconto ou recorrer? Compare
 
 Para uma multa gravíssima de R$ 293,47:
 
-| Opção | Valor final | Pontos na CNH |
-|-------|-------------|---------------|
-| Pagar com desconto SNE | R$ 176,08 | 7 pontos |
-| Pagar sem desconto | R$ 293,47 | 7 pontos |
-| Recorrer e ganhar | R$ 0,00 | 0 pontos |
+| Opção | Valor final | Pontos na CNH | Mantém direito de recorrer? |
+|-------|-------------|---------------|------------------------------|
+| Pagar com 20% (até o vencimento) | R$ 234,78 | 7 pontos | Sim |
+| Pagar com 40% (SNE prévio) | R$ 176,08 | 7 pontos | Não |
+| Recorrer e ganhar | R$ 0,00 | 0 pontos | — |
 
 ## Antes de pagar, verifique se dá para cancelar
 

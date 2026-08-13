@@ -15,6 +15,7 @@ import {
   buscarPorCodigo,
   calcularValor,
   calcularValorComDesconto,
+  calcularValorComDescontoGeral,
   formatarReal,
   NOMES_GRAVIDADE,
   type Infracao,
@@ -57,6 +58,7 @@ export default function InfracaoDetalhe() {
 
   const valor = infracao ? calcularValor(infracao) : null;
   const valorDesconto = infracao ? calcularValorComDesconto(infracao) : null;
+  const valorDescontoGeral = infracao ? calcularValorComDescontoGeral(infracao) : null;
   const titulo = infracao ? tituloCurto(infracao.descricao) : "";
   const url = infracao ? `https://checkmulta.com.br/infracao/${infracao.slug}` : "";
 
@@ -298,10 +300,10 @@ export default function InfracaoDetalhe() {
 
             <div className="p-5">
               <span className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-                Com 40% off
+                Pagando até vencer
               </span>
               <span className="text-xl font-bold text-emerald-700 sm:text-2xl">
-                {valorDesconto !== null ? formatarReal(valorDesconto) : "—"}
+                {valorDescontoGeral !== null ? formatarReal(valorDescontoGeral) : "—"}
               </span>
             </div>
 
@@ -455,13 +457,31 @@ export default function InfracaoDetalhe() {
               )}
               .
             </p>
-            <p className="text-[16.5px] leading-[1.75] text-slate-700">
-              O art. 284 permite pagar com <strong>40% de desconto</strong> se a quitação
-              ocorrer até o vencimento e o condutor desistir de recorrer — sairia por{" "}
-              {formatarReal(valorDesconto!)}. Vale lembrar que o desconto reduz o valor, mas{" "}
-              <strong>não retira os pontos da CNH</strong>. Recorrer é o único caminho que
-              pode afastar as duas coisas.
+            <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
+              O art. 284 do CTB prevê dois descontos diferentes, não um só. Pagando até o
+              vencimento, sem exigência nenhuma, sai por{" "}
+              <strong className="font-semibold text-slate-900">
+                {formatarReal(valorDescontoGeral!)}
+              </strong>{" "}
+              (20% de desconto) — e esse não tira o direito de recorrer depois.
             </p>
+            <p className="text-[16.5px] leading-[1.75] text-slate-700">
+              Já os{" "}
+              <strong className="font-semibold text-slate-900">
+                {formatarReal(valorDesconto!)}
+              </strong>{" "}
+              (40%) só valem para quem aderiu ao SNE (Sistema de Notificação Eletrônica)
+              antes de a autuação ser notificada e declara, no ato, que desiste de defesa
+              prévia e de recurso. Vale lembrar que nenhum dos dois descontos retira os
+              pontos da CNH — só o recurso aceito faz isso.
+            </p>
+            <Link
+              to={`/calculadora-desconto-multa?valor=${valor}`}
+              onClick={() => rastrearCTA("calculadora_desconto", infracao.codigo)}
+              className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-600 hover:text-emerald-700"
+            >
+              Ver os dois valores na calculadora <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
           </section>
         )}
 
@@ -627,6 +647,12 @@ export default function InfracaoDetalhe() {
             </Link>
             <Link to="/infracao" className="text-slate-600 transition hover:text-emerald-600">
               Consulta de infrações
+            </Link>
+            <Link
+              to="/calculadora-desconto-multa"
+              className="text-slate-600 transition hover:text-emerald-600"
+            >
+              Calculadora de desconto
             </Link>
             <Link to="/blog" className="text-slate-600 transition hover:text-emerald-600">
               Blog

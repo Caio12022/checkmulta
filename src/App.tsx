@@ -19,6 +19,7 @@ import BlogPostIbama from "./pages/BlogPostIbama";
 import ConsultaInfracao from "./pages/ConsultaInfracao";
 import InfracaoDetalhe from "./pages/InfracaoDetalhe";
 import SimuladorPontos from "./pages/SimuladorPontos";
+import CalculadoraDesconto from "./pages/CalculadoraDesconto";
 import Plataforma from "./pages/Plataforma";
 import BlogGeral from "./pages/BlogGeral";
 /* Sobe a página ao trocar de rota */
@@ -117,6 +118,7 @@ export default function App() {
         <Route path="/infracao/:slug" element={<InfracaoDetalheWrapper />} />
         {/* CheckMulta — simulador de pontos */}
         <Route path="/simulador-pontos" element={<SimuladorPontos />} />
+        <Route path="/calculadora-desconto-multa" element={<CalculadoraDesconto />} />
         {/* CheckMulta — Procon */}
         <Route path="/procon" element={<Procon />} />
         <Route path="/procon/blog" element={<BlogProcon />} />

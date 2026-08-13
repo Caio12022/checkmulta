@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Building2, Scale, FileText, ShieldCheck, Zap, Car, Leaf } from "lucide-react";
+import { Building2, Scale, FileText, ShieldCheck, Zap, Car, Leaf, DollarSign } from "lucide-react";
 
 /**
  * Carrossel de serviços do CheckMulta.
@@ -14,7 +14,7 @@ import { Building2, Scale, FileText, ShieldCheck, Zap, Car, Leaf } from "lucide-
  * exclui a si mesma (ex: Home.tsx passa excluir={["transito"]}).
  *
  * Ordem fixa dos itens de vertical: transito, procon, vigilancia, energia,
- * ibama. Ferramentas (simulador, codigos) sempre por último.
+ * ibama. Ferramentas (simulador, codigos, calculadora) sempre por último.
  */
 
 export type ServicoId =
@@ -24,7 +24,8 @@ export type ServicoId =
   | "energia"
   | "ibama"
   | "simulador"
-  | "codigos";
+  | "codigos"
+  | "calculadora";
 
 interface Servico {
   id: ServicoId;
@@ -115,6 +116,17 @@ const SERVICOS: Servico[] = [
     botao: "Consultar código",
     Icone: FileText,
     cor: { faixa: "#10b981", icone: "#047857", fundoIcone: "#ecfdf5", texto: "#047857" },
+  },
+  {
+    id: "calculadora",
+    eyebrow: "Ferramenta gratuita",
+    titulo: "Quanto você paga com desconto na multa?",
+    texto:
+      "O art. 284 do CTB prevê 20% ou 40% de desconto — e cada um exige uma coisa diferente. Calcule os dois valores e veja qual cabe no seu caso.",
+    href: "/calculadora-desconto-multa",
+    botao: "Calcular agora",
+    Icone: DollarSign,
+    cor: { faixa: "#0ea5e9", icone: "#0369a1", fundoIcone: "#f0f9ff", texto: "#0369a1" },
   },
 ];
 

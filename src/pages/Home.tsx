@@ -1421,7 +1421,7 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             <Reveal delay={0}>
               <a href="/simulador-pontos" className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-blue-300 hover:shadow-md">
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
@@ -1438,6 +1438,21 @@ export default function App() {
             </Reveal>
 
             <Reveal delay={0.08}>
+              <a href="/calculadora-desconto-multa" className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-blue-300 hover:shadow-md">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+                  <DollarSign className="h-6 w-6" />
+                </div>
+                <h3 className="mb-2 text-lg font-bold leading-snug text-slate-900 transition group-hover:text-blue-700">
+                  Calculadora de desconto na multa
+                </h3>
+                <p className="text-sm leading-relaxed text-slate-600">
+                  Veja quanto sua multa fica com 20% ou 40% de desconto — o art. 284 do CTB
+                  prevê os dois, e cada um exige uma coisa diferente.
+                </p>
+              </a>
+            </Reveal>
+
+            <Reveal delay={0.16}>
               <a href="/infracao" className="group flex flex-col rounded-xl border border-slate-200 bg-white p-6 transition hover:border-blue-300 hover:shadow-md">
                 <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                   <FileText className="h-6 w-6" />

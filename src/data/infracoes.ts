@@ -73,11 +73,27 @@ export function calcularValor(infracao: Infracao): number | null {
   return Math.round(base * infracao.multiplicador * 100) / 100;
 }
 
-/** Valor com o desconto de 40% do art. 284 do CTB (pagamento até o vencimento). */
+/**
+ * Valor com o desconto de 40% do art. 284, § 1º, do CTB (Lei 14.599/2023).
+ * Só vale para quem aderiu ao SNE (Sistema de Notificação Eletrônica)
+ * ANTES de a autuação ser notificada e declara desistir de defesa prévia
+ * e de recurso. Não é o desconto padrão de quem só paga em dia.
+ */
 export function calcularValorComDesconto(infracao: Infracao): number | null {
   const valor = calcularValor(infracao);
   if (valor === null) return null;
   return Math.round(valor * 0.6 * 100) / 100;
+}
+
+/**
+ * Valor com o desconto de 20% do art. 284, caput, do CTB: pagar até o
+ * vencimento da notificação. Não exige adesão ao SNE nem abrir mão do
+ * recurso — dá para pagar com esse desconto e ainda recorrer depois.
+ */
+export function calcularValorComDescontoGeral(infracao: Infracao): number | null {
+  const valor = calcularValor(infracao);
+  if (valor === null) return null;
+  return Math.round(valor * 0.8 * 100) / 100;
 }
 
 /** Formata em real brasileiro: 293.47 -> "R$ 293,47" */
