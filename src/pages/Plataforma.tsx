@@ -194,9 +194,6 @@ export default function Plataforma() {
             <a href="#areas" className="transition hover:text-emerald-600">
               Áreas
             </a>
-            <a href="#como-funciona" className="transition hover:text-emerald-600">
-              Como funciona
-            </a>
             <a href="#ferramentas" className="transition hover:text-emerald-600">
               Ferramentas
             </a>
@@ -232,13 +229,6 @@ export default function Plataforma() {
                 className="rounded-lg px-3 py-2.5 font-medium text-stone-700 transition hover:bg-stone-50"
               >
                 Áreas
-              </a>
-              <a
-                href="#como-funciona"
-                onClick={() => setMenuAberto(false)}
-                className="rounded-lg px-3 py-2.5 font-medium text-stone-700 transition hover:bg-stone-50"
-              >
-                Como funciona
               </a>
               <a
                 href="#ferramentas"
