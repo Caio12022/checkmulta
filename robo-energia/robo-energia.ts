@@ -16,7 +16,7 @@ import { writeFileSync, unlinkSync } from "fs";
 import { execSync } from "child_process";
 import { tmpdir } from "os";
 import { join } from "path";
-import { validarArtigoBlog, type ViolacaoDefesa } from "../prompts/validador";
+import { validarArtigoBlog, gerarComRetry, type ViolacaoDefesa } from "../prompts/validador";
 
 // ============================================================
 // CONFIGURAÇÃO
@@ -221,10 +221,12 @@ AVISO LEGAL FINAL (obrigatório):
 - Depois do CTA, encerre o artigo com uma linha separadora '---' seguida exatamente desta frase em itálico:
 *Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`;
 
-  const resp = await ai.models.generateContent({
-    model: "gemini-3.1-flash-lite",
-    contents: prompt,
-  });
+  const resp = await gerarComRetry(() =>
+    ai.models.generateContent({
+      model: "gemini-3.1-flash-lite",
+      contents: prompt,
+    })
+  );
 
   let texto = resp.text?.trim() || "";
   texto = texto
@@ -261,10 +263,12 @@ Responda APENAS com o texto do artigo revisado em markdown, sem comentários, se
 ARTIGO PARA REVISAR:
 ${conteudo}`;
 
-  const resp = await ai.models.generateContent({
-    model: "gemini-3.1-flash-lite",
-    contents: prompt,
-  });
+  const resp = await gerarComRetry(() =>
+    ai.models.generateContent({
+      model: "gemini-3.1-flash-lite",
+      contents: prompt,
+    })
+  );
 
   let texto = resp.text?.trim() || "";
   texto = texto

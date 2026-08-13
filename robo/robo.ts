@@ -16,7 +16,7 @@ import { writeFileSync, unlinkSync } from "fs";
 import { execSync } from "child_process";
 import { tmpdir } from "os";
 import { join } from "path";
-import { validarArtigoBlog, type ViolacaoDefesa } from "../prompts/validador";
+import { validarArtigoBlog, gerarComRetry, type ViolacaoDefesa } from "../prompts/validador";
 
 // ============================================================
 // CONFIGURAÇÃO - você pode ajustar estas listas quando quiser
@@ -194,10 +194,12 @@ REGRA DO CHAMADO FINAL (CTA):
 - NUNCA escreva 'clique aqui', 'clique no botão', 'clique no link' ou similares. O site já tem os botões próprios.
 - Escreva de forma natural, por exemplo: 'No CheckMulta, você pode enviar o auto de infração e receber uma análise gratuita que aponta se há falhas capazes de anular a multa.'`;
 
-  const resp = await ai.models.generateContent({
-    model: "gemini-3.1-flash-lite",
-    contents: prompt,
-  });
+  const resp = await gerarComRetry(() =>
+    ai.models.generateContent({
+      model: "gemini-3.1-flash-lite",
+      contents: prompt,
+    })
+  );
 
   let texto = resp.text?.trim() || "";
   // remove crases de markdown se o modelo colocar
@@ -232,10 +234,12 @@ Responda APENAS com o texto do artigo revisado em markdown, sem comentários, se
 ARTIGO PARA REVISAR:
 ${conteudo}`;
 
-  const resp = await ai.models.generateContent({
-    model: "gemini-3.1-flash-lite",
-    contents: prompt,
-  });
+  const resp = await gerarComRetry(() =>
+    ai.models.generateContent({
+      model: "gemini-3.1-flash-lite",
+      contents: prompt,
+    })
+  );
 
   let texto = resp.text?.trim() || "";
   texto = texto
