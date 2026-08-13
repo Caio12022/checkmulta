@@ -12,6 +12,61 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "como-solicitar-reinspecao-na-vigilancia-sanitaria-apos-regularizacao",
+    titulo: "Como solicitar reinspeção na Vigilância Sanitária após regularização",
+    descricao: "Saiba os passos essenciais para solicitar a reinspeção da Vigilância Sanitária após corrigir irregularidades. Analise seu auto de infração no CheckMulta.",
+    categoria: "Penalidades",
+    tempoLeitura: "4 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-emerald-50 to-teal-50",
+    palavrasChave: ["reinspeção vigilância sanitária", "regularização auto infração", "defesa processo administrativo sanitário", "fiscalização sanitária"],
+    conteudo: `## A importância da regularização e do pedido de reinspeção
+
+Receber um auto de infração da Vigilância Sanitária é uma situação que exige atenção imediata e foco na correção dos problemas identificados pelo fiscal. Quando um estabelecimento é autuado, o objetivo central do órgão é a proteção da saúde pública. Por isso, uma vez que as irregularidades apontadas no documento são sanadas, o passo seguinte é formalizar o pedido de reinspeção junto à autoridade competente.
+
+A reinspeção é o procedimento administrativo pelo qual a autoridade sanitária retorna ao local para verificar se o estabelecimento retornou aos padrões exigidos pelas normas sanitárias. Este ato é fundamental, especialmente em casos de interdição cautelar, prevista conforme a Lei Federal 6.437/77, que pode perdurar até o limite de 90 dias, conforme o art. 23, § 4º, desta mesma norma.
+
+## Como documentar a correção das irregularidades
+
+Antes de protocolar qualquer pedido de reinspeção, o responsável pelo estabelecimento deve reunir provas da adequação. Não basta afirmar que o problema foi resolvido; é necessário demonstrar tecnicamente que as condições sanitárias foram restabelecidas.
+
+Para isso, recomenda-se organizar um dossiê contendo:
+
+- Relatório descritivo detalhando as medidas corretivas adotadas para cada item apontado no auto de infração.
+- Registro fotográfico das áreas ou equipamentos corrigidos.
+- Notas fiscais de compra de insumos, equipamentos ou serviços especializados.
+- Laudos técnicos ou certificados de treinamento de equipe, se aplicável.
+
+Esta documentação é essencial para atender ao princípio da motivação, aplicável subsidiariamente conforme a Lei Federal 9.784/99, que exige que os atos administrativos sejam devidamente fundamentados em fatos concretos.
+
+## Procedimento para solicitar a reinspeção
+
+O pedido de reinspeção deve ser encaminhado por escrito ao órgão que emitiu o auto de infração. É importante observar que o processo administrativo deve seguir os princípios do contraditório, da ampla defesa e do devido processo legal. A petição deve ser clara, objetiva e direcionada ao setor de fiscalização responsável pela sua jurisdição.
+
+No momento da elaboração do requerimento, lembre-se de:
+
+- Identificar corretamente o número do auto de infração e os dados do estabelecimento.
+- Mencionar os itens que foram objeto de autuação.
+- Descrever as ações realizadas para sanar cada irregularidade.
+- Requerer a visita de um fiscal para a verificação do cumprimento das normas, visando o levantamento de eventual medida restritiva ou o encerramento do processo administrativo.
+
+## Prazos e atenção aos detalhes
+
+É fundamental destacar que a legislação sanitária é fragmentada. Embora a Lei Federal 6.437/77 estabeleça normas gerais, como o prazo de defesa (art. 22), os critérios de graduação da pena (art. 6º) e o rol de penalidades (art. 2º), a estrutura do processo administrativo pode variar conforme a legislação local. Verifique sempre o prazo indicado no próprio auto de infração para qualquer manifestação e, em caso de dúvida, entre em contato diretamente com o órgão emissor.
+
+Lembre-se que o art. 2º da Lei Federal 9.784/99, aplicada subsidiariamente, reforça a necessidade de observância aos princípios da razoabilidade e da proporcionalidade. Caso o estabelecimento tenha cumprido todas as exigências, a administração pública pode atuar com celeridade para realizar a inspeção.
+
+## Segurança e conformidade
+
+Caso o seu estabelecimento tenha sofrido uma interdição, é indispensável aguardar a liberação oficial por parte da autoridade sanitária antes de retomar as atividades. A reabertura sem autorização pode configurar infração, sujeitando o estabelecimento a novas penalidades previstas no art. 2º da Lei Federal 6.437/77, além de colocar em risco a segurança sanitária. A regularização deve ser sempre um processo transparente, pautado pela conformidade e pela comprovação documental.
+
+O envio do auto de infração para análise técnica pode auxiliar na compreensão das irregularidades apontadas e na organização da sua estratégia de defesa ou regularização.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "recebeu-uma-multa-sanitaria-por-que-nao-pagar-imediatamente",
     titulo: "Recebeu uma multa sanitária? Por que não pagar imediatamente",
     descricao: "Autuado pela Vigilância Sanitária? Entenda por que o pagamento imediato da multa pode prejudicar seu negócio. Analise o auto antes de tomar decisões.",
