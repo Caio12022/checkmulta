@@ -99,7 +99,7 @@ function montarRecentes(): ArtigoComOrigem[] {
   return resultado;
 }
 
-const TITULO = "Blog CheckMulta — Trânsito, Procon, Vigilância, Energia e IBAMA";
+const TITULO = "Blog CheckMulta: Trânsito, Procon, Vigilância, Energia e IBAMA";
 const DESCRICAO =
   "Guias práticos sobre como recorrer de multas e notificações administrativas: trânsito, Procon, Vigilância Sanitária, cobrança de energia e infrações ambientais.";
 const CANONICAL = "https://checkmulta.com.br/blog";
@@ -254,7 +254,7 @@ export default function BlogGeral() {
             ))}
           </nav>
           <p className="text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>

@@ -87,7 +87,7 @@ export default function CalculadoraDesconto() {
     };
 
     const desc =
-      "Calcule o valor da sua multa de trânsito com 20% ou 40% de desconto, conforme o art. 284 do CTB. Entenda a diferença entre os dois — e o que cada um exige. Grátis.";
+      "Calcule o valor da sua multa de trânsito com 20% ou 40% de desconto, conforme o art. 284 do CTB. Entenda a diferença entre os dois e o que cada um exige. Grátis.";
 
     setMeta("description", desc);
     setMeta(
@@ -140,7 +140,7 @@ export default function CalculadoraDesconto() {
           name: "Posso pagar com desconto e recorrer depois?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Com o desconto de 20% (pagar até o vencimento), sim — o recurso continua disponível, e o valor pago é devolvido se ele for aceito. Já o desconto de 40% exige declarar, no ato, que você desiste de defesa prévia e de recurso.",
+            text: "Com o desconto de 20% (pagar até o vencimento), sim. O recurso continua disponível, e o valor pago é devolvido se ele for aceito. Já o desconto de 40% exige declarar, no ato, que você desiste de defesa prévia e de recurso.",
           },
         },
         {
@@ -155,7 +155,7 @@ export default function CalculadoraDesconto() {
     });
 
     return () => {
-      document.title = "CheckMulta — Análise de Multas com IA";
+      document.title = "CheckMulta. Análise de Multas com IA";
     };
   }, []);
 
@@ -223,7 +223,7 @@ export default function CalculadoraDesconto() {
           Quanto você paga com desconto na multa?
         </h1>
         <p className="mb-4 text-base leading-relaxed text-slate-600">
-          O art. 284 do CTB prevê dois descontos diferentes — 20% ou 40% — e cada um exige uma
+          O art. 284 do CTB prevê dois descontos diferentes: 20% ou 40%. Cada um exige uma
           coisa distinta. Digite o valor da sua multa e veja os dois lado a lado.
         </p>
 
@@ -307,7 +307,7 @@ export default function CalculadoraDesconto() {
                 <div className="flex items-start gap-2 rounded-lg bg-white/70 p-3 text-[13px] leading-relaxed text-emerald-900">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0" />
                   <span>
-                    Sem cadastro prévio. <strong>Você continua podendo recorrer</strong> — se
+                    Sem cadastro prévio. <strong>Você continua podendo recorrer.</strong> Se
                     ganhar, o valor pago volta.
                   </span>
                 </div>
@@ -341,7 +341,7 @@ export default function CalculadoraDesconto() {
                   Antes de escolher um desconto, vale conferir uma coisa:
                 </strong>{" "}
                 se o auto de infração tiver erro formal, cancelar a multa é melhor que qualquer
-                desconto — você não paga nada e não leva os pontos.
+                desconto. Você não paga nada e não leva os pontos.
               </p>
               <Link
                 to="/multa-de-transito?analisar=1"
@@ -366,7 +366,7 @@ export default function CalculadoraDesconto() {
           <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
             O art. 284 do CTB, na redação dada pela Lei 14.599/2023, criou uma diferença
             importante que passa despercebida: o desconto de <strong>40%</strong> não é o
-            desconto padrão de quem paga em dia — ele é uma condição à parte, ligada à
+            desconto padrão de quem paga em dia. Ele é uma condição à parte, ligada à
             notificação eletrônica.
           </p>
 
@@ -410,7 +410,7 @@ export default function CalculadoraDesconto() {
             <Info className="mt-0.5 h-4 w-4 flex-shrink-0 text-slate-500" />
             <p className="text-sm leading-relaxed text-slate-600">
               Se você ainda não aderiu ao SNE, o desconto de 40% não está mais disponível para
-              uma multa que você já recebeu — a adesão precisa ser anterior à autuação. Nesse
+              uma multa que você já recebeu. A adesão precisa ser anterior à autuação. Nesse
               caso, o desconto de 20% é a opção real, e ele não fecha a porta do recurso.
             </p>
           </div>
@@ -422,7 +422,7 @@ export default function CalculadoraDesconto() {
           <p className="text-sm leading-relaxed text-amber-900">
             Esta calculadora aplica os percentuais do art. 284 do CTB sobre o valor que você
             informou. Ela não consulta o boleto oficial nem confirma se o seu órgão autuador
-            aderiu ao SNE — para isso, consulte a notificação ou o DETRAN do seu estado.
+              aderiu ao SNE. Para isso, consulte a notificação ou o DETRAN do seu estado.
           </p>
         </div>
 
@@ -435,7 +435,7 @@ export default function CalculadoraDesconto() {
             {[
               {
                 p: "Quanto é 40% de desconto numa multa de R$ 293,47?",
-                r: "R$ 176,08. É a multa gravíssima (R$ 293,47) com o desconto de 40% do art. 284, § 1º, do CTB — aplicável só a quem aderiu ao SNE antes da autuação e desiste de recorrer.",
+                r: "R$ 176,08. É a multa gravíssima (R$ 293,47) com o desconto de 40% do art. 284, § 1º, do CTB. Aplicável só a quem aderiu ao SNE antes da autuação e desiste de recorrer.",
               },
               {
                 p: "Pagar a multa com desconto tira os pontos da CNH?",
@@ -443,7 +443,7 @@ export default function CalculadoraDesconto() {
               },
               {
                 p: "Posso pagar com desconto e recorrer depois?",
-                r: "Com o desconto de 20% (pagar até o vencimento), sim — o recurso continua disponível, e o valor pago é devolvido se ele for aceito. Já o desconto de 40% exige declarar, no ato, que você desiste de defesa prévia e de recurso.",
+                r: "Com o desconto de 20% (pagar até o vencimento), sim. O recurso continua disponível, e o valor pago é devolvido se ele for aceito. Já o desconto de 40% exige declarar, no ato, que você desiste de defesa prévia e de recurso.",
               },
               {
                 p: "Qual artigo do CTB dá o desconto na multa?",
@@ -524,7 +524,7 @@ export default function CalculadoraDesconto() {
             14.599/2023.
           </p>
           <p className="text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>

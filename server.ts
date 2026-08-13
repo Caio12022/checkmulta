@@ -210,7 +210,7 @@ function metaCalculadora(pathname: string): MetaInfo | null {
   return {
     title: "Calculadora de desconto de multa: quanto você paga com 20% ou 40% | CheckMulta",
     description:
-      "Calcule o valor da sua multa de trânsito com 20% ou 40% de desconto, conforme o art. 284 do CTB. Entenda a diferença entre os dois — e o que cada um exige. Grátis.",
+      "Calcule o valor da sua multa de trânsito com 20% ou 40% de desconto, conforme o art. 284 do CTB. Entenda a diferença entre os dois e o que cada um exige. Grátis.",
     url: `${BASE_URL}/calculadora-desconto-multa`,
   };
 }
@@ -247,7 +247,7 @@ function metaGlossarioProcon(pathname: string): MetaInfo | null {
   const rotuloTipo = item.tipo === "sancao" ? "Sanção administrativa" : "Prática abusiva";
 
   return {
-    title: `${item.nome} — art. ${artigo}, ${item.inciso}, do CDC | CheckMulta`,
+    title: `${item.nome} (art. ${artigo}, ${item.inciso}, do CDC) | CheckMulta`,
     description: `Art. ${artigo}, inciso ${item.inciso}, do CDC: ${item.nome}. ${item.explicacao} Veja grátis se o seu auto de infração do Procon tem erro formal.`,
     url: `${BASE_URL}/procon/glossario/${item.slug}`,
   };
@@ -258,7 +258,7 @@ function metaPrazoDefesa(pathname: string): MetaInfo | null {
     return {
       title: "Calculadora de prazo de defesa do Procon | CheckMulta",
       description:
-        "Calcule a data-limite para apresentar defesa no Procon a partir do prazo indicado no seu auto de infração. O prazo varia por Procon — a ferramenta só faz a conta com o número que você já encontrou no documento. Grátis.",
+        "Calcule a data-limite para apresentar defesa no Procon a partir do prazo indicado no seu auto de infração. O prazo varia por Procon. A ferramenta só faz a conta com o número que você já encontrou no documento. Grátis.",
       url: `${BASE_URL}/procon/prazo-de-defesa`,
     };
   }
@@ -269,7 +269,7 @@ function metaPrazoDefesa(pathname: string): MetaInfo | null {
     return {
       title: "Calculadora de prazo de defesa da Vigilância Sanitária | CheckMulta",
       description:
-        "Calcule a data-limite para apresentar defesa na Vigilância Sanitária a partir do prazo indicado no seu auto de infração. O prazo varia por órgão emissor — a ferramenta só faz a conta com o número que você já encontrou no documento. Grátis.",
+        "Calcule a data-limite para apresentar defesa na Vigilância Sanitária a partir do prazo indicado no seu auto de infração. O prazo varia por órgão emissor. A ferramenta só faz a conta com o número que você já encontrou no documento. Grátis.",
       url: `${BASE_URL}/vigilancia-sanitaria/prazo-de-defesa`,
     };
   }
@@ -309,7 +309,7 @@ function metaInfracao(pathname: string): MetaInfo | null {
       : `Código ${infracao.codigo}: ${titulo}. Entenda o enquadramento no art. ${infracao.amparoLegal} do CTB e analise seu auto de infração grátis.`;
 
   return {
-    title: `Código ${infracao.codigo} — ${titulo} | CheckMulta`,
+    title: `Código ${infracao.codigo} (${titulo}) | CheckMulta`,
     description: descricao,
     url: `${BASE_URL}/infracao/${infracao.slug}`,
   };
@@ -318,7 +318,7 @@ function metaInfracao(pathname: string): MetaInfo | null {
 function getMetaParaRota(pathname: string): MetaInfo {
   // Home institucional (home-mãe). Assumiu a raiz no Passo 3.2.
   const homeInstitucional: MetaInfo = {
-    title: "CheckMulta — Defesa de autos de infração e notificações administrativas",
+    title: "CheckMulta: Defesa de autos de infração e notificações administrativas",
     description:
       "Recebeu um auto de infração ou uma notificação de órgão público? Analisamos o documento gratuitamente e apontamos se há falha que permite recorrer. Trânsito, Procon, Vigilância Sanitária, energia elétrica e meio ambiente.",
     url: `${BASE_URL}/`,
@@ -352,7 +352,7 @@ function getMetaParaRota(pathname: string): MetaInfo {
   // Blog-mãe: reúne as cinco verticais
   if (pathname === "/blog" || pathname === "/blog/") {
     return {
-      title: "Blog CheckMulta — Trânsito, Procon, Vigilância, Energia e IBAMA",
+      title: "Blog CheckMulta: Trânsito, Procon, Vigilância, Energia e IBAMA",
       description:
         "Guias práticos sobre como recorrer de multas e notificações administrativas: trânsito, Procon, Vigilância Sanitária, cobrança de energia e infrações ambientais.",
       url: `${BASE_URL}/blog`,
@@ -380,7 +380,7 @@ function getMetaParaRota(pathname: string): MetaInfo {
   // Blog Vigilância Sanitária (listagem)
   if (pathname === "/vigilancia-sanitaria/blog" || pathname === "/vigilancia-sanitaria/blog/") {
     return {
-      title: "Blog Vigilância Sanitária — Defesa de auto de infração | CheckMulta",
+      title: "Blog Vigilância Sanitária: Defesa de auto de infração | CheckMulta",
       description: "Guias sobre auto de infração da Vigilância Sanitária: prazos, interdição, defesa administrativa e direitos do estabelecimento autuado.",
       url: `${BASE_URL}/vigilancia-sanitaria/blog`,
     };
@@ -412,7 +412,7 @@ function getMetaParaRota(pathname: string): MetaInfo {
   // Blog Energia (listagem)
   if (pathname === "/energia/blog" || pathname === "/energia/blog/") {
     return {
-      title: "Blog Energia — Contestação de TOI e cobrança retroativa | CheckMulta",
+      title: "Blog Energia: Contestação de TOI e cobrança retroativa | CheckMulta",
       description: "Guias sobre TOI, recuperação de consumo e cobrança retroativa de energia elétrica: prazos, perícia no medidor, contestação e direitos do consumidor. Fundamentado na REN 1.000/2021 da ANEEL.",
       url: `${BASE_URL}/energia/blog`,
     };
@@ -444,7 +444,7 @@ function getMetaParaRota(pathname: string): MetaInfo {
   // Blog IBAMA (listagem)
   if (pathname === "/ibama/blog" || pathname === "/ibama/blog/") {
     return {
-      title: "Blog IBAMA — Defesa de auto de infração ambiental | CheckMulta",
+      title: "Blog IBAMA: Defesa de auto de infração ambiental | CheckMulta",
       description: "Guias sobre auto de infração ambiental do IBAMA: prazos, prescrição, requisitos formais e defesa administrativa. Fundamentado no Decreto nº 6.514/2008.",
       url: `${BASE_URL}/ibama/blog`,
     };
@@ -467,7 +467,7 @@ function getMetaParaRota(pathname: string): MetaInfo {
   // Blog Procon (listagem)
   if (pathname === "/procon/blog" || pathname === "/procon/blog/") {
     return {
-      title: "Blog Procon — Defesa de auto de infração para empresas | CheckMulta",
+      title: "Blog Procon: Defesa de auto de infração para empresas | CheckMulta",
       description: "Guias sobre auto de infração do Procon: prazos, vícios formais, defesa administrativa e direitos da empresa autuada. Fundamentado no CDC e no Decreto 2.181/97.",
       url: `${BASE_URL}/procon/blog`,
     };
@@ -490,7 +490,7 @@ function getMetaParaRota(pathname: string): MetaInfo {
   // Blog de trânsito (listagem) — agora em /multa-de-transito/blog
   if (pathname === "/multa-de-transito/blog" || pathname === "/multa-de-transito/blog/") {
     return {
-      title: "Blog CheckMulta — Tudo sobre Multas de Trânsito",
+      title: "Blog CheckMulta: Tudo sobre Multas de Trânsito",
       description: "Guias práticos sobre como recorrer de multas, prazos, pontos na CNH e seus direitos como condutor. Analise sua multa grátis com nossa IA.",
       url: `${BASE_URL}/multa-de-transito/blog`,
     };
@@ -503,7 +503,7 @@ function getMetaParaRota(pathname: string): MetaInfo {
     const artigoDaCat = artigos.find((a) => slugifyCategoria(a.categoria) === slugCat);
     const nomeCat = artigoDaCat ? artigoDaCat.categoria : "Categoria";
     return {
-      title: `${nomeCat} — Blog CheckMulta`,
+      title: `${nomeCat} | Blog CheckMulta`,
       description: `Artigos sobre ${nomeCat}: guias práticos sobre multas de trânsito, recursos e seus direitos. Analise sua multa grátis com nossa IA.`,
       url: `${BASE_URL}/multa-de-transito/blog/categoria/${slugCat}`,
     };

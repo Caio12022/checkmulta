@@ -34,7 +34,7 @@ export default function CategoriaBlog() {
     const url = `https://checkmulta.com.br/blog/categoria/${categoria}`;
     const descricao = `Artigos sobre ${nomeCategoria} — guias práticos sobre multas de trânsito, recursos e seus direitos como condutor.`;
 
-    document.title = `${nomeCategoria} — Blog CheckMulta`;
+    document.title = `${nomeCategoria} | Blog CheckMulta`;
 
     let metaDesc = document.querySelector('meta[name="description"]');
     if (!metaDesc) {
@@ -97,7 +97,7 @@ export default function CategoriaBlog() {
     });
 
     return () => {
-      document.title = "CheckMulta — Análise de Multas com IA";
+      document.title = "CheckMulta. Análise de Multas com IA";
       const s = document.getElementById("categoria-breadcrumb-schema");
       if (s) s.remove();
     };
@@ -288,7 +288,7 @@ export default function CategoriaBlog() {
           </nav>
 
           <p className="text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>

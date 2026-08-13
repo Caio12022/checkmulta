@@ -982,8 +982,8 @@ useEffect(() => {
               <p className="text-base text-slate-600">
                 Selecione o documento que você recebeu para iniciar a análise gratuita:
               </p>
-              <p className="mt-1 text-sm text-slate-500">
-                Depois você envia a foto ou o PDF dele — tenha-o em mãos.
+              <p className="mt-1 text-sm text-slate-500 font-semibold sm:font-normal">
+                Depois você envia a foto ou o PDF dele. Tenha-o em mãos.
               </p>
             </div>
 

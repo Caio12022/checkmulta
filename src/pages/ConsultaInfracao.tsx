@@ -139,7 +139,7 @@ export default function ConsultaInfracao() {
     });
 
     return () => {
-      document.title = "CheckMulta — Análise de Multas com IA";
+      document.title = "CheckMulta. Análise de Multas com IA";
     };
   }, []);
 
@@ -300,7 +300,7 @@ export default function ConsultaInfracao() {
         {resultados.length === 0 ? (
           <div className="rounded-xl border border-slate-200 bg-slate-50 p-8 text-center">
             <p className="mb-4 text-[15px] leading-relaxed text-slate-600">
-              Não encontramos esse código. Confira os dígitos no auto de infração — ele
+              Não encontramos esse código. Confira os dígitos no auto de infração. Ele
               costuma ter quatro números. Se preferir, busque pelo que aconteceu, como
               “estacionar” ou “cinto”.
             </p>
@@ -463,7 +463,7 @@ export default function ConsultaInfracao() {
             Infrações RENAINF, publicada pela SENATRAN. Valores conforme o art. 258 do CTB.
           </p>
           <p className="text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>

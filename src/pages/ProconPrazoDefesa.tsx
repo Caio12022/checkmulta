@@ -78,7 +78,7 @@ export default function ProconPrazoDefesa() {
     };
 
     const desc =
-      "Calcule a data-limite para apresentar defesa no Procon a partir do prazo indicado no seu auto de infração. O prazo varia por Procon — a ferramenta só faz a conta com o número que você já encontrou no documento. Grátis.";
+      "Calcule a data-limite para apresentar defesa no Procon a partir do prazo indicado no seu auto de infração. O prazo varia por Procon. A ferramenta só faz a conta com o número que você já encontrou no documento. Grátis.";
 
     setMeta("description", desc);
 
@@ -91,7 +91,7 @@ export default function ProconPrazoDefesa() {
     canonical.setAttribute("href", "https://checkmulta.com.br/procon/prazo-de-defesa");
 
     return () => {
-      document.title = "CheckMulta — Análise de Multas com IA";
+      document.title = "CheckMulta. Análise de Multas com IA";
     };
   }, []);
 
@@ -153,7 +153,7 @@ export default function ProconPrazoDefesa() {
           Até quando dá para apresentar defesa no Procon?
         </h1>
         <p className="mb-4 text-base leading-relaxed text-slate-600">
-          O prazo de defesa não é o mesmo em todo o Brasil — cada Procon pode adotar o seu.
+          O prazo de defesa não é o mesmo em todo o Brasil. Cada Procon pode adotar o seu.
           Esta calculadora não chuta um número: ela pega o prazo que{" "}
           <strong className="font-semibold text-slate-900">
             você encontrou no seu próprio auto de infração
@@ -245,7 +245,7 @@ export default function ProconPrazoDefesa() {
                       {formatarData(resultado.data)}
                     </strong>
                     . Isso pode reduzir as opções, mas vale conferir com o Procon emissor
-                    antes de descartar a defesa — prazos podem ter sido suspensos ou
+                    antes de descartar a defesa. Prazos podem ter sido suspensos ou
                     reabertos em situações específicas.
                   </>
                 ) : (
@@ -254,13 +254,13 @@ export default function ProconPrazoDefesa() {
                     <strong className="font-semibold text-emerald-800">
                       {formatarData(resultado.data)}
                     </strong>
-                    {resultado.diffDias <= 5 && resultado.diffDias >= 0 && (
+                    {resultado.diffDias <= 5 && resultado.diffDias >= 0 ? (
                       <>
-                        {" "}
-                        — faltam {resultado.diffDias === 0 ? "menos de um dia" : `${resultado.diffDias} dia${resultado.diffDias === 1 ? "" : "s"}`}
+                        . Faltam {resultado.diffDias === 0 ? "menos de um dia" : `${resultado.diffDias} dia${resultado.diffDias === 1 ? "" : "s"}`}.
                       </>
+                    ) : (
+                      "."
                     )}
-                    .
                   </>
                 )}
               </p>
@@ -297,7 +297,7 @@ export default function ProconPrazoDefesa() {
           </h2>
           <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
             O art. 42 do Decreto Federal 2.181/97 prevê 20 dias, mas Procons estaduais e
-            municipais podem adotar prazo próprio — o Procon-SP, por exemplo, trabalha com
+            municipais podem adotar prazo próprio: o Procon-SP, por exemplo, trabalha com
             15 dias, com base na Lei Estadual 10.177/98. Por isso esta calculadora nunca
             assume um número: ela usa o prazo que está escrito no seu próprio auto.
           </p>
@@ -306,7 +306,7 @@ export default function ProconPrazoDefesa() {
             <p className="text-sm leading-relaxed text-slate-600">
               Sobre dias corridos ou úteis: os processos administrativos federais, regidos
               pela Lei 9.784/99, contam prazo em dias corridos. Mas o auto de infração é
-              sempre a referência mais confiável — se ele disser expressamente "dias úteis",
+              sempre a referência mais confiável. Se ele disser expressamente "dias úteis",
               use essa opção na calculadora.
             </p>
           </div>
@@ -317,7 +317,7 @@ export default function ProconPrazoDefesa() {
           <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-600" />
           <p className="text-sm leading-relaxed text-amber-900">
             Esta calculadora faz apenas a soma de dias a partir do que você informou. Ela não
-            sabe qual é o prazo do seu Procon nem confirma feriados locais — confirme sempre
+            sabe qual é o prazo do seu Procon nem confirma feriados locais. Confirme sempre
             com o número escrito no seu auto e, em caso de dúvida, junto ao órgão emissor.
           </p>
         </div>
@@ -372,11 +372,11 @@ export default function ProconPrazoDefesa() {
             </Link>
           </nav>
           <p className="mb-2 text-xs leading-relaxed text-slate-400">
-            Prazo geral do art. 42 do Decreto Federal 2.181/97 — Procons estaduais e
+            Prazo geral do art. 42 do Decreto Federal 2.181/97. Procons estaduais e
             municipais podem adotar prazo próprio.
           </p>
           <p className="text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>

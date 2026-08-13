@@ -114,7 +114,7 @@ export default function CalculadoraToi() {
           name: "Quantos ciclos a distribuidora pode cobrar no TOI?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Até 6 ciclos (6 meses) para trás, se o início da irregularidade não for demonstrado tecnicamente — art. 596, § 1º, da Resolução ANEEL 1.000/2021. Com demonstração técnica do marco inicial, o período pode ser maior, mas nunca passa de 36 ciclos, que é o teto geral.",
+            text: "Até 6 ciclos (6 meses) para trás, se o início da irregularidade não for demonstrado tecnicamente, conforme o art. 596, § 1º, da Resolução ANEEL 1.000/2021. Com demonstração técnica do marco inicial, o período pode ser maior, mas nunca passa de 36 ciclos, que é o teto geral.",
           },
         },
         {
@@ -122,7 +122,7 @@ export default function CalculadoraToi() {
           name: "Quantos dias eu tenho para pedir perícia no medidor após receber o TOI?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "15 dias, contados do recebimento do TOI. Se esse prazo passar, você perde o direito à perícia, mas os defeitos formais e de cálculo do TOI continuam valendo como argumento — a contestação segue possível na distribuidora, na ANEEL e na Justiça.",
+            text: "15 dias, contados do recebimento do TOI. Se esse prazo passar, você perde o direito à perícia, mas os defeitos formais e de cálculo do TOI continuam valendo como argumento. A contestação segue possível na distribuidora, na ANEEL e na Justiça.",
           },
         },
         {
@@ -137,7 +137,7 @@ export default function CalculadoraToi() {
     });
 
     return () => {
-      document.title = "CheckMulta — Análise de Multas com IA";
+      document.title = "CheckMulta. Análise de Multas com IA";
     };
   }, []);
 
@@ -150,7 +150,7 @@ export default function CalculadoraToi() {
         nivel: "acima" as const,
         titulo: "Acima do teto geral",
         texto:
-          "36 ciclos é o limite máximo previsto no art. 596, mesmo quando a distribuidora demonstra tecnicamente o início da irregularidade. Cobrar mais que isso não tem amparo — independentemente de qualquer comprovação.",
+          "36 ciclos é o limite máximo previsto no art. 596, mesmo quando a distribuidora demonstra tecnicamente o início da irregularidade. Cobrar mais que isso não tem amparo, independentemente de qualquer comprovação.",
       };
     }
     if (ciclos > 6 && demonstracao !== "sim") {
@@ -158,13 +158,13 @@ export default function CalculadoraToi() {
         nivel: "provavel" as const,
         titulo: "Provavelmente acima do limite",
         texto:
-          "Sem demonstração técnica de quando a irregularidade começou, o art. 596, § 1º, limita a cobrança a 6 ciclos. Cobrar mais que isso exige que a distribuidora comprove tecnicamente o marco inicial — vale conferir se essa demonstração está mesmo no documento, ou se é só uma alegação genérica.",
+          "Sem demonstração técnica de quando a irregularidade começou, o art. 596, § 1º, limita a cobrança a 6 ciclos. Cobrar mais que isso exige que a distribuidora comprove tecnicamente o marco inicial. Vale conferir se essa demonstração está mesmo no documento, ou se é só uma alegação genérica.",
       };
     }
     if (ciclos > 6 && demonstracao === "sim") {
       return {
         nivel: "conferir" as const,
-        titulo: "Pode ser válido — mas confira a demonstração",
+        titulo: "Pode ser válido. Confira a demonstração",
         texto:
           "Período acima de 6 ciclos só é válido se a distribuidora demonstrar tecnicamente quando a irregularidade começou (data, memória de cálculo, análise de histórico de consumo). Reveja se essa demonstração é concreta, e não apenas uma frase genérica no TOI.",
       };
@@ -173,7 +173,7 @@ export default function CalculadoraToi() {
       nivel: "dentro" as const,
       titulo: "Dentro do limite padrão",
       texto:
-        "6 ciclos ou menos é o teto que vale mesmo sem demonstração técnica. O período em si não caracteriza esse defeito específico — mas o TOI pode ter outros vícios de forma ou de cálculo.",
+        "6 ciclos ou menos é o teto que vale mesmo sem demonstração técnica. O período em si não caracteriza esse defeito específico. Mas o TOI pode ter outros vícios de forma ou de cálculo.",
     };
   }, [ciclos, demonstracao]);
 
@@ -408,7 +408,7 @@ export default function CalculadoraToi() {
             De onde vêm esses limites
           </h2>
           <p className="mb-4 text-[16.5px] leading-[1.75] text-slate-700">
-            A Resolução ANEEL 1.000/2021 regula a recuperação de consumo — quando a
+            A Resolução ANEEL 1.000/2021 regula a recuperação de consumo: quando a
             distribuidora identifica uma irregularidade no medidor e cobra retroativamente
             pela energia que entende não ter sido medida corretamente.
           </p>
@@ -451,7 +451,7 @@ export default function CalculadoraToi() {
           <div className="flex gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4">
             <Info className="mt-0.5 h-4 w-4 flex-shrink-0 text-slate-500" />
             <p className="text-sm leading-relaxed text-slate-600">
-              "Demonstração técnica" significa uma memória de cálculo real — data em que a
+              "Demonstração técnica" significa uma memória de cálculo real: data em que a
               irregularidade teria começado, com base em quê. Uma frase genérica do tipo "a
               irregularidade persiste há 36 meses", sem explicar como esse número foi
               apurado, não conta como demonstração.
@@ -465,7 +465,7 @@ export default function CalculadoraToi() {
           <p className="text-sm leading-relaxed text-amber-900">
             Esta calculadora aplica os limites da Resolução ANEEL 1.000/2021 sobre o que
             você informou. Ela não substitui a leitura do seu TOI nem garante que a
-            distribuidora vá aceitar a contestação — para isso, o caminho é a reclamação
+            distribuidora vá aceitar a contestação. Para isso, o caminho é a reclamação
             formal na distribuidora e, se necessário, na ANEEL.
           </p>
         </div>
@@ -479,11 +479,11 @@ export default function CalculadoraToi() {
             {[
               {
                 p: "Quantos ciclos a distribuidora pode cobrar no TOI?",
-                r: "Até 6 ciclos (6 meses) para trás, se o início da irregularidade não for demonstrado tecnicamente — art. 596, § 1º. Com demonstração técnica do marco inicial, o período pode ser maior, mas nunca passa de 36 ciclos, que é o teto geral.",
+                r: "Até 6 ciclos (6 meses) para trás, se o início da irregularidade não for demonstrado tecnicamente, conforme o art. 596, § 1º. Com demonstração técnica do marco inicial, o período pode ser maior, mas nunca passa de 36 ciclos, que é o teto geral.",
               },
               {
                 p: "Quantos dias eu tenho para pedir perícia no medidor?",
-                r: "15 dias, contados do recebimento do TOI. Se o prazo passar, você perde o direito à perícia, mas os defeitos formais e de cálculo do TOI continuam valendo como argumento — a contestação segue possível na distribuidora, na ANEEL e na Justiça.",
+                r: "15 dias, contados do recebimento do TOI. Se o prazo passar, você perde o direito à perícia, mas os defeitos formais e de cálculo do TOI continuam valendo como argumento. A contestação segue possível na distribuidora, na ANEEL e na Justiça.",
               },
               {
                 p: "Meu TOI cobra 36 meses, isso é normal?",
@@ -564,7 +564,7 @@ export default function CalculadoraToi() {
             Limites de período conforme os art. 591 e 596 da Resolução ANEEL nº 1.000/2021.
           </p>
           <p className="text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>

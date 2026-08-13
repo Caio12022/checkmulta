@@ -17,7 +17,7 @@ export default function BlogVigilancia() {
 
   useEffect(() => {
     document.title =
-      "Blog Vigilância Sanitária — Defesa de auto de infração | CheckMulta";
+      "Blog Vigilância Sanitária: Defesa de auto de infração | CheckMulta";
 
     const setMeta = (name: string, content: string, isProperty = false) => {
       const attr = isProperty ? "property" : "name";
@@ -266,7 +266,7 @@ export default function BlogVigilancia() {
           </p>
 
           <p className="mt-4 text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>

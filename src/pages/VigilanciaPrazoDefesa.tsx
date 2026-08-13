@@ -78,7 +78,7 @@ export default function VigilanciaPrazoDefesa() {
     };
 
     const desc =
-      "Calcule a data-limite para apresentar defesa na Vigilância Sanitária a partir do prazo indicado no seu auto de infração. O prazo varia por órgão emissor — a ferramenta só faz a conta com o número que você já encontrou no documento. Grátis.";
+      "Calcule a data-limite para apresentar defesa na Vigilância Sanitária a partir do prazo indicado no seu auto de infração. O prazo varia por órgão emissor. A ferramenta só faz a conta com o número que você já encontrou no documento. Grátis.";
 
     setMeta("description", desc);
 
@@ -94,7 +94,7 @@ export default function VigilanciaPrazoDefesa() {
     );
 
     return () => {
-      document.title = "CheckMulta — Análise de Multas com IA";
+      document.title = "CheckMulta. Análise de Multas com IA";
     };
   }, []);
 
@@ -153,7 +153,7 @@ export default function VigilanciaPrazoDefesa() {
           Até quando dá para apresentar defesa na Vigilância Sanitária?
         </h1>
         <p className="mb-4 text-base leading-relaxed text-slate-600">
-          A legislação sanitária é fragmentada — cada estado e município tem código próprio,
+          A legislação sanitária é fragmentada. Cada estado e município tem código próprio,
           com prazos que variam. Esta calculadora não chuta um número: ela pega o prazo que{" "}
           <strong className="font-semibold text-slate-900">
             você encontrou no seu próprio auto de infração
@@ -245,7 +245,7 @@ export default function VigilanciaPrazoDefesa() {
                       {formatarData(resultado.data)}
                     </strong>
                     . Isso pode reduzir as opções, mas vale conferir com o órgão emissor
-                    antes de descartar a defesa — prazos podem ter sido suspensos ou
+                    antes de descartar a defesa. Prazos podem ter sido suspensos ou
                     reabertos em situações específicas.
                   </>
                 ) : (
@@ -254,13 +254,13 @@ export default function VigilanciaPrazoDefesa() {
                     <strong className="font-semibold text-emerald-800">
                       {formatarData(resultado.data)}
                     </strong>
-                    {resultado.diffDias <= 5 && resultado.diffDias >= 0 && (
+                    {resultado.diffDias <= 5 && resultado.diffDias >= 0 ? (
                       <>
-                        {" "}
-                        — faltam {resultado.diffDias === 0 ? "menos de um dia" : `${resultado.diffDias} dia${resultado.diffDias === 1 ? "" : "s"}`}
+                        . Faltam {resultado.diffDias === 0 ? "menos de um dia" : `${resultado.diffDias} dia${resultado.diffDias === 1 ? "" : "s"}`}.
                       </>
+                    ) : (
+                      "."
                     )}
-                    .
                   </>
                 )}
               </p>
@@ -306,7 +306,7 @@ export default function VigilanciaPrazoDefesa() {
             <p className="text-sm leading-relaxed text-slate-600">
               Sobre dias corridos ou úteis: os processos administrativos federais, regidos
               pela Lei 9.784/99, contam prazo em dias corridos. Mas o auto de infração é
-              sempre a referência mais confiável — se ele disser expressamente "dias úteis",
+              sempre a referência mais confiável. Se ele disser expressamente "dias úteis",
               use essa opção na calculadora.
             </p>
           </div>
@@ -318,7 +318,7 @@ export default function VigilanciaPrazoDefesa() {
           <p className="text-sm leading-relaxed text-amber-900">
             Esta calculadora faz apenas a soma de dias a partir do que você informou. Ela não
             sabe qual é o prazo do seu órgão de vigilância sanitária nem confirma feriados
-            locais — confirme sempre com o número escrito no seu auto e, em caso de dúvida,
+            locais. Confirme sempre com o número escrito no seu auto e, em caso de dúvida,
             junto ao órgão emissor.
           </p>
         </div>
@@ -373,11 +373,11 @@ export default function VigilanciaPrazoDefesa() {
             </Link>
           </nav>
           <p className="mb-2 text-xs leading-relaxed text-slate-400">
-            Prazo federal do art. 22 da Lei nº 6.437/77 — estados e municípios podem adotar
+            Prazo federal do art. 22 da Lei nº 6.437/77. Estados e municípios podem adotar
             prazo próprio.
           </p>
           <p className="text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>

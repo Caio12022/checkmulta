@@ -18,7 +18,7 @@ export default function BlogEnergia() {
 
   useEffect(() => {
     document.title =
-      "Blog Energia Elétrica — Defesa de TOI e conta de luz | CheckMulta";
+      "Blog Energia Elétrica: Defesa de TOI e conta de luz | CheckMulta";
 
     const setMeta = (name: string, content: string, isProperty = false) => {
       const attr = isProperty ? "property" : "name";
@@ -290,7 +290,7 @@ export default function BlogEnergia() {
           </p>
 
           <p className="mt-4 text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>

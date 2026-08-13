@@ -80,7 +80,7 @@ export default function InfracaoDetalhe() {
   useEffect(() => {
     if (!infracao) return;
 
-    const tituloPagina = `Código ${infracao.codigo} — ${titulo} | CheckMulta`;
+    const tituloPagina = `Código ${infracao.codigo} (${titulo}) | CheckMulta`;
     document.title = tituloPagina;
 
     const setMeta = (nome: string, conteudo: string) => {
@@ -134,7 +134,7 @@ export default function InfracaoDetalhe() {
     schema.textContent = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Article",
-      headline: `Código ${infracao.codigo} — ${titulo}`,
+      headline: `Código ${infracao.codigo} (${titulo})`,
       description: descricaoMeta,
       url: url,
       author: { "@type": "Organization", name: "CheckMulta" },
@@ -172,7 +172,7 @@ export default function InfracaoDetalhe() {
     });
 
     return () => {
-      document.title = "CheckMulta — Análise de Multas com IA";
+      document.title = "CheckMulta. Análise de Multas com IA";
     };
   }, [slug, infracao, titulo, descricaoMeta, url]);
 
@@ -334,7 +334,7 @@ export default function InfracaoDetalhe() {
               <strong className="font-semibold text-slate-800">
                 Multa agravada ({infracao.multiplicador === 0.5 ? "50%" : `${infracao.multiplicador}×`}).
               </strong>{" "}
-              O valor não é o padrão da gravidade — o próprio CTB prevê fator multiplicador
+              O valor não é o padrão da gravidade. O próprio CTB prevê fator multiplicador
               para esta infração, conforme o art. 258, § 2º.
             </div>
           )}
@@ -391,7 +391,7 @@ export default function InfracaoDetalhe() {
                   </th>
                   <td className="px-4 py-3 text-slate-600">
                     {infracao.codigo}
-                    {infracao.desdobramento > 0 && ` — desdobramento ${infracao.desdobramento}`}
+                    {infracao.desdobramento > 0 && ` (desdobramento ${infracao.desdobramento})`}
                   </td>
                 </tr>
                 <tr className="border-b border-slate-100 bg-slate-50/60">
@@ -431,7 +431,7 @@ export default function InfracaoDetalhe() {
               <Scale className="mt-0.5 h-4 w-4 flex-shrink-0 text-slate-500" />
               <p className="text-sm leading-relaxed text-slate-600">
                 Esta infração recai sobre <strong>{infracao.infrator.toLowerCase()}</strong>,
-                e não sobre o condutor. Por isso não gera pontos na CNH — os pontos do art.
+                e não sobre o condutor. Por isso não gera pontos na CNH. Os pontos do art.
                 259 do CTB são atribuídos a quem dirigia.
               </p>
             </div>
@@ -463,7 +463,7 @@ export default function InfracaoDetalhe() {
               <strong className="font-semibold text-slate-900">
                 {formatarReal(valorDescontoGeral!)}
               </strong>{" "}
-              (20% de desconto) — e esse não tira o direito de recorrer depois.
+              (20% de desconto), e esse não tira o direito de recorrer depois.
             </p>
             <p className="text-[16.5px] leading-[1.75] text-slate-700">
               Já os{" "}
@@ -473,7 +473,7 @@ export default function InfracaoDetalhe() {
               (40%) só valem para quem aderiu ao SNE (Sistema de Notificação Eletrônica)
               antes de a autuação ser notificada e declara, no ato, que desiste de defesa
               prévia e de recurso. Vale lembrar que nenhum dos dois descontos retira os
-              pontos da CNH — só o recurso aceito faz isso.
+              pontos da CNH. Só o recurso aceito faz isso.
             </p>
             <Link
               to={`/calculadora-desconto-multa?valor=${valor}`}
@@ -673,7 +673,7 @@ export default function InfracaoDetalhe() {
             Infrações RENAINF, publicada pela SENATRAN. Valores conforme o art. 258 do CTB.
           </p>
           <p className="text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>

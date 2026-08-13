@@ -10,7 +10,7 @@ export default function Blog() {
   const [mostrarTodasCategorias, setMostrarTodasCategorias] = useState(false);
 
   useEffect(() => {
-    document.title = "Blog CheckMulta — Guias sobre Multas de Trânsito no Brasil";
+    document.title = "Blog CheckMulta: Guias sobre Multas de Trânsito no Brasil";
 
     let metaDesc = document.querySelector('meta[name="description"]');
     if (!metaDesc) {
@@ -24,7 +24,7 @@ export default function Blog() {
     );
 
     return () => {
-      document.title = "CheckMulta — Análise de Multas com IA";
+      document.title = "CheckMulta. Análise de Multas com IA";
     };
   }, []);
 
@@ -313,7 +313,7 @@ export default function Blog() {
           </nav>
 
           <p className="text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>

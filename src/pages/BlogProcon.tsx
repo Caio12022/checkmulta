@@ -18,7 +18,7 @@ export default function BlogProcon() {
 
   useEffect(() => {
     document.title =
-      "Blog Procon — Defesa de auto de infração para empresas | CheckMulta";
+      "Blog Procon: Defesa de auto de infração para empresas | CheckMulta";
 
     const setMeta = (name: string, content: string, isProperty = false) => {
       const attr = isProperty ? "property" : "name";
@@ -261,7 +261,7 @@ export default function BlogProcon() {
           </p>
 
           <p className="mt-4 text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>

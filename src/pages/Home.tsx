@@ -1163,8 +1163,8 @@ export default function App() {
               <p className="text-base text-slate-600">
                 Selecione o tipo de infração para iniciar a análise gratuita:
               </p>
-              <p className="mt-1 text-sm text-slate-500">
-                Depois você envia a foto ou o PDF da multa — tenha-a em mãos.
+              <p className="mt-1 text-sm text-slate-500 font-semibold sm:font-normal">
+                Depois você envia a foto ou o PDF da multa. Tenha-a em mãos.
               </p>
             </div>
 

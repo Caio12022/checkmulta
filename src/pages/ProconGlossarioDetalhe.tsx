@@ -39,7 +39,7 @@ export default function ProconGlossarioDetalhe() {
   useEffect(() => {
     if (!item) return;
 
-    const tituloPagina = `${item.nome} — art. ${artigo}, ${item.inciso}, do CDC | CheckMulta`;
+    const tituloPagina = `${item.nome} (art. ${artigo}, ${item.inciso}, do CDC) | CheckMulta`;
     document.title = tituloPagina;
 
     const setMeta = (nome: string, conteudo: string) => {
@@ -96,12 +96,12 @@ export default function ProconGlossarioDetalhe() {
       url: url,
       inDefinedTermSet: {
         "@type": "DefinedTermSet",
-        name: "Código de Defesa do Consumidor — Lei 8.078/90",
+        name: "Código de Defesa do Consumidor (Lei 8.078/90)",
       },
     });
 
     return () => {
-      document.title = "CheckMulta — Análise de Multas com IA";
+      document.title = "CheckMulta. Análise de Multas com IA";
     };
   }, [item, url, descricaoMeta, artigo]);
 
@@ -183,8 +183,8 @@ export default function ProconGlossarioDetalhe() {
           <blockquote className="rounded-xl border border-slate-200 bg-slate-50 p-5 text-[15px] leading-relaxed text-slate-700">
             "{item.textoOficial}"
             <footer className="mt-2 text-xs text-slate-500">
-              — art. {artigo}, inciso {item.inciso}, da Lei nº 8.078/90 (Código de Defesa do
-              Consumidor)
+              Fonte: art. {artigo}, inciso {item.inciso}, da Lei nº 8.078/90 (Código de Defesa
+              do Consumidor)
             </footer>
           </blockquote>
         </section>
@@ -212,7 +212,7 @@ export default function ProconGlossarioDetalhe() {
               Recebeu um auto de infração do Procon?
             </strong>{" "}
             Nossa IA lê o documento e aponta, de graça, se há falha formal que abre margem
-            para recurso — sem prometer resultado, sem cadastro.
+            para recurso, sem prometer resultado e sem cadastro.
           </p>
           <Link
             to="/procon?analisar=1"
@@ -229,8 +229,8 @@ export default function ProconGlossarioDetalhe() {
         <div className="mb-10 flex gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4">
           <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-600" />
           <p className="text-sm leading-relaxed text-amber-900">
-            Esta página explica o que a lei prevê para essa {item.tipo === "sancao" ? "sanção" : "prática"}
-            {" "}— ela não analisa o seu caso específico. {item.tipo === "sancao" ? "O valor da multa e as demais sanções aplicáveis" : "Se a conduta descrita realmente ocorreu, e se ela caracteriza infração"} dependem dos fatos e são avaliados caso a caso.
+            Esta página explica o que a lei prevê para essa {item.tipo === "sancao" ? "sanção" : "prática"}.
+            {" "}Ela não analisa o seu caso específico. {item.tipo === "sancao" ? "O valor da multa e as demais sanções aplicáveis" : "Se a conduta descrita realmente ocorreu, e se ela caracteriza infração"} dependem dos fatos e são avaliados caso a caso.
           </p>
         </div>
 
@@ -302,7 +302,7 @@ export default function ProconGlossarioDetalhe() {
             nº 8.078/90 (Código de Defesa do Consumidor).
           </p>
           <p className="text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>

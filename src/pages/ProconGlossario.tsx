@@ -45,7 +45,7 @@ export default function ProconGlossario() {
     canonical.setAttribute("href", "https://checkmulta.com.br/procon/glossario");
 
     return () => {
-      document.title = "CheckMulta — Análise de Multas com IA";
+      document.title = "CheckMulta. Análise de Multas com IA";
     };
   }, []);
 
@@ -89,7 +89,7 @@ export default function ProconGlossario() {
         </h1>
         <p className="mb-8 text-base leading-relaxed text-slate-600">
           O art. 39 do CDC lista as práticas abusivas e o art. 56 lista as sanções que o
-          Procon pode aplicar. É lei federal — vale para qualquer Procon do Brasil,
+          Procon pode aplicar. É lei federal, vale para qualquer Procon do Brasil,
           independentemente do estado ou município. Escolha abaixo o que aparece no seu auto
           de infração.
         </p>
@@ -99,7 +99,7 @@ export default function ProconGlossario() {
           <div className="mb-4 flex items-center gap-2">
             <Scale className="h-5 w-5 text-orange-600" />
             <h2 className="text-lg font-bold text-slate-900">
-              Práticas abusivas <span className="font-normal text-slate-400">— art. 39 do CDC</span>
+              Práticas abusivas <span className="font-normal text-slate-400">(art. 39 do CDC)</span>
             </h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -126,7 +126,7 @@ export default function ProconGlossario() {
           <div className="mb-4 flex items-center gap-2">
             <AlertOctagon className="h-5 w-5 text-orange-600" />
             <h2 className="text-lg font-bold text-slate-900">
-              Sanções administrativas <span className="font-normal text-slate-400">— art. 56 do CDC</span>
+              Sanções administrativas <span className="font-normal text-slate-400">(art. 56 do CDC)</span>
             </h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -200,7 +200,7 @@ export default function ProconGlossario() {
             nº 8.078/90 (Código de Defesa do Consumidor).
           </p>
           <p className="text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>

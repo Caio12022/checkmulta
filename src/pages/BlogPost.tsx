@@ -128,7 +128,7 @@ const useMetaTags = (
     });
 
     return () => {
-      document.title = "CheckMulta — Análise de Multas com IA";
+      document.title = "CheckMulta. Análise de Multas com IA";
     };
   }, [titulo, descricao, url, keywords, dataIso, ehPublicacao]);
 };
@@ -765,7 +765,7 @@ export default function BlogPost() {
           </nav>
 
           <p className="text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
 

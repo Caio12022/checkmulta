@@ -171,7 +171,7 @@ export default function SimuladorPontos() {
     });
 
     return () => {
-      document.title = "CheckMulta — Análise de Multas com IA";
+      document.title = "CheckMulta. Análise de Multas com IA";
     };
   }, []);
 
@@ -380,8 +380,8 @@ export default function SimuladorPontos() {
                   <span className="text-red-800">
                     <strong className="font-semibold">
                       Não há mais margem: qualquer nova multa
-                    </strong>{" "}
-                    — mesmo uma infração leve de 3 pontos — atinge o seu limite.
+                    </strong>
+                    , mesmo uma infração leve de 3 pontos, atinge o seu limite.
                   </span>
                 )}
               </div>
@@ -433,9 +433,9 @@ export default function SimuladorPontos() {
               />
               <span className="text-sm leading-relaxed text-slate-700">
                 <strong className="font-semibold text-slate-900">
-                  Sou motorista profissional
+                  Sou motorista profissional.
                 </strong>{" "}
-                — minha CNH tem a observação EAR (exerce atividade remunerada). Nesse caso o
+                Minha CNH tem a observação EAR (exerce atividade remunerada). Nesse caso o
                 limite permanece em 40 pontos, independentemente das gravíssimas.
               </span>
             </label>
@@ -457,7 +457,7 @@ export default function SimuladorPontos() {
                   <strong className="font-semibold text-slate-900">
                     Uma multa cancelada pode mudar essa conta.
                   </strong>{" "}
-                  Se o recurso for acolhido, os pontos daquela autuação saem da contagem — e,
+                  Se o recurso for acolhido, os pontos daquela autuação saem da contagem, e
                   quando a infração cancelada é gravíssima, o próprio limite volta a subir.
                 </>
               ) : percentual >= 75 ? (
@@ -735,8 +735,8 @@ export default function SimuladorPontos() {
           <AlertTriangle className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-600" />
           <p className="text-sm leading-relaxed text-amber-900">
             Esta é uma simulação baseada nos pontos que você informou e considera todas as
-            infrações dentro da mesma janela de 12 meses. Ela não consulta o seu prontuário —
-            para a pontuação oficial, consulte o DETRAN do seu estado. Algumas infrações
+            infrações dentro da mesma janela de 12 meses. Ela não consulta o seu prontuário.
+            Para a pontuação oficial, consulte o DETRAN do seu estado. Algumas infrações
             levam à suspensão do direito de dirigir por si sós, independentemente da
             pontuação acumulada.
           </p>
@@ -852,7 +852,7 @@ export default function SimuladorPontos() {
             por gravidade conforme o art. 259 do CTB.
           </p>
           <p className="text-xs text-slate-400">
-            CheckMulta Tecnologia — CNPJ 63.524.338/0001-62
+            CheckMulta Tecnologia. CNPJ 63.524.338/0001-62
           </p>
         </div>
       </footer>
