@@ -982,6 +982,9 @@ useEffect(() => {
               <p className="text-base text-slate-600">
                 Selecione o tipo de autuação para iniciar a análise gratuita:
               </p>
+              <p className="mt-1 text-sm text-slate-500">
+                Depois você envia a foto ou o PDF do auto — tenha-o em mãos.
+              </p>
             </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
