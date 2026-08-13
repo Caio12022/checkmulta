@@ -28,33 +28,134 @@ function getAIClient() {
 }
 
 /**
- * Auditoria da peça de defesa — por enquanto OBSERVAÇÃO, não bloqueio.
+ * O que dizer ao modelo para consertar cada tipo de violação. O texto é
+ * instrução de reescrita, não explicação: quanto mais concreto, menos o
+ * modelo "conserta" reescrevendo a peça inteira e perdendo a parte boa.
+ */
+const COMO_CORRIGIR: Record<string, string> = {
+  citacao_fora_da_lista:
+    "REMOVA a citação de norma que não pertence à lista da vertical. Se o argumento " +
+    "depender dela, mantenha o argumento e referencie a norma apenas pelo NOME, sem " +
+    "número, ou apoie-o na lei-base da vertical. NÃO invente outra citação no lugar.",
+  promessa_de_resultado:
+    "TROQUE a promessa de desfecho por linguagem de possibilidade. Escreva que o auto " +
+    "não observou o dispositivo, e requeira — nunca afirme que será anulado, cancelado " +
+    "ou que o êxito está garantido. O desfecho é do julgador.",
+  adjetivo_exagerado:
+    "TROQUE o adjetivo forte por \"vício formal\". O vício apontado é sanável, e o " +
+    "exagero dá ao julgador motivo fácil para desqualificar a peça inteira. Deixe a " +
+    "consequência para o pedido. Só prescrição, decadência e incompetência admitem " +
+    "esse tipo de adjetivo.",
+  imputacao_ao_agente:
+    "REMOVA a imputação de crime ou má-fé ao agente. Apontar objetivamente a falha do " +
+    "ato é permitido; acusar quem lavrou, não.",
+};
+
+function promptCorrigirPeca(peca: string, violacoes: { regra: string; detalhe: string }[]): string {
+  const ordens = violacoes
+    .map((v, i) => `${i + 1}. [${v.regra}] Trecho problemático: "${v.detalhe}".\n   ${COMO_CORRIGIR[v.regra] || ""}`)
+    .join("\n");
+
+  return `Você é o revisor final de uma defesa administrativa que já vai ser entregue.
+A conferência automática encontrou os problemas abaixo. Corrija SOMENTE eles.
+
+PROBLEMAS ENCONTRADOS
+${ordens}
+
+REGRAS DA CORREÇÃO
+- Preserve todo o resto: estrutura, seções, dados, argumentos e tamanho.
+- Não acrescente argumento novo, citação nova, valor ou data que não estejam na peça.
+- Não remova seção inteira por causa de uma frase: conserte a frase.
+- Devolva APENAS o texto corrigido da peça, sem comentários seus e sem markdown.
+
+PEÇA A CORRIGIR
+${peca}`;
+}
+
+/**
+ * Auditoria da peça de defesa — agora CORRIGE, não só observa.
  *
  * validarDefesa() confere no código o que os prompts de defesa proíbem:
  * citação fora da lista fechada, promessa de resultado, adjetivo forte onde o
  * vício é sanável, e imputação de crime ou má-fé ao agente.
  *
- * Aqui ela só registra. Bloquear ou mandar regerar muda o que o cliente
- * recebe, e ainda não há uma única medição do quanto isso dispara na prática —
- * a bateria de defesa foi escrita hoje e não rodou contra o modelo. Ligar a
- * trava antes de medir arrisca o erro que já custou correção neste projeto:
- * trava restritiva demais que mata peça legítima.
+ * Antes isto só registrava, porque não havia medição de quanto a trava
+ * dispararia e travar peça legítima é pior que não travar. A medição existe:
+ * a bateria rodou nas 5 verticais contra o modelo real, os 20 casos de defesa
+ * passam, e as contraprovas de prescrição — onde o adjetivo forte É legítimo —
+ * passaram limpas. A trava só acusou peça genuinamente ruim.
  *
- * O log é o próximo dado: com ele e com a bateria dá para decidir com
- * evidência qual violação merece virar bloqueio.
+ * Por que corrigir em vez de bloquear, que seria o caminho óbvio:
+ *
+ *   1. A peça é PAGA. Não entregar nada é pior para quem pagou do que entregar
+ *      um texto com uma frase exagerada.
+ *   2. Regerar do zero não resolve: a temperatura é 0.0, então a segunda
+ *      geração com o mesmo prompt sai praticamente igual. O que muda o
+ *      resultado é dizer ao modelo QUAL foi a violação.
+ *
+ * Se a correção não resolver, entregamos a versão com menos violações e
+ * registramos alto — melhor do que devolver erro a quem já pagou.
  */
-function auditarPeca(peca: string, vertical: Vertical, entrada: any): void {
+async function auditarPeca(
+  peca: string,
+  vertical: Vertical,
+  entrada: any,
+  ai: any
+): Promise<string> {
   try {
     const violacoes = validarDefesa(peca, vertical, entrada);
-    if (violacoes.length > 0) {
+    if (violacoes.length === 0) return peca;
+
+    console.warn(
+      `DEFESA ${vertical}: ${violacoes.length} violação(ões) na peça gerada -> ` +
+        violacoes.map((v) => `${v.regra} (${v.detalhe})`).join(" | ")
+    );
+
+    const resposta = await gerarComRetry(() =>
+      ai.models.generateContent({
+        model: "gemini-3.1-flash-lite",
+        contents: [{ role: "user", parts: [{ text: promptCorrigirPeca(peca, violacoes) }] }],
+        config: { temperature: 0.0 },
+      })
+    );
+
+    const corrigida = (resposta.text || "").trim();
+
+    /* Piso de tamanho: a correção não pode devolver um resumo nem uma recusa
+       no lugar da peça. Abaixo de 60% do original, tratamos como falha da
+       correção e ficamos com o texto que o cliente ao menos consegue usar. */
+    if (corrigida.length < peca.length * 0.6) {
       console.warn(
-        `DEFESA ${vertical}: ${violacoes.length} violação(ões) na peça gerada -> ` +
-          violacoes.map((v) => `${v.regra} (${v.detalhe})`).join(" | ")
+        `DEFESA ${vertical}: correção devolveu texto curto demais ` +
+          `(${corrigida.length} vs ${peca.length}). Entregando a peça original.`
       );
+      return peca;
     }
+
+    const restantes = validarDefesa(corrigida, vertical, entrada);
+    if (restantes.length === 0) {
+      console.warn(`DEFESA ${vertical}: correção resolveu todas as violações.`);
+      return corrigida;
+    }
+
+    if (restantes.length < violacoes.length) {
+      console.warn(
+        `DEFESA ${vertical}: correção parcial (${violacoes.length} -> ${restantes.length}). ` +
+          `Entregando a versão corrigida. Restou: ` +
+          restantes.map((v) => v.regra).join(", ")
+      );
+      return corrigida;
+    }
+
+    console.warn(
+      `DEFESA ${vertical}: correção NÃO resolveu (${restantes.length} violação(ões)). ` +
+        `Entregando a peça original.`
+    );
+    return peca;
   } catch (e) {
     // Auditoria nunca pode derrubar a entrega de uma peça já paga.
     console.warn("Falha ao auditar a peça:", e);
+    return peca;
   }
 }
 
@@ -632,8 +733,8 @@ const prompt = promptGenerateDefense(extractedData);
 
       const resultText = response.text || "";
       const peca = resultText.trim();
-      auditarPeca(peca, "transito", extractedData);
-      res.json({ result: peca });
+      const pecaFinal = await auditarPeca(peca, "transito", extractedData, ai);
+      res.json({ result: pecaFinal });
     } catch (err: any) {
       console.error("API Error in generate-defense:", err);
       if (cotaDiariaEsgotada(err)) {
@@ -740,8 +841,8 @@ const prompt = promptGenerateDefenseProcon(dados);
 
       const resultText = response.text || "";
       const peca = resultText.trim();
-      auditarPeca(peca, "procon", analise);
-      res.json({ result: peca });
+      const pecaFinal = await auditarPeca(peca, "procon", analise, ai);
+      res.json({ result: pecaFinal });
     } catch (err: any) {
       console.error("API Error in generate-defense-procon:", err);
       if (cotaDiariaEsgotada(err)) {
@@ -846,8 +947,8 @@ const prompt = promptGenerateDefenseVigilancia(dados);
 
       const resultText = response.text || "";
       const peca = resultText.trim();
-      auditarPeca(peca, "vigilancia", analise);
-      res.json({ result: peca });
+      const pecaFinal = await auditarPeca(peca, "vigilancia", analise, ai);
+      res.json({ result: pecaFinal });
     } catch (err: any) {
       console.error("API Error in generate-defense-vigilancia:", err);
       if (cotaDiariaEsgotada(err)) {
@@ -983,8 +1084,8 @@ const prompt = promptGenerateDefenseVigilancia(dados);
         console.warn("Energia: revisor falhou, entregando rascunho.", e);
       }
 
-      auditarPeca(textoFinal, "energia", analise);
-      res.json({ result: textoFinal });
+      const pecaFinal = await auditarPeca(textoFinal, "energia", analise, ai);
+      res.json({ result: pecaFinal });
     } catch (err: any) {
       console.error("API Error in generate-defense-energia:", err);
       if (cotaDiariaEsgotada(err)) {
@@ -1109,8 +1210,8 @@ const prompt = promptGenerateDefenseVigilancia(dados);
         console.warn("IBAMA: revisor falhou, entregando rascunho.", e);
       }
 
-      auditarPeca(textoFinal, "ibama", analise);
-      res.json({ result: textoFinal });
+      const pecaFinal = await auditarPeca(textoFinal, "ibama", analise, ai);
+      res.json({ result: pecaFinal });
     } catch (err: any) {
       console.error("API Error in generate-defense-ibama:", err);
       if (cotaDiariaEsgotada(err)) {
