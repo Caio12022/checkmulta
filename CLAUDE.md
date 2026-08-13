@@ -210,6 +210,17 @@ o validador rebaixa para "verificar", não veio do texto plantado.
   execuções do mesmo documento, e ali o erro é grave — o prazo do corte é
   de dias, e um relatório de achados no TOI faz a pessoa discutir o mérito
   enquanto a luz cai.
+- Os 5 robôs de artigo (`robo*/robo*.ts`) usam `gerarComRetry()` de
+  `prompts/validador.ts` nas duas chamadas ao Gemini (geração e revisão),
+  igual ao servidor já fazia. Energia e Procon falharam com 503 "high
+  demand" em dias seguidos; cron de cada robô está em hora cheia diferente
+  (3h/6h/9h/12h/13h/15h UTC, IBAMA/Energia/Vigilância/Trânsito/Reddit/Procon
+  — nunca dois no mesmo horário) e cada execução faz só 2 chamadas por dia,
+  então **não é concorrência entre os robôs nem limite de cota nosso** —
+  é a capacidade do modelo no free tier ficando cheia do lado da Google,
+  independente de quem pede. Espaçar mais os horários não teria resolvido;
+  o retry resolveu (testado ao vivo: pegou o mesmo 503 e publicou depois de
+  esperar 8s).
 
 ## Dois defeitos que se repetem (reconhecer de longe)
 
