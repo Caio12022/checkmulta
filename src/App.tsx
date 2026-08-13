@@ -20,6 +20,7 @@ import ConsultaInfracao from "./pages/ConsultaInfracao";
 import InfracaoDetalhe from "./pages/InfracaoDetalhe";
 import SimuladorPontos from "./pages/SimuladorPontos";
 import CalculadoraDesconto from "./pages/CalculadoraDesconto";
+import CalculadoraToi from "./pages/CalculadoraToi";
 import Plataforma from "./pages/Plataforma";
 import BlogGeral from "./pages/BlogGeral";
 /* Sobe a página ao trocar de rota */
@@ -134,6 +135,7 @@ export default function App() {
         <Route path="/energia" element={<Energia />} />
         <Route path="/energia/blog" element={<BlogEnergia />} />
         <Route path="/energia/blog/:slug" element={<BlogPostEnergiaWrapper />} />
+        <Route path="/energia/calculadora-toi" element={<CalculadoraToi />} />
         {/* CheckMulta — IBAMA (auto de infração ambiental) */}
         <Route path="/ibama" element={<Ibama />} />
         <Route path="/ibama/blog" element={<BlogIbama />} />

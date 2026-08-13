@@ -10,7 +10,7 @@ import {
   Lock, UserX, Route, RefreshCcw, MessageSquare,
   ClipboardList, Menu, Timer, Building2, Zap,
   Gauge, FileWarning, PlusCircle, Clock, UploadCloud, Receipt,
-  Send, ExternalLink
+  Send, ExternalLink, ArrowRight
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
@@ -1270,6 +1270,13 @@ useEffect(() => {
               quando o início não puder ser identificado. Um TOI formalmente
               correto pode, ainda assim, ter o valor derrubado por esse motivo.
             </p>
+            <a
+              href="/energia/calculadora-toi"
+              className="mb-4 inline-flex items-center gap-1.5 text-sm font-semibold text-amber-600 hover:text-amber-700"
+            >
+              Calcular se o período do seu TOI está dentro do limite
+              <ArrowRight className="h-3.5 w-3.5" />
+            </a>
 
             <h3 className="mb-3 mt-9 text-xl font-bold leading-snug text-slate-900 sm:text-[22px]">
               O ônus da prova é da distribuidora
@@ -1328,6 +1335,12 @@ useEffect(() => {
           <nav className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium">
             <a href="/multa-de-transito" className="text-slate-600 transition hover:text-amber-600">
               Multas de trânsito
+            </a>
+            <a
+              href="/energia/calculadora-toi"
+              className="text-slate-600 transition hover:text-amber-600"
+            >
+              Calculadora do TOI
             </a>
             <a href="/procon" className="text-slate-600 transition hover:text-amber-600">
               Procon

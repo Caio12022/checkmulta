@@ -214,6 +214,17 @@ function metaCalculadora(pathname: string): MetaInfo | null {
   };
 }
 
+function metaCalculadoraToi(pathname: string): MetaInfo | null {
+  if (pathname !== "/energia/calculadora-toi" && pathname !== "/energia/calculadora-toi/")
+    return null;
+  return {
+    title: "Calculadora do TOI: o período cobrado está dentro do limite legal? | CheckMulta",
+    description:
+      "Veja se o período cobrado no seu TOI (recuperação de consumo) respeita o limite da Resolução ANEEL 1.000/2021: 6 ciclos sem demonstração técnica, 36 ciclos no teto geral. Calcule também o prazo para pedir perícia. Grátis.",
+    url: `${BASE_URL}/energia/calculadora-toi`,
+  };
+}
+
 function metaInfracao(pathname: string): MetaInfo | null {
   if (pathname === "/infracao" || pathname === "/infracao/") {
     return {
@@ -280,6 +291,8 @@ function getMetaParaRota(pathname: string): MetaInfo {
   if (metaSim) return metaSim;
   const metaCalc = metaCalculadora(pathname);
   if (metaCalc) return metaCalc;
+  const metaCalcToi = metaCalculadoraToi(pathname);
+  if (metaCalcToi) return metaCalcToi;
 
   // Blog-mãe: reúne as cinco verticais
   if (pathname === "/blog" || pathname === "/blog/") {
@@ -507,6 +520,9 @@ function gerarSitemap(): string {
 
   // Calculadora de desconto de multa
   urls.push({ loc: `${BASE_URL}/calculadora-desconto-multa`, priority: "0.9", changefreq: "monthly" });
+
+  // Calculadora do TOI (Energia)
+  urls.push({ loc: `${BASE_URL}/energia/calculadora-toi`, priority: "0.9", changefreq: "monthly" });
 
   // Consulta de infrações
   urls.push({ loc: `${BASE_URL}/infracao`, priority: "0.9", changefreq: "monthly" });

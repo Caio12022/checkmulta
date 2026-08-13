@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Building2, Scale, FileText, ShieldCheck, Zap, Car, Leaf, DollarSign } from "lucide-react";
+import { Building2, Scale, FileText, ShieldCheck, Zap, Car, Leaf, DollarSign, Gauge } from "lucide-react";
 
 /**
  * Carrossel de serviços do CheckMulta.
@@ -14,7 +14,8 @@ import { Building2, Scale, FileText, ShieldCheck, Zap, Car, Leaf, DollarSign } f
  * exclui a si mesma (ex: Home.tsx passa excluir={["transito"]}).
  *
  * Ordem fixa dos itens de vertical: transito, procon, vigilancia, energia,
- * ibama. Ferramentas (simulador, codigos, calculadora) sempre por último.
+ * ibama. Ferramentas (simulador, codigos, calculadora, calculadora-toi)
+ * sempre por último.
  */
 
 export type ServicoId =
@@ -25,7 +26,8 @@ export type ServicoId =
   | "ibama"
   | "simulador"
   | "codigos"
-  | "calculadora";
+  | "calculadora"
+  | "calculadora-toi";
 
 interface Servico {
   id: ServicoId;
@@ -127,6 +129,17 @@ const SERVICOS: Servico[] = [
     botao: "Calcular agora",
     Icone: DollarSign,
     cor: { faixa: "#0ea5e9", icone: "#0369a1", fundoIcone: "#f0f9ff", texto: "#0369a1" },
+  },
+  {
+    id: "calculadora-toi",
+    eyebrow: "Ferramenta gratuita",
+    titulo: "O período cobrado no seu TOI está dentro do limite?",
+    texto:
+      "A Resolução ANEEL 1.000/2021 limita a 6 ciclos a cobrança sem demonstração técnica, e a 36 ciclos o teto geral. Calcule o seu caso.",
+    href: "/energia/calculadora-toi",
+    botao: "Calcular agora",
+    Icone: Gauge,
+    cor: { faixa: "#eab308", icone: "#a16207", fundoIcone: "#fefce8", texto: "#a16207" },
   },
 ];
 
