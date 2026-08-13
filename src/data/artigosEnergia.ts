@@ -12,6 +12,50 @@ export interface ArtigoEnergia {
 
 export const artigosEnergia: ArtigoEnergia[] = [
   {
+    slug: "notificacao-de-recuperacao-de-consumo-o-que-fazer-ao-receber-um-toi",
+    titulo: "Notificação de recuperação de consumo: o que fazer ao receber um TOI",
+    descricao: "Recebeu um TOI ou cobrança de energia? Entenda os passos fundamentais para analisar a notificação e exercer seu direito de defesa técnica e administrativa.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "6 min",
+    imagemEmoji: "⚡",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["TOI energia", "recuperação de consumo", "cobrança retroativa energia", "ANEEL 1000"],
+    conteudo: `## Compreendendo a Notificação de Recuperação de Consumo
+
+A recepção de um Termo de Ocorrência e Inspeção (TOI) ou de uma notificação de cobrança retroativa por suposta irregularidade no medidor gera preocupação imediata. É fundamental manter a calma e compreender que a legislação do setor elétrico estabelece critérios rígidos para que essa cobrança seja considerada válida. O procedimento não é um ato automático e deve seguir ritos formais previstos na Resolução ANEEL nº 1.000/2021.
+
+## O Primeiro Passo: A Verificação da Legalidade do Procedimento
+
+O início do processo exige que a distribuidora cumpra as providências cumulativas listadas no art. 590 da Resolução ANEEL nº 1.000/2021. Para que o procedimento tenha validade técnica, a concessionária deve observar as exigências legais de caracterização da irregularidade.
+
+Se os passos formais não forem respeitados, o procedimento pode apresentar vícios que sustentam uma contestação administrativa. Lembre-se que, sob a luz do Código de Defesa do Consumidor, é possível pleitear a inversão do ônus da prova, cabendo à distribuidora demonstrar a regularidade de todo o processo.
+
+## O Direito à Perícia Técnica
+
+O consumidor possui direitos essenciais durante a inspeção do medidor (arts. 592 e 250 da Resolução ANEEL nº 1.000/2021). Caso o medidor seja retirado para análise, a distribuidora deve garantir a integridade do equipamento. O relatório da perícia metrológica deve ser emitido em até 30 dias contados da solicitação.
+
+Além disso, conforme o art. 591, incisos I, II, § 1º e § 3º, é dever da distribuidora emitir o TOI, entregá-lo ao consumidor ou representante mediante recibo, e informar claramente sobre o direito à perícia técnica. A ausência dessas informações pode comprometer a validade do débito.
+
+## Atenção aos Critérios de Cálculo e Período de Irregularidade
+
+Este é o ponto onde ocorrem erros frequentes. Muitas distribuidoras aplicam o teto de 36 ciclos de cobrança retroativa (art. 596). Contudo, é importante destacar que 36 ciclos representam o limite máximo, e não a regra geral. Quando o período de duração da irregularidade não é tecnicamente identificável, a cobrança deve ser limitada a 6 ciclos.
+
+O cálculo da receita a recuperar deve seguir os critérios objetivos do art. 595. Caso o consumidor identifique que o faturamento da conta de luz estava excessivo em relação ao consumo real, ele pode se amparar no art. 323, que prevê a possibilidade de revisão de até 60 ciclos e a eventual devolução de valores cobrados a maior.
+
+## Como Proceder de Forma Segura
+
+1. Analise o prazo para contestação indicado no documento recebido. Não ignore as datas impostas pela concessionária, conferindo a contagem de tempo diretamente na notificação recebida.
+2. Verifique se o TOI foi devidamente entregue e se cumpre as exigências formais de notificação.
+3. Continue realizando o pagamento das faturas de consumo corrente. A contestação administrativa foca exclusivamente na cobrança retroativa; o inadimplemento das contas do mês pode gerar a interrupção regular do fornecimento por falta de pagamento.
+4. Se houver ameaça de corte ou negativação, a contestação administrativa deve incluir o pedido de suspensão da cobrança enquanto o processo de apuração estiver em curso.
+
+No CheckMulta, o consumidor pode enviar o TOI ou a notificação de recuperação de consumo para que seja realizada uma análise que verifique se a cobrança apresenta falhas capazes de fundamentar uma contestação.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "o-que-e-toi-termo-de-ocorrencia-e-inspecao",
     titulo: "O que é o TOI (Termo de Ocorrência e Inspeção) da conta de luz",
     descricao: "Entenda o documento que a distribuidora emite ao acusar irregularidade no medidor e o que ele precisa conter para ser válido. Analise o seu gratuitamente.",
