@@ -12,6 +12,53 @@ export interface ArtigoIbama {
 
 export const artigosIbama: ArtigoIbama[] = [
   {
+    slug: "prescricao-no-ibama-saiba-como-calcular-o-prazo-do-seu-auto",
+    titulo: "Prescrição no IBAMA: saiba como calcular o prazo do seu auto",
+    descricao: "Entenda os prazos de prescrição punitiva e intercorrente nos autos do IBAMA. Aprenda a analisar se houve perda do direito de punir. Solicite análise gratuita.",
+    categoria: "Prescrição",
+    tempoLeitura: "6 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["prescrição auto de infração ibama", "prescrição intercorrente ibama", "cálculo prescrição ambiental"],
+    conteudo: `## Compreendendo a prescrição no Direito Ambiental Federal
+
+A prescrição é um instituto fundamental do Direito Administrativo que visa conferir segurança jurídica aos administrados. No âmbito do IBAMA, órgão responsável pela aplicação de sanções ambientais em âmbito federal, a administração pública possui um limite temporal para exercer o seu poder de polícia e sancionar condutas em desacordo com a legislação.
+
+É importante destacar que esta orientação é restrita aos processos administrativos federais. Caso o seu auto de infração tenha sido lavrado por um órgão estadual ou municipal, não se aplica a legislação federal abaixo descrita. Nesses casos, é imprescindível consultar a norma específica do órgão emissor, respeitando a repartição de competências estabelecida pela Lei Complementar nº 140/2011, nos arts. 7º e 17, que determina que a atuação de ente incompetente pode ensejar a revisão do ato.
+
+## A prescrição punitiva: o prazo de cinco anos
+
+A prescrição punitiva ocorre quando o IBAMA perde o direito de aplicar a penalidade em razão do decurso de tempo desde a prática da infração. Conforme estabelece o Decreto nº 6.514/2008, no seu art. 21, a prescrição da pretensão punitiva ocorre em cinco anos, contados da data da prática do ato ou da data da cessação, no caso de infração permanente ou continuada.
+
+Isso significa que, se entre a data do fato e a lavratura do auto decorreram mais de cinco anos, a pretensão do Estado pode estar prescrita. O art. 21 e seus parágrafos do mesmo Decreto preveem as causas que interrompem esse prazo, sendo essencial verificar se houve movimentação válida no processo administrativo que tenha reiniciado a contagem.
+
+## A prescrição intercorrente: o prazo de três anos
+
+Além da prescrição punitiva inicial, existe a prescrição intercorrente. Ela ocorre durante o trâmite do processo administrativo. Segundo o art. 21, § 2º, do Decreto nº 6.514/2008, incide a prescrição intercorrente quando o processo administrativo ambiental permanece paralisado por mais de três anos, pendente de despacho ou julgamento que não dependa de diligência ou decisão do autuado.
+
+Em termos práticos, se o processo ficou parado, sem que o IBAMA realizasse qualquer ato ou movimento necessário para o seu prosseguimento, o prazo de três anos é iniciado. É fundamental examinar o histórico das movimentações processuais para verificar se houve a inércia da administração por este período.
+
+## Outros pontos críticos: requisitos formais e prazo de defesa
+
+Ao analisar a possibilidade de prescrição, o autuado deve observar se o auto de infração cumpriu os requisitos formais obrigatórios dispostos no art. 97 do Decreto nº 6.514/2008, tais como a descrição clara e objetiva da infração e a correta identificação do autuado. Vícios insanáveis no auto podem ser objeto de questionamento administrativo, conforme o art. 100, § 2º, cabendo à administração, se for o caso, a revisão do procedimento. Além disso, o art. 14 do mesmo decreto prevê critérios para análise de atenuantes.
+
+Quanto ao prazo de defesa, o art. 113 do Decreto nº 6.514/2008 estipula o prazo de vinte dias contados da ciência da autuação, conforme rito do art. 96. Contudo, é necessário verificar a existência de audiência de conciliação ambiental, pois, nos termos do art. 97-A, § 1º, do mesmo Decreto, o agendamento desta audiência pode sobrestar a fluência do prazo de defesa, sendo fundamental consultar o teor do auto recebido.
+
+Reforçamos que a discussão sobre a validade do auto de infração não autoriza, por si só, o descumprimento de medidas restritivas como embargos ou apreensões em vigor. A defesa administrativa deve focar na legalidade do procedimento e na ocorrência de possíveis vícios, inclusive a prescrição. A eventual conversão de multa em serviços ambientais, prevista no art. 72, § 4º, da Lei nº 9.605/98, é um caminho que pode ser analisado conforme o caso.
+
+## A atuação administrativa e a nulidade
+
+Caso o auto de infração apresente vícios de legalidade, a administração pública tem o dever, aplicando o art. 53 da Lei nº 9.784/99, de revisar seus próprios atos. A ausência de fundamentação ou a falha na descrição da infração pode tornar o auto passível de revisão ou anulação.
+
+Reiteramos que a análise detalhada das datas de lavratura, das notificações e das movimentações no sistema é o que permite identificar se houve o transcurso dos prazos de prescrição punitiva ou intercorrente.
+
+É possível submeter o auto de infração para uma análise técnica que aponte se ele apresenta falhas capazes de fundamentar a defesa, incluindo a identificação de eventuais prazos prescricionais que possam ser alegados.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "conversao-de-multa-do-ibama-em-servicos-de-recuperacao-ambiental",
     titulo: "Conversão de multa do IBAMA em serviços de recuperação ambiental",
     descricao: "Entenda como funciona a conversão da multa ambiental do IBAMA em serviços de recuperação. Veja requisitos e analise seu auto de infração gratuitamente.",
