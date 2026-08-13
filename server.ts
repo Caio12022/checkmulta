@@ -10,6 +10,7 @@ import { artigosVigilancia } from "./src/data/artigosVigilancia";
 import { artigosEnergia } from "./src/data/artigosEnergia";
 import { artigosIbama } from "./src/data/artigosIbama";
 import { infracoes, calcularValor, formatarReal, NOMES_GRAVIDADE } from "./src/data/infracoes";
+import { GLOSSARIO_PROCON as glossarioProcon } from "./src/data/glossarioProcon";
 import { PROMPT_ANALYZE_TICKET, promptGenerateDefense } from "./prompts/transito";
 import { PROMPT_ANALYZE_PROCON, promptGenerateDefenseProcon } from "./prompts/procon";
 import { PROMPT_ANALYZE_VIGILANCIA, promptGenerateDefenseVigilancia } from "./prompts/vigilancia";
@@ -225,6 +226,33 @@ function metaCalculadoraToi(pathname: string): MetaInfo | null {
   };
 }
 
+function metaGlossarioProcon(pathname: string): MetaInfo | null {
+  if (pathname === "/procon/glossario" || pathname === "/procon/glossario/") {
+    return {
+      title: "Glossário do Procon: práticas abusivas e sanções do CDC | CheckMulta",
+      description:
+        "O que é cada prática abusiva do art. 39 e cada sanção administrativa do art. 56 do Código de Defesa do Consumidor, explicado em linguagem simples. Consulta gratuita, vale para qualquer Procon do Brasil.",
+      url: `${BASE_URL}/procon/glossario`,
+    };
+  }
+
+  const m = pathname.match(/^\/procon\/glossario\/([^/]+)\/?$/);
+  if (!m) return null;
+
+  const slug = decodeURIComponent(m[1]).toLowerCase();
+  const item = glossarioProcon.find((i) => i.slug === slug);
+  if (!item) return null;
+
+  const artigo = item.tipo === "sancao" ? "56" : "39";
+  const rotuloTipo = item.tipo === "sancao" ? "Sanção administrativa" : "Prática abusiva";
+
+  return {
+    title: `${item.nome} — art. ${artigo}, ${item.inciso}, do CDC | CheckMulta`,
+    description: `Art. ${artigo}, inciso ${item.inciso}, do CDC: ${item.nome}. ${item.explicacao} Veja grátis se o seu auto de infração do Procon tem erro formal.`,
+    url: `${BASE_URL}/procon/glossario/${item.slug}`,
+  };
+}
+
 function metaInfracao(pathname: string): MetaInfo | null {
   if (pathname === "/infracao" || pathname === "/infracao/") {
     return {
@@ -293,6 +321,8 @@ function getMetaParaRota(pathname: string): MetaInfo {
   if (metaCalc) return metaCalc;
   const metaCalcToi = metaCalculadoraToi(pathname);
   if (metaCalcToi) return metaCalcToi;
+  const metaGlossario = metaGlossarioProcon(pathname);
+  if (metaGlossario) return metaGlossario;
 
   // Blog-mãe: reúne as cinco verticais
   if (pathname === "/blog" || pathname === "/blog/") {
@@ -523,6 +553,16 @@ function gerarSitemap(): string {
 
   // Calculadora do TOI (Energia)
   urls.push({ loc: `${BASE_URL}/energia/calculadora-toi`, priority: "0.9", changefreq: "monthly" });
+
+  // Glossário do Procon (práticas abusivas e sanções do CDC)
+  urls.push({ loc: `${BASE_URL}/procon/glossario`, priority: "0.8", changefreq: "monthly" });
+  glossarioProcon.forEach((item) => {
+    urls.push({
+      loc: `${BASE_URL}/procon/glossario/${item.slug}`,
+      priority: "0.6",
+      changefreq: "monthly",
+    });
+  });
 
   // Consulta de infrações
   urls.push({ loc: `${BASE_URL}/infracao`, priority: "0.9", changefreq: "monthly" });

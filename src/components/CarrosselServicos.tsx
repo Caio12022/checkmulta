@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Building2, Scale, FileText, ShieldCheck, Zap, Car, Leaf, DollarSign, Gauge } from "lucide-react";
+import { Building2, Scale, FileText, ShieldCheck, Zap, Car, Leaf, DollarSign, Gauge, BookOpen } from "lucide-react";
 
 /**
  * Carrossel de serviços do CheckMulta.
@@ -14,8 +14,8 @@ import { Building2, Scale, FileText, ShieldCheck, Zap, Car, Leaf, DollarSign, Ga
  * exclui a si mesma (ex: Home.tsx passa excluir={["transito"]}).
  *
  * Ordem fixa dos itens de vertical: transito, procon, vigilancia, energia,
- * ibama. Ferramentas (simulador, codigos, calculadora, calculadora-toi)
- * sempre por último.
+ * ibama. Ferramentas (simulador, codigos, calculadora, calculadora-toi,
+ * glossario-procon) sempre por último.
  */
 
 export type ServicoId =
@@ -27,7 +27,8 @@ export type ServicoId =
   | "simulador"
   | "codigos"
   | "calculadora"
-  | "calculadora-toi";
+  | "calculadora-toi"
+  | "glossario-procon";
 
 interface Servico {
   id: ServicoId;
@@ -140,6 +141,17 @@ const SERVICOS: Servico[] = [
     botao: "Calcular agora",
     Icone: Gauge,
     cor: { faixa: "#eab308", icone: "#a16207", fundoIcone: "#fefce8", texto: "#a16207" },
+  },
+  {
+    id: "glossario-procon",
+    eyebrow: "Ferramenta gratuita",
+    titulo: "O que significa a infração citada no seu auto do Procon?",
+    texto:
+      "Consulte cada prática abusiva (art. 39) e cada sanção (art. 56) do Código de Defesa do Consumidor, explicada em linguagem simples.",
+    href: "/procon/glossario",
+    botao: "Consultar glossário",
+    Icone: BookOpen,
+    cor: { faixa: "#f59e0b", icone: "#b45309", fundoIcone: "#fffbeb", texto: "#b45309" },
   },
 ];
 

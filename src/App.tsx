@@ -21,6 +21,8 @@ import InfracaoDetalhe from "./pages/InfracaoDetalhe";
 import SimuladorPontos from "./pages/SimuladorPontos";
 import CalculadoraDesconto from "./pages/CalculadoraDesconto";
 import CalculadoraToi from "./pages/CalculadoraToi";
+import ProconGlossario from "./pages/ProconGlossario";
+import ProconGlossarioDetalhe from "./pages/ProconGlossarioDetalhe";
 import Plataforma from "./pages/Plataforma";
 import BlogGeral from "./pages/BlogGeral";
 /* Sobe a página ao trocar de rota */
@@ -124,6 +126,8 @@ export default function App() {
         <Route path="/procon" element={<Procon />} />
         <Route path="/procon/blog" element={<BlogProcon />} />
         <Route path="/procon/blog/:slug" element={<BlogPostProconWrapper />} />
+        <Route path="/procon/glossario" element={<ProconGlossario />} />
+        <Route path="/procon/glossario/:slug" element={<ProconGlossarioDetalhe />} />
         {/* CheckMulta — Vigilância Sanitária */}
         <Route path="/vigilancia-sanitaria" element={<Vigilancia />} />
         <Route path="/vigilancia-sanitaria/blog" element={<BlogVigilancia />} />
