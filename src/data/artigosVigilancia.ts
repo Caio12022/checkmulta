@@ -12,6 +12,53 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "auto-de-infracao-sanitaria-sem-identificacao-do-fiscal-e-uma-falha",
+    titulo: "Auto de infração sanitária sem identificação do fiscal: é uma falha?",
+    descricao: "Recebeu uma autuação sanitária sem o nome do agente fiscalizador? Entenda como essa ausência impacta a validade do auto de infração e seu direito a defesa.",
+    categoria: "Falhas do Auto",
+    tempoLeitura: "5 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["auto de infração vigilância sanitária", "falhas no auto de infração", "defesa processo administrativo sanitário", "fiscalização sanitária"],
+    conteudo: `## A importância da identificação no ato fiscalizatório
+
+No contexto das fiscalizações realizadas pela Vigilância Sanitária, o auto de infração é o documento fundamental que formaliza a existência de uma suposta irregularidade em um estabelecimento. Para que este documento possua validade jurídica e seja capaz de gerar efeitos, como a aplicação de penalidades previstas no art. 2º da Lei 6.437/77, ele deve preencher uma série de requisitos formais rigorosos.
+
+Dentre as exigências fundamentais, a correta identificação da autoridade ou do agente fiscalizador que realizou a inspeção não é apenas uma formalidade burocrática, mas uma garantia inerente ao devido processo legal. A omissão desses dados pode comprometer a lisura do procedimento administrativo, colocando em xeque a integridade do ato.
+
+## O que a legislação exige sobre o auto de infração
+
+A Lei 6.437/77, que estabelece as normas para a apuração de infrações à legislação sanitária, determina em seu art. 13 os requisitos obrigatórios que devem constar no auto de infração. A norma exige que o documento contenha elementos que identifiquem, com precisão, quem realizou a autuação. Essa exigência é um reflexo direto do princípio da legalidade e do princípio da motivação, aplicáveis subsidiariamente ao processo administrativo por meio da Lei 9.784/99 (art. 2º e art. 50, aplicáveis subsidiariamente).
+
+Quando um estabelecimento recebe um auto de infração desprovido da identificação legível ou da assinatura do agente, torna-se difícil verificar se a pessoa que realizou a fiscalização possuía competência legal para tal ato. A competência, conforme previsto no art. 14 da Lei 6.437/77, é um requisito basilar para que a autoridade possa imputar penalidades aos estabelecimentos.
+
+## Impactos da ausência de identificação na defesa
+
+A falta de identificação do agente fiscalizador pode ser um ponto relevante para a construção da estratégia de defesa administrativa. Em um processo administrativo, o autuado possui o direito ao contraditório e à ampla defesa. Se o documento que dá origem ao processo não permite identificar o responsável pela autuação, o estabelecimento terá dificuldade em verificar se houve excesso de poder ou desvio de finalidade na ação fiscalizatória.
+
+É importante destacar que, sob a luz do princípio da motivação, a administração pública deve expor de forma clara os fatos e os fundamentos jurídicos que levaram à autuação. Se o agente não se identifica, a própria cadeia de responsabilidade pelo ato torna-se opaca, ferindo o princípio da razoabilidade e da proporcionalidade na aplicação das sanções administrativas.
+
+## Como proceder ao receber um auto com falhas
+
+Caso o estabelecimento receba um documento contendo omissões, a primeira providência é registrar a situação e não ignorar o prazo. Embora a legislação sanitária varie entre União, estados e municípios, a Lei 6.437/77 prevê, em seu art. 22, o prazo de 15 dias para a defesa, ressaltando-se que a consulta ao prazo específico indicado no próprio auto de infração é indispensável para evitar a revelia.
+
+Além de observar as falhas formais, como a falta de identificação, o estabelecimento pode:
+
+- Organizar toda a documentação que comprove a regularidade do local.
+- Registrar a situação por meio de fotografias ou documentos caso a irregularidade apontada possa ser sanada imediatamente.
+- Verificar se houve a correta notificação, conforme estabelecido no art. 17 da Lei 6.437/77.
+
+Se a autuação resultar em interdição, é essencial que o estabelecimento busque a regularização total das pendências para solicitar uma nova inspeção. O estabelecimento deve aguardar a liberação formal e expressa do órgão competente para retomar as operações. A retomada não autorizada pode ensejar o agravamento das sanções, inclusive com a aplicação de penalidades mais severas, conforme critérios de graduação descritos no art. 6º da Lei 6.437/77.
+
+## O papel da análise técnica no processo administrativo
+
+Nem toda falha formal conduz necessariamente ao cancelamento da multa, mas elas são elementos que podem fundamentar o pedido de revisão ou anulação do ato em instâncias recursais. A administração pública, ao rever seus próprios atos, deve observar os princípios do devido processo legal. A análise técnica do auto de infração da Vigilância Sanitária pode auxiliar o estabelecimento a verificar se a autuação apresenta falhas capazes de fundamentar um recurso administrativo.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "como-solicitar-reinspecao-na-vigilancia-sanitaria-apos-regularizacao",
     titulo: "Como solicitar reinspeção na Vigilância Sanitária após regularização",
     descricao: "Saiba os passos essenciais para solicitar a reinspeção da Vigilância Sanitária após corrigir irregularidades. Analise seu auto de infração no CheckMulta.",
