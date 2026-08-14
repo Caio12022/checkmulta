@@ -12,6 +12,51 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "presuncao-de-legitimidade-o-que-e-e-como-contestar-multas",
+    titulo: "Presunção de Legitimidade: O que é e como contestar multas",
+    descricao: "Entenda como funciona a presunção de legitimidade dos autos de infração e aprenda a identificar erros para recorrer. Analise sua multa grátis no CheckMulta.",
+    categoria: "Jurídico",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-amber-600 to-amber-800",
+    conteudo: `## Entenda a Presunção de Legitimidade no Trânsito
+
+Recebeu uma multa e sente que foi injustiçado? É muito comum ouvir que o auto de infração possui presunção de legitimidade e que, por isso, a palavra do agente vale mais que a do condutor. Mas o que isso significa na prática e será que essa regra é absoluta? Como especialista em Direito de Trânsito, explico como funciona esse conceito fundamental para quem deseja recorrer.
+
+## O que é a presunção de legitimidade?
+
+A presunção de legitimidade (ou de veracidade) é um atributo dos atos administrativos praticados por agentes públicos. Em termos simples, isso significa que a legislação entende que tudo o que um agente de trânsito registra no documento de autuação é verdadeiro e feito conforme as normas, até que se prove o contrário.
+
+Quando um agente preenche o auto de infração, ele está exercendo uma função pública. A administração entende que ele agiu de boa-fé e com capacidade técnica. Por essa razão, a multa já nasce com força de validade, dispensando o Estado de provar, a todo momento, que o condutor realmente cometeu aquela infração.
+
+## O mito da verdade absoluta
+
+Existe uma crença popular de que, por causa dessa presunção, o motorista nunca ganha um recurso. Isso é um equívoco. Embora o auto de infração goze de presunção de legitimidade, ela não é absoluta, mas sim **relativa**.
+
+Isso significa que, embora o documento seja considerado válido inicialmente, ele pode ser anulado se o condutor conseguir apresentar provas ou argumentos que demonstrem inconsistências, falhas ou ilegalidades no procedimento.
+
+## Como combater a presunção de legitimidade?
+
+Para quebrar essa presunção, você não precisa apenas dizer que não cometeu a infração. É preciso apresentar fatos concretos. Veja alguns pontos onde a presunção pode cair:
+
+* **Erros formais:** O auto de infração deve conter informações obrigatórias previstas na legislação. Se faltar a marca do veículo, a cor, o local exato ou a identificação do agente, a validade do documento fica comprometida.
+* **Incoerências no relato:** Quando a descrição do agente contradiz o enquadramento legal da multa, o documento perde força.
+* **Equipamentos irregulares:** Se a multa foi gerada por aparelhos de medição, é necessário que o equipamento esteja com a aferição em dia perante os órgãos competentes.
+* **Sinalização precária:** Se a sinalização no local da suposta infração estiver apagada, escondida ou em desacordo com as normas do Código de Trânsito Brasileiro, a autuação pode ser questionada.
+
+## O papel do contraditório
+
+O Direito brasileiro garante a todos o direito à ampla defesa e ao contraditório. O processo administrativo de trânsito é o caminho oficial para confrontar a presunção de legitimidade. Ao apresentar uma defesa bem fundamentada, você obriga o órgão de trânsito a revisar o ato praticado. Se o órgão não conseguir justificar a falha apontada ou se o auto estiver mal preenchido, a multa pode ser cancelada.
+
+## Atenção aos detalhes
+
+Muitas vezes, a autuação é lavrada de forma automática e erros humanos ou sistêmicos podem ocorrer. Não ignore o aviso de recebimento da multa pensando que o recurso não funcionará. A análise técnica do documento é o primeiro passo para verificar se a presunção de legitimidade se sustenta ou se há falhas que permitem o cancelamento da penalidade.
+
+No CheckMulta, é possível enviar o auto de infração para obter uma análise técnica que aponta se existem falhas capazes de anular a multa.`,
+    palavrasChave: ["recurso de multa", "auto de infração", "Direito de Trânsito", "presunção de legitimidade"],
+  },
+
+  {
     slug: "recurso-de-multa-por-excesso-de-velocidade-como-recorrer",
     titulo: "Recurso de multa por excesso de velocidade: como recorrer",
     descricao: "Recebeu uma multa por excesso de velocidade em rodovia? Entenda como funciona o processo de defesa e quais falhas podem anular a infração. Analise grátis.",
