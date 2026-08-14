@@ -12,6 +12,56 @@ export interface ArtigoIbama {
 
 export const artigosIbama: ArtigoIbama[] = [
   {
+    slug: "diferenca-entre-auto-de-infracao-do-ibama-e-de-orgao-estadual",
+    titulo: "Diferença entre auto de infração do IBAMA e de órgão estadual",
+    descricao: "Entenda as distinções de competência entre o IBAMA e órgãos estaduais ao receber um auto de infração ambiental e saiba como proceder com sua defesa.",
+    categoria: "Competência",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["auto de infração IBAMA", "competência fiscalização ambiental", "nulidade auto de infração", "defesa multa ambiental"],
+    conteudo: `## A competência na fiscalização ambiental
+
+Ao receber um auto de infração ambiental, a primeira dúvida do autuado diz respeito à autoridade que emitiu o documento. É comum confundir o IBAMA com os órgãos estaduais ou municipais de meio ambiente. Compreender essa distinção é fundamental, pois cada ente federativo atua sob diretrizes legais distintas.
+
+A repartição de competências é regida pela Lei Complementar nº 140/2011. Conforme os arts. 7º e 17 da LC nº 140/2011, a atuação de um ente em uma matéria que não lhe compete pode ensejar a nulidade do procedimento administrativo. Se o IBAMA lavra um auto referente a uma atividade que, por lei, deveria ser fiscalizada exclusivamente por outro ente federativo, a base jurídica para o questionamento do ato é passível de análise.
+
+## Autos do IBAMA vs. Órgãos Estaduais e Municipais
+
+É importante esclarecer que a análise técnica aqui apresentada é especializada exclusivamente em autos lavrados pelo ente federal. Autos de infração emitidos por secretarias ou institutos estaduais e municipais de meio ambiente não utilizam o Decreto nº 6.514/2008. Esses órgãos possuem legislações próprias e ritos processuais que não se confundem com o procedimento federal.
+
+Se você recebeu um auto de órgão estadual ou municipal, deve buscar as normas específicas aplicáveis àquela jurisdição. O Decreto nº 6.514/2008, que disciplina o rito federal, não se aplica a fiscalizações de outros entes.
+
+## Requisitos formais e nulidade no rito federal
+
+Quando a autuação é de competência do IBAMA, o procedimento deve respeitar rigorosamente o que determina a legislação federal. O art. 97 do Decreto nº 6.514/2008 estabelece os requisitos formais indispensáveis para a validade do auto, tais como:
+
+- Identificação correta do autuado;
+- Descrição clara e objetiva da infração;
+- Indicação precisa dos dispositivos legais infringidos;
+- Ausência de emendas ou rasuras que comprometam a validade.
+
+A ausência desses elementos ou a presença de vícios insanáveis pode indicar a possibilidade de anulação do ato. Segundo o art. 100, § 2º, do Decreto nº 6.514/2008, a constatação de vício insanável pode levar à nulidade, podendo o órgão lavrar novo auto desde que respeitado o prazo prescricional. Além disso, o art. 53 da Lei nº 9.784/99, aplicável subsidiariamente, determina que a Administração pode anular seus atos quando eivados de vício de legalidade.
+
+## Prazos e prescrição
+
+Um ponto que gera grande preocupação aos autuados é o tempo de tramitação do processo. O art. 21 do Decreto nº 6.514/2008 estabelece o prazo de cinco anos para a prescrição punitiva, contados da prática do ato ou da cessação de infração permanente. Adicionalmente, o art. 21, § 2º, prevê a prescrição intercorrente de três anos, que ocorre caso o processo administrativo permaneça sem movimentação.
+
+Quanto ao prazo de defesa, o art. 113 do Decreto nº 6.514/2008 fixa o prazo de vinte dias contados da ciência da autuação, nos termos do art. 96. Contudo, é essencial verificar se houve agendamento de audiência de conciliação ambiental. Conforme o art. 97-A, § 1º, do mesmo diploma, o agendamento dessa audiência sobresta a fluência do prazo de defesa, sendo fundamental consultar o teor do auto recebido para confirmar o marco temporal aplicável ao seu caso.
+
+## Estratégia de defesa
+
+A análise técnica de um auto de infração deve verificar se os requisitos do art. 97 foram observados e se a competência do ente está devidamente fundamentada. Além das nulidades formais, o ordenamento prevê institutos como a conversão de multa simples em serviços de preservação, melhoria e recuperação ambiental, conforme o art. 72, § 4º, da Lei nº 9.605/98, e a análise de atenuantes previstas no art. 14 da mesma lei.
+
+Reforçamos que a defesa discute a validade do auto de infração, mas não autoriza o descumprimento de medidas administrativas em vigor. Embargos, apreensões e outras determinações cautelares devem ser respeitadas enquanto tramita o devido processo legal.
+
+O envio do auto de infração permite uma análise técnica que pode identificar se ele apresenta falhas capazes de fundamentar a estratégia de defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "prescricao-no-ibama-saiba-como-calcular-o-prazo-do-seu-auto",
     titulo: "Prescrição no IBAMA: saiba como calcular o prazo do seu auto",
     descricao: "Entenda os prazos de prescrição punitiva e intercorrente nos autos do IBAMA. Aprenda a analisar se houve perda do direito de punir. Solicite análise gratuita.",
