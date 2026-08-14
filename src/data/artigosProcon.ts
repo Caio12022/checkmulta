@@ -12,6 +12,51 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "decisao-do-procon-sem-motivacao-vicio-de-nulidade",
+    titulo: "Decisão do Procon sem motivação: vício de nulidade",
+    descricao: "Recebeu uma decisão do Procon sem justificativa clara? Entenda como a falta de motivação afeta a validade da multa. Envie seu auto para análise gratuita.",
+    categoria: "Vícios e Nulidades",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["decisão procon nula", "vício administrativo procon", "falta de fundamentação multa", "defesa processo administrativo procon"],
+    conteudo: `## A importância da motivação nas decisões administrativas
+
+No processo administrativo sancionador, o art. 5º do Decreto 2.181/97 estabelece a competência dos órgãos para apurar e punir infrações. A decisão proferida pela autoridade julgadora não pode ser arbitrária, sendo o dever de motivação um princípio fundamental do Direito Administrativo. Quando uma empresa recebe uma decisão que aplica penalidade sem explicar detalhadamente os motivos de fato e de direito que levaram àquela conclusão, configura-se um vício que pode comprometer a validade do ato sancionatório.
+
+A motivação é o instrumento que permite ao autuado compreender as razões da punição, possibilitando o exercício do contraditório e da ampla defesa. Sem uma fundamentação clara, o empresário fica impossibilitado de contestar os fundamentos da decisão de forma eficaz.
+
+## O papel da dosimetria e a clareza na aplicação da multa
+
+Ao aplicar uma sanção, o Procon deve observar estritamente a graduação da pena. O Decreto 2.181/97 estabelece critérios claros sobre a fixação da multa. Conforme os arts. 24 a 28, a autoridade deve considerar a graduação da pena, atenuantes, agravantes, reincidência e a fixação da multa.
+
+Além disso, o art. 26-A determina que as atenuantes e agravantes são taxativas, não cabendo ao julgador criar critérios aleatórios. Já o art. 28-A veda expressamente a valoração do mesmo elemento duas vezes na dosimetria. Quando a decisão ignora esses dispositivos ou falha em explicar como cada um deles foi aplicado ao caso concreto, ela padece de vício de motivação.
+
+## Nulidades por ausência de requisitos formais
+
+O processo administrativo sancionador, iniciado nos termos do art. 33 do Decreto 2.181/97, exige rigor formal desde a sua origem, podendo haver uma averiguação preliminar conforme o art. 33-A. O art. 35, inciso I, do Decreto 2.181/97 lista os requisitos obrigatórios do auto de infração: local, data e hora; qualificação do autuado; descrição do fato; dispositivo legal infringido; intimação; identificação, assinatura e matrícula do agente; designação do órgão julgador; assinatura do autuado; e cientificação para defesa. Ademais, o art. 38-A prevê a fiscalização orientadora e o critério de dupla visita para atividade de risco leve, cuja inobservância implica nulidade do auto (§ 2º), além de tratamento diferenciado a ME e EPP (§ 3º).
+
+Se a decisão final mantém a autuação sem sanar vícios processuais ou sem responder aos argumentos trazidos pela defesa, ela reforça a tese de nulidade. É importante destacar que o art. 48 do referido decreto prevê que a inobservância de forma só gera nulidade se houver prejuízo para a defesa. No caso da falta de motivação, o prejuízo pode ser configurado, pois o autuado é privado do direito de conhecer o caminho lógico percorrido pela autoridade para definir o valor da multa ou a sanção aplicada.
+
+## O que a sua empresa deve observar
+
+Ao analisar uma decisão do Procon, verifique se:
+
+- Os argumentos centrais da sua defesa foram devidamente enfrentados pelo órgão.
+- A dosimetria da multa foi explicada detalhadamente, citando os critérios dos arts. 24 a 28 do Decreto 2.181/97.
+- Houve o uso de fundamentação genérica, que poderia ser aplicada a qualquer outra empresa, sem observar as particularidades do seu caso.
+
+Caso a decisão seja genérica ou omissa, há possibilidade de questionar a sua validade administrativa. O prazo para recorrer contra a decisão de primeira instância, com efeito suspensivo em caso de multa, está previsto no art. 49 do Decreto 2.181/97. É fundamental conferir o prazo específico indicado no próprio documento recebido, pois a legislação pode variar conforme o órgão julgador. Se a multa não for recolhida em 30 dias, o art. 55 prevê a inscrição em dívida ativa.
+
+Lembre-se que o processo administrativo é um rito regrado e a administração pública está subordinada à legalidade. Decisões desprovidas de fundamentação adequada violam o devido processo legal e podem ser objeto de questionamento em sede de recurso administrativo.
+
+No CheckMulta, você pode encaminhar o auto de infração do Procon para análise técnica visando identificar se a autuação e a decisão administrativa apresentam vícios formais que podem ser utilizados em sua defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "decisao-do-procon-sem-motivacao-como-identificar-esse-vicio",
     titulo: "Decisão do Procon sem motivação: como identificar esse vício",
     descricao: "Recebeu uma decisão do Procon sem justificativa clara? Entenda como a falta de motivação afeta a validade da sanção. Envie seu auto para análise gratuita.",
