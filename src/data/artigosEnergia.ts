@@ -12,6 +12,56 @@ export interface ArtigoEnergia {
 
 export const artigosEnergia: ArtigoEnergia[] = [
   {
+    slug: "cobranca-sem-pericia-no-medidor-entenda-seus-direitos-e-a-norma",
+    titulo: "Cobrança sem perícia no medidor: entenda seus direitos e a norma",
+    descricao: "Recebeu uma cobrança de energia sem que seu medidor tenha sido periciado? Entenda o que a Resolução 1.000 da ANEEL diz sobre isso e analise seu documento.",
+    categoria: "Perícia do Medidor",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚡",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["TOI sem perícia", "cobrança irregular energia", "recuperação de consumo ANEEL", "contestação termo de ocorrência"],
+    conteudo: `## A importância da perícia no processo de recuperação de consumo
+
+Ao receber um Termo de Ocorrência e Inspeção (TOI) ou uma notificação de recuperação de consumo, o consumidor se depara com uma situação técnica complexa. Frequentemente, a distribuidora de energia emite uma cobrança retroativa alegando irregularidades no medidor sem que tenha ocorrido a devida análise laboratorial do equipamento. É fundamental compreender que a legislação vigente, especificamente a Resolução ANEEL nº 1.000/2021, estabelece requisitos rigorosos para que tal cobrança possua validade.
+
+## O procedimento regular segundo a norma
+
+De acordo com o art. 590 da Resolução ANEEL nº 1.000/2021, a caracterização de um procedimento irregular exige que a distribuidora adote uma série de providências cumulativas. Não basta apenas a emissão do documento de inspeção; é necessária a solicitação de verificação ou perícia metrológica e a elaboração de relatório de avaliação técnica. O histórico de consumo e as grandezas elétricas devem ser criteriosamente analisados para fundamentar qualquer cobrança.
+
+Quanto à emissão do TOI, o art. 591, incisos I, II, § 1º e § 3º, determina que a distribuidora deve entregar cópia do termo ao consumidor, mediante recibo, e prestar informações claras sobre o direito de solicitar a perícia metrológica do medidor.
+
+Quando o medidor é retirado, os arts. 592 e 250 da Resolução ANEEL nº 1.000/2021 estabelecem direitos essenciais ao consumidor:
+
+- O lacre deve ser colocado no ato da retirada do equipamento.
+- A distribuidora tem o dever de informar previamente a data e o horário da perícia em laboratório.
+- O consumidor possui o direito de acompanhar a perícia e de nomear um assistente técnico.
+- O relatório de inspeção deve ser disponibilizado em até 30 dias contados da solicitação.
+
+Se o medidor foi removido e a distribuidora não seguiu essas etapas, ou se a cobrança foi emitida sem a realização da perícia técnica necessária para comprovar a suposta irregularidade, há possibilidade de questionamento administrativo.
+
+## Critérios de cálculo e o limite do período de cobrança
+
+Outro ponto que gera insegurança é a definição do período de cobrança. Conforme o art. 596 da Resolução ANEEL nº 1.000/2021, a duração da irregularidade deve ser determinada tecnicamente ou por meio do histórico de consumo. O erro comum observado em notificações é a aplicação automática do prazo máximo.
+
+É importante esclarecer que os 36 ciclos previstos na norma representam apenas o teto máximo de cobrança. Na ausência de demonstração técnica precisa sobre quando a irregularidade teria começado, o período correto a ser considerado é de apenas 6 ciclos anteriores à constatação (art. 596). 
+
+Adicionalmente, os critérios para o cálculo da receita a recuperar devem seguir o disposto no art. 595, que avalia o fator de correção, a média dos três maiores consumos em até 12 ciclos anteriores e a carga instalada ou desviada. Caso identifique faturamento a maior, o consumidor pode buscar a revisão de até 60 ciclos e a devolução em dobro, conforme o art. 323.
+
+## O papel do consumidor na contestação
+
+O Código de Defesa do Consumidor é um pilar importante na defesa contra cobranças abusivas. Como a relação entre distribuidora e consumidor é de consumo, a empresa deve demonstrar a regularidade do procedimento que culminou na cobrança.
+
+Caso você tenha sido notificado, é indispensável observar os prazos estipulados na própria notificação recebida para apresentar sua contestação administrativa. Ressaltamos que a contestação foca no valor retroativo e não dispensa o pagamento das faturas de consumo corrente, sob risco de interrupção do serviço.
+
+Se a sua notificação não cumpriu as exigências de notificação prévia de perícia ou se houve falhas formais na lavratura do termo conforme o art. 591, esses pontos podem ser arguidos em sua defesa. A ausência de perícia pode enfraquecer a legitimidade da cobrança retroativa.
+
+No CheckMulta, você pode enviar o documento de notificação de recuperação de consumo para receber uma análise que aponta se a cobrança apresenta falhas capazes de fundamentar sua contestação.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "notificacao-de-recuperacao-de-consumo-o-que-fazer-ao-receber-um-toi",
     titulo: "Notificação de recuperação de consumo: o que fazer ao receber um TOI",
     descricao: "Recebeu um TOI ou cobrança de energia? Entenda os passos fundamentais para analisar a notificação e exercer seu direito de defesa técnica e administrativa.",
