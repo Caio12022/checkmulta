@@ -12,6 +12,55 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "multa-por-farol-queimado-como-recorrer-e-evitar-pontos",
+    titulo: "Multa por farol queimado: como recorrer e evitar pontos",
+    descricao: "Foi multado por farol queimado? Entenda o que a lei diz, as consequências para sua CNH e como o CheckMulta pode te ajudar a analisar sua autuação de graça.",
+    categoria: "Equipamentos",
+    tempoLeitura: "4 min",
+    imagemEmoji: "💡",
+    imagemBg: "from-yellow-600 to-amber-800",
+    conteudo: `## Entenda a infração por farol queimado
+
+Dirigir com o veículo em mau estado de conservação ou com equipamentos obrigatórios inoperantes é uma situação que gera dores de cabeça constantes para os motoristas brasileiros. Entre as ocorrências mais comuns nas vias urbanas e rodovias está a multa por farol queimado. Muitas vezes, o condutor nem percebe que uma das lâmpadas falhou, sendo surpreendido apenas no momento da abordagem policial.
+
+A legislação de trânsito é clara ao determinar que todos os sistemas de iluminação e sinalização devem estar em perfeito funcionamento. A segurança viária depende da visibilidade mútua entre os usuários da via, e uma lâmpada fundida reduz drasticamente a capacidade de sinalizar manobras ou visualizar obstáculos à noite.
+
+## O que a lei exige dos condutores?
+
+A legislação de trânsito estabelece a obrigatoriedade de manter o veículo em boas condições de uso. Isso inclui, obrigatoriamente, os faróis dianteiros, lanternas traseiras e luzes de freio. Quando um agente de trânsito identifica que um farol está inoperante, entende-se que o condutor negligenciou a manutenção preventiva do veículo.
+
+Vale ressaltar que a infração ocorre não apenas quando o farol está totalmente apagado, mas também quando a intensidade luminosa está comprometida ou quando o sistema apresenta falhas que dificultam a identificação do veículo por terceiros. Manter a manutenção em dia é, antes de tudo, um ato de responsabilidade com a vida.
+
+## Consequências da autuação
+
+Ao ser autuado por essa irregularidade, o condutor fica sujeito a penalidades administrativas que podem afetar diretamente o bolso e a carteira de habilitação. Além da multa, a infração gera o registro de pontos no prontuário do condutor. Em casos mais específicos, onde o veículo é considerado inoperante para o tráfego com segurança, a autoridade pode ainda determinar a retenção do veículo para regularização.
+
+É importante destacar que a retenção ocorre justamente para que o motorista providencie a troca da lâmpada, garantindo que o veículo possa circular sem oferecer riscos aos demais usuários da via pública.
+
+## Como proceder ao receber uma multa por farol queimado?
+
+Recebeu uma autuação e acredita que há margem para contestação? Nem sempre a multa é aplicada de forma correta. Erros formais no preenchimento do auto de infração, falta de clareza na descrição do ocorrido ou a ausência de vistoria técnica adequada podem ser pontos de partida para um recurso administrativo.
+
+O processo de defesa permite que o motorista apresente seus argumentos aos órgãos de trânsito. Para ter sucesso, é fundamental reunir provas, como fotos da manutenção realizada logo após a notificação ou comprovantes de que o veículo passou por revisão recentemente. A análise técnica do documento de infração é o passo mais importante para identificar se houve falha do agente autuador.
+
+## Dicas para evitar a multa
+
+Para não passar por esse transtorno, a prevenção é a melhor estratégia:
+
+* **Checklist semanal:** Antes de sair, dê uma volta rápida ao redor do carro e confira se todas as luzes estão acesas.
+* **Troca preventiva:** Lâmpadas têm vida útil limitada. Se uma queimou, considere trocar as duas, pois a outra provavelmente seguirá o mesmo caminho em breve.
+* **Limpeza das lentes:** Faróis amarelados ou opacos também podem ser alvo de fiscalização, pois diminuem a eficiência luminosa.
+* **Kit de emergência:** Tenha sempre lâmpadas de reserva e fusíveis no porta-luvas.
+
+## Analise sua multa com especialistas
+
+Nem toda autuação é incontestável, mas muitas possuem falhas que passam despercebidas pelo condutor comum. Recorrer é um direito garantido por lei e pode evitar o acúmulo de pontos na sua CNH e o prejuízo financeiro desnecessário.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Nossa plataforma especializada ajuda você a entender suas chances de sucesso antes de iniciar o processo de defesa.`,
+    palavrasChave: ["multa farol queimado", "recurso de multa", "iluminação veículo", "legislação de trânsito"],
+  },
+
+  {
     slug: "presuncao-de-legitimidade-o-que-e-e-como-contestar-multas",
     titulo: "Presunção de Legitimidade: O que é e como contestar multas",
     descricao: "Entenda como funciona a presunção de legitimidade dos autos de infração e aprenda a identificar erros para recorrer. Analise sua multa grátis no CheckMulta.",
