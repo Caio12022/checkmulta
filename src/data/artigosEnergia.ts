@@ -12,6 +12,49 @@ export interface ArtigoEnergia {
 
 export const artigosEnergia: ArtigoEnergia[] = [
   {
+    slug: "como-ler-e-interpretar-um-termo-de-ocorrencia-e-inspecao-toi",
+    titulo: "Como ler e interpretar um Termo de Ocorrência e Inspeção (TOI)",
+    descricao: "Recebeu um TOI ou cobrança de energia? Entenda os pontos críticos do documento e o que a norma da ANEEL exige para que a cobrança seja considerada válida.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "6 min",
+    imagemEmoji: "⚡",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["como contestar TOI energia", "cálculo recuperação de consumo ANEEL", "o que é termo de ocorrência de inspeção", "fatura irregularidade energia"],
+    conteudo: `## Introdução ao Termo de Ocorrência e Inspeção (TOI)
+
+O Termo de Ocorrência e Inspeção, popularmente conhecido pela sigla TOI, é o documento formal por meio do qual a distribuidora de energia elétrica registra a constatação de uma suposta irregularidade na unidade consumidora. Receber este documento, muitas vezes acompanhado de uma notificação de cobrança de recuperação de consumo, gera preocupação imediata devido aos valores elevados.
+
+É fundamental compreender que o TOI não é, por si só, uma sentença definitiva de culpa. Para que a cobrança de um suposto desvio ou irregularidade seja legítima, a distribuidora deve seguir um rigoroso procedimento administrativo estabelecido pela Resolução ANEEL nº 1.000/2021. O desconhecimento dessas regras permite que falhas processuais passem despercebidas, o que pode prejudicar o consumidor.
+
+## O que observar no momento da inspeção
+
+Conforme estabelece o art. 590 da Resolução ANEEL nº 1.000/2021, a distribuidora deve observar as providências cumulativas para caracterização da irregularidade. Isso significa que não basta a emissão de um papel assinado pelo técnico. O processo exige que a distribuidora reúna evidências técnicas e documentais que comprovem a ocorrência do fato. Se a inspeção não observou tais cautelas, a fundamentação da cobrança pode estar fragilizada.
+
+## Deveres formais da distribuidora
+
+O art. 591 da mesma norma define obrigações claras no ato da emissão do TOI, nos termos dos seus incisos I, II e parágrafos 1º e 3º. O consumidor tem o direito de receber uma cópia legível do documento no momento da inspeção, devendo ser colhida a sua assinatura. Caso o documento seja emitido eletronicamente, a distribuidora deve garantir a impressão no local ou o envio com comprovação de entrega.
+
+Além disso, o consumidor deve ser expressamente informado sobre seu direito de solicitar perícia metrológica no medidor. O processo de perícia, previsto nos arts. 592 e 250 da referida norma, exige o acondicionamento do medidor em invólucro específico, lacrado no ato da retirada, devendo a distribuidora assegurar a realização do exame em laboratório com a comunicação prévia ao consumidor, respeitando o prazo de 30 dias contados da solicitação.
+
+## A questão dos cálculos e o período da irregularidade
+
+O ponto que causa maior impacto financeiro é o período da cobrança. O art. 596 da Resolução ANEEL nº 1.000/2021 determina que, quando não for possível identificar o período exato da irregularidade, o cálculo deve ser limitado a 6 ciclos (meses) anteriores à constatação. Embora a norma preveja um teto máximo de 36 ciclos, este não é um valor automático ou padrão. A distribuidora tem o ônus de provar tecnicamente o início da falha. Cobranças baseadas no teto de 36 meses sem evidências técnicas sólidas podem ser objeto de contestação.
+
+Os critérios para o cálculo, descritos no art. 595, envolvem critérios técnicos previstos na norma para a apuração da receita a recuperar. Em caso de faturamento a maior, o consumidor tem o direito de revisar até 60 ciclos anteriores e pleitear a devolução do valor indevidamente pago em dobro, conforme o art. 323.
+
+## Defesa e procedimentos administrativos
+
+Ao contestar uma cobrança retroativa, o consumidor deve verificar o prazo para interposição de recurso estipulado na própria notificação recebida. É importante ressaltar que a contestação não exime o consumidor do pagamento das faturas de energia do mês corrente; o foco deve ser a impugnação do débito retroativo. O pagamento das faturas atuais deve ser mantido para evitar a suspensão do fornecimento por inadimplência.
+
+O Código de Defesa do Consumidor é um pilar fundamental em todo este processo, garantindo o direito à informação clara, à facilitação da defesa e, em muitos casos, a possibilidade de inversão do ônus da prova, uma vez que a distribuidora possui maior capacidade técnica para provar a ocorrência alegada.
+
+Caso tenha recebido um TOI ou notificação de recuperação de consumo, é recomendável analisar a documentação técnica para verificar se o procedimento seguiu as normas vigentes, o que pode servir de base para uma eventual contestação.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "cobranca-sem-pericia-no-medidor-entenda-seus-direitos-e-a-norma",
     titulo: "Cobrança sem perícia no medidor: entenda seus direitos e a norma",
     descricao: "Recebeu uma cobrança de energia sem que seu medidor tenha sido periciado? Entenda o que a Resolução 1.000 da ANEEL diz sobre isso e analise seu documento.",
