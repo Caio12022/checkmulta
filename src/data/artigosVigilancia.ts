@@ -12,6 +12,51 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "documentacao-sanitaria-o-que-todo-estabelecimento-deve-manter-em-dia",
+    titulo: "Documentação sanitária: o que todo estabelecimento deve manter em dia",
+    descricao: "Saiba quais documentos sanitários são fundamentais para o seu estabelecimento. Evite autuações e verifique a validade do seu auto de infração no CheckMulta.",
+    categoria: "Boas Práticas",
+    tempoLeitura: "5 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-emerald-50 to-teal-50",
+    palavrasChave: ["auto de infração vigilância sanitária", "documentação sanitária estabelecimento", "defesa administrativa vigilância sanitária", "regularização sanitária"],
+    conteudo: `## A importância da documentação sanitária preventiva
+
+Manter a documentação sanitária organizada é a principal estratégia de defesa para qualquer estabelecimento que lida com a manipulação de produtos, serviços de saúde ou estética. A ausência de registros ou a apresentação inadequada desses documentos durante uma inspeção é frequentemente o motivo inicial para a lavratura de um auto de infração. Compreender as exigências legais e manter o estabelecimento em conformidade é um dever do responsável técnico e do proprietário, assegurando a segurança sanitária dos consumidores e a regularidade do negócio.
+
+## Documentos essenciais para a operação
+
+Embora a legislação sanitária seja fragmentada, existindo normas específicas em cada esfera, todo estabelecimento deve possuir documentos que comprovem a conformidade com as boas práticas sanitárias. Os registros fundamentais incluem:
+
+- Licença ou Alvará Sanitário vigente: o documento principal que autoriza o funcionamento do local.
+- Manual de Boas Práticas e Procedimentos Operacionais Padronizados: documentos técnicos que descrevem as rotinas de higiene, limpeza, conservação e manipulação de insumos.
+- Registros de monitoramento: planilhas que documentam o controle de temperatura de equipamentos, recebimento de mercadorias e higienização das instalações.
+- Certificados de comprovação de serviços especializados: como o controle de pragas e a limpeza periódica de reservatórios de água.
+- Atestados de saúde e comprovantes de treinamento dos manipuladores ou responsáveis técnicos.
+
+## Como proceder diante de um auto de infração
+
+Caso o estabelecimento receba um auto de infração, é fundamental analisar se o documento atende aos requisitos obrigatórios. Conforme a Lei 6.437/77, em seu art. 13, o auto de infração deve conter requisitos específicos, como a identificação do infrator, o local, a data e a hora da autuação, a descrição clara do fato e o dispositivo legal infringido. A falta desses elementos pode comprometer a validade do processo.
+
+Ao receber a autuação, o estabelecimento possui o direito ao contraditório e à ampla defesa, princípios basilares do devido processo legal. A Lei 9.784/99, aplicável subsidiariamente, reforça, em seus arts. 2º e 50 (aplicáveis subsidiariamente), a necessidade de motivação das decisões administrativas, que devem ser fundamentadas e claras.
+
+## Prazos e recursos administrativos
+
+Quanto ao prazo para apresentação de defesa, este varia conforme a norma local aplicável ao seu município ou estado. A Lei 6.437/77, em seu art. 22, dispõe sobre o prazo de defesa, contudo, é imperativo verificar o prazo indicado especificamente no seu auto de infração ou junto ao órgão emissor para evitar a perda da oportunidade de manifestação. O não cumprimento da norma pode levar à aplicação de penalidades, as quais são graduadas conforme o rol de penalidades (art. 2º), a imputabilidade (art. 3º), a classificação da infração (art. 4º), a graduação da pena (art. 6º), as atenuantes (art. 7º) e as agravantes (art. 8º) previstas na legislação. O rol de infrações consta no art. 10 e a competência para autuar no art. 14. As formas de notificação são tratadas no art. 17, o recurso no art. 30 e o prazo para pagamento da multa no art. 33. A prescrição ocorre em 5 anos, nos termos do art. 38.
+
+Em situações de interdição cautelar, observe que esta é limitada a 90 dias, conforme o art. 23, § 4º da Lei 6.437/77. É estritamente proibido retomar as operações antes de protocolar o pedido de reinspeção e obter a liberação formal e expressa do órgão fiscalizador. Para o pedido de reinspeção, deve-se anexar provas documentais da correção das irregularidades.
+
+## Como a sua defesa pode ser estruturada
+
+Uma defesa administrativa estruturada busca questionar a regularidade do procedimento e a proporcionalidade da sanção. Ao preparar a argumentação, devem ser observados os princípios da razoabilidade e do devido processo legal. Se houve falha na descrição dos fatos, ausência de fundamentação ou erro na tipificação, esses pontos podem ser arguidos em defesa para buscar a revisão da sanção aplicada.
+
+No CheckMulta, é possível enviar o auto de infração da Vigilância Sanitária para obter uma análise técnica que verifica se a autuação apresenta falhas capazes de fundamentar um recurso administrativo.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "auto-de-infracao-sanitaria-sem-identificacao-do-fiscal-e-uma-falha",
     titulo: "Auto de infração sanitária sem identificação do fiscal: é uma falha?",
     descricao: "Recebeu uma autuação sanitária sem o nome do agente fiscalizador? Entenda como essa ausência impacta a validade do auto de infração e seu direito a defesa.",
