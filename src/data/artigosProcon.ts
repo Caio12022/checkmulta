@@ -12,6 +12,57 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "contraditorio-e-ampla-defesa-no-processo-sancionador-do-procon",
+    titulo: "Contraditório e Ampla Defesa no Processo Sancionador do Procon",
+    descricao: "Entenda como o contraditório e a ampla defesa protegem sua empresa em processos do Procon. Analise seu auto de infração gratuitamente no CheckMulta.",
+    categoria: "Direitos da Empresa",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["defesa administrativa Procon", "auto de infração empresa", "contraditório processo Procon", "direitos empresa autuada"],
+    conteudo: `## A importância da defesa administrativa no Procon
+
+Receber um auto de infração do Procon gera preocupação imediata para gestores e proprietários de empresas. Contudo, é fundamental compreender que o recebimento de uma autuação não significa, automaticamente, a aplicação de uma penalidade definitiva ou a confissão de culpa. O ordenamento jurídico brasileiro garante às empresas o direito ao contraditório e à ampla defesa, princípios fundamentais assegurados no processo administrativo sancionador, que tem como base o art. 5º do Decreto 2.181/97, o qual define a competência dos órgãos para apurar e punir.
+
+O processo administrativo sancionador, que tem seu início nos termos do art. 33 do Decreto 2.181/97 e pode envolver uma averiguação preliminar conforme o art. 33-A, é o rito pelo qual o órgão de proteção ao consumidor apura a existência de infrações. Durante essa fase, a empresa possui o direito constitucional de contestar as acusações e apresentar elementos que podem levar à redução ou à revisão da penalidade.
+
+## O que é o Contraditório e a Ampla Defesa?
+
+O contraditório é a garantia de que a empresa tenha ciência de todos os atos praticados contra si e a oportunidade de reagir a cada um deles. Já a ampla defesa é o direito de utilizar todos os meios lícitos para provar a inocência ou atenuar a responsabilidade. No contexto de um Procon, isso significa que a empresa não é apenas uma espectadora do processo, mas parte ativa na produção de provas e na argumentação jurídica.
+
+É importante notar que o art. 48 do Decreto 2.181/97 estabelece que a inobservância de forma só gera nulidade se houver prejuízo para a defesa. Portanto, a análise do auto de infração deve ser minuciosa, observando se os requisitos formais foram cumpridos conforme o art. 35, inciso I, do mesmo decreto, que exige:
+
+- Local, data e hora da lavratura;
+- Qualificação completa do autuado;
+- Descrição clara e precisa do fato;
+- Dispositivo legal infringido;
+- Intimação do autuado;
+- Identificação, assinatura e matrícula do agente autuante;
+- Designação do órgão julgador;
+- Assinatura do autuado;
+- Cientificação para apresentação de defesa.
+
+## Fiscalização orientadora e o critério da dupla visita
+
+Um ponto frequentemente ignorado por empresas autuadas é a fiscalização orientadora. De acordo com o art. 38-A do Decreto 2.181/97, para atividades classificadas como de risco leve, deve ser observado o critério da dupla visita. A inobservância deste critério implica nulidade do auto de infração, conforme o § 2º do mesmo artigo. Além disso, o § 3º determina tratamento diferenciado para microempresas (ME) e empresas de pequeno porte (EPP), o que pode ser um argumento valioso na construção de uma defesa administrativa bem fundamentada.
+
+## Como proceder ao receber uma autuação
+
+Ao ser notificado, a empresa deve observar atentamente o prazo concedido para a apresentação da defesa. O prazo para manifestação varia conforme o Procon estadual ou municipal, uma vez que a legislação local pode definir períodos específicos; portanto, verifique sempre o prazo indicado no próprio documento recebido.
+
+Caso a empresa discorde da decisão administrativa final, o art. 49 do Decreto 2.181/97 prevê a possibilidade de recurso em 10 dias, com efeito suspensivo em caso de multa. É crucial lembrar que, após o encerramento do processo, caso a multa não seja recolhida no prazo de 30 dias, o débito poderá ser inscrito em dívida ativa, conforme o art. 55 do Decreto 2.181/97.
+
+## A dosimetria da pena e a importância da defesa
+
+Se a infração for reconhecida, a defesa ainda é essencial para garantir que a dosimetria da pena seja justa. Os arts. 24 a 28 do Decreto 2.181/97 tratam da graduação da pena, atenuantes, agravantes, reincidência e fixação da multa. O art. 26-A estabelece que as atenuantes e agravantes são taxativas. Além disso, o art. 28-A prevê a vedação a valorar o mesmo elemento duas vezes na dosimetria. Argumentar sobre a aplicação correta desses dispositivos pode influenciar a sanção financeira aplicada à empresa.
+
+A empresa autuada pode buscar uma análise detalhada do auto de infração para identificar possíveis vícios formais ou pontos de atenção para a sua defesa administrativa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "decisao-do-procon-sem-motivacao-vicio-de-nulidade",
     titulo: "Decisão do Procon sem motivação: vício de nulidade",
     descricao: "Recebeu uma decisão do Procon sem justificativa clara? Entenda como a falta de motivação afeta a validade da multa. Envie seu auto para análise gratuita.",
