@@ -12,6 +12,47 @@ export interface ArtigoEnergia {
 
 export const artigosEnergia: ArtigoEnergia[] = [
   {
+    slug: "o-prazo-de-30-dias-para-o-relatorio-de-inspecao-do-medidor",
+    titulo: "O prazo de 30 dias para o relatório de inspeção do medidor",
+    descricao: "Entenda o prazo legal para a emissão do relatório de perícia técnica após o TOI e como a falta desse documento pode impactar sua contestação.",
+    categoria: "Perícia do Medidor",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["prazo relatório perícia medidor", "contestação TOI energia", "recuperação de consumo energia", "irregularidade medidor"],
+    conteudo: `## A importância do relatório de perícia no processo de TOI
+
+Quando uma distribuidora de energia elétrica identifica uma suposta irregularidade no medidor, inicia-se um procedimento rigoroso regido pela Resolução ANEEL nº 1.000/2021. Muitas vezes, o consumidor é surpreendido pela emissão de um Termo de Ocorrência e Inspeção (TOI) e, posteriormente, por uma notificação de recuperação de consumo. Um dos pilares fundamentais para a validade dessa cobrança é a correta apuração técnica, que culmina na emissão do relatório de inspeção.
+
+É essencial compreender que, conforme os arts. 592 e 250, o consumidor possui o direito de acompanhar a perícia do medidor em laboratório, devendo ser comunicado previamente sobre a data e o horário. Após a realização desta perícia, a distribuidora tem a obrigação de elaborar um relatório de inspeção. O prazo para a disponibilização deste documento é de 30 dias, contados a partir da data da solicitação da perícia pelo consumidor.
+
+## O que a regulamentação exige
+
+A Resolução ANEEL nº 1.000/2021 estabelece um rito obrigatório para garantir o contraditório e a ampla defesa. Para que uma cobrança de recuperação de consumo seja legítima, a distribuidora deve observar procedimentos cumulativos definidos no art. 590, que tratam das providências para caracterização da irregularidade. Além disso, o art. 591, incisos I e II, bem como seus §§ 1º e 3º, determinam os deveres na emissão do TOI, como a entrega obrigatória com recibo e a informação clara ao consumidor sobre o seu direito à perícia metrológica.
+
+Se a empresa não cumprir esses ritos, ou se o relatório não for apresentado no prazo legal, a integridade da cobrança pode ser questionada. O consumidor, amparado pelo Código de Defesa do Consumidor, tem o direito de exigir que a distribuidora comprove tecnicamente a irregularidade alegada, visto que o ônus da prova recai sobre quem presta o serviço.
+
+## O cálculo da recuperação e o período de cobrança
+
+Um erro recorrente nas notificações de recuperação de consumo é a aplicação automática de um período extenso de faturamento. É fundamental esclarecer que os 36 ciclos previstos no art. 596 representam apenas o teto máximo de cobrança, e não um padrão de aplicação automática. 
+
+Caso o período da irregularidade não possa ser determinado tecnicamente ou pelo histórico do consumidor, a cobrança deve ser limitada a, no máximo, 6 ciclos anteriores à constatação da irregularidade. A tentativa de cobrar o período máximo sem a devida fundamentação técnica é um ponto frequentemente abordado em contestações administrativas.
+
+Além disso, o art. 595 estabelece critérios técnicos para o cálculo da receita a recuperar. O descumprimento desses critérios ou a cobrança de valores indevidos pode ensejar a revisão do débito, inclusive com a possibilidade de devolução em dobro dos valores pagos a maior, conforme prevê o art. 323, que trata da revisão de até 60 ciclos em casos de faturamento incorreto.
+
+## Como proceder diante de uma cobrança
+
+Se você recebeu um TOI ou uma notificação de recuperação de consumo, o primeiro passo é reunir todos os documentos entregues pela distribuidora. Verifique se o relatório de inspeção foi entregue dentro do prazo e se a metodologia de cálculo respeita as normas da ANEEL. Importante: não interrompa o pagamento das suas faturas de consumo mensal para evitar riscos de suspensão do fornecimento por inadimplência; a contestação deve ser formalizada especificamente quanto ao débito retroativo.
+
+O prazo para protocolar a sua contestação deve ser verificado diretamente na notificação recebida, pois este varia conforme as orientações da distribuidora. Em caso de dúvidas sobre a fundamentação técnica ou a necessidade de solicitar uma reanálise, é recomendável buscar uma avaliação profissional do documento.
+
+No CheckMulta, é possível enviar o TOI ou a notificação de recuperação de consumo para obter uma análise técnica que aponte se a cobrança apresenta falhas que possam fundamentar a sua contestação.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "como-ler-e-interpretar-um-termo-de-ocorrencia-e-inspecao-toi",
     titulo: "Como ler e interpretar um Termo de Ocorrência e Inspeção (TOI)",
     descricao: "Recebeu um TOI ou cobrança de energia? Entenda os pontos críticos do documento e o que a norma da ANEEL exige para que a cobrança seja considerada válida.",
