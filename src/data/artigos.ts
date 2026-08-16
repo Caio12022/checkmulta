@@ -12,6 +12,49 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "parou-na-faixa-de-pedestres-veja-como-recorrer",
+    titulo: "Parou na faixa de pedestres? Veja como recorrer",
+    descricao: "Recebeu uma multa por parar sobre a faixa de pedestres? Entenda as regras, os riscos e como buscar a anulação. Analise sua multa gratuitamente aqui.",
+    categoria: "Comportamento no Trânsito",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🚶",
+    imagemBg: "from-amber-600 to-amber-800",
+    conteudo: `## O perigo invisível: Parar sobre a faixa de pedestres
+
+No cotidiano caótico das grandes cidades brasileiras, é muito comum que condutores acabem avançando sobre a faixa de pedestres ao tentar realizar uma conversão ou durante um congestionamento. O que muitos motoristas ignoram é que essa prática é considerada uma infração prevista na legislação de trânsito vigente.
+
+A faixa de pedestres é um espaço sagrado de segurança. Quando o veículo interrompe essa passagem, ele não apenas ignora a prioridade do pedestre, mas também força o transeunte a contornar o carro, expondo-o a um risco desnecessário ao colocá-lo em meio ao fluxo de veículos fora da zona segura.
+
+## Por que essa infração é aplicada?
+
+O Código de Trânsito Brasileiro determina que a parada sobre a faixa destinada a pedestres configura comportamento proibido. A lógica é simples: o espaço foi desenhado para garantir que pessoas circulem livremente sem dividir o mesmo plano com máquinas pesadas. Mesmo que o motorista tenha parado por apenas alguns segundos, a infração é caracterizada pelo simples fato de o veículo estar posicionado sobre a área sinalizada.
+
+## É possível recorrer?
+
+Muitos condutores acreditam que a autuação é sempre incontestável. No entanto, o processo administrativo de trânsito é baseado em normas rígidas. Para que a multa seja válida, o agente de trânsito ou o equipamento de fiscalização deve seguir protocolos estritos. Qualquer erro formal na lavratura do auto de infração pode ser o caminho para o cancelamento da penalidade.
+
+Alguns pontos que costumam ser observados em defesas consistentes incluem:
+
+* **Inconsistências no preenchimento:** Erros como marca, cor ou placa do veículo divergem da realidade.
+* **Sinalização precária:** Se a faixa de pedestres estiver apagada ou mal conservada, a autuação pode ser questionada, pois o condutor precisa de clareza para cumprir a norma.
+* **Ausência de clareza na autuação:** O agente deve descrever com precisão o ocorrido, e uma descrição genérica pode abrir margem para a anulação.
+* **Situações de emergência:** Em casos onde a parada foi necessária para evitar um acidente maior ou por determinação direta de uma autoridade de trânsito, a defesa ganha contornos mais técnicos.
+
+## O impacto no seu bolso e na carteira
+
+É importante lembrar que essa infração gera pontuação no prontuário do condutor e o pagamento de valores que impactam o orçamento familiar. Além disso, o acúmulo de pontos pode levar à suspensão do direito de dirigir. Por isso, conhecer os seus direitos e as possibilidades de recurso é essencial para quem depende do carro para trabalhar ou para o transporte da família.
+
+## Como proceder após a autuação?
+
+Assim que o condutor recebe a Notificação de Autuação, inicia-se um prazo legal para a apresentação de uma defesa prévia. Este é o momento ideal para verificar se o auto de infração foi preenchido corretamente e se a autoridade de trânsito seguiu todos os trâmites estabelecidos em lei. Recorrer não é apenas um direito, mas uma forma de garantir que o sistema de fiscalização seja justo e que eventuais falhas humanas sejam corrigidas.
+
+Não aceite uma penalidade de forma passiva se houver brechas técnicas que possam favorecer o cancelamento da multa. O processo de defesa exige atenção aos detalhes, mas com a orientação correta, é possível verificar se o seu caso possui chances reais de sucesso.
+
+No CheckMulta, você pode enviar o auto de infração e solicitar uma análise que aponta se há falhas capazes de anular a multa.`,
+    palavrasChave: ["multa faixa de pedestres", "recurso de multa", "CTB", "infrações de trânsito"],
+  },
+
+  {
     slug: "multa-por-farol-queimado-como-recorrer-e-evitar-pontos",
     titulo: "Multa por farol queimado: como recorrer e evitar pontos",
     descricao: "Foi multado por farol queimado? Entenda o que a lei diz, as consequências para sua CNH e como o CheckMulta pode te ajudar a analisar sua autuação de graça.",
