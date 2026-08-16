@@ -12,6 +12,51 @@ export interface ArtigoIbama {
 
 export const artigosIbama: ArtigoIbama[] = [
   {
+    slug: "prescricao-em-infracao-ambiental-permanente-ou-continuada-no-ibama",
+    titulo: "Prescrição em Infração Ambiental Permanente ou Continuada no IBAMA",
+    descricao: "Entenda como a prescrição atua em infrações do IBAMA e o marco inicial da contagem para ilícitos permanentes. Envie seu auto para análise gratuita.",
+    categoria: "Prescrição",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["prescrição multa IBAMA", "infração ambiental permanente", "auto de infração federal", "prazo prescricional IBAMA"],
+    conteudo: `## A natureza das infrações ambientais e o fator tempo
+
+A aplicação de sanções administrativas pelo IBAMA segue prazos estritos definidos em norma federal. Compreender o funcionamento da prescrição, especialmente em casos de infrações de natureza permanente ou continuada, é fundamental para qualquer autuado. O Decreto nº 6.514/2008, que disciplina o processo administrativo federal, estabelece as balizas temporais para que a administração exerça o seu poder de punir.
+
+É importante ressaltar que estas regras aplicam-se exclusivamente ao âmbito federal. Caso a autuação tenha sido lavrada por órgãos estaduais ou municipais, o leitor deve consultar a legislação específica daquele ente federativo, visto que a competência e os prazos prescricionais seguem norma própria, respeitando as diretrizes de repartição de competências previstas na LC nº 140/2011 (arts. 7º e 17).
+
+## A prescrição punitiva: definição e prazos
+
+A prescrição punitiva é o fenômeno que extingue a pretensão do Estado de sancionar uma conduta ilegal após o decurso de determinado lapso temporal. Segundo o art. 21 do Decreto nº 6.514/2008, o prazo para a apuração da infração ambiental pela administração é de cinco anos, contados a partir da prática do ato ilícito.
+
+Contudo, o tratamento jurídico diferencia-se quando a conduta é classificada como permanente ou continuada. Nesses casos, o termo inicial do prazo prescricional considera o momento da cessação da conduta.
+
+## O marco inicial em infrações permanentes e continuadas
+
+Uma infração é considerada permanente quando a consumação da conduta se prolonga no tempo por vontade do agente. 
+
+Para fins de contagem do prazo previsto no art. 21 do Decreto nº 6.514/2008, a prescrição começa a correr no dia em que a atividade cessa, ou seja, quando o agente interrompe a conduta ou quando ocorre a intervenção fiscalizatória que obriga a sua paralisação. Isso significa que, enquanto a infração persistir, o prazo prescricional não começa a fluir.
+
+## A prescrição intercorrente no processo
+
+Além da prescrição da pretensão punitiva, o Decreto nº 6.514/2008 prevê a prescrição intercorrente. Conforme o art. 21, § 2º, a prescrição ocorre quando o processo administrativo permanece paralisado, pendente de julgamento ou despacho, por mais de três anos, sem que haja movimentação relevante capaz de impulsionar a marcha processual. A inércia da administração pública, neste cenário, pode conduzir à perda da pretensão sancionadora.
+
+## A importância dos requisitos formais
+
+Ao analisar a ocorrência de prescrição, o autuado deve verificar se o auto de infração preenche os requisitos formais estabelecidos no art. 97 do Decreto nº 6.514/2008. O vício em elementos essenciais pode levar à análise de nulidade do ato, conforme o art. 100, § 2º. Se o auto possuir vício insanável, a Administração pode, nos termos do art. 53 da Lei nº 9.784/99, anular seus próprios atos. Importa notar que a defesa técnica deve observar o prazo de vinte dias da ciência da autuação, conforme o art. 113, ressalvado o possível sobrestamento decorrente de audiência de conciliação ambiental, conforme o art. 97-A, § 1º, do referido decreto.
+
+## Considerações sobre a defesa
+
+A verificação de possíveis nulidades ou da prescrição não autoriza o autuado a desobedecer medidas administrativas vigentes, como embargos ou apreensões, as quais devem ser respeitadas enquanto estiverem em vigor. A discussão sobre a prescrição ou sobre vícios formais é matéria de defesa administrativa, que deve ser construída com base na análise técnica dos fatos narrados no auto e nas normas aplicáveis.
+
+O processo administrativo é regido pelo contraditório e pela ampla defesa, iniciando-se a partir da lavratura e ciência do auto, nos termos do art. 96 do Decreto nº 6.514/2008. Identificar se a infração foi corretamente classificada ou se houve inércia prolongada do órgão fiscalizador é um passo estratégico para a estruturação de argumentos. O autuado pode ainda verificar a possibilidade de conversão da multa em serviços de preservação, melhoria e recuperação da qualidade do meio ambiente, conforme o art. 72, § 4º, da Lei nº 9.605/98, ou a aplicação de atenuantes previstas no art. 14 da mesma lei.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "prescricao-no-ibama-saiba-como-calcular-o-prazo-do-seu-auto",
     titulo: "Prescrição no IBAMA: saiba como calcular o prazo do seu auto",
     descricao: "Entenda os prazos de prescrição punitiva e intercorrente nos autos do IBAMA. Aprenda a analisar se houve perda do direito de punir. Solicite análise gratuita.",
