@@ -12,6 +12,48 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "documentos-indispensaveis-para-a-defesa-de-um-auto-de-infracao",
+    titulo: "Documentos indispensáveis para a defesa de um auto de infração",
+    descricao: "Saiba quais documentos reunir ao ser autuado pela Vigilância Sanitária para montar sua defesa administrativa. Envie seu auto para análise gratuita.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "6 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["defesa auto de infração vigilância sanitária", "como recorrer multa sanitária", "documentos defesa processo administrativo sanitário"],
+    conteudo: `## A importância da organização documental
+
+Receber um auto de infração da Vigilância Sanitária gera preocupação imediata em gestores de restaurantes, clínicas, farmácias e outros estabelecimentos. É fundamental compreender que o processo administrativo sanitário é um procedimento formal, regido por princípios que garantem ao administrado o direito ao contraditório e à ampla defesa. A montagem de um dossiê robusto é um passo relevante para questionar a autuação com base técnica.
+
+Para que uma defesa seja eficaz, ela não pode ser baseada apenas em argumentos genéricos. Ela deve ser fundamentada em documentos que demonstrem a realidade fática do estabelecimento no momento da inspeção ou a regularização de eventuais pendências. O princípio da motivação, aplicável subsidiariamente conforme a Lei 9.784/99 (art. 2º), exige que tanto a autuação quanto a sua contestação sejam acompanhadas de provas sólidas.
+
+## Documentos essenciais para o seu dossiê
+
+Ao preparar a defesa, o primeiro documento a ser analisado é o próprio auto de infração. Conforme a Lei 6.437/77, no seu art. 13, o documento deve conter requisitos obrigatórios, como a descrição clara da infração, a identificação do infrator e a legislação violada. Se faltar qualquer um desses elementos, a validade do auto pode ser questionada.
+
+Além do auto, a defesa pode ser composta por:
+
+- Comprovantes de regularização: Se a autuação indicou falta de limpeza, manutenção ou ausência de documentos específicos, apresente notas fiscais de serviços, certificados de calibração de equipamentos ou laudos técnicos recentes. Isso demonstra a boa-fé e a proatividade do estabelecimento.
+- Registro fotográfico: Fotografias datadas do ambiente ou dos equipamentos após a correção das irregularidades apontadas pelo fiscal são provas documentais importantes.
+- Documentos administrativos: Alvarás, licenças vigentes e manuais de boas práticas são essenciais para contrapor alegações de ausência de regularidade documental.
+- Relatórios internos: Registros de monitoramento de temperatura, controle de estoque ou prontuários de atendimento ajudam a comprovar a rotina de conformidade da empresa.
+
+## Observando os prazos e procedimentos
+
+É indispensável conferir o prazo para a apresentação da defesa. Embora a Lei 6.437/77 estabeleça no art. 22 o prazo de 15 dias, é crucial verificar o prazo estipulado no próprio auto de infração ou na notificação recebida, pois legislações estaduais e municipais podem variar. Não ignore o prazo, pois a perda deste pode resultar na revelia e no prosseguimento do processo.
+
+Caso o estabelecimento tenha sofrido uma interdição, a prioridade deve ser a correção das inconformidades. A Lei 6.437/77, no art. 23, § 4º, limita a interdição cautelar a 90 dias. A retomada das atividades depende exclusivamente da reinspeção positiva realizada pela autoridade sanitária. Documentar a correção técnica e solicitar a vistoria é o caminho adequado para buscar a regularização da operação, sempre respeitando o princípio da proporcionalidade na aplicação das sanções.
+
+## Argumentação técnica e legal
+
+Ao redigir a defesa, utilize os princípios da legalidade e do devido processo legal. Verifique se o fiscal considerou as circunstâncias atenuantes previstas no art. 7º da Lei 6.437/77, como a primariedade do infrator ou a colaboração na correção das falhas, e se o critério de graduação da pena (art. 6º) foi aplicado com razoabilidade. O art. 50 da Lei 9.784/99 (aplicável subsidiariamente) reforça a necessidade de motivação explícita em todas as decisões administrativas.
+
+Evite alegações vagas. Se a infração foi classificada como leve, grave ou gravíssima, conforme o art. 4º da Lei 6.437/77, a argumentação deve focar na desproporcionalidade entre o fato descrito e a penalidade sugerida. Lembre-se que o art. 10 da Lei 6.437/77 elenca as infrações, e a defesa pode demonstrar que o estabelecimento não violou a norma apontada ou que a irregularidade já foi sanada. O rol de penalidades consta no art. 2º e a imputabilidade no art. 3º da mesma lei. A competência da autoridade deve ser observada nos termos do art. 14, enquanto o art. 17 trata das formas de notificação. O recurso administrativo pode ser interposto conforme o art. 30, o pagamento de multas deve observar o art. 33 e a prescrição deve ser analisada sob a luz do art. 38, todos da Lei 6.437/77.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "documentacao-sanitaria-o-que-todo-estabelecimento-deve-manter-em-dia",
     titulo: "Documentação sanitária: o que todo estabelecimento deve manter em dia",
     descricao: "Saiba quais documentos sanitários são fundamentais para o seu estabelecimento. Evite autuações e verifique a validade do seu auto de infração no CheckMulta.",
