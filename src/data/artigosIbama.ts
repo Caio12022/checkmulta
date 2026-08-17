@@ -12,6 +12,47 @@ export interface ArtigoIbama {
 
 export const artigosIbama: ArtigoIbama[] = [
   {
+    slug: "prescricao-de-cinco-anos-na-lavratura-do-auto-de-infracao-ibama",
+    titulo: "Prescrição de Cinco Anos na Lavratura do Auto de Infração IBAMA",
+    descricao: "Entenda como a prescrição de cinco anos pode afetar a validade da multa ambiental federal. Descubra se o seu auto de infração está dentro do prazo legal.",
+    categoria: "Prescrição",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⏳",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["prescrição auto infração IBAMA", "prazo multa IBAMA", "prescrição punitiva ambiental", "validade auto infração"],
+    conteudo: `## A prescrição como instituto de segurança jurídica no Direito Ambiental
+
+No âmbito do direito ambiental sancionador federal, o Poder Público detém o poder de fiscalizar e punir condutas lesivas ao meio ambiente. Contudo, essa prerrogativa não é ilimitada no tempo. O instituto da prescrição atua como um garantidor da segurança jurídica, assegurando que o Estado não possa punir o cidadão ou a empresa indefinidamente após a suposta prática de uma infração.
+
+Para o autuado, compreender os prazos prescricionais é fundamental para verificar se a Administração Pública ainda detinha o poder de lavrar o auto de infração no momento em que ele foi emitido. É preciso destacar que estas diretrizes aplicam-se exclusivamente ao IBAMA, autarquia federal. Caso você tenha recebido uma autuação de órgãos estaduais ou municipais, a legislação aplicável é distinta, sendo indispensável a consulta à norma específica do órgão fiscalizador em questão.
+
+## A prescrição punitiva de cinco anos
+
+De acordo com o art. 21 do Decreto 6.514/2008, a prescrição da pretensão punitiva ocorre no prazo de cinco anos. Este período é contado a partir da data da prática do ato infracional. Em situações que envolvem infrações permanentes ou continuadas, o prazo de cinco anos é contado a partir da data em que a infração cessou.
+
+Isso significa que, se o IBAMA levou mais de cinco anos para formalizar a autuação após a ocorrência do fato, pode haver a configuração da prescrição. A Administração, ao identificar uma irregularidade, deve atuar com celeridade. O procedimento de lavratura do auto, conforme o art. 96 do Decreto 6.514/2008, deve assegurar o contraditório e a ampla defesa, garantindo que o autuado tenha ciência clara do que lhe é imputado.
+
+## Diferença entre prescrição e outros vícios
+
+É fundamental não confundir a prescrição com outros defeitos que podem levar à nulidade de um auto de infração. Enquanto a prescrição diz respeito ao decurso do tempo, a nulidade formal trata do cumprimento rigoroso dos requisitos técnicos estabelecidos no art. 97 do Decreto 6.514/2008. Este artigo exige que o auto contenha a descrição clara e objetiva da infração, a indicação dos dispositivos infringidos e a ausência de rasuras que comprometam a validade do documento.
+
+Adicionalmente, a Lei 9.784/99, aplicável subsidiariamente ao processo administrativo federal, estabelece em seu art. 53 que a Administração tem o dever de anular seus próprios atos quando estes apresentam vícios de legalidade. Portanto, um auto lavrado por autoridade incompetente, em desrespeito às regras de repartição de competência previstas na LC 140/2011 (arts. 7º e 17), pode ser objeto de questionamento administrativo.
+
+## Prazos processuais após a lavratura
+
+Após o recebimento do auto, inicia-se o prazo de defesa de vinte dias, conforme estabelece o art. 113 do Decreto 6.514/2008. Contudo, é necessário verificar se houve agendamento de audiência de conciliação ambiental, uma vez que o art. 97-A, § 1º, do mesmo decreto, determina o sobrestamento do prazo de defesa caso a audiência seja agendada. A notificação recebida deve ser lida com atenção para conferir o prazo vigente no seu caso específico.
+
+Vale ressaltar que, durante o trâmite processual, também pode ocorrer a prescrição intercorrente, prevista no art. 21, § 2º, do Decreto 6.514/2008, caso o processo administrativo permaneça sem movimentação por um período de três anos.
+
+## A importância da análise técnica
+
+A existência de uma autuação não implica, automaticamente, na procedência da sanção. Existem diversos fatores, como a prescrição, a falta de competência do órgão, a inobservância dos requisitos do art. 97 ou mesmo a possibilidade de conversão da multa em serviços de preservação, conforme o art. 72, § 4º, da Lei 9.605/98, e a análise de atenuantes conforme o art. 14 da mesma lei, que podem ser explorados na defesa técnica. Importa salientar que a discussão sobre a validade do auto não autoriza o descumprimento de medidas como embargos ou apreensões, que devem ser respeitadas enquanto estiverem vigentes.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "prescricao-em-infracao-ambiental-permanente-ou-continuada-no-ibama",
     titulo: "Prescrição em Infração Ambiental Permanente ou Continuada no IBAMA",
     descricao: "Entenda como a prescrição atua em infrações do IBAMA e o marco inicial da contagem para ilícitos permanentes. Envie seu auto para análise gratuita.",
