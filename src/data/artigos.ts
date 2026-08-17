@@ -12,6 +12,49 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "multa-de-radar-em-pista-molhada-como-recorrer",
+    titulo: "Multa de Radar em Pista Molhada: Como Recorrer",
+    descricao: "Recebeu uma multa de radar em dia de chuva? Entenda se a condição da pista influencia a validade da infração e saiba como contestar. Analise sua multa grátis.",
+    categoria: "Velocidade",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🌧️",
+    imagemBg: "from-slate-600 to-slate-800",
+    conteudo: `## Multa de radar em dia de chuva: existe perdão?
+
+Dirigir sob chuva forte é um dos maiores desafios para qualquer motorista. Além da redução da visibilidade e do risco de aquaplanagem, surge uma dúvida recorrente entre os condutores: será que os radares são calibrados de forma diferente quando a pista está molhada? E, se eu for multado nessas condições, existe alguma brecha legal para recorrer?
+
+É comum o pensamento de que, em condições climáticas adversas, o condutor teria uma margem maior de velocidade ou que a autuação seria injusta. No entanto, a legislação de trânsito é clara ao estabelecer que as normas de velocidade máxima permitida são fixas, independentemente do clima. Mas isso não significa que toda multa aplicada nessas situações seja inquestionável.
+
+## O que a lei diz sobre a velocidade em dias de chuva
+
+O Código de Trânsito Brasileiro estabelece que o condutor deve sempre adaptar sua velocidade às condições da via e do tempo. Isso significa que, em caso de chuva, o motorista tem a obrigação de reduzir a velocidade para garantir a própria segurança e a dos demais usuários. O radar, por sua vez, registra a velocidade instantânea do veículo naquele ponto específico.
+
+O ponto principal que muitos motoristas ignoram é que a sinalização de trânsito prevalece sobre qualquer percepção pessoal de segurança. Se a placa indica uma velocidade máxima, ela deve ser respeitada, mesmo com pista molhada. Contudo, existem aspectos técnicos envolvendo a operação dos equipamentos de fiscalização que podem abrir margem para a defesa.
+
+## Falhas comuns na autuação
+
+Mesmo que a lei exija prudência, o Estado também precisa cumprir rigorosamente as normas técnicas para que a multa tenha validade. Muitas vezes, a infração registrada por um radar em dia de chuva pode apresentar inconsistências que tornam a autuação passível de anulação. Entre os pontos que podem ser verificados estão:
+
+* **Aferição do equipamento:** Os radares precisam passar por verificações periódicas obrigatórias junto aos órgãos competentes. Se o equipamento estiver com o certificado vencido no momento da infração, a multa é passível de anulação.
+* **Sinalização precária:** O local da infração deve estar devidamente sinalizado. Se a sinalização estiver encoberta por vegetação, ou se as placas de velocidade estiverem danificadas ou ilegíveis devido à própria condição climática, a multa pode ser contestada.
+* **Erros formais no auto de infração:** Erros de preenchimento, falta de dados obrigatórios do veículo ou inconsistência no local e hora do registro são causas frequentes de cancelamento de multas.
+* **Condições do radar:** Embora raros, existem casos onde a interferência da chuva causa falhas no sensor do radar, gerando uma medição errônea da velocidade do veículo.
+
+## Como proceder ao receber uma multa de radar
+
+Ao ser notificado, o primeiro passo é manter a calma. Não pague a multa imediatamente caso pretenda recorrer, pois o pagamento pode dificultar a restituição de valores em caso de provimento do recurso.
+
+O processo de defesa exige atenção aos prazos estabelecidos na legislação. A Notificação de Autuação é o momento em que você deve apresentar a sua defesa prévia, apontando as falhas técnicas encontradas no documento ou na operação da fiscalização. É fundamental utilizar argumentos técnicos e embasados nas normas de trânsito vigentes, evitando narrativas subjetivas sobre o clima ou a pressa do dia a dia, que raramente são aceitas pelas Juntas Administrativas de Recursos de Infrações.
+
+## A importância da análise técnica
+
+Recorrer de uma multa exige mais do que apenas escrever uma justificativa. É necessário identificar vícios formais ou técnicos que invalidem a autuação. Muitas multas são anuladas simplesmente porque o órgão autuador não seguiu o rito processual correto ou porque o equipamento não estava operando dentro das normas exigidas pelos órgãos de metrologia.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Nossa plataforma especializada identifica os pontos críticos da sua autuação, permitindo que você tome uma decisão consciente sobre a viabilidade de recorrer, economizando tempo e evitando o registro de pontuação em sua Carteira Nacional de Habilitação.`,
+    palavrasChave: ["multa de radar", "pista molhada", "recurso de multa", "excesso de velocidade"],
+  },
+
+  {
     slug: "parou-na-faixa-de-pedestres-veja-como-recorrer",
     titulo: "Parou na faixa de pedestres? Veja como recorrer",
     descricao: "Recebeu uma multa por parar sobre a faixa de pedestres? Entenda as regras, os riscos e como buscar a anulação. Analise sua multa gratuitamente aqui.",
