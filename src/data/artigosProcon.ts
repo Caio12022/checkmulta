@@ -12,6 +12,49 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "defesa-administrativa-vs-recurso-no-procon-entenda-a-diferenca",
+    titulo: "Defesa Administrativa vs. Recurso no Procon: Entenda a Diferença",
+    descricao: "Recebeu um auto de infração do Procon? Entenda as diferenças entre a defesa e o recurso administrativo e saiba como contestar a autuação corretamente.",
+    categoria: "Prazos e Procedimento",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["defesa administrativa procon", "recurso administrativo procon", "como recorrer multa procon", "prazo defesa procon"],
+    conteudo: `## A Importância do Procedimento Administrativo Sancionador
+
+Quando uma empresa recebe um auto de infração do Procon, inicia-se um processo administrativo sancionador. O Decreto 2.181/97 define a competência dos órgãos para apurar e punir (art. 5º). Para o gestor ou proprietário, é fundamental distinguir as etapas de impugnação, pois cada uma possui finalidade, momento e requisitos processuais distintos. Ignorar essas diferenças pode resultar na perda de prazos ou na impossibilidade de revisão de uma sanção.
+
+## O Início: A Defesa Administrativa
+
+A defesa administrativa é o primeiro momento em que a empresa autuada pode apresentar seus argumentos e provas contra a autuação. O processo administrativo sancionador tem início com a lavratura do auto de infração (art. 33), precedido, quando necessário, pela averiguação preliminar (art. 33-A).
+
+Nesta fase, o objetivo é demonstrar ao órgão julgador que a autuação pode ser considerada improcedente ou que houve equívoco na interpretação dos fatos. É o momento de verificar se o auto contém todos os requisitos obrigatórios (art. 35, inciso I): local, data e hora; qualificação do autuado; descrição do fato; dispositivo legal infringido; intimação; identificação, assinatura e matrícula do agente; designação do órgão julgador; assinatura do autuado; cientificação para defesa. Caso falte qualquer desses requisitos, a validade do documento pode ser questionada.
+
+Além disso, é nesta etapa que se deve verificar a aplicação da fiscalização orientadora e o critério de dupla visita para atividade de risco leve, cuja inobservância implica nulidade do auto (§ 2º), sendo garantido tratamento diferenciado a ME e EPP (§ 3º), conforme o art. 38-A.
+
+Quanto ao prazo para apresentação desta peça, ele não é uniforme. Embora o Decreto 2.181/97 previsse um prazo anterior, diversos Procons possuem legislação própria com prazos distintos. Portanto, a regra de ouro é: confira sempre o prazo informado no próprio auto de infração recebido.
+
+## O Recurso Administrativo: A Revisão da Decisão
+
+Se a decisão final do processo resultar na aplicação de uma multa ou outra sanção, surge a possibilidade de interpor um recurso administrativo. O recurso é direcionado à autoridade hierarquicamente superior àquela que proferiu a decisão sancionatória.
+
+O art. 49 do Decreto 2.181/97 estabelece o prazo de 10 dias para a interposição deste recurso, com efeito suspensivo em caso de multa. Isso significa que, enquanto o recurso estiver sendo analisado, a exigibilidade da sanção pecuniária pode ser suspensa.
+
+O recurso não deve ser uma mera repetição dos argumentos da defesa inicial. Ele deve ser focado em atacar os fundamentos da decisão que puniu a empresa, demonstrando possíveis erros na graduação da pena (arts. 24 a 28), falhas na apreciação das provas ou inobservância de critérios legais, como o art. 26-A, que estabelece que as atenuantes e agravantes são taxativas, e o art. 28-A, que veda valorar o mesmo elemento duas vezes na dosimetria.
+
+## Pontos de Atenção na Gestão do Processo
+
+É importante lembrar que a inobservância de forma só gera nulidade se houver prejuízo para a defesa, conforme previsto no art. 48. Sendo assim, o foco da atuação administrativa deve ser técnico e fundamentado na legislação.
+
+Após o julgamento final, caso a multa seja mantida e não seja recolhida em 30 dias, o valor poderá ser inscrito em dívida ativa, conforme o art. 55, o que torna a gestão dos prazos e a qualidade da argumentação etapas críticas para a saúde financeira do negócio.
+
+No CheckMulta, é possível enviar o auto de infração do Procon para receber uma análise que aponta se a autuação apresenta vício formal ou outros pontos de atenção para a sua defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "contraditorio-e-ampla-defesa-no-processo-sancionador-do-procon",
     titulo: "Contraditório e Ampla Defesa no Processo Sancionador do Procon",
     descricao: "Entenda como o contraditório e a ampla defesa protegem sua empresa em processos do Procon. Analise seu auto de infração gratuitamente no CheckMulta.",
