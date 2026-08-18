@@ -67,14 +67,12 @@ Tema do artigo (em português): "${pedido.tema}"
 Categoria: "${pedido.categoria}"
 Contexto/vertical: ${pedido.vertical}
 
-Descreva, em inglês, UMA cena real e concreta que um fotógrafo poderia literalmente fotografar pra ilustrar esse tema especificamente. A cena tem que comunicar o tema sozinha, sem legenda - alguém olhando a foto tem que reconhecer do que se trata. Evite símbolos vagos/indiretos (ex: só um sapato no chão) quando o tema pede pra mostrar a coisa em si (ex: a área desmatada, as árvores cortadas, o veículo, o radar).
+Descreva, em inglês, UMA cena real e concreta que um fotógrafo poderia literalmente fotografar pra ilustrar esse tema especificamente. A cena tem que comunicar o tema sozinha, sem legenda - alguém olhando a foto tem que reconhecer do que se trata. Evite símbolos vagos/indiretos (ex: só um sapato no chão) quando o tema pede pra mostrar a coisa em si (ex: a área desmatada, as árvores cortadas, o veículo, o radar, a autoridade abordando alguém). Fique à vontade pra imaginar a cena natural do tema - gente, viatura, abordagem, pátio, o que fizer sentido - sem sair do assunto do artigo.
 
 O modelo de imagem que vai ler isso é rápido e barato: ele ignora prompt comprido e perde detalhe se a frase for longa. Por isso:
 - UMA frase só, curta (no máximo ~20 palavras em inglês). Sem frase secundária, sem "in the background".
-- Pode ser um close-up OU um plano mais aberto (paisagem/ambiente) - escolha o que deixar o tema mais óbvio.
-- NÃO inclua nenhum objeto que normalmente tem texto/logo/tela nele (placa de trânsito, placa de veículo, faixa, cartaz, papel, documento, e também qualquer aparelho com tela digital, display, botão com legenda ou marca visível) - descreva a cena por outro ângulo que não precise desses objetos.
-- Se aparecer veículo, NÃO descreva o carro inteiro de frente ou de trás (isso sempre desenha placa e logo da marca) - descreva um ângulo, recorte ou parte que não inclua a área da placa (ex: lateral, de perto, iluminação, movimento borrado, uma peça específica).
-- Pessoas podem aparecer normalmente, de frente ou de qualquer ângulo - não precisa esconder rosto.
+- Pode ser um close-up OU um plano mais aberto (paisagem/ambiente/ação) - escolha o que deixar o tema mais óbvio.
+- Única restrição de objeto: evite objetos cujo ponto principal é texto escrito (placa, cartaz, papel, documento, tela de aparelho com texto) - o resto (veículos, pessoas, uniformes, locais) é livre.
 
 Responda APENAS com a frase da cena em inglês, sem aspas, sem introdução.`;
 
