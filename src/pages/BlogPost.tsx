@@ -6,6 +6,7 @@ import { getFaq } from "../data/faqs";
 import { aplicarLinksInternos } from "../data/linksInternos";
 import { getCorSuave } from "../data/coresSuaves";
 import { selo } from "../data/revisao";
+import { CapaArtigoBanner } from "../components/CapaArtigoBanner";
 
 // Permite chamar o gtag do GA4 sem quebrar a tipagem do TypeScript
 declare global {
@@ -502,6 +503,13 @@ export default function BlogPost() {
             {artigo.categoria}
           </Link>
         </nav>
+
+        {/* CAPA DO ARTIGO */}
+        <CapaArtigoBanner
+          categoria={artigo.categoria}
+          imagemBg={artigo.imagemBg}
+          className="mb-6"
+        />
 
         {/* CABEÇALHO DO ARTIGO */}
         <div
