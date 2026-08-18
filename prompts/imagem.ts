@@ -19,16 +19,17 @@
 import { gerarComRetry } from "./validador";
 
 // Estilo fixo, para os artigos terem "cara de uma coisa só" mesmo gerados
-// em dias e verticais diferentes. Cores batem com a paleta do site
-// (emerald para destaque, slate para neutro).
-const ESTILO_BASE = `Flat, modern editorial illustration in a minimalist geometric style, made for a serious Brazilian legal/administrative-defense website (tone similar to an editorial illustration for a law or government-services blog, not a cartoon, not photorealistic).
+// em dias e verticais diferentes. Fotografia editorial realista (não mais
+// ilustração flat) - cor com leve tendência pra teal/emerald, sem forçar
+// hex literal (foto não pode parecer pintada).
+const ESTILO_BASE = `Realistic editorial photography, cinematic and professional, for a serious Brazilian legal/administrative-defense website (tone similar to a photo used in a serious news article or government-services blog - not a cartoon, not a flat illustration, not stock-photo cheesy).
 
 Strict rules:
-- NO readable text, letters, numbers, signs, license plates or logos anywhere in the image.
-- NO human faces or realistic people. If a person appears, render it only as a simple faceless silhouette or flat shape.
-- Wide banner composition, single clear visual metaphor for the subject, generous negative space, subject placed off-center (rule of thirds).
-- Color palette: emerald green (#059669), slate gray-blue (#334155, #64748b), white/off-white background. Calm, trustworthy, institutional. Avoid bright primary colors, avoid clutter.
-- Style reference: flat vector illustration, soft shadows, subtle gradients, generous whitespace — like an illustration for a fintech or legal-tech blog.`;
+- NO readable text, letters, numbers, signs, license plates or logos anywhere in the image - blur or angle any signage so nothing is legible.
+- NO clearly recognizable human face as the focus. People may appear, but shot from behind, in silhouette, out of focus, cropped, or with face turned away/obscured - never a sharp, identifiable face looking at camera.
+- Wide banner composition, natural lighting, shallow depth of field, single clear real-world scene that represents the subject below.
+- Color grading: cool, slightly desaturated tones leaning teal/emerald and neutral gray-blue, clean and trustworthy - avoid oversaturated or garish colors.
+- Style reference: high-quality editorial/documentary photography, like a photo accompanying a serious Brazilian news article about public administration or law.`;
 
 export interface PedidoImagemArtigo {
   tema: string;

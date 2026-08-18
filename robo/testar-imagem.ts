@@ -18,9 +18,16 @@ if (!CLOUDFLARE_ACCOUNT_ID) throw new Error("CLOUDFLARE_ACCOUNT_ID não configur
 if (!CLOUDFLARE_API_TOKEN) throw new Error("CLOUDFLARE_API_TOKEN não configurada.");
 
 const AMOSTRAS = [
-  { tema: "multa por estacionar em fila dupla", categoria: "Estacionamento" },
-  { tema: "recurso de multa por excesso de velocidade em rodovia", categoria: "Velocidade" },
-  { tema: "multa por não dar preferência em rotatória", categoria: "Comportamento no Trânsito" },
+  {
+    tema: "radar de velocidade registrando um carro à noite em rodovia",
+    categoria: "Velocidade",
+    vertical: "defesa administrativa de multas de trânsito no Brasil",
+  },
+  {
+    tema: "fiscalização ambiental em área rural por suposto desmatamento",
+    categoria: "Fiscalização Ambiental",
+    vertical: "defesa administrativa de autuações do IBAMA no Brasil",
+  },
 ];
 
 async function main() {
@@ -34,7 +41,7 @@ async function main() {
         {
           tema: amostra.tema,
           categoria: amostra.categoria,
-          vertical: "defesa administrativa de multas de trânsito no Brasil",
+          vertical: amostra.vertical,
         }
       );
       const comprimida = await sharp(imagem.bytes)
