@@ -1,0 +1,39 @@
+name: TESTE - Preview de imagem do blog (temporario)
+
+# Workflow temporario, so pra gerar 2-3 imagens de amostra e subir como
+# artefato (nao comita nada, nao mexe na main). Apagar depois de aprovado
+# o estilo - ver robo/testar-imagem.ts.
+"on":
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gerar-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o codigo
+        uses: actions/checkout@v4
+
+      - name: Preparar o Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Instalar dependencias
+        working-directory: robo
+        run: npm install
+
+      - name: Gerar imagens de amostra
+        working-directory: robo
+        run: npx tsx testar-imagem.ts
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Subir amostras como artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: preview-imagens
+          path: robo/preview/*.jpg
+          retention-days: 3

@@ -16,7 +16,9 @@ import { writeFileSync, unlinkSync } from "fs";
 import { execSync } from "child_process";
 import { tmpdir } from "os";
 import { join } from "path";
+import sharp from "sharp";
 import { validarArtigoBlog, gerarComRetry, type ViolacaoDefesa } from "../prompts/validador";
+import { gerarImagemArtigo } from "../prompts/imagem";
 
 // ============================================================
 // CONFIGURAÇÃO - você pode ajustar estas listas quando quiser
@@ -27,6 +29,8 @@ const GITHUB_OWNER = "Caio12022";
 const GITHUB_REPO = "checkmulta";
 const GITHUB_BRANCH_BASE = "main";
 const CAMINHO_ARTIGOS = "src/data/artigos.ts";
+const PASTA_IMAGENS = "public/blog/transito";
+const VERTICAL_LABEL = "defesa administrativa de multas de trânsito no Brasil";
 
 // Quantos artigos gerar por execução
 const ARTIGOS_POR_EXECUCAO = 1;
@@ -115,6 +119,26 @@ async function github(path: string, method: string, body?: object) {
 // Pausa entre chamadas, para não estourar a cota da API
 function esperar(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// Reduz o PNG que o Gemini devolve (pode vir com vários MB) para um JPEG
+// leve, do tamanho certo pra um banner de artigo.
+async function comprimirImagem(bytes: Buffer): Promise<Buffer> {
+  return sharp(bytes)
+    .resize({ width: 1280, height: 720, fit: "cover" })
+    .jpeg({ quality: 82 })
+    .toBuffer();
+}
+
+// Comita um arquivo binário novo direto na main (mesma API de conteúdo
+// usada para o artigos.ts, só que sem "sha" - é sempre um arquivo novo,
+// nome derivado do slug, que já foi conferido como inédito).
+async function commitarImagem(caminho: string, bytes: Buffer, mensagem: string) {
+  await github(`/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${caminho}`, "PUT", {
+    message: mensagem.slice(0, 240),
+    content: bytes.toString("base64"),
+    branch: GITHUB_BRANCH_BASE,
+  });
 }
 
 // ============================================================
@@ -266,6 +290,10 @@ function montarBloco(artigo: any, slug: string): string {
     .map((p: string) => `"${String(p).replace(/"/g, "'")}"`)
     .join(", ");
 
+  const linhaImagem = artigo.imagemUrl
+    ? `    imagemUrl: "${String(artigo.imagemUrl).replace(/"/g, "'")}",\n`
+    : "";
+
   return `  {
     slug: "${slug}",
     titulo: "${String(artigo.titulo).replace(/"/g, "'")}",
@@ -274,7 +302,7 @@ function montarBloco(artigo: any, slug: string): string {
     tempoLeitura: "${String(artigo.tempoLeitura).replace(/"/g, "'")}",
     imagemEmoji: "${artigo.imagemEmoji}",
     imagemBg: "${String(artigo.imagemBg).replace(/"/g, "'")}",
-    conteudo: \`${conteudoSeguro}\`,
+${linhaImagem}    conteudo: \`${conteudoSeguro}\`,
     palavrasChave: [${palavras}],
   },
 `;
@@ -413,6 +441,28 @@ async function produzirArtigo(
   const violacoesLegais = validarArtigoBlog(String(artigo.conteudo), "transito", pauta.tema);
   if (violacoesLegais.length > 0) {
     console.log(`  Auditoria reprovou: ${violacoesLegais.map((v) => v.regra).join(", ")}`);
+  }
+
+  // Imagem de capa é decorativa, não jurídica: só tenta se o texto já
+  // passou na auditoria (senão o artigo nem vai pra main hoje), e se
+  // falhar por qualquer motivo, o artigo segue sem imagem - nunca trava
+  // a publicação por causa disto.
+  if (violacoesLegais.length === 0) {
+    try {
+      console.log("  Gerando imagem de capa...");
+      const imagem = await gerarImagemArtigo(ai, {
+        tema: pauta.tema,
+        categoria: pauta.categoria,
+        vertical: VERTICAL_LABEL,
+      });
+      const comprimida = await comprimirImagem(imagem.bytes);
+      const caminhoImagem = `${PASTA_IMAGENS}/${slug}.jpg`;
+      await commitarImagem(caminhoImagem, comprimida, `Imagem do artigo: ${artigo.titulo}`);
+      artigo.imagemUrl = `/${caminhoImagem.replace(/^public\//, "")}`;
+      console.log(`  Imagem publicada: ${artigo.imagemUrl}`);
+    } catch (err: any) {
+      console.log(`  Nao foi possivel gerar/comitar a imagem (seguindo sem ela): ${err.message}`);
+    }
   }
 
   return { bloco: montarBloco(artigo, slug), slug, titulo: artigo.titulo, violacoesLegais };
