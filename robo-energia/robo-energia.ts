@@ -192,7 +192,7 @@ art. 591 = deveres na emissão do TOI (entrega de cópia legível mediante recib
 arts. 592 e 250 = perícia do medidor (lacre no ato da retirada; comunicação prévia da data e horário da perícia em laboratório; direito a assistente técnico; relatório de inspeção em até 30 dias contados da SOLICITAÇÃO, não da data da inspeção);
 art. 595 = critérios de cálculo da receita a recuperar (fator de correção por inspeção do medidor, desde que selos, lacres, tampa e base estejam intactos; média dos três maiores consumos em até 12 ciclos regulares anteriores ao início da irregularidade; carga desviada ou instalada; valores máximos dos 3 ciclos posteriores à regularização);
 art. 596 = período de duração da irregularidade, determinado tecnicamente ou por histórico; § 1º limita a 6 ciclos anteriores à constatação quando o período não é identificável; teto geral de 36 ciclos;
-art. 323 = faturamento a maior — revisão de até 60 ciclos e devolução em dobro da quantia recebida indevidamente, independentemente de dolo ou culpa da distribuidora.
+art. 323 = faturamento a maior — devolução em dobro da quantia recebida indevidamente, independentemente de dolo ou culpa da distribuidora. O inciso II também previa revisão limitada a 60 ciclos anteriores à constatação, mas esse teto está SUSPENSO desde o Despacho ANEEL nº 2.006/2024 (decisão judicial, nota oficial da própria ANEEL no corpo do artigo). NÃO escreva "60 ciclos" ou "sessenta ciclos" como limite vigente.
 
 ATENÇÃO: os 36 ciclos NÃO são um período automático — são apenas o teto máximo. Sem demonstração técnica do início da irregularidade, o período correto é de 6 ciclos (art. 596, § 1º). Este é o erro mais comum das cobranças e deve ser explicado sempre que o tema tocar em período ou cálculo.
 

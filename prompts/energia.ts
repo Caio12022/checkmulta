@@ -168,9 +168,13 @@ REN 1.000/2021:
   período, a cobrança fica limitada aos 6 ciclos imediatamente anteriores à constatação.
   O teto geral é de 36 ciclos.
 
-- Art. 323 — faturamento a maior: revisão de até 60 ciclos anteriores à constatação e
-  devolução em dobro da quantia recebida indevidamente, independentemente de dolo ou
-  culpa da distribuidora.
+- Art. 323 — faturamento a maior: devolução em dobro da quantia recebida indevidamente,
+  independentemente de dolo ou culpa da distribuidora. O inciso II também previa revisão
+  limitada a 60 ciclos anteriores à constatação, mas esse teto está SUSPENSO desde o
+  Despacho ANEEL nº 2.006/2024 (decisão judicial, nota oficial da própria ANEEL no corpo
+  do artigo). NÃO cite "60 ciclos" ou "sessenta ciclos" como limite vigente — a devolução
+  em dobro se aplica ao período de cobrança indevida efetivamente comprovado no
+  documento, sem esse teto.
 
 CDC (Lei 8.078/90): pode ser citado de forma genérica como fundamento da relação de
 consumo e da inversão do ônus da prova. Não cite número de artigo do CDC.
@@ -609,7 +613,9 @@ CHECAGENS OBRIGATÓRIAS
    - 595: critérios de cálculo da receita a recuperar;
    - 596: período de duração da irregularidade e limite de 6 ciclos quando o início não é
      identificável;
-   - 323: faturamento a maior, revisão de até 60 ciclos e devolução em dobro.
+   - 323: faturamento a maior, devolução em dobro. Se o texto citar "60 ciclos" ou
+     "sessenta ciclos" como limite vigente, REMOVA essa parte — o teto está suspenso pelo
+     Despacho ANEEL nº 2.006/2024 e não deve ser afirmado como regra em vigor.
    Artigo citado com rótulo trocado deve ser corrigido ou, se não couber, removido.
 
 3. SÚMULA 256. Se o texto a menciona e a distribuidora não é do Rio de Janeiro, remova a
