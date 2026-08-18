@@ -24,18 +24,12 @@
 
 import { gerarComRetry } from "./validador";
 
-// Estilo fixo, para os artigos terem "cara de uma coisa só" mesmo gerados
-// em dias e verticais diferentes. Fotografia editorial realista - cor com
-// leve tendência pra teal/emerald, sem forçar hex literal (foto não pode
-// parecer pintada).
-const ESTILO_BASE = `Realistic editorial photography, cinematic and professional, for a serious Brazilian legal/administrative-defense website (tone similar to a photo used in a serious news article or government-services blog - not a cartoon, not a flat illustration, not stock-photo cheesy).
-
-Strict rules:
-- NO readable text, letters, numbers, signs, license plates or logos anywhere in the image.
-- NO clearly recognizable human face as the focus. People may appear, but shot from behind, in silhouette, out of focus, cropped, or with face turned away/obscured - never a sharp, identifiable face looking at camera.
-- Wide banner composition, natural lighting, shallow depth of field.
-- Color grading: cool, slightly desaturated tones leaning teal/emerald and neutral gray-blue, clean and trustworthy - avoid oversaturated or garish colors.
-- Style reference: high-quality editorial/documentary photography, like a photo accompanying a serious Brazilian news article about public administration or law.`;
+// Estilo fixo, CURTO de propósito: o FLUX schnell (via Workers AI) parece
+// truncar/perder prompt comprido - um teste real com estilo+cena longos
+// devolveu foto genérica sem nada do tema. Por isso a cena específica vem
+// PRIMEIRO no prompt final (ver gerarImagemArtigoCloudflare) e o estilo
+// fica só como uma cauda curta de tags, não frases.
+const ESTILO_BASE = `Realistic cinematic editorial photography, natural light, shallow depth of field, cool teal/emerald color grading. No readable text, signs, plates or logos. No person with a clear face looking at camera.`;
 
 export interface PedidoImagemArtigo {
   tema: string;
@@ -72,14 +66,15 @@ Tema do artigo (em português): "${pedido.tema}"
 Categoria: "${pedido.categoria}"
 Contexto/vertical: ${pedido.vertical}
 
-Descreva, em inglês, UMA cena real e concreta que um fotógrafo poderia literalmente fotografar pra ilustrar esse tema especificamente (não uma cena genérica de trânsito/fiscalização - tem que ser claramente reconhecível como ESSE tema).
+Descreva, em inglês, UMA cena real e concreta que um fotógrafo poderia literalmente fotografar pra ilustrar esse tema especificamente (não uma cena genérica - tem que ser claramente reconhecível como ESSE tema, não outro).
 
-Regras da cena que você descrever:
-- Um enquadramento fechado, com poucos elementos, fundo simples ou desfocado - isso é o que evita texto/placas aparecerem sem precisar dizer "sem texto" (uma rua cheia de fachadas e carros vai gerar letreiro por acidente; um enquadramento fechado no objeto/ação central, não).
-- Nenhuma pessoa de frente pra câmera com rosto nítido - se aparecer gente, de costas, desfocada ou fora de quadro.
-- Luz natural, tom documental/editorial sério.
+O modelo de imagem que vai ler isso é rápido e barato: ele ignora prompt comprido e perde detalhe se a frase for longa. Por isso:
+- UMA frase só, curta (no máximo ~20 palavras em inglês). Sem frase secundária, sem "in the background".
+- Um objeto ou ação central só, close-up, fundo desfocado.
+- NÃO inclua nenhum objeto que normalmente tem texto escrito nele (placa de trânsito, placa de veículo, faixa, cartaz, tela, papel, documento) - descreva a cena por outro ângulo que não precise desses objetos.
+- Se aparecer pessoa, só de costas ou totalmente fora de foco - nunca rosto de frente.
 
-Responda APENAS com a descrição da cena em inglês, 2-3 frases, sem aspas, sem introdução.`;
+Responda APENAS com a frase da cena em inglês, sem aspas, sem introdução.`;
 
   const resp = await gerarComRetry(() =>
     ai.models.generateContent({
@@ -109,7 +104,7 @@ export async function gerarImagemArtigoCloudflare(
   credenciais: CredenciaisCloudflare,
   cena: string
 ): Promise<ImagemGerada> {
-  const prompt = `${ESTILO_BASE}\n\nScene to photograph: ${cena}`;
+  const prompt = `${cena} ${ESTILO_BASE}`;
   const url = `https://api.cloudflare.com/client/v4/accounts/${credenciais.accountId}/ai/run/@cf/black-forest-labs/flux-1-schnell`;
 
   const resp = await gerarComRetry(async () => {
