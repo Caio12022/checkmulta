@@ -71,7 +71,7 @@ Descreva, em inglês, UMA cena real e concreta que um fotógrafo poderia literal
 O modelo de imagem que vai ler isso é rápido e barato: ele ignora prompt comprido e perde detalhe se a frase for longa. Por isso:
 - UMA frase só, curta (no máximo ~20 palavras em inglês). Sem frase secundária, sem "in the background".
 - Um objeto ou ação central só, close-up, fundo desfocado.
-- NÃO inclua nenhum objeto que normalmente tem texto escrito nele (placa de trânsito, placa de veículo, faixa, cartaz, tela, papel, documento) - descreva a cena por outro ângulo que não precise desses objetos.
+- NÃO inclua nenhum objeto que normalmente tem texto/logo/tela nele (placa de trânsito, placa de veículo, faixa, cartaz, papel, documento, e também qualquer aparelho com tela digital, display, botão com legenda ou marca visível) - descreva a cena por outro ângulo que não precise desses objetos.
 - Se aparecer pessoa, só de costas ou totalmente fora de foco - nunca rosto de frente.
 
 Responda APENAS com a frase da cena em inglês, sem aspas, sem introdução.`;
