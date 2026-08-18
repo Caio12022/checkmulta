@@ -12,6 +12,47 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "contagem-do-prazo-de-defesa-em-autos-de-infracao-do-procon",
+    titulo: "Contagem do prazo de defesa em autos de infração do Procon",
+    descricao: "Entenda como realizar a contagem correta do prazo após receber uma autuação do Procon. Evite a perda de prazos e analise seu auto gratuitamente hoje.",
+    categoria: "Prazos e Procedimento",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-slate-50 to-gray-100",
+    palavrasChave: ["prazo defesa procon", "notificacao procon prazo", "como recorrer multa procon", "defesa administrativa procon"],
+    conteudo: `## A importância da tempestividade no processo administrativo
+
+Receber um auto de infração de um órgão de proteção ao consumidor gera apreensão em qualquer gestor. O primeiro passo para estruturar uma estratégia de defesa é compreender a dinâmica processual, começando pela contagem correta do prazo para apresentação da manifestação. A inobservância desse período pode levar à revelia, retirando da empresa a oportunidade de apresentar fatos e provas que poderiam influenciar a decisão da autoridade administrativa.
+
+## O início do processo e a notificação
+
+O processo administrativo sancionador tem início com a lavratura do auto de infração, conforme estabelece o art. 33 do Decreto 2.181/97, sendo que o art. 5º define a competência dos órgãos para apurar e punir. Para que o documento tenha validade jurídica, ele deve observar requisitos rigorosos previstos no art. 35, inciso I, que determina a necessidade de: local, data e hora; qualificação do autuado; descrição do fato; dispositivo legal infringido; intimação; identificação, assinatura e matrícula do agente; designação do órgão julgador; assinatura do autuado; cientificação para defesa. Antes da lavratura, pode ocorrer a averiguação preliminar prevista no art. 33-A.
+
+É fundamental destacar que a notificação é o ato que dá início à contagem do prazo. O Decreto 2.181/97, em seu art. 42, trata da notificação e do prazo de defesa, contudo, o texto original foi alterado pela legislação superveniente.
+
+## Como identificar o prazo correto
+
+Existe uma confusão comum entre os gestores sobre a duração do prazo para defesa. Embora existam normas gerais, é indispensável observar que estados e municípios possuem autonomia para definir procedimentos específicos em suas legislações locais. Portanto, a regra de ouro é: não confie em prazos genéricos encontrados na internet.
+
+Verifique sempre o corpo do documento recebido. O auto de infração deve indicar de forma expressa o prazo que a empresa possui para protocolar sua defesa. Contar o prazo de forma equivocada pode resultar no encerramento da oportunidade de defesa antes que a empresa tome as providências necessárias.
+
+## Pontos de atenção na defesa
+
+Ao elaborar a defesa, é preciso estar atento a possíveis vícios formais. O art. 38-A do Decreto 2.181/97 introduziu a fiscalização orientadora e o critério de dupla visita para atividades de risco leve, cuja inobservância implica nulidade do auto (§ 2º), além do tratamento diferenciado a ME e EPP (§ 3º). O art. 48 reforça que a inobservância de forma só gera nulidade se houver prejuízo para a defesa, o que orienta uma análise técnica detalhada.
+
+No que diz respeito à dosimetria da penalidade, os arts. 24 a 28 tratam da graduação da pena, atenuantes, agravantes, reincidência e fixação da multa. O art. 26-A estabelece que as atenuantes e agravantes são taxativas, enquanto o art. 28-A veda a valorar o mesmo elemento duas vezes na dosimetria. Esses pontos são relevantes para contestar cobranças que não observem os critérios legais de cálculo.
+
+## O que fazer após o vencimento do prazo
+
+Caso o prazo expire sem a apresentação de defesa, o processo segue seu fluxo normal para julgamento. Se for aplicada uma multa, o autuado possui o direito de interpor recurso em 10 dias, conforme prevê o art. 49, o qual possui efeito suspensivo. Caso a multa não seja recolhida no prazo de 30 dias após a decisão final, o débito poderá ser encaminhado para inscrição em dívida ativa, conforme o art. 55.
+
+Identificar se o auto de infração foi lavrado corretamente é um passo para avaliar a estratégia de defesa da sua empresa. Profissionais especializados podem realizar uma análise técnica do auto de infração do Procon para verificar se a autuação apresenta vício formal ou outros elementos que fundamentem uma manifestação.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "defesa-administrativa-vs-recurso-no-procon-entenda-a-diferenca",
     titulo: "Defesa Administrativa vs. Recurso no Procon: Entenda a Diferença",
     descricao: "Recebeu um auto de infração do Procon? Entenda as diferenças entre a defesa e o recurso administrativo e saiba como contestar a autuação corretamente.",
