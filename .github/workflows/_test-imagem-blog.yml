@@ -1,13 +1,14 @@
 name: TESTE - Preview de imagem do blog (temporario)
 
-# Workflow temporario, so pra gerar 2-3 imagens de amostra e subir como
-# artefato (nao comita nada, nao mexe na main). Apagar depois de aprovado
-# o estilo - ver robo/testar-imagem.ts.
+# Workflow temporario, so pra gerar 2-3 imagens de amostra e comitar
+# NO PROPRIO BRANCH em que ele roda (nunca na main - o commit vai pro
+# ref que foi passado no dispatch). Apagar depois de aprovado o estilo -
+# ver robo/testar-imagem.ts.
 "on":
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   gerar-preview:
@@ -32,9 +33,11 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
-      - name: Subir amostras como artefato
-        uses: actions/upload-artifact@v4
-        with:
-          name: preview-imagens
-          path: robo/preview/*.jpg
-          retention-days: 3
+      - name: Comitar amostras neste branch (nunca na main)
+        working-directory: robo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add preview
+          git commit -m "Preview de imagens de teste (temporario)" || echo "nada para comitar"
+          git push origin HEAD:${{ github.ref_name }}
