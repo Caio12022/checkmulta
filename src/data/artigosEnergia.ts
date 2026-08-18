@@ -12,6 +12,47 @@ export interface ArtigoEnergia {
 
 export const artigosEnergia: ArtigoEnergia[] = [
   {
+    slug: "o-prazo-de-30-dias-para-o-relatorio-de-inspecao-do-medidor-de-energia",
+    titulo: "O prazo de 30 dias para o relatório de inspeção do medidor de energia",
+    descricao: "Entenda o prazo legal de 30 dias para a emissão do relatório de inspeção após o TOI e como contestar cobranças indevidas de recuperação de consumo.",
+    categoria: "Perícia do Medidor",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚡",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["TOI energia", "relatório de inspeção medidor", "recuperação de consumo", "contestar cobrança indevida"],
+    conteudo: `## A importância do prazo na perícia do medidor
+
+Ao receber um Termo de Ocorrência e Inspeção (TOI) ou uma notificação de recuperação de consumo, o consumidor se vê diante de um procedimento que deve observar estritos ritos regulatórios. Entre os direitos assegurados ao consumidor pela Resolução ANEEL nº 1.000/2021, o controle sobre os prazos e procedimentos da distribuidora é fundamental para a defesa.
+
+Conforme estabelecido nos arts. 592 e 250 da norma, o prazo para conclusão e disponibilização dos resultados da perícia técnica, quando solicitada pelo consumidor, é de 30 dias. Este prazo visa garantir que a análise não se prolongue indefinidamente, reduzindo a incerteza do consumidor sobre o débito que lhe está sendo atribuído.
+
+## O que caracteriza uma inspeção regular?
+
+A regulação impõe um conjunto de procedimentos que a distribuidora deve seguir para que uma cobrança de recuperação de consumo possa ser considerada válida. De acordo com o art. 590, a caracterização da irregularidade exige providências cumulativas, como a correta descrição da ocorrência e a observância do devido processo legal administrativo.
+
+Ademais, o art. 591 estabelece deveres essenciais na emissão do TOI, incluindo a entrega de cópia ao consumidor mediante recibo e a obrigatória informação sobre o direito de solicitar perícia técnica metrológica no equipamento, assegurando transparência desde o início da fiscalização.
+
+## Direitos durante a perícia laboratorial
+
+É dever da distribuidora, ao retirar o medidor, garantir a integridade do equipamento. A empresa deve comunicar previamente ao consumidor a data e o horário em que a perícia ocorrerá no laboratório, conforme arts. 592 e 250. O consumidor possui o direito de acompanhar a perícia, podendo, inclusive, ser acompanhado por um assistente técnico, o que confere maior segurança jurídica ao processo de avaliação.
+
+Caso o relatório final não observe as normas ou se a perícia for realizada sem a observância das regras de comunicação prévia, abre-se a possibilidade de questionamento sobre a validade dos resultados apresentados pela distribuidora.
+
+## Atenção ao cálculo da recuperação de consumo
+
+Um erro comum verificado em cobranças é a aplicação automática de um período de retroatividade excessivo. É importante destacar que os 36 ciclos previstos no art. 596 representam apenas o teto máximo permitido, e não um período de cobrança padrão.
+
+A distribuidora deve demonstrar tecnicamente o período da irregularidade. Caso não haja elementos técnicos que comprovem o início exato do desvio, a cobrança deve ser limitada a 6 ciclos anteriores à constatação (art. 596). O art. 323 complementa que, em casos de faturamento a maior, o consumidor tem direito à revisão de até 60 ciclos e, em situações específicas, à devolução em dobro dos valores pagos indevidamente.
+
+Se você recebeu um TOI e deseja verificar se a cobrança está fundamentada corretamente, é recomendável cautela e análise técnica. A contestação deve ser formalizada dentro do prazo informado na notificação recebida pela distribuidora. Ressalta-se que a contestação foca exclusivamente no débito retroativo, sendo necessário que o consumidor continue quitando as faturas de consumo mensal para evitar a interrupção do fornecimento de energia por inadimplência das faturas correntes.
+
+Para avaliar se a cobrança apresenta possíveis falhas procedimentais, é possível buscar análise técnica especializada para subsidiar a sua defesa administrativa ou judicial.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "toi-sem-informacao-sobre-pericia-no-inmetro-entenda-o-seu-direito",
     titulo: "TOI sem informação sobre perícia no INMETRO: entenda o seu direito",
     descricao: "Recebeu uma notificação de cobrança de energia? Saiba como a ausência de aviso sobre a perícia metrológica pode fragilizar o procedimento da empresa.",
