@@ -288,3 +288,62 @@ Três limites que valem mais que a economia:
    protocolo.
 3. **Notebook vazio não economiza nada.** A economia só aparece depois de
    povoado; enquanto estiver vazio, consultar é custo puro.
+
+### Como povoar: o que funciona e o que não funciona
+
+**O `planalto.gov.br` está fora de alcance nos dois lados** — bloqueia o
+proxy deste ambiente (403 no túnel, como já valia para `WebFetch`) *e*
+bloqueia o NotebookLM. Não adianta insistir; é preciso espelho oficial.
+
+O que funcionou, em ordem de preferência:
+
+1. **`www2.camara.leg.br/legin/.../<lei>-normaatualizada-pl.pdf`** — a
+   Câmara publica o texto *atualizado* em PDF. É o melhor caminho para lei
+   federal: oficial e consolidado. Resolveu Lei 9.605, Lei 6.437.
+2. **`gov.br` do órgão** — funciona bem (Resolução CONTRAN, MBFT, CDC do
+   MJ). Já `aneel.gov.br` e `ibama.gov.br` recusaram.
+3. **Site de órgão estadual** hospedando a norma federal (Procon-ES,
+   SUDEMA-PB, DETRAN-RS) — saída quando o federal bloqueia.
+4. **`legis.senado.leg.br/norma/<id>`** — entrega o histórico de alterações
+   e ADIs, **não** o texto articulado. Útil como complemento, nunca como a
+   norma.
+
+**A armadilha que mais engana: `status_label: "ready"` não significa que a
+fonte prestou.** O PDF do CDC no `www2.senado.leg.br` entrou como "ready"
+sendo a página de CAPTCHA — o título entregou (`Verificação de segurança —
+Senado Federal`). Outra entrou "ready" e depois virou `error` com conteúdo
+nulo. Portanto, ao adicionar fonte: conferir o **título** que voltou e, em
+página web (`kind: web_page`, a categoria de risco — PDF com nome de arquivo
+é confiável), ler o conteúdo com `source_read` antes de confiar. Fonte
+plausível e errada na base é pior que fonte ausente: é a alucinação de
+citação entrando pela porta da frente.
+
+**Título descritivo é parte do trabalho, não enfeite.** O nome cru
+(`mbvt20222`, `cdc-portugues-2013`) não diz o que a fonte é e degrada a
+recuperação. E **quando a edição tem data de corte, ela vai no título** —
+o CTB do SENATRAN é de 2022 e o CDC do MJ é de 2013; sem esse aviso eu
+trataria os dois como texto vigente.
+
+Detalhe operacional: `source_add` em lote com PDF grande estoura o tempo de
+resposta e volta `RPC: UNRESOLVED` — mas normalmente **commitou**. Nunca
+repetir a chamada; listar as fontes e reconciliar, senão duplica.
+
+### O que já está dentro (agosto/2026)
+
+| Notebook | Fontes |
+|---|---|
+| Trânsito | CTB (SENATRAN 2022), histórico de alterações do CTB (Senado), Resolução CONTRAN 918/2022, **MBFT** |
+| Procon | CDC (MJ 2013), Decreto 2.181/1997, Manual de Direito do Consumidor (MJ) |
+| Vigilância | Lei 6.437/1977 |
+| Energia (TOI) | REN ANEEL 1.000/2021 |
+| IBAMA | Lei 9.605/1998, Decreto 6.514/2008 |
+| Transversal | Lei 9.784/1999, Lei 9.873/1999 |
+
+O **MBFT** (Manual Brasileiro de Fiscalização de Trânsito) é a fonte de
+maior valor prático do Trânsito: é ele que define o preenchimento do auto e
+os campos obrigatórios — ou seja, é onde o vício formal se comprova.
+
+Vigilância, Energia e Transversal estão no mínimo viável (só a norma
+central). Faltam, quando houver oportunidade: jurisprudência por vertical,
+Lei 9.782/1999 e norma sanitária estadual, Lei 8.987/1995, e a IN do
+processo administrativo do IBAMA.
