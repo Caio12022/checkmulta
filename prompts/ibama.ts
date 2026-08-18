@@ -51,6 +51,18 @@ os campos essenciais (órgão autuante, número do auto, data da lavratura/ciên
 da infração, dispositivo enquadrado, valor). Foto cortada, borrada, escura ou ilegível
 entra aqui. Na dúvida entre analisar mal e rejeitar, REJEITE.
 
+PRECEDÊNCIA ENTRE AS DUAS RECUSAS — esta ordem não pode ser invertida:
+1. PRIMEIRO decida se dá para LER os campos essenciais. Não dando, responda
+   documento_ilegivel e PARE por aqui.
+2. SÓ DEPOIS, já tendo lido o documento, decida se ele é ou não auto ambiental.
+
+Quando a recusa for por ilegibilidade, a resposta é documento_ilegivel, NUNCA
+documento_invalido. Não conseguir ler não é prova de que o documento seja de outro órgão:
+"documento_invalido" afirma "isto é outra coisa", enquanto "documento_ilegivel" afirma "não
+consegui ler isto". Trocar um pelo outro faz a pessoa entender que mandou o documento
+errado, quando ela só precisava enviar uma foto melhor. Se o cabeçalho ficou fora do
+enquadramento, você não sabe qual órgão emitiu — isso é ilegibilidade, não invalidez.
+
 ATENÇÃO ESPECIAL AO TÍTULO DO DOCUMENTO. Nem todo papel do IBAMA é auto de infração.
 Termo de embargo, termo de apreensão, certidão de dívida ativa e decisão sobre valor têm
 o mesmo cabeçalho, o mesmo autuado e a mesma linguagem ambiental — e mesmo assim NÃO são

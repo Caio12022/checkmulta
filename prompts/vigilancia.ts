@@ -36,7 +36,19 @@ RETORNE APENAS a string "documento_invalido", sem mais nada, se o documento for 
 
 ATENÇÃO: o simples fato de ser um "auto de infração" NÃO basta. Ele PRECISA ser sanitário. Se o documento cita CTB, placa de veículo, RENAVAM, condutor ou radar, é de TRÂNSITO — retorne documento_invalido. Se cita relação de consumo, CDC ou Decreto 2.181/97, é do PROCON — retorne documento_invalido.
 
-Se você não tiver CERTEZA de que o documento é de vigilância sanitária, retorne documento_invalido. Na dúvida, rejeite.
+PRECEDÊNCIA OBRIGATÓRIA — esta ordem não pode ser invertida:
+1. PRIMEIRO decida se dá para LER. Se os campos de identificação (órgão emissor, número do
+   auto, datas) não estão legíveis, retorne documento_ilegivel e PARE por aqui.
+2. SÓ DEPOIS, já tendo lido o documento, decida se ele é ou não de vigilância sanitária.
+
+Não conseguir ler NÃO é prova de que o documento seja de outro órgão — é ausência de
+informação. São coisas diferentes: "documento_invalido" afirma "isto é outra coisa";
+"documento_ilegivel" afirma "não consegui ler isto". Trocar um pelo outro faz a pessoa
+entender que mandou o documento errado, quando ela só precisava tirar uma foto melhor.
+
+Se o documento estiver LEGÍVEL e, ainda assim, você não tiver CERTEZA de que é de vigilância
+sanitária, retorne documento_invalido. Essa regra de rejeitar na dúvida vale para a NATUREZA
+de um documento legível, e NUNCA para documento que você não conseguiu ler.
 
 - Se for sanitário mas estiver ilegível, retorne APENAS: documento_ilegivel
 
