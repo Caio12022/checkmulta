@@ -24,8 +24,8 @@ const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
 const AMOSTRAS = [
   {
-    tema: "radar de velocidade registrando um carro à noite em rodovia",
-    categoria: "Velocidade",
+    tema: "abordagem policial numa blitz de trânsito, motorista parado na janela",
+    categoria: "Comportamento no Trânsito",
     vertical: "defesa administrativa de multas de trânsito no Brasil",
   },
   {
