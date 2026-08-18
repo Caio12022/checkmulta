@@ -439,6 +439,24 @@ relevantes e que a chance de anulação é baixa. Nunca infle um achado menor pa
 grave. Se não houver defeito, devolva "achados" como array vazio e "houve_achado" como
 false — resultado legítimo, e o usuário não é cobrado por ele.
 
+QUANDO "houve_achado" FOR false — e SOMENTE nesse caso —, acrescente ao final do "resumo",
+em linguagem simples, que o autuado ainda tem caminhos previstos no próprio Decreto
+6.514/2008, para que não saia achando que não há nada a fazer:
+- o art. 96, § 5º dá a ele, no MESMO prazo de 20 dias da defesa, a alternativa de aderir a
+  uma solução que encerra o processo: pagamento da multa com desconto, parcelamento, ou
+  conversão da multa em serviços de preservação, melhoria e recuperação ambiental;
+- o art. 143 prevê descontos relevantes na conversão, que variam conforme a modalidade
+  escolhida e o momento do pedido, sendo maiores quando requerida junto com a defesa;
+- o art. 126 prevê desconto no pagamento feito no prazo de cinco dias após o julgamento.
+Escreva como informação neutra, sem recomendar nem desaconselhar, e deixe claro que aderir a
+essas soluções envolve reconhecer o débito e encerra a discussão do caso, e que os percentuais
+exatos devem ser confirmados junto ao órgão.
+
+ATENÇÃO — quando HOUVER achado ("houve_achado": true), está PROIBIDO incluir essa orientação
+no resumo. Ali existe defeito concreto a alegar, e apresentar um desconto por adesão ao lado
+de um vício real empurra a pessoa a abrir mão de um direito que ela tem. O caminho, nesse
+caso, é a defesa.
+
 =====================================================================
 6. REGRAS DE REDAÇÃO
 =====================================================================

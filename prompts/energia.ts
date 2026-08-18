@@ -272,6 +272,44 @@ C3. O relatório de inspeção foi entregue dentro de 30 dias contados da SOLICI
     data da inspeção nem da retirada do medidor — se o documento sugerir outra contagem,
     use a da solicitação.
 
+BLOCO D — cobrança da compensação (art. 598 e art. 325)
+
+PORTEIRO DO BLOCO D — leia antes de usar qualquer item daqui.
+Os itens abaixo tratam do PROCESSO de compensação e da COBRANÇA. Eles só se aplicam se o
+documento enviado for a NOTIFICAÇÃO DE COBRANÇA, a fatura da diferença apurada, a resposta a
+uma reclamação, ou o próprio processo de irregularidade.
+
+Se o documento for APENAS o TOI, você está PROIBIDO de usar os itens D1 a D4. O TOI é lavrado
+na inspeção, muito antes de existir cobrança — cobrar dele o conteúdo do processo de
+compensação é apontar falta do que ainda não deveria existir, e isso fabrica vício em
+procedimento regular. Nessa hipótese, pule o BLOCO D inteiro e não escreva nada sobre ele.
+
+D1. PRAZO DE 36 MESES (art. 598, § 3º). O faturamento da compensação deve ocorrer em até 36
+    meses contados da EMISSÃO DO TOI.
+    Porteiro: só levante se o documento trouxer as DUAS datas — a de emissão do TOI e a da
+    cobrança/faturamento. Sem as duas, não mencione o assunto.
+    Tendo as duas, conte os meses. Se passar de 36, é achado "critico". Se estiver dentro,
+    não aponte nada. Não confunda este prazo com o período de consumo cobrado (BLOCO B, que
+    trata de quantos ciclos foram cobrados) — são coisas diferentes.
+
+D2. NOTIFICAÇÃO INCOMPLETA (art. 325, § 1º). A notificação da diferença a pagar deve conter
+    os itens do art. 598 e ainda informar ao consumidor o DIREITO, o PRAZO e os CANAIS para
+    reclamar.
+    Porteiro: só levante se o documento for a notificação de cobrança e você puder ler que
+    essa informação não consta.
+
+D3. COBRANÇA ANTES DA HORA (art. 325, § 7º). A distribuidora só pode emitir a fatura da
+    diferença depois de vencido o prazo de reclamação sem manifestação do consumidor, ou
+    depois de responder a reclamação apresentada.
+    Porteiro: só levante se o documento mostrar que houve reclamação pendente de resposta, ou
+    que a fatura foi emitida antes do fim do prazo, COM as datas visíveis. Suposição não serve.
+
+D4. INDEFERIMENTO SEM MOTIVAÇÃO (art. 325, § 4º). Ao indeferir a reclamação, a distribuidora
+    deve informar por escrito as razões detalhadas e os dispositivos que fundamentaram a
+    decisão, e ainda comunicar o direito de recorrer à Ouvidoria.
+    Porteiro: só levante se o documento FOR a resposta de indeferimento. Resposta que apenas
+    repete "procedimento irregular constatado", sem razão nem dispositivo, é achado.
+
 =====================================================================
 4. CLASSIFICAÇÃO DE GRAVIDADE
 =====================================================================
@@ -481,14 +519,30 @@ ESTRUTURA DA PEÇA
      ausência de avaliação técnica;
    - subsidiariamente, revisão do cálculo e limitação do período, quando o defeito for de
      cálculo ou de período não demonstrado;
+   - ENTREGA DE CÓPIA INTEGRAL DO PROCESSO DE IRREGULARIDADE. Inclua este pedido SEMPRE,
+     mesmo quando os demais não couberem. O art. 598, § 4º obriga a distribuidora a fornecer
+     essa cópia em até 5 dias úteis mediante solicitação, e o § 5º manda disponibilizá-la no
+     atendimento pela internet. É o pedido de maior utilidade prática da peça: sem o
+     processo, o consumidor discute no escuro; com ele, aparecem a memória de cálculo, o
+     critério do período e os comprovantes de notificação, que são justamente onde os
+     defeitos costumam estar. Peça expressamente a memória descritiva do cálculo e o critério
+     de determinação do período de duração da irregularidade.
    - suspensão da cobrança e abstenção de interrupção do fornecimento e de inscrição em
-     cadastro de inadimplentes enquanto pendente a reclamação;
+     cadastro de inadimplentes enquanto pendente a reclamação, com fundamento no art. 325,
+     § 6º e no art. 422, que impedem a distribuidora, até a resposta efetiva da Ouvidoria, de
+     condicionar serviços à quitação do débito questionado e de suspender o fornecimento por
+     esse débito;
    - devolução em dobro dos valores já pagos indevidamente, SOMENTE se o JSON indicar que
      houve pagamento de valor cobrado a maior (art. 323).
 
 5. DO ENCAMINHAMENTO — orientação curta: protocolar na distribuidora e guardar o número
    de protocolo; se a resposta for negativa ou não vier, recorrer à ouvidoria da
    distribuidora e, depois, à ANEEL; a via judicial permanece disponível.
+   Informe ainda, em uma frase, que o registro da reclamação na OUVIDORIA da distribuidora
+   suspende a cobrança e impede o corte por esse débito até a resposta (art. 325, § 6º, e
+   art. 422), e que o prazo para levar a discordância à Ouvidoria é de 30 dias contados do
+   recebimento da resposta da reclamação. Essa informação protege o consumidor durante a
+   discussão e não substitui a defesa — não a apresente como alternativa a ela.
 
 =====================================================================
 REGRAS DE REDAÇÃO

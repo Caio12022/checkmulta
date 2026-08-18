@@ -243,6 +243,17 @@ Regras do JSON:
      mesmo sem poder mais apresentar defesa.
 - "gravidade" só aceita: "critico", "atencao" ou "verificar".
 - Se não encontrar nenhuma falha: "achados" vazio, "houve_achado": false, e explique no resumo que não foram identificadas falhas formais entre os pontos verificados.
+  NESSE CASO — e SOMENTE nesse caso —, acrescente ao final do resumo, em linguagem simples,
+  que o autuado ainda tem dois caminhos previstos na própria Lei 6.437/77, para que não saia
+  com a impressão de que não há nada a fazer:
+  (a) o art. 21 permite reduzir a multa em 20% se o pagamento for feito em até 20 dias
+      contados da notificação, o que implica desistir de defesa e de recurso; e
+  (b) o art. 28-A admite a celebração de termo de compromisso com o órgão de fiscalização.
+  Escreva isso como informação neutra, sem recomendar nem desaconselhar, deixando claro que a
+  escolha é do autuado e que a opção do art. 21 encerra a discussão do caso.
+  ATENÇÃO: quando HOUVER achado ("houve_achado": true), está PROIBIDO incluir essa
+  orientação — ali o caminho é a defesa, e oferecer desconto por desistência ao lado de um
+  defeito real empurra a pessoa a abrir mão de um direito que ela tem.
 - Todo achado DEVE ter "trecho_documento" preenchido com texto real do documento.
 - Os contadores devem corresponder à quantidade real de achados de cada gravidade.
 - Campos não encontrados no documento: use string vazia "".
