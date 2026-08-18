@@ -29,7 +29,7 @@ import { gerarComRetry } from "./validador";
 // devolveu foto genérica sem nada do tema. Por isso a cena específica vem
 // PRIMEIRO no prompt final (ver gerarImagemArtigoCloudflare) e o estilo
 // fica só como uma cauda curta de tags, não frases.
-const ESTILO_BASE = `Realistic cinematic editorial photography, natural light, shallow depth of field, cool teal/emerald color grading. No readable text, signs, plates or logos. No person with a clear face looking at camera.`;
+const ESTILO_BASE = `Realistic cinematic editorial photography, natural light, shallow depth of field, cool teal/emerald color grading. No readable text, signs, plates, screens or logos.`;
 
 export interface PedidoImagemArtigo {
   tema: string;
@@ -52,9 +52,10 @@ interface ClienteGemini {
 
 // ============================================================
 // PASSO 1: tema (português, abstrato) -> cena fotográfica concreta
-// (inglês), já pensando em evitar texto/placa/rosto de propósito -
-// não só "proibir", mas descrever um enquadramento onde isso nem
-// apareceria naturalmente.
+// (inglês), já pensando em evitar texto/placa de propósito - não só
+// "proibir", mas descrever um enquadramento onde isso nem apareceria
+// naturalmente. Rosto de pessoa pode aparecer normalmente (é gente
+// genérica gerada por IA, não pessoa real - não precisa esconder).
 // ============================================================
 export async function gerarDescricaoVisual(
   ai: ClienteGemini,
@@ -66,13 +67,13 @@ Tema do artigo (em português): "${pedido.tema}"
 Categoria: "${pedido.categoria}"
 Contexto/vertical: ${pedido.vertical}
 
-Descreva, em inglês, UMA cena real e concreta que um fotógrafo poderia literalmente fotografar pra ilustrar esse tema especificamente (não uma cena genérica - tem que ser claramente reconhecível como ESSE tema, não outro).
+Descreva, em inglês, UMA cena real e concreta que um fotógrafo poderia literalmente fotografar pra ilustrar esse tema especificamente. A cena tem que comunicar o tema sozinha, sem legenda - alguém olhando a foto tem que reconhecer do que se trata. Evite símbolos vagos/indiretos (ex: só um sapato no chão) quando o tema pede pra mostrar a coisa em si (ex: a área desmatada, as árvores cortadas, o veículo, o radar).
 
 O modelo de imagem que vai ler isso é rápido e barato: ele ignora prompt comprido e perde detalhe se a frase for longa. Por isso:
 - UMA frase só, curta (no máximo ~20 palavras em inglês). Sem frase secundária, sem "in the background".
-- Um objeto ou ação central só, close-up, fundo desfocado.
+- Pode ser um close-up OU um plano mais aberto (paisagem/ambiente) - escolha o que deixar o tema mais óbvio.
 - NÃO inclua nenhum objeto que normalmente tem texto/logo/tela nele (placa de trânsito, placa de veículo, faixa, cartaz, papel, documento, e também qualquer aparelho com tela digital, display, botão com legenda ou marca visível) - descreva a cena por outro ângulo que não precise desses objetos.
-- Se aparecer pessoa, só de costas ou totalmente fora de foco - nunca rosto de frente.
+- Pessoas podem aparecer normalmente, de frente ou de qualquer ângulo - não precisa esconder rosto.
 
 Responda APENAS com a frase da cena em inglês, sem aspas, sem introdução.`;
 
