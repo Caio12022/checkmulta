@@ -12,6 +12,50 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "parar-sobre-a-faixa-de-pedestres-como-recorrer",
+    titulo: "Parar sobre a faixa de pedestres: como recorrer?",
+    descricao: "Parou o carro sobre a faixa de pedestres e foi multado? Entenda os riscos dessa infração e veja como recorrer. Analise sua multa gratuitamente agora.",
+    categoria: "Comportamento no Trânsito",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🚶",
+    imagemBg: "from-amber-600 to-amber-800",
+    conteudo: `## O que diz a lei sobre a faixa de pedestres
+
+No trânsito urbano, a faixa de pedestres é um dos dispositivos mais importantes para garantir a segurança dos transeuntes. O Código de Trânsito Brasileiro determina que o condutor deve sempre priorizar o pedestre e garantir que ele possa realizar a travessia com total segurança. Quando um motorista interrompe a marcha do veículo e imobiliza o automóvel sobre a faixa, ele está cometendo uma infração de natureza grave que gera penalidades administrativas.
+
+É importante esclarecer que essa infração ocorre tanto pelo desrespeito direto ao pedestre quanto pela simples imobilização do veículo no local, mesmo que não haja ninguém atravessando no exato momento. O espaço é exclusivo para a circulação de pessoas e a legislação é rigorosa quanto ao seu uso por veículos automotores.
+
+## Por que essa multa é tão frequente?
+
+Muitos motoristas acabam cometendo essa infração por distração, especialmente em cruzamentos movimentados. Situações comuns incluem:
+
+* **Fila no trânsito:** O motorista avança sem verificar se há espaço suficiente para o veículo seguir, ficando preso exatamente em cima da faixa.
+* **Frenagem brusca:** Ao notar o sinal amarelo ou o semáforo fechando, o condutor freia de maneira tardia, parando sobre a demarcação.
+* **Falta de atenção:** O condutor não observa a sinalização horizontal durante manobras de conversão ou acesso a vias transversais.
+
+Independente da intenção do motorista, a fiscalização pode ocorrer via agentes de trânsito ou por meio de monitoramento eletrônico, que tem se tornado cada vez mais comum nas grandes metrópoles brasileiras.
+
+## É possível recorrer dessa multa?
+
+Muitos condutores acreditam que, uma vez autuados, não há o que fazer além de pagar a multa. No entanto, o direito à ampla defesa é garantido a todo cidadão. Assim como qualquer outra penalidade administrativa, a multa por parar sobre a faixa de pedestres deve seguir procedimentos legais rigorosos por parte do órgão autuador.
+
+Ao analisar um auto de infração, é necessário verificar pontos como:
+
+* **Consistência dos dados:** Informações incorretas sobre o veículo ou local podem tornar o auto inconsistente.
+* **Sinalização:** Se a faixa estiver apagada, sem visibilidade ou em desconformidade com os padrões estabelecidos, a multa pode ser contestada.
+* **Tipificação do erro:** O agente de trânsito deve descrever a situação de forma precisa. Erros na descrição do fato podem ser argumentos válidos em um recurso.
+
+## Como proceder após a autuação?
+
+Ao receber a notificação, o primeiro passo é manter a calma e não realizar o pagamento imediato se você acredita que houve alguma falha no procedimento. O pagamento antecipado não impede a defesa, mas o ideal é analisar cuidadosamente a notificação e verificar se todas as exigências legais foram cumpridas pela autoridade de trânsito.
+
+Lembre-se que o processo de defesa possui etapas distintas, passando pela Defesa Prévia e pelos recursos em instâncias superiores conforme o previsto na legislação. Cada fase é uma oportunidade de expor os argumentos técnicos que demonstram a nulidade da infração.
+
+Se você deseja entender melhor as chances de sucesso no seu caso, a tecnologia pode ser sua grande aliada. É possível realizar uma análise do auto de infração para identificar se há falhas capazes de anular a multa.`,
+    palavrasChave: ["multa faixa de pedestres", "recorrer multa de trânsito", "infrações de trânsito", "defesa de multa"],
+  },
+
+  {
     slug: "multa-de-radar-em-pista-molhada-como-recorrer",
     titulo: "Multa de Radar em Pista Molhada: Como Recorrer",
     descricao: "Recebeu uma multa de radar em dia de chuva? Entenda se a condição da pista influencia a validade da infração e saiba como contestar. Analise sua multa grátis.",
