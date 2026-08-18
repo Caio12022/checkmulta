@@ -12,6 +12,54 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "perda-de-prazo-em-processos-da-vigilancia-sanitaria-impactos-e-riscos",
+    titulo: "Perda de prazo em processos da Vigilância Sanitária: impactos e riscos",
+    descricao: "Entenda as consequências jurídicas de perder o prazo de defesa em um auto de infração da Vigilância Sanitária e saiba como avaliar sua situação no CheckMulta.",
+    categoria: "Prazos e Procedimento",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-slate-50 to-gray-50",
+    palavrasChave: ["auto de infração vigilância sanitária", "prazo defesa sanitária", "processo administrativo sanitário", "multa vigilância sanitária"],
+    conteudo: `## O procedimento administrativo e o direito de defesa
+
+Quando um estabelecimento comercial recebe um auto de infração da Vigilância Sanitária, inicia-se um processo administrativo. Este rito é regido por princípios fundamentais, como o devido processo legal, o contraditório e a ampla defesa. Tais princípios asseguram que o autuado possa apresentar sua versão dos fatos, contestar irregularidades técnicas ou apontar erros formais no documento emitido pelos fiscais.
+
+O auto de infração não é uma condenação definitiva. Ele é a peça inicial que descreve a suposta infração sanitária. A Lei Federal 6.437/77, que trata das infrações à legislação sanitária federal, estabelece requisitos obrigatórios para que esse documento seja válido (art. 13). A ausência de qualquer elemento essencial pode comprometer a validade da autuação.
+
+## O que acontece com a perda do prazo?
+
+O prazo para a apresentação de defesa é o período concedido para que o estabelecimento exerça o seu direito de resposta. Embora a Lei Federal 6.437/77 preveja em seu art. 22 o prazo de 15 dias, é fundamental destacar que a legislação sanitária é fragmentada. Estados e municípios possuem autonomia para estabelecer normas sanitárias próprias. Portanto, o prazo de defesa pode variar dependendo da jurisdição onde o estabelecimento está localizado. É imperativo que o responsável pelo negócio confira rigorosamente o prazo indicado no auto de infração recebido.
+
+Quando o estabelecimento perde esse prazo, pode ocorrer o fenômeno da revelia ou preclusão administrativa. Isso significa que o direito de contestar os fatos e a penalidade naquele momento específico pode ser perdido. O processo segue seu curso natural, o que pode resultar em:
+
+- Confirmação da autuação e da penalidade aplicada.
+- Impossibilidade de discutir o mérito da infração na esfera administrativa.
+- Emissão de multa, sujeita a cobrança administrativa e, posteriormente, judicial.
+- Inclusão do débito em dívida ativa, conforme as normas de execução fiscal.
+
+## A importância da motivação e da legalidade
+
+O processo administrativo deve ser pautado pela motivação e pela legalidade, conforme estabelecido na Lei 9.784/99 (arts. 2º e 50, aplicável subsidiariamente). A decisão que aplica uma penalidade exige fundamentação clara e proporcional, observando os critérios de graduação da pena (art. 6º da Lei 6.437/77), como a gravidade do fato e as circunstâncias atenuantes (art. 7º) ou agravantes (art. 8º).
+
+Ao perder o prazo, o estabelecimento pode abrir mão de exigir que o órgão público demonstre a motivação correta e a proporcionalidade na dosimetria da multa. O processo poderá ser julgado com base apenas nas informações fornecidas pelo agente fiscalizador no momento da autuação.
+
+## Regularização e medidas preventivas
+
+Caso o estabelecimento tenha sido interditado cautelarmente, lembre-se que a medida possui limites, como o previsto no art. 23, § 4º da Lei 6.437/77 (interdição de no máximo 90 dias). A retomada das atividades depende exclusivamente da regularização das condições sanitárias e da liberação formal pelo órgão competente. O estabelecimento deve permanecer fechado até que a autoridade sanitária autorize expressamente o retorno das atividades.
+
+Para fins de regularização, documente sempre as correções realizadas. O registro fotográfico, notas fiscais de serviços de manutenção ou controle de pragas, e laudos técnicos são elementos essenciais para solicitar a reinspeção e comprovar o saneamento das irregularidades. Esse material serve como base para o pedido de liberação junto à Vigilância Sanitária.
+
+## Como proceder diante de um auto de infração?
+
+O primeiro passo após o recebimento de um auto de infração é a leitura atenta do documento para identificar o prazo estabelecido. A análise técnica do documento pode revelar falhas formais que fundamentam uma defesa ou o questionamento dos critérios utilizados pelo fiscal.
+
+Para obter uma análise do auto de infração da Vigilância Sanitária e verificar se a autuação apresenta falha capaz de fundamentar recurso, entre em contato com um especialista.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "documentos-indispensaveis-para-a-defesa-de-um-auto-de-infracao",
     titulo: "Documentos indispensáveis para a defesa de um auto de infração",
     descricao: "Saiba quais documentos reunir ao ser autuado pela Vigilância Sanitária para montar sua defesa administrativa. Envie seu auto para análise gratuita.",
