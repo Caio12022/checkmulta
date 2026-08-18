@@ -18,7 +18,7 @@ import { tmpdir } from "os";
 import { join } from "path";
 import sharp from "sharp";
 import { validarArtigoBlog, gerarComRetry, type ViolacaoDefesa } from "../prompts/validador";
-import { gerarImagemArtigo } from "../prompts/imagem";
+import { gerarImagemArtigoCloudflare } from "../prompts/imagem";
 
 // ============================================================
 // CONFIGURAÇÃO - você pode ajustar estas listas quando quiser
@@ -76,6 +76,10 @@ const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 // Dentro do GitHub Actions, o próprio GitHub injeta um GITHUB_TOKEN automático.
 // Fora dele, usa o token pessoal (GH_PAT) se existir.
 const GITHUB_TOKEN = process.env.GH_PAT || process.env.GITHUB_TOKEN;
+// Imagem de capa é opcional: se não estiver configurado, o robô segue
+// gerando o artigo normalmente, só sem imagem (ver produzirArtigo).
+const CLOUDFLARE_ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID;
+const CLOUDFLARE_API_TOKEN = process.env.CLOUDFLARE_API_TOKEN;
 
 if (!GEMINI_API_KEY) throw new Error("GEMINI_API_KEY não configurada.");
 if (!GITHUB_TOKEN) throw new Error("GITHUB_TOKEN não configurado.");
@@ -447,14 +451,13 @@ async function produzirArtigo(
   // passou na auditoria (senão o artigo nem vai pra main hoje), e se
   // falhar por qualquer motivo, o artigo segue sem imagem - nunca trava
   // a publicação por causa disto.
-  if (violacoesLegais.length === 0) {
+  if (violacoesLegais.length === 0 && CLOUDFLARE_ACCOUNT_ID && CLOUDFLARE_API_TOKEN) {
     try {
       console.log("  Gerando imagem de capa...");
-      const imagem = await gerarImagemArtigo(ai, {
-        tema: pauta.tema,
-        categoria: pauta.categoria,
-        vertical: VERTICAL_LABEL,
-      });
+      const imagem = await gerarImagemArtigoCloudflare(
+        { accountId: CLOUDFLARE_ACCOUNT_ID, apiToken: CLOUDFLARE_API_TOKEN },
+        { tema: pauta.tema, categoria: pauta.categoria, vertical: VERTICAL_LABEL }
+      );
       const comprimida = await comprimirImagem(imagem.bytes);
       const caminhoImagem = `${PASTA_IMAGENS}/${slug}.jpg`;
       await commitarImagem(caminhoImagem, comprimida, `Imagem do artigo: ${artigo.titulo}`);
@@ -463,6 +466,8 @@ async function produzirArtigo(
     } catch (err: any) {
       console.log(`  Nao foi possivel gerar/comitar a imagem (seguindo sem ela): ${err.message}`);
     }
+  } else if (violacoesLegais.length === 0) {
+    console.log("  Cloudflare nao configurado (CLOUDFLARE_ACCOUNT_ID/API_TOKEN) - seguindo sem imagem.");
   }
 
   return { bloco: montarBloco(artigo, slug), slug, titulo: artigo.titulo, violacoesLegais };

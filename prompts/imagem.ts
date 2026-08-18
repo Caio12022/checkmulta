@@ -1,10 +1,15 @@
 /**
  * Geração de imagem de capa para artigos de blog (todas as verticais).
  *
- * Usa o mesmo cliente @google/genai que os robôs já usam para texto, só que
- * chamando um modelo de imagem (gemini-3.1-flash-image, via generateContent
- * com responseModalities: ["IMAGE"]). Não usar a família Imagen
- * (imagen-4.0-*): está em desativação em 17/08/2026.
+ * Caminho ativo: Cloudflare Workers AI (modelo FLUX.1 [schnell]), porque
+ * tem cota diária grátis de verdade (10.000 neurons/dia, sem cartão) - ao
+ * contrário do Gemini, cujo tier grátis tem cota ZERO pra modelo de
+ * imagem (só funciona com faturamento habilitado no projeto do Google,
+ * o que exporia TODAS as chamadas do projeto, não só as de imagem).
+ *
+ * gerarImagemArtigoGemini fica pronta e guardada (funciona, foi testada,
+ * dá pra religar trocando a chamada em robo.ts) caso um dia o faturamento
+ * seja habilitado e valha a pena comparar qualidade.
  *
  * Filosofia igual à do resto do projeto: isso é decorativo, não jurídico.
  * Se falhar por qualquer motivo, quem chama deve seguir sem imagem — nunca
@@ -12,16 +17,6 @@
  */
 
 import { gerarComRetry } from "./validador";
-
-// Tipo mínimo do cliente, só com o que usamos aqui - evita depender do
-// @google/genai a partir de prompts/ (que é importado por vários robôs,
-// cada um com seu próprio node_modules; ver prompts/validador.ts, que
-// pelo mesmo motivo não importa nada externo).
-interface ClienteGemini {
-  models: {
-    generateContent: (params: any) => Promise<any>;
-  };
-}
 
 // Estilo fixo, para os artigos terem "cara de uma coisa só" mesmo gerados
 // em dias e verticais diferentes. Cores batem com a paleta do site
@@ -47,13 +42,76 @@ export interface ImagemGerada {
   mimeType: string;
 }
 
-export async function gerarImagemArtigo(
+function montarPrompt(pedido: PedidoImagemArtigo): string {
+  return `${ESTILO_BASE}
+
+Subject of this illustration: an article about "${pedido.tema}", in the context of ${pedido.vertical} (categoria: "${pedido.categoria}"). Depict the situation or object at the center of this theme using the visual metaphor rules above.`;
+}
+
+// ============================================================
+// CAMINHO ATIVO: Cloudflare Workers AI (FLUX.1 [schnell])
+// Chamada REST simples (fetch), sem SDK - não precisa de dependência nova.
+// ============================================================
+
+export interface CredenciaisCloudflare {
+  accountId: string;
+  apiToken: string;
+}
+
+export async function gerarImagemArtigoCloudflare(
+  credenciais: CredenciaisCloudflare,
+  pedido: PedidoImagemArtigo
+): Promise<ImagemGerada> {
+  const prompt = montarPrompt(pedido);
+  const url = `https://api.cloudflare.com/client/v4/accounts/${credenciais.accountId}/ai/run/@cf/black-forest-labs/flux-1-schnell`;
+
+  const resp = await gerarComRetry(async () => {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${credenciais.apiToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ prompt, steps: 6 }),
+    });
+    const dados = await res.json();
+    if (!res.ok || !dados.success) {
+      throw new Error(
+        `Cloudflare AI erro ${res.status}: ${JSON.stringify(dados.errors || dados)}`
+      );
+    }
+    return dados;
+  });
+
+  const base64 = resp.result?.image;
+  if (!base64) {
+    throw new Error("Cloudflare AI não retornou imagem (sem result.image na resposta).");
+  }
+
+  return {
+    bytes: Buffer.from(base64, "base64"),
+    mimeType: "image/jpeg",
+  };
+}
+
+// ============================================================
+// CAMINHO GUARDADO: Gemini (gemini-3.1-flash-image via generateContent)
+// Testado e funcional, mas exige faturamento habilitado no projeto do
+// Google (tier grátis tem cota 0 pra modelo de imagem). Não usar a
+// família Imagen (imagen-4.0-*): está em desativação em 17/08/2026.
+// ============================================================
+
+interface ClienteGemini {
+  models: {
+    generateContent: (params: any) => Promise<any>;
+  };
+}
+
+export async function gerarImagemArtigoGemini(
   ai: ClienteGemini,
   pedido: PedidoImagemArtigo
 ): Promise<ImagemGerada> {
-  const prompt = `${ESTILO_BASE}
-
-Subject of this illustration: an article about "${pedido.tema}", in the context of ${pedido.vertical} (categoria: "${pedido.categoria}"). Depict the situation or object at the center of this theme using the visual metaphor rules above.`;
+  const prompt = montarPrompt(pedido);
 
   const resp = await gerarComRetry(() =>
     ai.models.generateContent({
