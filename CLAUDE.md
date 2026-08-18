@@ -295,18 +295,49 @@ Três limites que valem mais que a economia:
 proxy deste ambiente (403 no túnel, como já valia para `WebFetch`) *e*
 bloqueia o NotebookLM. Não adianta insistir; é preciso espelho oficial.
 
-O que funcionou, em ordem de preferência:
+**Use SEMPRE o `normaatualizada` da Câmara para lei e decreto federal:**
+`www2.camara.leg.br/legin/fed/<tipo>/<ano>/<norma>-<id>-normaatualizada-{pl|pe}.pdf`
+(`pl` para lei, `pe` para decreto). É texto consolidado, com nota de
+alteração dispositivo a dispositivo, e está de fato em dia — a Lei 9.605 de
+lá traz alteração de março/2026. Foi o único caminho que se provou atual.
 
-1. **`www2.camara.leg.br/legin/.../<lei>-normaatualizada-pl.pdf`** — a
-   Câmara publica o texto *atualizado* em PDF. É o melhor caminho para lei
-   federal: oficial e consolidado. Resolveu Lei 9.605, Lei 6.437.
-2. **`gov.br` do órgão** — funciona bem (Resolução CONTRAN, MBFT, CDC do
-   MJ). Já `aneel.gov.br` e `ibama.gov.br` recusaram.
-3. **Site de órgão estadual** hospedando a norma federal (Procon-ES,
-   SUDEMA-PB, DETRAN-RS) — saída quando o federal bloqueia.
-4. **`legis.senado.leg.br/norma/<id>`** — entrega o histórico de alterações
+Demais caminhos, só quando a Câmara não cobrir (norma de agência, manual):
+
+1. **`gov.br` do órgão** — funciona (Resolução CONTRAN, MBFT, CDC do MJ).
+   Já `aneel.gov.br` e `ibama.gov.br` recusaram.
+2. **Site de órgão estadual** hospedando a norma federal (SUDEMA-PB,
+   DETRAN-RS, CPFL) — último recurso, e **o mais arriscado**: é PDF parado
+   no tempo, sem aviso de que envelheceu.
+3. **`legis.senado.leg.br/norma/<id>`** — entrega o histórico de alterações
    e ADIs, **não** o texto articulado. Útil como complemento, nunca como a
    norma.
+
+### O erro mais perigoso: fonte oficial porém DESATUALIZADA
+
+Pior que fonte ausente, porque não parece errada — e leva a **regredir
+código que estava certo**. Aconteceu na primeira tentativa de povoar, em
+duas das cinco verticais:
+
+- O Decreto 2.181/97 hospedado no Procon-ES parava em 2012. Não tinha os
+  arts. 26-A, 28-A e 38-A nem o prazo de 20 dias, todos vindos do Decreto
+  10.887/2021 — e o `procon.ts` já os aplicava corretamente. Auditar o
+  prompt contra aquela fonte teria "corrigido" o prazo para 10 dias e
+  apagado bis in idem e taxatividade das agravantes: cinco anos de norma
+  desfeitos com toda a confiança.
+- O Decreto 6.514/2008 do SUDEMA-PB parava em 2017, sem as alterações de
+  2022 e 2023.
+
+Regra que fica: **quando a base contradisser o prompt, a suspeita inicial
+recai sobre a base, não sobre o prompt.** Antes de mexer em qualquer
+prompt por causa de uma resposta do NotebookLM, perguntar ao próprio
+notebook qual o ato de alteração mais recente que consta do texto, e
+conferir se é o vigente. É a mesma desconfiança que a bateria já exige
+("quase metade das falhas foram erro meu de teste, não defeito do
+produto").
+
+Corolário: **nunca deixar duas versões da mesma norma no notebook** — a
+recuperação mistura as duas e passa a responder de forma conflitante. Ao
+substituir, apagar a antiga.
 
 **A armadilha que mais engana: `status_label: "ready"` não significa que a
 fonte prestou.** O PDF do CDC no `www2.senado.leg.br` entrou como "ready"
@@ -332,12 +363,18 @@ repetir a chamada; listar as fontes e reconciliar, senão duplica.
 
 | Notebook | Fontes |
 |---|---|
-| Trânsito | CTB (SENATRAN 2022), histórico de alterações do CTB (Senado), Resolução CONTRAN 918/2022, **MBFT** |
-| Procon | CDC (MJ 2013), Decreto 2.181/1997, Manual de Direito do Consumidor (MJ) |
-| Vigilância | Lei 6.437/1977 |
+| Trânsito | CTB (Câmara, atualizado), histórico de alterações do CTB (Senado), Resolução CONTRAN 918/2022, **MBFT** |
+| Procon | Decreto 2.181/1997 (Câmara, atualizado), CDC (MJ 2013), Manual de Direito do Consumidor (MJ) |
+| Vigilância | Lei 6.437/1977 (Câmara, atualizado) |
 | Energia (TOI) | REN ANEEL 1.000/2021 |
-| IBAMA | Lei 9.605/1998, Decreto 6.514/2008 |
-| Transversal | Lei 9.784/1999, Lei 9.873/1999 |
+| IBAMA | Lei 9.605/1998, Decreto 6.514/2008 (ambos Câmara, atualizados) |
+| Transversal | Lei 9.784/1999, Lei 9.873/1999 (ambos Câmara, atualizados) |
+
+Duas fontes ainda **não** são consolidadas da Câmara e precisam de
+verificação de data antes de servirem de base para mexer em prompt:
+o **CDC do MJ (edição 2013)** e a **REN ANEEL 1.000/2021** (PDF de 2021
+hospedado pela CPFL — a ANEEL alterou a resolução depois disso; a Câmara
+não cobre norma de agência).
 
 O **MBFT** (Manual Brasileiro de Fiscalização de Trânsito) é a fonte de
 maior valor prático do Trânsito: é ele que define o preenchimento do auto e
