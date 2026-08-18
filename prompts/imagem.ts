@@ -61,9 +61,12 @@ Subject of this illustration: an article about "${pedido.tema}", in the context 
       contents: prompt,
       config: {
         responseModalities: ["IMAGE"],
+        // Sem personGeneration aqui de propósito: esse campo só existe no
+        // modo Enterprise/Vertex, e dá erro na Gemini Developer API (que é
+        // o modo que este projeto usa). O "sem rosto" fica só na regra de
+        // estilo do prompt acima.
         imageConfig: {
           aspectRatio: "16:9",
-          personGeneration: "ALLOW_NONE",
         },
       },
     })
