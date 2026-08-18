@@ -210,6 +210,15 @@ o validador rebaixa para "verificar", não veio do texto plantado.
   execuções do mesmo documento, e ali o erro é grave — o prazo do corte é
   de dias, e um relatório de achados no TOI faz a pessoa discutir o mérito
   enquanto a luz cai.
+- Recusa por ilegibilidade vinha saindo como `documento_invalido` na
+  Vigilância e no IBAMA (a bateria pegou, nas duas, só na 2ª execução). Não
+  era variação do modelo: era conflito de regra dentro do prompt. A
+  Vigilância mandava "sem CERTEZA de que é sanitário, na dúvida rejeite" — e
+  documento ilegível produz justamente essa dúvida; no IBAMA, "na dúvida
+  REJEITE" não dizia rejeitar como o quê. O Trânsito já tinha a precedência
+  ("primeiro ler, depois classificar") e as outras duas nunca herdaram. Custo
+  real: quem fotografa mal um auto legítimo ouve que mandou o arquivo errado
+  e desiste, em vez de tirar outra foto.
 - Os 5 robôs de artigo (`robo*/robo*.ts`) usam `gerarComRetry()` de
   `prompts/validador.ts` nas duas chamadas ao Gemini (geração e revisão),
   igual ao servidor já fazia. Energia e Procon falharam com 503 "high
@@ -221,6 +230,28 @@ o validador rebaixa para "verificar", não veio do texto plantado.
   independente de quem pede. Espaçar mais os horários não teria resolvido;
   o retry resolveu (testado ao vivo: pegou o mesmo 503 e publicou depois de
   esperar 8s).
+
+## Onde entra a alternativa legal (regra de negócio, decidida com o Caio)
+
+Três verticais têm, na própria norma, saídas que competem com a venda da
+defesa: redução de 20% e termo de compromisso na Vigilância (Lei 6.437,
+arts. 21 e 28-A) e, no IBAMA, as soluções do art. 96 §5º do Decreto 6.514
+com os descontos dos arts. 143 e 126, que chegam a 60%.
+
+A regra é de **alocação, não de omissão**, e o raciocínio é do Caio: de
+cada 10 análises, poucas encontram defeito. Nas que **não** encontram, hoje
+a pessoa saía de mãos vazias — e é exatamente ali que a informação vale
+mais e não custa venda nenhuma. Então:
+
+- `houve_achado: false` → informa as alternativas no resumo.
+- Havendo achado → **proibido** informar. Ao lado de um vício real, oferecer
+  desconto por adesão empurra a pessoa a abrir mão de um direito que ela tem.
+
+Não confundir esse grupo com **direito que reforça a defesa**, que entra
+sempre: na Energia, o pedido de cópia integral do processo (art. 598 §4º, 5
+dias úteis — é onde memória de cálculo e critério de período aparecem) e o
+efeito suspensivo da Ouvidoria (art. 325 §6º e art. 422). Esses não
+competem com a peça paga; aumentam o valor dela.
 
 ## Dois defeitos que se repetem (reconhecer de longe)
 
