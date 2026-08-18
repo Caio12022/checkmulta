@@ -249,3 +249,42 @@ observação no resumo, nunca como achado nem como bloqueio.
 Antes de replicar a trava de prazo em Procon e Vigilância, verificar caso
 a caso se o prazo é preclusivo — aplicar a regra do Trânsito onde ela não
 cabe trava caso legítimo.
+
+## Base jurídica no NotebookLM (camada de consulta)
+
+Existe um MCP do NotebookLM ligado ao ambiente (ponte em Docker no PC do
+Caio, exposta por Tailscale Funnel). A ideia é guardar lá o material
+jurídico bruto — CTB, resoluções CONTRAN, CDC, legislação sanitária,
+resoluções ANEEL, lei ambiental, jurisprudência, modelos — e **consultar
+antes de mexer em prompt**, em vez de carregar documento inteiro no meu
+contexto. O NotebookLM faz recuperação e síntese; eu recebo só o trecho
+relevante e a referência.
+
+Os notebooks são um por vertical, espelhando `prompts/*.ts`, mais um
+transversal para o que se repete entre elas (nulidade formal, prescrição,
+devido processo, competência):
+
+```
+CheckMulta — Trânsito | Procon | Vigilância Sanitária
+CheckMulta — Energia (TOI) | IBAMA | Transversal
+```
+
+Um notebook por vertical em vez de um só gigante porque a recuperação
+degrada quando 5 domínios jurídicos diferentes disputam a mesma busca —
+e porque é assim que o projeto já é pensado.
+
+Três limites que valem mais que a economia:
+
+1. **Isso é camada de desenvolvimento, não de produto.** O runtime do
+   Check Multa continua no Gemini. O NotebookLM não entra em nenhuma rota
+   `/api/*`, não substitui `validarDefesa()` e não vira dependência da
+   análise ou da defesa. Se a ponte cair, o produto não sente.
+2. **Resposta do NotebookLM não é fonte oficial.** Ele sintetiza as fontes
+   que estão lá dentro, e sintetizar é onde nasce alucinação de citação —
+   exatamente o risco contra o qual a lista fechada de `prompts/validador.ts`
+   foi construída. Serve para me apontar *onde procurar*; o texto que vai
+   virar prompt ou artigo ainda precisa ser conferido contra a norma.
+   Mesma régua da auditoria de citação legal e da checagem dos links de
+   protocolo.
+3. **Notebook vazio não economiza nada.** A economia só aparece depois de
+   povoado; enquanto estiver vazio, consultar é custo puro.
