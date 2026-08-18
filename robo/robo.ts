@@ -18,7 +18,7 @@ import { tmpdir } from "os";
 import { join } from "path";
 import sharp from "sharp";
 import { validarArtigoBlog, gerarComRetry, type ViolacaoDefesa } from "../prompts/validador";
-import { gerarImagemArtigoCloudflare } from "../prompts/imagem";
+import { gerarDescricaoVisual, gerarImagemArtigoCloudflare } from "../prompts/imagem";
 
 // ============================================================
 // CONFIGURAÇÃO - você pode ajustar estas listas quando quiser
@@ -454,9 +454,14 @@ async function produzirArtigo(
   if (violacoesLegais.length === 0 && CLOUDFLARE_ACCOUNT_ID && CLOUDFLARE_API_TOKEN) {
     try {
       console.log("  Gerando imagem de capa...");
+      const cena = await gerarDescricaoVisual(ai, {
+        tema: pauta.tema,
+        categoria: pauta.categoria,
+        vertical: VERTICAL_LABEL,
+      });
       const imagem = await gerarImagemArtigoCloudflare(
         { accountId: CLOUDFLARE_ACCOUNT_ID, apiToken: CLOUDFLARE_API_TOKEN },
-        { tema: pauta.tema, categoria: pauta.categoria, vertical: VERTICAL_LABEL }
+        cena
       );
       const comprimida = await comprimirImagem(imagem.bytes);
       const caminhoImagem = `${PASTA_IMAGENS}/${slug}.jpg`;
