@@ -73,6 +73,7 @@ O modelo de imagem que vai ler isso é rápido e barato: ele ignora prompt compr
 - UMA frase só, curta (no máximo ~20 palavras em inglês). Sem frase secundária, sem "in the background".
 - Pode ser um close-up OU um plano mais aberto (paisagem/ambiente) - escolha o que deixar o tema mais óbvio.
 - NÃO inclua nenhum objeto que normalmente tem texto/logo/tela nele (placa de trânsito, placa de veículo, faixa, cartaz, papel, documento, e também qualquer aparelho com tela digital, display, botão com legenda ou marca visível) - descreva a cena por outro ângulo que não precise desses objetos.
+- Se aparecer veículo, NÃO descreva o carro inteiro de frente ou de trás (isso sempre desenha placa e logo da marca) - descreva um ângulo, recorte ou parte que não inclua a área da placa (ex: lateral, de perto, iluminação, movimento borrado, uma peça específica).
 - Pessoas podem aparecer normalmente, de frente ou de qualquer ângulo - não precisa esconder rosto.
 
 Responda APENAS com a frase da cena em inglês, sem aspas, sem introdução.`;
