@@ -12,6 +12,47 @@ export interface ArtigoIbama {
 
 export const artigosIbama: ArtigoIbama[] = [
   {
+    slug: "conversao-de-multa-ambiental-do-ibama-como-solicitar-o-beneficio",
+    titulo: "Conversão de multa ambiental do IBAMA: como solicitar o benefício",
+    descricao: "Entenda como converter a multa simples do IBAMA em serviços de recuperação ambiental. Saiba os critérios legais e a importância de analisar seu auto.",
+    categoria: "Alternativas",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🌿",
+    imagemBg: "from-emerald-50 to-green-50",
+    palavrasChave: ["conversão de multa IBAMA", "serviços de recuperação ambiental", "defesa auto de infração IBAMA"],
+    conteudo: `## Entendendo a conversão de multa ambiental
+
+Receber um auto de infração ambiental do IBAMA gera preocupação imediata, especialmente devido aos valores elevados das multas. No entanto, a legislação federal prevê mecanismos que permitem ao autuado, pessoa física ou jurídica, substituir o pagamento pecuniário pela execução direta de serviços de preservação, melhoria e recuperação da qualidade do meio ambiente. Este instrumento, conhecido como conversão de multa, está previsto no art. 72, § 4º, da Lei 9.605/1998.
+
+É importante esclarecer que esta possibilidade aplica-se exclusivamente aos autos de infração de competência federal (IBAMA). Fiscalizações realizadas por órgãos estaduais ou municipais possuem legislação própria e não se submetem às regras federais citadas neste artigo. Em casos de autuação estadual ou municipal, é fundamental consultar a norma específica daquele ente federativo.
+
+## O procedimento e a natureza jurídica
+
+A conversão da multa não deve ser confundida com uma anistia ou confissão de culpa, mas sim com uma forma de recomposição ambiental. O pedido de conversão, quando realizado dentro do prazo de defesa (vinte dias conforme o art. 113 do Decreto 6.514/2008), pode suspender o rito de cobrança enquanto se avalia a viabilidade técnica dos projetos propostos.
+
+Antes de optar pela conversão, o autuado deve realizar uma análise criteriosa de todo o procedimento administrativo. O Direito Ambiental Sancionador exige que o processo siga ritos rígidos. Caso existam vícios na lavratura do auto, a defesa pode focar na sua nulidade, com base no art. 53 da Lei 9.784/1999, que determina que a Administração pode anular seus atos eivados de vício de legalidade.
+
+## Pontos de atenção antes da solicitação
+
+1. **Nulidades formais**: Verifique se o auto atende aos requisitos do art. 97 do Decreto 6.514/2008, como a descrição clara e objetiva da infração e a identificação correta do autuado. Vícios insanáveis, conforme o art. 100, § 2º, podem fundamentar pedidos de invalidação do auto.
+2. **Competência**: A repartição de competências entre entes federativos, prevista nos arts. 7º e 17 da LC 140/2011, é um ponto vital. A atuação de um ente incompetente pode gerar a nulidade do processo administrativo.
+3. **Prescrição**: O prazo prescricional para a punibilidade pelo IBAMA é de cinco anos a partir da prática do ato ou cessação da infração, conforme o art. 21 do Decreto 6.514/2008. Além disso, existe a prescrição intercorrente, prevista no art. 21, § 2º, quando o processo permanece paralisado por mais de três anos.
+
+## O papel da defesa técnica
+
+Ao optar pela conversão, o autuado deve apresentar projetos que atendam às exigências técnicas do IBAMA. No entanto, é prudente que, antes de protocolar qualquer pedido, seja feita uma análise completa do auto. Questões como o sobrestamento do prazo durante a fase de conciliação ambiental (art. 97-A, § 1º, do Decreto 6.514/2008) devem ser monitoradas diretamente no sistema ou no auto de infração para que nenhum prazo seja perdido. Ressalta-se que a existência de medidas como embargo ou apreensão exige cumprimento imediato, cabendo à defesa técnica questionar a legalidade de tais medidas pelos meios administrativos ou judiciais adequados, sem autorizar o descumprimento unilateral enquanto vigentes.
+
+Vale ressaltar que a existência de circunstâncias atenuantes (art. 14 da Lei 9.605/1998) pode influenciar a dosimetria da multa antes mesmo da conversão. O contraditório e a ampla defesa, referenciados na formalização do processo pelo art. 96 do Decreto 6.514/2008, são os pilares para garantir que o procedimento respeite os limites legais.
+
+## Conclusão e análise do seu caso
+
+A busca pela conversão é um direito do autuado, mas deve ser feita após uma avaliação estratégica que identifique se o auto é passível de contestação por erros formais, problemas de competência ou prescrição. O que aparenta ser uma multa incontestável pode conter falhas que permitem o questionamento da sanção administrativa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "documentos-indispensaveis-para-sua-defesa-contra-auto-do-ibama",
     titulo: "Documentos indispensáveis para sua defesa contra auto do IBAMA",
     descricao: "Recebeu uma multa do IBAMA? Organize os documentos corretos para sua defesa administrativa. Entenda o que reunir antes de contestar o auto de infração.",
