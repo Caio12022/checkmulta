@@ -34,7 +34,7 @@ const VERTICAL_LABEL = "defesa administrativa de multas de trânsito no Brasil";
 // "Família visual" fixa pra dar identidade entre as imagens de Trânsito
 // (ver PedidoImagemArtigo.motivosVisuais em prompts/imagem.ts).
 const MOTIVOS_VISUAIS =
-  "roads, highways, parking lots, asphalt, streetlights, dashboards, car mirrors, garages, motorcycles, urban streets, night driving";
+  "roads, highways, parking lots, asphalt, streetlights, dashboards, car mirrors, garages, motorcycles, urban streets, night driving, traffic police officers, radar cameras, document checks at the car window";
 
 // Quantos artigos gerar por execução
 const ARTIGOS_POR_EXECUCAO = 1;

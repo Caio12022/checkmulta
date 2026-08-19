@@ -1,8 +1,8 @@
 /**
- * SCRIPT DE TESTE TEMPORÁRIO - valida se, tirando a ação "abordagem" da
- * família visual, as cenas ficam mais específicas/variadas por categoria
- * em vez de sempre convergir pro mesmo clichê. Não comita nada, não mexe
- * na main.
+ * SCRIPT DE TESTE TEMPORÁRIO - valida o equilíbrio: abordagem/radar
+ * volta como opção pros temas que pedem isso, mas sem virar padrão
+ * pros temas que não têm nada a ver (estacionamento, CNH). Não comita
+ * nada, não mexe na main.
  *
  * Apagar este arquivo (e o workflow _test-imagem-blog.yml) depois de
  * aprovado.
@@ -23,9 +23,15 @@ if (!CLOUDFLARE_API_TOKEN) throw new Error("CLOUDFLARE_API_TOKEN não configurad
 const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
 const MOTIVOS_VISUAIS_TRANSITO =
-  "roads, highways, parking lots, asphalt, streetlights, dashboards, car mirrors, garages, motorcycles, urban streets, night driving";
+  "roads, highways, parking lots, asphalt, streetlights, dashboards, car mirrors, garages, motorcycles, urban streets, night driving, traffic police officers, radar cameras, document checks at the car window";
 
 const AMOSTRAS = [
+  {
+    tema: "recurso de multa por excesso de velocidade em rodovia",
+    categoria: "Velocidade",
+    vertical: "defesa administrativa de multas de trânsito no Brasil",
+    motivosVisuais: MOTIVOS_VISUAIS_TRANSITO,
+  },
   {
     tema: "multa por estacionar em frente a garagem",
     categoria: "Estacionamento",
@@ -35,12 +41,6 @@ const AMOSTRAS = [
   {
     tema: "como consultar os pontos da CNH pelo aplicativo",
     categoria: "CNH e Pontos",
-    vertical: "defesa administrativa de multas de trânsito no Brasil",
-    motivosVisuais: MOTIVOS_VISUAIS_TRANSITO,
-  },
-  {
-    tema: "como emitir a segunda via do boleto da multa",
-    categoria: "Pagamento",
     vertical: "defesa administrativa de multas de trânsito no Brasil",
     motivosVisuais: MOTIVOS_VISUAIS_TRANSITO,
   },
