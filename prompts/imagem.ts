@@ -71,7 +71,7 @@ export async function gerarDescricaoVisual(
   pedido: PedidoImagemArtigo
 ): Promise<string> {
   const linhaMotivos = pedido.motivosVisuais
-    ? `\nFamília visual desta vertical (pra manter uma identidade entre os artigos - use como referência de universo, não repita a lista toda): ${pedido.motivosVisuais}\n`
+    ? `\nFamília visual desta vertical (só pano de fundo/clima - tipo de lugar, objetos comuns, paleta - NÃO é um roteiro de cena fixo, não repita sempre a mesma ação): ${pedido.motivosVisuais}\n`
     : "";
 
   const prompt = `You are a photo art director briefing a photographer for ONE editorial photo to illustrate a Brazilian legal-defense article.
@@ -80,7 +80,9 @@ Tema do artigo (em português): "${pedido.tema}"
 Categoria: "${pedido.categoria}"
 Contexto/vertical: ${pedido.vertical}
 ${linhaMotivos}
-Descreva, em inglês, UMA cena real e concreta que um fotógrafo poderia literalmente fotografar pra ilustrar esse tema especificamente. A cena tem que comunicar o tema sozinha, sem legenda - alguém olhando a foto tem que reconhecer do que se trata. Evite símbolos vagos/indiretos (ex: só um sapato no chão) quando o tema pede pra mostrar a coisa em si (ex: a área desmatada, as árvores cortadas, o veículo, o radar, a autoridade abordando alguém). Fique à vontade pra imaginar a cena natural do tema - gente, viatura, abordagem, pátio, o que fizer sentido - sem sair do assunto do artigo.
+Descreva, em inglês, UMA cena real e concreta que um fotógrafo poderia literalmente fotografar pra ilustrar esse tema especificamente. A cena tem que comunicar o tema sozinha, sem legenda - alguém olhando a foto tem que reconhecer do que se trata. Evite símbolos vagos/indiretos (ex: só um sapato no chão) quando o tema pede pra mostrar a coisa em si (ex: a área desmatada, as árvores cortadas, o veículo, o radar). Fique à vontade pra imaginar a cena natural do tema - gente, viatura, pátio, documento, o que fizer sentido - sem sair do assunto do artigo.
+
+IMPORTANTE: não caia sempre no mesmo clichê (ex: "guarda abordando motorista na janela") só porque é uma cena dramática. Cada tema pede uma cena DIFERENTE e específica dele: estacionamento mostra o carro estacionado errado, CNH mostra algo de carteira/pontuação, pagamento mostra algo de boleto/pagamento (sem texto legível), equipamento mostra o equipamento em si. Um princípio jurídico abstrato pode virar o auto de infração de perto (sem texto legível) ou o carro parado sozinho - não precisa forçar uma pessoa/abordagem em todo tema.
 
 O modelo de imagem que vai ler isso é rápido e barato: ele ignora prompt comprido e perde detalhe se a frase for longa. Por isso:
 - UMA frase só, curta (no máximo ~20 palavras em inglês). Sem frase secundária, sem "in the background".
