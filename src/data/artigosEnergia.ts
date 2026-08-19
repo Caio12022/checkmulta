@@ -12,6 +12,49 @@ export interface ArtigoEnergia {
 
 export const artigosEnergia: ArtigoEnergia[] = [
   {
+    slug: "pericia-do-medidor-o-prazo-de-30-dias-para-o-relatorio-da-distribuidora",
+    titulo: "Perícia do Medidor: O prazo de 30 dias para o relatório da distribuidora",
+    descricao: "Entenda o prazo legal de 30 dias para o relatório de inspeção do medidor após um TOI e como contestar cobranças indevidas de energia. Verifique grátis.",
+    categoria: "Perícia do Medidor",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["prazo relatório perícia medidor", "contestação TOI energia", "recuperação de consumo energia", "irregularidade medidor"],
+    conteudo: `## O que é o relatório de inspeção e por que ele importa
+
+Ao receber um Termo de Ocorrência e Inspeção (TOI) ou uma notificação de recuperação de consumo, o consumidor se depara com um processo técnico complexo. A distribuidora de energia elétrica, ao suspeitar de irregularidades no medidor, realiza a substituição do aparelho e o envia para perícia. O relatório técnico resultante dessa análise é o documento que fundamenta, ou não, a cobrança retroativa enviada posteriormente.
+
+É fundamental compreender que a emissão desse relatório está sujeita a prazos e procedimentos rigorosos previstos na Resolução ANEEL nº 1.000/2021. O descumprimento dessas regras pode fragilizar a legalidade da cobrança imposta ao consumidor.
+
+## O prazo legal de 30 dias
+
+Conforme estabelecido pelos arts. 250 e 592 da Resolução ANEEL nº 1.000/2021, o relatório de perícia do medidor em laboratório deve ser emitido em até 30 dias contados da solicitação do consumidor. É um erro comum acreditar que este prazo conta a partir de outra data; a contagem é específica e vinculada ao pedido formal da perícia.
+
+Caso a distribuidora ultrapasse esse período sem apresentar o laudo técnico conclusivo, a validade da prova material pode ser questionada. O direito do consumidor de acompanhar o processo reforça a necessidade de transparência e o cumprimento estrito desses prazos.
+
+## A falha na demonstração do período da irregularidade
+
+Um dos pontos críticos nas notificações de recuperação de consumo é a determinação do período em que a suposta irregularidade ocorreu. Muitas distribuidoras aplicam o teto máximo de 36 ciclos, previsto no art. 596, como se este fosse o período padrão de cobrança. Contudo, o art. 596 estabelece que, quando o período de duração da irregularidade não é identificável por meio técnico ou histórico de consumo, a cobrança deve se limitar a 6 ciclos anteriores à constatação, sendo 36 ciclos apenas o teto máximo legal.
+
+A imposição do teto sem a devida demonstração técnica pode configurar cobrança indevida. De acordo com o art. 323, faturamentos realizados a maior, independentemente de dolo ou culpa da distribuidora, autorizam a revisão de até 60 ciclos e a possibilidade de devolução em dobro da quantia recebida indevidamente.
+
+## O conjunto probatório exigido
+
+Para que o processo de recuperação seja válido, a distribuidora deve seguir as providências cumulativas de caracterização da irregularidade descritas no art. 590 da Resolução ANEEL nº 1.000/2021. Além disso, nos termos do art. 591, a empresa possui deveres específicos na emissão do TOI, como a entrega do documento com recibo e a informação clara sobre o direito à perícia metrológica.
+
+Os critérios de cálculo da receita a recuperar devem observar estritamente o disposto no art. 595. Se esses passos não forem seguidos, a base probatória da empresa torna-se insuficiente. O Código de Defesa do Consumidor, aplicado à relação entre o usuário e a concessionária, prevê a proteção do consumidor contra práticas abusivas, cabendo à distribuidora demonstrar, de forma inequívoca e dentro dos prazos regulamentares, a veracidade da irregularidade apontada.
+
+## Como proceder diante da cobrança
+
+Se você recebeu um TOI ou uma notificação de cobrança, não negligencie o prazo para apresentar a sua defesa. O documento enviado pela distribuidora contém informações sobre o prazo para a contestação administrativa, que deve ser verificado diretamente na notificação recebida. Mantenha o pagamento das suas faturas mensais de consumo regular para evitar a interrupção do fornecimento, enquanto discute a legitimidade do débito retroativo.
+
+No CheckMulta, você pode enviar o TOI ou a notificação de recuperação de consumo e receber uma análise que aponta se a cobrança apresenta falha capaz de fundamentar uma contestação.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "o-prazo-de-30-dias-para-o-relatorio-de-inspecao-do-medidor-de-energia",
     titulo: "O prazo de 30 dias para o relatório de inspeção do medidor de energia",
     descricao: "Entenda o prazo legal de 30 dias para a emissão do relatório de inspeção após o TOI e como contestar cobranças indevidas de recuperação de consumo.",
