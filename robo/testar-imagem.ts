@@ -31,22 +31,6 @@ const AMOSTRAS = [
       "retail stores, shop counters, product shelves, invoices, cash registers, small business storefronts, office desks, customer service, consumer goods",
   },
   {
-    nome: "vigilancia",
-    tema: "auto de infração por armazenamento inadequado de alimentos",
-    categoria: "Vícios Formais",
-    vertical: "defesa administrativa de autuações de vigilância sanitária no Brasil (estabelecimentos autuados)",
-    motivosVisuais:
-      "commercial kitchens, restaurants, food storage, refrigerators, food packaging, hygiene, gloves, health inspection, restaurant counters",
-  },
-  {
-    nome: "energia",
-    tema: "aviso de irregularidade no medidor de energia e o que fazer",
-    categoria: "Perícia e Contestação",
-    vertical: "defesa administrativa de autuações de energia elétrica (TOI) no Brasil",
-    motivosVisuais:
-      "power lines, utility poles, electricity meters, electrical panels, substations, transformers, residential meter boxes, wiring, technicians",
-  },
-  {
     nome: "ibama",
     tema: "embargo de área por suposto desmatamento e como contestar",
     categoria: "Embargo e Interdição",

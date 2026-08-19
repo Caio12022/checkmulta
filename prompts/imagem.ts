@@ -87,7 +87,7 @@ IMPORTANTE: a cena de "guarda abordando motorista" é ótima e bem-vinda quando 
 O modelo de imagem que vai ler isso é rápido e barato: ele ignora prompt comprido e perde detalhe se a frase for longa. Por isso:
 - UMA frase só, curta (no máximo ~20 palavras em inglês). Sem frase secundária, sem "in the background".
 - Pode ser um close-up OU um plano mais aberto (paisagem/ambiente/ação) - escolha o que deixar o tema mais óbvio.
-- Única restrição de objeto: evite objetos cujo ponto principal é texto escrito (placa, cartaz, papel, documento, tela de aparelho com texto) - o resto (veículos, pessoas, uniformes, locais) é livre.
+- Única restrição de objeto: evite objetos cujo ponto principal é texto escrito - isso inclui placa, cartaz, papel, documento, tela de aparelho com texto, e também carimbo, selo, faixa/fita de isolamento com texto, banner (esses tendem a virar um bloco de texto quebrado grande, cobrindo boa parte da imagem, pior que um textinho incidental de fundo). O resto (veículos, pessoas, uniformes, locais, equipamentos sem texto) é livre.
 
 Responda APENAS com a frase da cena em inglês, sem aspas, sem introdução.`;
 
