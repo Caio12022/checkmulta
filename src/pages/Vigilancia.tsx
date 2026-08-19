@@ -28,7 +28,19 @@ declare global {
   }
 }
 
-const PRECO = 79.0;
+// Preço escalonado pelo valor da multa aplicada — vigilância sanitária vai
+// de auto de pequeno comércio a interdição de indústria, e preço fixo
+// cobrava o mesmo dos dois casos.
+const PRECO_BASE = 79.0;
+const PRECO_ALTO = 149.0;
+const LIMITE_VALOR = 5000;
+
+const precoPara = (a: Analise | null): number =>
+  a && typeof a.valor_multa === "number" && a.valor_multa > LIMITE_VALOR
+    ? PRECO_ALTO
+    : PRECO_BASE;
+
+const formatarPreco = (v: number) => v.toFixed(2).replace(".", ",");
 
 const track = (gtagEvent: string, clarityEvent: string, params?: Record<string, any>) => {
   if (typeof window === "undefined") return;
@@ -37,7 +49,7 @@ const track = (gtagEvent: string, clarityEvent: string, params?: Record<string, 
 };
 // ─── DISPARO DA VENDA ──────────────────────────────────────────────────────
 // A trava por transaction_id evita contagem dupla em recarga de página.
-const fireCompraVigilancia = (transactionId: string) => {
+const fireCompraVigilancia = (transactionId: string, preco: number) => {
   if (typeof window === "undefined") return;
   const chave = `vigilancia_purchase_${transactionId}`;
   try {
@@ -48,9 +60,9 @@ const fireCompraVigilancia = (transactionId: string) => {
   }
   track("purchase", "vigilancia_5_pagamento_confirmado", {
     transaction_id: transactionId,
-    value: PRECO,
+    value: preco,
     currency: "BRL",
-    items: [{ item_id: "defesa_vigilancia", item_name: "Defesa Vigilancia Sanitaria", price: PRECO, quantity: 1 }],
+    items: [{ item_id: "defesa_vigilancia", item_name: "Defesa Vigilancia Sanitaria", price: preco, quantity: 1 }],
   });
 };
 // ─── TIPOS ─────────────────────────────────────────────────────────────────
@@ -69,6 +81,7 @@ interface Analise {
   numero_processo: string;
   empresa_autuada: string;
   prazo_identificado: string;
+  valor_multa: number | null;
   achados: Achado[];
   quantidade_criticos: number;
   quantidade_atencao: number;
@@ -337,7 +350,7 @@ useEffect(() => {
           setIsPaid(true);
           localStorage.setItem("vigilancia_paid_status", "true");
           localStorage.removeItem("vigilancia_pending_payment");
-          fireCompraVigilancia(paymentId.toString());
+          fireCompraVigilancia(paymentId.toString(), precoPara(analise));
           // Se voltou numa página "limpa" (recarga/aba nova), recupera a análise
           // do localStorage para que a defesa seja gerada.
           if (!analise) {
@@ -650,6 +663,7 @@ useEffect(() => {
 
   const handleCheckout = async () => {
     if (!analise) return;
+    const preco = precoPara(analise);
     setIsCheckoutLoading(true);
     setCheckoutError(null);
     try {
@@ -658,7 +672,7 @@ useEffect(() => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: "comprador@checkmulta.com.br",
-          valor: PRECO,
+          valor: preco,
           descricao: "Defesa Vigilancia Sanitaria - CheckMulta",
         }),
       });
@@ -668,7 +682,7 @@ useEffect(() => {
       }
       const data = await response.json();
       if (response.ok && data.qr_code) {
-        track("begin_checkout", "vigilancia_4_checkout_iniciado", { value: PRECO, currency: "BRL" });
+        track("begin_checkout", "vigilancia_4_checkout_iniciado", { value: preco, currency: "BRL" });
         setPaymentId(data.id);
         try {
           localStorage.setItem("vigilancia_pending_payment", JSON.stringify({
@@ -778,6 +792,7 @@ useEffect(() => {
   };
 
   const viabilidade = calcularViabilidade(analise);
+  const preco = precoPara(analise);
 
   // ─── RENDER ───────────────────────────────────────────────────────────────
   return (
@@ -1748,7 +1763,7 @@ useEffect(() => {
                       <>
                       <div className="rounded-lg border border-red-200 bg-red-50/50 p-5 text-left">
                         <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-slate-900 sm:text-lg">
-                          <Scale className="h-5 w-5 text-red-600" /> O que você recebe por R$ 79,00
+                          <Scale className="h-5 w-5 text-red-600" /> O que você recebe por R$ {formatarPreco(preco)}
                         </h3>
                         <ul className="space-y-3 text-[13px] text-slate-700 sm:text-[15px]">
                           <li className="flex items-start gap-3">
@@ -1773,7 +1788,7 @@ useEffect(() => {
                       <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
                         <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
                         <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
-                          <strong className="font-semibold">Por que vale a pena:</strong> a elaboração de uma defesa administrativa por advogado costuma custar a partir de R$ 600. Aqui, são R$ 79,00. E apenas quando encontramos falha concreta. A peça é fundamentada no legislação sanitária aplicável; a decisão final cabe ao órgão julgador. Confira o prazo e a forma de protocolo junto ao órgão de vigilância sanitária emissor.
+                          <strong className="font-semibold">Por que vale a pena:</strong> a elaboração de uma defesa administrativa por advogado costuma custar a partir de R$ 600. Aqui, são R$ {formatarPreco(preco)}. E apenas quando encontramos falha concreta. A peça é fundamentada no legislação sanitária aplicável; a decisão final cabe ao órgão julgador. Confira o prazo e a forma de protocolo junto ao órgão de vigilância sanitária emissor.
                         </p>
                       </div>
 
@@ -1793,7 +1808,7 @@ useEffect(() => {
                           {isCheckoutLoading ? <Loader2 className="h-6 w-6 flex-shrink-0 animate-spin" /> : <Scale className="h-6 w-6 flex-shrink-0" />}
                           <span>{isCheckoutLoading ? "Gerando PIX..." : "Gerar minha defesa agora"}</span>
                         </div>
-                        <span className="mt-1 text-sm font-normal text-red-50">Pagamento único · R$ 79,00 · Entrega imediata</span>
+                        <span className="mt-1 text-sm font-normal text-red-50">Pagamento único · R$ {formatarPreco(preco)} · Entrega imediata</span>
                       </button>
                       <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
                         <p className="mb-1 text-[11px] font-bold uppercase tracking-wide text-amber-900 sm:text-xs">
@@ -1974,7 +1989,7 @@ useEffect(() => {
                     <span className="text-xs text-slate-400">Pagamento seguro · Criptografia SSL</span>
                   </div>
                   <div>
-                    <h3 className="text-3xl font-bold tracking-tight text-slate-900">R$ 79,00</h3>
+                    <h3 className="text-3xl font-bold tracking-tight text-slate-900">R$ {formatarPreco(preco)}</h3>
                     <p className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500">Defesa administrativa</p>
                     <p className="mt-1.5 text-[11px] text-slate-400">CheckMulta Tecnologia. CNPJ 63.524.338/0001-62</p>
                   </div>
