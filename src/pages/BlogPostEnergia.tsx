@@ -358,6 +358,16 @@ export default function BlogPostEnergia() {
           <span className="text-slate-400">{artigo.categoria}</span>
         </nav>
 
+        {/* Capa do artigo (opcional - só artigos novos têm) */}
+        {artigo.imagemUrl && (
+          <img
+            src={artigo.imagemUrl}
+            alt=""
+            className="mb-6 aspect-video w-full rounded-xl object-cover"
+            loading="eager"
+          />
+        )}
+
         {/* Cabeçalho do artigo */}
         <div className="mb-8 border-l-4 border-emerald-500 pl-5">
           <span className="mb-2 block text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
@@ -452,13 +462,22 @@ export default function BlogPostEnergia() {
                   to={`/energia/blog/${rel.slug}`}
                   className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
                 >
-                  <div
-                    className={`flex h-32 items-center justify-center bg-gradient-to-br ${rel.imagemBg}`}
-                  >
-                    <span className="text-4xl opacity-60">
-                      {rel.imagemEmoji}
-                    </span>
-                  </div>
+                  {rel.imagemUrl ? (
+                    <img
+                      src={rel.imagemUrl}
+                      alt=""
+                      className="h-32 w-full object-cover"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div
+                      className={`flex h-32 items-center justify-center bg-gradient-to-br ${rel.imagemBg}`}
+                    >
+                      <span className="text-4xl opacity-60">
+                        {rel.imagemEmoji}
+                      </span>
+                    </div>
+                  )}
 
                   <div className="flex flex-1 flex-col p-5">
                     <span className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
