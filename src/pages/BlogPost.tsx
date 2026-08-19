@@ -503,6 +503,16 @@ export default function BlogPost() {
           </Link>
         </nav>
 
+        {/* CAPA DO ARTIGO (opcional - só artigos novos têm) */}
+        {artigo.imagemUrl && (
+          <img
+            src={artigo.imagemUrl}
+            alt=""
+            className="mb-6 aspect-video w-full rounded-xl object-cover"
+            loading="eager"
+          />
+        )}
+
         {/* CABEÇALHO DO ARTIGO */}
         <div
           className="mb-8 border-l-4 pl-5"
@@ -669,12 +679,21 @@ export default function BlogPost() {
                     to={`/blog/${a.slug}`}
                     className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
                   >
-                    <div
-                      className="flex h-32 items-center justify-center"
-                      style={{ backgroundColor: corA.fundoBadge }}
-                    >
-                      <span className="text-4xl opacity-60">{a.imagemEmoji}</span>
-                    </div>
+                    {a.imagemUrl ? (
+                      <img
+                        src={a.imagemUrl}
+                        alt=""
+                        className="h-32 w-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div
+                        className="flex h-32 items-center justify-center"
+                        style={{ backgroundColor: corA.fundoBadge }}
+                      >
+                        <span className="text-4xl opacity-60">{a.imagemEmoji}</span>
+                      </div>
+                    )}
 
                     <div className="flex flex-1 flex-col p-5">
                       <span
