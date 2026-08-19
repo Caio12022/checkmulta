@@ -1251,6 +1251,13 @@ const prompt = promptGenerateDefenseVigilancia(dados);
          Agora todo achado passa pelas mesmas travas do Procon e da Vigilância:
          o trecho citado precisa existir na transcrição, os números precisam
          bater, e a citação legal precisa estar na lista fechada da vertical. */
+      console.log("DEBUG_IBAMA_ILEGIVEL", JSON.stringify({
+        orgao_autuante: parsed.orgao_autuante,
+        numero_auto: parsed.numero_auto,
+        autuado: parsed.autuado,
+        transcricao_len: (parsed.transcricao_documento || "").length,
+        transcricao_head: (parsed.transcricao_documento || "").slice(0, 300),
+      }));
       const auditoria = validarAnaliseJSON(parsed, "ibama");
       if (auditoria.ilegivel) {
         return res.json({ result: "documento_ilegivel" });
