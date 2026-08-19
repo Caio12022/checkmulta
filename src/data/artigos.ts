@@ -12,6 +12,230 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "parar-sobre-a-faixa-de-pedestres-como-recorrer",
+    titulo: "Parar sobre a faixa de pedestres: como recorrer?",
+    descricao: "Parou o carro sobre a faixa de pedestres e foi multado? Entenda os riscos dessa infração e veja como recorrer. Analise sua multa gratuitamente agora.",
+    categoria: "Comportamento no Trânsito",
+    tempoLeitura: "4 min",
+    imagemEmoji: "🚶",
+    imagemBg: "from-amber-600 to-amber-800",
+    conteudo: `## O que diz a lei sobre a faixa de pedestres
+
+No trânsito urbano, a faixa de pedestres é um dos dispositivos mais importantes para garantir a segurança dos transeuntes. O Código de Trânsito Brasileiro determina que o condutor deve sempre priorizar o pedestre e garantir que ele possa realizar a travessia com total segurança. Quando um motorista interrompe a marcha do veículo e imobiliza o automóvel sobre a faixa, ele está cometendo uma infração de natureza grave que gera penalidades administrativas.
+
+É importante esclarecer que essa infração ocorre tanto pelo desrespeito direto ao pedestre quanto pela simples imobilização do veículo no local, mesmo que não haja ninguém atravessando no exato momento. O espaço é exclusivo para a circulação de pessoas e a legislação é rigorosa quanto ao seu uso por veículos automotores.
+
+## Por que essa multa é tão frequente?
+
+Muitos motoristas acabam cometendo essa infração por distração, especialmente em cruzamentos movimentados. Situações comuns incluem:
+
+* **Fila no trânsito:** O motorista avança sem verificar se há espaço suficiente para o veículo seguir, ficando preso exatamente em cima da faixa.
+* **Frenagem brusca:** Ao notar o sinal amarelo ou o semáforo fechando, o condutor freia de maneira tardia, parando sobre a demarcação.
+* **Falta de atenção:** O condutor não observa a sinalização horizontal durante manobras de conversão ou acesso a vias transversais.
+
+Independente da intenção do motorista, a fiscalização pode ocorrer via agentes de trânsito ou por meio de monitoramento eletrônico, que tem se tornado cada vez mais comum nas grandes metrópoles brasileiras.
+
+## É possível recorrer dessa multa?
+
+Muitos condutores acreditam que, uma vez autuados, não há o que fazer além de pagar a multa. No entanto, o direito à ampla defesa é garantido a todo cidadão. Assim como qualquer outra penalidade administrativa, a multa por parar sobre a faixa de pedestres deve seguir procedimentos legais rigorosos por parte do órgão autuador.
+
+Ao analisar um auto de infração, é necessário verificar pontos como:
+
+* **Consistência dos dados:** Informações incorretas sobre o veículo ou local podem tornar o auto inconsistente.
+* **Sinalização:** Se a faixa estiver apagada, sem visibilidade ou em desconformidade com os padrões estabelecidos, a multa pode ser contestada.
+* **Tipificação do erro:** O agente de trânsito deve descrever a situação de forma precisa. Erros na descrição do fato podem ser argumentos válidos em um recurso.
+
+## Como proceder após a autuação?
+
+Ao receber a notificação, o primeiro passo é manter a calma e não realizar o pagamento imediato se você acredita que houve alguma falha no procedimento. O pagamento antecipado não impede a defesa, mas o ideal é analisar cuidadosamente a notificação e verificar se todas as exigências legais foram cumpridas pela autoridade de trânsito.
+
+Lembre-se que o processo de defesa possui etapas distintas, passando pela Defesa Prévia e pelos recursos em instâncias superiores conforme o previsto na legislação. Cada fase é uma oportunidade de expor os argumentos técnicos que demonstram a nulidade da infração.
+
+Se você deseja entender melhor as chances de sucesso no seu caso, a tecnologia pode ser sua grande aliada. É possível realizar uma análise do auto de infração para identificar se há falhas capazes de anular a multa.`,
+    palavrasChave: ["multa faixa de pedestres", "recorrer multa de trânsito", "infrações de trânsito", "defesa de multa"],
+  },
+
+  {
+    slug: "multa-de-radar-em-pista-molhada-como-recorrer",
+    titulo: "Multa de Radar em Pista Molhada: Como Recorrer",
+    descricao: "Recebeu uma multa de radar em dia de chuva? Entenda se a condição da pista influencia a validade da infração e saiba como contestar. Analise sua multa grátis.",
+    categoria: "Velocidade",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🌧️",
+    imagemBg: "from-slate-600 to-slate-800",
+    conteudo: `## Multa de radar em dia de chuva: existe perdão?
+
+Dirigir sob chuva forte é um dos maiores desafios para qualquer motorista. Além da redução da visibilidade e do risco de aquaplanagem, surge uma dúvida recorrente entre os condutores: será que os radares são calibrados de forma diferente quando a pista está molhada? E, se eu for multado nessas condições, existe alguma brecha legal para recorrer?
+
+É comum o pensamento de que, em condições climáticas adversas, o condutor teria uma margem maior de velocidade ou que a autuação seria injusta. No entanto, a legislação de trânsito é clara ao estabelecer que as normas de velocidade máxima permitida são fixas, independentemente do clima. Mas isso não significa que toda multa aplicada nessas situações seja inquestionável.
+
+## O que a lei diz sobre a velocidade em dias de chuva
+
+O Código de Trânsito Brasileiro estabelece que o condutor deve sempre adaptar sua velocidade às condições da via e do tempo. Isso significa que, em caso de chuva, o motorista tem a obrigação de reduzir a velocidade para garantir a própria segurança e a dos demais usuários. O radar, por sua vez, registra a velocidade instantânea do veículo naquele ponto específico.
+
+O ponto principal que muitos motoristas ignoram é que a sinalização de trânsito prevalece sobre qualquer percepção pessoal de segurança. Se a placa indica uma velocidade máxima, ela deve ser respeitada, mesmo com pista molhada. Contudo, existem aspectos técnicos envolvendo a operação dos equipamentos de fiscalização que podem abrir margem para a defesa.
+
+## Falhas comuns na autuação
+
+Mesmo que a lei exija prudência, o Estado também precisa cumprir rigorosamente as normas técnicas para que a multa tenha validade. Muitas vezes, a infração registrada por um radar em dia de chuva pode apresentar inconsistências que tornam a autuação passível de anulação. Entre os pontos que podem ser verificados estão:
+
+* **Aferição do equipamento:** Os radares precisam passar por verificações periódicas obrigatórias junto aos órgãos competentes. Se o equipamento estiver com o certificado vencido no momento da infração, a multa é passível de anulação.
+* **Sinalização precária:** O local da infração deve estar devidamente sinalizado. Se a sinalização estiver encoberta por vegetação, ou se as placas de velocidade estiverem danificadas ou ilegíveis devido à própria condição climática, a multa pode ser contestada.
+* **Erros formais no auto de infração:** Erros de preenchimento, falta de dados obrigatórios do veículo ou inconsistência no local e hora do registro são causas frequentes de cancelamento de multas.
+* **Condições do radar:** Embora raros, existem casos onde a interferência da chuva causa falhas no sensor do radar, gerando uma medição errônea da velocidade do veículo.
+
+## Como proceder ao receber uma multa de radar
+
+Ao ser notificado, o primeiro passo é manter a calma. Não pague a multa imediatamente caso pretenda recorrer, pois o pagamento pode dificultar a restituição de valores em caso de provimento do recurso.
+
+O processo de defesa exige atenção aos prazos estabelecidos na legislação. A Notificação de Autuação é o momento em que você deve apresentar a sua defesa prévia, apontando as falhas técnicas encontradas no documento ou na operação da fiscalização. É fundamental utilizar argumentos técnicos e embasados nas normas de trânsito vigentes, evitando narrativas subjetivas sobre o clima ou a pressa do dia a dia, que raramente são aceitas pelas Juntas Administrativas de Recursos de Infrações.
+
+## A importância da análise técnica
+
+Recorrer de uma multa exige mais do que apenas escrever uma justificativa. É necessário identificar vícios formais ou técnicos que invalidem a autuação. Muitas multas são anuladas simplesmente porque o órgão autuador não seguiu o rito processual correto ou porque o equipamento não estava operando dentro das normas exigidas pelos órgãos de metrologia.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Nossa plataforma especializada identifica os pontos críticos da sua autuação, permitindo que você tome uma decisão consciente sobre a viabilidade de recorrer, economizando tempo e evitando o registro de pontuação em sua Carteira Nacional de Habilitação.`,
+    palavrasChave: ["multa de radar", "pista molhada", "recurso de multa", "excesso de velocidade"],
+  },
+
+  {
+    slug: "parou-na-faixa-de-pedestres-veja-como-recorrer",
+    titulo: "Parou na faixa de pedestres? Veja como recorrer",
+    descricao: "Recebeu uma multa por parar sobre a faixa de pedestres? Entenda as regras, os riscos e como buscar a anulação. Analise sua multa gratuitamente aqui.",
+    categoria: "Comportamento no Trânsito",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🚶",
+    imagemBg: "from-amber-600 to-amber-800",
+    conteudo: `## O perigo invisível: Parar sobre a faixa de pedestres
+
+No cotidiano caótico das grandes cidades brasileiras, é muito comum que condutores acabem avançando sobre a faixa de pedestres ao tentar realizar uma conversão ou durante um congestionamento. O que muitos motoristas ignoram é que essa prática é considerada uma infração prevista na legislação de trânsito vigente.
+
+A faixa de pedestres é um espaço sagrado de segurança. Quando o veículo interrompe essa passagem, ele não apenas ignora a prioridade do pedestre, mas também força o transeunte a contornar o carro, expondo-o a um risco desnecessário ao colocá-lo em meio ao fluxo de veículos fora da zona segura.
+
+## Por que essa infração é aplicada?
+
+O Código de Trânsito Brasileiro determina que a parada sobre a faixa destinada a pedestres configura comportamento proibido. A lógica é simples: o espaço foi desenhado para garantir que pessoas circulem livremente sem dividir o mesmo plano com máquinas pesadas. Mesmo que o motorista tenha parado por apenas alguns segundos, a infração é caracterizada pelo simples fato de o veículo estar posicionado sobre a área sinalizada.
+
+## É possível recorrer?
+
+Muitos condutores acreditam que a autuação é sempre incontestável. No entanto, o processo administrativo de trânsito é baseado em normas rígidas. Para que a multa seja válida, o agente de trânsito ou o equipamento de fiscalização deve seguir protocolos estritos. Qualquer erro formal na lavratura do auto de infração pode ser o caminho para o cancelamento da penalidade.
+
+Alguns pontos que costumam ser observados em defesas consistentes incluem:
+
+* **Inconsistências no preenchimento:** Erros como marca, cor ou placa do veículo divergem da realidade.
+* **Sinalização precária:** Se a faixa de pedestres estiver apagada ou mal conservada, a autuação pode ser questionada, pois o condutor precisa de clareza para cumprir a norma.
+* **Ausência de clareza na autuação:** O agente deve descrever com precisão o ocorrido, e uma descrição genérica pode abrir margem para a anulação.
+* **Situações de emergência:** Em casos onde a parada foi necessária para evitar um acidente maior ou por determinação direta de uma autoridade de trânsito, a defesa ganha contornos mais técnicos.
+
+## O impacto no seu bolso e na carteira
+
+É importante lembrar que essa infração gera pontuação no prontuário do condutor e o pagamento de valores que impactam o orçamento familiar. Além disso, o acúmulo de pontos pode levar à suspensão do direito de dirigir. Por isso, conhecer os seus direitos e as possibilidades de recurso é essencial para quem depende do carro para trabalhar ou para o transporte da família.
+
+## Como proceder após a autuação?
+
+Assim que o condutor recebe a Notificação de Autuação, inicia-se um prazo legal para a apresentação de uma defesa prévia. Este é o momento ideal para verificar se o auto de infração foi preenchido corretamente e se a autoridade de trânsito seguiu todos os trâmites estabelecidos em lei. Recorrer não é apenas um direito, mas uma forma de garantir que o sistema de fiscalização seja justo e que eventuais falhas humanas sejam corrigidas.
+
+Não aceite uma penalidade de forma passiva se houver brechas técnicas que possam favorecer o cancelamento da multa. O processo de defesa exige atenção aos detalhes, mas com a orientação correta, é possível verificar se o seu caso possui chances reais de sucesso.
+
+No CheckMulta, você pode enviar o auto de infração e solicitar uma análise que aponta se há falhas capazes de anular a multa.`,
+    palavrasChave: ["multa faixa de pedestres", "recurso de multa", "CTB", "infrações de trânsito"],
+  },
+
+  {
+    slug: "multa-por-farol-queimado-como-recorrer-e-evitar-pontos",
+    titulo: "Multa por farol queimado: como recorrer e evitar pontos",
+    descricao: "Foi multado por farol queimado? Entenda o que a lei diz, as consequências para sua CNH e como o CheckMulta pode te ajudar a analisar sua autuação de graça.",
+    categoria: "Equipamentos",
+    tempoLeitura: "4 min",
+    imagemEmoji: "💡",
+    imagemBg: "from-yellow-600 to-amber-800",
+    conteudo: `## Entenda a infração por farol queimado
+
+Dirigir com o veículo em mau estado de conservação ou com equipamentos obrigatórios inoperantes é uma situação que gera dores de cabeça constantes para os motoristas brasileiros. Entre as ocorrências mais comuns nas vias urbanas e rodovias está a multa por farol queimado. Muitas vezes, o condutor nem percebe que uma das lâmpadas falhou, sendo surpreendido apenas no momento da abordagem policial.
+
+A legislação de trânsito é clara ao determinar que todos os sistemas de iluminação e sinalização devem estar em perfeito funcionamento. A segurança viária depende da visibilidade mútua entre os usuários da via, e uma lâmpada fundida reduz drasticamente a capacidade de sinalizar manobras ou visualizar obstáculos à noite.
+
+## O que a lei exige dos condutores?
+
+A legislação de trânsito estabelece a obrigatoriedade de manter o veículo em boas condições de uso. Isso inclui, obrigatoriamente, os faróis dianteiros, lanternas traseiras e luzes de freio. Quando um agente de trânsito identifica que um farol está inoperante, entende-se que o condutor negligenciou a manutenção preventiva do veículo.
+
+Vale ressaltar que a infração ocorre não apenas quando o farol está totalmente apagado, mas também quando a intensidade luminosa está comprometida ou quando o sistema apresenta falhas que dificultam a identificação do veículo por terceiros. Manter a manutenção em dia é, antes de tudo, um ato de responsabilidade com a vida.
+
+## Consequências da autuação
+
+Ao ser autuado por essa irregularidade, o condutor fica sujeito a penalidades administrativas que podem afetar diretamente o bolso e a carteira de habilitação. Além da multa, a infração gera o registro de pontos no prontuário do condutor. Em casos mais específicos, onde o veículo é considerado inoperante para o tráfego com segurança, a autoridade pode ainda determinar a retenção do veículo para regularização.
+
+É importante destacar que a retenção ocorre justamente para que o motorista providencie a troca da lâmpada, garantindo que o veículo possa circular sem oferecer riscos aos demais usuários da via pública.
+
+## Como proceder ao receber uma multa por farol queimado?
+
+Recebeu uma autuação e acredita que há margem para contestação? Nem sempre a multa é aplicada de forma correta. Erros formais no preenchimento do auto de infração, falta de clareza na descrição do ocorrido ou a ausência de vistoria técnica adequada podem ser pontos de partida para um recurso administrativo.
+
+O processo de defesa permite que o motorista apresente seus argumentos aos órgãos de trânsito. Para ter sucesso, é fundamental reunir provas, como fotos da manutenção realizada logo após a notificação ou comprovantes de que o veículo passou por revisão recentemente. A análise técnica do documento de infração é o passo mais importante para identificar se houve falha do agente autuador.
+
+## Dicas para evitar a multa
+
+Para não passar por esse transtorno, a prevenção é a melhor estratégia:
+
+* **Checklist semanal:** Antes de sair, dê uma volta rápida ao redor do carro e confira se todas as luzes estão acesas.
+* **Troca preventiva:** Lâmpadas têm vida útil limitada. Se uma queimou, considere trocar as duas, pois a outra provavelmente seguirá o mesmo caminho em breve.
+* **Limpeza das lentes:** Faróis amarelados ou opacos também podem ser alvo de fiscalização, pois diminuem a eficiência luminosa.
+* **Kit de emergência:** Tenha sempre lâmpadas de reserva e fusíveis no porta-luvas.
+
+## Analise sua multa com especialistas
+
+Nem toda autuação é incontestável, mas muitas possuem falhas que passam despercebidas pelo condutor comum. Recorrer é um direito garantido por lei e pode evitar o acúmulo de pontos na sua CNH e o prejuízo financeiro desnecessário.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Nossa plataforma especializada ajuda você a entender suas chances de sucesso antes de iniciar o processo de defesa.`,
+    palavrasChave: ["multa farol queimado", "recurso de multa", "iluminação veículo", "legislação de trânsito"],
+  },
+
+  {
+    slug: "presuncao-de-legitimidade-o-que-e-e-como-contestar-multas",
+    titulo: "Presunção de Legitimidade: O que é e como contestar multas",
+    descricao: "Entenda como funciona a presunção de legitimidade dos autos de infração e aprenda a identificar erros para recorrer. Analise sua multa grátis no CheckMulta.",
+    categoria: "Jurídico",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-amber-600 to-amber-800",
+    conteudo: `## Entenda a Presunção de Legitimidade no Trânsito
+
+Recebeu uma multa e sente que foi injustiçado? É muito comum ouvir que o auto de infração possui presunção de legitimidade e que, por isso, a palavra do agente vale mais que a do condutor. Mas o que isso significa na prática e será que essa regra é absoluta? Como especialista em Direito de Trânsito, explico como funciona esse conceito fundamental para quem deseja recorrer.
+
+## O que é a presunção de legitimidade?
+
+A presunção de legitimidade (ou de veracidade) é um atributo dos atos administrativos praticados por agentes públicos. Em termos simples, isso significa que a legislação entende que tudo o que um agente de trânsito registra no documento de autuação é verdadeiro e feito conforme as normas, até que se prove o contrário.
+
+Quando um agente preenche o auto de infração, ele está exercendo uma função pública. A administração entende que ele agiu de boa-fé e com capacidade técnica. Por essa razão, a multa já nasce com força de validade, dispensando o Estado de provar, a todo momento, que o condutor realmente cometeu aquela infração.
+
+## O mito da verdade absoluta
+
+Existe uma crença popular de que, por causa dessa presunção, o motorista nunca ganha um recurso. Isso é um equívoco. Embora o auto de infração goze de presunção de legitimidade, ela não é absoluta, mas sim **relativa**.
+
+Isso significa que, embora o documento seja considerado válido inicialmente, ele pode ser anulado se o condutor conseguir apresentar provas ou argumentos que demonstrem inconsistências, falhas ou ilegalidades no procedimento.
+
+## Como combater a presunção de legitimidade?
+
+Para quebrar essa presunção, você não precisa apenas dizer que não cometeu a infração. É preciso apresentar fatos concretos. Veja alguns pontos onde a presunção pode cair:
+
+* **Erros formais:** O auto de infração deve conter informações obrigatórias previstas na legislação. Se faltar a marca do veículo, a cor, o local exato ou a identificação do agente, a validade do documento fica comprometida.
+* **Incoerências no relato:** Quando a descrição do agente contradiz o enquadramento legal da multa, o documento perde força.
+* **Equipamentos irregulares:** Se a multa foi gerada por aparelhos de medição, é necessário que o equipamento esteja com a aferição em dia perante os órgãos competentes.
+* **Sinalização precária:** Se a sinalização no local da suposta infração estiver apagada, escondida ou em desacordo com as normas do Código de Trânsito Brasileiro, a autuação pode ser questionada.
+
+## O papel do contraditório
+
+O Direito brasileiro garante a todos o direito à ampla defesa e ao contraditório. O processo administrativo de trânsito é o caminho oficial para confrontar a presunção de legitimidade. Ao apresentar uma defesa bem fundamentada, você obriga o órgão de trânsito a revisar o ato praticado. Se o órgão não conseguir justificar a falha apontada ou se o auto estiver mal preenchido, a multa pode ser cancelada.
+
+## Atenção aos detalhes
+
+Muitas vezes, a autuação é lavrada de forma automática e erros humanos ou sistêmicos podem ocorrer. Não ignore o aviso de recebimento da multa pensando que o recurso não funcionará. A análise técnica do documento é o primeiro passo para verificar se a presunção de legitimidade se sustenta ou se há falhas que permitem o cancelamento da penalidade.
+
+No CheckMulta, é possível enviar o auto de infração para obter uma análise técnica que aponta se existem falhas capazes de anular a multa.`,
+    palavrasChave: ["recurso de multa", "auto de infração", "Direito de Trânsito", "presunção de legitimidade"],
+  },
+
+  {
     slug: "recurso-de-multa-por-excesso-de-velocidade-como-recorrer",
     titulo: "Recurso de multa por excesso de velocidade: como recorrer",
     descricao: "Recebeu uma multa por excesso de velocidade em rodovia? Entenda como funciona o processo de defesa e quais falhas podem anular a infração. Analise grátis.",

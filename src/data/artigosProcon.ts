@@ -12,6 +12,186 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "contagem-do-prazo-de-defesa-em-autos-de-infracao-do-procon",
+    titulo: "Contagem do prazo de defesa em autos de infração do Procon",
+    descricao: "Entenda como realizar a contagem correta do prazo após receber uma autuação do Procon. Evite a perda de prazos e analise seu auto gratuitamente hoje.",
+    categoria: "Prazos e Procedimento",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-slate-50 to-gray-100",
+    palavrasChave: ["prazo defesa procon", "notificacao procon prazo", "como recorrer multa procon", "defesa administrativa procon"],
+    conteudo: `## A importância da tempestividade no processo administrativo
+
+Receber um auto de infração de um órgão de proteção ao consumidor gera apreensão em qualquer gestor. O primeiro passo para estruturar uma estratégia de defesa é compreender a dinâmica processual, começando pela contagem correta do prazo para apresentação da manifestação. A inobservância desse período pode levar à revelia, retirando da empresa a oportunidade de apresentar fatos e provas que poderiam influenciar a decisão da autoridade administrativa.
+
+## O início do processo e a notificação
+
+O processo administrativo sancionador tem início com a lavratura do auto de infração, conforme estabelece o art. 33 do Decreto 2.181/97, sendo que o art. 5º define a competência dos órgãos para apurar e punir. Para que o documento tenha validade jurídica, ele deve observar requisitos rigorosos previstos no art. 35, inciso I, que determina a necessidade de: local, data e hora; qualificação do autuado; descrição do fato; dispositivo legal infringido; intimação; identificação, assinatura e matrícula do agente; designação do órgão julgador; assinatura do autuado; cientificação para defesa. Antes da lavratura, pode ocorrer a averiguação preliminar prevista no art. 33-A.
+
+É fundamental destacar que a notificação é o ato que dá início à contagem do prazo. O Decreto 2.181/97, em seu art. 42, trata da notificação e do prazo de defesa, contudo, o texto original foi alterado pela legislação superveniente.
+
+## Como identificar o prazo correto
+
+Existe uma confusão comum entre os gestores sobre a duração do prazo para defesa. Embora existam normas gerais, é indispensável observar que estados e municípios possuem autonomia para definir procedimentos específicos em suas legislações locais. Portanto, a regra de ouro é: não confie em prazos genéricos encontrados na internet.
+
+Verifique sempre o corpo do documento recebido. O auto de infração deve indicar de forma expressa o prazo que a empresa possui para protocolar sua defesa. Contar o prazo de forma equivocada pode resultar no encerramento da oportunidade de defesa antes que a empresa tome as providências necessárias.
+
+## Pontos de atenção na defesa
+
+Ao elaborar a defesa, é preciso estar atento a possíveis vícios formais. O art. 38-A do Decreto 2.181/97 introduziu a fiscalização orientadora e o critério de dupla visita para atividades de risco leve, cuja inobservância implica nulidade do auto (§ 2º), além do tratamento diferenciado a ME e EPP (§ 3º). O art. 48 reforça que a inobservância de forma só gera nulidade se houver prejuízo para a defesa, o que orienta uma análise técnica detalhada.
+
+No que diz respeito à dosimetria da penalidade, os arts. 24 a 28 tratam da graduação da pena, atenuantes, agravantes, reincidência e fixação da multa. O art. 26-A estabelece que as atenuantes e agravantes são taxativas, enquanto o art. 28-A veda a valorar o mesmo elemento duas vezes na dosimetria. Esses pontos são relevantes para contestar cobranças que não observem os critérios legais de cálculo.
+
+## O que fazer após o vencimento do prazo
+
+Caso o prazo expire sem a apresentação de defesa, o processo segue seu fluxo normal para julgamento. Se for aplicada uma multa, o autuado possui o direito de interpor recurso em 10 dias, conforme prevê o art. 49, o qual possui efeito suspensivo. Caso a multa não seja recolhida no prazo de 30 dias após a decisão final, o débito poderá ser encaminhado para inscrição em dívida ativa, conforme o art. 55.
+
+Identificar se o auto de infração foi lavrado corretamente é um passo para avaliar a estratégia de defesa da sua empresa. Profissionais especializados podem realizar uma análise técnica do auto de infração do Procon para verificar se a autuação apresenta vício formal ou outros elementos que fundamentem uma manifestação.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "defesa-administrativa-vs-recurso-no-procon-entenda-a-diferenca",
+    titulo: "Defesa Administrativa vs. Recurso no Procon: Entenda a Diferença",
+    descricao: "Recebeu um auto de infração do Procon? Entenda as diferenças entre a defesa e o recurso administrativo e saiba como contestar a autuação corretamente.",
+    categoria: "Prazos e Procedimento",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["defesa administrativa procon", "recurso administrativo procon", "como recorrer multa procon", "prazo defesa procon"],
+    conteudo: `## A Importância do Procedimento Administrativo Sancionador
+
+Quando uma empresa recebe um auto de infração do Procon, inicia-se um processo administrativo sancionador. O Decreto 2.181/97 define a competência dos órgãos para apurar e punir (art. 5º). Para o gestor ou proprietário, é fundamental distinguir as etapas de impugnação, pois cada uma possui finalidade, momento e requisitos processuais distintos. Ignorar essas diferenças pode resultar na perda de prazos ou na impossibilidade de revisão de uma sanção.
+
+## O Início: A Defesa Administrativa
+
+A defesa administrativa é o primeiro momento em que a empresa autuada pode apresentar seus argumentos e provas contra a autuação. O processo administrativo sancionador tem início com a lavratura do auto de infração (art. 33), precedido, quando necessário, pela averiguação preliminar (art. 33-A).
+
+Nesta fase, o objetivo é demonstrar ao órgão julgador que a autuação pode ser considerada improcedente ou que houve equívoco na interpretação dos fatos. É o momento de verificar se o auto contém todos os requisitos obrigatórios (art. 35, inciso I): local, data e hora; qualificação do autuado; descrição do fato; dispositivo legal infringido; intimação; identificação, assinatura e matrícula do agente; designação do órgão julgador; assinatura do autuado; cientificação para defesa. Caso falte qualquer desses requisitos, a validade do documento pode ser questionada.
+
+Além disso, é nesta etapa que se deve verificar a aplicação da fiscalização orientadora e o critério de dupla visita para atividade de risco leve, cuja inobservância implica nulidade do auto (§ 2º), sendo garantido tratamento diferenciado a ME e EPP (§ 3º), conforme o art. 38-A.
+
+Quanto ao prazo para apresentação desta peça, ele não é uniforme. Embora o Decreto 2.181/97 previsse um prazo anterior, diversos Procons possuem legislação própria com prazos distintos. Portanto, a regra de ouro é: confira sempre o prazo informado no próprio auto de infração recebido.
+
+## O Recurso Administrativo: A Revisão da Decisão
+
+Se a decisão final do processo resultar na aplicação de uma multa ou outra sanção, surge a possibilidade de interpor um recurso administrativo. O recurso é direcionado à autoridade hierarquicamente superior àquela que proferiu a decisão sancionatória.
+
+O art. 49 do Decreto 2.181/97 estabelece o prazo de 10 dias para a interposição deste recurso, com efeito suspensivo em caso de multa. Isso significa que, enquanto o recurso estiver sendo analisado, a exigibilidade da sanção pecuniária pode ser suspensa.
+
+O recurso não deve ser uma mera repetição dos argumentos da defesa inicial. Ele deve ser focado em atacar os fundamentos da decisão que puniu a empresa, demonstrando possíveis erros na graduação da pena (arts. 24 a 28), falhas na apreciação das provas ou inobservância de critérios legais, como o art. 26-A, que estabelece que as atenuantes e agravantes são taxativas, e o art. 28-A, que veda valorar o mesmo elemento duas vezes na dosimetria.
+
+## Pontos de Atenção na Gestão do Processo
+
+É importante lembrar que a inobservância de forma só gera nulidade se houver prejuízo para a defesa, conforme previsto no art. 48. Sendo assim, o foco da atuação administrativa deve ser técnico e fundamentado na legislação.
+
+Após o julgamento final, caso a multa seja mantida e não seja recolhida em 30 dias, o valor poderá ser inscrito em dívida ativa, conforme o art. 55, o que torna a gestão dos prazos e a qualidade da argumentação etapas críticas para a saúde financeira do negócio.
+
+No CheckMulta, é possível enviar o auto de infração do Procon para receber uma análise que aponta se a autuação apresenta vício formal ou outros pontos de atenção para a sua defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "contraditorio-e-ampla-defesa-no-processo-sancionador-do-procon",
+    titulo: "Contraditório e Ampla Defesa no Processo Sancionador do Procon",
+    descricao: "Entenda como o contraditório e a ampla defesa protegem sua empresa em processos do Procon. Analise seu auto de infração gratuitamente no CheckMulta.",
+    categoria: "Direitos da Empresa",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["defesa administrativa Procon", "auto de infração empresa", "contraditório processo Procon", "direitos empresa autuada"],
+    conteudo: `## A importância da defesa administrativa no Procon
+
+Receber um auto de infração do Procon gera preocupação imediata para gestores e proprietários de empresas. Contudo, é fundamental compreender que o recebimento de uma autuação não significa, automaticamente, a aplicação de uma penalidade definitiva ou a confissão de culpa. O ordenamento jurídico brasileiro garante às empresas o direito ao contraditório e à ampla defesa, princípios fundamentais assegurados no processo administrativo sancionador, que tem como base o art. 5º do Decreto 2.181/97, o qual define a competência dos órgãos para apurar e punir.
+
+O processo administrativo sancionador, que tem seu início nos termos do art. 33 do Decreto 2.181/97 e pode envolver uma averiguação preliminar conforme o art. 33-A, é o rito pelo qual o órgão de proteção ao consumidor apura a existência de infrações. Durante essa fase, a empresa possui o direito constitucional de contestar as acusações e apresentar elementos que podem levar à redução ou à revisão da penalidade.
+
+## O que é o Contraditório e a Ampla Defesa?
+
+O contraditório é a garantia de que a empresa tenha ciência de todos os atos praticados contra si e a oportunidade de reagir a cada um deles. Já a ampla defesa é o direito de utilizar todos os meios lícitos para provar a inocência ou atenuar a responsabilidade. No contexto de um Procon, isso significa que a empresa não é apenas uma espectadora do processo, mas parte ativa na produção de provas e na argumentação jurídica.
+
+É importante notar que o art. 48 do Decreto 2.181/97 estabelece que a inobservância de forma só gera nulidade se houver prejuízo para a defesa. Portanto, a análise do auto de infração deve ser minuciosa, observando se os requisitos formais foram cumpridos conforme o art. 35, inciso I, do mesmo decreto, que exige:
+
+- Local, data e hora da lavratura;
+- Qualificação completa do autuado;
+- Descrição clara e precisa do fato;
+- Dispositivo legal infringido;
+- Intimação do autuado;
+- Identificação, assinatura e matrícula do agente autuante;
+- Designação do órgão julgador;
+- Assinatura do autuado;
+- Cientificação para apresentação de defesa.
+
+## Fiscalização orientadora e o critério da dupla visita
+
+Um ponto frequentemente ignorado por empresas autuadas é a fiscalização orientadora. De acordo com o art. 38-A do Decreto 2.181/97, para atividades classificadas como de risco leve, deve ser observado o critério da dupla visita. A inobservância deste critério implica nulidade do auto de infração, conforme o § 2º do mesmo artigo. Além disso, o § 3º determina tratamento diferenciado para microempresas (ME) e empresas de pequeno porte (EPP), o que pode ser um argumento valioso na construção de uma defesa administrativa bem fundamentada.
+
+## Como proceder ao receber uma autuação
+
+Ao ser notificado, a empresa deve observar atentamente o prazo concedido para a apresentação da defesa. O prazo para manifestação varia conforme o Procon estadual ou municipal, uma vez que a legislação local pode definir períodos específicos; portanto, verifique sempre o prazo indicado no próprio documento recebido.
+
+Caso a empresa discorde da decisão administrativa final, o art. 49 do Decreto 2.181/97 prevê a possibilidade de recurso em 10 dias, com efeito suspensivo em caso de multa. É crucial lembrar que, após o encerramento do processo, caso a multa não seja recolhida no prazo de 30 dias, o débito poderá ser inscrito em dívida ativa, conforme o art. 55 do Decreto 2.181/97.
+
+## A dosimetria da pena e a importância da defesa
+
+Se a infração for reconhecida, a defesa ainda é essencial para garantir que a dosimetria da pena seja justa. Os arts. 24 a 28 do Decreto 2.181/97 tratam da graduação da pena, atenuantes, agravantes, reincidência e fixação da multa. O art. 26-A estabelece que as atenuantes e agravantes são taxativas. Além disso, o art. 28-A prevê a vedação a valorar o mesmo elemento duas vezes na dosimetria. Argumentar sobre a aplicação correta desses dispositivos pode influenciar a sanção financeira aplicada à empresa.
+
+A empresa autuada pode buscar uma análise detalhada do auto de infração para identificar possíveis vícios formais ou pontos de atenção para a sua defesa administrativa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
+    slug: "decisao-do-procon-sem-motivacao-vicio-de-nulidade",
+    titulo: "Decisão do Procon sem motivação: vício de nulidade",
+    descricao: "Recebeu uma decisão do Procon sem justificativa clara? Entenda como a falta de motivação afeta a validade da multa. Envie seu auto para análise gratuita.",
+    categoria: "Vícios e Nulidades",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["decisão procon nula", "vício administrativo procon", "falta de fundamentação multa", "defesa processo administrativo procon"],
+    conteudo: `## A importância da motivação nas decisões administrativas
+
+No processo administrativo sancionador, o art. 5º do Decreto 2.181/97 estabelece a competência dos órgãos para apurar e punir infrações. A decisão proferida pela autoridade julgadora não pode ser arbitrária, sendo o dever de motivação um princípio fundamental do Direito Administrativo. Quando uma empresa recebe uma decisão que aplica penalidade sem explicar detalhadamente os motivos de fato e de direito que levaram àquela conclusão, configura-se um vício que pode comprometer a validade do ato sancionatório.
+
+A motivação é o instrumento que permite ao autuado compreender as razões da punição, possibilitando o exercício do contraditório e da ampla defesa. Sem uma fundamentação clara, o empresário fica impossibilitado de contestar os fundamentos da decisão de forma eficaz.
+
+## O papel da dosimetria e a clareza na aplicação da multa
+
+Ao aplicar uma sanção, o Procon deve observar estritamente a graduação da pena. O Decreto 2.181/97 estabelece critérios claros sobre a fixação da multa. Conforme os arts. 24 a 28, a autoridade deve considerar a graduação da pena, atenuantes, agravantes, reincidência e a fixação da multa.
+
+Além disso, o art. 26-A determina que as atenuantes e agravantes são taxativas, não cabendo ao julgador criar critérios aleatórios. Já o art. 28-A veda expressamente a valoração do mesmo elemento duas vezes na dosimetria. Quando a decisão ignora esses dispositivos ou falha em explicar como cada um deles foi aplicado ao caso concreto, ela padece de vício de motivação.
+
+## Nulidades por ausência de requisitos formais
+
+O processo administrativo sancionador, iniciado nos termos do art. 33 do Decreto 2.181/97, exige rigor formal desde a sua origem, podendo haver uma averiguação preliminar conforme o art. 33-A. O art. 35, inciso I, do Decreto 2.181/97 lista os requisitos obrigatórios do auto de infração: local, data e hora; qualificação do autuado; descrição do fato; dispositivo legal infringido; intimação; identificação, assinatura e matrícula do agente; designação do órgão julgador; assinatura do autuado; e cientificação para defesa. Ademais, o art. 38-A prevê a fiscalização orientadora e o critério de dupla visita para atividade de risco leve, cuja inobservância implica nulidade do auto (§ 2º), além de tratamento diferenciado a ME e EPP (§ 3º).
+
+Se a decisão final mantém a autuação sem sanar vícios processuais ou sem responder aos argumentos trazidos pela defesa, ela reforça a tese de nulidade. É importante destacar que o art. 48 do referido decreto prevê que a inobservância de forma só gera nulidade se houver prejuízo para a defesa. No caso da falta de motivação, o prejuízo pode ser configurado, pois o autuado é privado do direito de conhecer o caminho lógico percorrido pela autoridade para definir o valor da multa ou a sanção aplicada.
+
+## O que a sua empresa deve observar
+
+Ao analisar uma decisão do Procon, verifique se:
+
+- Os argumentos centrais da sua defesa foram devidamente enfrentados pelo órgão.
+- A dosimetria da multa foi explicada detalhadamente, citando os critérios dos arts. 24 a 28 do Decreto 2.181/97.
+- Houve o uso de fundamentação genérica, que poderia ser aplicada a qualquer outra empresa, sem observar as particularidades do seu caso.
+
+Caso a decisão seja genérica ou omissa, há possibilidade de questionar a sua validade administrativa. O prazo para recorrer contra a decisão de primeira instância, com efeito suspensivo em caso de multa, está previsto no art. 49 do Decreto 2.181/97. É fundamental conferir o prazo específico indicado no próprio documento recebido, pois a legislação pode variar conforme o órgão julgador. Se a multa não for recolhida em 30 dias, o art. 55 prevê a inscrição em dívida ativa.
+
+Lembre-se que o processo administrativo é um rito regrado e a administração pública está subordinada à legalidade. Decisões desprovidas de fundamentação adequada violam o devido processo legal e podem ser objeto de questionamento em sede de recurso administrativo.
+
+No CheckMulta, você pode encaminhar o auto de infração do Procon para análise técnica visando identificar se a autuação e a decisão administrativa apresentam vícios formais que podem ser utilizados em sua defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "decisao-do-procon-sem-motivacao-como-identificar-esse-vicio",
     titulo: "Decisão do Procon sem motivação: como identificar esse vício",
     descricao: "Recebeu uma decisão do Procon sem justificativa clara? Entenda como a falta de motivação afeta a validade da sanção. Envie seu auto para análise gratuita.",
