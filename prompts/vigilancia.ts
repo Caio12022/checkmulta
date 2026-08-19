@@ -208,6 +208,7 @@ Responda APENAS com um objeto JSON válido, sem texto antes ou depois, sem marca
   "numero_processo": "Número do PROCESSO ADMINISTRATIVO, extraído do documento. É diferente do número do auto. Se não houver, use string vazia.",
   "empresa_autuada": "Razão social ou nome do estabelecimento, extraído do documento.",
   "prazo_identificado": "O prazo copiado do documento, ou a orientação padrão da REGRA 2.",
+  "valor_multa": number | null,
   "achados": [
     {
       "titulo": "Nome curto da falha",
@@ -245,6 +246,11 @@ Regras do JSON:
 - Se não encontrar nenhuma falha: "achados" vazio, "houve_achado": false, e explique no resumo que não foram identificadas falhas formais entre os pontos verificados.
 - Todo achado DEVE ter "trecho_documento" preenchido com texto real do documento.
 - Os contadores devem corresponder à quantidade real de achados de cada gravidade.
+- "valor_multa": SOMENTE o valor monetário da multa aplicada, como número puro, sem símbolo
+  e sem separador de milhar (ex: 4200.00). Se o auto traz "Multa no valor de R$ 4.200,00", o
+  campo recebe 4200.00. Esse campo ajuda a definir o preço do produto: NUNCA estime nem
+  arredonde; se não houver valor legível no documento (ex.: interdição sem multa em dinheiro),
+  use null.
 - Campos não encontrados no documento: use string vazia "".
 - NUNCA confunda "numero_auto" com "numero_processo".
 - "transcricao_documento" é OBRIGATÓRIO e deve vir preenchido com o texto real do documento. Sem ele, nada do que você escrever será exibido.

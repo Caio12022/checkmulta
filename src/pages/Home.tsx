@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
+import GerarPdfDefesa from "../components/GerarPdfDefesa";
 import { ehSobrecarga, ehCotaDiaria } from "../lib/sobrecarga";
 import HeroFluxo from "../components/HeroFluxo";
 import EscolhaOrgao from "../components/EscolhaOrgao";
@@ -2329,6 +2330,12 @@ if (!v) return null;
                           <button onClick={handleDownload} className="flex w-full items-center justify-center space-x-2 rounded-lg bg-blue-600 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-blue-700 sm:w-auto">
                             <Download className="h-5 w-5" /><span>Baixar .txt</span>
                           </button>
+                          <GerarPdfDefesa
+                            texto={defenseResult}
+                            nomeArquivo="defesa-transito"
+                            corBotao="bg-blue-600 hover:bg-blue-700"
+                            onBaixar={() => track("defesa_baixada_pdf", "funil_6_defesa_baixada_pdf")}
+                          />
                         </div>
                         <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-blue-600">
                           Precisa de ajuda? Fale com o suporte.

@@ -175,7 +175,9 @@ PROCESSO
 
    MOTIVO DO PASSO A: sem ele, este achado aparece em praticamente todo auto, porque auto nenhum costuma narrar a visita anterior. Um achado que nasce sempre não informa nada e infla a expectativa de quem vai pagar pela defesa.
 
-18. Tratamento diferenciado a microempresa e empresa de pequeno porte: o art. 38-A, § 3º, determina que os órgãos observem o tratamento diferenciado, simplificado e favorecido da Lei Complementar 123/2006 na fixação de multas. Se a autuada é ME ou EPP e a dosimetria não menciona esse tratamento, aponte. ATENÇÃO.
+18. Tratamento diferenciado a microempresa e empresa de pequeno porte: o art. 38-A, § 3º, determina que os órgãos observem o tratamento diferenciado, simplificado e favorecido da Lei Complementar 123/2006 na fixação de multas.
+   VERIFICAÇÃO OBRIGATÓRIA ANTES DE APONTAR: confira se a dosimetria já demonstra ter levado o porte da empresa em conta — mesmo sem escrever "ME" ou "EPP" por extenso, mesmo que apenas ao fixar a multa em patamar baixo por "condição econômica reduzida" ou termo equivalente. Se a dosimetria já trata o porte, você está PROIBIDO de gerar este achado, em qualquer gravidade. Só levante a hipótese, e sempre como "verificar" (nunca como crítico ou atenção), quando a dosimetria for silenciosa sobre porte ou condição econômica da empresa.
+   MOTIVO: sem essa verificação, o achado nasce mesmo em auto que já fundamentou a dosimetria com o porte da empresa — um achado que aparece mesmo no auto correto não informa nada e infla a expectativa de quem vai pagar pela defesa.
 
 ===========================================================
 COMO CLASSIFICAR A GRAVIDADE (critério obrigatório)
@@ -237,6 +239,7 @@ Responda APENAS com um objeto JSON válido, sem texto antes ou depois, sem marca
   "numero_processo": "Número do PROCESSO ADMINISTRATIVO, extraído do documento. Atenção: é diferente do número do auto de infração. Se não houver, use string vazia.",
   "empresa_autuada": "Razão social da empresa, extraída do documento.",
   "prazo_identificado": "O prazo copiado do documento, ou a orientação padrão da REGRA 2.",
+  "valor_multa": number | null,
   "achados": [
     {
       "titulo": "Nome curto do vício",
@@ -276,6 +279,10 @@ Regras do JSON:
 - Se não encontrar nenhum vício: "achados" vazio, "houve_achado": false, e explique no resumo que não foram identificados vícios formais entre os pontos verificados.
 - Todo achado DEVE ter "trecho_documento" preenchido com texto real do documento.
 - Os contadores devem corresponder à quantidade real de achados de cada gravidade.
+- "valor_multa": SOMENTE o valor monetário da multa aplicada, como número puro, sem símbolo
+  e sem separador de milhar (ex: 8500.00). Se o auto traz "Multa no valor de R$ 8.500,00", o
+  campo recebe 8500.00. Esse campo ajuda a definir o preço do produto: NUNCA estime nem
+  arredonde; se não houver valor legível no documento, use null.
 - Campos não encontrados no documento: use string vazia "".
 - NUNCA confunda "numero_auto" com "numero_processo". São campos distintos do documento. Se só um deles existir, preencha esse e deixe o outro vazio.
 - "transcricao_documento" é OBRIGATÓRIO e deve vir preenchido com o texto real do documento. Sem ele, nada do que você escrever será exibido.

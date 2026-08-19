@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import CarrosselServicos from "../components/CarrosselServicos";
+import GerarPdfDefesa from "../components/GerarPdfDefesa";
 import { ehSobrecarga, ehCotaDiaria } from "../lib/sobrecarga";
 import HeroFluxo from "../components/HeroFluxo";
 import EscolhaOrgao from "../components/EscolhaOrgao";
@@ -28,7 +29,19 @@ declare global {
   }
 }
 
-const PRECO = 99.0;
+// Preço escalonado pelo valor da multa aplicada pelo Procon (art. 57 do CDC
+// vai de poucas centenas a milhões — preço fixo cobrava o mesmo de quem
+// levou multa pequena e de quem levou multa de dezenas de milhares).
+const PRECO_BASE = 99.0;
+const PRECO_ALTO = 199.0;
+const LIMITE_VALOR = 10000;
+
+const precoPara = (a: Analise | null): number =>
+  a && typeof a.valor_multa === "number" && a.valor_multa > LIMITE_VALOR
+    ? PRECO_ALTO
+    : PRECO_BASE;
+
+const formatarPreco = (v: number) => v.toFixed(2).replace(".", ",");
 
 const track = (gtagEvent: string, clarityEvent: string, params?: Record<string, any>) => {
   if (typeof window === "undefined") return;
@@ -37,7 +50,7 @@ const track = (gtagEvent: string, clarityEvent: string, params?: Record<string, 
 };
 // ─── DISPARO DA VENDA ──────────────────────────────────────────────────────
 // A trava por transaction_id evita contagem dupla em recarga de página.
-const fireCompraProcon = (transactionId: string) => {
+const fireCompraProcon = (transactionId: string, preco: number) => {
   if (typeof window === "undefined") return;
   const chave = `procon_purchase_${transactionId}`;
   try {
@@ -48,9 +61,9 @@ const fireCompraProcon = (transactionId: string) => {
   }
   track("purchase", "procon_5_pagamento_confirmado", {
     transaction_id: transactionId,
-    value: PRECO,
+    value: preco,
     currency: "BRL",
-    items: [{ item_id: "defesa_procon", item_name: "Defesa Administrativa Procon", price: PRECO, quantity: 1 }],
+    items: [{ item_id: "defesa_procon", item_name: "Defesa Administrativa Procon", price: preco, quantity: 1 }],
   });
 };
 // ─── TIPOS ─────────────────────────────────────────────────────────────────
@@ -68,6 +81,7 @@ interface Analise {
   numero_processo: string;
   empresa_autuada: string;
   prazo_identificado: string;
+  valor_multa: number | null;
   achados: Achado[];
   quantidade_criticos: number;
   quantidade_atencao: number;
@@ -338,7 +352,7 @@ export default function Procon() {
           setIsPaid(true);
           localStorage.setItem("procon_paid_status", "true");
           localStorage.removeItem("procon_pending_payment");
-          fireCompraProcon(paymentId.toString());
+          fireCompraProcon(paymentId.toString(), precoPara(analise));
           // Se voltou numa página "limpa" (recarga/aba nova), recupera a análise
           // do localStorage para que a defesa seja gerada.
           if (!analise) {
@@ -655,6 +669,7 @@ export default function Procon() {
 
   const handleCheckout = async () => {
     if (!analise) return;
+    const preco = precoPara(analise);
     setIsCheckoutLoading(true);
     setCheckoutError(null);
     try {
@@ -663,7 +678,7 @@ export default function Procon() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           email: "comprador@checkmulta.com.br",
-          valor: PRECO,
+          valor: preco,
           descricao: "Defesa Administrativa Procon - CheckMulta",
         }),
       });
@@ -673,7 +688,7 @@ export default function Procon() {
       }
       const data = await response.json();
       if (response.ok && data.qr_code) {
-        track("begin_checkout", "procon_4_checkout_iniciado", { value: PRECO, currency: "BRL" });
+        track("begin_checkout", "procon_4_checkout_iniciado", { value: preco, currency: "BRL" });
         setPaymentId(data.id);
         try {
           localStorage.setItem("procon_pending_payment", JSON.stringify({
@@ -783,6 +798,7 @@ export default function Procon() {
   };
 
   const viabilidade = calcularViabilidade(analise);
+  const preco = precoPara(analise);
 
   // ─── RENDER ───────────────────────────────────────────────────────────────
   return (
@@ -1763,7 +1779,7 @@ export default function Procon() {
                       <>
                       <div className="rounded-lg border border-orange-200 bg-orange-50/50 p-5 text-left">
                         <h3 className="mb-4 flex items-center gap-2 text-base font-bold text-slate-900 sm:text-lg">
-                          <Scale className="h-5 w-5 text-orange-600" /> O que você recebe por R$ 99,00
+                          <Scale className="h-5 w-5 text-orange-600" /> O que você recebe por R$ {formatarPreco(preco)}
                         </h3>
                         <ul className="space-y-3 text-[13px] text-slate-700 sm:text-[15px]">
                           <li className="flex items-start gap-3">
@@ -1788,7 +1804,7 @@ export default function Procon() {
                       <div className="flex items-start gap-2.5 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
                         <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
                         <p className="text-[11px] leading-relaxed text-amber-800 sm:text-xs">
-                          <strong className="font-semibold">Por que vale a pena:</strong> a elaboração de uma defesa administrativa por advogado costuma custar a partir de R$ 800. Aqui, são R$ 99,00. E apenas quando encontramos falha concreta. A peça é fundamentada no CDC e no Decreto 2.181/97; a decisão final cabe ao órgão julgador. Confira o prazo e a forma de protocolo junto ao Procon emissor.
+                          <strong className="font-semibold">Por que vale a pena:</strong> a elaboração de uma defesa administrativa por advogado costuma custar a partir de R$ 800. Aqui, são R$ {formatarPreco(preco)}. E apenas quando encontramos falha concreta. A peça é fundamentada no CDC e no Decreto 2.181/97; a decisão final cabe ao órgão julgador. Confira o prazo e a forma de protocolo junto ao Procon emissor.
                         </p>
                       </div>
 
@@ -1808,7 +1824,7 @@ export default function Procon() {
                           {isCheckoutLoading ? <Loader2 className="h-6 w-6 flex-shrink-0 animate-spin" /> : <Scale className="h-6 w-6 flex-shrink-0" />}
                           <span>{isCheckoutLoading ? "Gerando PIX..." : "Gerar minha defesa agora"}</span>
                         </div>
-                        <span className="mt-1 text-sm font-normal text-orange-50">Pagamento único · R$ 99,00 · Entrega imediata</span>
+                        <span className="mt-1 text-sm font-normal text-orange-50">Pagamento único · R$ {formatarPreco(preco)} · Entrega imediata</span>
                       </button>
                       <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3.5">
                         <p className="mb-1 text-[11px] font-bold uppercase tracking-wide text-amber-900 sm:text-xs">
@@ -1940,6 +1956,12 @@ export default function Procon() {
                           <button onClick={handleDownload} className="flex w-full items-center justify-center space-x-2 rounded-lg bg-orange-600 px-8 py-3.5 text-base font-semibold text-white transition hover:bg-orange-700 sm:w-auto">
                             <Download className="h-5 w-5" /><span>Baixar .txt</span>
                           </button>
+                          <GerarPdfDefesa
+                            texto={defenseResult}
+                            nomeArquivo="defesa-administrativa-procon"
+                            corBotao="bg-orange-600 hover:bg-orange-700"
+                            onBaixar={() => track("procon_defesa_baixada_pdf", "procon_6_defesa_baixada_pdf")}
+                          />
                         </div>
                         <button onClick={() => setActiveModal("suporte")} className="text-sm text-slate-400 transition hover:text-orange-600">
                           Precisa de ajuda? Fale com o suporte.
@@ -1983,7 +2005,7 @@ export default function Procon() {
                     <span className="text-xs text-slate-400">Pagamento seguro · Criptografia SSL</span>
                   </div>
                   <div>
-                    <h3 className="text-3xl font-bold tracking-tight text-slate-900">R$ 99,00</h3>
+                    <h3 className="text-3xl font-bold tracking-tight text-slate-900">R$ {formatarPreco(preco)}</h3>
                     <p className="mt-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500">Defesa administrativa</p>
                     <p className="mt-1.5 text-[11px] text-slate-400">CheckMulta Tecnologia. CNPJ 63.524.338/0001-62</p>
                   </div>

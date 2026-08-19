@@ -709,8 +709,10 @@ async function startServer() {
 
   // ==========================================
   // ROTA: GERAR PIX (MERCADO PAGO)
-  // Aceita valor variável. Padrão 19.90 (CheckMulta trânsito).
-  // Procon usa 99.00, enviado pelo front.
+  // Aceita valor variável, escolhido pelo front conforme a vertical e,
+  // em Procon/Vigilância/Energia/IBAMA, o valor extraído do auto (função
+  // precoPara de cada página). Padrão 19.90 (CheckMulta trânsito) quando o
+  // valor recebido não bate com nenhum da lista abaixo.
   // ==========================================
   app.post("/api/create-payment", async (req, res) => {
     try {
@@ -720,7 +722,7 @@ async function startServer() {
       const { email, valor, descricao } = req.body;
 
       // Valores permitidos (trava de segurança: impede manipulação pelo cliente)
-      const VALORES_PERMITIDOS = [19.90, 39.90, 49.90, 79.00, 79.90, 99.00, 149.00, 299.00, 599.00];
+      const VALORES_PERMITIDOS = [19.90, 39.90, 49.90, 79.00, 79.90, 99.00, 149.00, 199.00, 299.00, 599.00];
       const valorFinal = VALORES_PERMITIDOS.includes(Number(valor)) ? Number(valor) : 19.90;
 
       const paymentData = {
