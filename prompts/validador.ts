@@ -408,6 +408,47 @@ export function dosimetriaContraditada(achado: any, transcricao: string): boolea
   return presentes.length >= 2;
 }
 
+/**
+ * Achado de tratamento diferenciado a ME/EPP contradito pelo próprio
+ * documento.
+ *
+ * Mesma família de defeito da dosimetria, num item diferente do prompt do
+ * Procon (e do equivalente na Vigilância): a regra manda apontar quando "a
+ * dosimetria não menciona" o tratamento diferenciado da LC 123/2006, mas o
+ * prompt não tem como garantir que o modelo confira se o documento já tratou
+ * disso com outras palavras (ex.: "multa reduzida por condição econômica",
+ * ou "porte considerado: grande porte"). A trava de prompt (verificação
+ * obrigatória antes de apontar) reduziu a frequência, mas não eliminou: o
+ * mesmo caso passou numa execução e reprovou na seguinte. Mesma lição da
+ * dosimetria — trava em código.
+ */
+const MARCAS_ACHADO_ME_EPP = [
+  "me/epp", "me e epp", "microempresa", "empresa de pequeno porte",
+  "tratamento diferenciado",
+];
+
+const MARCAS_PORTE_TRATADO_NO_DOCUMENTO = [
+  "porte", "condicao economica", "capacidade economica", "microempresa",
+  "epp", "faturamento",
+];
+
+export function mePorteContraditado(achado: any, transcricao: string): boolean {
+  const texto = normalizar(`${achado?.titulo || ""} ${achado?.explicacao || ""}`);
+
+  const alegaAusencia =
+    /ausencia|falta|nao consta|omissao|sem fundamenta|nao demonstra|nao detalha|nao explicita|nao menciona|nao considera|nao trata|nao e possivel confirmar|generic|verific|confirmar se|duvida/.test(
+      texto
+    );
+  const ehMeEpp = MARCAS_ACHADO_ME_EPP.some((m) => texto.includes(normalizar(m)));
+  if (!alegaAusencia || !ehMeEpp) return false;
+
+  /* Basta UM marcador aqui, diferente da dosimetria: são termos específicos
+     de porte/condição econômica, não critérios genéricos de dosimetria como
+     "gravidade" ou "antecedentes" que nada dizem sobre ME/EPP por si só. */
+  const t = normalizar(transcricao);
+  return MARCAS_PORTE_TRATADO_NO_DOCUMENTO.some((m) => t.includes(normalizar(m)));
+}
+
 export function ehNaoVerificavel(achado: any): boolean {
   const texto = normalizar(
     `${achado?.titulo || ""} ${achado?.explicacao || ""} ${achado?.base_legal || ""}`
@@ -687,6 +728,9 @@ export function validarAnaliseJSON(
 
     // TRAVA 3-B — achado de dosimetria que o próprio documento desmente
     if (dosimetriaContraditada(a, transcricao)) continue;
+
+    // TRAVA 3-C — achado de tratamento ME/EPP que o próprio documento desmente
+    if (mePorteContraditado(a, transcricao)) continue;
 
     // TRAVA 4 — gravidade dentro do vocabulário aceito
     if (!["critico", "atencao", "verificar"].includes(a.gravidade)) {

@@ -374,6 +374,42 @@ teste("OCR quebrado é ilegível mesmo com 2 campos-chave 'adivinhados'", () => 
 });
 
 // ============================================================
+// mePorteContraditado — os dois lados
+// ============================================================
+
+teste("achado de ME/EPP é descartado quando o auto já tratou do porte", () => {
+  // Caso real que reprovou a bateria: o auto diz "Porte considerado: empresa
+  // de grande porte" e "condicao economica da autuada" — a dosimetria já
+  // resolveu a questão, mas o modelo ainda assim levantou a hipótese.
+  const achado = {
+    titulo: "Verificação de tratamento diferenciado (ME/EPP)",
+    explicacao: "Não é possível confirmar se a dosimetria considerou o tratamento diferenciado de ME/EPP previsto na LC 123/2006.",
+  };
+  const transcricao =
+    "A multa foi fixada considerando a gravidade, a vantagem auferida e a " +
+    "condicao economica da autuada, nos termos do art. 57 do CDC. Porte " +
+    "considerado: empresa de grande porte, faturamento declarado em 2025.";
+  ok(
+    V.mePorteContraditado(achado, transcricao),
+    "documento que já resolveu o porte não pode gerar achado de ME/EPP"
+  );
+});
+
+teste("achado de ME/EPP legítimo NÃO é descartado quando o documento silencia sobre porte", () => {
+  const achado = {
+    titulo: "Ausência de tratamento diferenciado (ME/EPP)",
+    explicacao: "A dosimetria não menciona o tratamento diferenciado de ME/EPP previsto na LC 123/2006.",
+  };
+  const transcricao =
+    "A multa foi fixada em R$ 5.000,00 pela infração descrita, sem qualquer " +
+    "outra consideração sobre a autuada.";
+  ok(
+    !V.mePorteContraditado(achado, transcricao),
+    "achado continua válido quando o documento de fato não trata do porte"
+  );
+});
+
+// ============================================================
 // RESULTADO
 // ============================================================
 
