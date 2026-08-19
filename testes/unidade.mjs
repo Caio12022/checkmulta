@@ -357,6 +357,22 @@ teste("documento com campos preenchidos NÃO é ilegível", () => {
   );
 });
 
+teste("OCR quebrado é ilegível mesmo com 2 campos-chave 'adivinhados'", () => {
+  // Reproduz o bug real: digitalização cortada faz o modelo reconhecer o
+  // padrão do cabeçalho (IBAMA, numero_auto "9F0") sem ter lido o corpo do
+  // documento — os campos passam no teste de "preenchido", mas o texto é
+  // majoritariamente fragmentos de 1-2 letras, não palavras de verdade.
+  const transcricao =
+    "IN TIT TO BRAS LE RO DO M IO AMB EN E IB MA Su er nt nd nc a no E ta o d " +
+    "AU O DE INF A AO N 9F 0 AU UA O CN J EN ER CO R d via km zon ru al " +
+    "DA A DA C NS AT CAO DA A DA LA RA U A DE CR CAO DA INF A AO su re s o " +
+    "de ve et conf rm la do DI PO IT VO IN RI GI O ar do De re o n VA OR DA MU TA";
+  ok(
+    V.documentoIlegivel(transcricao, ["IBAMA", "9F0", ""]),
+    "texto majoritariamente fragmentado não pode ser lido como campo preenchido"
+  );
+});
+
 // ============================================================
 // RESULTADO
 // ============================================================

@@ -509,6 +509,21 @@ export function documentoIlegivel(transcricao: string, camposChave: string[]): b
   const marcadores = (transcricao.match(/\[ILEGIVEL\]/gi) || []).length;
   if (marcadores >= 3) return true;
 
+  /* OCR quebrado (palavra fragmentada letra a letra, ex.: "IN TIT TO" em vez
+     de "INSTITUTO") engana o teste de "preenchidos" abaixo: o modelo ainda
+     consegue reconhecer o padrão do cabeçalho e "adivinhar" um campo-chave
+     ou dois (o número do auto, o nome do órgão), mesmo sem ter lido o corpo
+     do documento de verdade. Pego isso aqui, antes do teste de campos, com
+     um critério igualmente objetivo: a fração de "palavras" com 1-2 letras.
+     Calibrado contra as 46 fixtures de teste do projeto — as 5 de
+     ilegibilidade (uma por vertical) ficam entre 0.82 e 0.89; toda fixture
+     legítima, mesmo a mais curta, fica em 0.44 ou menos. Ver a pasta testes. */
+  const palavras = t.split(" ").filter(Boolean);
+  if (palavras.length >= 20) {
+    const curtas = palavras.filter((p) => p.length <= 2).length;
+    if (curtas / palavras.length > 0.6) return true;
+  }
+
   const preenchidos = camposChave.filter((c) => {
     const v = normalizar(c);
     return v.length >= 3 && !v.startsWith("nao ") && v !== "ausente";
