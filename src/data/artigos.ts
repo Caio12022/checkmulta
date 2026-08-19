@@ -12,6 +12,53 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "como-consultar-pontos-da-cnh-pelo-celular-em-2026",
+    titulo: "Como Consultar Pontos da CNH pelo Celular em 2026",
+    descricao: "Quer saber como verificar seus pontos na CNH de forma rápida e segura? Aprenda o passo a passo completo e descubra como o CheckMulta analisa sua multa grátis.",
+    categoria: "CNH e Pontos",
+    tempoLeitura: "4 min",
+    imagemEmoji: "📱",
+    imagemBg: "from-blue-600 to-blue-800",
+    conteudo: `## A importância de acompanhar sua pontuação
+
+Monitorar a pontuação da sua Carteira Nacional de Habilitação (CNH) é uma das responsabilidades mais importantes para qualquer condutor no Brasil. Com a digitalização dos serviços de trânsito, o acesso a essas informações tornou-se muito mais ágil, permitindo que o motorista tenha total controle sobre o seu histórico e evite surpresas desagradáveis, como a suspensão do direito de dirigir.
+
+Saber quantos pontos você acumulou no período vigente é fundamental para manter sua situação regular e agir preventivamente. Neste guia, explicamos como utilizar a tecnologia a seu favor para consultar sua pontuação sem precisar sair de casa.
+
+## O canal oficial: Carteira Digital de Trânsito
+
+O principal meio para o condutor brasileiro acompanhar sua situação é o aplicativo oficial do Governo Federal, a Carteira Digital de Trânsito (CDT). Esta ferramenta centraliza as informações da sua habilitação e dos veículos registrados em seu nome.
+
+Para consultar seus pontos, o processo é intuitivo:
+
+1. **Faça o download:** O aplicativo está disponível nas lojas oficiais de aplicativos para dispositivos Android e iOS.
+2. **Acesso com conta gov.br:** Utilize seu login e senha do portal único do governo. É importante que sua conta tenha nível de confiabilidade adequado para ter acesso total aos dados.
+3. **Selecione a opção Condutor:** Dentro do aplicativo, busque pelo ícone ou menu que faz referência à sua habilitação.
+4. **Visualize a pontuação:** A interface apresenta de forma clara a soma de pontos por infrações cometidas. Além disso, você pode verificar o detalhamento de cada infração que gerou a pontuação, incluindo a data e o tipo de penalidade.
+
+## Benefícios da consulta frequente
+
+Manter o hábito de verificar seu histórico de infrações traz vantagens significativas:
+
+* **Gestão de riscos:** Ao identificar a proximidade do limite de pontos permitido, você pode redobrar a atenção no trânsito e evitar novas autuações.
+* **Verificação de erros:** Nem toda infração é devida. Ao checar seu histórico, você pode identificar lançamentos que não reconhece ou que foram registrados indevidamente, permitindo que você busque a correção administrativa.
+* **Planejamento de recursos:** Caso perceba que uma multa foi injusta, a consulta rápida permite que você identifique os dados da autuação imediatamente, facilitando a preparação de um recurso dentro do prazo legal.
+
+## O que fazer se encontrar pontos indevidos?
+
+A legislação de trânsito brasileira assegura o direito à ampla defesa. Se você consultou sua pontuação e notou que existe uma autuação que não condiz com a realidade — seja por erro de digitação, falha no equipamento de fiscalização ou porque não era você quem conduzia o veículo naquele momento — saiba que é possível contestar.
+
+O processo administrativo de defesa exige atenção aos detalhes técnicos do auto de infração. Muitas vezes, vícios formais no documento, como erros na descrição do veículo ou falta de informações obrigatórias sobre o agente autuador, são caminhos eficazes para anular uma multa e, consequentemente, impedir que os pontos sejam somados à sua CNH.
+
+## Como o CheckMulta pode te ajudar
+
+A análise detalhada de um auto de infração é uma tarefa técnica que exige conhecimento especializado. Muitas pessoas deixam de recorrer por acharem que o processo é complicado ou que não possuem argumentos jurídicos suficientes para sustentar uma defesa.
+
+No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Nossa equipe de especialistas analisa os documentos para identificar brechas legais que podem proteger sua habilitação e evitar prejuízos financeiros desnecessários. Cuide da sua CNH consultando regularmente seus pontos e, ao receber qualquer notificação, busque o suporte especializado para garantir seus direitos.`,
+    palavrasChave: ["pontos CNH", "consultar CNH", "aplicativo Carteira Digital", "pontuação habilitação"],
+  },
+
+  {
     slug: "parar-sobre-a-faixa-de-pedestres-como-recorrer",
     titulo: "Parar sobre a faixa de pedestres: como recorrer?",
     descricao: "Parou o carro sobre a faixa de pedestres e foi multado? Entenda os riscos dessa infração e veja como recorrer. Analise sua multa gratuitamente agora.",
