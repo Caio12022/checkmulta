@@ -423,7 +423,7 @@ async function produzirArtigo(
   artigo.conteudo = await revisarArtigo(String(artigo.conteudo));
 
   console.log("  Auditando (segunda camada, em codigo)...");
-  const violacoesLegais = validarArtigoBlog(String(artigo.conteudo), "vigilancia", pauta.tema);
+  const violacoesLegais = validarArtigoBlog(String(artigo.conteudo), "vigilancia", `${pauta.categoria} ${pauta.tema}`);
   if (violacoesLegais.length > 0) {
     console.log(`  Auditoria reprovou: ${violacoesLegais.map((v) => v.regra).join(", ")}`);
   }
