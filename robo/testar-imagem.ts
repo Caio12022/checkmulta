@@ -23,14 +23,6 @@ const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
 
 const AMOSTRAS = [
   {
-    nome: "procon",
-    tema: "multa desproporcional do Procon e como questionar o valor",
-    categoria: "Dosimetria da Multa",
-    vertical: "defesa administrativa de autuações do Procon no Brasil (empresas autuadas)",
-    motivosVisuais:
-      "retail stores, shop counters, product shelves, invoices, cash registers, small business storefronts, office desks, customer service, consumer goods",
-  },
-  {
     nome: "ibama",
     tema: "embargo de área por suposto desmatamento e como contestar",
     categoria: "Embargo e Interdição",
