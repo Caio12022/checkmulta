@@ -374,9 +374,10 @@ async function abrirPRdeRevisao(
 // Produz UM artigo completo (geração + revisão) e devolve o bloco
 // ============================================================
 async function produzirArtigo(
-  existentes: Set<string>
-): Promise<{ bloco: string; slug: string; titulo: string; violacoesLegais: ViolacaoDefesa[] } | null> {
-  const pauta = PAUTAS[Math.floor(Math.random() * PAUTAS.length)];
+  existentes: Set<string>,
+  pautaForcada?: { categoria: string; tema: string }
+): Promise<{ bloco: string; slug: string; titulo: string; pauta: { categoria: string; tema: string }; violacoesLegais: ViolacaoDefesa[] } | null> {
+  const pauta = pautaForcada || PAUTAS[Math.floor(Math.random() * PAUTAS.length)];
   console.log(`  Tema: ${pauta.tema}`);
   console.log(`  Categoria: ${pauta.categoria}`);
 
@@ -410,12 +411,49 @@ async function produzirArtigo(
   artigo.conteudo = await revisarArtigo(String(artigo.conteudo));
 
   console.log("  Auditando (segunda camada, em codigo)...");
-  const violacoesLegais = validarArtigoBlog(String(artigo.conteudo), "transito", pauta.tema);
+  const violacoesLegais = validarArtigoBlog(String(artigo.conteudo), "transito", `${pauta.categoria} ${pauta.tema}`);
   if (violacoesLegais.length > 0) {
     console.log(`  Auditoria reprovou: ${violacoesLegais.map((v) => v.regra).join(", ")}`);
   }
 
-  return { bloco: montarBloco(artigo, slug), slug, titulo: artigo.titulo, violacoesLegais };
+  return { bloco: montarBloco(artigo, slug), slug, titulo: artigo.titulo, pauta, violacoesLegais };
+}
+
+// ============================================================
+// Produz um artigo com retentativa: se a auditoria reprovar, tenta de novo
+// antes de desistir. O modelo varia entre execuções mesmo com o mesmo
+// prompt, então repetir o MESMO tema já resolve boa parte das reprovações.
+// Se persistir, troca de tema — sinal de que o problema é o tema colidindo
+// com alguma regra, não sorte de rodada. Máximo de 3 tentativas no total,
+// para não estourar a cota diária do Gemini tentando emplacar um artigo só.
+// ============================================================
+async function produzirArtigoComRetentativas(existentes: Set<string>) {
+  const MAX_TENTATIVAS = 3;
+  let ultimoResultado: Awaited<ReturnType<typeof produzirArtigo>> = null;
+  let pautaAnterior: { categoria: string; tema: string } | undefined;
+
+  for (let tentativa = 1; tentativa <= MAX_TENTATIVAS; tentativa++) {
+    const pautaForcada = tentativa === 2 ? pautaAnterior : undefined;
+    const resultado = await produzirArtigo(existentes, pautaForcada);
+    if (!resultado) continue;
+
+    ultimoResultado = resultado;
+    pautaAnterior = resultado.pauta;
+
+    if (resultado.violacoesLegais.length === 0) {
+      if (tentativa > 1) console.log(`  Aprovado na tentativa ${tentativa}.`);
+      return resultado;
+    }
+
+    const proxima = tentativa === 1 ? "repetindo o mesmo tema" : tentativa === 2 ? "trocando de tema" : null;
+    console.log(
+      `  Tentativa ${tentativa} reprovada na auditoria.` +
+        (proxima ? ` Tentando de novo (${proxima}).` : " Desistindo, vai para revisao manual.")
+    );
+    if (tentativa < MAX_TENTATIVAS) await esperar(4000);
+  }
+
+  return ultimoResultado;
 }
 
 // ============================================================
@@ -437,7 +475,7 @@ async function main() {
   for (let i = 1; i <= ARTIGOS_POR_EXECUCAO; i++) {
     console.log(`\n--- Artigo ${i} de ${ARTIGOS_POR_EXECUCAO} ---`);
     try {
-      const resultado = await produzirArtigo(existentes);
+      const resultado = await produzirArtigoComRetentativas(existentes);
       if (!resultado) continue;
 
       conteudoAcumulado = inserirArtigo(conteudoAcumulado, resultado.bloco);
