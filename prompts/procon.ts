@@ -175,7 +175,9 @@ PROCESSO
 
    MOTIVO DO PASSO A: sem ele, este achado aparece em praticamente todo auto, porque auto nenhum costuma narrar a visita anterior. Um achado que nasce sempre não informa nada e infla a expectativa de quem vai pagar pela defesa.
 
-18. Tratamento diferenciado a microempresa e empresa de pequeno porte: o art. 38-A, § 3º, determina que os órgãos observem o tratamento diferenciado, simplificado e favorecido da Lei Complementar 123/2006 na fixação de multas. Se a autuada é ME ou EPP e a dosimetria não menciona esse tratamento, aponte. ATENÇÃO.
+18. Tratamento diferenciado a microempresa e empresa de pequeno porte: o art. 38-A, § 3º, determina que os órgãos observem o tratamento diferenciado, simplificado e favorecido da Lei Complementar 123/2006 na fixação de multas.
+   VERIFICAÇÃO OBRIGATÓRIA ANTES DE APONTAR: confira se a dosimetria já demonstra ter levado o porte da empresa em conta — mesmo sem escrever "ME" ou "EPP" por extenso, mesmo que apenas ao fixar a multa em patamar baixo por "condição econômica reduzida" ou termo equivalente. Se a dosimetria já trata o porte, você está PROIBIDO de gerar este achado, em qualquer gravidade. Só levante a hipótese, e sempre como "verificar" (nunca como crítico ou atenção), quando a dosimetria for silenciosa sobre porte ou condição econômica da empresa.
+   MOTIVO: sem essa verificação, o achado nasce mesmo em auto que já fundamentou a dosimetria com o porte da empresa — um achado que aparece mesmo no auto correto não informa nada e infla a expectativa de quem vai pagar pela defesa.
 
 ===========================================================
 COMO CLASSIFICAR A GRAVIDADE (critério obrigatório)
