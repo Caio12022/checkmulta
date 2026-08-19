@@ -12,6 +12,51 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "erro-na-identificacao-da-empresa-autuada-entenda-as-consequencias",
+    titulo: "Erro na identificação da empresa autuada: entenda as consequências",
+    descricao: "Recebeu um auto de infração do Procon com dados errados? Saiba como a identificação incorreta pode gerar nulidade no processo administrativo. Verifique já.",
+    categoria: "Vícios e Nulidades",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["erro auto infração Procon", "nulidade processo administrativo Procon", "identificação incorreta empresa Procon", "defesa administrativa Procon"],
+    conteudo: `## A importância da correta identificação no auto de infração
+
+No âmbito do processo administrativo sancionador, que tem seu início nos termos do art. 33 do Decreto 2.181/97, o auto de infração é o documento que inaugura a demanda contra o fornecedor. Como tal, ele possui requisitos formais rígidos que devem ser observados pelo agente fiscalizador, conforme a competência dos órgãos para apurar e punir prevista no art. 5º do mesmo Decreto. Dentre essas exigências, a qualificação correta do autuado é fundamental para a validade do procedimento.
+
+Quando um Procon emite um auto de infração contra uma empresa, ele deve identificar com precisão quem é o responsável pela suposta irregularidade. Erros na razão social, no número do CNPJ ou no endereço da sede podem comprometer a lisura do ato, visto que o processo administrativo precisa ser direcionado exatamente à pessoa jurídica que, em tese, violou as normas consumeristas.
+
+## O que a legislação exige sobre o auto de infração
+
+O Decreto 2.181/97 estabelece critérios claros para a lavratura de um auto de infração. Conforme o art. 35, inciso I, do Decreto 2.181/97, o auto deve conter obrigatoriamente: local, data e hora; qualificação do autuado; descrição do fato; dispositivo legal infringido; intimação; identificação, assinatura e matrícula do agente; designação do órgão julgador; assinatura do autuado; e cientificação para defesa.
+
+Esta exigência não é meramente burocrática. A identificação precisa permite que a empresa exerça seu direito constitucional à ampla defesa e ao contraditório. Se o auto é lavrado com dados de uma empresa que não guarda relação com o fato, ou que possui personalidade jurídica distinta daquela que deveria ser responsabilizada, ocorre uma falha estrutural que pode ser arguida em sede de defesa administrativa.
+
+## Consequências da falha na identificação
+
+O processo administrativo sancionador possui ritos que devem ser rigorosamente seguidos, desde a averiguação preliminar, prevista no art. 33-A do Decreto 2.181/97, até a eventual decisão final. Quando o órgão autuador falha na identificação, ele pode estar instaurando um processo contra o destinatário equivocado, o que gera incerteza jurídica.
+
+É importante destacar que, nos termos do art. 48 do Decreto 2.181/97, a inobservância de forma só gera nulidade se houver prejuízo para a defesa. Portanto, cabe ao responsável administrativo avaliar se o erro na qualificação (como uma letra errada no nome ou um dígito incorreto no CNPJ) realmente impediu a compreensão dos fatos ou se tornou impossível a identificação clara da empresa. Se o erro for substancial a ponto de gerar confusão sobre quem está sendo sancionado, o vício pode ser arguido como causa de nulidade do auto.
+
+## Como proceder diante de um erro no auto
+
+Ao receber um auto de infração, o primeiro passo do gestor ou responsável administrativo é conferir a conformidade dos dados. Verifique se o CNPJ, a razão social e o endereço constante no auto correspondem exatamente aos dados cadastrais da empresa.
+
+Se houver divergências, é recomendável analisar o conteúdo do auto à luz dos requisitos do art. 35, inciso I, do Decreto 2.181/97. Lembre-se que o prazo para apresentação de defesa deve ser rigorosamente observado, conforme indicado no próprio documento recebido. O prazo para apresentação de defesa não é uniforme em todo o território nacional, pois depende das normas estaduais ou municipais aplicáveis ao órgão que emitiu a autuação, devendo o fornecedor conferir o prazo constante na notificação.
+
+Vale ressaltar que a defesa administrativa é o momento oportuno para apontar quaisquer vícios formais, incluindo erros de qualificação. A correta fundamentação pode impedir que o processo siga para etapas mais gravosas, como a imposição de multa ou a inscrição em dívida ativa, que ocorre caso a multa não seja recolhida no prazo de 30 dias, conforme disposto no art. 55 do Decreto 2.181/97. Caso o processo avance, a dosimetria da sanção deverá observar a graduação da pena, atenuantes, agravantes, reincidência e fixação da multa conforme arts. 24 a 28 do mesmo Decreto, sendo que as atenuantes e agravantes são taxativas (art. 26-A) e veda-se valorar o mesmo elemento duas vezes na dosimetria (art. 28-A). Em casos de atividade de risco leve, deve-se observar a fiscalização orientadora e o critério de dupla visita, cuja inobservância pode implicar a nulidade do auto (art. 38-A, § 2º).
+
+## A busca pela conformidade
+
+O objetivo do processo administrativo não é punir aleatoriamente, mas garantir a observância das normas de consumo. A identificação correta é um pressuposto básico para que a fiscalização alcance a empresa que, de fato, deve responder pelos atos apontados. Se o seu estabelecimento recebeu uma autuação, assegure-se de que todos os pontos formais estão corretos antes de decidir pela aceitação ou pela contestação dos termos do auto.
+
+No CheckMulta, você pode enviar o auto de infração do Procon e receber uma análise que aponta se a autuação apresenta vício formal, permitindo que sua empresa compreenda melhor a situação antes de decidir os próximos passos processuais.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "contagem-do-prazo-de-defesa-em-autos-de-infracao-do-procon",
     titulo: "Contagem do prazo de defesa em autos de infração do Procon",
     descricao: "Entenda como realizar a contagem correta do prazo após receber uma autuação do Procon. Evite a perda de prazos e analise seu auto gratuitamente hoje.",
