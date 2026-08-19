@@ -31,6 +31,10 @@ const GITHUB_BRANCH_BASE = "main";
 const CAMINHO_ARTIGOS = "src/data/artigos.ts";
 const PASTA_IMAGENS = "public/blog/transito";
 const VERTICAL_LABEL = "defesa administrativa de multas de trânsito no Brasil";
+// "Família visual" fixa pra dar identidade entre as imagens de Trânsito
+// (ver PedidoImagemArtigo.motivosVisuais em prompts/imagem.ts).
+const MOTIVOS_VISUAIS =
+  "roads, highways, cars, speed cameras, traffic lights, police cars, traffic stops, night driving, asphalt, road signs silhouettes";
 
 // Quantos artigos gerar por execução
 const ARTIGOS_POR_EXECUCAO = 1;
@@ -458,6 +462,7 @@ async function produzirArtigo(
         tema: pauta.tema,
         categoria: pauta.categoria,
         vertical: VERTICAL_LABEL,
+        motivosVisuais: MOTIVOS_VISUAIS,
       });
       const imagem = await gerarImagemArtigoCloudflare(
         { accountId: CLOUDFLARE_ACCOUNT_ID, apiToken: CLOUDFLARE_API_TOKEN },

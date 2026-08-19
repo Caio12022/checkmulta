@@ -36,6 +36,15 @@ export interface PedidoImagemArtigo {
   categoria: string;
   /** rótulo curto da vertical, ex: "defesa administrativa de trânsito" */
   vertical: string;
+  /**
+   * "Família visual" fixa da vertical (motivos/objetos/cenários típicos),
+   * em inglês - ex: "roads, highways, cars, speed cameras, traffic stops".
+   * Dá uma identidade reconhecível entre os artigos da mesma vertical,
+   * em vez de cada imagem vir de um lugar diferente. Cada robô define a
+   * sua (ver MOTIVOS_VISUAIS em robo.ts). Opcional: sem isso, a cena sai
+   * só do tema/categoria, sem essa "cola" entre os artigos.
+   */
+  motivosVisuais?: string;
 }
 
 export interface ImagemGerada {
@@ -61,12 +70,16 @@ export async function gerarDescricaoVisual(
   ai: ClienteGemini,
   pedido: PedidoImagemArtigo
 ): Promise<string> {
+  const linhaMotivos = pedido.motivosVisuais
+    ? `\nFamília visual desta vertical (pra manter uma identidade entre os artigos - use como referência de universo, não repita a lista toda): ${pedido.motivosVisuais}\n`
+    : "";
+
   const prompt = `You are a photo art director briefing a photographer for ONE editorial photo to illustrate a Brazilian legal-defense article.
 
 Tema do artigo (em português): "${pedido.tema}"
 Categoria: "${pedido.categoria}"
 Contexto/vertical: ${pedido.vertical}
-
+${linhaMotivos}
 Descreva, em inglês, UMA cena real e concreta que um fotógrafo poderia literalmente fotografar pra ilustrar esse tema especificamente. A cena tem que comunicar o tema sozinha, sem legenda - alguém olhando a foto tem que reconhecer do que se trata. Evite símbolos vagos/indiretos (ex: só um sapato no chão) quando o tema pede pra mostrar a coisa em si (ex: a área desmatada, as árvores cortadas, o veículo, o radar, a autoridade abordando alguém). Fique à vontade pra imaginar a cena natural do tema - gente, viatura, abordagem, pátio, o que fizer sentido - sem sair do assunto do artigo.
 
 O modelo de imagem que vai ler isso é rápido e barato: ele ignora prompt comprido e perde detalhe se a frase for longa. Por isso:
