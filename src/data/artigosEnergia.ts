@@ -12,6 +12,49 @@ export interface ArtigoEnergia {
 
 export const artigosEnergia: ArtigoEnergia[] = [
   {
+    slug: "cobranca-de-36-meses-de-energia-quando-o-prazo-e-aplicado-incorretamente",
+    titulo: "Cobrança de 36 meses de energia: quando o prazo é aplicado incorretamente",
+    descricao: "Recebeu uma cobrança de 36 meses por irregularidade? Entenda por que o período pode estar errado e como analisar seu caso gratuitamente no CheckMulta.",
+    categoria: "Cálculo e Período",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚡",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["cobrança retroativa energia", "TOI irregularidade energia", "recuperação de consumo 36 meses", "contestação TOI energia"],
+    conteudo: `## A complexidade do cálculo retroativo de energia
+
+Quando uma distribuidora de energia elétrica identifica uma irregularidade no medidor, como uma falha técnica ou uma suposta intervenção, ela emite um Termo de Ocorrência e Inspeção (TOI) ou uma notificação de recuperação de consumo. Frequentemente, o consumidor é surpreendido com uma fatura que abrange um longo período de retroatividade. No entanto, é fundamental compreender que o prazo de 36 meses não é uma regra automática de aplicação em todos os casos.
+
+A legislação do setor elétrico, especificamente a Resolução ANEEL nº 1.000/2021, estabelece critérios técnicos rigorosos para que a distribuidora possa cobrar por consumos não faturados. O período de 36 ciclos é apenas o teto máximo permitido, e não o padrão aplicável a qualquer situação de irregularidade.
+
+## O que a norma diz sobre o início da irregularidade
+
+O ponto central em notificações de recuperação de consumo é a necessidade de demonstração técnica fundamentada sobre a data em que a irregularidade começou. Conforme o art. 596 da Resolução ANEEL nº 1.000/2021, o período de duração da irregularidade deve ser determinado por critérios técnicos ou por meio do histórico de consumo do consumidor.
+
+Quando a distribuidora não consegue comprovar o momento exato em que o consumo deixou de ser registrado corretamente, o mesmo art. 596 impõe um limite muito mais restrito: a cobrança fica limitada a apenas 6 ciclos anteriores à data da constatação da irregularidade. Portanto, a cobrança de 36 ciclos sem a devida prova técnica do início da falha é uma prática que pode ser questionada administrativamente.
+
+## A importância dos procedimentos formais
+
+Para que uma cobrança de recuperação de consumo seja legítima, a distribuidora deve seguir um rito rigoroso. O art. 590 da Resolução ANEEL nº 1.000/2021 estabelece as providências cumulativas de caracterização da irregularidade que devem ser adotadas.
+
+Além disso, o art. 591 da Resolução ANEEL nº 1.000/2021 impõe deveres específicos na emissão do TOI, como a entrega de via ao consumidor mediante recibo e a informação clara sobre o direito de solicitar perícia metrológica. Caso o consumidor deseje questionar o medidor, os arts. 592 e 250 da mesma Resolução asseguram a realização de perícia em laboratório, observando o prazo de 30 dias contados da solicitação. Se a empresa falha em seguir esses ritos, a integridade do processo de cobrança pode ser questionada.
+
+## Direitos do consumidor na contestação
+
+Além da questão do período, o art. 595 da Resolução ANEEL nº 1.000/2021 define os critérios para o cálculo da receita a recuperar. É importante destacar que o Código de Defesa do Consumidor ampara o usuário, especialmente diante da assimetria técnica entre o consumidor e a distribuidora de energia. Caso se identifique um faturamento a maior por erro da concessionária, o art. 323 da Resolução ANEEL nº 1.000/2021 prevê a possibilidade de revisão do faturamento em até 60 ciclos, com a devida devolução de valores, inclusive em dobro.
+
+## Como proceder diante de uma cobrança alta
+
+Se você recebeu uma notificação de recuperação, é importante analisar o documento. Verifique se a distribuidora comprovou tecnicamente a origem da irregularidade. Caso a cobrança pareça arbitrária ou sem fundamentação temporal, o caminho é elaborar uma contestação administrativa detalhada, observando o prazo estipulado na notificação recebida.
+
+Lembre-se de que a contestação foca no débito retroativo apresentado. É recomendável manter o pagamento das faturas de consumo corrente em dia para evitar riscos de suspensão do fornecimento, enquanto o processo de questionamento administrativo sobre a recuperação de consumo tramita junto à distribuidora.
+
+É possível buscar auxílio profissional para analisar se a notificação apresenta falhas capazes de fundamentar uma contestação robusta.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "pericia-do-medidor-o-prazo-de-30-dias-para-o-relatorio-da-distribuidora",
     titulo: "Perícia do Medidor: O prazo de 30 dias para o relatório da distribuidora",
     descricao: "Entenda o prazo legal de 30 dias para o relatório de inspeção do medidor após um TOI e como contestar cobranças indevidas de energia. Verifique grátis.",
