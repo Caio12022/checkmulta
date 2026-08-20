@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Download, FileText, X } from "lucide-react";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 
@@ -121,6 +122,7 @@ export default function GerarPdfDefesa({ texto, nomeArquivo, corBotao, onBaixar 
   const [modalAberto, setModalAberto] = useState(false);
   const [valores, setValores] = useState<Record<string, string>>({});
   const [gerando, setGerando] = useState(false);
+  const primeiroCampoRef = useRef<HTMLInputElement>(null);
 
   const textoLimpo = useMemo(() => limparMarkdown(texto), [texto]);
   const campos = useMemo(() => extrairCampos(textoLimpo), [textoLimpo]);
@@ -129,6 +131,25 @@ export default function GerarPdfDefesa({ texto, nomeArquivo, corBotao, onBaixar 
     if (!texto) return;
     setModalAberto(true);
   };
+
+  // Enquanto o modal está aberto: trava a rolagem do fundo e fecha no ESC.
+  // Sem a trava, rolar dentro do modal arrasta a página atrás dele.
+  useEffect(() => {
+    if (!modalAberto) return;
+    const overflowAnterior = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const aoTeclar = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setModalAberto(false);
+    };
+    document.addEventListener("keydown", aoTeclar);
+    // Foco no primeiro campo: quem abriu já quer digitar.
+    const foco = window.setTimeout(() => primeiroCampoRef.current?.focus(), 50);
+    return () => {
+      document.body.style.overflow = overflowAnterior;
+      document.removeEventListener("keydown", aoTeclar);
+      window.clearTimeout(foco);
+    };
+  }, [modalAberto]);
 
   const baixarPdf = async () => {
     setGerando(true);
@@ -162,65 +183,84 @@ export default function GerarPdfDefesa({ texto, nomeArquivo, corBotao, onBaixar 
         <span>Preencher e baixar em PDF</span>
       </button>
 
-      {modalAberto && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
-          <div className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-xl bg-white p-6 shadow-2xl">
-            <div className="mb-4 flex items-start justify-between">
-              <div>
-                <h3 className="text-lg font-bold text-slate-900">Preencher dados para o PDF</h3>
-                <p className="mt-1 text-sm text-slate-500">
-                  {campos.length > 0
-                    ? "Esses dados não vieram do documento analisado. Preencha o que souber — o que ficar em branco sai como linha para completar à mão."
-                    : "Nenhum dado pendente identificado. O PDF sairá pronto para baixar."}
-                </p>
+      {/*
+        Portal para o body de propósito: este componente é usado dentro de um
+        <motion.div> (framer-motion) em todas as 5 verticais, e o transform que
+        o motion deixa no elemento cria containing block para position:fixed.
+        Renderizado na árvore normal, o modal ancorava no topo do card da
+        defesa — que é bem mais alto que a tela — e o usuário precisava rolar
+        para cima para achá-lo. No body, o fixed volta a valer pela viewport.
+      */}
+      {modalAberto &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[120] flex items-center justify-center bg-black/60 p-4"
+            onClick={() => setModalAberto(false)}
+          >
+            <div
+              role="dialog"
+              aria-modal="true"
+              onClick={(e) => e.stopPropagation()}
+              className="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-xl bg-white p-6 shadow-2xl"
+            >
+              <div className="mb-4 flex items-start justify-between">
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900">Preencher dados para o PDF</h3>
+                  <p className="mt-1 text-sm text-slate-500">
+                    {campos.length > 0
+                      ? "Esses dados não vieram do documento analisado. Preencha o que souber — o que ficar em branco sai como linha para completar à mão."
+                      : "Nenhum dado pendente identificado. O PDF sairá pronto para baixar."}
+                  </p>
+                </div>
+                <button onClick={() => setModalAberto(false)} className="text-slate-400 hover:text-slate-700">
+                  <X className="h-5 w-5" />
+                </button>
               </div>
-              <button onClick={() => setModalAberto(false)} className="text-slate-400 hover:text-slate-700">
-                <X className="h-5 w-5" />
-              </button>
-            </div>
 
-            {campos.length > 0 && (
-              <div className="space-y-3">
-                {campos.map((campo) => (
-                  <div key={campo}>
-                    <label className="mb-1 block text-sm font-medium text-slate-700">
-                      {humanizarLabel(campo)}
-                    </label>
-                    <input
-                      type="text"
-                      value={valores[campo] || ""}
-                      onChange={(e) => setValores((prev) => ({ ...prev, [campo]: e.target.value }))}
-                      className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-slate-500 focus:outline-none"
-                      placeholder={humanizarLabel(campo)}
-                    />
-                  </div>
-                ))}
+              {campos.length > 0 && (
+                <div className="space-y-3">
+                  {campos.map((campo) => (
+                    <div key={campo}>
+                      <label className="mb-1 block text-sm font-medium text-slate-700">
+                        {humanizarLabel(campo)}
+                      </label>
+                      <input
+                        ref={campo === campos[0] ? primeiroCampoRef : undefined}
+                        type="text"
+                        value={valores[campo] || ""}
+                        onChange={(e) => setValores((prev) => ({ ...prev, [campo]: e.target.value }))}
+                        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-slate-500 focus:outline-none"
+                        placeholder={humanizarLabel(campo)}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <p className="mt-4 text-xs text-slate-400">
+                Esses dados ficam só no seu navegador — não são enviados a nenhum servidor.
+              </p>
+
+              <div className="mt-5 flex justify-end gap-3">
+                <button
+                  onClick={() => setModalAberto(false)}
+                  className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={baixarPdf}
+                  disabled={gerando}
+                  className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-60 ${corBotao}`}
+                >
+                  <Download className="h-4 w-4" />
+                  {gerando ? "Gerando..." : "Baixar PDF"}
+                </button>
               </div>
-            )}
-
-            <p className="mt-4 text-xs text-slate-400">
-              Esses dados ficam só no seu navegador — não são enviados a nenhum servidor.
-            </p>
-
-            <div className="mt-5 flex justify-end gap-3">
-              <button
-                onClick={() => setModalAberto(false)}
-                className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50"
-              >
-                Cancelar
-              </button>
-              <button
-                onClick={baixarPdf}
-                disabled={gerando}
-                className={`flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-60 ${corBotao}`}
-              >
-                <Download className="h-4 w-4" />
-                {gerando ? "Gerando..." : "Baixar PDF"}
-              </button>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </>
   );
 }
