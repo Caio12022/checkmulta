@@ -1,10 +1,10 @@
 {
-  "name": "robo-procon-checkmulta",
+  "name": "robo-auditor-checkmulta",
   "version": "1.0.0",
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "tsx robo-procon.ts"
+    "start": "tsx robo-auditor.ts"
   },
   "dependencies": {
     "@google/genai": "^2.13.0",

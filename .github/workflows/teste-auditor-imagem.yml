@@ -1,0 +1,38 @@
+name: Teste do auditor de imagem
+
+# Bateria do robo-auditor: confere se ele ainda reprova o que deve
+# reprovar e aprova o que deve aprovar. Roda so quando disparado a mao.
+# NAO gera imagem (zero cota do Cloudflare) e NAO comita nada - usa
+# fixtures de imagens ja geradas e o resultado sai no log.
+#
+# Rodar SEMPRE que mexer no prompt de auditoria (auditarImagem, em
+# prompts/imagem.ts): o defeito que essa bateria pegou na primeira
+# execucao foi o auditor rigido demais, reprovando imagem boa por causa
+# de letreiro de fundo - o tipo de coisa que so aparece rodando.
+"on":
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  testar-auditoria:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o codigo
+        uses: actions/checkout@v4
+
+      - name: Preparar o Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Instalar dependencias
+        working-directory: robo-auditor
+        run: npm install
+
+      - name: Rodar a bateria do auditor
+        working-directory: robo-auditor
+        run: npx tsx testar-auditoria.ts
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

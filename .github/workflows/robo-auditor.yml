@@ -1,16 +1,18 @@
-name: Robo de Artigos
+name: Robo Auditor de Imagem
 
+# 18h UTC: depois de todos os robos de artigo (3h/6h/9h/12h/13h/15h),
+# para auditar as imagens do dia ainda no mesmo dia. Nunca no mesmo
+# horario de outro robo.
 "on":
   workflow_dispatch:
   schedule:
-    - cron: "0 12 * * *"
+    - cron: "0 18 * * *"
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
-  gerar-artigo:
+  auditar-imagens:
     runs-on: ubuntu-latest
     steps:
       - name: Baixar o codigo
@@ -22,11 +24,11 @@ jobs:
           node-version: "20"
 
       - name: Instalar dependencias
-        working-directory: robo
+        working-directory: robo-auditor
         run: npm install
 
-      - name: Rodar o robo
-        working-directory: robo
+      - name: Rodar o auditor
+        working-directory: robo-auditor
         run: npm start
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

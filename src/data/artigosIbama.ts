@@ -6,6 +6,8 @@ export interface ArtigoIbama {
   tempoLeitura: string;
   imagemEmoji: string;
   imagemBg: string;
+  /** Imagem de capa gerada por IA (opcional - artigos antigos não têm). */
+  imagemUrl?: string;
   palavrasChave: string[];
   conteudo: string;
 }

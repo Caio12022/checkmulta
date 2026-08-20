@@ -1186,7 +1186,14 @@ function textoDoErro(err: any): string {
  * isso depois de já ter pago.
  */
 export function cotaDiariaEsgotada(err: any): boolean {
-  return /PerDay|per day|requests per day/i.test(textoDoErro(err));
+  // "PerDay"/"per day" = formato do Gemini.
+  // "daily free allocation ... neurons" = formato do Cloudflare Workers AI.
+  //
+  // O caso do Cloudflare já mordeu: sem ele aqui, a mensagem só casava com
+  // "429" e virava "sobrecarregado", então o robô repetia 4 vezes (~76s de
+  // espera) pra receber exatamente o mesmo erro - e ainda logava "Gemini
+  // sobrecarregado" numa falha que era do Cloudflare e não era sobrecarga.
+  return /PerDay|per day|requests per day|daily free allocation/i.test(textoDoErro(err));
 }
 
 export function sobrecarregado(err: any): boolean {
