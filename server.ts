@@ -676,6 +676,29 @@ async function startServer() {
   const app = express();
   const PORT = parseInt(process.env.PORT || "3000", 10);
 
+  // ==========================================
+  // REDIRECT 301: www.checkmulta.com.br -> checkmulta.com.br
+  //
+  // Os dois hosts respondiam, e o Google indexou os dois separadamente: a
+  // mesma página aparecia duas vezes nos resultados, cada versão com sua
+  // própria posição, dividindo o rank em vez de somar. No Search Console
+  // (jun-ago/26) isso aparecia, por exemplo, em detran-sp, que tinha três
+  // URLs concorrendo (www, /blog e /multa-de-transito/blog) e nenhum clique.
+  //
+  // A canonical já apontava pra cá (BASE_URL é sem www), mas canonical é
+  // sugestão; 301 é definitivo.
+  //
+  // Só GET/HEAD: redirecionar POST faz o navegador reenviar como GET e
+  // perder o corpo, o que quebraria as rotas /api.
+  // ==========================================
+  app.use((req, res, next) => {
+    const host = req.headers.host;
+    if ((req.method === "GET" || req.method === "HEAD") && host?.startsWith("www.")) {
+      return res.redirect(301, `${BASE_URL}${req.originalUrl}`);
+    }
+    next();
+  });
+
   app.use(express.json({ limit: "50mb" }));
 
   // ==========================================

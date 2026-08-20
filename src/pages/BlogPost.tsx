@@ -496,7 +496,7 @@ export default function BlogPost() {
           </Link>
           <ChevronRight className="h-3 w-3" />
           <Link
-            to={`/blog/categoria/${slugifyCategoria(artigo.categoria)}`}
+            to={`/multa-de-transito/blog/categoria/${slugifyCategoria(artigo.categoria)}`}
             className="text-slate-400 hover:text-emerald-600"
           >
             {artigo.categoria}
@@ -676,7 +676,7 @@ export default function BlogPost() {
                 return (
                   <Link
                     key={a.slug}
-                    to={`/blog/${a.slug}`}
+                    to={`/multa-de-transito/blog/${a.slug}`}
                     className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
                   >
                     {a.imagemUrl ? (

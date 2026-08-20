@@ -178,7 +178,7 @@ export default function CategoriaBlog() {
             return (
               <Link
                 key={artigo.slug}
-                to={`/blog/${artigo.slug}`}
+                to={`/multa-de-transito/blog/${artigo.slug}`}
                 className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
               >
                 <div
