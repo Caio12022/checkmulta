@@ -32,6 +32,7 @@ import { execSync } from "child_process";
 import { tmpdir } from "os";
 import { join } from "path";
 import sharp from "sharp";
+import { cotaDiariaEsgotada } from "../prompts/validador";
 import {
   auditarImagem,
   gerarDescricaoVisual,
@@ -342,6 +343,10 @@ async function main() {
   }
 
   let regeneracoesUsadas = 0;
+  // Quando a cota diária do Cloudflare acaba, não adianta insistir nas
+  // próximas: para de tentar regenerar e deixa tudo para amanhã.
+  let cotaAcabou = false;
+  let adiadasPorCota = 0;
   const resumo: string[] = [];
 
   for (const artigo of fila) {
@@ -387,8 +392,12 @@ async function main() {
 
       // Sem orçamento de regeneração: deixa como está e NÃO registra no
       // estado, pra tentar de novo amanhã com cota nova.
-      if (!podeRegenerar || regeneracoesUsadas >= REGENERACOES_POR_EXECUCAO) {
-        console.log("    Sem orcamento de regeneracao nesta execucao - fica para a proxima.");
+      if (!podeRegenerar || cotaAcabou || regeneracoesUsadas >= REGENERACOES_POR_EXECUCAO) {
+        const porque = cotaAcabou
+          ? "cota diaria do Cloudflare esgotada"
+          : "sem orcamento de regeneracao nesta execucao";
+        console.log(`    ${porque} - fica para a proxima.`);
+        adiadasPorCota++;
         continue;
       }
 
@@ -455,7 +464,14 @@ async function main() {
       resumo.push(`removida: ${artigo.vertical}/${artigo.slug}`);
     } catch (err: any) {
       // Falha em UMA imagem não pode derrubar a auditoria das outras.
-      console.error(`    Falhou: ${err.message}`);
+      if (cotaDiariaEsgotada(err)) {
+        // Mas cota esgotada vale para TODAS: não adianta tentar as próximas.
+        cotaAcabou = true;
+        adiadasPorCota++;
+        console.error("    Cota diaria do Cloudflare esgotada - paro de regenerar por hoje.");
+      } else {
+        console.error(`    Falhou: ${err.message}`);
+      }
     }
 
     await esperar(2000);
@@ -485,7 +501,7 @@ async function main() {
     const anterior = await baixarArquivo(CAMINHO_RELATORIO).catch(() => null);
     await commitarArquivo(
       CAMINHO_RELATORIO,
-      montarRelatorio(estado, licoes, hoje),
+      montarRelatorio(estado, licoes, hoje, { cotaAcabou, adiadasPorCota }),
       "Auditoria de imagem: atualiza relatorio",
       anterior?.sha
     );
@@ -506,7 +522,12 @@ async function main() {
  * entender o que a auditoria está aprovando e reprovando - sem precisar
  * abrir log de Actions nem ler JSON cru.
  */
-function montarRelatorio(estado: Estado, licoes: Licoes, hoje: string): string {
+function montarRelatorio(
+  estado: Estado,
+  licoes: Licoes,
+  hoje: string,
+  cota: { cotaAcabou: boolean; adiadasPorCota: number }
+): string {
   const registros = Object.entries(estado);
   const conta = (r: Resultado) => registros.filter(([, v]) => v.resultado === r).length;
 
@@ -523,6 +544,15 @@ function montarRelatorio(estado: Estado, licoes: Licoes, hoje: string): string {
     `- Removidas (duas tentativas ruins - artigo ficou sem capa): **${conta("removida")}**`,
     "",
   ];
+
+  if (cota.adiadasPorCota > 0) {
+    linhas.push(
+      cota.cotaAcabou
+        ? `> **A cota diária de geração de imagem acabou nesta execução.** ${cota.adiadasPorCota} imagem(ns) reprovada(s) ficaram sem conserto e voltam para a fila amanhã, quando a cota renova (00:00 UTC).`
+        : `> ${cota.adiadasPorCota} imagem(ns) reprovada(s) ficaram para a próxima execução (teto de regenerações por rodada).`,
+      ""
+    );
+  }
 
   const licoesVerticais = Object.entries(licoes).filter(([, l]) => l.length > 0);
   if (licoesVerticais.length > 0) {
