@@ -242,7 +242,15 @@ Avalie DOIS pontos, com rigor calibrado (não é pra ser purista, é pra pegar o
 
 1. relacionada: a imagem tem relação reconhecível com o assunto do título? Não precisa ser literal nem perfeita - basta que alguém que leia o título e veja a imagem entenda que combinam (mesmo assunto/contexto). Só marque false se a imagem for claramente de outro assunto, ou tão genérica que não diz nada.
 
-2. textoQuebrado: existe texto/letras VISÍVEIS E EM DESTAQUE na imagem com palavras erradas, embaralhadas ou sem sentido? Considere true APENAS quando esse texto está nítido e ocupa parte relevante do quadro (ex: uma placa grande, um carimbo atravessado, uma faixa/fita escrita cruzando a imagem, um letreiro em primeiro plano). Texto pequeno, desfocado, cortado ou de fundo NÃO conta - isso é normal em foto e passa despercebido. Na dúvida entre "pequeno demais pra incomodar" e "chamativo", responda false.
+2. textoQuebrado: existe um ELEMENTO DE TEXTO PRINCIPAL na imagem, com palavras erradas ou embaralhadas?
+
+   A pergunta não é "aparece texto errado em algum lugar?" - foto gerada por IA quase sempre tem alguma rabisco de letra por aí, e isso passa despercebido pelo leitor. A pergunta é: existe um objeto escrito que é PROTAGONISTA da imagem e está com o texto errado?
+
+   Responda true SÓ se o texto errado estiver em algo que é assunto central ou primeiro plano - uma placa grande no meio da foto, um carimbo atravessando a imagem, uma faixa/fita escrita cruzando o quadro, um cartaz em foco ocupando boa parte da cena. É aquele texto que a pessoa lê sem querer, logo de cara.
+
+   Responda false para texto de ambiente, mesmo que esteja errado: letreiro de loja ao fundo, placa de rua distante, rótulo de produto na prateleira, tela de celular, etiqueta pequena, texto desfocado, cortado ou na periferia do quadro. Nada disso incomoda quem olha a foto.
+
+   Na dúvida, responda false: reprovar imagem boa custa caro (ela é regenerada ou apagada à toa), aprovar uma imagem com um rabisco de letra no fundo não custa quase nada.
 
 Responda APENAS com um objeto JSON válido, sem markdown, sem crases:
 {"relacionada": true/false, "textoQuebrado": true/false, "motivo": "uma frase curta em português explicando"}`;
