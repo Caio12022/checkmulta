@@ -38,6 +38,7 @@ import {
   gerarImagemArtigoCloudflare,
   imagemAprovada,
   PERFIS_VERTICAIS,
+  resumirLicao,
   type VeredictoImagem,
 } from "../prompts/imagem";
 
@@ -49,6 +50,14 @@ const GITHUB_OWNER = "Caio12022";
 const GITHUB_REPO = "checkmulta";
 const GITHUB_BRANCH_BASE = "main";
 const CAMINHO_ESTADO = "robo-auditor/auditadas.json";
+// Lições que o auditor ensina de volta pro gerador (lidas pelos robôs
+// de artigo antes de criar a cena da próxima imagem).
+const CAMINHO_LICOES = "robo-auditor/licoes.json";
+// Relatório legível: o que passou, o que não passou e por quê.
+const CAMINHO_RELATORIO = "robo-auditor/RELATORIO.md";
+// Quantas lições guardar por vertical (as mais recentes). Curto de
+// propósito: prompt comprido demais perde eficácia.
+const LICOES_POR_VERTICAL = 6;
 
 // Quantas imagens auditar por execução. Auditar é grátis (visão), mas
 // não faz sentido reler o acervo inteiro todo dia - as novas entram no
@@ -97,10 +106,24 @@ type Resultado = "aprovada" | "substituida" | "removida";
 interface RegistroAuditoria {
   resultado: Resultado;
   data: string;
+  titulo: string;
   motivo: string;
 }
 
 type Estado = Record<string, RegistroAuditoria>;
+type Licoes = Record<string, string[]>;
+
+/**
+ * Chave do estado: inclui a vertical de propósito.
+ *
+ * Cada robô só confere slug repetido DENTRO da própria vertical, então
+ * nada impede Procon e Vigilância de gerarem o mesmo slug um dia (os
+ * temas se parecem: "prazo de defesa", "documentos necessários"...).
+ * Com a chave só no slug, um marcaria o outro como já auditado.
+ */
+function chaveEstado(artigo: { vertical: string; slug: string }): string {
+  return `${artigo.vertical}/${artigo.slug}`;
+}
 
 // ============================================================
 // FUNÇÕES AUXILIARES
@@ -233,7 +256,7 @@ function removerImagemUrl(conteudoArquivo: string, slug: string): string | null 
 // REGENERAÇÃO
 // ============================================================
 
-async function regenerarImagem(artigo: ArtigoComImagem): Promise<Buffer> {
+async function regenerarImagem(artigo: ArtigoComImagem, licoes: string[]): Promise<Buffer> {
   const perfil = PERFIS_VERTICAIS[artigo.vertical];
   const cena = await gerarDescricaoVisual(ai, {
     // O título é o que o leitor vê ao lado da imagem, então é ele que
@@ -242,6 +265,8 @@ async function regenerarImagem(artigo: ArtigoComImagem): Promise<Buffer> {
     categoria: artigo.categoria,
     vertical: perfil.label,
     motivosVisuais: perfil.motivosVisuais,
+    // A regeneração já entra sabendo o que não deu certo antes.
+    licoes,
   });
   console.log(`    Nova cena: ${cena}`);
 
@@ -263,7 +288,7 @@ async function main() {
   const hoje = new Date().toISOString().slice(0, 10);
   console.log(`Auditor de imagem iniciado (${hoje}).`);
 
-  // 1. estado (quem já foi auditado)
+  // 1. estado (quem já foi auditado) e lições (o que já deu errado)
   let estado: Estado = {};
   let shaEstado: string | undefined;
   try {
@@ -273,6 +298,17 @@ async function main() {
   } catch {
     console.log("Sem estado anterior - primeira execucao.");
   }
+
+  let licoes: Licoes = {};
+  let shaLicoes: string | undefined;
+  try {
+    const arquivo = await baixarArquivo(CAMINHO_LICOES);
+    licoes = JSON.parse(arquivo.conteudo);
+    shaLicoes = arquivo.sha;
+  } catch {
+    console.log("Sem licoes anteriores.");
+  }
+  let licoesMudaram = false;
 
   // 2. todos os artigos com imagem, de todas as verticais
   const arquivos = new Map<string, { conteudo: string; sha: string }>();
@@ -292,7 +328,7 @@ async function main() {
 
   // 3. fila: só quem ainda não foi auditado (os novos ficam no topo do
   //    arquivo, então a ordem natural já prioriza o que acabou de sair)
-  const fila = candidatos.filter((a) => !estado[a.slug]).slice(0, AUDITORIAS_POR_EXECUCAO);
+  const fila = candidatos.filter((a) => !estado[chaveEstado(a)]).slice(0, AUDITORIAS_POR_EXECUCAO);
 
   if (fila.length === 0) {
     console.log("Nada novo para auditar. Encerrando.");
@@ -322,13 +358,32 @@ async function main() {
 
       if (imagemAprovada(veredicto)) {
         console.log(`    APROVADA: ${veredicto.motivo}`);
-        estado[artigo.slug] = { resultado: "aprovada", data: hoje, motivo: veredicto.motivo };
+        estado[chaveEstado(artigo)] = {
+          resultado: "aprovada",
+          data: hoje,
+          titulo: artigo.titulo,
+          motivo: veredicto.motivo,
+        };
         continue;
       }
 
       console.log(
         `    REPROVADA (relacionada=${veredicto.relacionada}, textoQuebrado=${veredicto.textoQuebrado}): ${veredicto.motivo}`
       );
+
+      // Vira lição pro gerador, mesmo que não dê pra regenerar agora:
+      // é o que impede o mesmo erro de nascer de novo amanhã.
+      try {
+        const licao = await resumirLicao(ai, veredicto.motivo, artigo.titulo);
+        const daVertical = licoes[artigo.vertical] || [];
+        if (licao && !daVertical.includes(licao)) {
+          licoes[artigo.vertical] = [...daVertical, licao].slice(-LICOES_POR_VERTICAL);
+          licoesMudaram = true;
+          console.log(`    Licao aprendida: ${licao}`);
+        }
+      } catch (err: any) {
+        console.log(`    (nao consegui extrair licao: ${err.message})`);
+      }
 
       // Sem orçamento de regeneração: deixa como está e NÃO registra no
       // estado, pra tentar de novo amanhã com cota nova.
@@ -339,7 +394,7 @@ async function main() {
 
       regeneracoesUsadas++;
       console.log(`    Regenerando (${regeneracoesUsadas}/${REGENERACOES_POR_EXECUCAO})...`);
-      const nova = await regenerarImagem(artigo);
+      const nova = await regenerarImagem(artigo, licoes[artigo.vertical] || []);
 
       const veredictoNovo = await auditarImagem(
         ai,
@@ -355,9 +410,10 @@ async function main() {
           sha
         );
         console.log(`    SUBSTITUIDA: ${veredictoNovo.motivo}`);
-        estado[artigo.slug] = {
+        estado[chaveEstado(artigo)] = {
           resultado: "substituida",
           data: hoje,
+          titulo: artigo.titulo,
           motivo: `${veredicto.motivo} -> ${veredictoNovo.motivo}`,
         };
         resumo.push(`substituida: ${artigo.vertical}/${artigo.slug}`);
@@ -390,9 +446,10 @@ async function main() {
       const atualizado = await baixarArquivo(perfil.caminhoArtigos);
       arquivos.set(artigo.vertical, atualizado);
 
-      estado[artigo.slug] = {
+      estado[chaveEstado(artigo)] = {
         resultado: "removida",
         data: hoje,
+        titulo: artigo.titulo,
         motivo: `${veredicto.motivo} | regenerada tambem reprovou: ${veredictoNovo.motivo}`,
       };
       resumo.push(`removida: ${artigo.vertical}/${artigo.slug}`);
@@ -413,12 +470,109 @@ async function main() {
     shaEstado
   );
 
+  // 5. grava as lições, se alguma nova apareceu
+  if (licoesMudaram) {
+    await commitarArquivo(
+      CAMINHO_LICOES,
+      JSON.stringify(licoes, null, 2) + "\n",
+      "Auditoria de imagem: novas licoes para o gerador",
+      shaLicoes
+    );
+  }
+
+  // 6. relatório legível (é onde dá pra ver o que passou e o que não)
+  try {
+    const anterior = await baixarArquivo(CAMINHO_RELATORIO).catch(() => null);
+    await commitarArquivo(
+      CAMINHO_RELATORIO,
+      montarRelatorio(estado, licoes, hoje),
+      "Auditoria de imagem: atualiza relatorio",
+      anterior?.sha
+    );
+  } catch (err: any) {
+    console.error(`Nao consegui gravar o relatorio: ${err.message}`);
+  }
+
   console.log(`\nAuditoria concluida. ${fila.length} verificada(s).`);
   if (resumo.length > 0) {
     resumo.forEach((l) => console.log(`   - ${l}`));
   } else {
     console.log("   Nenhuma correcao necessaria.");
   }
+}
+
+/**
+ * Relatório em markdown, pra dar pra olhar no GitHub pelo celular e
+ * entender o que a auditoria está aprovando e reprovando - sem precisar
+ * abrir log de Actions nem ler JSON cru.
+ */
+function montarRelatorio(estado: Estado, licoes: Licoes, hoje: string): string {
+  const registros = Object.entries(estado);
+  const conta = (r: Resultado) => registros.filter(([, v]) => v.resultado === r).length;
+
+  const linhas: string[] = [
+    "# Auditoria de imagem do blog",
+    "",
+    `Gerado automaticamente pelo robô auditor. Última execução: **${hoje}**.`,
+    "",
+    "## Resumo",
+    "",
+    `- Imagens verificadas: **${registros.length}**`,
+    `- Aprovadas de primeira: **${conta("aprovada")}**`,
+    `- Substituídas (a primeira era ruim, a nova passou): **${conta("substituida")}**`,
+    `- Removidas (duas tentativas ruins - artigo ficou sem capa): **${conta("removida")}**`,
+    "",
+  ];
+
+  const licoesVerticais = Object.entries(licoes).filter(([, l]) => l.length > 0);
+  if (licoesVerticais.length > 0) {
+    linhas.push(
+      "## O que o gerador já aprendeu",
+      "",
+      "Erros que se repetiram viraram regra: o gerador de imagem recebe estas",
+      "instruções antes de criar a próxima cena, então não erra de novo do",
+      "mesmo jeito.",
+      ""
+    );
+    for (const [vertical, lista] of licoesVerticais) {
+      linhas.push(`**${vertical}**`, "");
+      lista.forEach((l) => linhas.push(`- ${l}`));
+      linhas.push("");
+    }
+  }
+
+  // Só os que precisaram de conserto: é o que interessa olhar.
+  const problemas = registros.filter(([, v]) => v.resultado !== "aprovada");
+  if (problemas.length > 0) {
+    linhas.push(
+      "## Imagens que precisaram de conserto",
+      "",
+      "| artigo | o que aconteceu | motivo |",
+      "| --- | --- | --- |"
+    );
+    for (const [chave, v] of problemas.slice(-30).reverse()) {
+      const motivo = v.motivo.replace(/\|/g, "/").slice(0, 160);
+      linhas.push(`| \`${chave}\` | ${v.resultado} | ${motivo} |`);
+    }
+    linhas.push("");
+  }
+
+  const aprovadas = registros.filter(([, v]) => v.resultado === "aprovada");
+  if (aprovadas.length > 0) {
+    linhas.push(
+      "## Últimas aprovadas",
+      "",
+      "| artigo | leitura do auditor |",
+      "| --- | --- |"
+    );
+    for (const [chave, v] of aprovadas.slice(-15).reverse()) {
+      const motivo = v.motivo.replace(/\|/g, "/").slice(0, 160);
+      linhas.push(`| \`${chave}\` | ${motivo} |`);
+    }
+    linhas.push("");
+  }
+
+  return linhas.join("\n");
 }
 
 main().catch((err) => {

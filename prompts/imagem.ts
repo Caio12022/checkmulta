@@ -45,6 +45,17 @@ export interface PedidoImagemArtigo {
    * tema/categoria, sem essa "cola" entre os artigos.
    */
   motivosVisuais?: string;
+  /**
+   * Lições aprendidas pelo robô auditor: coisas que JÁ deram errado nesta
+   * vertical e não devem se repetir (ver robo-auditor/licoes.json).
+   *
+   * São só restrições negativas ("evite X"), nunca exemplos positivos
+   * ("faça igual a Y"): exemplo positivo faria toda imagem da vertical
+   * convergir pra mesma cena, que é exatamente o defeito que a gente já
+   * corrigiu uma vez aqui (tudo virava "guarda abordando motorista").
+   * Restrição negativa tira uma opção ruim sem estreitar o resto.
+   */
+  licoes?: string[];
 }
 
 /**
@@ -129,6 +140,13 @@ export async function gerarDescricaoVisual(
   ai: ClienteGemini,
   pedido: PedidoImagemArtigo
 ): Promise<string> {
+  const linhaLicoes =
+    pedido.licoes && pedido.licoes.length > 0
+      ? `\nJá deu errado nesta vertical antes (o auditor de imagem reprovou) - NÃO repita:\n${pedido.licoes
+          .map((l) => `- ${l}`)
+          .join("\n")}\n`
+      : "";
+
   const linhaMotivos = pedido.motivosVisuais
     ? `\nFamília visual desta vertical (só pano de fundo/clima - tipo de lugar, objetos comuns, paleta - NÃO é um roteiro de cena fixo, não repita sempre a mesma ação): ${pedido.motivosVisuais}\n`
     : "";
@@ -138,7 +156,7 @@ export async function gerarDescricaoVisual(
 Tema do artigo (em português): "${pedido.tema}"
 Categoria: "${pedido.categoria}"
 Contexto/vertical: ${pedido.vertical}
-${linhaMotivos}
+${linhaMotivos}${linhaLicoes}
 Descreva, em inglês, UMA cena real e concreta que um fotógrafo poderia literalmente fotografar pra ilustrar esse tema especificamente. A cena tem que comunicar o tema sozinha, sem legenda - alguém olhando a foto tem que reconhecer do que se trata. Evite símbolos vagos/indiretos (ex: só um sapato no chão) quando o tema pede pra mostrar a coisa em si (ex: a área desmatada, as árvores cortadas, o veículo, o radar). Fique à vontade pra imaginar a cena natural do tema - gente, viatura, pátio, documento, o que fizer sentido - sem sair do assunto do artigo.
 
 IMPORTANTE: a cena de "guarda abordando motorista" é ótima e bem-vinda quando o tema É sobre isso (parada, radar, fiscalização, autuação, princípio jurídico sobre a validade da multa) - não evite ela nesses casos. Mas NÃO é o padrão pra todo tema: escolha a cena que representa especificamente CADA tema. Estacionamento mostra o carro estacionado errado, CNH mostra algo de carteira/pontuação, pagamento mostra algo de boleto/pagamento, equipamento mostra o equipamento em si. Varie a cena conforme o tema pede, em vez de repetir sempre a mesma.
@@ -291,6 +309,40 @@ Responda APENAS com um objeto JSON válido, sem markdown, sem crases:
 
 export function imagemAprovada(v: VeredictoImagem): boolean {
   return v.relacionada && !v.textoQuebrado;
+}
+
+/**
+ * Transforma um motivo de reprovação numa instrução curta de "evite X",
+ * que volta pro gerador de cena como lição (ver PedidoImagemArtigo.licoes).
+ *
+ * É aqui que o auditor deixa de só corrigir imagem e passa a ensinar: o
+ * defeito que se repete (fita/placa escrita no tema de embargo, por
+ * exemplo) vira uma regra que o gerador passa a respeitar sozinho, em vez
+ * de errar de novo todo dia e depender do conserto depois.
+ */
+export async function resumirLicao(
+  ai: ClienteGemini,
+  motivo: string,
+  titulo: string
+): Promise<string | null> {
+  const prompt = `Um gerador de imagem produziu uma capa ruim para um artigo, e o auditor reprovou.
+
+Título do artigo: "${titulo}"
+Motivo da reprovação: "${motivo}"
+
+Escreva UMA instrução curta em inglês, no imperativo, dizendo o que o gerador deve EVITAR pra não repetir esse erro em outros artigos da mesma área. Tem que ser uma restrição específica e reaproveitável (ex: "avoid isolation tape or official signs with writing as the main subject"), não um conselho genérico (ex: "make better images").
+
+Se o motivo for pontual demais pra virar regra reaproveitável, responda exatamente: NENHUMA
+
+Responda só a instrução em inglês, sem aspas, sem explicação.`;
+
+  const resp = await gerarComRetry(() =>
+    ai.models.generateContent({ model: "gemini-3.1-flash-lite", contents: prompt })
+  );
+
+  const licao = (resp.text || "").trim().replace(/^["']|["']$/g, "");
+  if (!licao || /^NENHUMA$/i.test(licao) || licao.length > 200) return null;
+  return licao;
 }
 
 // ============================================================

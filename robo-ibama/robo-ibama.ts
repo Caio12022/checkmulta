@@ -35,7 +35,8 @@ const CAMINHO_ARTIGOS = "src/data/artigosIbama.ts";
 // Perfil da vertical (rotulo, familia visual, pasta das imagens):
 // definido em prompts/imagem.ts para o robo auditor enxergar o
 // mesmo dado que este robo usa ao publicar.
-const PERFIL = PERFIS_VERTICAIS.ibama;
+const VERTICAL_CHAVE = "ibama";
+const PERFIL = PERFIS_VERTICAIS[VERTICAL_CHAVE];
 const PASTA_IMAGENS = PERFIL.pastaImagens;
 
 // Quantos artigos gerar por execução
@@ -135,6 +136,26 @@ async function comprimirImagem(bytes: Buffer): Promise<Buffer> {
     .resize({ width: 1280, height: 720, fit: "cover" })
     .jpeg({ quality: 82 })
     .toBuffer();
+}
+
+// Lições que o robô auditor aprendeu com imagens reprovadas DESTA
+// vertical (ver robo-auditor/licoes.json). É assim que o erro que já
+// aconteceu deixa de nascer de novo: em vez de gerar torto e depender do
+// conserto depois, o gerador já entra sabendo o que evitar.
+//
+// Se não der pra ler o arquivo, segue sem lição nenhuma - isso é
+// melhoria de qualidade, não requisito pra publicar.
+async function licoesDaVertical(): Promise<string[]> {
+  try {
+    const data = await github(
+      `/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/robo-auditor/licoes.json?ref=${GITHUB_BRANCH_BASE}`,
+      "GET"
+    );
+    const licoes = JSON.parse(Buffer.from(data.content, "base64").toString("utf-8"));
+    return licoes[VERTICAL_CHAVE] || [];
+  } catch {
+    return [];
+  }
 }
 
 // Comita um arquivo binário novo direto na main (mesma API de conteúdo
@@ -492,6 +513,7 @@ async function produzirArtigo(
         categoria: pauta.categoria,
         vertical: PERFIL.label,
         motivosVisuais: PERFIL.motivosVisuais,
+        licoes: await licoesDaVertical(),
       });
       const imagem = await gerarImagemArtigoCloudflare(
         { accountId: CLOUDFLARE_ACCOUNT_ID, apiToken: CLOUDFLARE_API_TOKEN },
