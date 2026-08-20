@@ -174,11 +174,20 @@ export default function BlogIbama() {
               to={`/ibama/blog/${artigo.slug}`}
               className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
             >
-              <div
-                className={`flex h-32 items-center justify-center bg-gradient-to-br ${artigo.imagemBg}`}
-              >
-                <span className="text-4xl opacity-60">{artigo.imagemEmoji}</span>
-              </div>
+              {artigo.imagemUrl ? (
+                <img
+                  src={artigo.imagemUrl}
+                  alt=""
+                  className="h-32 w-full object-cover"
+                  loading="lazy"
+                />
+              ) : (
+                <div
+                  className={`flex h-32 items-center justify-center bg-gradient-to-br ${artigo.imagemBg}`}
+                >
+                  <span className="text-4xl opacity-60">{artigo.imagemEmoji}</span>
+                </div>
+              )}
 
               <div className="flex flex-1 flex-col p-5">
                 <span className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
