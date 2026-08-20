@@ -12,6 +12,51 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "audiencia-de-conciliacao-no-procon-o-que-e-e-como-se-preparar",
+    titulo: "Audiência de Conciliação no Procon: O que é e como se preparar",
+    descricao: "Recebeu uma notificação do Procon? Entenda a finalidade da audiência de conciliação e aprenda como estruturar sua defesa com segurança e profissionalismo.",
+    categoria: "Direitos da Empresa",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["audiência Procon", "defesa empresa autuada", "processo administrativo Procon", "auto de infração"],
+    conteudo: `## Compreendendo a natureza da audiência no Procon
+
+A audiência de conciliação no Procon é uma etapa fundamental do processo administrativo sancionador. Diferente de uma audiência judicial, este momento possui caráter predominantemente conciliatório, visando a resolução célere de conflitos entre fornecedores e consumidores, em conformidade com a legislação de defesa do consumidor. Para o empresário, esta é uma oportunidade de solucionar a demanda antes que o processo ganhe contornos mais complexos ou que a penalidade pecuniária seja aplicada.
+
+Contudo, é essencial compreender que o comparecimento à audiência não desobriga a empresa de observar os ritos formais estabelecidos pelo Decreto 2.181/97, que regulamenta a proteção ao consumidor. A competência dos órgãos para apurar e punir é estabelecida pelo art. 5º. A partir do início do processo administrativo sancionador, previsto no art. 33, a empresa passa a figurar como parte em um procedimento que deve obedecer estritamente aos princípios do contraditório e da ampla defesa, podendo haver uma averiguação preliminar, conforme o art. 33-A.
+
+## Como se preparar adequadamente
+
+A preparação para a audiência deve ser pautada na organização documental e no conhecimento técnico dos fatos. Antes de comparecer ao órgão, o representante da empresa deve reunir todas as provas relacionadas à operação comercial em questão. A falta de documentação ou o desconhecimento sobre o teor do auto de infração pode comprometer a estratégia defensiva.
+
+Se o Procon realizou uma fiscalização prévia, é preciso verificar se foram respeitados os requisitos do art. 35, inciso I, do Decreto 2.181/97, que elenca os elementos obrigatórios do auto de infração (local, data e hora; qualificação do autuado; descrição do fato; dispositivo legal infringido; intimação; identificação, assinatura e matrícula do agente; designação do órgão julgador; assinatura do autuado; cientificação para defesa). A ausência de qualquer um destes requisitos pode ser objeto de questionamento ou alegação de nulidade, desde que demonstrado prejuízo à defesa, conforme o art. 48.
+
+### Pontos de atenção para a empresa
+
+1. Análise da infração: Verifique se a conduta descrita realmente se enquadra no dispositivo legal apontado como infringido. O rigor na tipificação é essencial para a validade do processo.
+2. Critério de dupla visita: Caso a empresa se enquadre como atividade de risco leve, o art. 38-A do Decreto 2.181/97 impõe a fiscalização orientadora com o critério da dupla visita. A inobservância deste rito, conforme o § 2º deste mesmo artigo, implica nulidade do auto de infração. Tratando-se de ME ou EPP, o tratamento diferenciado é, ainda, reforçado pelo § 3º.
+3. Verificação de vícios formais: A inobservância de formalidades procedimentais pode abrir margem para a discussão da validade do auto. No entanto, lembre-se que o art. 48 estabelece que a falha de forma só gera nulidade se houver efetivo prejuízo para a defesa.
+
+## O momento da audiência
+
+Ao comparecer, o representante deve manter uma postura colaborativa, mas técnica. O objetivo é esclarecer os fatos e buscar um acordo, se cabível, sem realizar confissões desnecessárias que possam ser usadas posteriormente na dosimetria da pena. Caso a conciliação não seja possível, o processo seguirá o rito administrativo.
+
+É importante ressaltar que, se houver a aplicação de sanções, a graduação da pena deve observar rigorosamente os arts. 24 a 28 do Decreto 2.181/97, que tratam das atenuantes, agravantes, reincidência e da forma correta de fixação da multa. Além disso, o art. 26-A define que as atenuantes e agravantes são taxativas, e o art. 28-A veda a valoração do mesmo elemento duas vezes na dosimetria da pena, o que é um ponto frequentemente negligenciado pela administração.
+
+## Prazos e recursos
+
+Após as etapas processuais, se houver decisão administrativa desfavorável, a empresa deve estar atenta aos prazos para interposição de recurso. O art. 49 do Decreto 2.181/97 estabelece o prazo de 10 dias para recurso, com efeito suspensivo nos casos de multa. É imperativo notar que o prazo para a defesa inicial pode variar conforme a legislação estadual ou municipal do Procon específico, devendo ser consultado diretamente no auto de infração recebido.
+
+Caso a multa não seja recolhida no prazo de 30 dias após a notificação final, o débito será inscrito em dívida ativa, conforme dispõe o art. 55. Portanto, a gestão do tempo e o acompanhamento dos prazos são vitais para evitar maiores ônus financeiros ao negócio.
+
+Você pode enviar o auto de infração do Procon para análise técnica a fim de verificar se a autuação apresenta vício formal.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "erro-na-identificacao-da-empresa-autuada-entenda-as-consequencias",
     titulo: "Erro na identificação da empresa autuada: entenda as consequências",
     descricao: "Recebeu um auto de infração do Procon com dados errados? Saiba como a identificação incorreta pode gerar nulidade no processo administrativo. Verifique já.",
