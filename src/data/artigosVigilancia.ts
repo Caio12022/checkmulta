@@ -12,6 +12,45 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "a-descricao-generica-da-irregularidade-no-auto-de-infracao-sanitaria",
+    titulo: "A descrição genérica da irregularidade no auto de infração sanitária",
+    descricao: "Entenda por que a falta de clareza no auto de infração sanitária pode ser uma falha grave. Confira se o seu auto apresenta esse erro no CheckMulta.",
+    categoria: "Falhas do Auto",
+    tempoLeitura: "5 min",
+    imagemEmoji: "📋",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["auto de infração sanitária", "multa vigilância sanitária", "defesa processo administrativo", "nulidade auto infração"],
+    conteudo: `## A importância da precisão no auto de infração
+
+O auto de infração é o documento inicial de qualquer processo administrativo sanitário. Por meio dele, o Estado formaliza a acusação contra um estabelecimento. Para que este documento seja válido, ele não pode ser vago. A descrição da conduta infracional deve ser detalhada, precisa e técnica. Quando a autoridade sanitária utiliza termos genéricos, sem especificar exatamente qual norma técnica foi violada ou onde ocorreu o problema, compromete-se o direito de defesa do autuado.
+
+## O que a lei exige do auto de infração
+
+A Lei 6.437/77, que rege as infrações à legislação sanitária federal, estabelece no seu art. 13 os requisitos obrigatórios para que um auto de infração possua validade. A descrição do fato deve ser clara o suficiente para que o estabelecimento saiba exatamente do que está sendo acusado. Além disso, o art. 50 da Lei 9.784/99, aplicável subsidiariamente, impõe o dever de motivação. Isso significa que o ato administrativo precisa explicar o porquê de cada decisão, sendo inadmissíveis justificativas genéricas ou padronizadas.
+
+## Por que a descrição genérica é uma falha
+
+A descrição genérica impede o exercício pleno dos princípios do contraditório e da ampla defesa. Se o auto é omisso, o dono do negócio não consegue identificar qual medida corretiva adotar, nem quais provas produzir para se defender. O devido processo legal pressupõe que o autuado tenha total clareza sobre os fatos que lhe são imputados para que possa rebater cada ponto com documentos, registros fotográficos ou laudos técnicos.
+
+Ao questionar a falta de clareza, o autuado busca garantir que o processo respeite os princípios da razoabilidade e da proporcionalidade. A punição administrativa deve ser fundamentada em fatos concretos observados durante a fiscalização, e não em percepções subjetivas do agente fiscal.
+
+## Como proceder ao receber um auto vago
+
+Caso o seu estabelecimento tenha recebido um auto com descrições imprecisas, é fundamental analisar cuidadosamente o texto. Verifique se foram apontadas as circunstâncias do local e os itens específicos que estariam em desacordo. Se a descrição for insuficiente, esse ponto pode ser arguido em sede de defesa administrativa, sendo possível questionar a higidez do documento.
+
+Lembre-se que o estabelecimento deve buscar a regularização das pendências sanitárias apontadas. Sempre documente as adequações feitas com registros fotográficos, notas fiscais de serviços de limpeza ou reparos, e mantenha os comprovantes de insumos adquiridos. Essa documentação é essencial para fundamentar um eventual pedido de reinspeção junto ao órgão sanitário, demonstrando boa-fé e compromisso com as normas de saúde pública. Em caso de interdição, a retomada da operação somente pode ocorrer após a liberação formal e expressa pela autoridade sanitária competente.
+
+Sobre os prazos para apresentação de defesa, cada órgão possui legislação própria, pois a competência é fragmentada entre União, Estados e Municípios, conforme disposto no art. 14 da Lei 6.437/77. Por isso, nunca tome como regra geral prazos fixos de outras esferas. Consulte sempre o prazo indicado no próprio auto de infração recebido ou na legislação local específica para confirmar a data limite de protocolo.
+
+## A avaliação técnica do seu caso
+
+Identificar falhas formais, como a descrição genérica, exige uma análise técnica apurada do documento com base na Lei 6.437/77 (arts. 2º, 3º, 4º, 6º, 7º, 8º, 10, 13, 14, 17, 22, 23, 30, 33 e 38). O objetivo é garantir que o processo administrativo siga estritamente o que a lei determina, assegurando que o estabelecimento não seja penalizado sem que o fato esteja perfeitamente delimitado e comprovado pela autoridade fiscalizadora. É possível realizar uma análise do auto de infração para verificar se a autuação apresenta falhas formais ou materiais capazes de fundamentar um recurso administrativo.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "documentos-essenciais-para-a-defesa-contra-auto-de-infracao-sanitaria",
     titulo: "Documentos essenciais para a defesa contra auto de infração sanitária",
     descricao: "Saiba quais documentos reunir para elaborar uma defesa técnica contra autuações da Vigilância Sanitária. Receba uma análise gratuita no CheckMulta.",
