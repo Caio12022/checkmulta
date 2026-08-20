@@ -15,6 +15,7 @@ export interface Artigo {
 export const artigos: Artigo[] = [
   {
     slug: "como-consultar-pontos-da-cnh-pelo-celular-em-2026",
+    imagemUrl: "/blog/transito/como-consultar-pontos-da-cnh-pelo-celular-em-2026.jpg",
     titulo: "Como Consultar Pontos da CNH pelo Celular em 2026",
     descricao: "Quer saber como verificar seus pontos na CNH de forma rápida e segura? Aprenda o passo a passo completo e descubra como o CheckMulta analisa sua multa grátis.",
     categoria: "CNH e Pontos",
