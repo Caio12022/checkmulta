@@ -59,7 +59,7 @@ Lembre-se de que a contestação foca no débito retroativo apresentado. É reco
   {
     slug: "pericia-do-medidor-o-prazo-de-30-dias-para-o-relatorio-da-distribuidora",
     titulo: "Perícia do Medidor: O prazo de 30 dias para o relatório da distribuidora",
-    descricao: "Entenda o prazo legal de 30 dias para o relatório de inspeção do medidor após um TOI e como contestar cobranças indevidas de energia. Verifique grátis.",
+    descricao: "Entenda o prazo legal de 30 dias para o relatório de inspeção do medidor após um TOI e como contestar cobranças indevidas de energia. Veja grátis o que falta no seu TOI.",
     categoria: "Perícia do Medidor",
     tempoLeitura: "5 min",
     imagemEmoji: "⚖️",
@@ -364,7 +364,7 @@ No CheckMulta, o consumidor pode enviar o TOI ou a notificação de recuperaçã
   {
     slug: "o-que-e-toi-termo-de-ocorrencia-e-inspecao",
     titulo: "O que é o TOI (Termo de Ocorrência e Inspeção) da conta de luz",
-    descricao: "Entenda o documento que a distribuidora emite ao acusar irregularidade no medidor e o que ele precisa conter para ser válido. Analise o seu gratuitamente.",
+    descricao: "Entenda o documento que a distribuidora emite ao acusar irregularidade no medidor e o que ele precisa conter para ser válido. Veja grátis o que falta no seu TOI.",
     categoria: "Primeiros Passos",
     tempoLeitura: "5 min",
     imagemEmoji: "⚡",
