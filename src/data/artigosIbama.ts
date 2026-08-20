@@ -12,6 +12,53 @@ export interface ArtigoIbama {
 
 export const artigosIbama: ArtigoIbama[] = [
   {
+    slug: "defesa-ibama-documentos-essenciais-para-reunir-apos-uma-autuacao",
+    titulo: "Defesa IBAMA: documentos essenciais para reunir após uma autuação",
+    descricao: "Recebeu um auto de infração do IBAMA? Saiba quais documentos organizar para estruturar sua defesa administrativa e entender os prazos legais de forma clara.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "6 min",
+    imagemEmoji: "📑",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["como recorrer multa IBAMA", "documentos defesa IBAMA", "prazo defesa IBAMA", "nulidade auto de infração IBAMA"],
+    conteudo: `## A importância da organização documental no processo administrativo
+
+Receber um auto de infração ambiental emitido pelo IBAMA gera preocupação imediata, especialmente diante de prazos processuais que, se perdidos, podem resultar na preclusão do direito ao contraditório e à ampla defesa. A defesa administrativa não é apenas uma manifestação de inconformismo, mas uma peça técnica que deve confrontar a narrativa do agente fiscalizador com provas documentais sólidas.
+
+Antes de elaborar qualquer peça de defesa, é fundamental reunir um acervo documental que permita analisar a lisura do procedimento administrativo. Estas orientações aplicam-se exclusivamente a autuações federais lavradas pelo IBAMA. Caso a autuação tenha sido emitida por órgãos estaduais ou municipais, deve-se consultar a legislação específica do ente autuador, pois a repartição de competências, estabelecida pelos arts. 7º e 17 da LC 140/2011, é estrita e a atuação de ente incompetente pode permitir a arguição de nulidade.
+
+## Documentos essenciais para a análise
+
+Para estruturar uma estratégia de defesa, organize os seguintes itens:
+
+- Cópia integral do Auto de Infração: O documento deve ser verificado em sua íntegra, conferindo se preenche os requisitos formais do art. 97 do Decreto 6.514/2008, tais como identificação clara do autuado e a descrição objetiva da infração.
+- Termos Complementares: Relatórios de fiscalização, termos de apreensão, termos de embargo ou de suspensão de atividade. Estes documentos detalham a motivação e a materialidade da infração.
+- Documentação do imóvel ou da atividade: Escrituras, matrículas, registros imobiliários, licenciamento ambiental, autorizações de supressão de vegetação ou documentos que comprovem a regularidade da atividade econômica desenvolvida.
+- Registros fotográficos e de geoprocessamento: Imagens datadas do local, laudos técnicos e registros de satélite que confrontem a descrição constante no auto.
+- Protocolos de ciência: Documentos que comprovem a data em que o autuado tomou conhecimento do auto, essenciais para o cômputo do prazo previsto no art. 113 do Decreto 6.514/2008.
+
+## Conceitos técnicos fundamentais para a defesa
+
+Ao reunir a documentação, é necessário observar se o processo administrativo respeitou as balizas legais. O art. 97 do Decreto 6.514/2008 exige clareza e ausência de vícios formais. Caso o auto apresente vício insanável, a administração possui o poder-dever de anular seus atos eivados de ilegalidade, conforme o art. 53 da Lei 9.784/99, aplicável subsidiariamente.
+
+Outro ponto crucial é a análise da prescrição. De acordo com o art. 21 do Decreto 6.514/2008, a pretensão punitiva prescreve em cinco anos a contar da prática do ato ou da cessação da infração. Existe também a prescrição intercorrente, prevista no art. 21, § 2º, que ocorre quando o processo administrativo fica paralisado por três anos sem movimentação pendente de julgamento ou despacho. A identificação dessas datas é um dos passos importantes na revisão do processo.
+
+## Preparação para a defesa e conversão
+
+Além de buscar nulidades, a estratégia de defesa pode envolver o pedido de atenuação ou a busca pela conversão da multa simples em serviços de preservação, melhoria e recuperação ambiental, nos termos do art. 72, § 4º, da Lei 9.605/98. A prova documental também deve contemplar as circunstâncias atenuantes elencadas no art. 14 da mesma lei, caso aplicáveis ao caso concreto.
+
+O prazo para apresentação de defesa é de vinte dias, conforme o art. 113 do Decreto 6.514/2008, contudo, este prazo pode sofrer alteração ou sobrestamento caso tenha havido o agendamento de audiência de conciliação ambiental, conforme o art. 97-A, § 1º. É imprescindível verificar o teor da notificação recebida para confirmar a contagem específica.
+
+## Considerações sobre a atuação administrativa
+
+A existência de uma autuação não autoriza a desobediência a medidas como embargos ou apreensões em vigor. A discussão sobre a validade do auto de infração deve ocorrer estritamente pelos meios administrativos e judiciais próprios, sendo recomendável o respeito às medidas cautelares impostas pelo IBAMA enquanto o processo estiver em curso.
+
+A análise técnica de um auto de infração pode auxiliar na verificação de falhas processuais que fundamentem a estratégia de defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "diferenca-entre-auto-de-infracao-do-ibama-e-de-orgao-estadual",
     titulo: "Diferença entre auto de infração do IBAMA e de órgão estadual",
     descricao: "Entenda as distinções de competência entre o IBAMA e órgãos estaduais ao receber um auto de infração ambiental e saiba como proceder com sua defesa.",
