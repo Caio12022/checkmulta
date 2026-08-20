@@ -1,5 +1,5 @@
 /**
- * TESTE TEMPORÁRIO do auditor de imagem.
+ * BATERIA DO AUDITOR DE IMAGEM.
  *
  * Confere as duas coisas que o auditor promete detectar, usando imagens
  * reais já geradas (guardadas em fixtures/) e ZERO cota do Cloudflare -
@@ -12,8 +12,14 @@
  *      (esse é o caso que prova que a checagem de correlação funciona,
  *      e não que o modelo só aprova tudo que não tem texto)
  *
- * Apagar este arquivo, a pasta fixtures/ e o workflow de teste depois de
- * aprovado.
+ * RODAR SEMPRE que mexer no prompt de auditoria (auditarImagem, em
+ * prompts/imagem.ts). O defeito que esta bateria pegou na primeira
+ * execução foi calibragem: o auditor reprovava imagem boa por causa de
+ * letreiro de loja ao fundo. Auditor rígido demais é caro - ele
+ * regenera imagem boa e, se a segunda também reprovar, apaga uma capa
+ * que estava ok.
+ *
+ * Dispare pelo workflow "Teste do auditor de imagem" (Actions).
  */
 
 import { GoogleGenAI } from "@google/genai";
