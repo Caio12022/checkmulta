@@ -17,7 +17,7 @@ import { execSync } from "child_process";
 import { tmpdir } from "os";
 import { join } from "path";
 import sharp from "sharp";
-import { validarArtigoBlog, gerarComRetry, type ViolacaoDefesa } from "../prompts/validador";
+import { validarArtigoBlog, gerarComRetry, ajustarSeoBlog, type ViolacaoDefesa } from "../prompts/validador";
 import {
   gerarDescricaoVisual,
   gerarImagemArtigoCloudflare,
@@ -231,8 +231,8 @@ REGISTRO: profissional e sóbrio, sem informalidade. Explique conceitos técnico
 
 Responda APENAS com um objeto JSON válido, sem markdown, sem crases, sem texto antes ou depois. Formato exato:
 {
-  "titulo": "título claro e específico, até 70 caracteres",
-  "descricao": "meta description de 140-160 caracteres, informativa, terminando com convite a verificar o auto gratuitamente",
+  "titulo": "titulo claro e especifico, no MAXIMO 60 caracteres contando espacos (o Google corta o que passa disso)",
+  "descricao": "meta description de NO MAXIMO 155 caracteres contando espacos. Comece pela frase que responde a busca. NAO termine com convite generico do tipo 'analise gratis' ou 'verifique gratuitamente' — termine com este fecho exato: O prazo do seu municipio pode ser menor que 15 dias.",
   "tempoLeitura": "X min",
   "imagemEmoji": "um único emoji relacionado ao tema",
   "imagemBg": "gradiente Tailwind SUAVE no formato 'from-COR-50 to-COR-50' usando tons claros (ex: from-amber-50 to-orange-50, from-sky-50 to-blue-50, from-emerald-50 to-teal-50, from-violet-50 to-purple-50, from-rose-50 to-pink-50)",
@@ -284,6 +284,16 @@ AVISO LEGAL FINAL (obrigatório):
     .trim();
 
   const obj = JSON.parse(texto);
+
+  // Trava de codigo do SEO. O prompt acima ja pede titulo curto e o fecho
+  // certo na descricao, mas prompt sozinho nao segura: o modelo varia entre
+  // execucoes. Aqui a normalizacao e deterministica -- foi assim que o blog
+  // acumulou 126 descricoes terminando na mesma frase generica.
+  const seo = ajustarSeoBlog(String(obj.titulo || ""), String(obj.descricao || ""), "vigilancia");
+  obj.titulo = seo.titulo;
+  obj.descricao = seo.descricao;
+  seo.avisos.forEach((a) => console.log(`  SEO: ${a}`));
+
   return obj;
 }
 
