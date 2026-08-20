@@ -18,7 +18,11 @@ import { tmpdir } from "os";
 import { join } from "path";
 import sharp from "sharp";
 import { validarArtigoBlog, gerarComRetry, type ViolacaoDefesa } from "../prompts/validador";
-import { gerarDescricaoVisual, gerarImagemArtigoCloudflare } from "../prompts/imagem";
+import {
+  gerarDescricaoVisual,
+  gerarImagemArtigoCloudflare,
+  PERFIS_VERTICAIS,
+} from "../prompts/imagem";
 
 // ============================================================
 // CONFIGURAÇÃO
@@ -28,12 +32,11 @@ const GITHUB_OWNER = "Caio12022";
 const GITHUB_REPO = "checkmulta";
 const GITHUB_BRANCH_BASE = "main";
 const CAMINHO_ARTIGOS = "src/data/artigosEnergia.ts";
-const PASTA_IMAGENS = "public/blog/energia";
-const VERTICAL_LABEL = "defesa administrativa de autuações de energia elétrica (TOI) no Brasil";
-// "Família visual" fixa pra dar identidade entre as imagens de Energia
-// (ver PedidoImagemArtigo.motivosVisuais em prompts/imagem.ts).
-const MOTIVOS_VISUAIS =
-  "power lines, utility poles, electricity meters, electrical panels, substations, transformers, residential meter boxes, wiring, technicians";
+// Perfil da vertical (rotulo, familia visual, pasta das imagens):
+// definido em prompts/imagem.ts para o robo auditor enxergar o
+// mesmo dado que este robo usa ao publicar.
+const PERFIL = PERFIS_VERTICAIS.energia;
+const PASTA_IMAGENS = PERFIL.pastaImagens;
 
 // Quantos artigos gerar por execução
 const ARTIGOS_POR_EXECUCAO = 1;
@@ -483,8 +486,8 @@ async function produzirArtigo(
       const cena = await gerarDescricaoVisual(ai, {
         tema: pauta.tema,
         categoria: pauta.categoria,
-        vertical: VERTICAL_LABEL,
-        motivosVisuais: MOTIVOS_VISUAIS,
+        vertical: PERFIL.label,
+        motivosVisuais: PERFIL.motivosVisuais,
       });
       const imagem = await gerarImagemArtigoCloudflare(
         { accountId: CLOUDFLARE_ACCOUNT_ID, apiToken: CLOUDFLARE_API_TOKEN },

@@ -1,0 +1,33 @@
+name: TESTE - Auditor de imagem (temporario)
+
+# Workflow temporario, so pra validar que a auditoria por visao funciona
+# no tier gratis e detecta os casos certos. NAO gera imagem (zero cota do
+# Cloudflare), NAO comita nada - o resultado sai no log.
+# Apagar depois de aprovado - ver robo-auditor/testar-auditoria.ts.
+"on":
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  testar-auditoria:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o codigo
+        uses: actions/checkout@v4
+
+      - name: Preparar o Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Instalar dependencias
+        working-directory: robo-auditor
+        run: npm install
+
+      - name: Rodar o teste de auditoria
+        working-directory: robo-auditor
+        run: npx tsx testar-auditoria.ts
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

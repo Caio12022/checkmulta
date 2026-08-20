@@ -40,12 +40,71 @@ export interface PedidoImagemArtigo {
    * "Família visual" fixa da vertical (motivos/objetos/cenários típicos),
    * em inglês - ex: "roads, highways, cars, speed cameras, traffic stops".
    * Dá uma identidade reconhecível entre os artigos da mesma vertical,
-   * em vez de cada imagem vir de um lugar diferente. Cada robô define a
-   * sua (ver MOTIVOS_VISUAIS em robo.ts). Opcional: sem isso, a cena sai
-   * só do tema/categoria, sem essa "cola" entre os artigos.
+   * em vez de cada imagem vir de um lugar diferente. Vem de
+   * PERFIS_VERTICAIS abaixo. Opcional: sem isso, a cena sai só do
+   * tema/categoria, sem essa "cola" entre os artigos.
    */
   motivosVisuais?: string;
 }
+
+/**
+ * Perfil de cada vertical, em UM lugar só.
+ *
+ * Fica aqui (e não em cada robô) porque dois consumidores precisam dos
+ * mesmos dados: o robô que publica o artigo e o robô auditor, que relê a
+ * imagem publicada e regenera as reprovadas. Se cada um tivesse a sua
+ * cópia, as duas envelheceriam separadas - defeito que o CLAUDE.md deste
+ * projeto já documenta como recorrente.
+ */
+export interface PerfilVertical {
+  /** contexto em português, entra no prompt de descrição da cena */
+  label: string;
+  /** "família visual" da vertical, em inglês */
+  motivosVisuais: string;
+  /** onde as imagens desta vertical moram no repo */
+  pastaImagens: string;
+  /** arquivo de dados dos artigos desta vertical */
+  caminhoArtigos: string;
+}
+
+export const PERFIS_VERTICAIS: Record<string, PerfilVertical> = {
+  transito: {
+    label: "defesa administrativa de multas de trânsito no Brasil",
+    motivosVisuais:
+      "roads, highways, parking lots, asphalt, streetlights, dashboards, car mirrors, garages, motorcycles, urban streets, night driving, traffic police officers, radar cameras, document checks at the car window",
+    pastaImagens: "public/blog/transito",
+    caminhoArtigos: "src/data/artigos.ts",
+  },
+  procon: {
+    label: "defesa administrativa de autuações do Procon no Brasil (empresas autuadas)",
+    motivosVisuais:
+      "retail stores, shop counters, product shelves, invoices, cash registers, small business storefronts, office desks, customer service, consumer goods",
+    pastaImagens: "public/blog/procon",
+    caminhoArtigos: "src/data/artigosProcon.ts",
+  },
+  vigilancia: {
+    label:
+      "defesa administrativa de autuações de vigilância sanitária no Brasil (estabelecimentos autuados)",
+    motivosVisuais:
+      "commercial kitchens, restaurants, food storage, refrigerators, food packaging, hygiene, gloves, health inspection, restaurant counters",
+    pastaImagens: "public/blog/vigilancia",
+    caminhoArtigos: "src/data/artigosVigilancia.ts",
+  },
+  energia: {
+    label: "defesa administrativa de autuações de energia elétrica (TOI) no Brasil",
+    motivosVisuais:
+      "power lines, utility poles, electricity meters, electrical panels, substations, transformers, residential meter boxes, wiring, technicians",
+    pastaImagens: "public/blog/energia",
+    caminhoArtigos: "src/data/artigosEnergia.ts",
+  },
+  ibama: {
+    label: "defesa administrativa de autuações do IBAMA no Brasil",
+    motivosVisuais:
+      "forests, rural land, dirt roads, rivers, tree stumps, cut logs, environmental agents, rural properties, nature, wildlife",
+    pastaImagens: "public/blog/ibama",
+    caminhoArtigos: "src/data/artigosIbama.ts",
+  },
+};
 
 export interface ImagemGerada {
   bytes: Buffer;
@@ -149,6 +208,81 @@ export async function gerarImagemArtigoCloudflare(
     bytes: Buffer.from(base64, "base64"),
     mimeType: "image/jpeg",
   };
+}
+
+// ============================================================
+// AUDITORIA: relê a imagem publicada e diz se ela serve
+//
+// Usa o Gemini de TEXTO com entrada de imagem (visão). Isso é importante:
+// LER imagem cai na cota grátis normal, quem tem cota zero no tier grátis
+// é só GERAR imagem. Por isso dá pra auditar todas as imagens todo dia de
+// graça, e gastar a cota do Cloudflare só nas poucas que precisam ser
+// refeitas.
+// ============================================================
+
+export interface VeredictoImagem {
+  /** a imagem tem relação reconhecível com o título do artigo? */
+  relacionada: boolean;
+  /** tem texto legível/quebrado dominando a imagem? */
+  textoQuebrado: boolean;
+  /** explicação curta, para o log */
+  motivo: string;
+}
+
+export async function auditarImagem(
+  ai: ClienteGemini,
+  imagem: { bytes: Buffer; mimeType: string },
+  titulo: string
+): Promise<VeredictoImagem> {
+  const prompt = `Você audita a imagem de capa de um artigo de blog jurídico brasileiro. Olhe a imagem e responda sobre ela.
+
+Título do artigo: "${titulo}"
+
+Avalie DOIS pontos, com rigor calibrado (não é pra ser purista, é pra pegar o que ficaria feio no site):
+
+1. relacionada: a imagem tem relação reconhecível com o assunto do título? Não precisa ser literal nem perfeita - basta que alguém que leia o título e veja a imagem entenda que combinam (mesmo assunto/contexto). Só marque false se a imagem for claramente de outro assunto, ou tão genérica que não diz nada.
+
+2. textoQuebrado: existe texto/letras VISÍVEIS E EM DESTAQUE na imagem com palavras erradas, embaralhadas ou sem sentido? Considere true APENAS quando esse texto está nítido e ocupa parte relevante do quadro (ex: uma placa grande, um carimbo atravessado, uma faixa/fita escrita cruzando a imagem, um letreiro em primeiro plano). Texto pequeno, desfocado, cortado ou de fundo NÃO conta - isso é normal em foto e passa despercebido. Na dúvida entre "pequeno demais pra incomodar" e "chamativo", responda false.
+
+Responda APENAS com um objeto JSON válido, sem markdown, sem crases:
+{"relacionada": true/false, "textoQuebrado": true/false, "motivo": "uma frase curta em português explicando"}`;
+
+  const resp = await gerarComRetry(() =>
+    ai.models.generateContent({
+      model: "gemini-3.1-flash-lite",
+      contents: [
+        { text: prompt },
+        {
+          inlineData: {
+            mimeType: imagem.mimeType || "image/jpeg",
+            data: imagem.bytes.toString("base64"),
+          },
+        },
+      ],
+    })
+  );
+
+  let texto = (resp.text || "").trim();
+  texto = texto
+    .replace(/^```json\s*/i, "")
+    .replace(/^```\s*/i, "")
+    .replace(/```\s*$/i, "")
+    .trim();
+
+  const obj = JSON.parse(texto);
+
+  // Se o modelo devolver algo fora do formato, tratar como APROVADA.
+  // Auditoria é uma rede de segurança opcional: em caso de dúvida ela não
+  // pode derrubar uma imagem que talvez esteja boa.
+  return {
+    relacionada: obj.relacionada !== false,
+    textoQuebrado: obj.textoQuebrado === true,
+    motivo: String(obj.motivo || "").slice(0, 300),
+  };
+}
+
+export function imagemAprovada(v: VeredictoImagem): boolean {
+  return v.relacionada && !v.textoQuebrado;
 }
 
 // ============================================================
