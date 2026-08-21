@@ -6,6 +6,7 @@ import {
   getCategoriasEnergia,
 } from "../data/artigosEnergia";
 import { selo } from "../data/revisao";
+import MenuBlogs from "../components/MenuBlogs";
 
 export default function BlogEnergia() {
   const [categoriaAtiva, setCategoriaAtiva] = useState<string | null>(null);
@@ -105,6 +106,8 @@ export default function BlogEnergia() {
           </nav>
         </div>
       </header>
+
+      <MenuBlogs atual="energia" />
 
       {/* Capa */}
       <section className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">

@@ -5,6 +5,7 @@ import { artigosVigilancia } from "../data/artigosVigilancia";
 import { artigosEnergia } from "../data/artigosEnergia";
 import { artigosIbama } from "../data/artigosIbama";
 import { VERTICAIS } from "../data/verticais";
+import MenuBlogs from "../components/MenuBlogs";
 
 /**
  * Blog-mãe: reúne as cinco verticais em uma só página, no mesmo espírito da
@@ -166,6 +167,8 @@ export default function BlogGeral() {
           </nav>
         </div>
       </header>
+
+      <MenuBlogs atual="todos" />
 
       <section className="border-b border-slate-200">
         <div className="mx-auto max-w-4xl px-5 py-14 text-center sm:py-16">

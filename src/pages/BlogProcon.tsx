@@ -6,6 +6,7 @@ import {
   getCategoriasProcon,
   slugifyCategoriaProcon,
 } from "../data/artigosProcon";
+import MenuBlogs from "../components/MenuBlogs";
 
 export default function BlogProcon() {
   const [categoriaAtiva, setCategoriaAtiva] = useState<string | null>(null);
@@ -102,6 +103,8 @@ export default function BlogProcon() {
           </nav>
         </div>
       </header>
+
+      <MenuBlogs atual="procon" />
 
       {/* Capa */}
       <section className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">

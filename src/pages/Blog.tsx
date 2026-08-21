@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Clock, ShieldCheck, Search } from "lucide-react";
 import { artigos } from "../data/artigos";
 import { getCorSuave } from "../data/coresSuaves";
+import MenuBlogs from "../components/MenuBlogs";
 
 export default function Blog() {
   const [busca, setBusca] = useState("");
@@ -78,6 +79,8 @@ export default function Blog() {
           </nav>
         </div>
       </header>
+
+      <MenuBlogs atual="transito" />
 
       {/* CAPA */}
       <section className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">

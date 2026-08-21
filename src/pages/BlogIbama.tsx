@@ -5,6 +5,7 @@ import {
   artigosIbama,
   getCategoriasIbama,
 } from "../data/artigosIbama";
+import MenuBlogs from "../components/MenuBlogs";
 
 export default function BlogIbama() {
   const [categoriaAtiva, setCategoriaAtiva] = useState<string | null>(null);
@@ -104,6 +105,8 @@ export default function BlogIbama() {
           </nav>
         </div>
       </header>
+
+      <MenuBlogs atual="ibama" />
 
       {/* Capa */}
       <section className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">

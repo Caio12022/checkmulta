@@ -495,24 +495,38 @@ export default function ComoFuncionaScroll({ cor = "emerald" }: { cor?: CorVerti
                 etapaMobileRefs.current[i] = el;
               }}
               data-solido="false"
-              className="group flex items-center gap-5"
+              className="group"
             >
-              <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border transition-colors duration-500 group-data-[solido=false]:border-stone-300 group-data-[solido=false]:bg-stone-50 group-data-[solido=false]:text-stone-300 ${c.groupDataSolidoBorder700} ${c.groupDataSolidoBg700} group-data-[solido=true]:text-white`}>
-                <e.Icone className="h-5 w-5" strokeWidth={1.5} />
-              </div>
-              <div className="min-w-0 flex-1">
-                <span className={`font-mono text-xs tracking-widest ${c.text700}`}>
-                  {e.numero}
-                </span>
-                <h3 className="font-display mt-1 text-lg font-semibold tracking-tight text-stone-900">
-                  {e.titulo}
-                </h3>
-                <p className="mt-2 text-base leading-relaxed text-stone-600">
-                  {e.texto}
-                </p>
-                <div className="mt-4 h-56 opacity-40 blur-[2px] transition-all duration-700 group-data-[solido=true]:opacity-100 group-data-[solido=true]:blur-none">
-                  <e.Mockup cor={cor} />
+              {/* Cabeçalho: selo ao lado do número/título, não centralizado
+                  contra a etapa inteira. Com "items-center" na etapa toda o
+                  selo era alinhado pelo meio de um bloco alto (texto +
+                  mockup) e ficava boiando no meio da caixa. */}
+              <div className="flex items-center gap-4">
+                <div className={`flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full border transition-colors duration-500 group-data-[solido=false]:border-stone-300 group-data-[solido=false]:bg-stone-50 group-data-[solido=false]:text-stone-300 ${c.groupDataSolidoBorder700} ${c.groupDataSolidoBg700} group-data-[solido=true]:text-white`}>
+                  <e.Icone className="h-5 w-5" strokeWidth={1.5} />
                 </div>
+                <div className="min-w-0 flex-1">
+                  <span className={`font-mono text-xs tracking-widest ${c.text700}`}>
+                    {e.numero}
+                  </span>
+                  <h3 className="font-display mt-0.5 text-lg font-semibold tracking-tight text-stone-900">
+                    {e.titulo}
+                  </h3>
+                </div>
+              </div>
+
+              {/* Texto e mockup ocupam a largura toda: antes ficavam na
+                  coluna ao lado do selo, perdendo ~68px de largura num
+                  celular, o que espremia o mockup. */}
+              <p className="mt-3 text-base leading-relaxed text-stone-600">
+                {e.texto}
+              </p>
+
+              {/* Sem altura fixa. Com "h-56" o conteúdo do mockup não cabia
+                  e, como os mockups são "justify-center", ele vazava por
+                  cima e por baixo, invadindo o texto da etapa. */}
+              <div className="mt-4 opacity-40 blur-[2px] transition-all duration-700 group-data-[solido=true]:opacity-100 group-data-[solido=true]:blur-none">
+                <e.Mockup cor={cor} />
               </div>
             </li>
           ))}

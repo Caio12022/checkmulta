@@ -5,6 +5,7 @@ import {
   artigosVigilancia,
   getCategoriasVigilancia,
 } from "../data/artigosVigilancia";
+import MenuBlogs from "../components/MenuBlogs";
 
 export default function BlogVigilancia() {
   const [categoriaAtiva, setCategoriaAtiva] = useState<string | null>(null);
@@ -104,6 +105,8 @@ export default function BlogVigilancia() {
           </nav>
         </div>
       </header>
+
+      <MenuBlogs atual="vigilancia" />
 
       {/* Capa */}
       <section className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
