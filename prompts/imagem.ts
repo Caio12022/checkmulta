@@ -311,6 +311,63 @@ export function imagemAprovada(v: VeredictoImagem): boolean {
   return v.relacionada && !v.textoQuebrado;
 }
 
+export interface ResultadoCapa {
+  /** bytes já comprimidos (1280x720 jpeg), prontos pra commitar - ou null se nenhuma tentativa passou */
+  aprovada: Buffer | null;
+  /** motivo da auditoria: da aprovação, ou da última reprovação se nenhuma passou */
+  motivo?: string;
+}
+
+/**
+ * Gera e audita a capa de um artigo, tentando até `tentativas` vezes até
+ * uma imagem passar na auditoria. Artigo já publicado não pode piorar, então
+ * só publica se aprovar - diferente do robô de artigo novo, que publica
+ * primeiro e conserta depois (ver robo-auditor.ts).
+ *
+ * Compartilhada entre gerar-manual.ts (backfill sob demanda, artigo
+ * escolhido a dedo) e robo-backfill.ts (backfill automático, sorteando
+ * artigos sem imagem) - mesma regra em código só uma vez, não duas cópias
+ * que envelhecem separadas (defeito já documentado no CLAUDE.md).
+ *
+ * Erro de cota esgotada sobe pra quem chamou decidir (normalmente: parar
+ * de processar o resto da fila).
+ *
+ * `comprimir` fica a cargo de quem chama (em vez deste módulo importar
+ * `sharp` direto): prompts/ não tem node_modules próprio, e cada robô já
+ * roda dentro da sua própria pasta (robo-auditor/, robo/ etc.), cada uma
+ * com o `sharp` instalado localmente - importar aqui quebraria a
+ * resolução de módulo do Node (sobe a árvore a partir de prompts/, não
+ * acha o node_modules do robô que chamou).
+ */
+export async function gerarEAuditarCapa(
+  ai: ClienteGemini,
+  credenciaisCloudflare: CredenciaisCloudflare,
+  pedido: PedidoImagemArtigo,
+  titulo: string,
+  tentativas: number,
+  comprimir: (bytesOriginais: Buffer) => Promise<Buffer>
+): Promise<ResultadoCapa> {
+  let ultimoMotivo: string | undefined;
+
+  for (let tentativa = 1; tentativa <= tentativas; tentativa++) {
+    const cena = await gerarDescricaoVisual(ai, pedido);
+    console.log(`    [${tentativa}] Cena: ${cena}`);
+
+    const imagem = await gerarImagemArtigoCloudflare(credenciaisCloudflare, cena);
+    const comprimida = await comprimir(imagem.bytes);
+
+    const veredicto = await auditarImagem(ai, { bytes: comprimida, mimeType: "image/jpeg" }, titulo);
+    if (imagemAprovada(veredicto)) {
+      console.log(`    [${tentativa}] APROVADA: ${veredicto.motivo}`);
+      return { aprovada: comprimida, motivo: veredicto.motivo };
+    }
+    console.log(`    [${tentativa}] reprovada: ${veredicto.motivo}`);
+    ultimoMotivo = veredicto.motivo;
+  }
+
+  return { aprovada: null, motivo: ultimoMotivo };
+}
+
 /**
  * Transforma um motivo de reprovação numa instrução curta de "evite X",
  * que volta pro gerador de cena como lição (ver PedidoImagemArtigo.licoes).
