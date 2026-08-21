@@ -474,7 +474,7 @@ Ponto importante e que gera confusão: a discussão é sobre o débito retroativ
 
 O caminho tem degraus, e pular degrau atrapalha.
 
-Comece pela própria distribuidora, pelos canais de atendimento. Guarde o número de protocolo — sem ele você não consegue demonstrar depois que reclamou. Se a resposta for negativa ou simplesmente não vier, o passo seguinte é a ouvidoria da distribuidora. Depois disso, a ANEEL. A via judicial permanece disponível a qualquer momento.
+Comece pela própria distribuidora, pelos canais de atendimento. Guarde o número de protocolo. Sem ele você não consegue demonstrar depois que reclamou. Se a resposta for negativa ou simplesmente não vier, o passo seguinte é a ouvidoria da distribuidora. Depois disso, a ANEEL. A via judicial permanece disponível a qualquer momento.
 
 ## O prazo
 
@@ -488,7 +488,7 @@ Vale saber que um TOI formalmente correto pode, ainda assim, ter o valor derruba
 
 ## Verifique sua cobrança gratuitamente
 
-Envie o TOI, a notificação ou a fatura e receba a análise das duas frentes — formalidade e cálculo — sem custo e sem cadastro.
+Envie o TOI, a notificação ou a fatura e receba a análise das duas frentes, formalidade e cálculo, sem custo e sem cadastro.
 
 *Este conteúdo tem caráter informativo e não constitui consultoria jurídica.*`,
   },
@@ -523,7 +523,7 @@ Ou seja: a norma não proíbe a inspeção sem o consumidor. Ela exige que, ness
 
 Decisões têm considerado que a ausência de comprovação do envio da cópia do TOI caracteriza violação da ampla defesa e do contraditório. E há entendimento de que o TOI lavrado somente pelos inspetores que prestam serviço à distribuidora, sem o consumidor ou seu representante, viola a resolução.
 
-O ponto de fundo é que cabe à distribuidora comprovar que adotou as providências necessárias e assegurou o contraditório — não ao consumidor provar que nada aconteceu.
+O ponto de fundo é que cabe à distribuidora comprovar que adotou as providências necessárias e assegurou o contraditório. Não ao consumidor provar que nada aconteceu.
 
 ## O que verificar no seu caso
 
@@ -550,7 +550,7 @@ Quando a distribuidora acusa irregularidade no medidor, o consumidor tem o direi
 
 ## O que o art. 591 determina
 
-O art. 591 da Resolução ANEEL nº 1.000/2021 estabelece que, ao emitir o TOI, a distribuidora deve informar duas coisas. Primeiro, a possibilidade de solicitação de verificação ou de perícia metrológica junto ao INMETRO ou ao órgão metrológico delegado. Segundo, os prazos, os custos de frete e da verificação ou perícia, e que o consumidor será responsabilizado por esses custos se a irregularidade for comprovada — sendo vedada a cobrança de outros custos.
+O art. 591 da Resolução ANEEL nº 1.000/2021 estabelece que, ao emitir o TOI, a distribuidora deve informar duas coisas. Primeiro, a possibilidade de solicitação de verificação ou de perícia metrológica junto ao INMETRO ou ao órgão metrológico delegado. Segundo, os prazos, os custos de frete e da verificação ou perícia, e que o consumidor será responsabilizado por esses custos se a irregularidade for comprovada. Sendo vedada a cobrança de outros custos.
 
 Essa segunda parte tem duas leituras que interessam ao consumidor. A informação sobre custo é obrigatória, e a cobrança de qualquer outro valor além de frete e perícia não é permitida.
 
@@ -564,7 +564,7 @@ Quando essa informação falta, o procedimento deixa de observar uma exigência 
 
 A norma coloca o custo da perícia com o consumidor se a irregularidade for comprovada. Existe crítica jurídica relevante a esse desenho: quem acusa é a distribuidora, e seria dela o ônus de provar a acusação, inclusive financeiramente. Em processos judiciais, a inversão do ônus da prova em favor do consumidor é discutida com frequência.
 
-Na via administrativa, porém, o texto da resolução é o que se aplica — e vale conhecê-lo antes de decidir se pede a perícia.
+Na via administrativa, porém, o texto da resolução é o que se aplica. E vale conhecê-lo antes de decidir se pede a perícia.
 
 ## O que olhar no seu documento
 
@@ -601,7 +601,7 @@ Os 36 ciclos são um teto máximo, não um padrão automático.
 
 O caso típico é este: o TOI aponta violação do medidor, a distribuidora aplica o critério de cálculo e simplesmente multiplica pelo maior período possível, sem apontar em que mês o consumo teria caído de forma expressiva, sem análise do histórico, sem justificativa técnica.
 
-Órgãos de defesa do consumidor apontam justamente essa prática — a cobrança retroativa automática de 36 ciclos sem observar os critérios do art. 596 — como uma das formas mais comuns de defeito no procedimento.
+Órgãos de defesa do consumidor apontam justamente essa prática, a cobrança retroativa automática de 36 ciclos sem observar os critérios do art. 596, como uma das formas mais comuns de defeito no procedimento.
 
 ## Um detalhe que muda tudo
 
@@ -688,7 +688,7 @@ O lacre é a garantia de que o equipamento periciado é o mesmo que saiu da sua 
 
 A distribuidora deve comunicar ao consumidor a data e o horário da realização da avaliação técnica em laboratório, para que ele possa acompanhá-la. E o acompanhamento pode ser feito pessoalmente ou por um assistente técnico contratado pelo consumidor.
 
-Esse é um dos pontos que mais aparece em decisões judiciais. Perícia realizada sem que o consumidor tenha sido comunicado da data é perícia feita sem contraditório — e o resultado dela fica fragilizado como prova.
+Esse é um dos pontos que mais aparece em decisões judiciais. Perícia realizada sem que o consumidor tenha sido comunicado da data é perícia feita sem contraditório. E o resultado dela fica fragilizado como prova.
 
 ## O prazo do relatório
 
@@ -698,7 +698,7 @@ Na prática, isso significa que a distribuidora não pode empurrar o prazo agend
 
 ## E se o medidor nunca foi periciado
 
-Existe uma situação ainda mais frágil: a alegação de irregularidade sem que o equipamento tenha sido examinado. Se o medidor não foi disponibilizado para exame, não há como afirmar tecnicamente que houve irregularidade — e a cobrança perde a base factual.
+Existe uma situação ainda mais frágil: a alegação de irregularidade sem que o equipamento tenha sido examinado. Se o medidor não foi disponibilizado para exame, não há como afirmar tecnicamente que houve irregularidade. E a cobrança perde a base factual.
 
 ## O que verificar
 
@@ -727,7 +727,7 @@ Vale separar as situações.
 
 ## Débito de TOI não é fatura de consumo
 
-A fatura mensal cobra a energia que você consumiu naquele mês. O débito de recuperação é uma cobrança retroativa fundada numa acusação de irregularidade — acusação que está sendo discutida.
+A fatura mensal cobra a energia que você consumiu naquele mês. O débito de recuperação é uma cobrança retroativa fundada numa acusação de irregularidade. Acusação que está sendo discutida.
 
 Os tribunais têm tratado as duas coisas de forma distinta. Há entendimento firmado de que a concessionária não pode interromper o fornecimento de energia com base em débito originado de TOI emitido irregularmente, e de que o descumprimento das formalidades da Resolução ANEEL nº 1.000/2021 acarreta a nulidade do débito dele decorrente.
 

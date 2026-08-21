@@ -17,7 +17,7 @@ import { execSync } from "child_process";
 import { tmpdir } from "os";
 import { join } from "path";
 import sharp from "sharp";
-import { validarArtigoBlog, gerarComRetry, ajustarSeoBlog, type ViolacaoDefesa } from "../prompts/validador";
+import { validarArtigoBlog, gerarComRetry, ajustarSeoBlog, removerTravessao, type ViolacaoDefesa } from "../prompts/validador";
 import {
   gerarDescricaoVisual,
   gerarImagemArtigoCloudflare,
@@ -229,13 +229,13 @@ Ano atual: 2026.
 
 Responda APENAS com um objeto JSON válido, sem markdown, sem crases, sem texto antes ou depois. Formato exato:
 {
-  "titulo": "titulo claro e especifico, no MAXIMO 60 caracteres contando espacos (o Google corta o que passa disso)",
+  "titulo": "titulo claro e especifico, no MAXIMO 60 caracteres contando espacos (o Google corta o que passa disso). Sem travessao (—) no titulo.",
   "descricao": "meta description de NO MAXIMO 155 caracteres contando espacos. Comece pela frase que responde a busca. NAO termine com convite generico do tipo 'analise gratis' ou 'verifique gratuitamente' — termine com este fecho exato: Antes de pagar, veja gratis se o auto tem falha.",
   "tempoLeitura": "X min",
   "imagemEmoji": "um único emoji relacionado",
   "imagemBg": "um gradiente Tailwind no formato 'from-COR-600 to-COR-800' (ex: from-blue-600 to-blue-800)",
   "palavrasChave": ["3 a 5 palavras-chave de busca"],
-  "conteudo": "artigo em MARKDOWN, 600-900 palavras, com títulos ## , listas, negrito. Use linguagem clara. NÃO use aspas duplas dentro do texto (use aspas simples se precisar)."
+  "conteudo": "artigo em MARKDOWN, 600-900 palavras, com títulos ## , listas, negrito. Use linguagem clara. NÃO use aspas duplas dentro do texto (use aspas simples se precisar). NÃO use travessão (—) em nenhum lugar do texto: prefira ponto final com nova frase, ou vírgula."
 }
 
 REGRAS JURÍDICAS (muito importante, para evitar erros):
@@ -294,6 +294,7 @@ Faça o seguinte:
 3. Remova qualquer 'clique aqui', 'clique no botão' ou similar, reescrevendo a frase de forma natural.
 4. Mantenha o tom, o tamanho, a estrutura em markdown (títulos ##, listas, negrito) e o sentido geral do artigo.
 5. NÃO use aspas duplas dentro do texto (use aspas simples se precisar).
+6. NÃO use travessão (—) em nenhum lugar do texto: se encontrar, troque por ponto final com nova frase, ou por vírgula, o que ler melhor.
 
 Responda APENAS com o texto do artigo revisado em markdown, sem comentários, sem explicações, sem crases, sem nada antes ou depois.
 
@@ -478,6 +479,15 @@ async function produzirArtigo(
 
   console.log("  Revisando (checagem juridica)...");
   artigo.conteudo = await revisarArtigo(String(artigo.conteudo));
+
+  // Trava de codigo para a regra do travessao. Os dois prompts (o que
+  // ESCREVE e o que REVISA) ja proibem, mas proibicao de prompt reduz a
+  // frequencia sem eliminar - o modelo varia entre execucoes. Aqui a troca
+  // e deterministica. Vem depois da revisao de proposito: a revisao e uma
+  // nova geracao do modelo e pode reintroduzir travessao ao reescrever.
+  artigo.titulo = removerTravessao(String(artigo.titulo));
+  artigo.descricao = removerTravessao(String(artigo.descricao));
+  artigo.conteudo = removerTravessao(String(artigo.conteudo));
 
   console.log("  Auditando (segunda camada, em codigo)...");
   const violacoesLegais = validarArtigoBlog(String(artigo.conteudo), "transito", pauta.tema);

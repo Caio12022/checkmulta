@@ -39,6 +39,12 @@ export interface Vertical {
   publico: string;
   /** Título do card. Na home-mãe é renderizado como H3. */
   titulo: string;
+  /**
+   * Nome curto, para espaços estreitos (menu do blog no celular). O título
+   * completo ("Cobrança retroativa de energia") não cabe numa faixa de
+   * navegação de 350px sem esconder as outras verticais atrás de rolagem.
+   */
+  tituloCurto: string;
   /** Resumo de 1-2 linhas, visível sem abrir o acordeão. */
   resumo: string;
   /** Texto que abre na setinha. Explica o serviço, sem repetir a landing. */
@@ -80,6 +86,7 @@ export const VERTICAIS: Vertical[] = [
     id: "transito",
     publico: "Para motoristas",
     titulo: "Multa de trânsito",
+    tituloCurto: "Trânsito",
     resumo:
       "Notificação de autuação ou de penalidade do DETRAN, PRF ou órgão municipal.",
     detalhe:
@@ -132,6 +139,7 @@ export const VERTICAIS: Vertical[] = [
     id: "procon",
     publico: "Para empresas",
     titulo: "Multa do Procon",
+    tituloCurto: "Procon",
     resumo:
       "Auto de infração lavrado por órgão de proteção e defesa do consumidor.",
     detalhe:
@@ -183,6 +191,7 @@ export const VERTICAIS: Vertical[] = [
     id: "vigilancia",
     publico: "Para empresas",
     titulo: "Vigilância Sanitária",
+    tituloCurto: "Vigilância",
     resumo:
       "Auto de infração sanitária, termo de interdição ou apreensão de produtos.",
     detalhe:
@@ -234,6 +243,7 @@ export const VERTICAIS: Vertical[] = [
     id: "energia",
     publico: "Para pessoas e empresas",
     titulo: "Cobrança retroativa de energia",
+    tituloCurto: "Energia",
     resumo:
       "TOI ou notificação de recuperação de consumo emitida pela distribuidora.",
     detalhe:
@@ -285,6 +295,7 @@ export const VERTICAIS: Vertical[] = [
     id: "ibama",
     publico: "Para pessoas e empresas",
     titulo: "Auto de infração ambiental",
+    tituloCurto: "IBAMA",
     resumo: "Autuação federal lavrada pelo IBAMA por infração ambiental.",
     detalhe:
       "O auto ambiental é ato vinculado: precisa descrever a conduta de forma clara e objetiva, indicar os dispositivos infringidos e ser lavrado por agente competente. Descrição vaga, tipificação incorreta, ausência de laudo de constatação e prescrição do processo são os pontos que mais comprometem a autuação.",

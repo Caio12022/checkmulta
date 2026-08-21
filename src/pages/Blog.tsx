@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Clock, ShieldCheck, Search } from "lucide-react";
 import { artigos } from "../data/artigos";
 import { getCorSuave } from "../data/coresSuaves";
+import MenuBlogs from "../components/MenuBlogs";
 
 export default function Blog() {
   const [busca, setBusca] = useState("");
@@ -78,6 +79,8 @@ export default function Blog() {
           </nav>
         </div>
       </header>
+
+      <MenuBlogs atual="transito" />
 
       {/* CAPA */}
       <section className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
@@ -161,14 +164,23 @@ export default function Blog() {
             className="group block overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
           >
             <div className="sm:flex">
-              <div
-                className="flex h-32 items-center justify-center sm:h-auto sm:w-48 sm:flex-shrink-0"
-                style={{ backgroundColor: corDestaque.fundoBadge }}
-              >
-                <span className="text-5xl opacity-60">
-                  {destaque.imagemEmoji}
-                </span>
-              </div>
+              {destaque.imagemUrl ? (
+                <img
+                  src={destaque.imagemUrl}
+                  alt=""
+                  className="h-32 w-full object-cover sm:h-auto sm:w-48 sm:flex-shrink-0"
+                  loading="eager"
+                />
+              ) : (
+                <div
+                  className="flex h-32 items-center justify-center sm:h-auto sm:w-48 sm:flex-shrink-0"
+                  style={{ backgroundColor: corDestaque.fundoBadge }}
+                >
+                  <span className="text-5xl opacity-60">
+                    {destaque.imagemEmoji}
+                  </span>
+                </div>
+              )}
 
               <div className="flex-1 p-6 sm:p-7">
                 <span
@@ -216,14 +228,23 @@ export default function Blog() {
                 to={`/multa-de-transito/blog/${artigo.slug}`}
                 className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
               >
-                <div
-                  className="flex h-32 items-center justify-center"
-                  style={{ backgroundColor: corC.fundoBadge }}
-                >
-                  <span className="text-4xl opacity-60">
-                    {artigo.imagemEmoji}
-                  </span>
-                </div>
+                {artigo.imagemUrl ? (
+                  <img
+                    src={artigo.imagemUrl}
+                    alt=""
+                    className="h-32 w-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div
+                    className="flex h-32 items-center justify-center"
+                    style={{ backgroundColor: corC.fundoBadge }}
+                  >
+                    <span className="text-4xl opacity-60">
+                      {artigo.imagemEmoji}
+                    </span>
+                  </div>
+                )}
 
                 <div className="flex flex-1 flex-col p-5">
                   <span

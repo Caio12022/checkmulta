@@ -5,6 +5,7 @@ import { artigosVigilancia } from "../data/artigosVigilancia";
 import { artigosEnergia } from "../data/artigosEnergia";
 import { artigosIbama } from "../data/artigosIbama";
 import { VERTICAIS } from "../data/verticais";
+import MenuBlogs from "../components/MenuBlogs";
 
 /**
  * Blog-mãe: reúne as cinco verticais em uma só página, no mesmo espírito da
@@ -31,6 +32,8 @@ interface ArtigoComOrigem {
   href: string;
   vertical: string;
   cor: { faixa: string; texto: string };
+  imagemUrl?: string;
+  imagemEmoji: string;
 }
 
 const QUANTIDADE_POR_VERTICAL = 4;
@@ -41,6 +44,8 @@ function montarRecentes(): ArtigoComOrigem[] {
     titulo: a.titulo,
     descricao: a.descricao,
     categoria: a.categoria,
+    imagemUrl: a.imagemUrl,
+    imagemEmoji: a.imagemEmoji,
     href: `/multa-de-transito/blog/${a.slug}`,
     vertical: "Trânsito",
     cor: { faixa: "#10b981", texto: "#047857" },
@@ -51,6 +56,8 @@ function montarRecentes(): ArtigoComOrigem[] {
     titulo: a.titulo,
     descricao: a.descricao,
     categoria: a.categoria,
+    imagemUrl: a.imagemUrl,
+    imagemEmoji: a.imagemEmoji,
     href: `/procon/blog/${a.slug}`,
     vertical: "Procon",
     cor: { faixa: "#f59e0b", texto: "#b45309" },
@@ -61,6 +68,8 @@ function montarRecentes(): ArtigoComOrigem[] {
     titulo: a.titulo,
     descricao: a.descricao,
     categoria: a.categoria,
+    imagemUrl: a.imagemUrl,
+    imagemEmoji: a.imagemEmoji,
     href: `/vigilancia-sanitaria/blog/${a.slug}`,
     vertical: "Vigilância Sanitária",
     cor: { faixa: "#0ea5e9", texto: "#0369a1" },
@@ -71,6 +80,8 @@ function montarRecentes(): ArtigoComOrigem[] {
     titulo: a.titulo,
     descricao: a.descricao,
     categoria: a.categoria,
+    imagemUrl: a.imagemUrl,
+    imagemEmoji: a.imagemEmoji,
     href: `/energia/blog/${a.slug}`,
     vertical: "Energia",
     cor: { faixa: "#eab308", texto: "#a16207" },
@@ -81,6 +92,8 @@ function montarRecentes(): ArtigoComOrigem[] {
     titulo: a.titulo,
     descricao: a.descricao,
     categoria: a.categoria,
+    imagemUrl: a.imagemUrl,
+    imagemEmoji: a.imagemEmoji,
     href: `/ibama/blog/${a.slug}`,
     vertical: "IBAMA",
     cor: { faixa: "#16a34a", texto: "#15803d" },
@@ -155,6 +168,8 @@ export default function BlogGeral() {
         </div>
       </header>
 
+      <MenuBlogs atual="todos" />
+
       <section className="border-b border-slate-200">
         <div className="mx-auto max-w-4xl px-5 py-14 text-center sm:py-16">
           <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-slate-400">
@@ -211,20 +226,38 @@ export default function BlogGeral() {
               <a
                 key={`${a.vertical}-${a.slug}`}
                 href={a.href}
-                className="flex flex-col rounded-xl border border-slate-200 p-5 transition-colors hover:border-slate-300"
+                className="flex flex-col overflow-hidden rounded-xl border border-slate-200 transition-colors hover:border-slate-300"
               >
-                <span
-                  className="mb-3 inline-block w-fit rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide"
-                  style={{ backgroundColor: `${a.cor.faixa}1a`, color: a.cor.texto }}
-                >
-                  {a.vertical}
-                </span>
-                <span className="text-base font-semibold leading-snug text-slate-900">
-                  {a.titulo}
-                </span>
-                <span className="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-600">
-                  {a.descricao}
-                </span>
+                {a.imagemUrl ? (
+                  <img
+                    src={a.imagemUrl}
+                    alt=""
+                    className="h-32 w-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div
+                    className="flex h-32 items-center justify-center"
+                    style={{ backgroundColor: `${a.cor.faixa}1a` }}
+                  >
+                    <span className="text-4xl opacity-60">{a.imagemEmoji}</span>
+                  </div>
+                )}
+
+                <div className="flex flex-1 flex-col p-5">
+                  <span
+                    className="mb-3 inline-block w-fit rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide"
+                    style={{ backgroundColor: `${a.cor.faixa}1a`, color: a.cor.texto }}
+                  >
+                    {a.vertical}
+                  </span>
+                  <span className="text-base font-semibold leading-snug text-slate-900">
+                    {a.titulo}
+                  </span>
+                  <span className="mt-2 line-clamp-2 text-sm leading-relaxed text-slate-600">
+                    {a.descricao}
+                  </span>
+                </div>
               </a>
             ))}
           </div>

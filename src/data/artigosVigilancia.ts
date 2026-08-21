@@ -1206,7 +1206,7 @@ O processo administrativo, que rege a relação entre o Estado e o estabelecimen
 
 ## A fragmentação normativa e a identificação do prazo
 
-Um ponto que gera frequentes dúvidas entre os empresários é a diversidade de normas existentes. No âmbito federal, a Lei 6.437/77 (arts. 2º, 3º, 4º e 10) estabelece as normas para infrações à legislação sanitária. No entanto, é fundamental compreender que cada ente federativo — estados e municípios — possui autonomia para legislar sobre suas próprias estruturas de fiscalização e prazos administrativos.
+Um ponto que gera frequentes dúvidas entre os empresários é a diversidade de normas existentes. No âmbito federal, a Lei 6.437/77 (arts. 2º, 3º, 4º e 10) estabelece as normas para infrações à legislação sanitária. No entanto, é fundamental compreender que cada ente federativo, estados e municípios, possui autonomia para legislar sobre suas próprias estruturas de fiscalização e prazos administrativos.
 
 Como o procedimento varia conforme a legislação sanitária local aplicável, não existe uma regra única de contagem que se aplique universalmente a todos os estabelecimentos do país. Por esse motivo, o primeiro passo após o recebimento de um auto de infração é a leitura minuciosa do documento recebido. O prazo para defesa é, invariavelmente, indicado pelo próprio órgão fiscalizador no momento da autuação ou em notificação subsequente.
 
@@ -1427,7 +1427,7 @@ Caso tenha ocorrido uma interdição, a retomada das atividades deve seguir estr
 
 ## Como proceder diante de uma autuação
 
-O prazo para apresentação de defesa não é padronizado, pois a legislação é fragmentada entre municípios e estados. Portanto, o primeiro passo é a leitura atenta do auto de infração recebido. Lá constará o prazo específico, que deve ser observado rigorosamente para não configurar preclusão — a perda do direito de se manifestar.
+O prazo para apresentação de defesa não é padronizado, pois a legislação é fragmentada entre municípios e estados. Portanto, o primeiro passo é a leitura atenta do auto de infração recebido. Lá constará o prazo específico, que deve ser observado rigorosamente para não configurar preclusão. A perda do direito de se manifestar.
 
 O art. 2º, art. 3º e art. 4º da Lei Federal nº 6.437/77 estabelecem as diretrizes para a aplicação das penalidades. Um ponto importante é que a dosimetria da sanção deve observar o devido processo legal. Nem sempre a multa aplicada condiz com a natureza da infração ou com o histórico do estabelecimento. É aqui que uma análise técnica do auto pode identificar falhas procedimentais que justifiquem um recurso administrativo.
 
@@ -1591,7 +1591,7 @@ No CheckMulta, você pode enviar o auto de infração da Vigilância Sanitária 
 
 A conformidade de um estabelecimento junto à Vigilância Sanitária não se resume apenas às condições físicas ou ao manuseio adequado de produtos. A regularidade é comprovada, essencialmente, por meio de documentos que atestam a boa-fé e o controle dos processos operacionais. A fiscalização é rigorosa quanto à rastreabilidade e à gestão de riscos.
 
-Receber um auto de infração pode causar insegurança, mas é fundamental compreender que o processo administrativo é regido por princípios que garantem a segurança jurídica do administrado. A Lei Federal 6.437/77 estabelece, no art. 2º, o rol das penalidades aplicáveis, no art. 3º, a imputabilidade da infração a quem lhe deu causa, e no art. 4º, a classificação da infração em leve, grave ou gravíssima — parâmetros que devem ser observados para que a penalidade aplicada seja legítima.
+Receber um auto de infração pode causar insegurança, mas é fundamental compreender que o processo administrativo é regido por princípios que garantem a segurança jurídica do administrado. A Lei Federal 6.437/77 estabelece, no art. 2º, o rol das penalidades aplicáveis, no art. 3º, a imputabilidade da infração a quem lhe deu causa, e no art. 4º, a classificação da infração em leve, grave ou gravíssima. Parâmetros que devem ser observados para que a penalidade aplicada seja legítima.
 
 ## Documentos essenciais para o dia a dia
 
@@ -1909,7 +1909,7 @@ Se você identifica que a dosimetria da multa foi aplicada de modo obscuro ou in
     palavrasChave: ["auto de infração vigilância sanitária", "falha auto infração", "identificação agente fiscalizador", "defesa processo administrativo"],
     conteudo: `## A importância da formalidade no ato administrativo
 
-O processo administrativo sanitário é regido por normas rígidas que garantem não apenas a proteção da saúde pública, mas também a segurança jurídica dos estabelecimentos fiscalizados. Quando um estabelecimento comercial — seja um restaurante, uma farmácia ou uma clínica — recebe um auto de infração, espera-se que o documento contenha todos os requisitos formais que permitam a perfeita compreensão do ato praticado. Uma das falhas que gera maior questionamento técnico é a ausência de identificação do agente fiscalizador no documento lavrado.
+O processo administrativo sanitário é regido por normas rígidas que garantem não apenas a proteção da saúde pública, mas também a segurança jurídica dos estabelecimentos fiscalizados. Quando um estabelecimento comercial, seja um restaurante, uma farmácia ou uma clínica, recebe um auto de infração, espera-se que o documento contenha todos os requisitos formais que permitam a perfeita compreensão do ato praticado. Uma das falhas que gera maior questionamento técnico é a ausência de identificação do agente fiscalizador no documento lavrado.
 
 ## O princípio da legalidade e a identificação do agente
 
@@ -2320,7 +2320,7 @@ A análise de um auto de infração exige atenção a detalhes técnicos e jurí
 
 O documento recebido informa o prazo para apresentação de defesa administrativa. Anote a data de recebimento e calcule o vencimento antes de qualquer outra providência.
 
-A Lei Federal nº 6.437/77 estabelece o procedimento das infrações sanitárias em âmbito federal, mas estados e municípios possuem códigos sanitários próprios, com prazos que podem variar. Por isso, o prazo aplicável ao seu caso é o que consta no próprio auto — confira sempre esse dado no documento e, em caso de dúvida, junto ao órgão emissor.
+A Lei Federal nº 6.437/77 estabelece o procedimento das infrações sanitárias em âmbito federal, mas estados e municípios possuem códigos sanitários próprios, com prazos que podem variar. Por isso, o prazo aplicável ao seu caso é o que consta no próprio auto. Confira sempre esse dado no documento e, em caso de dúvida, junto ao órgão emissor.
 
 ## Segundo: leia o auto inteiro
 
@@ -2343,7 +2343,7 @@ Documentação demonstrando que o estabelecimento mantém controles regulares co
 
 **Não pague antes de analisar.** O pagamento pode ser interpretado como reconhecimento da infração e inviabiliza a discussão.
 
-**Não ignore.** A ausência de defesa não faz o processo desaparecer — apenas o faz seguir sem a sua versão dos fatos.
+**Não ignore.** A ausência de defesa não faz o processo desaparecer. Apenas o faz seguir sem a sua versão dos fatos.
 
 **Não altere o local antes do prazo de eventual reinspeção**, salvo para corrigir a irregularidade apontada. Corrigir é recomendável; descaracterizar o cenário sem registro pode prejudicar sua própria prova.
 
@@ -2381,13 +2381,13 @@ No CheckMulta, você pode enviar o auto de infração da Vigilância Sanitária 
 
 Diferentemente de outros processos administrativos, a legislação sanitária brasileira é fragmentada. A **Lei Federal nº 6.437/77** define as infrações à legislação sanitária federal e o respectivo processo. Estados e municípios, contudo, editam códigos sanitários próprios, com regras procedimentais que podem estabelecer prazos distintos.
 
-Na prática, isso significa uma orientação simples e segura: **o prazo aplicável ao seu caso é o que consta no próprio auto de infração**. Leia o documento com atenção — ele normalmente indica de quantos dias você dispõe e onde protocolar. Havendo dúvida, confirme junto ao órgão emissor antes do vencimento.
+Na prática, isso significa uma orientação simples e segura: **o prazo aplicável ao seu caso é o que consta no próprio auto de infração**. Leia o documento com atenção. Ele normalmente indica de quantos dias você dispõe e onde protocolar. Havendo dúvida, confirme junto ao órgão emissor antes do vencimento.
 
 ## A partir de quando conta
 
 A contagem se inicia com a **intimação válida** do estabelecimento, não com a data da inspeção. Essa distinção é relevante e frequentemente ignorada.
 
-Se a intimação foi entregue a pessoa sem poderes de representação, ou enviada a endereço diverso do cadastro, há discussão sobre a validade do ato — e, por consequência, sobre o início do prazo.
+Se a intimação foi entregue a pessoa sem poderes de representação, ou enviada a endereço diverso do cadastro, há discussão sobre a validade do ato. E, por consequência, sobre o início do prazo.
 
 ## O que acontece se o prazo passar
 
@@ -2439,7 +2439,7 @@ Havendo fundamento, você pode obter a defesa administrativa completa, redigida 
 
 É importante distinguir duas situações que costumam ser confundidas.
 
-A **interdição cautelar** é medida preventiva, aplicada quando o agente constata risco iminente à saúde. Ela não é punição — é contenção. Ocorre antes do julgamento do processo e pode ser revista assim que o risco for afastado.
+A **interdição cautelar** é medida preventiva, aplicada quando o agente constata risco iminente à saúde. Ela não é punição. É contenção. Ocorre antes do julgamento do processo e pode ser revista assim que o risco for afastado.
 
 A **interdição como penalidade** resulta do julgamento do processo administrativo, após a defesa. É consequência da decisão, não medida de urgência.
 
@@ -2465,7 +2465,7 @@ Como todo ato administrativo, a interdição precisa observar requisitos de form
 - Houve identificação do agente e da autoridade responsável?
 - A empresa foi intimada regularmente?
 
-A proporcionalidade é um dos pontos mais relevantes. A legislação prevê a possibilidade de interdição parcial — de um equipamento, de um lote, de uma área específica. Quando o auto interdita a totalidade sem demonstrar por que a medida parcial seria insuficiente, abre-se margem para discussão.
+A proporcionalidade é um dos pontos mais relevantes. A legislação prevê a possibilidade de interdição parcial. De um equipamento, de um lote, de uma área específica. Quando o auto interdita a totalidade sem demonstrar por que a medida parcial seria insuficiente, abre-se margem para discussão.
 
 ## Prazo e defesa
 
@@ -2473,7 +2473,7 @@ O prazo para defesa consta no próprio termo recebido. Como a legislação sanit
 
 ## Como o CheckMulta ajuda
 
-No CheckMulta, você envia o auto de infração ou o termo de interdição e recebe uma análise gratuita que verifica cada requisito formal e aponta o que está ausente ou irregular. Havendo falha identificada, a defesa administrativa é redigida com base no que foi encontrado — citando o trecho do próprio documento e o dispositivo aplicável.
+No CheckMulta, você envia o auto de infração ou o termo de interdição e recebe uma análise gratuita que verifica cada requisito formal e aponta o que está ausente ou irregular. Havendo falha identificada, a defesa administrativa é redigida com base no que foi encontrado. Citando o trecho do próprio documento e o dispositivo aplicável.
 
 Se a análise não identificar falha, nada é cobrado.
 

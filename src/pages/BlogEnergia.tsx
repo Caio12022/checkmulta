@@ -6,6 +6,7 @@ import {
   getCategoriasEnergia,
 } from "../data/artigosEnergia";
 import { selo } from "../data/revisao";
+import MenuBlogs from "../components/MenuBlogs";
 
 export default function BlogEnergia() {
   const [categoriaAtiva, setCategoriaAtiva] = useState<string | null>(null);
@@ -106,6 +107,8 @@ export default function BlogEnergia() {
         </div>
       </header>
 
+      <MenuBlogs atual="energia" />
+
       {/* Capa */}
       <section className="border-b border-slate-100 bg-gradient-to-b from-slate-50 to-white">
         <div className="mx-auto max-w-4xl px-4 py-14 text-center">
@@ -179,11 +182,20 @@ export default function BlogEnergia() {
                 to={`/energia/blog/${artigo.slug}`}
                 className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
               >
-                <div
-                  className={`flex h-32 items-center justify-center bg-gradient-to-br ${artigo.imagemBg}`}
-                >
-                  <span className="text-4xl opacity-60">{artigo.imagemEmoji}</span>
-                </div>
+                {artigo.imagemUrl ? (
+                  <img
+                    src={artigo.imagemUrl}
+                    alt=""
+                    className="h-32 w-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div
+                    className={`flex h-32 items-center justify-center bg-gradient-to-br ${artigo.imagemBg}`}
+                  >
+                    <span className="text-4xl opacity-60">{artigo.imagemEmoji}</span>
+                  </div>
+                )}
 
                 <div className="flex flex-1 flex-col p-5">
                   <span className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
