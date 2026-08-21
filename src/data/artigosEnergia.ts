@@ -14,6 +14,47 @@ export interface ArtigoEnergia {
 
 export const artigosEnergia: ArtigoEnergia[] = [
   {
+    slug: "cobranca-por-recuperacao-o-criterio-da-media-de-consumo",
+    titulo: "Cobrança por Recuperação: O Critério da Média de Consumo",
+    descricao: "Entenda como a média dos três maiores consumos deve ser aplicada na recuperação de energia. Veja grátis o que falta no TOI.",
+    categoria: "Cálculo e Período",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⚡",
+    imagemBg: "from-sky-50 to-blue-50",
+    imagemUrl: "/blog/energia/cobranca-por-recuperacao-o-criterio-da-media-de-consumo.jpg",
+    palavrasChave: ["TOI cobrança irregular", "recuperação de consumo energia", "cálculo média consumo", "notificação irregularidade energia"],
+    conteudo: `## A complexidade do cálculo de recuperação de energia
+
+Receber uma notificação de recuperação de consumo de energia elétrica é uma situação que exige atenção imediata. Muitas vezes, o consumidor é surpreendido por valores expressivos, baseados em critérios técnicos que nem sempre são compreendidos. É fundamental entender que esse cálculo deve seguir estritas determinações normativas estabelecidas pela ANEEL.
+
+## O critério de cálculo da receita a recuperar
+
+Conforme estabelece o art. 595 da Resolução ANEEL nº 1.000/2021, a distribuidora deve seguir critérios específicos para estimar o valor do débito. Este procedimento não é arbitrário e deve observar as seguintes premissas:
+
+- A cobrança deve ser precedida pelas providências cumulativas de caracterização da irregularidade previstas no art. 590.
+- A aplicação de critérios de cálculo é uma alternativa técnica que visa estimar o consumo que deixou de ser faturado, desde que o período de duração da irregularidade seja corretamente identificado.
+
+## A delimitação do período de irregularidade
+
+É comum que as distribuidoras apliquem o teto máximo de cobrança por padrão. Contudo, o art. 596 da Resolução ANEEL nº 1.000/2021 estabelece que o período de duração da irregularidade deve ser determinado tecnicamente. Na ausência de elementos que comprovem a data exata do início da irregularidade, o limite de cobrança é de apenas 6 ciclos, conforme o inciso II e § 1º do art. 596. O teto de 36 ciclos previsto no § 3º do art. 591 é apenas um limite máximo global e não um período automático de cobrança. A falha em demonstrar tecnicamente o período correto pode ser um ponto relevante a ser arguido em contestações.
+
+## Procedimentos obrigatórios e segurança jurídica
+
+Para que a cobrança de recuperação seja válida, a distribuidora deve cumprir rigorosamente os deveres de transparência. O art. 591 determina que o consumidor tem o direito de receber o documento de inspeção com recibo e de ser informado sobre o direito à perícia metrológica. Caso o medidor seja retirado para análise em laboratório, deve ser assegurada a possibilidade de acompanhamento, observando-se o art. 592 e o art. 250, com o relatório técnico emitido em até 30 dias contados da solicitação.
+
+Caso o consumidor identifique erros no cálculo ou no período cobrado, o art. 323 da mesma resolução prevê a possibilidade de revisão do faturamento em até 60 ciclos, com a devida correção em caso de cobrança indevida, o que reforça a importância da verificação detalhada da notificação recebida.
+
+## Como proceder diante de uma notificação
+
+Diante de uma notificação de irregularidade, é recomendável organizar toda a documentação recebida. O Código de Defesa do Consumidor ampara o consumidor diante de sua vulnerabilidade técnica frente à concessionária. É importante verificar na notificação recebida qual o prazo disponível para a apresentação de contestação.
+
+Em relação às faturas mensais, o consumidor deve manter o pagamento regular das contas de consumo corrente, uma vez que a contestação se refere exclusivamente ao débito retroativo apresentado pela distribuidora. Disputas administrativas visam avaliar a legitimidade dos valores retroativos, sendo prudente buscar a análise de um profissional para verificar se a cobrança apresenta falhas que fundamentem uma contestação.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "cobranca-de-36-meses-de-energia-quando-o-prazo-e-aplicado-incorretamente",
     titulo: "Cobrança de 36 meses de energia: quando o prazo é aplicado incorretamente",
     descricao: "Recebeu uma cobrança de 36 meses por irregularidade? Entenda por que o período pode estar errado e como analisar seu caso gratuitamente no CheckMulta.",
