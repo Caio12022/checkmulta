@@ -1,1 +1,32 @@
-{}
+{
+  "transito/recurso-de-multa-negado-sem-explicacao-o-que-fazer-agora": {
+    "resultado": "removida",
+    "data": "2026-08-21",
+    "titulo": "Recurso de multa negado sem explicacao O que fazer agora",
+    "motivo": "A imagem mostra claramente um documento em primeiro plano com texto fictício e ilegível que compromete a credibilidade do assunto jurídico. | regenerada tambem reprovou: O documento que o motorista segura é o protagonista da imagem e apresenta texto sem sentido (Fine Fine) que prejudica a credibilidade visual."
+  },
+  "transito/como-consultar-pontos-da-cnh-pelo-celular-em-2026": {
+    "resultado": "aprovada",
+    "data": "2026-08-21",
+    "titulo": "Como Consultar Pontos da CNH pelo Celular em 2026",
+    "motivo": "A imagem mostra um smartphone dentro de um carro, contexto adequado ao tema, e os textos na tela são pequenos e genéricos, não prejudicando a leitura principal."
+  },
+  "procon/como-o-procon-calcula-o-valor-da-multa-administrativa": {
+    "resultado": "aprovada",
+    "data": "2026-08-21",
+    "titulo": "Como o Procon calcula o valor da multa administrativa",
+    "motivo": "A imagem ilustra bem o contexto jurídico de multas e o carimbo 'FINE' (multa em inglês) é legível e coerente com o tema, não havendo erro ortográfico gritante no foco principal."
+  },
+  "vigilancia/controle-de-temperatura-como-evitar-autuacoes-sanitarias": {
+    "resultado": "aprovada",
+    "data": "2026-08-21",
+    "titulo": "Controle de temperatura: como evitar autuações sanitárias",
+    "motivo": "A imagem ilustra claramente o monitoramento de temperatura e conformidade, e os textos no dispositivo e na prancheta estão ilegíveis, não comprometendo o protagonismo da cena."
+  },
+  "energia/cobranca-por-recuperacao-o-criterio-da-media-de-consumo": {
+    "resultado": "aprovada",
+    "data": "2026-08-21",
+    "titulo": "Cobrança por Recuperação: O Critério da Média de Consumo",
+    "motivo": "A imagem retrata adequadamente um medidor de energia, contexto central do tema, e o texto presente é apenas um detalhe técnico do aparelho que não prejudica a leitura."
+  }
+}
