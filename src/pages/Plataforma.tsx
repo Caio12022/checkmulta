@@ -200,7 +200,7 @@ export default function Plataforma() {
             <a href="#duvidas" className="transition hover:text-emerald-600">
               Dúvidas
             </a>
-            <a href="/multa-de-transito/blog" className="transition hover:text-emerald-600">
+            <a href="/blog" className="transition hover:text-emerald-600">
               Blog
             </a>
             <a
@@ -245,7 +245,7 @@ export default function Plataforma() {
                 Dúvidas
               </a>
               <a
-                href="/multa-de-transito/blog"
+                href="/blog"
                 onClick={() => setMenuAberto(false)}
                 className="rounded-lg px-3 py-2.5 font-medium text-stone-700 transition hover:bg-stone-50"
               >
@@ -510,7 +510,7 @@ export default function Plataforma() {
                 {f.titulo}
               </a>
             ))}
-            <a href="/multa-de-transito/blog" className="transition hover:text-emerald-600">
+            <a href="/blog" className="transition hover:text-emerald-600">
               Blog
             </a>
           </nav>
