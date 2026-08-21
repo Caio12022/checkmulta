@@ -1393,7 +1393,7 @@ Nossa inteligência artificial analisa seu auto de infração gratuitamente e id
   },
   {
     slug: "modelo-recurso-multa-velocidade-radar",
-    titulo: "Modelo de Recurso de Multa de Velocidade. Radar e Lombada",
+    titulo: "Modelo de Recurso de Multa de Velocidade por Radar ou Lombada",
     descricao: "Descubra como recorrer de multa de radar ou lombada eletrônica. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Multa de Radar",
     tempoLeitura: "6 min",
