@@ -14,6 +14,46 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "como-o-procon-calcula-o-valor-da-multa-administrativa",
+    titulo: "Como o Procon calcula o valor da multa administrativa",
+    descricao: "O valor da multa aplicada pelo Procon é calculado com base em critérios técnicos previstos no Decreto 2.181/97. Veja grátis se há vício formal.",
+    categoria: "Dosimetria da Multa",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    imagemUrl: "/blog/procon/como-o-procon-calcula-o-valor-da-multa-administrativa.jpg",
+    palavrasChave: ["valor multa Procon", "cálculo multa administrativa", "dosimetria multa Procon", "defesa auto de infração"],
+    conteudo: `## A metodologia de cálculo das multas pelo Procon
+
+Receber um auto de infração do Procon gera uma preocupação imediata em relação ao impacto financeiro para a empresa. Muitos gestores acreditam que o valor da multa é arbitrário ou definido de forma aleatória, mas a legislação impõe critérios objetivos para essa fixação. Esse processo, chamado tecnicamente de dosimetria da pena, deve seguir o rito estabelecido pela legislação consumerista e pelo Decreto 2.181/97, que define a competência dos órgãos para apurar e punir, conforme o seu art. 5º.
+
+## Critérios para a gradação da pena
+
+O Decreto 2.181/97 estabelece, em seus arts. 24 a 28, a graduação da pena, as atenuantes, as agravantes, a reincidência e a fixação da multa. O objetivo é garantir que a punição seja proporcional à gravidade da infração e à capacidade econômica da empresa autuada. 
+
+É fundamental destacar que, conforme o art. 26-A, as atenuantes e agravantes são taxativas. Isso significa que a autoridade não pode inventar critérios de punição fora daqueles previstos em lei. Além disso, o art. 28-A prevê a vedação a valorar o mesmo elemento duas vezes na dosimetria. Ou seja, um fato não pode ser utilizado duas vezes para aumentar a pena, sob pena de irregularidade na dosimetria.
+
+## A importância da fiscalização orientadora
+
+Em muitos casos, a legislação prevê a aplicação do critério de dupla visita para atividade de risco leve, conforme o art. 38-A. Esta norma determina que empresas de pequeno porte e microempresas recebam tratamento diferenciado, conforme o § 3º do mesmo dispositivo. A inobservância desse rito, conforme o § 2º do art. 38-A, implica nulidade do auto. Portanto, verificar se o Procon observou esse procedimento é um dos pontos cruciais na análise da defesa.
+
+## Requisitos essenciais do auto de infração
+
+Para que uma multa tenha suporte, o documento deve cumprir requisitos obrigatórios do auto de infração descritos no art. 35, inciso I, que incluem local, data e hora, qualificação do autuado, descrição do fato, dispositivo legal infringido, intimação, identificação, assinatura e matrícula do agente, designação do órgão julgador, assinatura do autuado e cientificação para defesa. Falhas nesses itens podem comprometer a validade do processo. Vale lembrar que, nos termos do art. 48, a inobservância de forma só gera nulidade se houver prejuízo para a defesa.
+
+## O que fazer após a notificação
+
+Assim que o auto de infração é lavrado, tem início o processo administrativo sancionador, conforme o art. 33. O órgão também pode realizar uma averiguação preliminar, nos termos do art. 33-A. O prazo para apresentação de defesa deve ser rigorosamente verificado no corpo do documento recebido. Como os prazos variam entre diferentes jurisdições estaduais e municipais, nunca presuma um período fixo. A ausência de manifestação tempestiva torna a multa passível de inscrição em dívida ativa se o valor não for recolhido em 30 dias, conforme dispõe o art. 55.
+
+Caso o resultado do processo administrativo mantenha a multa, é possível interpor recurso em 10 dias, com efeito suspensivo em caso de multa, respeitando o disposto no art. 49. A análise técnica da dosimetria é, portanto, uma etapa relevante para verificar se o valor da multa está em conformidade com a legislação e com os princípios da razoabilidade e proporcionalidade.
+
+Interessados podem enviar o auto de infração para obter uma análise técnica que aponta se a autuação apresenta vício formal.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "audiencia-de-conciliacao-no-procon-o-que-e-e-como-se-preparar",
     titulo: "Audiência de Conciliação no Procon: O que é e como se preparar",
     descricao: "Recebeu uma notificação do Procon? Entenda a finalidade da audiência de conciliação e aprenda como estruturar sua defesa com segurança e profissionalismo.",
