@@ -21,7 +21,6 @@ export const artigos: Artigo[] = [
     tempoLeitura: "5 min",
     imagemEmoji: "⚖️",
     imagemBg: "from-red-600 to-red-800",
-    imagemUrl: "/blog/transito/recurso-de-multa-negado-sem-explicacao-o-que-fazer-agora.jpg",
     conteudo: `## Entendendo a negativa no processo administrativo
 
 Receber uma notificação informando que o seu recurso contra uma multa foi indeferido é uma situação frustrante, especialmente quando o órgão de trânsito não apresenta uma justificativa clara ou fundamentada. No Brasil, todo ato administrativo, incluindo a decisão sobre um recurso de trânsito, precisa obrigatoriamente ser motivado. Isso significa que o agente público deve explicar os motivos de fato e de direito que levaram à negativa.
