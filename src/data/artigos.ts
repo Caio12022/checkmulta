@@ -7528,6 +7528,7 @@ Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuaç�
   },
   {
     slug: "diferenca-entre-multa-e-infracao",
+    imagemUrl: "/blog/transito/diferenca-entre-multa-e-infracao.jpg",
     titulo: "Qual a Diferença Entre Multa e Infração de Trânsito?",
     descricao: "Multa e infração não são a mesma coisa. Entenda a diferença de forma simples. E se você foi multado, veja grátis se a sua multa tem erro que pode anulá-la.",
     categoria: "Dúvidas Frequentes",
