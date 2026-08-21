@@ -14,6 +14,56 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "controle-de-temperatura-como-evitar-autuacoes-sanitarias",
+    titulo: "Controle de temperatura: como evitar autuações sanitárias",
+    descricao: "O controle de temperatura é essencial para evitar autuações. O prazo do seu municipio pode ser menor que 15 dias. Confira o prazo no seu auto.",
+    categoria: "Boas Práticas",
+    tempoLeitura: "5 min",
+    imagemEmoji: "🌡️",
+    imagemBg: "from-sky-50 to-blue-50",
+    imagemUrl: "/blog/vigilancia/controle-de-temperatura-como-evitar-autuacoes-sanitarias.jpg",
+    palavrasChave: ["controle de temperatura vigilância sanitária", "auto de infração vigilância sanitária", "boas práticas sanitárias", "registro de temperatura como fazer"],
+    conteudo: `## A Importância do Controle de Temperatura nas Boas Práticas
+
+O controle rigoroso da temperatura de equipamentos de refrigeração e cocção é um dos pilares das boas práticas sanitárias. Para estabelecimentos como restaurantes, farmácias, clínicas e mercados, a manutenção da temperatura adequada é uma exigência técnica voltada à preservação da integridade dos produtos. A ausência de monitoramento ou a falha no registro de dados são causas frequentes de autuações pela Vigilância Sanitária.
+
+A fiscalização não avalia apenas se o equipamento está gelado, mas se o estabelecimento possui um sistema de controle documentado e contínuo. Falhas nesta rotina podem ser interpretadas como risco à saúde pública, resultando na lavratura de um auto de infração.
+
+## Como Estruturar o Monitoramento
+
+Para que o monitoramento seja aceito pela autoridade sanitária, ele deve ser sistemático. Não basta verificar a temperatura de forma esporádica. A recomendação técnica é a implementação de uma planilha ou sistema de registro que contenha, no mínimo:
+
+- Data e horário da aferição.
+- Identificação do equipamento.
+- Temperatura registrada pelo termômetro calibrado.
+- Assinatura do responsável pelo monitoramento.
+- Registro de ações corretivas, caso a temperatura esteja fora do padrão estabelecido.
+
+O registro de ações corretivas é fundamental. Se um freezer apresenta variação térmica, anotar apenas que o equipamento falhou não resolve o problema. É necessário registrar qual foi a medida tomada. Isso demonstra para a fiscalização que o estabelecimento possui controle sobre o seu processo produtivo.
+
+## O Auto de Infração e os Direitos do Estabelecimento
+
+Caso o estabelecimento receba um auto de infração por ausência de controle ou falha na temperatura, é importante compreender o que a legislação prevê. A Lei 6.437/77 estabelece o rol de penalidades (art. 2º), a imputabilidade (art. 3º), a classificação das infrações (art. 4º), o rol de infrações (art. 10) e os requisitos obrigatórios para a validade do auto de infração (art. 13), como a descrição detalhada do fato ocorrido e a correta identificação do infrator. A competência para autuar está definida no art. 14.
+
+No processo administrativo, aplicam-se subsidiariamente as disposições da Lei 9.784/99, que reforça o dever de agir conforme a legalidade e a finalidade (art. 2º) e a necessidade de motivação dos atos administrativos (art. 50). Isso significa que, ao autuar um estabelecimento, o órgão deve apresentar as razões fáticas e jurídicas que fundamentam a penalidade. Além disso, princípios como a ampla defesa e o contraditório garantem que o autuado possa apresentar elementos de prova para contrapor os apontamentos feitos pelo fiscal.
+
+## O que Fazer ao Receber uma Autuação
+
+Ao ser autuado, o primeiro passo é a verificação técnica dos elementos descritos no auto. Se houve uma interdição cautelar, lembre-se que, conforme o art. 23, § 4º da Lei 6.437/77, esta possui um limite de no máximo 90 dias, sendo essencial regularizar a situação e solicitar uma reinspeção formal do órgão para a retomada das atividades. É imprescindível aguardar a liberação oficial do órgão sanitário antes de retomar qualquer operação.
+
+A defesa administrativa é o momento de apresentar documentos que comprovem a correção das irregularidades. Se a temperatura foi o ponto questionado, anexe ao processo os novos registros, laudos de calibração dos termômetros e, se possível, registros fotográficos das melhorias realizadas. Lembre-se que, conforme o art. 6º da Lei 6.437/77, a graduação da pena observará critérios como a gravidade do fato e os antecedentes do infrator, enquanto o art. 7º e o art. 8º dispõem sobre atenuantes e agravantes, respectivamente.
+
+## Atenção aos Prazos Processuais
+
+O prazo para a apresentação de defesa administrativa deve ser verificado diretamente no auto de infração recebido, conforme as normas aplicáveis ao órgão autuante. O art. 22 da Lei 6.437/77 prevê o prazo de 15 dias para defesa, mas é fundamental consultar o documento oficial para confirmar a regra vigente para o seu caso. O art. 17 trata das formas de notificação, o art. 30 dispõe sobre o recurso administrativo, o art. 33 estabelece o prazo de 30 dias para pagamento de multa e o art. 38 disciplina a prescrição em 5 anos. Perder o prazo pode significar a preclusão do direito de defesa no processo administrativo.
+
+Caso tenha dúvidas sobre o auto de infração recebido, recomenda-se a análise técnica especializada para verificar se a autuação apresenta inconsistências que possam fundamentar a sua defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "a-descricao-generica-da-irregularidade-no-auto-de-infracao-sanitaria",
     titulo: "A descrição genérica da irregularidade no auto de infração sanitária",
     descricao: "Entenda por que a falta de clareza no auto de infração sanitária pode ser uma falha grave. Confira se o seu auto apresenta esse erro no CheckMulta.",
