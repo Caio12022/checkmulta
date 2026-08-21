@@ -534,7 +534,7 @@ Antes de qualquer coisa, junte:
 - O relatório de fiscalização, se acompanhou o auto.
 - Qualquer laudo, foto ou documento que a fiscalização tenha juntado.
 - Documentos que comprovem a regularidade da sua atividade, se houver (licenças, autorizações).
-- O registro de quando você tomou ciência do auto — a data é o marco do prazo.
+- O registro de quando você tomou ciência do auto. A data é o marco do prazo.
 
 ## O prazo de defesa
 
@@ -579,7 +579,7 @@ Ou seja, dependendo do seu caso, o prazo de vinte dias pode ainda não ter come�
 
 ## Confira sempre no próprio auto
 
-Cada auto traz a informação do prazo e da forma de apresentar defesa. O sistema do IBAMA também mostra o andamento do processo. Antes de assumir que o prazo acabou — ou que ainda há muito tempo — confirme nessas fontes.
+Cada auto traz a informação do prazo e da forma de apresentar defesa. O sistema do IBAMA também mostra o andamento do processo. Antes de assumir que o prazo acabou. Ou que ainda há muito tempo. Confirme nessas fontes.
 
 ## E se o prazo já passou
 
@@ -606,7 +606,7 @@ Envie o auto e receba uma análise que aponta as falhas encontradas, com o trech
     palavrasChave: ["prescrição auto IBAMA", "prescrição multa ambiental", "prescrição intercorrente ambiental", "art 21 decreto 6514"],
     conteudo: `## O tempo joga a seu favor mais do que você imagina
 
-A prescrição é o prazo além do qual a Administração perde o direito de punir. Em matéria de auto de infração ambiental federal, ela é um dos argumentos mais consistentes — e um dos mais ignorados por quem não conhece a norma.
+A prescrição é o prazo além do qual a Administração perde o direito de punir. Em matéria de auto de infração ambiental federal, ela é um dos argumentos mais consistentes. E um dos mais ignorados por quem não conhece a norma.
 
 ## Cinco anos para lavrar o auto
 
@@ -618,7 +618,7 @@ Na prática: se o IBAMA lavrou o auto mais de cinco anos depois do fato que ele 
 
 Aqui está o ponto mais poderoso. O art. 21, § 2º, prevê que o processo não pode ficar parado, sem movimentação, por mais de três anos. Se ficar, ocorre a chamada prescrição intercorrente.
 
-É extremamente comum que autos antigos fiquem anos aguardando julgamento na fila do órgão, sem nenhum ato de andamento. Boa parte desses processos está prescrita justamente pela inércia da Administração — e essa prescrição pode ser reconhecida, levando ao arquivamento.
+É extremamente comum que autos antigos fiquem anos aguardando julgamento na fila do órgão, sem nenhum ato de andamento. Boa parte desses processos está prescrita justamente pela inércia da Administração. E essa prescrição pode ser reconhecida, levando ao arquivamento.
 
 ## Como saber se o seu prescreveu
 
@@ -645,7 +645,7 @@ Nossa análise verifica as datas do seu auto e aponta indícios de prescrição,
     palavrasChave: ["requisitos auto de infração ambiental", "art 97 decreto 6514", "nulidade auto IBAMA", "descrição infração ambiental"],
     conteudo: `## O auto é um ato vinculado, não uma opinião do fiscal
 
-O auto de infração ambiental é um ato administrativo vinculado: para valer, precisa cumprir requisitos que a lei define. Não basta o fiscal entender que houve infração — ele precisa formalizar isso de um jeito específico. Quando não cumpre, o auto pode ser anulado.
+O auto de infração ambiental é um ato administrativo vinculado: para valer, precisa cumprir requisitos que a lei define. Não basta o fiscal entender que houve infração. Ele precisa formalizar isso de um jeito específico. Quando não cumpre, o auto pode ser anulado.
 
 ## O que o art. 97 exige
 
@@ -659,7 +659,7 @@ E acrescenta: o auto não deve conter emendas ou rasuras que comprometam sua val
 
 ## Onde os autos costumam falhar
 
-**Descrição genérica.** Este é o vício mais comum. O auto diz "degradação ambiental" ou "intervenção em área de preservação" sem especificar o que exatamente foi feito, onde e em que extensão. Sem descrição clara e objetiva, você não consegue se defender do que não sabe exatamente do que está sendo acusado — e isso fere a ampla defesa.
+**Descrição genérica.** Este é o vício mais comum. O auto diz "degradação ambiental" ou "intervenção em área de preservação" sem especificar o que exatamente foi feito, onde e em que extensão. Sem descrição clara e objetiva, você não consegue se defender do que não sabe exatamente do que está sendo acusado. E isso fere a ampla defesa.
 
 **Enquadramento incompatível.** O auto aponta um dispositivo que não corresponde ao fato descrito. Já houve caso de auto anulado porque foi enquadrado como infração grave quando o fato descrito correspondia a uma infração leve.
 
@@ -708,7 +708,7 @@ Quando um ente autua matéria que não era da sua competência, há vício de co
 
 ## Cuidado: cada esfera tem sua própria lei
 
-Este é um ponto importante para quem vai se defender. O auto federal do IBAMA segue o Decreto nº 6.514/2008. Já os autos estaduais e municipais seguem legislação própria — cada estado e cada município tem seu regramento, com prazos e procedimentos que podem ser diferentes.
+Este é um ponto importante para quem vai se defender. O auto federal do IBAMA segue o Decreto nº 6.514/2008. Já os autos estaduais e municipais seguem legislação própria. Cada estado e cada município tem seu regramento, com prazos e procedimentos que podem ser diferentes.
 
 Por isso, antes de aplicar qualquer regra, é essencial identificar quem lavrou o seu auto. Uma análise pensada para o auto federal do IBAMA pode não valer para um auto estadual.
 
@@ -745,7 +745,7 @@ A conversão é especialmente interessante quando a autuação tem fundamento e 
 
 ## Não substitui a análise do auto
 
-Um ponto importante: considerar a conversão não significa abrir mão de verificar se o auto tem vícios. O ideal é primeiro analisar se há falha formal, prescrição ou problema de competência — porque, havendo, a defesa pela nulidade é o caminho mais vantajoso. A conversão entra como alternativa quando o mérito da autuação é mais difícil de afastar.
+Um ponto importante: considerar a conversão não significa abrir mão de verificar se o auto tem vícios. O ideal é primeiro analisar se há falha formal, prescrição ou problema de competência. Porque, havendo, a defesa pela nulidade é o caminho mais vantajoso. A conversão entra como alternativa quando o mérito da autuação é mais difícil de afastar.
 
 ## As atenuantes também reduzem o valor
 

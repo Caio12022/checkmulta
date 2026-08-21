@@ -231,13 +231,13 @@ REGISTRO: profissional e sóbrio, sem informalidade. Explique conceitos técnico
 
 Responda APENAS com um objeto JSON válido, sem markdown, sem crases, sem texto antes ou depois. Formato exato:
 {
-  "titulo": "título claro e específico, até 70 caracteres",
+  "titulo": "título claro e específico, até 70 caracteres, sem travessão (—)",
   "descricao": "meta description de 140-160 caracteres, informativa, terminando com convite a verificar o documento gratuitamente",
   "tempoLeitura": "X min",
   "imagemEmoji": "um único emoji relacionado ao tema",
   "imagemBg": "gradiente Tailwind SUAVE no formato 'from-COR-50 to-COR-50' usando tons claros (ex: from-amber-50 to-orange-50, from-sky-50 to-blue-50, from-emerald-50 to-teal-50, from-violet-50 to-purple-50, from-rose-50 to-pink-50)",
   "palavrasChave": ["3 a 5 palavras-chave de busca que um consumidor cobrado digitaria no Google"],
-  "conteudo": "artigo em MARKDOWN, 700-1000 palavras, com títulos ## e listas com hífen. NÃO use aspas duplas dentro do texto (use aspas simples se precisar)."
+  "conteudo": "artigo em MARKDOWN, 700-1000 palavras, com títulos ## e listas com hífen. NÃO use aspas duplas dentro do texto (use aspas simples se precisar). NÃO use travessão (—) em nenhum lugar do texto: prefira ponto final com nova frase, ou vírgula."
 }
 
 REGRAS JURÍDICAS OBRIGATÓRIAS (críticas — erro aqui compromete a credibilidade do serviço):
@@ -313,6 +313,7 @@ Faça o seguinte:
 8. Mantenha o tom profissional e sóbrio, o tamanho, a estrutura em markdown (títulos ##, listas, negrito) e o sentido geral.
 9. Preserve a linha separadora '---' e o aviso legal em itálico ao final. Se não existirem, acrescente.
 10. NÃO use aspas duplas dentro do texto (use aspas simples se precisar).
+11. NÃO use travessão (—) em nenhum lugar do texto: se encontrar, troque por ponto final com nova frase, ou por vírgula, o que ler melhor.
 
 Responda APENAS com o texto do artigo revisado em markdown, sem comentários, sem explicações, sem crases, sem nada antes ou depois.
 

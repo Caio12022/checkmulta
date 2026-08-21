@@ -49,7 +49,7 @@ Manter o hábito de verificar seu histórico de infrações traz vantagens signi
 
 ## O que fazer se encontrar pontos indevidos?
 
-A legislação de trânsito brasileira assegura o direito à ampla defesa. Se você consultou sua pontuação e notou que existe uma autuação que não condiz com a realidade — seja por erro de digitação, falha no equipamento de fiscalização ou porque não era você quem conduzia o veículo naquele momento — saiba que é possível contestar.
+A legislação de trânsito brasileira assegura o direito à ampla defesa. Se você consultou sua pontuação e notou que existe uma autuação que não condiz com a realidade. Seja por erro de digitação, falha no equipamento de fiscalização ou porque não era você quem conduzia o veículo naquele momento. Saiba que é possível contestar.
 
 O processo administrativo de defesa exige atenção aos detalhes técnicos do auto de infração. Muitas vezes, vícios formais no documento, como erros na descrição do veículo ou falta de informações obrigatórias sobre o agente autuador, são caminhos eficazes para anular uma multa e, consequentemente, impedir que os pontos sejam somados à sua CNH.
 
@@ -1061,7 +1061,7 @@ O CheckMulta permite que você envie o auto de infração para uma análise sobr
     imagemBg: "from-emerald-600 to-emerald-800",
     conteudo: `Recorrer de uma multa de trânsito é um direito garantido a todo condutor pelo Código de Trânsito Brasileiro. O procedimento, no entanto, não é idêntico em todo o país: cada estado tem seu próprio DETRAN, com sistema eletrônico, formulários e formas de protocolo diferentes.
 
-Este guia reúne o essencial do processo — que é comum a todos os estados — e leva você diretamente ao passo a passo do seu DETRAN.
+Este guia reúne o essencial do processo. Que é comum a todos os estados. E leva você diretamente ao passo a passo do seu DETRAN.
 
 ## As três fases do recurso, válidas em todo o Brasil
 
@@ -1077,7 +1077,7 @@ Vale saber de algo que muitos condutores desconhecem: **enquanto o recurso está
 
 ## Prazos: o ponto que mais elimina recursos
 
-O prazo é a causa mais comum de perda do direito de recorrer — não por falta de argumento, mas por perda de data.
+O prazo é a causa mais comum de perda do direito de recorrer. Não por falta de argumento, mas por perda de data.
 
 - **Defesa da autuação:** o prazo consta na própria Notificação de Autuação recebida. Confira a data limite impressa no documento.
 - **Recurso à JARI:** o prazo consta na Notificação de Penalidade.
@@ -1086,7 +1086,7 @@ Os prazos correm a partir do recebimento da notificação, não da data da infra
 
 ## O que realmente anula uma multa
 
-Recursos baseados apenas em justificativa pessoal — pressa, desconhecimento da sinalização, emergência — raramente prosperam. O que costuma funcionar é a **falha formal no auto de infração**.
+Recursos baseados apenas em justificativa pessoal. Pressa, desconhecimento da sinalização, emergência. Raramente prosperam. O que costuma funcionar é a **falha formal no auto de infração**.
 
 O Código de Trânsito Brasileiro estabelece requisitos obrigatórios para a lavratura do auto. O Manual Brasileiro de Fiscalização de Trânsito detalha como cada campo deve ser preenchido. Quando algo ali não é observado, abre-se margem concreta para anulação.
 
@@ -1100,7 +1100,7 @@ Entre as falhas mais frequentes:
 - Local da infração descrito de forma imprecisa
 - Notificação expedida fora do prazo legal
 
-Essas falhas não aparecem para quem não sabe o que procurar — e é exatamente por isso que muita gente desiste de recorrer achando que não tem argumento.
+Essas falhas não aparecem para quem não sabe o que procurar. E é exatamente por isso que muita gente desiste de recorrer achando que não tem argumento.
 
 ## O procedimento no seu estado
 
@@ -1166,7 +1166,7 @@ Se o condutor no momento da infração não era o proprietário, há ainda a **i
 
 A resposta honesta: depende de existir falha real no seu auto de infração. Um recurso sem fundamento consome tempo e tende a ser indeferido.
 
-No CheckMulta, você pode enviar a foto do seu auto de infração e receber uma análise gratuita que verifica campo por campo, com base no CTB e no Manual Brasileiro de Fiscalização, e aponta se há falha formal capaz de fundamentar a anulação. Se não encontrarmos nada, informamos com franqueza — e não há cobrança.`,
+No CheckMulta, você pode enviar a foto do seu auto de infração e receber uma análise gratuita que verifica campo por campo, com base no CTB e no Manual Brasileiro de Fiscalização, e aponta se há falha formal capaz de fundamentar a anulação. Se não encontrarmos nada, informamos com franqueza. E não há cobrança.`,
     palavrasChave: ["como recorrer de multa detran", "recurso de multa por estado", "detran recurso multa", "prazo recurso multa detran", "guia recurso multa transito"],
   },
   {
@@ -1326,8 +1326,8 @@ Recorrer de uma multa de trânsito é um direito garantido pelo **Código de Tr�
 
 O processo tem duas fases principais:
 
-1. **Defesa Prévia** — apresentada antes da multa ser confirmada
-2. **Recurso à JARI** — apresentado após a multa ser confirmada e indeferida
+1. **Defesa Prévia**. Apresentada antes da multa ser confirmada
+2. **Recurso à JARI**. Apresentado após a multa ser confirmada e indeferida
 
 ## Quais os prazos para recorrer?
 
@@ -1346,7 +1346,7 @@ Antes de montar seu recurso, verifique se o auto de infração contém algum des
 ### Erros formais mais comuns
 
 **1. Campo de local incompleto ou ausente**
-O agente autuador é obrigado a descrever o local exato da infração — rua, número, bairro ou KM da rodovia. Se estiver vago ou em branco, a multa pode ser anulada.
+O agente autuador é obrigado a descrever o local exato da infração. Rua, número, bairro ou KM da rodovia. Se estiver vago ou em branco, a multa pode ser anulada.
 
 **2. Equipamento sem certificação INMETRO válida**
 Radares, lombadas eletrônicas e outros equipamentos de medição devem ter certificação INMETRO vigente. Se o certificado estiver vencido na data da infração, a multa é passível de anulação.
@@ -1366,7 +1366,7 @@ Uma defesa prévia eficaz deve conter:
 
 - **Identificação completa** do condutor/proprietário
 - **Número do AIT** (Auto de Infração de Trânsito)
-- **Fundamento legal** — os artigos do CTB e do MBFT que embasam o pedido
+- **Fundamento legal**. Os artigos do CTB e do MBFT que embasam o pedido
 - **Descrição do vício** encontrado no auto
 - **Pedido expresso** de cancelamento da autuação
 
@@ -1382,7 +1382,7 @@ Cada órgão autuador tem seu canal próprio:
 
 Para multas simples com erros formais claros, **não é necessário advogado**. A defesa administrativa pode ser feita pelo próprio condutor.
 
-Um advogado especializado cobra entre R$ 200 e R$ 500 apenas para redigir a petição — o mesmo documento que nossa IA gera em segundos por R$ 19,90.
+Um advogado especializado cobra entre R$ 200 e R$ 500 apenas para redigir a petição. O mesmo documento que nossa IA gera em segundos por R$ 19,90.
 
 ## Conclusão
 
@@ -1393,7 +1393,7 @@ Nossa inteligência artificial analisa seu auto de infração gratuitamente e id
   },
   {
     slug: "modelo-recurso-multa-velocidade-radar",
-    titulo: "Modelo de Recurso de Multa de Velocidade — Radar e Lombada",
+    titulo: "Modelo de Recurso de Multa de Velocidade. Radar e Lombada",
     descricao: "Descubra como recorrer de multa de radar ou lombada eletrônica. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Multa de Radar",
     tempoLeitura: "6 min",
@@ -1403,7 +1403,7 @@ Nossa inteligência artificial analisa seu auto de infração gratuitamente e id
     conteudo: `
 ## Multa de radar: quando dá para recorrer?
 
-Multas por excesso de velocidade capturadas por radar ou lombada eletrônica são as mais comuns no Brasil — e também as que têm mais chances de anulação por erro formal.
+Multas por excesso de velocidade capturadas por radar ou lombada eletrônica são as mais comuns no Brasil. E também as que têm mais chances de anulação por erro formal.
 
 Isso acontece porque os equipamentos de medição eletrônica seguem regras rígidas do **Manual Brasileiro de Fiscalização de Trânsito (MBFT)** que, quando descumpridas, tornam a autuação nula.
 
@@ -1439,11 +1439,11 @@ O local do equipamento registrado no auto deve corresponder ao local real. Qualq
 
 Quando receber o auto, verifique imediatamente:
 
-- **Número de série do equipamento** — anote para verificar no INMETRO
-- **Data de aferição** — deve ser anterior à data da infração e dentro do prazo de 12 meses
-- **Local exato** — confira se corresponde ao endereço real
-- **Velocidade registrada vs. limite da via** — calcule se a diferença supera a margem de erro
-- **Imagem fotográfica** — a foto deve mostrar claramente sua placa
+- **Número de série do equipamento**. Anote para verificar no INMETRO
+- **Data de aferição**. Deve ser anterior à data da infração e dentro do prazo de 12 meses
+- **Local exato**. Confira se corresponde ao endereço real
+- **Velocidade registrada vs. limite da via**. Calcule se a diferença supera a margem de erro
+- **Imagem fotográfica**. A foto deve mostrar claramente sua placa
 
 ## Modelo de defesa para multa de radar
 
@@ -1480,7 +1480,7 @@ O prazo para recorrer de multa de trânsito **depende da fase em que se encontra
 
 ## As três fases do recurso
 
-### Fase 1 — Defesa Prévia (15 dias)
+### Fase 1. Defesa Prévia (15 dias)
 
 A defesa prévia é apresentada **antes da multa ser confirmada**, após o condutor receber a Notificação de Autuação.
 
@@ -1490,14 +1490,14 @@ A defesa prévia é apresentada **antes da multa ser confirmada**, após o condu
 
 Esta é a fase mais importante. A chance de sucesso é maior aqui do que nas fases seguintes.
 
-### Fase 2 — Recurso à JARI (30 dias)
+### Fase 2. Recurso à JARI (30 dias)
 
 Se a defesa prévia for indeferida, você pode recorrer à **JARI (Junta Administrativa de Recursos de Infrações)**.
 
 - **Prazo:** 30 dias após o recebimento do indeferimento
 - **Efeito:** suspende o pagamento e a pontuação enquanto analisado
 
-### Fase 3 — Recurso ao CETRAN/CONTRAN (30 dias)
+### Fase 3. Recurso ao CETRAN/CONTRAN (30 dias)
 
 Se a JARI indeferir, ainda há uma última instância administrativa.
 
@@ -1514,14 +1514,14 @@ Os prazos são contados em **dias corridos**, incluindo finais de semana e feria
 
 Se o último dia cair em feriado ou fim de semana, o prazo se prorroga para o próximo dia útil.
 
-## O prazo está acabando — o que fazer?
+## O prazo está acabando. O que fazer?
 
 Se você tem poucos dias, priorize:
 
-1. **Foto do auto de infração** — tire uma foto nítida do documento
-2. **Análise imediata** — use nossa IA para identificar erros em menos de 1 minuto
-3. **Gere a petição** — em segundos, com toda fundamentação legal
-4. **Protocole online** — a maioria dos órgãos aceita recurso digital
+1. **Foto do auto de infração**. Tire uma foto nítida do documento
+2. **Análise imediata**. Use nossa IA para identificar erros em menos de 1 minuto
+3. **Gere a petição**. Em segundos, com toda fundamentação legal
+4. **Protocole online**. A maioria dos órgãos aceita recurso digital
 
 ## O que acontece se o prazo vencer?
 
@@ -1550,7 +1550,7 @@ Não existe prorrogação de prazo administrativo de trânsito. Age agora.
     conteudo: `
 ## Multa de estacionamento tem como recorrer?
 
-Sim — e com boas chances de sucesso. Multas de estacionamento são autuadas por agentes de trânsito no local, o que abre margem para erros de preenchimento manual que podem anular a autuação.
+Sim. E com boas chances de sucesso. Multas de estacionamento são autuadas por agentes de trânsito no local, o que abre margem para erros de preenchimento manual que podem anular a autuação.
 
 ## Erros comuns que anulam multa de estacionamento
 
@@ -1564,7 +1564,7 @@ Um dígito errado na placa do veículo invalida completamente o auto. Confira le
 
 ### 3. Data ou hora incorreta
 
-Se a data ou hora registrada não corresponde à realidade — e você tem prova disso — o auto é nulo. Recibos, notas fiscais ou registros de câmera do local podem servir como prova.
+Se a data ou hora registrada não corresponde à realidade. E você tem prova disso. O auto é nulo. Recibos, notas fiscais ou registros de câmera do local podem servir como prova.
 
 ### 4. Ausência de sinalização proibindo o estacionamento
 
@@ -1578,12 +1578,12 @@ Nome e matrícula do agente são obrigatórios. A ausência dessas informações
 
 Esta é a parte mais desafiadora. Algumas estratégias:
 
-- **Google Street View** — tire print da data mais próxima ao da infração mostrando ausência de placa
-- **Fotos tiradas no local** — se você fotografou o local no dia, use como prova
-- **Declarações de testemunhas** — vizinhos ou comerciantes locais podem confirmar a ausência de sinalização
-- **Histórico de autuações no local** — ausência de multas anteriores pode indicar irregularidade recente
+- **Google Street View**. Tire print da data mais próxima ao da infração mostrando ausência de placa
+- **Fotos tiradas no local**. Se você fotografou o local no dia, use como prova
+- **Declarações de testemunhas**. Vizinhos ou comerciantes locais podem confirmar a ausência de sinalização
+- **Histórico de autuações no local**. Ausência de multas anteriores pode indicar irregularidade recente
 
-## Multa de zona azul ou área paga — como recorrer?
+## Multa de zona azul ou área paga. Como recorrer?
 
 Para multas em zonas de estacionamento rotativo (zona azul, EstaR, etc.), os erros mais comuns são:
 
@@ -1594,9 +1594,9 @@ Para multas em zonas de estacionamento rotativo (zona azul, EstaR, etc.), os err
 ## O que não funciona como argumento
 
 Evite argumentos que os órgãos rejeitam por padrão:
-- "Parei só por 5 minutos" — irrelevante juridicamente
-- "Não vi a placa" — não exime a responsabilidade
-- "Tinha outros carros estacionados" — não é argumento legal
+- "Parei só por 5 minutos". Irrelevante juridicamente
+- "Não vi a placa". Não exime a responsabilidade
+- "Tinha outros carros estacionados". Não é argumento legal
 
 Foque sempre em **vícios formais do auto**, não em justificativas pessoais.
     `
@@ -1613,7 +1613,7 @@ Foque sempre em **vícios formais do auto**, não em justificativas pessoais.
     conteudo: `
 ## Multa por celular e cinto: dá para recorrer?
 
-Sim — mas é importante ser honesto: multas por uso de celular ao volante e ausência de cinto de segurança são mais difíceis de cancelar do que multas de radar ou estacionamento, porque dependem da observação direta do agente autuador.
+Sim. Mas é importante ser honesto: multas por uso de celular ao volante e ausência de cinto de segurança são mais difíceis de cancelar do que multas de radar ou estacionamento, porque dependem da observação direta do agente autuador.
 
 Porém, **erros formais no preenchimento do auto** ainda podem tornar essas multas nulas, independentemente da infração em si.
 
@@ -1623,11 +1623,11 @@ Porém, **erros formais no preenchimento do auto** ainda podem tornar essas mult
 
 Assim como qualquer outra multa, os vícios de forma invalidam a autuação:
 
-- **Descrição vaga da infração** — o agente deve descrever o comportamento observado. "Uso de aparelho celular" sem especificar a situação é insuficiente em alguns entendimentos.
-- **Local incorreto ou impreciso** — endereço vago invalida o auto.
-- **Identificação do agente incompleta** — nome e matrícula são obrigatórios.
-- **Data ou hora incorreta** — qualquer inconsistência temporal é argumento válido.
-- **Placa com erro** — um dígito errado anula o auto.
+- **Descrição vaga da infração**. O agente deve descrever o comportamento observado. "Uso de aparelho celular" sem especificar a situação é insuficiente em alguns entendimentos.
+- **Local incorreto ou impreciso**. Endereço vago invalida o auto.
+- **Identificação do agente incompleta**. Nome e matrícula são obrigatórios.
+- **Data ou hora incorreta**. Qualquer inconsistência temporal é argumento válido.
+- **Placa com erro**. Um dígito errado anula o auto.
 
 ### Você estava parado no semáforo?
 
@@ -1641,14 +1641,14 @@ Se a multa foi lavrada por ausência de cinto de **passageiro** (não do motoris
 
 ## O que dificilmente funciona
 
-- Negar simplesmente que usava o celular sem prova — a palavra do agente tem presunção de veracidade
-- Alegar que o celular estava em viva-voz — o Art. 252 proíbe qualquer uso manual
-- Dizer que estava olhando as horas — configura uso proibido
+- Negar simplesmente que usava o celular sem prova. A palavra do agente tem presunção de veracidade
+- Alegar que o celular estava em viva-voz. O Art. 252 proíbe qualquer uso manual
+- Dizer que estava olhando as horas. Configura uso proibido
 
 ## Qual artigo regula essas infrações?
 
-- **Celular ao volante:** Art. 252, inciso VIII do CTB — infração gravíssima, 7 pontos
-- **Cinto de segurança:** Art. 167 do CTB — infração grave, 5 pontos
+- **Celular ao volante:** Art. 252, inciso VIII do CTB. Infração gravíssima, 7 pontos
+- **Cinto de segurança:** Art. 167 do CTB. Infração grave, 5 pontos
 
 Ambas têm peso alto na CNH. Vale muito a pena tentar o recurso baseado em erros formais.
 
@@ -1672,7 +1672,7 @@ Nossa IA analisa seu auto gratuitamente e identifica se há vício formal que ju
     imagemBg: "from-slate-700 to-slate-900",
     palavrasChave: ["pontos CNH multa", "quantos pontos perde multa", "suspensão CNH pontos"],
     conteudo: `
-## Sistema de pontos na CNH — como funciona?
+## Sistema de pontos na CNH. Como funciona?
 
 O Brasil adota um sistema de pontuação cumulativa na CNH. Cada infração gera uma quantidade de pontos que ficam registrados por **12 meses**. Se o total ultrapassar o limite permitido, a CNH é suspensa.
 
@@ -1740,9 +1740,9 @@ Sim. O curso de reciclagem pode reduzir até 2 pontos na CNH, desde que você n�
     conteudo: `
 ## Multa por sinal vermelho: quando dá para recorrer?
 
-A multa por avanço de sinal vermelho (Art. 208 do CTB) é gravíssima — 7 pontos na CNH e valor elevado. Por isso, vale muito a pena verificar se o auto tem algum vício formal que permita sua anulação.
+A multa por avanço de sinal vermelho (Art. 208 do CTB) é gravíssima. 7 pontos na CNH e valor elevado. Por isso, vale muito a pena verificar se o auto tem algum vício formal que permita sua anulação.
 
-## Tipos de flagrante — câmera ou agente?
+## Tipos de flagrante. Câmera ou agente?
 
 A forma como a infração foi registrada afeta os argumentos disponíveis:
 
@@ -1764,7 +1764,7 @@ Quando lavrada por agente no local, verifique:
 
 ## O semáforo estava com defeito?
 
-Se o semáforo apresentava defeito técnico na data da infração — como luz piscando, ausência de fase ou mau funcionamento — você tem argumento para o recurso.
+Se o semáforo apresentava defeito técnico na data da infração. Como luz piscando, ausência de fase ou mau funcionamento. Você tem argumento para o recurso.
 
 **Como provar:** registros de manutenção da prefeitura, fotos ou vídeos do local, declarações de testemunhas.
 
@@ -1779,9 +1779,9 @@ Este é um argumento técnico que pode funcionar se:
 
 ## O que não funciona como argumento
 
-- "Avancei porque estava em emergência" — a legislação não prevê esta exceção informalmente
-- "O sinal estava amarelo" — sem prova técnica, difícil de sustentar
-- "Não havia nenhum veículo" — a infração é objetiva, independe de risco
+- "Avancei porque estava em emergência". A legislação não prevê esta exceção informalmente
+- "O sinal estava amarelo". Sem prova técnica, difícil de sustentar
+- "Não havia nenhum veículo". A infração é objetiva, independe de risco
 
 ## Qual a penalidade?
 
@@ -1807,13 +1807,13 @@ Com 7 pontos em jogo, qualquer argumento formal válido justifica o recurso.
 
 A defesa prévia é a **primeira oportunidade legal** que o condutor tem para contestar uma multa de trânsito. Ela é apresentada antes da multa ser confirmada, logo após o recebimento da Notificação de Autuação.
 
-É diferente do recurso — a defesa prévia é mais rápida de analisar e tem uma taxa de sucesso maior, pois o órgão ainda não confirmou oficialmente a infração.
+É diferente do recurso. A defesa prévia é mais rápida de analisar e tem uma taxa de sucesso maior, pois o órgão ainda não confirmou oficialmente a infração.
 
 ## Por que a defesa prévia é a melhor fase para recorrer?
 
-1. **A multa ainda não está confirmada** — o estado do processo é mais favorável
-2. **Prazo mais curto para resposta** — o órgão deve analisar em menos tempo
-3. **Maior abertura para argumentos formais** — erros de preenchimento são mais aceitos
+1. **A multa ainda não está confirmada**. O estado do processo é mais favorável
+2. **Prazo mais curto para resposta**. O órgão deve analisar em menos tempo
+3. **Maior abertura para argumentos formais**. Erros de preenchimento são mais aceitos
 4. **Suspende pagamento e pontos** durante análise
 
 ## Qual o prazo para apresentar defesa prévia?
@@ -1838,9 +1838,9 @@ Uma defesa prévia bem estruturada tem:
 - Data e local da infração
 
 ### 3. Fundamentos jurídicos
-- Art. 280 do CTB — requisitos formais do auto de infração
-- Art. 281, parágrafo único do CTB — causas de arquivamento
-- MBFT — Manual Brasileiro de Fiscalização de Trânsito (quando aplicável)
+- Art. 280 do CTB. Requisitos formais do auto de infração
+- Art. 281, parágrafo único do CTB. Causas de arquivamento
+- MBFT. Manual Brasileiro de Fiscalização de Trânsito (quando aplicável)
 
 ### 4. Descrição do vício encontrado
 Esta é a parte mais importante. Descreva com precisão qual campo está incorreto ou ausente, e por que isso invalida o auto.
@@ -1864,13 +1864,13 @@ Depende do órgão autuador:
 | CET/Prefeitura | Portal da prefeitura + presencial |
 | DER (Rodovias Estaduais) | Portal do DER estadual |
 
-Sempre guarde o **protocolo de entrega** — é sua prova de que apresentou a defesa dentro do prazo.
+Sempre guarde o **protocolo de entrega**. É sua prova de que apresentou a defesa dentro do prazo.
 
 ## Preciso de advogado para fazer defesa prévia?
 
 **Não.** A defesa administrativa de multa de trânsito pode ser feita pelo próprio condutor sem necessidade de advogado.
 
-A lei garante o direito de defesa diretamente ao autuado. Advogado só é obrigatório em processos judiciais — e multa de trânsito é processo administrativo.
+A lei garante o direito de defesa diretamente ao autuado. Advogado só é obrigatório em processos judiciais. E multa de trânsito é processo administrativo.
 
 ## O que acontece após a análise?
 
@@ -1881,12 +1881,12 @@ Em ambos os casos, você receberá uma notificação com o resultado.
 
 ## Nossa ferramenta gera a defesa prévia automaticamente
 
-Nossa IA analisa o auto de infração, identifica os vícios formais e gera a petição completa de defesa prévia com toda fundamentação legal — em segundos, por R$ 19,90.
+Nossa IA analisa o auto de infração, identifica os vícios formais e gera a petição completa de defesa prévia com toda fundamentação legal. Em segundos, por R$ 19,90.
     `
   },
   {
     slug: "multa-injusta-o-que-fazer",
-    titulo: "Levei uma Multa Injusta — O que Fazer Agora?",
+    titulo: "Levei uma Multa Injusta. O que Fazer Agora?",
     descricao: "Tomou uma multa que não faz sentido? Antes de xingar o agente, leia isso. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Direto ao Ponto",
     tempoLeitura: "4 min",
@@ -1896,7 +1896,7 @@ Nossa IA analisa o auto de infração, identifica os vícios formais e gera a pe
     conteudo: `
 ## Calma. Respira. E lê isso antes de fazer qualquer coisa.
 
-Receber uma multa que você sente ser injusta é frustrante. Mas reagir na raiva — discutir com o agente, ignorar o documento ou simplesmente não fazer nada — são as piores escolhas que você pode fazer.
+Receber uma multa que você sente ser injusta é frustrante. Mas reagir na raiva. Discutir com o agente, ignorar o documento ou simplesmente não fazer nada. São as piores escolhas que você pode fazer.
 
 A boa notícia: **você tem direito de contestar**. E dependendo do que aconteceu, as chances de cancelar são reais.
 
@@ -1913,7 +1913,7 @@ Qualquer erro nesses campos já é argumento para o recurso.
 
 ## "Mas eu não fiz o que está escrito"
 
-Esse é o caso mais difícil — quando o auto está formalmente correto mas você discorda do fato em si.
+Esse é o caso mais difícil. Quando o auto está formalmente correto mas você discorda do fato em si.
 
 Aqui a estratégia muda:
 
@@ -1921,7 +1921,7 @@ Aqui a estratégia muda:
 - O agente poderia ter confundido seu veículo com outro?
 - Havia alguma situação de emergência?
 
-Sem prova concreta, é difícil ganhar só com negação. Mas ainda vale tentar — o órgão precisa provar que a autuação foi correta.
+Sem prova concreta, é difícil ganhar só com negação. Mas ainda vale tentar. O órgão precisa provar que a autuação foi correta.
 
 ## "E se eu simplesmente não pagar?"
 
@@ -1934,7 +1934,7 @@ Péssima ideia. A multa não paga:
 
 Recorrer dentro do prazo **suspende o pagamento** legalmente. Ignorar, não.
 
-## O prazo é curto — age rápido
+## O prazo é curto. Age rápido
 
 Você tem **15 dias** a partir do recebimento da notificação para apresentar defesa prévia. Esse prazo não tem prorrogação.
 
@@ -1955,36 +1955,36 @@ Nossa IA analisa seu auto gratuitamente em menos de 1 minuto e diz se há base f
 
 O **Artigo 280 do Código de Trânsito Brasileiro** é a base legal de qualquer recurso de multa. Ele define os requisitos obrigatórios que todo auto de infração deve conter para ser considerado válido.
 
-Se qualquer um desses requisitos estiver ausente, incorreto ou ilegível, isso pode comprometer a validade do auto — ou seja, abre margem para pedir o cancelamento da multa.
+Se qualquer um desses requisitos estiver ausente, incorreto ou ilegível, isso pode comprometer a validade do auto. Ou seja, abre margem para pedir o cancelamento da multa.
 
 ## Os requisitos obrigatórios do Art. 280
 
 O auto de infração deve conter obrigatoriamente:
 
-**I — Tipificação da infração**
+**I. Tipificação da infração**
 A descrição precisa do ato infracional, com referência ao artigo e inciso do CTB violado.
 
-**II — Local, data e hora da infração**
+**II. Local, data e hora da infração**
 Endereço completo onde ocorreu a infração, com data e horário precisos.
 
-**III — Identificação do veículo**
+**III. Identificação do veículo**
 Placa, RENAVAM e tipo de veículo.
 
-**IV — Identificação do condutor**
+**IV. Identificação do condutor**
 Quando possível identificar o condutor no momento da autuação.
 
-**V — Identificação do agente autuador**
+**V. Identificação do agente autuador**
 Nome completo e número funcional do agente que lavrou o auto.
 
-**VI — Assinatura do infrator (quando possível)**
+**VI. Assinatura do infrator (quando possível)**
 Ou declaração de recusa em assinar.
 
-**VII — Identificação do equipamento (quando aplicável)**
+**VII. Identificação do equipamento (quando aplicável)**
 Para infrações medidas por equipamento eletrônico: número de série e data de aferição INMETRO.
 
 ## Por que qualquer vício formal anula o auto?
 
-O princípio é simples: o auto de infração é um **ato administrativo**. Para ser válido, precisa cumprir todos os requisitos legais. Sem isso, falta motivação — e ato administrativo sem motivação é nulo.
+O princípio é simples: o auto de infração é um **ato administrativo**. Para ser válido, precisa cumprir todos os requisitos legais. Sem isso, falta motivação. E ato administrativo sem motivação é nulo.
 
 O Art. 281, parágrafo único, inciso I do CTB determina que a autoridade de trânsito deve arquivar o auto quando este **não preencher os requisitos do Art. 280**.
 
@@ -2008,7 +2008,7 @@ Na defesa prévia, cite explicitamente:
 
 *"O auto de infração nº [número] não preenche o requisito do Art. 280, inciso [X] do CTB, porquanto [descreva o vício]. Nos termos do Art. 281, parágrafo único, inciso I do CTB, requer-se o arquivamento do presente auto."*
 
-Nossa IA faz exatamente essa análise — campo por campo, baseada no Art. 280 — e gera a petição completa automaticamente.
+Nossa IA faz exatamente essa análise. Campo por campo, baseada no Art. 280. E gera a petição completa automaticamente.
     `
   },
   {
@@ -2021,7 +2021,7 @@ Nossa IA faz exatamente essa análise — campo por campo, baseada no Art. 280 �
     imagemBg: "from-yellow-500 to-orange-500",
     palavrasChave: ["suspensão CNH multa", "quando CNH é suspensa", "pontos CNH suspensão"],
     conteudo: `
-## A CNH não é suspensa por uma multa — é pelos pontos
+## A CNH não é suspensa por uma multa. É pelos pontos
 
 Um erro muito comum é achar que uma única multa grave suspende a CNH automaticamente. **Não é assim que funciona.**
 
@@ -2031,13 +2031,13 @@ A suspensão acontece quando o condutor acumula pontos demais em um período de 
 
 O CTB prevê três limites diferentes dependendo do perfil do condutor:
 
-**20 pontos** — para qualquer condutor (regra geral)
+**20 pontos**. Para qualquer condutor (regra geral)
 
-**30 pontos** — se o condutor:
+**30 pontos**. Se o condutor:
 - Tem CNH há mais de 1 ano
 - Não cometeu infração gravíssima nos últimos 12 meses
 
-**40 pontos** — se o condutor:
+**40 pontos**. Se o condutor:
 - Tem CNH há mais de 2 anos
 - Não cometeu infração gravíssima
 - Cometeu no máximo 1 infração grave
@@ -2115,7 +2115,7 @@ Os prazos seguem o CTB:
 
 ### Equipamento sem aferição válida
 
-A PRF usa radares portáteis, fixos e aéreos. Todos precisam de aferição INMETRO válida. Radares portáteis têm prazo de aferição mais curto — verifique sempre.
+A PRF usa radares portáteis, fixos e aéreos. Todos precisam de aferição INMETRO válida. Radares portáteis têm prazo de aferição mais curto. Verifique sempre.
 
 ### Local impreciso em rodovia
 
@@ -2138,7 +2138,7 @@ Multas de radar aéreo exigem documentação específica do equipamento. São re
 5. Anexe a petição em PDF
 6. Protocole
 
-Guarde o número de protocolo gerado — é sua prova de entrega dentro do prazo.
+Guarde o número de protocolo gerado. É sua prova de entrega dentro do prazo.
 
 ## Preciso ir presencialmente?
 
@@ -2165,13 +2165,13 @@ Por isso, o recurso deve ser feito na PRF, mas os efeitos (pontos e débito) apa
 
 O **Manual Brasileiro de Fiscalização de Trânsito (MBFT)** é o documento oficial que define como os agentes de trânsito devem agir ao fiscalizar e autuar condutores.
 
-Publicado pelo DENATRAN (atual SENATRAN), o MBFT é vinculante — ou seja, agentes e órgãos de trânsito são obrigados a segui-lo. Quando não seguem, a autuação pode ser declarada nula.
+Publicado pelo DENATRAN (atual SENATRAN), o MBFT é vinculante. Ou seja, agentes e órgãos de trânsito são obrigados a segui-lo. Quando não seguem, a autuação pode ser declarada nula.
 
 ## Por que o MBFT importa para o seu recurso?
 
 O CTB define as infrações. O MBFT define **como** essas infrações devem ser comprovadas e registradas. São dois documentos diferentes que trabalham juntos.
 
-Uma autuação pode estar "dentro do CTB" mas fora do MBFT — e ainda assim ser nula.
+Uma autuação pode estar "dentro do CTB" mas fora do MBFT. E ainda assim ser nula.
 
 ## O que o MBFT exige dos agentes?
 
@@ -2194,7 +2194,7 @@ Uma autuação pode estar "dentro do CTB" mas fora do MBFT — e ainda assim ser
 
 - O MBFT define margens de erro específicas por tipo de equipamento
 - Velocidade registrada deve superar o limite **mais a margem de erro** para gerar autuação válida
-- Exemplo: radar com margem de 5% em via de 60 km/h — velocidade deve superar 63 km/h para autuação válida
+- Exemplo: radar com margem de 5% em via de 60 km/h. Velocidade deve superar 63 km/h para autuação válida
 
 ## Como citar o MBFT no seu recurso
 
@@ -2220,7 +2220,7 @@ Em todos esses casos, o MBFT fornece a base técnica para anular a multa.
   },
   {
     slug: "fui-multado-mas-nao-estava-dirigindo",
-    titulo: "Fui Multado Mas Não Estava Dirigindo o Carro — O que Fazer?",
+    titulo: "Fui Multado Mas Não Estava Dirigindo o Carro. O que Fazer?",
     descricao: "Se você é proprietário do veículo mas não estava ao volante na hora da multa, existe um processo para transferir a responsabilidade. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Casos Especiais",
     tempoLeitura: "5 min",
@@ -2230,7 +2230,7 @@ Em todos esses casos, o MBFT fornece a base técnica para anular a multa.
     conteudo: `
 ## A multa veio no seu nome mas você não estava dirigindo?
 
-Isso é mais comum do que parece — emprestou o carro para alguém, o veículo foi furtado, ou simplesmente outra pessoa da família estava dirigindo.
+Isso é mais comum do que parece. Emprestou o carro para alguém, o veículo foi furtado, ou simplesmente outra pessoa da família estava dirigindo.
 
 A boa notícia: **existe um processo legal para transferir a responsabilidade** ao condutor real. E se você não fizer isso dentro do prazo, os pontos vão para a sua CNH mesmo sem ter cometido a infração.
 
@@ -2270,14 +2270,14 @@ Com o BO, a multa deve ser arquivada porque o proprietário não tinha controle 
 
 Juridicamente, você pode indicar a pessoa mesmo sem consentimento dela. O que ela fizer depois (contestar a indicação ou não) é problema dela.
 
-Se a pessoa negar que estava dirigindo, o caso vai para análise do órgão — que pode solicitar provas de ambos os lados.
+Se a pessoa negar que estava dirigindo, o caso vai para análise do órgão. Que pode solicitar provas de ambos os lados.
 
 ## Posso apresentar defesa prévia E indicar o condutor?
 
 Não simultaneamente. Você escolhe um caminho:
 
-1. **Indicar o condutor** — transfere os pontos, débito permanece no veículo
-2. **Apresentar defesa prévia** — tenta cancelar a multa por vício formal
+1. **Indicar o condutor**. Transfere os pontos, débito permanece no veículo
+2. **Apresentar defesa prévia**. Tenta cancelar a multa por vício formal
 
 Se há erro formal no auto, a defesa prévia pode cancelar tudo. Se não há erro, a indicação de condutor ao menos protege sua CNH.
 
@@ -2296,7 +2296,7 @@ Nossa IA analisa o auto gratuitamente e te ajuda a decidir qual caminho é melho
     conteudo: `
 ## Multa de pedágio: quando acontece?
 
-A multa por evasão de pedágio (Art. 209-A do CTB, inserido pela Lei 14.157/2021) é aplicada quando o veículo passa pela praça de pedágio sem efetuar o pagamento — seja na cancela tradicional, no sistema free flow (cobrança automática) ou no tag eletrônico.
+A multa por evasão de pedágio (Art. 209-A do CTB, inserido pela Lei 14.157/2021) é aplicada quando o veículo passa pela praça de pedágio sem efetuar o pagamento. Seja na cancela tradicional, no sistema free flow (cobrança automática) ou no tag eletrônico.
 
 ## Tipos de cobrança e suas particularidades
 
@@ -2340,12 +2340,12 @@ O prazo é sempre **15 dias** da notificação.
 
 Mesmo assim, vale verificar se há erro formal no auto. Se houver, a multa pode ser cancelada independentemente da infração em si.
 
-Se não houver erro formal, você pode tentar argumentar circunstâncias — falha técnica, sinalização inadequada, emergência — mas as chances são menores.
+Se não houver erro formal, você pode tentar argumentar circunstâncias. Falha técnica, sinalização inadequada, emergência. Mas as chances são menores.
     `
   },
   {
     slug: "recurso-multa-deu-certo-o-que-esperar",
-    titulo: "Recorri da Multa — Quanto Tempo Demora e O que Esperar?",
+    titulo: "Recorri da Multa. Quanto Tempo Demora e O que Esperar?",
     descricao: "Apresentou a defesa prévia ou recurso e agora está esperando? Entenda os prazos de resposta, o que cada resultado significa e o que fazer em cada caso. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Depois do Recurso",
     tempoLeitura: "4 min",
@@ -2355,7 +2355,7 @@ Se não houver erro formal, você pode tentar argumentar circunstâncias — fal
     conteudo: `
 ## Apresentei o recurso. E agora?
 
-Protocolar a defesa é só metade do caminho. Agora começa a espera — e entender o que está acontecendo evita ansiedade desnecessária.
+Protocolar a defesa é só metade do caminho. Agora começa a espera. E entender o que está acontecendo evita ansiedade desnecessária.
 
 ## Quanto tempo demora para ter resposta?
 
@@ -2371,7 +2371,7 @@ Se passou mais de 90 dias sem resposta, você pode protocolar um pedido de infor
 
 Durante o período de análise:
 
-- O pagamento da multa fica **suspenso** — você não precisa pagar
+- O pagamento da multa fica **suspenso**. Você não precisa pagar
 - Os pontos **não são lançados** na CNH
 - O prazo de recurso subsequente só começa **após** o resultado
 
@@ -2380,17 +2380,17 @@ Ou seja: você não perde nada ficando na espera.
 ## Resultados possíveis e o que fazer em cada caso
 
 ### Defesa Deferida ✅
-A melhor notícia. A multa foi cancelada. O auto é arquivado e os pontos não vão para a CNH. Guarde o documento de deferimento — pode ser necessário para comprovar o cancelamento.
+A melhor notícia. A multa foi cancelada. O auto é arquivado e os pontos não vão para a CNH. Guarde o documento de deferimento. Pode ser necessário para comprovar o cancelamento.
 
 ### Defesa Indeferida ❌
-A multa foi confirmada. Você tem **30 dias** para recorrer à JARI (Junta Administrativa de Recursos de Infrações). Não desanime — a JARI é uma segunda chance com critérios diferentes.
+A multa foi confirmada. Você tem **30 dias** para recorrer à JARI (Junta Administrativa de Recursos de Infrações). Não desanime. A JARI é uma segunda chance com critérios diferentes.
 
 ### Sem resposta (silêncio administrativo)
 Se o prazo passou e não veio resposta, o silêncio não significa aprovação automática. Protocole um pedido de informação. Se necessário, pode-se recorrer judicialmente por omissão administrativa.
 
 ## Vale a pena recorrer à JARI após indeferimento?
 
-**Sim, sempre.** A JARI é composta por membros diferentes do órgão autuador — há uma chance real de revisão. E enquanto aguarda a JARI, os pontos continuam suspensos.
+**Sim, sempre.** A JARI é composta por membros diferentes do órgão autuador. Há uma chance real de revisão. E enquanto aguarda a JARI, os pontos continuam suspensos.
 
 ## E se a JARI também indeferir?
 
@@ -2400,7 +2400,7 @@ Para multas de valor baixo, a via judicial raramente compensa. Para multas altas
 
 ## Como acompanhar meu recurso?
 
-Pelo mesmo sistema onde você protocolou — SIGER (PRF), portal do DETRAN estadual ou portal da prefeitura. Use o número de protocolo gerado no momento do envio.
+Pelo mesmo sistema onde você protocolou. SIGER (PRF), portal do DETRAN estadual ou portal da prefeitura. Use o número de protocolo gerado no momento do envio.
     `
   },
   {
@@ -2413,7 +2413,7 @@ Pelo mesmo sistema onde você protocolou — SIGER (PRF), portal do DETRAN estad
     imagemBg: "from-red-600 to-orange-700",
     palavrasChave: ["multa alta velocidade como recorrer", "recurso multa radar velocidade", "contestar multa excesso velocidade"],
     conteudo: `
-## Multa de velocidade é a mais comum — e a mais contestável
+## Multa de velocidade é a mais comum. E a mais contestável
 
 Multas por excesso de velocidade representam quase metade de todas as autuações no Brasil. E são também as que mais têm base para recurso, porque dependem de equipamentos que precisam estar rigorosamente calibrados e sinalizados.
 
@@ -2422,14 +2422,14 @@ Multas por excesso de velocidade representam quase metade de todas as autuaçõe
 Para ser válida, a autuação por excesso de velocidade precisa cumprir todos esses requisitos:
 
 **1. Aferição INMETRO válida**
-Todo equipamento de medição de velocidade precisa ter certificado de aferição do INMETRO. Esse certificado tem prazo de validade — geralmente 12 meses para radares fixos e 6 meses para portáteis.
+Todo equipamento de medição de velocidade precisa ter certificado de aferição do INMETRO. Esse certificado tem prazo de validade. Geralmente 12 meses para radares fixos e 6 meses para portáteis.
 
 **2. Margem de erro aplicada corretamente**
 O CTB determina que a velocidade registrada deve descontar a margem de erro do equipamento antes de gerar a infração. As margens são:
 - Radares fixos e estáticos: 5% da velocidade medida
 - Radares portáteis e laser: 5% ou 3 km/h (o maior)
 
-Se o radar registrou 76 km/h em uma via de 70 km/h com margem de 5%, a velocidade considerada seria 72,2 km/h — e a multa não deveria ser emitida.
+Se o radar registrou 76 km/h em uma via de 70 km/h com margem de 5%, a velocidade considerada seria 72,2 km/h. E a multa não deveria ser emitida.
 
 **3. Sinalização prévia obrigatória**
 A Resolução CONTRAN nº 396 exige placa informando a existência do equipamento antes do ponto de medição. Ausência de sinalização é vício formal.
@@ -2488,20 +2488,20 @@ O sistema de pontos da CNH foi criado para monitorar o comportamento dos conduto
 
 O limite varia de acordo com o perfil do condutor:
 
-**20 pontos** — limite para qualquer condutor (regra mais restritiva)
+**20 pontos**. Limite para qualquer condutor (regra mais restritiva)
 
-**30 pontos** — se o condutor:
+**30 pontos**. Se o condutor:
 - Tem CNH há mais de 1 ano
 - Não cometeu infração gravíssima nos últimos 12 meses
 
-**40 pontos** — se o condutor:
+**40 pontos**. Se o condutor:
 - Tem CNH há mais de 2 anos
 - Não cometeu infração gravíssima
 - Cometeu no máximo 1 infração grave
 
 ## Por quanto tempo os pontos ficam na CNH?
 
-Os pontos permanecem por **12 meses** a partir da data da infração — não da data de pagamento ou do julgamento do recurso.
+Os pontos permanecem por **12 meses** a partir da data da infração. Não da data de pagamento ou do julgamento do recurso.
 
 Exemplo: infração em janeiro de 2025 → pontos saem em janeiro de 2026.
 
@@ -2511,7 +2511,7 @@ Exemplo: infração em janeiro de 2025 → pontos saem em janeiro de 2026.
 - Obrigatoriedade de novo exame de legislação
 - Reincidência aumenta o prazo de suspensão
 
-Dirigir com a CNH suspensa é **crime de trânsito** (Art. 307 do CTB) — não é apenas infração administrativa.
+Dirigir com a CNH suspensa é **crime de trânsito** (Art. 307 do CTB). Não é apenas infração administrativa.
 
 ## Como os pontos são lançados na CNH?
 
@@ -2529,7 +2529,7 @@ O extrato mostra cada infração, os pontos gerados e a data de expiração de c
 
 ## Dica: monitore seu saldo regularmente
 
-Muitos condutores só descobrem que estão perto do limite quando já é tarde. Verificar seu extrato de pontos mensalmente é uma boa prática — especialmente se você já teve alguma infração recente.
+Muitos condutores só descobrem que estão perto do limite quando já é tarde. Verificar seu extrato de pontos mensalmente é uma boa prática. Especialmente se você já teve alguma infração recente.
     `
   },
   {
@@ -2636,7 +2636,7 @@ Para câmeras de semáforo, priorize a análise técnica:
 - Qualidade da imagem
 - Sincronização semafórica
 
-Se houver qualquer dúvida técnica, a interpretação deve ser favorável ao condutor — o ônus da prova é do órgão autuador.
+Se houver qualquer dúvida técnica, a interpretação deve ser favorável ao condutor. O ônus da prova é do órgão autuador.
     `
   },
   {
@@ -2660,7 +2660,7 @@ Mas existe uma diferença importante que muita gente não sabe: **CNH vencida é
 
 ## CNH vencida x CNH suspensa: a diferença importa
 
-**CNH vencida:** o prazo de validade expirou, mas o condutor ainda tem habilitação — só precisa renovar. A infração é administrativa.
+**CNH vencida:** o prazo de validade expirou, mas o condutor ainda tem habilitação. Só precisa renovar. A infração é administrativa.
 
 **CNH suspensa ou cassada:** o condutor perdeu temporária ou definitivamente o direito de dirigir. Aqui é crime de trânsito (Art. 307 do CTB).
 
@@ -2669,7 +2669,7 @@ Essa distinção é importante porque muda a estratégia de defesa.
 ## Quando dá para recorrer de multa por CNH vencida?
 
 ### Erro de identificação
-Se a sua CNH estava válida e o agente errou ao verificar a data de validade, o recurso é direto — basta apresentar a CNH com a data correta.
+Se a sua CNH estava válida e o agente errou ao verificar a data de validade, o recurso é direto. Basta apresentar a CNH com a data correta.
 
 ### Vício formal no auto
 O auto de infração precisa descrever claramente a infração, identificar o agente e conter todos os requisitos do Art. 280 do CTB. Qualquer falha formal é motivo de contestação.
@@ -2678,7 +2678,7 @@ O auto de infração precisa descrever claramente a infração, identificar o ag
 Em alguns estados, se você já havia protocolado o pedido de renovação mas ainda não havia recebido a nova CNH, é possível argumentar boa-fé e apresentar o protocolo de renovação.
 
 ### Situação de emergência
-Se você estava dirigindo por emergência comprovada (urgência médica, por exemplo) e a CNH estava vencida há pouco tempo, é possível usar isso na defesa — as chances são menores, mas existe precedente.
+Se você estava dirigindo por emergência comprovada (urgência médica, por exemplo) e a CNH estava vencida há pouco tempo, é possível usar isso na defesa. As chances são menores, mas existe precedente.
 
 ## O que fazer se a CNH está vencida
 
@@ -2686,7 +2686,7 @@ Se você estava dirigindo por emergência comprovada (urgência médica, por exe
 2. Não dirija até receber a nova CNH
 3. Recorra da multa dentro do prazo de 15 dias
 
-A renovação não cancela a multa retroativamente, mas demonstra boa-fé e regularização — o que pode ajudar no julgamento do recurso.
+A renovação não cancela a multa retroativamente, mas demonstra boa-fé e regularização. O que pode ajudar no julgamento do recurso.
 
 ## Quanto tempo dura o processo de renovação?
 
@@ -2694,7 +2694,7 @@ Varia por estado, mas em geral:
 - Exame médico: 1 a 5 dias úteis para resultado
 - Entrega da nova CNH: 5 a 15 dias úteis após aprovação
 
-Durante esse período, guarde o protocolo de renovação — ele serve como documento de trânsito provisório em alguns estados.
+Durante esse período, guarde o protocolo de renovação. Ele serve como documento de trânsito provisório em alguns estados.
     `
   },
   {
@@ -2711,13 +2711,13 @@ Durante esse período, guarde o protocolo de renovação — ele serve como docu
 
 A **JARI (Junta Administrativa de Recursos de Infrações)** é o órgão de segunda instância para recursos de multas de trânsito. Se sua defesa prévia foi indeferida pelo órgão autuador, a JARI é o próximo passo.
 
-A JARI é composta por representantes do órgão de trânsito, do Ministério Público e da sociedade civil — o que garante uma análise independente em relação ao órgão que lavrou o auto.
+A JARI é composta por representantes do órgão de trânsito, do Ministério Público e da sociedade civil. O que garante uma análise independente em relação ao órgão que lavrou o auto.
 
 ## Qual é o prazo para recorrer à JARI?
 
 **30 dias** a partir do recebimento da notificação de indeferimento da defesa prévia.
 
-Diferente da defesa prévia (15 dias), o prazo da JARI é mais generoso — mas ainda assim não pode ser perdido.
+Diferente da defesa prévia (15 dias), o prazo da JARI é mais generoso. Mas ainda assim não pode ser perdido.
 
 ## Como funciona o processo na JARI?
 
@@ -2731,9 +2731,9 @@ O prazo para julgamento pela JARI não está fixado em lei, mas costuma ser de 3
 
 ## O que muda na JARI em relação à defesa prévia?
 
-Na defesa prévia, o recurso é analisado pelo mesmo órgão que autuou — o que cria um viés natural para manutenção da multa.
+Na defesa prévia, o recurso é analisado pelo mesmo órgão que autuou. O que cria um viés natural para manutenção da multa.
 
-Na JARI, a análise é feita por um colegiado independente. Isso significa que casos indeferidos na defesa prévia frequentemente são providos na JARI — especialmente quando há vício formal claro que o órgão autuador ignorou.
+Na JARI, a análise é feita por um colegiado independente. Isso significa que casos indeferidos na defesa prévia frequentemente são providos na JARI. Especialmente quando há vício formal claro que o órgão autuador ignorou.
 
 ## O que incluir no recurso à JARI?
 
@@ -2749,8 +2749,8 @@ Na JARI você pode complementar sua defesa com novos argumentos que não usou na
 
 Ainda há duas instâncias:
 
-**CETRAN** (Conselho Estadual de Trânsito) — para infrações estaduais
-**CONTRAN** (Conselho Nacional de Trânsito) — para infrações federais (PRF, DNIT)
+**CETRAN** (Conselho Estadual de Trânsito). Para infrações estaduais
+**CONTRAN** (Conselho Nacional de Trânsito). Para infrações federais (PRF, DNIT)
 
 Após esgotar as instâncias administrativas, é possível recorrer ao **Judiciário**, mas o custo raramente justifica para multas de valor baixo.
 
@@ -2762,7 +2762,7 @@ Sim, quase sempre. Os motivos:
 - O processo é gratuito
 - Você pode apresentar novos argumentos
 
-A única exceção é quando a infração é clara, não há vício formal e os pontos já expiraram — aí o esforço pode não compensar.
+A única exceção é quando a infração é clara, não há vício formal e os pontos já expiraram. Aí o esforço pode não compensar.
     `
   },
   {
@@ -2795,9 +2795,9 @@ Se a sua CNH foi suspensa por acúmulo de pontos, isso **sim** é informação q
 
 ## O impacto nos bônus de desconto
 
-A maioria das seguradoras oferece descontos progressivos para condutores sem sinistros — o chamado "bônus". Esse bônus pode representar até 40% de desconto no prêmio.
+A maioria das seguradoras oferece descontos progressivos para condutores sem sinistros. O chamado "bônus". Esse bônus pode representar até 40% de desconto no prêmio.
 
-Embora o bônus seja baseado em sinistros (não em multas), um condutor com muitas multas tende a ter mais sinistros — e as seguradoras usam modelos estatísticos que correlacionam esses dados.
+Embora o bônus seja baseado em sinistros (não em multas), um condutor com muitas multas tende a ter mais sinistros. E as seguradoras usam modelos estatísticos que correlacionam esses dados.
 
 ## Quando o seguro pode ser negado?
 
@@ -2809,7 +2809,7 @@ As seguradoras podem negar a contratação ou renovação nos seguintes casos:
 
 ## O que fazer para não perder o bônus
 
-- Recorra de multas injustas — cancelar a multa cancela os pontos
+- Recorra de multas injustas. Cancelar a multa cancela os pontos
 - Evite infrações gravíssimas (7 pontos cada)
 - Monitore seu extrato de pontos regularmente
 - Declare corretamente seu perfil na contratação
@@ -2818,7 +2818,7 @@ As seguradoras podem negar a contratação ou renovação nos seguintes casos:
 
 Cancelar uma multa não é só sobre os R$ 293 da infração. É sobre os pontos que podem levar à suspensão da CNH, que por sua vez pode aumentar significativamente o custo do seu seguro nos próximos anos.
 
-Nossa IA analisa o auto de infração gratuitamente e identifica se há base para contestar — o custo de R$ 19,90 pela petição pode economizar muito mais a longo prazo.
+Nossa IA analisa o auto de infração gratuitamente e identifica se há base para contestar. O custo de R$ 19,90 pela petição pode economizar muito mais a longo prazo.
     `
   },
   {
@@ -2835,22 +2835,22 @@ Nossa IA analisa o auto de infração gratuitamente e identifica se há base par
 
 Quando um auto de infração é lavrado, o processo de notificação segue etapas específicas definidas pelo CTB:
 
-**1ª notificação — Notificação de Autuação (NA)**
+**1ª notificação. Notificação de Autuação (NA)**
 Informa que você foi autuado. É nesse momento que começa o prazo para a defesa prévia (15 dias).
 
-**2ª notificação — Notificação de Penalidade (NP)**
+**2ª notificação. Notificação de Penalidade (NP)**
 Caso a defesa prévia não seja apresentada ou seja indeferida, você recebe a notificação de penalidade com o valor da multa e o prazo para pagamento ou recurso à JARI.
 
 ## Como as notificações são enviadas
 
 As notificações podem ser enviadas de três formas:
 - **Carta registrada** pelos Correios (endereço do CRV/documento do veículo)
-- **Notificação eletrônica** (SNE — Sistema de Notificação Eletrônica, para quem aderiu)
+- **Notificação eletrônica** (SNE. Sistema de Notificação Eletrônica, para quem aderiu)
 - **Edital** em Diário Oficial (quando a carta retorna ou o endereço é desconhecido)
 
 ## O que acontece se eu não receber a notificação?
 
-Se a carta foi enviada para o endereço cadastrado no documento do veículo e retornou, o órgão pode publicar a notificação em Diário Oficial ou portal eletrônico. Após a publicação, o prazo começa a correr — mesmo que você nunca tenha visto o aviso.
+Se a carta foi enviada para o endereço cadastrado no documento do veículo e retornou, o órgão pode publicar a notificação em Diário Oficial ou portal eletrônico. Após a publicação, o prazo começa a correr. Mesmo que você nunca tenha visto o aviso.
 
 Por isso é essencial manter o endereço do veículo atualizado no DETRAN.
 
@@ -2881,7 +2881,7 @@ A adesão é gratuita e pode ser feita no portal do Senatran.
 
 ## Dica importante
 
-Se você comprou um veículo usado e o vendedor não transferiu o documento, as notificações continuam chegando no endereço do antigo proprietário. Transfira o veículo imediatamente após a compra — o prazo de 30 dias é obrigatório por lei.
+Se você comprou um veículo usado e o vendedor não transferiu o documento, as notificações continuam chegando no endereço do antigo proprietário. Transfira o veículo imediatamente após a compra. O prazo de 30 dias é obrigatório por lei.
     `
   },
   {
@@ -2896,14 +2896,14 @@ Se você comprou um veículo usado e o vendedor não transferiu o documento, as 
     conteudo: `
 ## Desconto de 40% na multa: isso existe de verdade?
 
-Existe, mas não é o único desconto — e a condição pega muita gente de surpresa. O Art. 284 do CTB, na redação da Lei 14.599/2023, prevê **dois** descontos diferentes:
+Existe, mas não é o único desconto. E a condição pega muita gente de surpresa. O Art. 284 do CTB, na redação da Lei 14.599/2023, prevê **dois** descontos diferentes:
 
 - **20% de desconto**: pague até a data de vencimento da notificação. Não exige cadastro prévio nenhum, e você continua podendo recorrer.
 - **40% de desconto**: só para quem já havia aderido ao **SNE (Sistema de Notificação Eletrônica)** **antes** de a autuação desta multa ser notificada, e que declara, ao pagar, que **desiste de defesa prévia e de recurso**.
 
 ## Como funciona o SNE
 
-O SNE é um sistema voluntário em que o condutor opta por receber notificações de multa eletronicamente, pelo portal do Senatran, em vez de esperar a carta dos Correios. A adesão precisa ser feita **com antecedência** — não adianta aderir depois de já ter recebido a notificação de uma multa específica, porque o desconto de 40% dessa multa já não se aplica mais.
+O SNE é um sistema voluntário em que o condutor opta por receber notificações de multa eletronicamente, pelo portal do Senatran, em vez de esperar a carta dos Correios. A adesão precisa ser feita **com antecedência**. Não adianta aderir depois de já ter recebido a notificação de uma multa específica, porque o desconto de 40% dessa multa já não se aplica mais.
 
 Vantagens de estar no SNE:
 - Acesso ao desconto de 40% nas próximas autuações, se optar por não recorrer
@@ -2922,11 +2922,11 @@ A adesão é gratuita, vale para autuações futuras e pode ser cancelada a qual
 
 ## Quais multas têm desconto?
 
-O desconto de 20% (pagamento até o vencimento) vale para qualquer multa. Já o de 40% depende de o órgão autuador (federal, estadual ou municipal) ter aderido ao SNE — a maioria dos estados já participa; confira o seu.
+O desconto de 20% (pagamento até o vencimento) vale para qualquer multa. Já o de 40% depende de o órgão autuador (federal, estadual ou municipal) ter aderido ao SNE. A maioria dos estados já participa; confira o seu.
 
 ## E se eu quiser recorrer em vez de pagar?
 
-Aqui está o ponto que mais gera confusão: **o desconto de 40% e o recurso são excludentes.** Para ter os 40%, você declara no ato que não vai recorrer. Se ainda não decidiu, ou se quer manter a porta aberta, o desconto de 20% é o caminho — ele não fecha o direito de recorrer depois.
+Aqui está o ponto que mais gera confusão: **o desconto de 40% e o recurso são excludentes.** Para ter os 40%, você declara no ato que não vai recorrer. Se ainda não decidiu, ou se quer manter a porta aberta, o desconto de 20% é o caminho. Ele não fecha o direito de recorrer depois.
 
 ## Comparando as opções
 
@@ -2936,9 +2936,9 @@ Para uma multa gravíssima de R$ 293,47:
 |-------|-------------|------------------------------|
 | Pagar com 20% (até o vencimento) | R$ 234,78 | Sim |
 | Pagar com 40% (SNE prévio) | R$ 176,08 | Não |
-| Recorrer e ganhar | R$ 0,00 | — |
+| Recorrer e ganhar | R$ 0,00 |. |
 
-Nossa IA analisa gratuitamente se há base para recurso. Se não houver, um dos dois descontos é o caminho mais inteligente — o de 20% se você ainda tem dúvida, o de 40% se já decidiu não contestar.
+Nossa IA analisa gratuitamente se há base para recurso. Se não houver, um dos dois descontos é o caminho mais inteligente. O de 20% se você ainda tem dúvida, o de 40% se já decidiu não contestar.
     `
   },
   {
@@ -2953,7 +2953,7 @@ Nossa IA analisa gratuitamente se há base para recurso. Se não houver, um dos 
     conteudo: `
 ## Multa de trânsito prescreve?
 
-Sim — mas não da forma que a maioria das pessoas imagina, e o processo é longo.
+Sim. Mas não da forma que a maioria das pessoas imagina, e o processo é longo.
 
 A prescrição de multas de trânsito segue o **Decreto nº 20.910/1932**, que define prazo de 5 anos para dívidas com a administração pública. Mas na prática, antes de prescrever, a multa passa por várias etapas que têm consequências sérias.
 
@@ -2966,26 +2966,26 @@ A prescrição de multas de trânsito segue o **Decreto nº 20.910/1932**, que d
 - Pode ser inscrita no CADIN (Cadastro Informativo de Créditos)
 - Impede o licenciamento do veículo
 
-**Após o licenciamento vencer:** O veículo fica com restrição — não pode ser transferido, não passa na vistoria e pode ser retido em fiscalização.
+**Após o licenciamento vencer:** O veículo fica com restrição. Não pode ser transferido, não passa na vistoria e pode ser retido em fiscalização.
 
 **Em casos extremos:** A dívida pode ser cobrada judicialmente via execução fiscal.
 
 ## Os pontos prescrevem antes da multa
 
-Os **pontos na CNH** têm prazo de 12 meses a partir da infração. Depois disso, saem automaticamente do prontuário — independente de a multa ter sido paga ou não.
+Os **pontos na CNH** têm prazo de 12 meses a partir da infração. Depois disso, saem automaticamente do prontuário. Independente de a multa ter sido paga ou não.
 
 Ou seja: uma multa de 2020 não paga ainda gera débito financeiro, mas os pontos já sumiram há anos.
 
 ## O que NÃO acontece com multa não paga
 
 Muita gente tem medo sem necessidade. Multa de trânsito não paga:
-- **Não gera prisão** — é dívida administrativa, não crime
+- **Não gera prisão**. É dívida administrativa, não crime
 - **Não vai para SPC/Serasa** diretamente (apenas via CADIN em alguns casos)
 - **Não suspende a CNH** retroativamente (os pontos já expiraram)
 
 ## Quando a multa realmente prescreve
 
-Após 5 anos da inscrição em dívida ativa sem cobrança judicial, a multa prescreve. Na prática, para multas de baixo valor, muitos órgãos não entram com execução fiscal — e a dívida acaba prescrevendo.
+Após 5 anos da inscrição em dívida ativa sem cobrança judicial, a multa prescreve. Na prática, para multas de baixo valor, muitos órgãos não entram com execução fiscal. E a dívida acaba prescrevendo.
 
 Para multas de alto valor ou acúmulo de débitos, o risco de cobrança judicial é maior.
 
@@ -2995,7 +2995,7 @@ Se você tem multas antigas não pagas:
 1. Consulte o extrato no DETRAN ou portal do Senatran
 2. Verifique se ainda estão dentro do prazo de recurso (improvável para multas antigas)
 3. Verifique se impedem o licenciamento do veículo
-4. Avalie negociação — muitos estados oferecem parcelamento ou até anistia periódica
+4. Avalie negociação. Muitos estados oferecem parcelamento ou até anistia periódica
 
 ## Dica: DETRAN SP e outros estados têm parcelamento
 
@@ -3014,7 +3014,7 @@ Diversos estados permitem parcelar multas antigas em até 60 vezes. Consulte o D
     conteudo: `
 ## Dá para tirar pontos da CNH?
 
-Sim — mas as opções são bem mais limitadas do que muita gente vende por aí. Vamos separar o que funciona do que é mito.
+Sim. Mas as opções são bem mais limitadas do que muita gente vende por aí. Vamos separar o que funciona do que é mito.
 
 ## O que realmente funciona
 
@@ -3025,7 +3025,7 @@ A forma mais simples e garantida. Os pontos saem automaticamente após 12 meses 
 Se a multa for cancelada em recurso (defesa prévia, JARI ou CONTRAN), os pontos correspondentes também são cancelados. Essa é a única forma de remover pontos antes dos 12 meses de forma legítima.
 
 ### 3. Curso de reciclagem (em casos específicos)
-O curso de reciclagem **não remove pontos** — ele é obrigatório como condição para reobter a CNH após suspensão. Quem te disse que o curso tira pontos está errado.
+O curso de reciclagem **não remove pontos**. Ele é obrigatório como condição para reobter a CNH após suspensão. Quem te disse que o curso tira pontos está errado.
 
 ## O que NÃO funciona (mitos comuns)
 
@@ -3039,20 +3039,20 @@ O curso de reciclagem **não remove pontos** — ele é obrigatório como condi�
 **Mito.** O pagamento quita a dívida financeira mas não cancela os pontos. Os pontos só saem com o prazo de 12 meses ou com o cancelamento da multa via recurso.
 
 ### "Advogado consegue tirar pontos rápido"
-**Depende.** Um advogado pode entrar com recurso administrativo ou judicial para cancelar a multa — aí os pontos somem. Mas não existe atalho jurídico mágico que burle o sistema.
+**Depende.** Um advogado pode entrar com recurso administrativo ou judicial para cancelar a multa. Aí os pontos somem. Mas não existe atalho jurídico mágico que burle o sistema.
 
 ## Estratégia inteligente para quem está próximo do limite
 
 Se você está com 15+ pontos e próximo do limite de suspensão:
 
-1. **Analise cada multa recente** — alguma tem vício formal? Vale recorrer.
-2. **Evite infrações gravíssimas** (7 pontos cada) — elas travam você no limite de 20 pontos.
-3. **Monitore seu extrato mensalmente** — saiba exatamente quando cada ponto expira.
-4. **Calcule o momento** — às vezes esperar um mês para uma infração antiga expirar resolve o problema.
+1. **Analise cada multa recente**. Alguma tem vício formal? Vale recorrer.
+2. **Evite infrações gravíssimas** (7 pontos cada). Elas travam você no limite de 20 pontos.
+3. **Monitore seu extrato mensalmente**. Saiba exatamente quando cada ponto expira.
+4. **Calcule o momento**. Às vezes esperar um mês para uma infração antiga expirar resolve o problema.
 
 ## Quanto tempo leva para os pontos sumirem?
 
-Os pontos saem exatamente 12 meses após a data da **infração** — não da notificação, não do pagamento.
+Os pontos saem exatamente 12 meses após a data da **infração**. Não da notificação, não do pagamento.
 
 Exemplo: infração em 10 de março de 2025 → pontos saem em 10 de março de 2026.
 
@@ -3114,9 +3114,9 @@ O equipamento deve estar oficialmente cadastrado no órgão de trânsito. Lombad
 
 ## Diferença entre lombada física e eletrônica na autuação
 
-A lombada física (de asfalto) não gera autuação automática — o agente precisa estar presente. A lombada eletrônica gera autuação automática por câmera.
+A lombada física (de asfalto) não gera autuação automática. O agente precisa estar presente. A lombada eletrônica gera autuação automática por câmera.
 
-Para recorrer de multa por não respeitar lombada física, o processo é diferente — geralmente envolve questionamento da presença e identificação do agente.
+Para recorrer de multa por não respeitar lombada física, o processo é diferente. Geralmente envolve questionamento da presença e identificação do agente.
     `
   },
   {
@@ -3131,17 +3131,17 @@ Para recorrer de multa por não respeitar lombada física, o processo é diferen
     conteudo: `
 ## DETRAN SP: o maior volume de multas do Brasil
 
-São Paulo concentra o maior volume de autuações de trânsito do país. Por isso, o DETRAN SP tem um sistema online bem desenvolvido para protocolos de recurso — o que facilita (mas não simplifica) o processo.
+São Paulo concentra o maior volume de autuações de trânsito do país. Por isso, o DETRAN SP tem um sistema online bem desenvolvido para protocolos de recurso. O que facilita (mas não simplifica) o processo.
 
 ## Sistema para recurso de multas no DETRAN SP
 
 O DETRAN SP utiliza dois sistemas principais dependendo do tipo de infração:
 
 **Portal DETRAN SP (www.detran.sp.gov.br)**
-Para infrações estaduais — autuadas pela Polícia Militar, CIRETRAN e fiscalização estadual.
+Para infrações estaduais. Autuadas pela Polícia Militar, CIRETRAN e fiscalização estadual.
 
 **Portal CET SP (www.cetsp.com.br)**
-Para infrações municipais — autuadas pela CET (Companhia de Engenharia de Tráfego) na cidade de São Paulo.
+Para infrações municipais. Autuadas pela CET (Companhia de Engenharia de Tráfego) na cidade de São Paulo.
 
 Fique atento: usar o portal errado atrasa o processo.
 
@@ -3174,7 +3174,7 @@ O sistema permite digitar o texto da defesa diretamente ou anexar PDF.
 Upload do auto de infração, documentos pessoais e qualquer prova que suporte a defesa.
 
 **7. Protocole**
-Guarde o número de protocolo gerado — é a prova de entrega dentro do prazo.
+Guarde o número de protocolo gerado. É a prova de entrega dentro do prazo.
 
 ## Prazos no DETRAN SP
 
@@ -3192,7 +3192,7 @@ Se você recebeu uma multa mas não tem certeza de qual órgão autuou, ligue pa
   {
     slug: "multa-transito-recorrer-sem-advogado",
     titulo: "Dá Para Recorrer de Multa Sem Advogado?",
-    descricao: "A resposta é sim — e na maioria dos casos você não precisa de um. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
+    descricao: "A resposta é sim. E na maioria dos casos você não precisa de um. Nossa IA analisa sua multa grátis e aponta se há base para recurso.",
     categoria: "Dúvidas Frequentes",
     tempoLeitura: "4 min",
     imagemEmoji: "✅",
@@ -3201,7 +3201,7 @@ Se você recebeu uma multa mas não tem certeza de qual órgão autuou, ligue pa
     conteudo: `
 ## Você não precisa de advogado para recorrer de multa
 
-O recurso de multa de trânsito é um processo administrativo — não judicial. Isso significa que qualquer pessoa pode protocolar sua própria defesa sem necessidade de representação por advogado.
+O recurso de multa de trânsito é um processo administrativo. Não judicial. Isso significa que qualquer pessoa pode protocolar sua própria defesa sem necessidade de representação por advogado.
 
 Essa é uma garantia do CTB e da Constituição: o direito de defesa não exige intermediário.
 
@@ -3215,7 +3215,7 @@ Na maioria dos casos, o recurso administrativo é simples o suficiente para ser 
 - Quando você não estava dirigindo o veículo
 - Quando há erro de enquadramento da infração
 
-Nesses casos, a argumentação é técnica e objetiva — não exige conhecimento jurídico aprofundado.
+Nesses casos, a argumentação é técnica e objetiva. Não exige conhecimento jurídico aprofundado.
 
 ## O que você precisa para recorrer sozinho
 
@@ -3224,7 +3224,7 @@ Nesses casos, a argumentação é técnica e objetiva — não exige conheciment
 3. Uma petição bem estruturada citando o Art. 280 do CTB
 4. Documentos de suporte (se houver)
 
-Nossa IA faz exatamente isso: analisa o auto, identifica os vícios e gera a petição completa por R$ 19,90 — sem advogado, sem burocracia.
+Nossa IA faz exatamente isso: analisa o auto, identifica os vícios e gera a petição completa por R$ 19,90. Sem advogado, sem burocracia.
 
 ## Quando vale contratar um advogado
 
@@ -3245,11 +3245,11 @@ Os valores variam muito, mas em média:
 - Recurso à JARI: R$ 500 a R$ 1.500
 - Recurso judicial: R$ 1.500 a R$ 5.000+
 
-Para uma multa de R$ 293,47, contratar advogado raramente faz sentido econômico — a menos que haja pontos em jogo que afetem a CNH.
+Para uma multa de R$ 293,47, contratar advogado raramente faz sentido econômico. A menos que haja pontos em jogo que afetem a CNH.
 
 ## A solução inteligente: IA para o recurso
 
-Nossa ferramenta combina o melhor dos dois mundos: análise jurídica de qualidade sem o custo de um advogado. A IA identifica os mesmos vícios que um especialista identificaria e gera uma petição fundamentada no CTB — por uma fração do preço.
+Nossa ferramenta combina o melhor dos dois mundos: análise jurídica de qualidade sem o custo de um advogado. A IA identifica os mesmos vícios que um especialista identificaria e gera uma petição fundamentada no CTB. Por uma fração do preço.
     `
   },
   {
@@ -3266,12 +3266,12 @@ Nossa ferramenta combina o melhor dos dois mundos: análise jurídica de qualida
 
 Motociclistas recebem, proporcionalmente, mais multas do que condutores de automóveis. Parte disso se deve ao comportamento no trânsito; parte, a autuações questionáveis por parte dos agentes.
 
-O processo de recurso para motos segue as mesmas regras do CTB que para carros — mas algumas infrações têm características específicas que abrem espaço para contestação.
+O processo de recurso para motos segue as mesmas regras do CTB que para carros. Mas algumas infrações têm características específicas que abrem espaço para contestação.
 
 ## Infrações mais comuns para motociclistas
 
 ### Condução entre faixas (corredor)
-O CTB não proíbe expressamente a condução entre faixas — existe uma lacuna legal. Já houve tentativa de regulamentar a prática por lei, mas o dispositivo foi vetado. Sem previsão específica, autuações por esse motivo costumam ser questionáveis, e muitos recursos baseados nessa lacuna são providos.
+O CTB não proíbe expressamente a condução entre faixas. Existe uma lacuna legal. Já houve tentativa de regulamentar a prática por lei, mas o dispositivo foi vetado. Sem previsão específica, autuações por esse motivo costumam ser questionáveis, e muitos recursos baseados nessa lacuna são providos.
 
 ### Não usar colete refletivo
 Obrigatório para motociclistas em rodovias. Dentro do perímetro urbano, a exigência é diferente. Verifique se a infração ocorreu em local onde o colete era realmente obrigatório.
@@ -3283,7 +3283,7 @@ Para motos, a identificação da placa traseira pode ser mais difícil para câm
 É proibida em determinadas circunstâncias. Mas a definição de "ultrapassagem" versus "manobra de fila" tem sido contestada com sucesso em muitos recursos.
 
 ### Não usar capacete adequado
-O capacete deve ser de acordo com as normas ABNT. Mas a autuação precisa especificar qual norma foi violada — descrição genérica é vício formal.
+O capacete deve ser de acordo com as normas ABNT. Mas a autuação precisa especificar qual norma foi violada. Descrição genérica é vício formal.
 
 ## Particularidades na identificação do condutor
 
@@ -3297,13 +3297,13 @@ Se você era o condutor mas não é o proprietário, e o proprietário te indico
 
 ## Como a câmera identifica a moto
 
-Câmeras traseiras identificam a placa. Câmeras frontais muitas vezes não conseguem identificar motos adequadamente — o que abre espaço para contestação da autoria.
+Câmeras traseiras identificam a placa. Câmeras frontais muitas vezes não conseguem identificar motos adequadamente. O que abre espaço para contestação da autoria.
 
 Se a imagem não mostra claramente a placa da sua moto, exija que o órgão apresente prova técnica de que o veículo era o seu.
 
 ## Dica específica para motociclistas
 
-Muitos agentes autuam motociclistas de forma subjetiva — "condução perigosa", "zigue-zague" — sem descrever objetivamente o comportamento observado.
+Muitos agentes autuam motociclistas de forma subjetiva. "Condução perigosa", "zigue-zague". Sem descrever objetivamente o comportamento observado.
 
 A descrição da infração precisa ser específica. "Conduzia de forma perigosa" sem mais detalhes é vício formal que pode anular a multa.
     `
@@ -3333,7 +3333,7 @@ Blitz sem identificação dos agentes ou em local sem sinalização pode ser que
 Em uma blitz de trânsito, você é obrigado a apresentar:
 
 - **CNH** (Carteira Nacional de Habilitação) ou Permissão para Dirigir
-- **CRLV** (Certificado de Registro e Licenciamento do Veículo) — pode ser digital
+- **CRLV** (Certificado de Registro e Licenciamento do Veículo). Pode ser digital
 - **Documento de identidade** quando solicitado
 
 A CNH digital e o CRLV-e (digital) têm validade legal e devem ser aceitos.
@@ -3355,7 +3355,7 @@ A CNH digital e o CRLV-e (digital) têm validade legal e devem ser aceitos.
 
 ## Teste do bafômetro: posso me recusar?
 
-Tecnicamente sim — mas há consequências. A recusa ao bafômetro é equiparada à infração de embriaguez (Art. 165-A do CTB) e gera:
+Tecnicamente sim. Mas há consequências. A recusa ao bafômetro é equiparada à infração de embriaguez (Art. 165-A do CTB) e gera:
 - Multa de R$ 2.934,70
 - Suspensão da CNH por 12 meses
 - Retenção do veículo
@@ -3365,10 +3365,10 @@ Além disso, a recusa pode ser usada como indício em processos posteriores.
 ## Como agir em uma blitz
 
 1. **Pare com segurança** no local indicado pelos agentes
-2. **Mantenha a calma** — nervosismo desnecessário complica a situação
+2. **Mantenha a calma**. Nervosismo desnecessário complica a situação
 3. **Apresente os documentos solicitados** sem discussão
-4. **Não assine nada sem ler** — especialmente o auto de infração
-5. **Anote tudo** — nome e matrícula do agente, hora, local
+4. **Não assine nada sem ler**. Especialmente o auto de infração
+5. **Anote tudo**. Nome e matrícula do agente, hora, local
 
 Se receber um auto que considera injusto, não discuta na hora. Assine com ressalva ("assino sem concordar") e recorra dentro do prazo legal.
 
@@ -3396,7 +3396,7 @@ Sim. Filmar agentes públicos em exercício de função é legal no Brasil. A gr
     conteudo: `
 ## É possível recorrer de multa sem sair de casa?
 
-Sim — e em 2025, a maioria dos órgãos de trânsito já tem sistemas online ou apps que permitem protocolar o recurso completamente pelo celular.
+Sim. E em 2025, a maioria dos órgãos de trânsito já tem sistemas online ou apps que permitem protocolar o recurso completamente pelo celular.
 
 Acabou a necessidade de enfrentar fila no DETRAN para contestar uma multa.
 
@@ -3408,11 +3408,11 @@ Disponível para iOS e Android. Permite consultar infrações, acompanhar recurs
 
 **Portal:** siger.prf.gov.br (funciona bem pelo celular)
 
-### Infrações estaduais — São Paulo
+### Infrações estaduais. São Paulo
 **Portal DETRAN SP:** detran.sp.gov.br (adaptado para mobile)
 **App DETRAN SP:** disponível na App Store e Google Play
 
-### Infrações municipais — São Paulo
+### Infrações municipais. São Paulo
 **Portal CET SP:** cetsp.com.br
 
 ### Outros estados
@@ -3443,11 +3443,11 @@ Se você não tem o documento físico mas tirou foto do auto no momento da abord
 
 ## Acompanhamento do recurso pelo celular
 
-Após protocolar, você pode acompanhar o andamento no mesmo portal ou app. Guarde o número de protocolo — é fundamental para acompanhar o status.
+Após protocolar, você pode acompanhar o andamento no mesmo portal ou app. Guarde o número de protocolo. É fundamental para acompanhar o status.
 
 ## E se o sistema online não funcionar?
 
-Se o portal estiver fora do ar e o prazo estiver vencendo, vá presencialmente ao DETRAN ou protocole por Sedex com aviso de recebimento. Guarde o comprovante de envio — ele prova que você agiu dentro do prazo mesmo que o sistema falhe.
+Se o portal estiver fora do ar e o prazo estiver vencendo, vá presencialmente ao DETRAN ou protocole por Sedex com aviso de recebimento. Guarde o comprovante de envio. Ele prova que você agiu dentro do prazo mesmo que o sistema falhe.
     `
   },
   {
@@ -3500,7 +3500,7 @@ Se o sistema leu uma placa diferente da sua em um dos pontos (por erro de OCR ou
 Se havia obras ou desvio obrigatório que aumentou a distância percorrida, o cálculo de velocidade média é impreciso.
 
 ### 5. Parada intermediária não considerada
-Se você parou em um posto de combustível, banheiro ou atendimento de emergência entre os dois pontos, o tempo parado inflou o tempo total — o que paradoxalmente poderia fazer a velocidade média parecer menor. Mas se o sistema não registrou a parada, pode haver inconsistências.
+Se você parou em um posto de combustível, banheiro ou atendimento de emergência entre os dois pontos, o tempo parado inflou o tempo total. O que paradoxalmente poderia fazer a velocidade média parecer menor. Mas se o sistema não registrou a parada, pode haver inconsistências.
 
 ## Como verificar os dados da autuação
 
@@ -3541,7 +3541,7 @@ Vamos aos dados reais.
 ## Taxa de sucesso por tipo de argumento
 
 **Vício formal (erro no auto de infração):** 60% a 80% de sucesso
-Quando há erro objetivo no auto — endereço incorreto, agente não identificado, equipamento sem aferição — o argumento é técnico e difícil de rebater.
+Quando há erro objetivo no auto. Endereço incorreto, agente não identificado, equipamento sem aferição. O argumento é técnico e difícil de rebater.
 
 **Equipamento sem homologação válida:** 70% a 90% de sucesso
 Aferição vencida é um dos argumentos mais sólidos. O órgão não tem como defender uma multa gerada por equipamento irregular.
@@ -3556,7 +3556,7 @@ Possível, mas exige prova robusta.
 
 O principal motivo é a falta de fundamentação adequada. Recursos que dizem apenas "não concordo com a multa" ou "estava com pressa" raramente são providos.
 
-O recurso precisa identificar especificamente qual requisito legal não foi cumprido — e citar o dispositivo legal correspondente.
+O recurso precisa identificar especificamente qual requisito legal não foi cumprido. E citar o dispositivo legal correspondente.
 
 ## O que aumenta suas chances
 
@@ -3574,7 +3574,7 @@ Recursos fora do prazo são extintos sem análise de mérito.
 
 ## Vale a pena recorrer mesmo com baixa chance?
 
-Em muitos casos, sim — pelos seguintes motivos:
+Em muitos casos, sim. Pelos seguintes motivos:
 
 1. Os pontos ficam suspensos durante todo o processo
 2. O pagamento também fica suspenso
@@ -3614,7 +3614,7 @@ Na prática: qualquer valor acima de zero pode gerar autuação.
 - Suspensão da CNH
 - Multa criminal
 
-A diferença entre infração e crime é o nível de concentração. Acima de 0,33 mg/L, é competência da Justiça Criminal — não do DETRAN.
+A diferença entre infração e crime é o nível de concentração. Acima de 0,33 mg/L, é competência da Justiça Criminal. Não do DETRAN.
 
 ## Posso recusar o bafômetro?
 
@@ -3644,13 +3644,13 @@ Se o auto tem erro de identificação do veículo, condutor ou agente, existe v�
 
 ## O que NÃO é argumento válido
 
-- "Bebi pouco" — o CTB não tem tolerância
-- "Estava em via particular" — a lei se aplica a vias abertas ao trânsito
-- "O agente não me avisou" — não há obrigação de aviso prévio
+- "Bebi pouco". O CTB não tem tolerância
+- "Estava em via particular". A lei se aplica a vias abertas ao trânsito
+- "O agente não me avisou". Não há obrigação de aviso prévio
 
 ## Recomendação
 
-Para multas de bafômetro, a análise jurídica especializada é mais importante do que para infrações comuns. Se o valor envolvido é alto (e é — R$ 2.934,70) ou se há risco de processo criminal, consulte um advogado especializado em direito de trânsito.
+Para multas de bafômetro, a análise jurídica especializada é mais importante do que para infrações comuns. Se o valor envolvido é alto (e é. R$ 2.934,70) ou se há risco de processo criminal, consulte um advogado especializado em direito de trânsito.
     `
   },
   {
@@ -3679,7 +3679,7 @@ A Resolução CONTRAN nº 396 e o Manual Brasileiro de Fiscalização de Trânsi
 ## Situações em que a foto invalida a multa
 
 **Placa ilegível ou parcialmente visível:**
-Se a placa não pode ser lida com certeza na imagem, não há prova de que era o seu veículo. O órgão não pode presumir — precisa provar.
+Se a placa não pode ser lida com certeza na imagem, não há prova de que era o seu veículo. O órgão não pode presumir. Precisa provar.
 
 **Reflexo ou obstrução:**
 Reflexo de sol, sujeira na câmera ou objeto obstruindo a placa tornam a imagem inválida como prova.
@@ -3701,7 +3701,7 @@ Toda autuação eletrônica deve disponibilizar a imagem para o condutor. Você 
 - Sistema da concessionária (para rodovias pedagiadas)
 - SIGER (para multas da PRF)
 
-Se o órgão não disponibilizar a imagem, isso por si só é argumento de defesa — o condutor tem direito de conhecer as provas contra ele.
+Se o órgão não disponibilizar a imagem, isso por si só é argumento de defesa. O condutor tem direito de conhecer as provas contra ele.
 
 ## Como usar isso no recurso
 
@@ -3724,11 +3724,11 @@ Anexe ao recurso uma cópia da imagem (obtida no portal do órgão) para demonst
     conteudo: `
 ## O desafio das multas em frotas empresariais
 
-Empresas que operam frotas de veículos recebem as notificações de multa no nome do CNPJ ou do responsável legal. Mas quem cometeu a infração foi o motorista — e transferir essa responsabilidade corretamente exige processo.
+Empresas que operam frotas de veículos recebem as notificações de multa no nome do CNPJ ou do responsável legal. Mas quem cometeu a infração foi o motorista. E transferir essa responsabilidade corretamente exige processo.
 
 ## Indicação de Condutor Infrator (ICI) para empresas
 
-Assim como pessoas físicas, empresas podem indicar o condutor real da infração. O processo é o mesmo — mas o prazo é crítico: **15 dias** da notificação.
+Assim como pessoas físicas, empresas podem indicar o condutor real da infração. O processo é o mesmo. Mas o prazo é crítico: **15 dias** da notificação.
 
 Para empresas, a indicação exige:
 - Identificação do condutor (nome, CPF, CNH)
@@ -3771,7 +3771,7 @@ Existem sistemas de gestão de frotas (TMS) que integram automaticamente com por
 
 ## Impacto financeiro que as empresas ignoram
 
-Além do valor da multa em si, empresas ignoram o custo do licenciamento bloqueado por débitos e o custo de substituição de motoristas que perderam a CNH por acúmulo de pontos — ambos muito maiores que o custo de um processo organizado de gestão de multas.
+Além do valor da multa em si, empresas ignoram o custo do licenciamento bloqueado por débitos e o custo de substituição de motoristas que perderam a CNH por acúmulo de pontos. Ambos muito maiores que o custo de um processo organizado de gestão de multas.
     `
   },
   {
@@ -3786,7 +3786,7 @@ Além do valor da multa em si, empresas ignoram o custo do licenciamento bloquea
     conteudo: `
 ## Estrangeiros podem dirigir no Brasil?
 
-Sim — com condições específicas que variam de acordo com o país de origem e o tempo de permanência.
+Sim. Com condições específicas que variam de acordo com o país de origem e o tempo de permanência.
 
 ## CNH estrangeira: quando é válida no Brasil
 
@@ -3800,7 +3800,7 @@ Quem reside no Brasil há mais de 180 dias deve converter a CNH estrangeira para
 
 ## O que acontece se um estrangeiro for multado?
 
-As mesmas regras do CTB se aplicam — a multa vai para o veículo (se for alugado, vai para a locadora) e os pontos para a CNH.
+As mesmas regras do CTB se aplicam. A multa vai para o veículo (se for alugado, vai para a locadora) e os pontos para a CNH.
 
 Para turistas, os pontos em CNH estrangeira são registrados no sistema brasileiro mas raramente comunicados ao país de origem.
 
@@ -3808,7 +3808,7 @@ Para turistas, os pontos em CNH estrangeira são registrados no sistema brasilei
 
 ## Posso recorrer de multa com CNH estrangeira?
 
-Sim. O direito de defesa não depende da nacionalidade. O processo é o mesmo — defesa prévia em 15 dias, pelo portal do órgão autuador.
+Sim. O direito de defesa não depende da nacionalidade. O processo é o mesmo. Defesa prévia em 15 dias, pelo portal do órgão autuador.
 
 A dificuldade é prática: o processo geralmente exige comunicação em português e presença ou representação no Brasil.
 
@@ -3817,7 +3817,7 @@ A dificuldade é prática: o processo geralmente exige comunicação em portugu�
 O processo de conversão depende do país de origem:
 
 **Países com acordo de reciprocidade (ex: França, Alemanha, Portugal, Argentina):**
-Processo simplificado — sem necessidade de refazer exames teóricos ou práticos na maioria dos casos.
+Processo simplificado. Sem necessidade de refazer exames teóricos ou práticos na maioria dos casos.
 
 **Países sem acordo:**
 Necessário refazer o processo completo (exames médico, psicológico, teórico e prático).
@@ -3854,7 +3854,7 @@ Cada estado tem seu próprio app do DETRAN com funcionalidades variadas. Os mais
 
 **Estados com apps mais completos:** SP, RJ, MG, RS, PR.
 
-### SNE — Sistema de Notificação Eletrônica
+### SNE. Sistema de Notificação Eletrônica
 Não é um app separado, mas está integrado ao portal Gov.br. Permite receber notificações de multa eletronicamente e, para quem aderiu antes da autuação e opta por não recorrer, dá acesso ao desconto de 40% no pagamento (contra 20% de quem só paga em dia).
 
 ## Apps de terceiros úteis
@@ -3865,8 +3865,8 @@ Além de navegação, alertam sobre radares e fiscalizações. Não ajudam no re
 ### Apps de gestão de veículos
 Para quem tem frota, apps como Cobli e Samsara integram gestão de multas com rastreamento.
 
-## CheckMulta — análise por IA
-Nossa ferramenta analisa o auto de infração por IA e identifica vícios formais que podem anular a multa. Acesse diretamente pelo navegador do celular — sem precisar instalar nada.
+## CheckMulta. Análise por IA
+Nossa ferramenta analisa o auto de infração por IA e identifica vícios formais que podem anular a multa. Acesse diretamente pelo navegador do celular. Sem precisar instalar nada.
 
 O processo é simples:
 1. Fotografe o auto de infração
@@ -3876,7 +3876,7 @@ O processo é simples:
 
 ## O que os apps NÃO fazem por você
 
-Nenhum app substitui a análise do conteúdo da autuação. Consultar o saldo de pontos ou pagar uma multa é fácil — mas identificar se o auto tem vício formal que justifique recurso exige análise específica de cada caso.
+Nenhum app substitui a análise do conteúdo da autuação. Consultar o saldo de pontos ou pagar uma multa é fácil. Mas identificar se o auto tem vício formal que justifique recurso exige análise específica de cada caso.
 
 É aí que a IA do CheckMulta entra.
     `
@@ -3884,7 +3884,7 @@ Nenhum app substitui a análise do conteúdo da autuação. Consultar o saldo de
   {
     slug: "multa-transito-prescreve-como-verificar",
     titulo: "Como Verificar se Sua Multa Antiga Já Prescreveu",
-    descricao: "Multas antigas podem ter prescrito — mas verificar isso exige consulta específica. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    descricao: "Multas antigas podem ter prescrito. Mas verificar isso exige consulta específica. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Dúvidas Frequentes",
     tempoLeitura: "4 min",
     imagemEmoji: "🔍",
@@ -3911,7 +3911,7 @@ Cada multa vai aparecer com:
 - Valor atualizado (com juros e correção)
 - Status: em aberto, em recurso, quitada, em dívida ativa, prescrita
 
-Multas marcadas como "prescritas" não geram mais débito. Mas nem todos os sistemas atualizam esse status automaticamente — pode aparecer como "em aberto" mesmo prescrita.
+Multas marcadas como "prescritas" não geram mais débito. Mas nem todos os sistemas atualizam esse status automaticamente. Pode aparecer como "em aberto" mesmo prescrita.
 
 ## Como calcular se prescreveu
 
@@ -3933,7 +3933,7 @@ Se você tem uma multa antiga que acredita ter prescrito e o sistema ainda mostr
 2. Calcule se 5 anos já passaram
 3. Protocole requerimento de reconhecimento de prescrição no DETRAN
 
-O reconhecimento não é automático — você precisa solicitar expressamente.
+O reconhecimento não é automático. Você precisa solicitar expressamente.
 
 ## Cuidado: prescrição não cancela o bloqueio de licenciamento
 
@@ -4022,7 +4022,7 @@ No auto de infração, o campo "equipamento" ou "instrumento de medição" deve 
     conteudo: `
 ## Por que motoristas profissionais precisam de atenção especial
 
-Para quem dirige como profissão — motorista de app, caminhoneiro, taxista, motorista de ônibus — a CNH é o instrumento de trabalho. Perder a habilitação significa perder a renda.
+Para quem dirige como profissão. Motorista de app, caminhoneiro, taxista, motorista de ônibus. A CNH é o instrumento de trabalho. Perder a habilitação significa perder a renda.
 
 Por isso, cada multa precisa ser analisada com mais cuidado do que para condutores casuais.
 
@@ -4037,7 +4037,7 @@ Essas categorias exigem cursos específicos de atualização periódica e têm c
 
 ## Limite de pontos para motoristas profissionais
 
-O limite geral é de 20, 30 ou 40 pontos dependendo do perfil. Para motoristas profissionais, a perda da CNH tem consequência imediata no emprego — então o monitoramento precisa ser constante.
+O limite geral é de 20, 30 ou 40 pontos dependendo do perfil. Para motoristas profissionais, a perda da CNH tem consequência imediata no emprego. Então o monitoramento precisa ser constante.
 
 **Dica:** motoristas profissionais devem verificar o extrato de pontos mensalmente, não só quando recebem uma multa.
 
@@ -4047,7 +4047,7 @@ O limite geral é de 20, 30 ou 40 pontos dependendo do perfil. Para motoristas p
 Além de gravíssima (7 pontos), pode resultar em suspensão imediata e responsabilização da empresa empregadora.
 
 **Uso de celular ao volante:**
-Para motoristas profissionais, o risco é dobrado — além da multa pessoal, pode gerar advertência ou demissão por justa causa dependendo da política da empresa.
+Para motoristas profissionais, o risco é dobrado. Além da multa pessoal, pode gerar advertência ou demissão por justa causa dependendo da política da empresa.
 
 **Acidentes com vítima:**
 Mesmo sem culpa reconhecida, pode acionar seguro da empresa e gerar investigação administrativa.
@@ -4089,14 +4089,14 @@ Acima de 65 anos, a CNH tem validade reduzida (3 anos em vez de 5) e exige exame
 Idosos têm prioridade em filas e atendimentos no DETRAN e órgãos de trânsito.
 
 **Vagas especiais:**
-O CTB garante vagas de estacionamento próximas às entradas de estabelecimentos para idosos. Usar essas vagas sem direito é infração — e ter mais de 60 anos não é suficiente, é preciso ter a credencial.
+O CTB garante vagas de estacionamento próximas às entradas de estabelecimentos para idosos. Usar essas vagas sem direito é infração. E ter mais de 60 anos não é suficiente, é preciso ter a credencial.
 
 ## Pessoas com Deficiência (PcD): isenções reais
 
 Para PcD, existem isenções concretas:
 
 **Isenção de pedágio:**
-Pessoas com deficiência têm isenção de pedágio em rodovias federais. A isenção é do veículo adaptado registrado para a PcD — não do condutor.
+Pessoas com deficiência têm isenção de pedágio em rodovias federais. A isenção é do veículo adaptado registrado para a PcD. Não do condutor.
 
 **Vagas exclusivas:**
 PcD tem direito a vagas exclusivas sinalizadas. A multa por usar essas vagas indevidamente é grave (5 pontos e multa).
@@ -4108,7 +4108,7 @@ Não é do CTB, mas afeta multas indiretamente: o veículo adaptado tem isençõ
 
 Se você tem a credencial PcD e foi multado por estacionar em vaga PcD, o recurso é simples: apresente a credencial válida e o documento do veículo mostrando que está registrado em nome da PcD ou cuidador autorizado.
 
-Se a credencial estava vencida no momento da infração, a contestação fica mais difícil — mas ainda é possível argumentar se a vencimento foi recente e houve tentativa de renovação.
+Se a credencial estava vencida no momento da infração, a contestação fica mais difícil. Mas ainda é possível argumentar se a vencimento foi recente e houve tentativa de renovação.
 
 ## CNH para PcD: regras especiais
 
@@ -4129,20 +4129,20 @@ Dirigir veículo não adaptado com CNH que exige adaptação é infração grave
     conteudo: `
 ## Motorista de app e multas: uma situação peculiar
 
-Motoristas de Uber, 99, inDriver e outros aplicativos enfrentam um volume maior de exposição a multas — mais horas na rua, mais situações de risco, mais fiscalização em áreas urbanas.
+Motoristas de Uber, 99, inDriver e outros aplicativos enfrentam um volume maior de exposição a multas. Mais horas na rua, mais situações de risco, mais fiscalização em áreas urbanas.
 
 E as consequências vão além da multa financeira: a perda da CNH significa perda imediata da fonte de renda.
 
 ## Quem é responsável pela multa?
 
-A multa vai para o proprietário do veículo. Se você é dono do carro, vai para você. Se o carro é alugado (modelo de locação das plataformas), vai para a locadora — que pode repassar para você.
+A multa vai para o proprietário do veículo. Se você é dono do carro, vai para você. Se o carro é alugado (modelo de locação das plataformas), vai para a locadora. Que pode repassar para você.
 
 Os aplicativos (Uber, 99) não são responsáveis pelas multas dos motoristas parceiros.
 
 ## Situações específicas de motoristas de app
 
 **Parada em local proibido para embarque/desembarque:**
-É uma das multas mais comuns. O CTB proíbe parar em locais como faixas de ônibus, entradas de garagem e faixas de pedestre — mesmo por poucos segundos.
+É uma das multas mais comuns. O CTB proíbe parar em locais como faixas de ônibus, entradas de garagem e faixas de pedestre. Mesmo por poucos segundos.
 
 Argumento de contestação: se a parada foi brevíssima e havia sinalização inadequada ou ambígua, vale tentar o recurso.
 
@@ -4165,7 +4165,7 @@ Embora os apps não tenham acesso direto ao seu histórico de infrações, recla
 
 **Monitore seus pontos mensalmente.** Com mais horas na rua, o risco de acumular pontos é maior. Saber onde você está no limite permite agir preventivamente.
 
-**Conteste toda multa com vício formal.** Para quem dirige profissionalmente, o esforço de contestar compensa — cada ponto economizado é segurança para continuar trabalhando.
+**Conteste toda multa com vício formal.** Para quem dirige profissionalmente, o esforço de contestar compensa. Cada ponto economizado é segurança para continuar trabalhando.
 
 **Considere o seguro de proteção de CNH.** Alguns seguros oferecem cobertura jurídica para recursos de multa e proteção em caso de suspensão da CNH.
     `
@@ -4198,10 +4198,10 @@ Placa, RENAVAM e espécie do veículo. Verifique se correspondem exatamente ao s
 Endereço completo onde a infração foi registrada. Deve incluir logradouro, número (ou KM, em rodovias), bairro e município. Endereço vago ou incompleto é vício formal.
 
 ### Data e hora
-Data e horário exatos da infração. Verifique se são compatíveis com sua rotina — você estava lá?
+Data e horário exatos da infração. Verifique se são compatíveis com sua rotina. Você estava lá?
 
 ### Código e descrição da infração
-O artigo do CTB violado e a descrição do comportamento observado. A descrição precisa ser específica — "conduzia de forma perigosa" sem mais detalhes é insuficiente.
+O artigo do CTB violado e a descrição do comportamento observado. A descrição precisa ser específica. "Conduzia de forma perigosa" sem mais detalhes é insuficiente.
 
 ### Enquadramento e penalidade
 Gravidade da infração (leve, média, grave, gravíssima), valor da multa e pontos correspondentes. Verifique se o enquadramento está correto para o código citado.
@@ -4233,7 +4233,7 @@ O resultado da análise indica especificamente qual campo está com problema e q
   },
   {
     slug: "multa-transito-recorrer-segunda-vez",
-    titulo: "Já Recorri e Perdi — Posso Tentar de Novo?",
+    titulo: "Já Recorri e Perdi. Posso Tentar de Novo?",
     descricao: "Teve a defesa prévia negada? Ainda existem outras instâncias. Consulte grátis se a sua multa tem falha que permite o cancelamento.",
     categoria: "Processo de Recurso",
     tempoLeitura: "5 min",
@@ -4243,7 +4243,7 @@ O resultado da análise indica especificamente qual campo está com problema e q
     conteudo: `
 ## O sistema de recursos tem três instâncias
 
-Muita gente desiste após o primeiro indeferimento sem saber que ainda existem duas instâncias administrativas — e uma judicial.
+Muita gente desiste após o primeiro indeferimento sem saber que ainda existem duas instâncias administrativas. E uma judicial.
 
 Aqui está o caminho completo:
 
@@ -4253,7 +4253,7 @@ Aqui está o caminho completo:
 **Prazo para protocolar:** 15 dias da notificação de autuação
 **Prazo de resposta:** sem prazo definido em lei (30 a 90 dias na prática)
 
-A defesa prévia é julgada pelo mesmo órgão que lavrou o auto. Isso cria um viés natural para manutenção da multa — mas erros formais óbvios são reconhecidos aqui.
+A defesa prévia é julgada pelo mesmo órgão que lavrou o auto. Isso cria um viés natural para manutenção da multa. Mas erros formais óbvios são reconhecidos aqui.
 
 ## 2ª instância: JARI
 
@@ -4261,7 +4261,7 @@ A defesa prévia é julgada pelo mesmo órgão que lavrou o auto. Isso cria um v
 **Prazo para protocolar:** 30 dias após indeferimento da defesa prévia
 **Prazo de resposta:** sem prazo fixo (30 a 90 dias)
 
-A JARI é a segunda chance. Por ser um colegiado independente, tende a ser mais imparcial. Casos indeferidos na defesa prévia frequentemente são providos na JARI — especialmente com vício formal claro.
+A JARI é a segunda chance. Por ser um colegiado independente, tende a ser mais imparcial. Casos indeferidos na defesa prévia frequentemente são providos na JARI. Especialmente com vício formal claro.
 
 Na JARI, você pode apresentar **argumentos novos** que não usou na defesa prévia.
 
@@ -4298,12 +4298,12 @@ A estratégia pode (e deve) ser adaptada:
 
 ## Os pontos ficam suspensos em todas as instâncias?
 
-Sim. Os pontos permanecem suspensos durante todo o processo administrativo — defesa prévia, JARI e CETRAN/CONTRAN. Só são lançados após o trânsito em julgado administrativo.
+Sim. Os pontos permanecem suspensos durante todo o processo administrativo. Defesa prévia, JARI e CETRAN/CONTRAN. Só são lançados após o trânsito em julgado administrativo.
     `
   },
   {
     slug: "multa-transito-acidente-sem-culpa",
-    titulo: "Fui Multado Após Acidente Sem Ser o Culpado — O que Fazer?",
+    titulo: "Fui Multado Após Acidente Sem Ser o Culpado. O que Fazer?",
     descricao: "Envolver-se em um acidente e ainda levar multa é uma situação frustrante. Descubra em 60 segundos se você pode recorrer da sua multa, grátis.",
     categoria: "Casos Especiais",
     tempoLeitura: "5 min",
@@ -4313,7 +4313,7 @@ Sim. Os pontos permanecem suspensos durante todo o processo administrativo — d
     conteudo: `
 ## Acidente e multa: como funciona
 
-Em um acidente de trânsito, o agente que atende à ocorrência pode lavrar autos de infração para um ou mais envolvidos. Isso é independente da apuração de culpa civil ou criminal — a multa é uma sanção administrativa pelo comportamento no trânsito.
+Em um acidente de trânsito, o agente que atende à ocorrência pode lavrar autos de infração para um ou mais envolvidos. Isso é independente da apuração de culpa civil ou criminal. A multa é uma sanção administrativa pelo comportamento no trânsito.
 
 ## É possível levar multa sem ter culpa no acidente?
 
@@ -4323,12 +4323,12 @@ Sim. Exemplos comuns:
 - Seu veículo estava com documentação em atraso e sofreu uma colisão
 - Você parou em local inadequado (mas não proibido) e foi abalroado
 
-Nesses casos, a multa pode ser legítima — mesmo que o acidente não tenha sido sua culpa.
+Nesses casos, a multa pode ser legítima. Mesmo que o acidente não tenha sido sua culpa.
 
 ## Quando a multa deve ser contestada
 
 **Infração que não ocorreu:**
-Se o agente registrou uma infração que você não cometeu — seja por erro de observação ou por confusão entre os veículos envolvidos — o recurso é direto.
+Se o agente registrou uma infração que você não cometeu. Seja por erro de observação ou por confusão entre os veículos envolvidos. O recurso é direto.
 
 **Descrição incorreta:**
 Se o agente descreveu incorretamente o comportamento que gerou a autuação, o auto pode ter vício formal.
@@ -4337,7 +4337,7 @@ Se o agente descreveu incorretamente o comportamento que gerou a autuação, o a
 Em acidentes com múltiplos veículos, confusões de identificação são possíveis. Verifique se os dados do auto correspondem ao seu veículo.
 
 **Estado de emergência:**
-Se você estava realizando manobra de emergência para evitar dano maior, isso pode ser argumento — mas exige prova.
+Se você estava realizando manobra de emergência para evitar dano maior, isso pode ser argumento. Mas exige prova.
 
 ## Documentos importantes para o recurso
 
@@ -4353,7 +4353,7 @@ O Boletim de Ocorrência registra a versão dos fatos de todos os envolvidos e p
 
 ## Atenção: multa e responsabilidade civil são processos separados
 
-Ganhar o recurso da multa não significa ser declarado inocente civilmente — e vice-versa. São processos completamente independentes.
+Ganhar o recurso da multa não significa ser declarado inocente civilmente. E vice-versa. São processos completamente independentes.
 
 Uma coisa é contestar a autuação administrativa. Outra é a responsabilidade pelo dano no acidente, que é apurada em processo civil ou pelo seguro.
     `
@@ -4370,7 +4370,7 @@ Uma coisa é contestar a autuação administrativa. Outra é a responsabilidade 
     conteudo: `
 ## Como funciona o rodízio municipal
 
-O rodízio de veículos restringe a circulação em determinados horários conforme o final da placa. É regulamentado por lei municipal — cada cidade tem suas próprias regras, horários e exceções.
+O rodízio de veículos restringe a circulação em determinados horários conforme o final da placa. É regulamentado por lei municipal. Cada cidade tem suas próprias regras, horários e exceções.
 
 A fiscalização é feita por câmeras de leitura de placa (OCR) instaladas nas vias de restrição.
 
@@ -4401,7 +4401,7 @@ Verifique a foto da infração (disponível no portal da prefeitura ou CET), con
     conteudo: `
 ## O que diz o CTB sobre uso de faróis
 
-O Art. 40 do CTB exige o uso de luz baixa (farol) durante a noite, em túneis, sob chuva forte, neblina ou cerração, mesmo em vias iluminadas. É infração média — 4 pontos.
+O Art. 40 do CTB exige o uso de luz baixa (farol) durante a noite, em túneis, sob chuva forte, neblina ou cerração, mesmo em vias iluminadas. É infração média. 4 pontos.
 
 ## Quando a multa é indevida
 
@@ -4413,7 +4413,7 @@ O Art. 40 do CTB exige o uso de luz baixa (farol) durante a noite, em túneis, s
 
 ## O que fazer
 
-Verifique o horário exato registrado no auto e compare com o horário oficial de pôr do sol na data. Se havia boa luminosidade natural, isso pode ser usado como argumento complementar — embora a lei não exija escuridão total, apenas o período crepuscular já gera a obrigação.
+Verifique o horário exato registrado no auto e compare com o horário oficial de pôr do sol na data. Se havia boa luminosidade natural, isso pode ser usado como argumento complementar. Embora a lei não exija escuridão total, apenas o período crepuscular já gera a obrigação.
     `
   },
   {
@@ -4428,11 +4428,11 @@ Verifique o horário exato registrado no auto e compare com o horário oficial d
     conteudo: `
 ## Base legal da multa por poluição sonora
 
-O Art. 228 do CTB proíbe usar equipamento de som em volume que perturbe o sossego público, além dos limites definidos pelo CONAMA. É infração média — 4 pontos e apreensão do veículo em alguns casos.
+O Art. 228 do CTB proíbe usar equipamento de som em volume que perturbe o sossego público, além dos limites definidos pelo CONAMA. É infração média. 4 pontos e apreensão do veículo em alguns casos.
 
 ## Como a fiscalização é feita
 
-A medição exige equipamento específico (decibelímetro) e distância padronizada do veículo. O agente precisa registrar a medição no auto — não basta uma percepção subjetiva de "estava alto".
+A medição exige equipamento específico (decibelímetro) e distância padronizada do veículo. O agente precisa registrar a medição no auto. Não basta uma percepção subjetiva de "estava alto".
 
 ## Vícios formais comuns
 
@@ -4444,7 +4444,7 @@ A medição exige equipamento específico (decibelímetro) e distância padroniz
 
 ## Recurso
 
-Sem registro técnico da medição, o auto tem vício formal significativo — a autuação se baseia em critério objetivo (decibéis), não em opinião do agente. Cite a ausência dessa medição na sua defesa.
+Sem registro técnico da medição, o auto tem vício formal significativo. A autuação se baseia em critério objetivo (decibéis), não em opinião do agente. Cite a ausência dessa medição na sua defesa.
     `
   },
   {
@@ -4459,7 +4459,7 @@ Sem registro técnico da medição, o auto tem vício formal significativo — a
     conteudo: `
 ## O critério técnico do pneu careca
 
-A infração (Art. 230, inciso VI do CTB) se baseia na profundidade dos sulcos da banda de rodagem. O limite mínimo legal é de 1,6mm, indicado pelos TWI (Tread Wear Indicators) — pequenas marcações na base dos sulcos do pneu.
+A infração (Art. 230, inciso VI do CTB) se baseia na profundidade dos sulcos da banda de rodagem. O limite mínimo legal é de 1,6mm, indicado pelos TWI (Tread Wear Indicators). Pequenas marcações na base dos sulcos do pneu.
 
 ## Como a fiscalização verifica
 
@@ -4467,11 +4467,11 @@ O agente deve medir a profundidade do sulco com instrumento apropriado (profund�
 
 ## Quando contestar
 
-**Ausência de medição registrada:** se o auto não especifica a medida encontrada ou o método de verificação, é vício formal — a alegação "pneu careca" sem dado objetivo é insuficiente.
+**Ausência de medição registrada:** se o auto não especifica a medida encontrada ou o método de verificação, é vício formal. A alegação "pneu careca" sem dado objetivo é insuficiente.
 
 **Pneu recém-trocado:** se você trocou o pneu pouco antes ou depois da autuação, a nota fiscal da troca pode ser usada como contexto, embora não anule a multa por si só se a condição no momento da fiscalização era realmente inadequada.
 
-**Erro de identificação do pneu:** em alguns casos o agente pode confundir qual pneu (dianteiro/traseiro) estava com problema — verifique a descrição do auto.
+**Erro de identificação do pneu:** em alguns casos o agente pode confundir qual pneu (dianteiro/traseiro) estava com problema. Verifique a descrição do auto.
     `
   },
   {
@@ -4492,7 +4492,7 @@ A Resolução CONTRAN nº 254/2007 define os percentuais mínimos de transmissã
 - Vidros dianteiros (motorista/carona): mínimo 70%
 - Vidros traseiros e trava: sem limite mínimo específico na maioria dos estados
 
-Ultrapassar o limite de escurecimento nos vidros dianteiros é infração média — 4 pontos.
+Ultrapassar o limite de escurecimento nos vidros dianteiros é infração média. 4 pontos.
 
 ## Como a fiscalização mede
 
@@ -4508,7 +4508,7 @@ A medição exige um luxímetro ou equipamento específico de TLV. O agente deve
 
 ## Recomendação prática
 
-Se você usa película, verifique o certificado do fabricante que declara o percentual de transmissão luminosa — isso serve como contraprova em caso de multa questionável.
+Se você usa película, verifique o certificado do fabricante que declara o percentual de transmissão luminosa. Isso serve como contraprova em caso de multa questionável.
     `
   },
   {
@@ -4523,11 +4523,11 @@ Se você usa película, verifique o certificado do fabricante que declara o perc
     conteudo: `
 ## O que a lei exige
 
-O Art. 196 do CTB determina que toda manobra de mudança de direção deve ser sinalizada com antecedência através do pisca-alerta indicativo (seta), luzes de freio quando aplicável, ou gestos convencionais. É infração média — 4 pontos.
+O Art. 196 do CTB determina que toda manobra de mudança de direção deve ser sinalizada com antecedência através do pisca-alerta indicativo (seta), luzes de freio quando aplicável, ou gestos convencionais. É infração média. 4 pontos.
 
 ## Como essa infração costuma ser autuada
 
-Diferente de multas eletrônicas, essa infração normalmente é presenciada por um agente no momento da manobra — o que exige que a descrição no auto seja específica sobre o comportamento observado.
+Diferente de multas eletrônicas, essa infração normalmente é presenciada por um agente no momento da manobra. O que exige que a descrição no auto seja específica sobre o comportamento observado.
 
 ## Pontos de contestação
 
@@ -4535,7 +4535,7 @@ Diferente de multas eletrônicas, essa infração normalmente é presenciada por
 
 **Distância e ângulo de observação:** o agente precisa estar em posição que permita observar claramente a ausência de sinalização. Se a posição descrita não permite essa visualização, é argumento válido.
 
-**Seta com defeito não identificado:** se sua seta estava com defeito e você não sabia, isso não isenta da infração, mas pode ser levado em conta dependendo do órgão julgador — vale declarar a situação e anexar comprovante de reparo posterior.
+**Seta com defeito não identificado:** se sua seta estava com defeito e você não sabia, isso não isenta da infração, mas pode ser levado em conta dependendo do órgão julgador. Vale declarar a situação e anexar comprovante de reparo posterior.
     `
   },
   {
@@ -4550,11 +4550,11 @@ Diferente de multas eletrônicas, essa infração normalmente é presenciada por
     conteudo: `
 ## Quando o uso de farol alto é proibido
 
-O Código de Trânsito Brasileiro proíbe usar farol alto em vias públicas iluminadas e ao cruzar com outro veículo (deve trocar para baixo a partir de 200 metros de distância aproximados, conforme o caso). É infração média — 4 pontos.
+O Código de Trânsito Brasileiro proíbe usar farol alto em vias públicas iluminadas e ao cruzar com outro veículo (deve trocar para baixo a partir de 200 metros de distância aproximados, conforme o caso). É infração média. 4 pontos.
 
 ## Situações comuns de autuação questionável
 
-**Via mal iluminada apresentada como "iluminada":** se a via na verdade tinha iluminação deficiente, o uso do farol alto pode ter sido necessário para segurança — argumento de razoabilidade, embora nem sempre aceito.
+**Via mal iluminada apresentada como "iluminada":** se a via na verdade tinha iluminação deficiente, o uso do farol alto pode ter sido necessário para segurança. Argumento de razoabilidade, embora nem sempre aceito.
 
 **Ausência de veículo próximo no momento:** se não havia veículo se aproximando e a autuação foi por "via iluminada", verifique se a via realmente tinha iluminação adequada no trecho e horário.
 
@@ -4562,7 +4562,7 @@ O Código de Trânsito Brasileiro proíbe usar farol alto em vias públicas ilum
 
 ## Recurso
 
-Fotografe a via no mesmo horário e local, se possível, para demonstrar as condições reais de iluminação — essa prova visual fortalece o recurso quando a alegação de "via iluminada" é discutível.
+Fotografe a via no mesmo horário e local, se possível, para demonstrar as condições reais de iluminação. Essa prova visual fortalece o recurso quando a alegação de "via iluminada" é discutível.
     `
   },
   {
@@ -4584,15 +4584,15 @@ O Art. 64 do CTB e a Resolução CONTRAN nº 819/2021 estabelecem os equipamento
 - **4 a 7 anos e meio:** assento de elevação (booster)
 - **Acima dessa idade e 1,45m:** cinto de segurança do veículo
 
-Descumprir é infração gravíssima — 7 pontos e multa de R$ 293,47.
+Descumprir é infração gravíssima. 7 pontos e multa de R$ 293,47.
 
 ## Quando a multa pode ter vício
 
-**Erro na estimativa de idade:** se o agente presumiu a idade da criança sem confirmação e ela na verdade já estava na faixa etária correta para o equipamento usado, é argumento de defesa — apresente documento com data de nascimento.
+**Erro na estimativa de idade:** se o agente presumiu a idade da criança sem confirmação e ela na verdade já estava na faixa etária correta para o equipamento usado, é argumento de defesa. Apresente documento com data de nascimento.
 
-**Equipamento presente mas não observado:** se a criança estava temporariamente sem o equipamento (por exemplo, trocando de assento) mas o veículo possui e usa regularmente a cadeirinha, isso pode ser mencionado na defesa, embora as chances sejam limitadas — a infração é objetiva quanto ao momento observado.
+**Equipamento presente mas não observado:** se a criança estava temporariamente sem o equipamento (por exemplo, trocando de assento) mas o veículo possui e usa regularmente a cadeirinha, isso pode ser mencionado na defesa, embora as chances sejam limitadas. A infração é objetiva quanto ao momento observado.
 
-**Trajeto curtíssimo declarado:** não existe exceção legal para trajetos curtos — a exigência vale mesmo para distâncias pequenas.
+**Trajeto curtíssimo declarado:** não existe exceção legal para trajetos curtos. A exigência vale mesmo para distâncias pequenas.
 
 ## Importância além da multa
 
@@ -4611,13 +4611,13 @@ Essa é uma das infrações mais sérias do CTB por envolver segurança infantil
     conteudo: `
 ## De quem é a responsabilidade da multa
 
-O Art. 244 do CTB exige capacete para condutor e passageiro (garupa) de motocicleta. A responsabilidade pela infração recai sobre o **condutor** — mesmo que o descumprimento seja do passageiro. É infração gravíssima — 7 pontos.
+O Art. 244 do CTB exige capacete para condutor e passageiro (garupa) de motocicleta. A responsabilidade pela infração recai sobre o **condutor**. Mesmo que o descumprimento seja do passageiro. É infração gravíssima. 7 pontos.
 
 ## Argumentos de defesa possíveis
 
 **Capacete presente mas mal ajustado:** se o passageiro usava capacete mas a fivela estava solta e o agente considerou "sem capacete", vale contestar com a descrição correta do fato.
 
-**Passageiro colocou o capacete no momento errado:** situações de trajeto muito curto (empurrando a moto na garagem, por exemplo) podem gerar contestação, mas as chances são baixas — a exigência vale para qualquer via pública.
+**Passageiro colocou o capacete no momento errado:** situações de trajeto muito curto (empurrando a moto na garagem, por exemplo) podem gerar contestação, mas as chances são baixas. A exigência vale para qualquer via pública.
 
 **Vício formal no auto:** verifique se o auto identifica corretamente quem estava na garupa e a condição específica observada.
 
@@ -4651,7 +4651,7 @@ Postos de pesagem (balanças) na rodovia verificam o Peso Bruto Total (PBT) do v
 
 **Erro de identificação da CLA do veículo:** se o órgão usou um limite de capacidade incorreto para o modelo do seu veículo, a base de cálculo do excesso está errada.
 
-**Condições da pesagem:** piso irregular, vento forte ou vibração no momento da pesagem podem gerar leitura incorreta — em casos de contestação técnica robusta, é possível questionar a validade da medição.
+**Condições da pesagem:** piso irregular, vento forte ou vibração no momento da pesagem podem gerar leitura incorreta. Em casos de contestação técnica robusta, é possível questionar a validade da medição.
 
 ## Documentos importantes para o recurso
 
@@ -4678,7 +4678,7 @@ Infrações comuns incluem reboque sem registro, sem sinalização adequada ou c
 
 ## Vícios formais a verificar
 
-**Documentação do reboque:** se o reboque possui CRLV válido e a multa foi por "sem licenciamento", há erro objetivo — apresente o documento.
+**Documentação do reboque:** se o reboque possui CRLV válido e a multa foi por "sem licenciamento", há erro objetivo. Apresente o documento.
 
 **Especificação técnica do engate:** a autuação deve descrever especificamente qual irregularidade foi observada no sistema de engate, não apenas "engate irregular" de forma genérica.
 
@@ -4686,7 +4686,7 @@ Infrações comuns incluem reboque sem registro, sem sinalização adequada ou c
 
 ## Recomendação
 
-Sempre mantenha a documentação do reboque junto com a do veículo tracionador — a maior parte dos recursos bem-sucedidos nessa categoria se baseia em comprovar documentação já existente que não foi verificada corretamente pelo agente.
+Sempre mantenha a documentação do reboque junto com a do veículo tracionador. A maior parte dos recursos bem-sucedidos nessa categoria se baseia em comprovar documentação já existente que não foi verificada corretamente pelo agente.
     `
   },
   {
@@ -4701,11 +4701,11 @@ Sempre mantenha a documentação do reboque junto com a do veículo tracionador 
     conteudo: `
 ## Base legal
 
-O Art. 230, inciso XI do CTB proíbe conduzir veículo com equipamento obrigatório alterado ou em desacordo com as especificações do fabricante — incluindo o sistema de escapamento. É infração grave.
+O Art. 230, inciso XI do CTB proíbe conduzir veículo com equipamento obrigatório alterado ou em desacordo com as especificações do fabricante. Incluindo o sistema de escapamento. É infração grave.
 
 ## Como se diferencia da multa por poluição sonora
 
-Enquanto a multa de som alto (Art. 228) trata do volume, a multa de escapamento modificado (Art. 230) trata da **alteração física** do equipamento original — mesmo que o ruído não tenha sido medido tecnicamente.
+Enquanto a multa de som alto (Art. 228) trata do volume, a multa de escapamento modificado (Art. 230) trata da **alteração física** do equipamento original. Mesmo que o ruído não tenha sido medido tecnicamente.
 
 ## Pontos de contestação
 
@@ -4717,7 +4717,7 @@ Enquanto a multa de som alto (Art. 228) trata do volume, a multa de escapamento 
 
 ## Recomendação
 
-Se o escapamento foi de fato modificado, a melhor estratégia é regularizar o veículo rapidamente — a reincidência agrava as consequências, incluindo possível apreensão.
+Se o escapamento foi de fato modificado, a melhor estratégia é regularizar o veículo rapidamente. A reincidência agrava as consequências, incluindo possível apreensão.
     `
   },
   {
@@ -4759,7 +4759,7 @@ Fotografe a sinalização (ou ausência dela) no local, verifique o horário exa
     conteudo: `
 ## O que caracteriza a infração
 
-O Art. 203 do CTB proíbe ultrapassar pela contramão em locais com sinalização de proibição (faixa amarela contínua), em curvas, aclives sem visibilidade, cruzamentos e outras situações de risco. É infração gravíssima — 7 pontos.
+O Art. 203 do CTB proíbe ultrapassar pela contramão em locais com sinalização de proibição (faixa amarela contínua), em curvas, aclives sem visibilidade, cruzamentos e outras situações de risco. É infração gravíssima. 7 pontos.
 
 ## Como essa multa costuma ser autuada
 
@@ -4767,7 +4767,7 @@ Pode ser presenciada por agente ou registrada por câmera, dependendo da via. Mu
 
 ## Pontos de contestação
 
-**Sinalização apagada ou ilegível:** faixas de solo desgastadas que não permitem identificação clara da proibição são argumento de defesa — a responsabilidade pela manutenção da sinalização é do órgão de trânsito.
+**Sinalização apagada ou ilegível:** faixas de solo desgastadas que não permitem identificação clara da proibição são argumento de defesa. A responsabilidade pela manutenção da sinalização é do órgão de trânsito.
 
 **Imagem que não comprova a manobra completa:** a foto ou vídeo deve mostrar claramente o veículo invadindo a faixa oposta durante a ultrapassagem, não apenas próximo dela.
 
@@ -4775,7 +4775,7 @@ Pode ser presenciada por agente ou registrada por câmera, dependendo da via. Mu
 
 ## Gravidade da infração
 
-Por ser gravíssima e de alto risco, essa multa merece atenção redobrada — 7 pontos aproximam rapidamente do limite de suspensão da CNH.
+Por ser gravíssima e de alto risco, essa multa merece atenção redobrada. 7 pontos aproximam rapidamente do limite de suspensão da CNH.
     `
   },
   {
@@ -4790,7 +4790,7 @@ Por ser gravíssima e de alto risco, essa multa merece atenção redobrada — 7
     conteudo: `
 ## Base legal
 
-O Art. 214 do CTB exige que o condutor pare o veículo sempre que houver pedestre atravessando a via na faixa a ele destinada, mesmo que não haja sinalização semafórica. É infração gravíssima — 7 pontos.
+O Art. 214 do CTB exige que o condutor pare o veículo sempre que houver pedestre atravessando a via na faixa a ele destinada, mesmo que não haja sinalização semafórica. É infração gravíssima. 7 pontos.
 
 ## Como a fiscalização identifica
 
@@ -4798,7 +4798,7 @@ Geralmente é presenciada por agente, mas cidades com câmeras inteligentes de m
 
 ## Situações de contestação
 
-**Pedestre ainda não estava na faixa:** se o pedestre se aproximava mas ainda não havia iniciado a travessia, não há obrigação legal de parada — vale verificar a descrição exata do momento no auto.
+**Pedestre ainda não estava na faixa:** se o pedestre se aproximava mas ainda não havia iniciado a travessia, não há obrigação legal de parada. Vale verificar a descrição exata do momento no auto.
 
 **Faixa desgastada ou mal sinalizada:** se a pintura da faixa estava apagada a ponto de não ser identificável como faixa de pedestre, é argumento de vício na sinalização.
 
@@ -4806,7 +4806,7 @@ Geralmente é presenciada por agente, mas cidades com câmeras inteligentes de m
 
 ## Importância de levar a sério
 
-Por envolver risco direto à vida de pedestres, essa é uma das infrações mais fiscalizadas e com menor tolerância dos órgãos julgadores — a contestação precisa ser bem fundamentada tecnicamente.
+Por envolver risco direto à vida de pedestres, essa é uma das infrações mais fiscalizadas e com menor tolerância dos órgãos julgadores. A contestação precisa ser bem fundamentada tecnicamente.
     `
   },
   {
@@ -4821,11 +4821,11 @@ Por envolver risco direto à vida de pedestres, essa é uma das infrações mais
     conteudo: `
 ## A regra vale para todos os bancos
 
-O Art. 65 do CTB exige uso de cinto de segurança para condutor e todos os passageiros, independente da posição no veículo. É infração grave — 5 pontos, aplicada ao condutor mesmo quando quem estava sem cinto era um passageiro do banco traseiro.
+O Art. 65 do CTB exige uso de cinto de segurança para condutor e todos os passageiros, independente da posição no veículo. É infração grave. 5 pontos, aplicada ao condutor mesmo quando quem estava sem cinto era um passageiro do banco traseiro.
 
 ## Responsabilidade da multa
 
-A multa recai sobre o **condutor**, não sobre o passageiro que estava sem cinto — princípio semelhante ao capacete em motocicletas.
+A multa recai sobre o **condutor**, não sobre o passageiro que estava sem cinto. Princípio semelhante ao capacete em motocicletas.
 
 ## Situações de contestação
 
@@ -4837,7 +4837,7 @@ A multa recai sobre o **condutor**, não sobre o passageiro que estava sem cinto
 
 ## Recurso
 
-A contestação nesse tipo de multa depende principalmente da descrição do auto — verifique se o agente especificou corretamente qual ocupante estava sem cinto e a posição exata.
+A contestação nesse tipo de multa depende principalmente da descrição do auto. Verifique se o agente especificou corretamente qual ocupante estava sem cinto e a posição exata.
     `
   },
   {
@@ -4852,7 +4852,7 @@ A contestação nesse tipo de multa depende principalmente da descrição do aut
     conteudo: `
 ## Regra geral do CTB
 
-O Art. 202 do CTB proíbe transitar pelo acostamento, exceto em situações específicas (baixa velocidade sinalizada, emergência, autorização de agente de trânsito, ou quando expressamente permitido por sinalização). É infração grave — 5 pontos.
+O Art. 202 do CTB proíbe transitar pelo acostamento, exceto em situações específicas (baixa velocidade sinalizada, emergência, autorização de agente de trânsito, ou quando expressamente permitido por sinalização). É infração grave. 5 pontos.
 
 ## Exceções legais reconhecidas
 
@@ -4867,7 +4867,7 @@ O Art. 202 do CTB proíbe transitar pelo acostamento, exceto em situações espe
 
 **Sinalização de desvio temporário:** se havia sinalização de obra ou desvio autorizando o uso do acostamento no trecho, isso deve ser verificado e pode anular a multa.
 
-**Localização incorreta:** verifique se o local descrito no auto realmente corresponde a um acostamento (e não a uma faixa adicional ou área de escape) — erro de classificação da via é vício formal.
+**Localização incorreta:** verifique se o local descrito no auto realmente corresponde a um acostamento (e não a uma faixa adicional ou área de escape). Erro de classificação da via é vício formal.
 
 ## Recomendação
 
@@ -4886,7 +4886,7 @@ Se você usou o acostamento por necessidade real, reúna a documentação de pro
     conteudo: `
 ## Base legal
 
-O Art. 187, inciso II do CTB proíbe realizar conversão ou retorno em locais sinalizados como proibidos, ou onde a manobra representa risco de acidente. É infração média — 4 pontos.
+O Art. 187, inciso II do CTB proíbe realizar conversão ou retorno em locais sinalizados como proibidos, ou onde a manobra representa risco de acidente. É infração média. 4 pontos.
 
 ## Como a fiscalização é feita
 
@@ -4896,7 +4896,7 @@ Geralmente presenciada por agente, mas cruzamentos com câmeras de monitoramento
 
 **Sinalização insuficiente ou ausente:** placas de proibição de conversão devem estar visíveis e bem posicionadas. Sinalização ausente, apagada ou obstruída por vegetação/veículos é vício da via, não do condutor.
 
-**Confusão entre "proibido converter à esquerda" e "proibido retornar":** são infrações e sinalizações diferentes — verifique se a descrição do auto corresponde exatamente à manobra realizada.
+**Confusão entre "proibido converter à esquerda" e "proibido retornar":** são infrações e sinalizações diferentes. Verifique se a descrição do auto corresponde exatamente à manobra realizada.
 
 **Semáforo com seta específica:** em cruzamentos com semáforo de seta própria para conversão, se a seta estava verde no momento, a conversão era permitida independente de placa genérica no local.
 
@@ -4924,11 +4924,11 @@ Erros de nome, CPF ou endereço em notificações de multa geralmente decorrem d
 
 ## Isso é motivo para anular a multa?
 
-Depende do tipo de erro. Erros irrelevantes (como acentuação do nome) geralmente não anulam a multa — o importante é a identificação correta do veículo (placa e RENAVAM). Mas erros substanciais podem ser vício formal.
+Depende do tipo de erro. Erros irrelevantes (como acentuação do nome) geralmente não anulam a multa. O importante é a identificação correta do veículo (placa e RENAVAM). Mas erros substanciais podem ser vício formal.
 
 ## Quando o erro é motivo de recurso
 
-**CPF completamente divergente:** se o CPF na notificação não corresponde ao seu, mas o veículo é seu, pode indicar erro sistêmico que merece correção — e possivelmente questionamento sobre a validade da notificação.
+**CPF completamente divergente:** se o CPF na notificação não corresponde ao seu, mas o veículo é seu, pode indicar erro sistêmico que merece correção. E possivelmente questionamento sobre a validade da notificação.
 
 **Nome de terceiro completamente diferente:** se a notificação chegou para você mas com nome de outra pessoa, sem relação com o veículo, há erro grave de identificação.
 
@@ -4941,7 +4941,7 @@ Depende do tipo de erro. Erros irrelevantes (como acentuação do nome) geralmen
 
 ## Recomendação
 
-Corrija o cadastro assim que identificar o erro — isso evita problemas em notificações futuras, mesmo que a multa atual não seja anulada apenas por essa divergência.
+Corrija o cadastro assim que identificar o erro. Isso evita problemas em notificações futuras, mesmo que a multa atual não seja anulada apenas por essa divergência.
     `
   },
   {
@@ -4956,7 +4956,7 @@ Corrija o cadastro assim que identificar o erro — isso evita problemas em noti
     conteudo: `
 ## De quem é a responsabilidade pela multa antiga
 
-A regra geral: a multa em si (valor financeiro) acompanha o **veículo**, não a pessoa. Ou seja, ao comprar um carro com multas pendentes, você (novo proprietário) se torna responsável pelo pagamento — mesmo que a infração tenha ocorrido antes da compra.
+A regra geral: a multa em si (valor financeiro) acompanha o **veículo**, não a pessoa. Ou seja, ao comprar um carro com multas pendentes, você (novo proprietário) se torna responsável pelo pagamento. Mesmo que a infração tenha ocorrido antes da compra.
 
 Já os **pontos** ficam com quem estava dirigindo no momento da infração (o antigo proprietário ou quem ele indicou como condutor).
 
@@ -4966,13 +4966,13 @@ Já os **pontos** ficam com quem estava dirigindo no momento da infração (o an
 - Verifique se há débitos em dívida ativa (mais graves, com juros)
 - Confirme a situação do licenciamento
 
-## Já comprei e descobri multas depois — o que fazer
+## Já comprei e descobri multas depois. O que fazer
 
-**Negocie com o vendedor:** se a venda foi recente e as multas eram anteriores à negociação, você pode (e deve) buscar ressarcimento do vendedor — idealmente isso deveria ter sido acertado no contrato de compra e venda.
+**Negocie com o vendedor:** se a venda foi recente e as multas eram anteriores à negociação, você pode (e deve) buscar ressarcimento do vendedor. Idealmente isso deveria ter sido acertado no contrato de compra e venda.
 
 **Verifique se ainda dá para recorrer:** se as multas ainda estão dentro do prazo de defesa prévia ou JARI, você pode contestar como novo proprietário, desde que apresente a documentação de transferência.
 
-**Regularize o licenciamento:** multas em dívida ativa bloqueiam o licenciamento — mesmo não sendo sua culpa original, você precisa resolver para poder circular regularmente.
+**Regularize o licenciamento:** multas em dívida ativa bloqueiam o licenciamento. Mesmo não sendo sua culpa original, você precisa resolver para poder circular regularmente.
 
 ## Prevenção para futuras compras
 
@@ -4991,7 +4991,7 @@ Sempre inclua cláusula contratual específica sobre responsabilidade por multas
     conteudo: `
 ## Como funciona o repasse de multas em locação
 
-Ao alugar um veículo, o locatário assume responsabilidade pelas infrações cometidas durante o período de uso. A locadora, como proprietária, recebe a notificação e repassa ao locatário — geralmente cobrando também uma taxa administrativa.
+Ao alugar um veículo, o locatário assume responsabilidade pelas infrações cometidas durante o período de uso. A locadora, como proprietária, recebe a notificação e repassa ao locatário. Geralmente cobrando também uma taxa administrativa.
 
 ## Prazo para a locadora identificar o condutor
 
@@ -4999,7 +4999,7 @@ A locadora tem até **30 dias** da notificação para indicar o CPF do locatári
 
 ## Cobrança de taxa administrativa: é legal?
 
-Sim, é uma prática comum e legal, desde que prevista em contrato. O valor varia por empresa — geralmente entre R$ 40 e R$ 100 por infração, além do valor da multa em si.
+Sim, é uma prática comum e legal, desde que prevista em contrato. O valor varia por empresa. Geralmente entre R$ 40 e R$ 100 por infração, além do valor da multa em si.
 
 ## Quando contestar a cobrança da locadora
 
@@ -5011,7 +5011,7 @@ Sim, é uma prática comum e legal, desde que prevista em contrato. O valor vari
 
 ## Posso recorrer da multa mesmo sendo locatário?
 
-Sim. Assim que a locadora te indica como condutor, você recebe a notificação diretamente e pode apresentar sua própria defesa dentro do prazo — os mesmos direitos de qualquer condutor.
+Sim. Assim que a locadora te indica como condutor, você recebe a notificação diretamente e pode apresentar sua própria defesa dentro do prazo. Os mesmos direitos de qualquer condutor.
     `
   },
   {
@@ -5036,15 +5036,15 @@ Isso é um problema real e relativamente comum, especialmente com notificações
 
 **Protocole o recurso mesmo assim, explicando o atraso:** apresente a defesa argumentando que o prazo deve ser contado da data real de recebimento, não da data do documento, anexando a prova do atraso na entrega.
 
-**Solicite reabertura de prazo:** alguns órgãos aceitam pedido de reabertura de prazo mediante comprovação de falha na entrega — não é garantido, mas vale tentar.
+**Solicite reabertura de prazo:** alguns órgãos aceitam pedido de reabertura de prazo mediante comprovação de falha na entrega. Não é garantido, mas vale tentar.
 
 ## Prevenção: adira ao SNE
 
-O Sistema de Notificação Eletrônica elimina esse problema — a notificação chega instantaneamente por e-mail/portal, sem depender dos Correios, e você tem controle exato da data de recebimento.
+O Sistema de Notificação Eletrônica elimina esse problema. A notificação chega instantaneamente por e-mail/portal, sem depender dos Correios, e você tem controle exato da data de recebimento.
 
 ## E se eu simplesmente perdi o prazo por desatenção?
 
-Nesse caso, resta recorrer à JARI diretamente contestando o mérito, já que a defesa prévia não pode mais ser apresentada. O prazo da JARI só se aplica após indeferimento da defesa prévia — se você perdeu a primeira fase, verifique com o órgão qual o próximo passo cabível no seu caso específico.
+Nesse caso, resta recorrer à JARI diretamente contestando o mérito, já que a defesa prévia não pode mais ser apresentada. O prazo da JARI só se aplica após indeferimento da defesa prévia. Se você perdeu a primeira fase, verifique com o órgão qual o próximo passo cabível no seu caso específico.
     `
   },
   {
@@ -5077,7 +5077,7 @@ Compare os dois autos de infração: se a data, horário, local e código da inf
 
 ## Isso afeta os pontos?
 
-Sim — pontos duplicados indevidamente contam em dobro no seu prontuário até a correção. Por isso, é importante contestar rapidamente para evitar impacto indevido na sua pontuação.
+Sim. Pontos duplicados indevidamente contam em dobro no seu prontuário até a correção. Por isso, é importante contestar rapidamente para evitar impacto indevido na sua pontuação.
 
 ## Onde reclamar se o órgão não corrigir
 
@@ -5096,7 +5096,7 @@ Se o recurso administrativo não resolver, procure a Ouvidoria do órgão de tr�
     conteudo: `
 ## Multa impede a quitação do financiamento?
 
-Não diretamente. O financiamento é um contrato entre você e o banco/financeira — multas de trânsito não impedem o pagamento das parcelas nem a quitação do contrato em si.
+Não diretamente. O financiamento é um contrato entre você e o banco/financeira. Multas de trânsito não impedem o pagamento das parcelas nem a quitação do contrato em si.
 
 ## Onde a multa realmente afeta
 
@@ -5135,7 +5135,7 @@ Mantenha as multas em dia ou em processo de recurso ativo para evitar acúmulo d
 
 ## Como eles se relacionam
 
-O licenciamento anual só é emitido se **todos os débitos estiverem quitados** — IPVA, multas e taxas do próprio licenciamento. Ou seja, mesmo que você pague o IPVA em dia, uma multa pendente pode bloquear o licenciamento.
+O licenciamento anual só é emitido se **todos os débitos estiverem quitados**. IPVA, multas e taxas do próprio licenciamento. Ou seja, mesmo que você pague o IPVA em dia, uma multa pendente pode bloquear o licenciamento.
 
 ## O que acontece sem o licenciamento em dia
 
@@ -5146,11 +5146,11 @@ O licenciamento anual só é emitido se **todos os débitos estiverem quitados**
 
 ## Recorrer da multa libera o licenciamento?
 
-Enquanto o recurso está em análise, alguns estados suspendem o bloqueio referente àquela multa específica para fins de licenciamento — mas isso varia por DETRAN. Consulte o órgão do seu estado para confirmar essa regra específica.
+Enquanto o recurso está em análise, alguns estados suspendem o bloqueio referente àquela multa específica para fins de licenciamento. Mas isso varia por DETRAN. Consulte o órgão do seu estado para confirmar essa regra específica.
 
 ## Estratégia recomendada
 
-Antes da época de licenciamento, consulte o extrato completo de débitos (IPVA, multas, taxas) no portal do DETRAN e resolva pendências com antecedência — inclusive protocolando recursos de multas que você pretende contestar, para não ser pego de surpresa.
+Antes da época de licenciamento, consulte o extrato completo de débitos (IPVA, multas, taxas) no portal do DETRAN e resolva pendências com antecedência. Inclusive protocolando recursos de multas que você pretende contestar, para não ser pego de surpresa.
     `
   },
   {
@@ -5165,7 +5165,7 @@ Antes da época de licenciamento, consulte o extrato completo de débitos (IPVA,
     conteudo: `
 ## O que acontece com multas de veículo herdado
 
-As multas pendentes de um veículo não desaparecem com o falecimento do proprietário — elas passam a integrar o **espólio** (conjunto de bens e dívidas deixados) e devem ser quitadas antes ou durante o processo de transferência aos herdeiros.
+As multas pendentes de um veículo não desaparecem com o falecimento do proprietário. Elas passam a integrar o **espólio** (conjunto de bens e dívidas deixados) e devem ser quitadas antes ou durante o processo de transferência aos herdeiros.
 
 ## O processo de transferência do veículo
 
@@ -5177,11 +5177,11 @@ As multas pendentes de um veículo não desaparecem com o falecimento do proprie
 
 Sim. O espólio, representado pelo inventariante, tem legitimidade para apresentar defesa de multas recebidas antes ou mesmo após o falecimento, desde que dentro do prazo legal.
 
-Se a multa foi recebida quando a pessoa já havia falecido (erro do sistema, já que a notificação é gerada automaticamente), isso pode ser usado como argumento adicional, mas normalmente não anula a multa em si — apenas a responsabilidade de resposta muda para o espólio/herdeiros.
+Se a multa foi recebida quando a pessoa já havia falecido (erro do sistema, já que a notificação é gerada automaticamente), isso pode ser usado como argumento adicional, mas normalmente não anula a multa em si. Apenas a responsabilidade de resposta muda para o espólio/herdeiros.
 
 ## Dica prática
 
-Ao lidar com inventário envolvendo veículos, consulte o extrato completo de débitos assim que possível — isso evita surpresas na hora da transferência final e permite tempo hábil para contestar multas com vício formal antes de quitar tudo.
+Ao lidar com inventário envolvendo veículos, consulte o extrato completo de débitos assim que possível. Isso evita surpresas na hora da transferência final e permite tempo hábil para contestar multas com vício formal antes de quitar tudo.
     `
   },
   {
@@ -5196,7 +5196,7 @@ Ao lidar com inventário envolvendo veículos, consulte o extrato completo de d�
     conteudo: `
 ## É possível transferir com multas em aberto?
 
-Sim, na maioria dos estados é possível transferir a propriedade do veículo mesmo com multas pendentes — a transferência de propriedade e a quitação de débitos são processos distintos.
+Sim, na maioria dos estados é possível transferir a propriedade do veículo mesmo com multas pendentes. A transferência de propriedade e a quitação de débitos são processos distintos.
 
 O que geralmente é **impedido** com débitos pendentes é o **licenciamento anual**, não a transferência de propriedade em si.
 
@@ -5219,7 +5219,7 @@ O Art. 123 do CTB exige que a transferência seja comunicada ao órgão de trân
 
 ## Recomendação final
 
-Mesmo com débitos pendentes, formalize a transferência dentro do prazo legal — isso protege tanto vendedor quanto comprador de responsabilidades futuras indevidas.
+Mesmo com débitos pendentes, formalize a transferência dentro do prazo legal. Isso protege tanto vendedor quanto comprador de responsabilidades futuras indevidas.
     `
   },
   {
@@ -5234,7 +5234,7 @@ Mesmo com débitos pendentes, formalize a transferência dentro do prazo legal �
     conteudo: `
 ## Por que isso acontece
 
-Se o comprador não providenciou a transferência do veículo no DETRAN, o sistema continua identificando você como proprietário — e todas as notificações de multa continuam chegando no seu nome e endereço.
+Se o comprador não providenciou a transferência do veículo no DETRAN, o sistema continua identificando você como proprietário. E todas as notificações de multa continuam chegando no seu nome e endereço.
 
 ## A solução legal: Comunicação de Venda
 
@@ -5244,13 +5244,13 @@ O Art. 134 do CTB determina que, se o novo proprietário não transferir o veíc
 
 1. Acesse o portal do DETRAN do seu estado
 2. Procure a opção "Comunicação de Venda" ou "Comunicação de Transferência"
-3. Informe os dados do comprador (nome, CPF, endereço) — por isso é essencial guardar cópia do documento do comprador no momento da venda
+3. Informe os dados do comprador (nome, CPF, endereço). Por isso é essencial guardar cópia do documento do comprador no momento da venda
 4. Anexe cópia do contrato de compra e venda (recibo assinado)
 5. Protocole a comunicação
 
 ## A partir de quando cessa minha responsabilidade
 
-A partir da data de protocolo da Comunicação de Venda, novas infrações não são mais de sua responsabilidade — mesmo que o veículo continue registrado no seu nome no sistema.
+A partir da data de protocolo da Comunicação de Venda, novas infrações não são mais de sua responsabilidade. Mesmo que o veículo continue registrado no seu nome no sistema.
 
 ## E as multas que já chegaram antes da comunicação?
 
@@ -5258,7 +5258,7 @@ Infrações cometidas após a data da venda (mesmo que notificadas antes da comu
 
 ## Prevenção para vendas futuras
 
-Sempre faça um contrato de compra e venda com firma reconhecida ou assinatura eletrônica válida, e considere fazer a Comunicação de Venda imediatamente após a negociação, sem esperar os 30 dias — isso protege você mais rapidamente.
+Sempre faça um contrato de compra e venda com firma reconhecida ou assinatura eletrônica válida, e considere fazer a Comunicação de Venda imediatamente após a negociação, sem esperar os 30 dias. Isso protege você mais rapidamente.
     `
   },
   {
@@ -5296,7 +5296,7 @@ Seguem o padrão nacional do CTB: 15 dias para defesa prévia, 30 dias para recu
 
 ## Dica para o Rio de Janeiro
 
-O volume de multas por câmeras de monitoramento é alto na capital fluminense. Sempre verifique a homologação do equipamento e a qualidade da imagem antes de montar o recurso — são os vícios mais comuns identificados em autuações eletrônicas no estado.
+O volume de multas por câmeras de monitoramento é alto na capital fluminense. Sempre verifique a homologação do equipamento e a qualidade da imagem antes de montar o recurso. São os vícios mais comuns identificados em autuações eletrônicas no estado.
     `
   },
   {
@@ -5334,7 +5334,7 @@ Seguem o padrão do CTB: 15 dias para defesa prévia, 30 dias para recurso à JA
 
 ## Atendimento presencial
 
-Para quem tem dificuldade com o sistema online, o DETRAN MG mantém postos de atendimento em diversas cidades do estado — o protocolo presencial também é válido dentro do prazo legal.
+Para quem tem dificuldade com o sistema online, o DETRAN MG mantém postos de atendimento em diversas cidades do estado. O protocolo presencial também é válido dentro do prazo legal.
     `
   },
   {
@@ -5364,7 +5364,7 @@ O DETRAN do Rio Grande do Sul disponibiliza o portal **detran.rs.gov.br** para c
 
 ## Peculiaridade de Porto Alegre
 
-A capital gaúcha tem a EPTC (Empresa Pública de Transporte e Circulação) responsável por infrações municipais, separada do DETRAN estadual — verifique o órgão autuador no auto antes de escolher o portal.
+A capital gaúcha tem a EPTC (Empresa Pública de Transporte e Circulação) responsável por infrações municipais, separada do DETRAN estadual. Verifique o órgão autuador no auto antes de escolher o portal.
 
 ## Prazos no RS
 
@@ -5372,7 +5372,7 @@ Seguem o padrão nacional: 15 dias para defesa prévia, 30 dias para recurso à 
 
 ## Dica regional
 
-O RS tem grande volume de fiscalização em rodovias estaduais (EGR) e federais (PRF), além das urbanas. Confirme sempre qual órgão emitiu o auto — DETRAN, EGR, PRF ou EPTC — pois cada um tem fluxo próprio de recurso.
+O RS tem grande volume de fiscalização em rodovias estaduais (EGR) e federais (PRF), além das urbanas. Confirme sempre qual órgão emitiu o auto. DETRAN, EGR, PRF ou EPTC. Pois cada um tem fluxo próprio de recurso.
     `
   },
   {
@@ -5440,7 +5440,7 @@ O DETRAN da Bahia disponibiliza o portal **detran.ba.gov.br** para consulta e co
 
 ## Peculiaridade de Salvador
 
-A capital baiana tem a TRANSALVADOR responsável pela fiscalização municipal de trânsito, separada do DETRAN estadual — confirme sempre o órgão autuador no documento.
+A capital baiana tem a TRANSALVADOR responsável pela fiscalização municipal de trânsito, separada do DETRAN estadual. Confirme sempre o órgão autuador no documento.
 
 ## Prazos na BA
 
@@ -5448,7 +5448,7 @@ Seguem o padrão do CTB: 15 dias para defesa prévia, 30 dias para JARI-BA após
 
 ## Atendimento presencial
 
-Para regiões com dificuldade de acesso à internet, o DETRAN BA mantém postos físicos em diversas cidades do interior — o protocolo presencial dentro do prazo tem a mesma validade do processo online.
+Para regiões com dificuldade de acesso à internet, o DETRAN BA mantém postos físicos em diversas cidades do interior. O protocolo presencial dentro do prazo tem a mesma validade do processo online.
     `
   },
   {
@@ -5478,7 +5478,7 @@ O DETRAN do Distrito Federal disponibiliza o portal **detran.df.gov.br** para co
 
 ## Peculiaridade do DF
 
-Diferente de outros estados, o Distrito Federal não tem divisão entre órgão estadual e municipal — o DETRAN-DF concentra a maior parte da fiscalização de trânsito em toda a área do DF, o que simplifica identificar o órgão responsável.
+Diferente de outros estados, o Distrito Federal não tem divisão entre órgão estadual e municipal. O DETRAN-DF concentra a maior parte da fiscalização de trânsito em toda a área do DF, o que simplifica identificar o órgão responsável.
 
 ## Prazos no DF
 
@@ -5511,7 +5511,7 @@ No Brasil, diferentes órgãos têm competência para fiscalizar e autuar, depen
 
 ## Como saber qual órgão autuou
 
-No auto de infração, procure o campo "órgão autuador" ou o cabeçalho do documento — geralmente identifica claramente (ex: "CET-SP", "PRF", "DETRAN-SP").
+No auto de infração, procure o campo "órgão autuador" ou o cabeçalho do documento. Geralmente identifica claramente (ex: "CET-SP", "PRF", "DETRAN-SP").
 
 ## Por que isso importa para o recurso
 
@@ -5519,7 +5519,7 @@ Cada órgão tem seu próprio portal e sistema de protocolo de defesa. Enviar o 
 
 ## E se eu não tiver certeza de qual é o órgão?
 
-Ligue para a central de atendimento indicada no próprio auto de infração, ou consulte pela placa do veículo no portal do DETRAN estadual — geralmente ele consolida informações de todos os órgãos que emitiram multas para aquele veículo, mesmo que o processo de recurso precise ser feito no sistema específico de cada um.
+Ligue para a central de atendimento indicada no próprio auto de infração, ou consulte pela placa do veículo no portal do DETRAN estadual. Geralmente ele consolida informações de todos os órgãos que emitiram multas para aquele veículo, mesmo que o processo de recurso precise ser feito no sistema específico de cada um.
 
 ## Os pontos vão para o mesmo lugar independente do órgão?
 
@@ -5563,7 +5563,7 @@ A CET fiscaliza vias **municipais** dentro da cidade de São Paulo. O DETRAN-SP 
 
 ## Volume de fiscalização eletrônica
 
-São Paulo tem uma das maiores redes de câmeras de fiscalização do país. Isso significa maior volume de multas, mas também mais pontos técnicos passíveis de contestação — sempre verifique homologação de equipamento, sinalização prévia e qualidade da imagem antes de decidir se vale recorrer.
+São Paulo tem uma das maiores redes de câmeras de fiscalização do país. Isso significa maior volume de multas, mas também mais pontos técnicos passíveis de contestação. Sempre verifique homologação de equipamento, sinalização prévia e qualidade da imagem antes de decidir se vale recorrer.
     `
   },
   {
@@ -5593,7 +5593,7 @@ O DETRAN de Pernambuco disponibiliza o portal **detran.pe.gov.br** para consulta
 
 ## Peculiaridade de Recife
 
-A capital pernambucana tem a CTTU (Empresa de Manutenção e Limpeza Urbana / trânsito) responsável pela fiscalização municipal, separada do DETRAN estadual — verifique o órgão autuador indicado no auto.
+A capital pernambucana tem a CTTU (Empresa de Manutenção e Limpeza Urbana / trânsito) responsável pela fiscalização municipal, separada do DETRAN estadual. Verifique o órgão autuador indicado no auto.
 
 ## Prazos em PE
 
@@ -5631,7 +5631,7 @@ O DETRAN do Ceará disponibiliza o portal **detran.ce.gov.br** para consulta e c
 
 ## Peculiaridade de Fortaleza
 
-A capital cearense tem a AMC (Autarquia Municipal de Trânsito, Serviços Públicos e Cidadania) responsável pela fiscalização municipal — separada do DETRAN estadual. Confirme sempre o órgão autuador no documento.
+A capital cearense tem a AMC (Autarquia Municipal de Trânsito, Serviços Públicos e Cidadania) responsável pela fiscalização municipal. Separada do DETRAN estadual. Confirme sempre o órgão autuador no documento.
 
 ## Prazos no CE
 
@@ -5662,7 +5662,7 @@ Seja para análise manual ou por inteligência artificial, a leitura precisa de 
 Fotografe em local bem iluminado, de preferência luz natural indireta. Evite sombras cobrindo parte do documento.
 
 **2. Documento completo no enquadramento**
-Certifique-se de que todas as bordas do documento aparecem na foto — nada de cortar cantos ou margens.
+Certifique-se de que todas as bordas do documento aparecem na foto. Nada de cortar cantos ou margens.
 
 **3. Câmera paralela ao documento**
 Fotografe de cima, com o celular paralelo à folha, para evitar distorção de perspectiva que dificulta a leitura.
@@ -5678,11 +5678,11 @@ Se o documento tiver mais de uma página (frente e verso, ou anexos), fotografe 
 
 ## O que fazer se só tiver a notificação por SMS/e-mail
 
-Print da tela também funciona, desde que todos os campos estejam visíveis e legíveis — o importante é a informação completa, não o formato do arquivo.
+Print da tela também funciona, desde que todos os campos estejam visíveis e legíveis. O importante é a informação completa, não o formato do arquivo.
 
 ## Depois de fotografar
 
-Envie a imagem para análise o quanto antes — o prazo de defesa prévia é de apenas 15 dias, e quanto antes identificar um vício formal, mais tempo você tem para agir.
+Envie a imagem para análise o quanto antes. O prazo de defesa prévia é de apenas 15 dias, e quanto antes identificar um vício formal, mais tempo você tem para agir.
     `
   },
   {
@@ -5729,7 +5729,7 @@ Para multas de valor baixo (R$ 130 a R$ 300) com vício formal claro e objetivo,
   {
     slug: "multa-transito-direito-consumidor",
     titulo: "Multa de Trânsito e Direito do Consumidor: Existe Relação?",
-    descricao: "Entenda em quais situações o Código de Defesa do Consumidor pode ser aplicado em conflitos envolvendo multas — como em estacionamentos privados. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
+    descricao: "Entenda em quais situações o Código de Defesa do Consumidor pode ser aplicado em conflitos envolvendo multas. Como em estacionamentos privados. Veja gratuitamente se o seu auto de infração tem erro que anula a multa.",
     categoria: "Direitos do Motorista",
     tempoLeitura: "4 min",
     imagemEmoji: "🛒",
@@ -5738,11 +5738,11 @@ Para multas de valor baixo (R$ 130 a R$ 300) com vício formal claro e objetivo,
     conteudo: `
 ## Multa de trânsito NÃO é relação de consumo
 
-É importante deixar claro: multas aplicadas pelo Estado (DETRAN, PRF, prefeitura) são sanções administrativas — não seguem o Código de Defesa do Consumidor (CDC), pois não há relação de consumo entre o condutor e o órgão público.
+É importante deixar claro: multas aplicadas pelo Estado (DETRAN, PRF, prefeitura) são sanções administrativas. Não seguem o Código de Defesa do Consumidor (CDC), pois não há relação de consumo entre o condutor e o órgão público.
 
 ## Onde o CDC realmente se aplica
 
-**Estacionamentos privados:** se um estabelecimento privado (shopping, estacionamento pago) cobra "multa" por tempo excedido ou dano, essa cobrança é regida pelo CDC, não pelo CTB — e pode ser contestada com base em cláusulas abusivas, falta de informação clara ou cobrança desproporcional.
+**Estacionamentos privados:** se um estabelecimento privado (shopping, estacionamento pago) cobra "multa" por tempo excedido ou dano, essa cobrança é regida pelo CDC, não pelo CTB. E pode ser contestada com base em cláusulas abusivas, falta de informação clara ou cobrança desproporcional.
 
 **Locadoras de veículos:** a relação entre você e a locadora é de consumo. Taxas administrativas abusivas cobradas pela locadora ao repassar uma multa de trânsito podem ser questionadas com base no CDC, mesmo que a multa em si (do órgão público) siga as regras do CTB.
 
@@ -5774,17 +5774,17 @@ CTB rege a relação entre Estado e condutor (multa oficial). CDC rege relaçõe
     conteudo: `
 ## Estacionamento privado não aplica "multa" oficial
 
-Diferente da zona azul (pública), estacionamentos de shoppings, supermercados e edifícios são espaços **privados**. Eles não têm competência para aplicar multas de trânsito — o que cobram são taxas contratuais, regidas pelo Código de Defesa do Consumidor.
+Diferente da zona azul (pública), estacionamentos de shoppings, supermercados e edifícios são espaços **privados**. Eles não têm competência para aplicar multas de trânsito. O que cobram são taxas contratuais, regidas pelo Código de Defesa do Consumidor.
 
 ## Cobranças comuns e sua legalidade
 
 **Taxa por tempo excedido:** legal, desde que informada claramente na entrada (placa visível com valores e regras).
 
-**Cobrança por "dano" sem comprovação:** o estabelecimento precisa provar o dano causado por você especificamente — cobrança genérica sem evidência é abusiva.
+**Cobrança por "dano" sem comprovação:** o estabelecimento precisa provar o dano causado por você especificamente. Cobrança genérica sem evidência é abusiva.
 
 **Taxa por perda de ticket:** deve ser razoável e informada previamente. Valores excessivos podem ser contestados.
 
-**"Multa" por mau estacionamento dentro do estacionamento privado:** não existe amparo legal para isso — o estabelecimento pode, no máximo, solicitar que você reposicione o veículo ou, em casos extremos, acionar guincho com aviso prévio adequado.
+**"Multa" por mau estacionamento dentro do estacionamento privado:** não existe amparo legal para isso. O estabelecimento pode, no máximo, solicitar que você reposicione o veículo ou, em casos extremos, acionar guincho com aviso prévio adequado.
 
 ## Como contestar cobranças abusivas
 
@@ -5795,13 +5795,13 @@ Diferente da zona azul (pública), estacionamentos de shoppings, supermercados e
 
 ## Estacionamento gratuito com "multa" por tempo
 
-Alguns estabelecimentos oferecem gratuidade limitada (ex: 2 horas grátis) com cobrança progressiva depois. Isso é legal desde que informado claramente — mas o valor cobrado deve ser proporcional e razoável, não punitivo de forma desproporcional.
+Alguns estabelecimentos oferecem gratuidade limitada (ex: 2 horas grátis) com cobrança progressiva depois. Isso é legal desde que informado claramente. Mas o valor cobrado deve ser proporcional e razoável, não punitivo de forma desproporcional.
     `
   },
   {
     slug: "multa-nao-pagar-consequencias-reais",
     titulo: "O Que Realmente Acontece se Você Não Pagar uma Multa",
-    descricao: "Separamos o mito da realidade sobre as consequências de não pagar uma multa de trânsito — o que é verdade e o que é exagero. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
+    descricao: "Separamos o mito da realidade sobre as consequências de não pagar uma multa de trânsito. O que é verdade e o que é exagero. Analise sua multa grátis e veja se ela tem erro que pode anulá-la.",
     categoria: "Pagamento",
     tempoLeitura: "4 min",
     imagemEmoji: "❓",
@@ -5814,11 +5814,11 @@ Alguns estabelecimentos oferecem gratuidade limitada (ex: 2 horas grátis) com c
 
 **Inscrição em dívida ativa:** após cerca de 30 a 60 dias sem pagamento, a multa vai para dívida ativa do estado/município.
 
-**Bloqueio do licenciamento:** você não consegue licenciar o veículo com débitos pendentes — isso é a consequência mais imediata e sentida.
+**Bloqueio do licenciamento:** você não consegue licenciar o veículo com débitos pendentes. Isso é a consequência mais imediata e sentida.
 
 **Possível inscrição em cadastros de inadimplentes (CADIN):** alguns estados inscrevem débitos de trânsito no CADIN, o que pode dificultar acesso a crédito público.
 
-**Execução fiscal (casos extremos):** para débitos altos e antigos, o estado pode entrar com ação judicial de cobrança — mas isso é incomum para multas de valor baixo isoladas.
+**Execução fiscal (casos extremos):** para débitos altos e antigos, o estado pode entrar com ação judicial de cobrança. Mas isso é incomum para multas de valor baixo isoladas.
 
 ## O que NÃO acontece
 
@@ -5826,11 +5826,11 @@ Alguns estabelecimentos oferecem gratuidade limitada (ex: 2 horas grátis) com c
 
 **Não vai automaticamente para Serasa/SPC.** Diferente de dívidas privadas, esse tipo de inscrição não é automática (embora o CADIN tenha efeito parecido em alguns contextos).
 
-**Não impede a venda do veículo diretamente.** É possível transferir com débitos pendentes, mas o comprador assume a responsabilidade — e isso deve ser negociado no preço.
+**Não impede a venda do veículo diretamente.** É possível transferir com débitos pendentes, mas o comprador assume a responsabilidade. E isso deve ser negociado no preço.
 
 ## Os pontos continuam contando mesmo sem pagar?
 
-Sim — os pontos são lançados independentemente do pagamento, a partir do momento em que a multa transita em julgado administrativamente (ou seja, quando não cabe mais recurso).
+Sim. Os pontos são lançados independentemente do pagamento, a partir do momento em que a multa transita em julgado administrativamente (ou seja, quando não cabe mais recurso).
 
 ## Recomendação
 
@@ -5880,7 +5880,7 @@ Só parcele multas que você já decidiu não contestar. Se ainda há prazo de r
 
 ## Campanhas de anistia
 
-Periodicamente, alguns estados lançam programas de anistia com desconto de até 100% em juros e multas de mora para quitação à vista ou parcelada — vale acompanhar o site do DETRAN local para aproveitar essas oportunidades.
+Periodicamente, alguns estados lançam programas de anistia com desconto de até 100% em juros e multas de mora para quitação à vista ou parcelada. Vale acompanhar o site do DETRAN local para aproveitar essas oportunidades.
     `
   },
   {
@@ -5899,13 +5899,13 @@ Ao ser aprovado nos exames, o novo condutor recebe a **Permissão para Dirigir (
 
 ## Regras mais rígidas para condutores provisórios
 
-Cometer **uma única infração grave ou gravíssima**, ou ser reincidente em infração média durante o período provisório, resulta na **não emissão da CNH definitiva** — o condutor precisa refazer o processo de habilitação completo (exames teóricos e práticos).
+Cometer **uma única infração grave ou gravíssima**, ou ser reincidente em infração média durante o período provisório, resulta na **não emissão da CNH definitiva**. O condutor precisa refazer o processo de habilitação completo (exames teóricos e práticos).
 
 Essa é uma consequência muito mais severa do que para quem já tem CNH definitiva.
 
 ## Por que isso torna o recurso ainda mais importante
 
-Para condutores provisórios, uma multa contestável não é "só" questão de pontos e valor financeiro — pode significar ter que refazer todo o processo de habilitação, com custo de tempo e dinheiro significativamente maior.
+Para condutores provisórios, uma multa contestável não é "só" questão de pontos e valor financeiro. Pode significar ter que refazer todo o processo de habilitação, com custo de tempo e dinheiro significativamente maior.
 
 ## Estratégia para novos condutores
 
@@ -5917,7 +5917,7 @@ Para condutores provisórios, uma multa contestável não é "só" questão de p
 
 ## E se eu perder a CNH definitiva por uma multa que era contestável mas não recorri a tempo?
 
-Infelizmente, não há como reverter depois — por isso a urgência em analisar e recorrer dentro do prazo de 15 dias é ainda mais crítica para quem está no período provisório.
+Infelizmente, não há como reverter depois. Por isso a urgência em analisar e recorrer dentro do prazo de 15 dias é ainda mais crítica para quem está no período provisório.
     `
   },
   {
@@ -5932,23 +5932,23 @@ Infelizmente, não há como reverter depois — por isso a urgência em analisar
     conteudo: `
 ## Placas especiais e o CTB
 
-Veículos oficiais (governo), diplomáticos e blindados seguem, em regra, as mesmas normas do CTB quanto a infrações — mas há particularidades processuais.
+Veículos oficiais (governo), diplomáticos e blindados seguem, em regra, as mesmas normas do CTB quanto a infrações. Mas há particularidades processuais.
 
 ## Veículos oficiais (placas oficiais)
 
-A multa é aplicada normalmente, mas a responsabilidade financeira pode recair sobre o órgão público proprietário, exigindo indicação do condutor responsável (servidor) para fins de pontuação na CNH — processo semelhante à indicação de condutor em frotas empresariais, mas com trâmite interno do órgão.
+A multa é aplicada normalmente, mas a responsabilidade financeira pode recair sobre o órgão público proprietário, exigindo indicação do condutor responsável (servidor) para fins de pontuação na CNH. Processo semelhante à indicação de condutor em frotas empresariais, mas com trâmite interno do órgão.
 
 ## Veículos diplomáticos
 
-Por convenções internacionais (Convenção de Viena sobre Relações Diplomáticas), agentes diplomáticos têm imunidade de jurisdição em determinadas situações, o que pode limitar a aplicação coercitiva de algumas sanções — mas isso é uma exceção específica e não se aplica à generalidade dos casos, exigindo análise jurídica caso a caso.
+Por convenções internacionais (Convenção de Viena sobre Relações Diplomáticas), agentes diplomáticos têm imunidade de jurisdição em determinadas situações, o que pode limitar a aplicação coercitiva de algumas sanções. Mas isso é uma exceção específica e não se aplica à generalidade dos casos, exigindo análise jurídica caso a caso.
 
 ## Veículos blindados
 
-Não há regra especial de trânsito para veículos blindados — eles seguem exatamente as mesmas normas de qualquer veículo comum. A única diferença prática está em características técnicas (peso, dimensões) que podem ser relevantes para infrações específicas de excesso de peso ou dimensões, já que a blindagem altera essas características do veículo original.
+Não há regra especial de trânsito para veículos blindados. Eles seguem exatamente as mesmas normas de qualquer veículo comum. A única diferença prática está em características técnicas (peso, dimensões) que podem ser relevantes para infrações específicas de excesso de peso ou dimensões, já que a blindagem altera essas características do veículo original.
 
 ## Recurso para esses casos
 
-O processo de defesa prévia e recurso segue o mesmo caminho do CTB — não há tribunal ou instância especial para veículos com placas diferenciadas, exceto nas situações de imunidade diplomática expressamente previstas em tratados internacionais.
+O processo de defesa prévia e recurso segue o mesmo caminho do CTB. Não há tribunal ou instância especial para veículos com placas diferenciadas, exceto nas situações de imunidade diplomática expressamente previstas em tratados internacionais.
     `
   },
   {
@@ -5963,17 +5963,17 @@ O processo de defesa prévia e recurso segue o mesmo caminho do CTB — não há
     conteudo: `
 ## O que é o curso de reciclagem
 
-É um curso teórico obrigatório previsto no Art. 268 do CTB, exigido em situações específicas relacionadas à recuperação do direito de dirigir após suspensão ou cassação da CNH — não é uma forma voluntária de "limpar" a pontuação.
+É um curso teórico obrigatório previsto no Art. 268 do CTB, exigido em situações específicas relacionadas à recuperação do direito de dirigir após suspensão ou cassação da CNH. Não é uma forma voluntária de "limpar" a pontuação.
 
 ## Quando o curso é obrigatório
 
 **Após suspensão da CNH por pontuação:** ao final do período de suspensão (mínimo 6 meses), o condutor deve fazer o curso de reciclagem antes de reaver a habilitação.
 
-**Após cassação da CNH:** em casos mais graves (reincidência em suspensão dentro de 12 meses, ou infrações gravíssimas específicas), a CNH é cassada e o condutor precisa refazer todo o processo de habilitação, incluindo exames — o curso de reciclagem faz parte desse processo de reabilitação.
+**Após cassação da CNH:** em casos mais graves (reincidência em suspensão dentro de 12 meses, ou infrações gravíssimas específicas), a CNH é cassada e o condutor precisa refazer todo o processo de habilitação, incluindo exames. O curso de reciclagem faz parte desse processo de reabilitação.
 
 ## O curso de reciclagem tira pontos da CNH?
 
-**Não.** Esse é o mito mais comum sobre o assunto. O curso é uma exigência para reaver o direito de dirigir após suspensão — ele não interfere nos pontos, que continuam seguindo a regra normal de expiração em 12 meses ou cancelamento via recurso administrativo bem-sucedido.
+**Não.** Esse é o mito mais comum sobre o assunto. O curso é uma exigência para reaver o direito de dirigir após suspensão. Ele não interfere nos pontos, que continuam seguindo a regra normal de expiração em 12 meses ou cancelamento via recurso administrativo bem-sucedido.
 
 ## Como funciona o curso
 
@@ -5984,7 +5984,7 @@ O processo de defesa prévia e recurso segue o mesmo caminho do CTB — não há
 
 ## Existe curso voluntário para melhorar comportamento no trânsito?
 
-Sim — cursos de direção defensiva oferecidos voluntariamente por CFCs ou empresas de treinamento são excelentes para segurança, mas **não têm nenhum efeito legal sobre pontos ou multas** — são puramente educacionais e voluntários.
+Sim. Cursos de direção defensiva oferecidos voluntariamente por CFCs ou empresas de treinamento são excelentes para segurança, mas **não têm nenhum efeito legal sobre pontos ou multas**. São puramente educacionais e voluntários.
     `
   },
   {
@@ -5999,21 +5999,21 @@ Sim — cursos de direção defensiva oferecidos voluntariamente por CFCs ou emp
     conteudo: `
 ## O que é um radar educativo
 
-Também chamado de radar pedagógico, é um equipamento que mostra a velocidade do veículo em um painel luminoso, mas **não está integrado ao sistema de autuação** do órgão de trânsito — sua função é apenas informativa, incentivando o condutor a reduzir a velocidade voluntariamente.
+Também chamado de radar pedagógico, é um equipamento que mostra a velocidade do veículo em um painel luminoso, mas **não está integrado ao sistema de autuação** do órgão de trânsito. Sua função é apenas informativa, incentivando o condutor a reduzir a velocidade voluntariamente.
 
 ## Como diferenciar radar educativo de radar de fiscalização
 
 **Radar educativo:** geralmente exibe um painel com a velocidade em tempo real ("Você está a X km/h"), às vezes com carinha feliz/triste ou luz verde/vermelha. Não há cadastro oficial de autuação vinculado.
 
-**Radar de fiscalização:** não necessariamente exibe painel — funciona silenciosamente registrando a infração para posterior notificação por correio ou sistema eletrônico. Precisa estar cadastrado no órgão de trânsito com sinalização de "Fiscalização Eletrônica" prevista em lei.
+**Radar de fiscalização:** não necessariamente exibe painel. Funciona silenciosamente registrando a infração para posterior notificação por correio ou sistema eletrônico. Precisa estar cadastrado no órgão de trânsito com sinalização de "Fiscalização Eletrônica" prevista em lei.
 
-## Recebi multa mas achei que era radar educativo — o que fazer?
+## Recebi multa mas achei que era radar educativo. O que fazer?
 
 Se você recebeu uma notificação de multa em local onde havia apenas um radar com painel educativo (sem sinalização de fiscalização eletrônica oficial), isso é forte argumento de defesa: a ausência de sinalização adequada de fiscalização (placa regulamentar específica) é vício formal conforme a Resolução CONTRAN nº 396.
 
 ## Como confirmar a natureza do equipamento
 
-Consulte o cadastro de equipamentos de fiscalização eletrônica do órgão de trânsito responsável pela via — todo radar com poder de multa deve estar oficialmente cadastrado e ter número de série homologado pelo INMETRO, informação que deve constar no auto de infração.
+Consulte o cadastro de equipamentos de fiscalização eletrônica do órgão de trânsito responsável pela via. Todo radar com poder de multa deve estar oficialmente cadastrado e ter número de série homologado pelo INMETRO, informação que deve constar no auto de infração.
     `
   },
   {
@@ -6050,7 +6050,7 @@ Prevista no Art. 267 do CTB, a advertência por escrito é uma penalidade altern
 
 ## A advertência pode ser convertida em multa?
 
-Não há conversão automática — advertência e multa são categorizados no momento da autuação. Se você recebeu multa e acredita que caberia advertência no seu caso (infração leve, sem reincidência), você pode argumentar isso no recurso, mas é uma decisão discricionária do órgão, não um direito automático de conversão.
+Não há conversão automática. Advertência e multa são categorizados no momento da autuação. Se você recebeu multa e acredita que caberia advertência no seu caso (infração leve, sem reincidência), você pode argumentar isso no recurso, mas é uma decisão discricionária do órgão, não um direito automático de conversão.
 
 ## Posso recorrer de uma advertência?
 
@@ -6073,17 +6073,17 @@ Diretamente, **não**. Multas de trânsito são dívidas com o poder público (a
 
 ## Onde a multa realmente pode aparecer
 
-**CADIN (Cadastro Informativo de Créditos não Quitados do Setor Público):** alguns estados inscrevem débitos de trânsito em dívida ativa nesse cadastro, que é consultado por órgãos públicos, mas tem alcance mais restrito que Serasa/SPC — geralmente afeta acesso a créditos públicos, não financiamentos privados diretamente.
+**CADIN (Cadastro Informativo de Créditos não Quitados do Setor Público):** alguns estados inscrevem débitos de trânsito em dívida ativa nesse cadastro, que é consultado por órgãos públicos, mas tem alcance mais restrito que Serasa/SPC. Geralmente afeta acesso a créditos públicos, não financiamentos privados diretamente.
 
-**Score indireto:** ferramentas de score moderno (como o Serasa Score) usam dados de comportamento financeiro amplo, incluindo, em alguns modelos, informações públicas de protesto e dívida ativa — mas isso varia por metodologia e não é uma regra fixa aplicável a toda multa.
+**Score indireto:** ferramentas de score moderno (como o Serasa Score) usam dados de comportamento financeiro amplo, incluindo, em alguns modelos, informações públicas de protesto e dívida ativa. Mas isso varia por metodologia e não é uma regra fixa aplicável a toda multa.
 
 ## O que realmente prejudica seu crédito relacionado a multas
 
-O maior risco financeiro indireto é: débitos de multa em dívida ativa podem gerar **protesto em cartório**, dependendo da política do estado — e protesto sim afeta diretamente o score e aparece em consultas de crédito.
+O maior risco financeiro indireto é: débitos de multa em dívida ativa podem gerar **protesto em cartório**, dependendo da política do estado. E protesto sim afeta diretamente o score e aparece em consultas de crédito.
 
 ## Como evitar esse risco
 
-- Não deixe multas acumularem sem solução — pague, parcele ou recorra
+- Não deixe multas acumularem sem solução. Pague, parcele ou recorra
 - Se optar por não pagar por discordar, sempre formalize o recurso administrativo
 - Monitore se o estado onde o veículo está registrado tem política de protesto de dívida ativa de trânsito
 
@@ -6119,7 +6119,7 @@ O DETRAN do Santa Catarina disponibiliza o portal **detran.sc.gov.br** para cons
 
 ## Peculiaridade de Florianópolis
 
-Na capital Florianópolis, a fiscalização municipal de trânsito é feita pela SETUF/PMF, separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Florianópolis, a fiscalização municipal de trânsito é feita pela SETUF/PMF, separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Santa Catarina
 
@@ -6145,7 +6145,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN SC mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN SC, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN SC, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6175,7 +6175,7 @@ O DETRAN do Goiás disponibiliza o portal **detran.go.gov.br** para consulta e c
 
 ## Peculiaridade de Goiânia
 
-Na capital Goiânia, a fiscalização municipal de trânsito é feita pela SMM (Superintendência Municipal de Mobilidade), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Goiânia, a fiscalização municipal de trânsito é feita pela SMM (Superintendência Municipal de Mobilidade), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Goiás
 
@@ -6201,7 +6201,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN GO mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN GO, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN GO, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6231,7 +6231,7 @@ O DETRAN do Espírito Santo disponibiliza o portal **detran.es.gov.br** para con
 
 ## Peculiaridade de Vitória
 
-Na capital Vitória, a fiscalização municipal de trânsito é feita pela Setran (Secretaria de Transportes), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Vitória, a fiscalização municipal de trânsito é feita pela Setran (Secretaria de Transportes), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Espírito Santo
 
@@ -6257,7 +6257,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN ES mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN ES, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN ES, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6287,7 +6287,7 @@ O DETRAN do Pará disponibiliza o portal **detran.pa.gov.br** para consulta e co
 
 ## Peculiaridade de Belém
 
-Na capital Belém, a fiscalização municipal de trânsito é feita pela SeMOB (Superintendência de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Belém, a fiscalização municipal de trânsito é feita pela SeMOB (Superintendência de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Pará
 
@@ -6313,7 +6313,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN PA mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN PA, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN PA, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6343,7 +6343,7 @@ O DETRAN do Amazonas disponibiliza o portal **detran.am.gov.br** para consulta e
 
 ## Peculiaridade de Manaus
 
-Na capital Manaus, a fiscalização municipal de trânsito é feita pela IMMU (Instituto Municipal de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Manaus, a fiscalização municipal de trânsito é feita pela IMMU (Instituto Municipal de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Amazonas
 
@@ -6369,7 +6369,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN AM mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN AM, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN AM, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6399,7 +6399,7 @@ O DETRAN do Maranhão disponibiliza o portal **detran.ma.gov.br** para consulta 
 
 ## Peculiaridade de São Luís
 
-Na capital São Luís, a fiscalização municipal de trânsito é feita pela SMTT (Secretaria Municipal de Trânsito e Transportes), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital São Luís, a fiscalização municipal de trânsito é feita pela SMTT (Secretaria Municipal de Trânsito e Transportes), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Maranhão
 
@@ -6425,7 +6425,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN MA mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN MA, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN MA, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6455,7 +6455,7 @@ O DETRAN do Mato Grosso disponibiliza o portal **detran.mt.gov.br** para consult
 
 ## Peculiaridade de Cuiabá
 
-Na capital Cuiabá, a fiscalização municipal de trânsito é feita pela Semob (Secretaria de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Cuiabá, a fiscalização municipal de trânsito é feita pela Semob (Secretaria de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Mato Grosso
 
@@ -6481,7 +6481,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN MT mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN MT, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN MT, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6511,7 +6511,7 @@ O DETRAN do Mato Grosso do Sul disponibiliza o portal **detran.ms.gov.br** para 
 
 ## Peculiaridade de Campo Grande
 
-Na capital Campo Grande, a fiscalização municipal de trânsito é feita pela Agetran (Agência Municipal de Transporte e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Campo Grande, a fiscalização municipal de trânsito é feita pela Agetran (Agência Municipal de Transporte e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Mato Grosso do Sul
 
@@ -6537,7 +6537,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN MS mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN MS, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN MS, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6567,7 +6567,7 @@ O DETRAN do Paraíba disponibiliza o portal **detran.pb.gov.br** para consulta e
 
 ## Peculiaridade de João Pessoa
 
-Na capital João Pessoa, a fiscalização municipal de trânsito é feita pela STTrans (Superintendência de Trânsito e Transporte), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital João Pessoa, a fiscalização municipal de trânsito é feita pela STTrans (Superintendência de Trânsito e Transporte), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Paraíba
 
@@ -6593,7 +6593,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN PB mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN PB, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN PB, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6623,7 +6623,7 @@ O DETRAN do Rio Grande do Norte disponibiliza o portal **detran.rn.gov.br** para
 
 ## Peculiaridade de Natal
 
-Na capital Natal, a fiscalização municipal de trânsito é feita pela STTU (Secretaria de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Natal, a fiscalização municipal de trânsito é feita pela STTU (Secretaria de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Rio Grande do Norte
 
@@ -6649,7 +6649,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN RN mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN RN, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN RN, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6679,7 +6679,7 @@ O DETRAN do Alagoas disponibiliza o portal **detran.al.gov.br** para consulta e 
 
 ## Peculiaridade de Maceió
 
-Na capital Maceió, a fiscalização municipal de trânsito é feita pela SMTT (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Maceió, a fiscalização municipal de trânsito é feita pela SMTT (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Alagoas
 
@@ -6705,7 +6705,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN AL mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN AL, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN AL, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6735,7 +6735,7 @@ O DETRAN do Piauí disponibiliza o portal **detran.pi.gov.br** para consulta e c
 
 ## Peculiaridade de Teresina
 
-Na capital Teresina, a fiscalização municipal de trânsito é feita pela Strans (Superintendência de Transporte e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Teresina, a fiscalização municipal de trânsito é feita pela Strans (Superintendência de Transporte e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Piauí
 
@@ -6761,7 +6761,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN PI mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN PI, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN PI, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6791,7 +6791,7 @@ O DETRAN do Sergipe disponibiliza o portal **detran.se.gov.br** para consulta e 
 
 ## Peculiaridade de Aracaju
 
-Na capital Aracaju, a fiscalização municipal de trânsito é feita pela SMTT (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Aracaju, a fiscalização municipal de trânsito é feita pela SMTT (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Sergipe
 
@@ -6817,7 +6817,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN SE mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN SE, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN SE, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6847,7 +6847,7 @@ O DETRAN do Rondônia disponibiliza o portal **detran.ro.gov.br** para consulta 
 
 ## Peculiaridade de Porto Velho
 
-Na capital Porto Velho, a fiscalização municipal de trânsito é feita pela SEMTRAN (Secretaria Municipal de Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Porto Velho, a fiscalização municipal de trânsito é feita pela SEMTRAN (Secretaria Municipal de Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Rondônia
 
@@ -6873,7 +6873,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN RO mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN RO, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN RO, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6903,7 +6903,7 @@ O DETRAN do Tocantins disponibiliza o portal **detran.to.gov.br** para consulta 
 
 ## Peculiaridade de Palmas
 
-Na capital Palmas, a fiscalização municipal de trânsito é feita pela ITT64 (Instituto de Trânsito e Transporte), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Palmas, a fiscalização municipal de trânsito é feita pela ITT64 (Instituto de Trânsito e Transporte), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Tocantins
 
@@ -6929,7 +6929,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN TO mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN TO, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN TO, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -6959,7 +6959,7 @@ O DETRAN do Acre disponibiliza o portal **detran.ac.gov.br** para consulta e con
 
 ## Peculiaridade de Rio Branco
 
-Na capital Rio Branco, a fiscalização municipal de trânsito é feita pela RBTRANS (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Rio Branco, a fiscalização municipal de trânsito é feita pela RBTRANS (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Acre
 
@@ -6985,7 +6985,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN AC mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN AC, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN AC, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -7015,7 +7015,7 @@ O DETRAN do Amapá disponibiliza o portal **detran.ap.gov.br** para consulta e c
 
 ## Peculiaridade de Macapá
 
-Na capital Macapá, a fiscalização municipal de trânsito é feita pela CTMAC (Coordenadoria de Trânsito de Macapá), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Macapá, a fiscalização municipal de trânsito é feita pela CTMAC (Coordenadoria de Trânsito de Macapá), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Amapá
 
@@ -7041,7 +7041,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN AP mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN AP, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN AP, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -7071,7 +7071,7 @@ O DETRAN do Roraima disponibiliza o portal **detran.rr.gov.br** para consulta e 
 
 ## Peculiaridade de Boa Vista
 
-Na capital Boa Vista, a fiscalização municipal de trânsito é feita pela SMTT (Secretaria Municipal de Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação — municipal ou estadual — para usar o canal correto de recurso.
+Na capital Boa Vista, a fiscalização municipal de trânsito é feita pela SMTT (Secretaria Municipal de Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
 
 ## Prazos no Roraima
 
@@ -7097,7 +7097,7 @@ Para quem prefere ou tem dificuldade com o sistema online, o DETRAN RR mantém p
 
 ## Nossa IA analisa seu auto de infração gratuitamente
 
-Antes de recorrer no DETRAN RR, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso — em segundos, de graça.
+Antes de recorrer no DETRAN RR, nossa Inteligência Artificial cruza o seu auto de infração com o CTB e o MBFT, campo por campo, e identifica automaticamente se há vício formal que fundamente o recurso. Em segundos, de graça.
     `
   },
   {
@@ -7120,37 +7120,37 @@ Neste artigo, comentamos cada inciso do Art. 280 e explicamos como usá-lo no se
 
 O artigo determina que, ao verificar uma infração, o agente deve lavrar o auto contendo obrigatoriamente os elementos listados em seus incisos. Vamos comentar cada um.
 
-## Art. 280, inciso I — Tipificação da infração
+## Art. 280, inciso I. Tipificação da infração
 
-O auto deve conter a **tipificação da infração** — ou seja, a indicação precisa do artigo e inciso do CTB que foi violado, com a descrição do comportamento observado.
+O auto deve conter a **tipificação da infração**. Ou seja, a indicação precisa do artigo e inciso do CTB que foi violado, com a descrição do comportamento observado.
 
 **Comentário:** não basta escrever "infração de trânsito". O auto precisa especificar qual norma foi violada e o que exatamente o condutor fez. Descrição genérica é vício formal.
 
-## Art. 280, inciso II — Local, data e hora
+## Art. 280, inciso II. Local, data e hora
 
 Deve constar o **local, a data e a hora** em que a infração foi cometida.
 
 **Comentário:** o local precisa ser completo (logradouro, número ou KM, bairro, município). "Av. Principal" sem mais detalhes é insuficiente. Data e hora imprecisas ou incompatíveis também são passíveis de contestação.
 
-## Art. 280, inciso III — Identificação do veículo
+## Art. 280, inciso III. Identificação do veículo
 
-O auto deve identificar o **veículo** — placa, marca, espécie e demais características que permitam sua identificação.
+O auto deve identificar o **veículo**. Placa, marca, espécie e demais características que permitam sua identificação.
 
 **Comentário:** erro na placa ou em dados do veículo é vício formal direto. Se a placa registrada não corresponde exatamente à do seu veículo, a autuação pode ser anulada.
 
-## Art. 280, inciso IV — O órgão ou entidade autuadora
+## Art. 280, inciso IV. O órgão ou entidade autuadora
 
 Deve constar a identificação do **órgão ou entidade** responsável pela autuação.
 
-**Comentário:** o órgão autuador precisa estar claramente identificado — é ele que define para onde vai o recurso e se tinha competência para aquela fiscalização.
+**Comentário:** o órgão autuador precisa estar claramente identificado. É ele que define para onde vai o recurso e se tinha competência para aquela fiscalização.
 
-## Art. 280, inciso V — Identificação do agente
+## Art. 280, inciso V. Identificação do agente
 
 Deve constar o **prontuário do agente** da autoridade de trânsito ou, no caso de equipamento, a identificação do equipamento.
 
 **Comentário:** o agente precisa ser identificável (nome e matrícula/prontuário). Campo ilegível ou ausente é vício formal frequente e eficaz em recursos.
 
-## Art. 280, §§ — Equipamentos eletrônicos
+## Art. 280, §§. Equipamentos eletrônicos
 
 Nos casos de infração registrada por **equipamento** (radar, câmera, etc.), o auto deve identificar o equipamento utilizado, e este deve ter aferição válida do INMETRO.
 
@@ -7170,7 +7170,7 @@ Na defesa prévia, cite o inciso específico que foi violado:
 
 ## Nossa IA analisa seu auto com base no Art. 280
 
-Nossa Inteligência Artificial verifica automaticamente cada inciso do Art. 280 no seu auto de infração e identifica se há vício formal que fundamente o recurso — campo por campo, em segundos e de graça.
+Nossa Inteligência Artificial verifica automaticamente cada inciso do Art. 280 no seu auto de infração e identifica se há vício formal que fundamente o recurso. Campo por campo, em segundos e de graça.
     `
   },
   {
@@ -7185,13 +7185,13 @@ Nossa Inteligência Artificial verifica automaticamente cada inciso do Art. 280 
     conteudo: `
 ## Por que a multa é de R$ 293,47
 
-O valor de **R$ 293,47** corresponde às infrações de natureza **gravíssima** no CTB — como avançar sinal vermelho, usar celular ao volante, excesso de velocidade acima de 50% e dirigir sem CNH. Além do valor, geram 7 pontos na CNH.
+O valor de **R$ 293,47** corresponde às infrações de natureza **gravíssima** no CTB. Como avançar sinal vermelho, usar celular ao volante, excesso de velocidade acima de 50% e dirigir sem CNH. Além do valor, geram 7 pontos na CNH.
 
 ## Existem dois descontos, não só um
 
 O **Art. 284 do CTB**, na redação da Lei 14.599/2023, prevê dois descontos diferentes, com condições bem distintas:
 
-- **20% de desconto** (paga R$ 234,78): basta quitar a multa até a data de vencimento da notificação. Não exige nenhum cadastro prévio, e **você continua podendo recorrer** — se o recurso for aceito depois, o valor pago é devolvido.
+- **20% de desconto** (paga R$ 234,78): basta quitar a multa até a data de vencimento da notificação. Não exige nenhum cadastro prévio, e **você continua podendo recorrer**. Se o recurso for aceito depois, o valor pago é devolvido.
 - **40% de desconto** (paga R$ 176,08): só para quem já havia aderido ao **SNE (Sistema de Notificação Eletrônica)** **antes** de a autuação ser notificada, e que declara, no ato do pagamento, que **desiste de apresentar defesa prévia e recurso**.
 
 ## Qual a vantagem de pagar com o desconto maior?
@@ -7205,7 +7205,7 @@ Só vale a pena se você já decidiu, sem dúvida, que não vai recorrer. Se ain
 
 ## Como aderir ao SNE para o desconto de 40%
 
-A adesão precisa ser feita **antes** de qualquer multa ser autuada — não dá para aderir depois de já ter recebido a notificação desta multa específica.
+A adesão precisa ser feita **antes** de qualquer multa ser autuada. Não dá para aderir depois de já ter recebido a notificação desta multa específica.
 
 1. Baixe o app **CNH Digital** (antiga Carteira Digital de Trânsito) ou acesse o portal **gov.br**
 2. Adira ao Sistema de Notificação Eletrônica (SNE) para os seus veículos
@@ -7220,11 +7220,11 @@ Para uma multa gravíssima de R$ 293,47:
 |-------|-------------|---------------|------------------------------|
 | Pagar com 20% (até o vencimento) | R$ 234,78 | 7 pontos | Sim |
 | Pagar com 40% (SNE prévio) | R$ 176,08 | 7 pontos | Não |
-| Recorrer e ganhar | R$ 0,00 | 0 pontos | — |
+| Recorrer e ganhar | R$ 0,00 | 0 pontos |. |
 
 ## Antes de pagar, verifique se dá para cancelar
 
-O desconto de 40% é bom, mas cancelar a multa é ainda melhor — você não paga nada e não leva os pontos. Antes de aproveitar o desconto, vale conferir se o auto de infração tem algum vício formal que permita o recurso.
+O desconto de 40% é bom, mas cancelar a multa é ainda melhor. Você não paga nada e não leva os pontos. Antes de aproveitar o desconto, vale conferir se o auto de infração tem algum vício formal que permita o recurso.
 
 Nossa IA analisa o seu auto de infração gratuitamente e diz, em segundos, se há base para contestar. Se não houver, aí sim o desconto de 40% é o caminho mais inteligente.
     `
@@ -7241,7 +7241,7 @@ Nossa IA analisa o seu auto de infração gratuitamente e diz, em segundos, se h
     conteudo: `
 ## Radar educativo pode multar?
 
-**Não.** O radar educativo (ou pedagógico) tem função exclusivamente informativa — ele mostra a sua velocidade em um painel luminoso para incentivar a redução voluntária, mas **não está integrado ao sistema de autuação** do órgão de trânsito.
+**Não.** O radar educativo (ou pedagógico) tem função exclusivamente informativa. Ele mostra a sua velocidade em um painel luminoso para incentivar a redução voluntária, mas **não está integrado ao sistema de autuação** do órgão de trânsito.
 
 ## Como reconhecer um radar educativo
 
@@ -7261,7 +7261,7 @@ O radar que aplica multa:
 
 ## Recebi multa mas achei que era radar educativo
 
-Se você recebeu uma notificação de multa em um local onde havia apenas um radar com painel educativo — sem a sinalização regulamentar de fiscalização eletrônica —, isso é um forte argumento de defesa.
+Se você recebeu uma notificação de multa em um local onde havia apenas um radar com painel educativo. Sem a sinalização regulamentar de fiscalização eletrônica. Isso é um forte argumento de defesa.
 
 A **Resolução CONTRAN nº 396** exige sinalização específica antes de qualquer equipamento que aplique multa. A ausência dessa sinalização é vício formal que pode anular a autuação.
 
@@ -7274,7 +7274,7 @@ A **Resolução CONTRAN nº 396** exige sinalização específica antes de qualq
 
 ## Foi multado por um radar que parecia educativo?
 
-Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuação cumpre todos os requisitos legais — incluindo a sinalização e a homologação do equipamento. Em segundos, você descobre se há base para recorrer.
+Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuação cumpre todos os requisitos legais. Incluindo a sinalização e a homologação do equipamento. Em segundos, você descobre se há base para recorrer.
     `
   },
   {
@@ -7291,25 +7291,25 @@ Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuaç�
 
 Desde a Lei nº 14.071/2020, em vigor desde 2021, o limite de pontos para suspensão da CNH deixou de ser fixo em 40. Ele é **escalonado**: pode ser 40, 30 ou 20 pontos, dependendo de quantas infrações gravíssimas você cometeu nos últimos 12 meses.
 
-Muita gente ainda não percebeu essa mudança porque, na prática, ela só afeta quem realmente acumula infração gravíssima — para o motorista sem gravíssima no período, o limite continua sendo 40.
+Muita gente ainda não percebeu essa mudança porque, na prática, ela só afeta quem realmente acumula infração gravíssima. Para o motorista sem gravíssima no período, o limite continua sendo 40.
 
 ## Os três limites de pontos em 2026
 
-**40 pontos** — para o motorista com "ficha limpa", ou seja, **nenhuma infração gravíssima** nos últimos 12 meses.
+**40 pontos**. Para o motorista com "ficha limpa", ou seja, **nenhuma infração gravíssima** nos últimos 12 meses.
 
-**30 pontos** — se você tem **uma infração gravíssima** registrada no período. Basta uma gravíssima (como avançar sinal vermelho) para o limite cair de 40 para 30.
+**30 pontos**. Se você tem **uma infração gravíssima** registrada no período. Basta uma gravíssima (como avançar sinal vermelho) para o limite cair de 40 para 30.
 
-**20 pontos** — se você tem **duas ou mais infrações gravíssimas** no período. O sistema trava nesse patamar e a suspensão chega muito mais cedo.
+**20 pontos**. Se você tem **duas ou mais infrações gravíssimas** no período. O sistema trava nesse patamar e a suspensão chega muito mais cedo.
 
 ## Como o sistema calcula automaticamente
 
 O DETRAN monitora seu CPF e ajusta o limite automaticamente a cada nova infração gravíssima registrada. Não existe mais a "margem garantida" de 40 pontos para todo mundo.
 
-Exemplo prático: você tem 27 pontos acumulados só de infrações leves e médias — ainda está dentro do limite de 40. Mas se cometer uma infração gravíssima, o teto cai para 30, e você fica muito perto da suspensão.
+Exemplo prático: você tem 27 pontos acumulados só de infrações leves e médias. Ainda está dentro do limite de 40. Mas se cometer uma infração gravíssima, o teto cai para 30, e você fica muito perto da suspensão.
 
 ## Exceção para motoristas profissionais (EAR)
 
-Motoristas com a observação **EAR (Exerce Atividade Remunerada)** na CNH — motoristas de aplicativo, taxistas e caminhoneiros — mantêm o limite fixo de **40 pontos**, independentemente do número de infrações gravíssimas. A medida existe para proteger o exercício da profissão.
+Motoristas com a observação **EAR (Exerce Atividade Remunerada)** na CNH. Motoristas de aplicativo, taxistas e caminhoneiros. Mantêm o limite fixo de **40 pontos**, independentemente do número de infrações gravíssimas. A medida existe para proteger o exercício da profissão.
 
 Atenção: isso vale apenas para suspensão por acúmulo de pontos. As infrações autossuspensivas ainda geram suspensão normalmente.
 
@@ -7324,7 +7324,7 @@ Algumas condutas geram processo de suspensão imediato, mesmo que você não ten
 
 ## Como se proteger da suspensão
 
-**Recorrer das multas é a principal defesa.** Se você recorre de uma multa gravíssima e ganha, ela não conta no seu histórico — e o seu limite não cai para 30 ou 20 pontos.
+**Recorrer das multas é a principal defesa.** Se você recorre de uma multa gravíssima e ganha, ela não conta no seu histórico. E o seu limite não cai para 30 ou 20 pontos.
 
 Por isso, cada infração gravíssima merece análise cuidadosa: cancelá-la protege não só o seu bolso, mas o seu limite de pontos inteiro.
 
@@ -7371,7 +7371,7 @@ O uso legítimo, breve e com finalidade de segurança não é infração.
 
 Por ser uma infração que depende da avaliação do agente, há espaço para recurso:
 
-**Descrição genérica:** o auto precisa descrever objetivamente a situação — quando, onde e como a buzina foi usada. "Uso indevido de buzina" sem detalhes é vício formal.
+**Descrição genérica:** o auto precisa descrever objetivamente a situação. Quando, onde e como a buzina foi usada. "Uso indevido de buzina" sem detalhes é vício formal.
 
 **Finalidade de segurança:** se você buzinou para alertar sobre um perigo real, isso descaracteriza a infração. Vale explicar a circunstância na defesa.
 
@@ -7379,7 +7379,7 @@ Por ser uma infração que depende da avaliação do agente, há espaço para re
 
 ## Foi multado por buzinar? Verifique se a multa é válida
 
-Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuação cumpre os requisitos legais — incluindo a descrição adequada da conduta. Em segundos, você descobre se há base para recorrer.
+Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuação cumpre os requisitos legais. Incluindo a descrição adequada da conduta. Em segundos, você descobre se há base para recorrer.
     `
   },
   {
@@ -7394,13 +7394,13 @@ Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuaç�
     conteudo: `
 ## A mudança de 2026: celular equiparado ao álcool
 
-Em 2026, a fiscalização passou a tratar o uso de celular ao volante com a mesma gravidade de dirigir sob efeito de álcool. A punição se manteve como infração **gravíssima** — **7 pontos** na CNH e multa de **R$ 293,47** — mas o rigor da fiscalização aumentou drasticamente, com "tolerância zero".
+Em 2026, a fiscalização passou a tratar o uso de celular ao volante com a mesma gravidade de dirigir sob efeito de álcool. A punição se manteve como infração **gravíssima**. **7 pontos** na CNH e multa de **R$ 293,47**. Mas o rigor da fiscalização aumentou drasticamente, com "tolerância zero".
 
 ## O que a nova fiscalização detecta
 
 A grande novidade de 2026 é a tecnologia: **radares inteligentes** conseguem detectar automaticamente o uso de celular através de reconhecimento de imagem, sem precisar de um agente flagrando presencialmente.
 
-Isso significa muito mais autuações — e também mais pontos técnicos que podem ser questionados.
+Isso significa muito mais autuações. E também mais pontos técnicos que podem ser questionados.
 
 ## O que caracteriza a infração
 
@@ -7409,7 +7409,7 @@ Segundo o CTB, é infração gravíssima dirigir:
 - Digitando mensagens
 - Falando ao telefone sem sistema viva-voz
 
-Usar o celular como GPS em suporte fixo, sem manuseá-lo, não é infração — desde que você não interaja com a tela em movimento.
+Usar o celular como GPS em suporte fixo, sem manuseá-lo, não é infração. Desde que você não interaja com a tela em movimento.
 
 ## Como contestar multa de celular ao volante
 
@@ -7417,7 +7417,7 @@ Com a fiscalização automática por imagem, os pontos de contestação são pri
 
 **Qualidade da imagem:** a foto precisa mostrar claramente o condutor manuseando o celular. Imagem que não comprova inequivocamente o uso é contestável.
 
-**Reconhecimento automático:** sistemas de detecção por IA podem cometer erros — confundir outros objetos (documento, lanche, volante) com celular. Se a imagem não é clara, questione.
+**Reconhecimento automático:** sistemas de detecção por IA podem cometer erros. Confundir outros objetos (documento, lanche, volante) com celular. Se a imagem não é clara, questione.
 
 **Homologação do equipamento:** os radares inteligentes também precisam de homologação INMETRO válida.
 
@@ -7440,7 +7440,7 @@ Como essa multa agora é detectada por sistemas automáticos, a análise técnic
     conteudo: `
 ## A nova regra dos ciclomotores em 2026
 
-A partir de **1º de janeiro de 2026**, os ciclomotores — aquelas motos de pequeno porte com motor de até 50 cilindradas, popularmente chamadas de "cinquentinhas" — passaram a exigir **registro obrigatório no Renavam e emplacamento**.
+A partir de **1º de janeiro de 2026**, os ciclomotores. Aquelas motos de pequeno porte com motor de até 50 cilindradas, popularmente chamadas de "cinquentinhas". Passaram a exigir **registro obrigatório no Renavam e emplacamento**.
 
 Antes dessa regra, muitos ciclomotores circulavam sem placa e sem registro formal. Agora, isso mudou.
 
@@ -7465,7 +7465,7 @@ Circular com ciclomotor sem placa ou em locais proibidos (como calçadas e ciclo
 
 Como a regra é nova (2026), há situações que podem gerar contestação:
 
-**Período de adaptação:** verifique se o seu estado estabeleceu prazo de adaptação ou tolerância para a regularização — alguns DETRANs deram prazos específicos.
+**Período de adaptação:** verifique se o seu estado estabeleceu prazo de adaptação ou tolerância para a regularização. Alguns DETRANs deram prazos específicos.
 
 **Enquadramento incorreto:** confirme se o veículo é realmente classificado como ciclomotor (até 50 cc) e não como motocicleta, pois as regras diferem.
 
@@ -7479,7 +7479,7 @@ Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuaç�
   {
     slug: "diferenca-entre-multa-e-infracao",
     titulo: "Qual a Diferença Entre Multa e Infração de Trânsito?",
-    descricao: "Multa e infração não são a mesma coisa — entenda a diferença de forma simples. E se você foi multado, veja grátis se a sua multa tem erro que pode anulá-la.",
+    descricao: "Multa e infração não são a mesma coisa. Entenda a diferença de forma simples. E se você foi multado, veja grátis se a sua multa tem erro que pode anulá-la.",
     categoria: "Dúvidas Frequentes",
     tempoLeitura: "3 min",
     imagemEmoji: "❓",
@@ -7488,7 +7488,7 @@ Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuaç�
     conteudo: `
 ## Multa e infração são a mesma coisa? Não
 
-Essa é uma das dúvidas mais comuns entre motoristas — e a resposta é clara: **infração e multa são coisas diferentes**, embora relacionadas.
+Essa é uma das dúvidas mais comuns entre motoristas. E a resposta é clara: **infração e multa são coisas diferentes**, embora relacionadas.
 
 ## O que é infração de trânsito
 
@@ -7512,11 +7512,11 @@ Um ponto importante: a multa não é a única penalidade possível. Uma mesma in
 - **Advertência** por escrito (em casos leves)
 - **Frequência obrigatória** em curso de reciclagem
 
-Exemplo: quem é flagrado na Lei Seca comete uma infração que gera multa, pontos, apreensão do veículo E processo de suspensão — várias penalidades de uma vez.
+Exemplo: quem é flagrado na Lei Seca comete uma infração que gera multa, pontos, apreensão do veículo E processo de suspensão. Várias penalidades de uma vez.
 
 ## Por que essa diferença importa para o recurso
 
-Quando você recorre, está contestando a **infração** (o ato que foi atribuído a você) e/ou a validade do auto. Se você ganha o recurso, a infração é anulada — e todas as penalidades ligadas a ela (multa, pontos) caem junto.
+Quando você recorre, está contestando a **infração** (o ato que foi atribuído a você) e/ou a validade do auto. Se você ganha o recurso, a infração é anulada. E todas as penalidades ligadas a ela (multa, pontos) caem junto.
 
 Por isso, entender que a infração é a origem de tudo ajuda a montar uma defesa mais eficaz.
 
@@ -7537,7 +7537,7 @@ Nossa IA analisa o seu auto de infração gratuitamente e verifica se a infraç�
     conteudo: `
 ## Multas que vão muito além do valor comum
 
-Muitos motoristas acham que a multa mais cara é a gravíssima de R$ 293,47. Mas existem infrações que ultrapassam **R$ 100 mil** — e outras tão específicas que quase ninguém conhece.
+Muitos motoristas acham que a multa mais cara é a gravíssima de R$ 293,47. Mas existem infrações que ultrapassam **R$ 100 mil**. E outras tão específicas que quase ninguém conhece.
 
 ## As multas mais caras do Brasil
 
@@ -7563,17 +7563,17 @@ Muitos motoristas acham que a multa mais cara é a gravíssima de R$ 293,47. Mas
 
 ## O que essas multas têm em comum
 
-Por serem menos comuns ou muito específicas, essas infrações frequentemente têm **autos mal preenchidos** — os agentes as aplicam com menos frequência, o que aumenta a chance de erros formais na descrição.
+Por serem menos comuns ou muito específicas, essas infrações frequentemente têm **autos mal preenchidos**. Os agentes as aplicam com menos frequência, o que aumenta a chance de erros formais na descrição.
 
 ## Recebeu uma multa incomum ou de valor alto?
 
-Justamente por serem menos rotineiras, essas autuações merecem análise cuidadosa. Nossa IA verifica gratuitamente se o seu auto de infração cumpre todos os requisitos do CTB e se há vício formal que permita o recurso — em segundos.
+Justamente por serem menos rotineiras, essas autuações merecem análise cuidadosa. Nossa IA verifica gratuitamente se o seu auto de infração cumpre todos os requisitos do CTB e se há vício formal que permita o recurso. Em segundos.
     `
   },
   {
     slug: "placas-sinalizacao-transito-multas",
     titulo: "Placas de Sinalização e Multas: O Que Você Precisa Saber",
-    descricao: "Entender as placas de trânsito evita multas — e placas mal posicionadas podem anulá-las. Analise sua multa grátis e veja se a sinalização irregular pode cancelar a sua.",
+    descricao: "Entender as placas de trânsito evita multas. E placas mal posicionadas podem anulá-las. Analise sua multa grátis e veja se a sinalização irregular pode cancelar a sua.",
     categoria: "Sinalização",
     tempoLeitura: "4 min",
     imagemEmoji: "🚸",
@@ -7610,7 +7610,7 @@ A responsabilidade pela manutenção adequada da sinalização é do **órgão d
 
 ## Como usar isso no recurso
 
-1. Volte ao local da infração (se possível) e fotografe a sinalização — ou a ausência dela
+1. Volte ao local da infração (se possível) e fotografe a sinalização. Ou a ausência dela
 2. Use o Google Street View para verificar a condição da sinalização em datas próximas
 3. Na defesa, cite a irregularidade da sinalização como vício que inviabiliza a autuação
 
@@ -7665,7 +7665,7 @@ Alguns veículos não estão sujeitos ao rodízio, incluendo (conforme a regulam
 
 **Horário incorreto:** confirme se a autuação foi realmente dentro da janela de restrição.
 
-**Feriado ou ponto facultativo:** o rodízio não vale nesses dias — verifique o calendário oficial da data.
+**Feriado ou ponto facultativo:** o rodízio não vale nesses dias. Verifique o calendário oficial da data.
 
 ## Foi multado no rodízio? Verifique se a multa é válida
 
@@ -7694,7 +7694,7 @@ A **Lei nº 13.290/2016** tornou obrigatório o uso de farol baixo aceso nas rod
 
 **Vias urbanas:** durante a noite ou em condições de baixa visibilidade (chuva, neblina).
 
-Uma exceção importante: em veículos equipados com **luz de rodagem diurna (DRL)** de fábrica, ligada automaticamente, a exigência pode ser considerada cumprida em algumas situações — mas isso depende da regulamentação e do tipo de via.
+Uma exceção importante: em veículos equipados com **luz de rodagem diurna (DRL)** de fábrica, ligada automaticamente, a exigência pode ser considerada cumprida em algumas situações. Mas isso depende da regulamentação e do tipo de via.
 
 ## A penalidade
 

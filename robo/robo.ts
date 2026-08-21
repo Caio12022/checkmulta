@@ -229,13 +229,13 @@ Ano atual: 2026.
 
 Responda APENAS com um objeto JSON válido, sem markdown, sem crases, sem texto antes ou depois. Formato exato:
 {
-  "titulo": "título chamativo, até 60 caracteres",
+  "titulo": "título chamativo, até 60 caracteres, sem travessão (—)",
   "descricao": "meta description de 140-160 caracteres, informativa e terminando com uma chamada para analisar a multa grátis",
   "tempoLeitura": "X min",
   "imagemEmoji": "um único emoji relacionado",
   "imagemBg": "um gradiente Tailwind no formato 'from-COR-600 to-COR-800' (ex: from-blue-600 to-blue-800)",
   "palavrasChave": ["3 a 5 palavras-chave de busca"],
-  "conteudo": "artigo em MARKDOWN, 600-900 palavras, com títulos ## , listas, negrito. Use linguagem clara. NÃO use aspas duplas dentro do texto (use aspas simples se precisar)."
+  "conteudo": "artigo em MARKDOWN, 600-900 palavras, com títulos ## , listas, negrito. Use linguagem clara. NÃO use aspas duplas dentro do texto (use aspas simples se precisar). NÃO use travessão (—) em nenhum lugar do texto: prefira ponto final com nova frase, ou vírgula."
 }
 
 REGRAS JURÍDICAS (muito importante, para evitar erros):
@@ -284,6 +284,7 @@ Faça o seguinte:
 3. Remova qualquer 'clique aqui', 'clique no botão' ou similar, reescrevendo a frase de forma natural.
 4. Mantenha o tom, o tamanho, a estrutura em markdown (títulos ##, listas, negrito) e o sentido geral do artigo.
 5. NÃO use aspas duplas dentro do texto (use aspas simples se precisar).
+6. NÃO use travessão (—) em nenhum lugar do texto: se encontrar, troque por ponto final com nova frase, ou por vírgula, o que ler melhor.
 
 Responda APENAS com o texto do artigo revisado em markdown, sem comentários, sem explicações, sem crases, sem nada antes ou depois.
 

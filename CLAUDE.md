@@ -179,6 +179,24 @@ o validador rebaixa para "verificar", não veio do texto plantado.
 
 ## Coisas já resolvidas (não repetir)
 
+- **Sem travessão (—) nos artigos de blog.** Caio pediu isso antes desta
+  sessão, mas a regra nunca tinha chegado a nenhum prompt nem a este
+  arquivo — nenhum dos 5 robôs a aplicava, e os artigos já publicados
+  estavam cheios (523 ocorrências nos 5 arquivos de dados). Duas partes:
+  1. **Conteúdo já publicado**: convertido mecanicamente — travessão vira
+     ponto final, espaço, próxima palavra maiúscula (`X — y` → `X. Y`).
+     Cobre também os poucos casos de aposto duplo (`X — a — Y` vira três
+     frases curtas) e títulos que usavam o padrão "Título — Subtítulo"
+     (viram "Título. Subtítulo" — pode ler estranho em alguns; revisar se
+     incomodar, são só 6 títulos, todos em Trânsito).
+  2. **Geração futura**: proibição adicionada nos 5 robôs, em DOIS pontos
+     de cada um — no campo `titulo` e no campo `conteudo` da chamada que
+     ESCREVE o artigo, e de novo na lista numerada da chamada que REVISA.
+     Importante: a revisão só relê `artigo.conteudo` (nunca o título), então
+     a proibição no título só funciona se estiver na geração — colocar só
+     na revisão seria proibição que existe numa camada que não alcança o
+     campo (mesma classe de defeito documentada abaixo, "Dois defeitos que
+     se repetem").
 - Sitemap e meta tags server-side (`getMetaParaRota` em `server.ts`) cobrem
   as 5 verticais, incluindo Energia e IBAMA.
 - `noindex` provisório removido da home-mãe (`Plataforma.tsx`, que assumiu a
