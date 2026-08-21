@@ -181,14 +181,23 @@ export default function CategoriaBlog() {
                 to={`/multa-de-transito/blog/${artigo.slug}`}
                 className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
               >
-                <div
-                  className="flex h-32 items-center justify-center"
-                  style={{ backgroundColor: corC.fundoBadge }}
-                >
-                  <span className="text-4xl opacity-60">
-                    {artigo.imagemEmoji}
-                  </span>
-                </div>
+                {artigo.imagemUrl ? (
+                  <img
+                    src={artigo.imagemUrl}
+                    alt=""
+                    className="h-32 w-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div
+                    className="flex h-32 items-center justify-center"
+                    style={{ backgroundColor: corC.fundoBadge }}
+                  >
+                    <span className="text-4xl opacity-60">
+                      {artigo.imagemEmoji}
+                    </span>
+                  </div>
+                )}
 
                 <div className="flex flex-1 flex-col p-5">
                   <span
