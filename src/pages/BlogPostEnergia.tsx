@@ -333,7 +333,7 @@ export default function BlogPostEnergia() {
       {/* Barra de urgência */}
       <div className="border-b border-emerald-100 bg-emerald-50">
         <div className="mx-auto max-w-3xl px-4 py-2.5 text-center text-[13px] text-emerald-800">
-          O prazo para contestar está na sua notificação.{" "}
+          Os 30 dias do laudo do medidor são prazo da distribuidora, não seu.{" "}
           <Link
             to="/energia?analisar=1"
             onClick={() => cta("barra_urgencia")}
@@ -398,10 +398,13 @@ export default function BlogPostEnergia() {
         <div className="mb-9 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
           <p className="mb-3 text-sm leading-relaxed text-slate-700">
             <strong className="font-semibold text-slate-900">
-              Recebeu uma cobrança de recuperação de consumo?
+              O prazo de 30 dias é da distribuidora — e ela precisa ter
+              cumprido.
             </strong>{" "}
-            Envie o TOI ou a notificação e veja grátis se a cobrança tem
-            falha.
+            Os arts. 250 e 592 da REN 1.000 dão à distribuidora 30 dias para o
+            relatório de inspeção do medidor. Se esse laudo não veio, ou veio
+            fora do prazo, a cobrança fica frágil. Envie o TOI e veja de graça
+            o que falta no seu caso.
           </p>
           <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-500">
             <span className="flex items-center gap-1.5">

@@ -422,7 +422,7 @@ No CheckMulta, é possível enviar o auto de infração para receber uma anális
 
   {
     slug: "processo-administrativo-sancionador-federal-do-ibama-entenda-o-fluxo",
-    titulo: "Processo Administrativo Sancionador Federal do IBAMA: Entenda o Fluxo",
+    titulo: "Processo sancionador do IBAMA: como funciona o fluxo",
     descricao: "Recebeu um auto de infração do IBAMA? Conheça as etapas do processo administrativo federal, prazos e direitos legais. Solicite uma análise gratuita hoje.",
     categoria: "Primeiros Passos",
     tempoLeitura: "5 min",
@@ -597,7 +597,7 @@ Envie o auto e receba uma análise que aponta as falhas encontradas, com o trech
   },
   {
     slug: "prescricao-do-auto-de-infracao-ambiental",
-    titulo: "Prescrição do auto de infração ambiental: quando a multa não vale mais",
+    titulo: "Prescrição do auto de infração ambiental do IBAMA",
     descricao: "Cinco anos para lavrar o auto e três anos sem movimentação do processo. Entenda a prescrição, um dos argumentos mais fortes contra multas antigas do IBAMA.",
     categoria: "Prescrição",
     tempoLeitura: "6 min",
@@ -636,7 +636,7 @@ Nossa análise verifica as datas do seu auto e aponta indícios de prescrição,
   },
   {
     slug: "requisitos-do-auto-de-infracao-ambiental-art-97",
-    titulo: "Os requisitos do auto de infração ambiental (art. 97) e como a falta deles anula",
+    titulo: "Requisitos do auto de infração ambiental (art. 97)",
     descricao: "Descrição clara da infração, enquadramento correto e prova técnica. Entenda os requisitos formais do art. 97 do Decreto 6.514/2008 e os vícios que anulam o auto.",
     categoria: "Vícios do Auto",
     tempoLeitura: "6 min",
@@ -724,7 +724,7 @@ Nossa análise identifica o órgão autuante e, sendo federal, verifica os requi
   },
   {
     slug: "conversao-de-multa-ambiental-em-servicos",
-    titulo: "Conversão da multa ambiental em serviços: uma alternativa ao pagamento",
+    titulo: "Conversão da multa ambiental em serviços",
     descricao: "A multa do IBAMA pode ser convertida em serviços de preservação e recuperação ambiental. Entenda a previsão do art. 72 da Lei 9.605/98.",
     categoria: "Alternativas",
     tempoLeitura: "5 min",

@@ -1233,3 +1233,141 @@ export async function gerarComRetry(
   }
   throw ultimo;
 }
+
+// ============================================================
+// 12. SEO DO BLOG — título e meta description
+//
+// Por que isto existe em código, e não só no prompt:
+//
+// Em ago/26 o blog foi auditado e os dois campos estavam quebrados nas
+// cinco verticais. 126 das 155 descrições de trânsito terminavam com uma
+// de cinco frases genéricas praticamente iguais ("Analise sua multa grátis
+// e veja se ela tem erro que pode anulá-la" e variantes), cada uma comendo
+// de 66 a 72 dos 155 caracteres que o Google mostra. E o título, somado ao
+// sufixo de marca que o servidor acrescenta, passava de 60 caracteres em
+// quase todo artigo — o Google cortava o fim.
+//
+// A origem era o próprio prompt dos robôs, que pedia "meta description
+// [...] terminando com uma chamada para analisar a multa grátis". Ou seja:
+// a fábrica do problema rodava todo dia.
+//
+// O prompt foi corrigido, mas prompt sozinho não segura: o modelo varia
+// entre execuções mesmo a temperatura 0 — a mesma lição da injeção, da
+// dosimetria e do aviso de corte. Então a normalização é determinística e
+// roda depois da geração, em cima do que o modelo devolveu.
+// ============================================================
+
+export const LIMITE_TITULO_BLOG = 60;
+export const LIMITE_DESCRICAO_BLOG = 155;
+
+/**
+ * Fecho da meta description, por vertical.
+ *
+ * Cada um é um fato conferido no conteúdo da própria vertical, não uma
+ * frase de marketing. Na Energia o fato é deliberadamente invertido: lá
+ * não existe preclusão contra o consumidor, então o prazo citado é o DA
+ * DISTRIBUIDORA (arts. 250 e 592 da REN 1.000). Sugerir que o consumidor
+ * perde direito por decurso de prazo seria assustá-lo com algo falso.
+ */
+const GANCHO_SEO: Record<Vertical, string> = {
+  transito: "Antes de pagar, veja grátis se o auto tem falha.",
+  procon: "Sem defesa no prazo, vale a revelia.",
+  vigilancia: "O prazo do seu município pode ser menor que 15 dias.",
+  energia: "Os 30 dias do laudo são prazo da distribuidora.",
+  ibama: "São 20 dias contados da ciência da autuação.",
+};
+
+/**
+ * Termo que não pode aparecer duas vezes.
+ *
+ * Quando a abertura já usa a palavra central do gancho, a descrição fica
+ * repetitiva ("...fixa o prazo de defesa. Sem defesa no prazo, vale a
+ * revelia"). Ao normalizar o conteúdo existente, isso apareceu em 27 dos
+ * 175 artigos, e num deles ficou pior que repetitivo: o texto sobre
+ * notificação entregue com prazo já vencido terminava dizendo que o prazo
+ * corre da notificação — o oposto do que o artigo tratava.
+ */
+const TERMO_REPETIDO: Record<Vertical, RegExp> = {
+  transito: /antes de pagar|tem falha/i,
+  procon: /revelia/i,
+  vigilancia: /15 dias|munic[íi]pio/i,
+  energia: /30 dias|distribuidora/i,
+  ibama: /20 dias|ci[êe]ncia da autua/i,
+};
+
+/** Usado quando a primeira frase é longa e o gancho normal não cabe. */
+const GANCHO_SEO_CURTO: Record<Vertical, string> = {
+  transito: "Veja grátis se tem falha.",
+  procon: "Veja grátis se há vício formal.",
+  vigilancia: "Confira o prazo no seu auto.",
+  energia: "Veja grátis o que falta no TOI.",
+  ibama: "Veja grátis se o auto tem falha.",
+};
+
+/** Convite genérico que o modelo insiste em pôr no fim da descrição. */
+const RE_CAUDA_GENERICA =
+  /^(analise|verifique|consulte|envie|solicite|descubra|consiga|consulte)\b[^.!?]*\b(gr[áa]tis|gratuita?mente|gratuita|an[áa]lise)\b[^.!?]*[.!?]?$/i;
+
+export interface SeoBlog {
+  titulo: string;
+  descricao: string;
+  avisos: string[];
+}
+
+/**
+ * Normaliza título e descrição de um artigo recém-gerado.
+ *
+ * Não reprova o artigo: SEO é formatação, não conteúdo jurídico. Corrige o
+ * que dá para corrigir sem julgamento e devolve avisos para o log do robô.
+ */
+export function ajustarSeoBlog(
+  tituloBruto: string,
+  descricaoBruta: string,
+  vertical: Vertical
+): SeoBlog {
+  const avisos: string[] = [];
+  const titulo = (tituloBruto || "").trim();
+  const descricao = (descricaoBruta || "").trim();
+
+  if (titulo.length > LIMITE_TITULO_BLOG) {
+    // Cortar no meio estragaria a frase e a palavra-chave. Fica o aviso,
+    // para aparecer no log da execução e ser ajustado à mão.
+    avisos.push(
+      `título com ${titulo.length} caracteres (limite ${LIMITE_TITULO_BLOG}): o Google vai cortar o fim`
+    );
+  }
+
+  const frases = descricao.split(/(?<=[.!?])\s+/).filter(Boolean);
+  if (frases.length < 2) {
+    if (descricao.length > LIMITE_DESCRICAO_BLOG) {
+      avisos.push(`descrição com ${descricao.length} caracteres, sem frase final para trocar`);
+    }
+    return { titulo, descricao, avisos };
+  }
+
+  const ultima = frases[frases.length - 1].trim();
+  const corpo = RE_CAUDA_GENERICA.test(ultima) ? frases.slice(0, -1) : frases;
+
+  let gancho = GANCHO_SEO[vertical];
+  if (
+    (corpo[0] + " " + gancho).length > LIMITE_DESCRICAO_BLOG ||
+    TERMO_REPETIDO[vertical].test(corpo.join(" "))
+  ) {
+    gancho = GANCHO_SEO_CURTO[vertical];
+  }
+
+  // A primeira frase nunca sai: é a que casa com a busca. As demais só
+  // entram enquanto couberem junto com o gancho.
+  let saida = corpo[0];
+  for (let i = 1; i < corpo.length; i++) {
+    if ((saida + " " + corpo[i] + " " + gancho).length <= LIMITE_DESCRICAO_BLOG) {
+      saida += " " + corpo[i];
+    }
+  }
+
+  const nova = (saida + " " + gancho).trim();
+  if (nova.length > LIMITE_DESCRICAO_BLOG) {
+    avisos.push(`descrição ficou com ${nova.length} caracteres: a 1ª frase sozinha já estoura`);
+  }
+  return { titulo, descricao: nova, avisos };
+}

@@ -189,6 +189,35 @@ interface MetaInfo {
   description: string;
   url: string;
 }
+
+/**
+ * Monta o <title> do artigo encaixando a marca no espaço que sobra.
+ *
+ * O Google mostra cerca de 60 caracteres do título e corta o resto — e ele
+ * corta pelo fim, que é justamente onde ficava a marca. Como o sufixo era
+ * fixo, o resultado era o pior dos dois mundos: o título perdia o final E a
+ * marca não aparecia. Medido em ago/26: com o sufixo somado, a mediana do
+ * Procon era 82 caracteres e os 49 artigos passavam de 60. Em todas as
+ * cinco verticais, quase nenhum título cabia inteiro.
+ *
+ * Aqui a marca entra por etapas: a versão com vertical se couber, senão a
+ * curta, senão nenhuma. Assim o título do artigo — que é o que casa com a
+ * busca — chega inteiro, e a marca aparece quando não custa nada.
+ */
+// 65: o corte do Google é por largura (~600px), não por contagem exata de
+// caracteres. 60 seria conservador demais e derrubaria a marca de títulos
+// que cabem — o guia do DETRAN CE, por exemplo, fecha em 62 com ela.
+const LIMITE_TITULO = 65;
+
+function comMarca(titulo: string, vertical?: string): string {
+  const sufixos = vertical
+    ? [` | CheckMulta ${vertical}`, " | CheckMulta"]
+    : [" | CheckMulta"];
+  for (const sufixo of sufixos) {
+    if (titulo.length + sufixo.length <= LIMITE_TITULO) return titulo + sufixo;
+  }
+  return titulo;
+}
 function tituloCurtoInfracao(descricao: string): string {
   const corte = descricao.split(/\s+-\s+|\s+e\s+(?=[A-ZÀ-Ú])/)[0].trim();
   return corte.length > 90 ? corte.slice(0, 90).trim() + "…" : corte;
@@ -393,7 +422,7 @@ function getMetaParaRota(pathname: string): MetaInfo {
     const artigoVig = artigosVigilancia.find((a) => a.slug === slugVig);
     if (artigoVig) {
       return {
-        title: `${artigoVig.titulo} | CheckMulta`,
+        title: comMarca(artigoVig.titulo),
         description: artigoVig.descricao,
         url: `${BASE_URL}/vigilancia-sanitaria/blog/${artigoVig.slug}`,
       };
@@ -425,7 +454,7 @@ function getMetaParaRota(pathname: string): MetaInfo {
     const artigoEnergia = artigosEnergia.find((a) => a.slug === slugEnergia);
     if (artigoEnergia) {
       return {
-        title: `${artigoEnergia.titulo} | CheckMulta Energia`,
+        title: comMarca(artigoEnergia.titulo, "Energia"),
         description: artigoEnergia.descricao,
         url: `${BASE_URL}/energia/blog/${artigoEnergia.slug}`,
       };
@@ -457,7 +486,7 @@ function getMetaParaRota(pathname: string): MetaInfo {
     const artigoIbama = artigosIbama.find((a) => a.slug === slugIbama);
     if (artigoIbama) {
       return {
-        title: `${artigoIbama.titulo} | CheckMulta IBAMA`,
+        title: comMarca(artigoIbama.titulo, "IBAMA"),
         description: artigoIbama.descricao,
         url: `${BASE_URL}/ibama/blog/${artigoIbama.slug}`,
       };
@@ -480,7 +509,7 @@ function getMetaParaRota(pathname: string): MetaInfo {
     const artigoProcon = artigosProcon.find((a) => a.slug === slugProcon);
     if (artigoProcon) {
       return {
-        title: `${artigoProcon.titulo} | CheckMulta Procon`,
+        title: comMarca(artigoProcon.titulo, "Procon"),
         description: artigoProcon.descricao,
         url: `${BASE_URL}/procon/blog/${artigoProcon.slug}`,
       };
@@ -516,7 +545,7 @@ function getMetaParaRota(pathname: string): MetaInfo {
     const artigo = artigos.find((a) => a.slug === slug);
     if (artigo) {
       return {
-        title: `${artigo.titulo} | CheckMulta`,
+        title: comMarca(artigo.titulo),
         description: artigo.descricao,
         url: `${BASE_URL}/multa-de-transito/blog/${artigo.slug}`,
       };
@@ -675,6 +704,29 @@ function gerarSitemap(): string {
 async function startServer() {
   const app = express();
   const PORT = parseInt(process.env.PORT || "3000", 10);
+
+  // ==========================================
+  // REDIRECT 301: www.checkmulta.com.br -> checkmulta.com.br
+  //
+  // Os dois hosts respondiam, e o Google indexou os dois separadamente: a
+  // mesma página aparecia duas vezes nos resultados, cada versão com sua
+  // própria posição, dividindo o rank em vez de somar. No Search Console
+  // (jun-ago/26) isso aparecia, por exemplo, em detran-sp, que tinha três
+  // URLs concorrendo (www, /blog e /multa-de-transito/blog) e nenhum clique.
+  //
+  // A canonical já apontava pra cá (BASE_URL é sem www), mas canonical é
+  // sugestão; 301 é definitivo.
+  //
+  // Só GET/HEAD: redirecionar POST faz o navegador reenviar como GET e
+  // perder o corpo, o que quebraria as rotas /api.
+  // ==========================================
+  app.use((req, res, next) => {
+    const host = req.headers.host;
+    if ((req.method === "GET" || req.method === "HEAD") && host?.startsWith("www.")) {
+      return res.redirect(301, `${BASE_URL}${req.originalUrl}`);
+    }
+    next();
+  });
 
   app.use(express.json({ limit: "50mb" }));
 

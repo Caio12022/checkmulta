@@ -81,7 +81,7 @@ export function aplicarLinksInternos(
       if (!dentroDeTag) {
         resultado =
           resultado.slice(0, match.index) +
-          `<a href="/blog/${link.slug}" class="text-blue-600 font-bold hover:underline">${match[1]}</a>` +
+          `<a href="/multa-de-transito/blog/${link.slug}" class="text-blue-600 font-bold hover:underline">${match[1]}</a>` +
           resultado.slice(match.index + match[1].length);
         jaUsados.add(link.slug);
       }
