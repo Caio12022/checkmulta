@@ -17,7 +17,7 @@ import { execSync } from "child_process";
 import { tmpdir } from "os";
 import { join } from "path";
 import sharp from "sharp";
-import { validarArtigoBlog, gerarComRetry, removerTravessao, type ViolacaoDefesa } from "../prompts/validador";
+import { validarArtigoBlog, gerarComRetry, ajustarSeoBlog, removerTravessao, type ViolacaoDefesa } from "../prompts/validador";
 import {
   gerarDescricaoVisual,
   gerarImagemArtigoCloudflare,
@@ -229,8 +229,8 @@ Ano atual: 2026.
 
 Responda APENAS com um objeto JSON válido, sem markdown, sem crases, sem texto antes ou depois. Formato exato:
 {
-  "titulo": "título chamativo, até 60 caracteres, sem travessão (—)",
-  "descricao": "meta description de 140-160 caracteres, informativa e terminando com uma chamada para analisar a multa grátis",
+  "titulo": "titulo claro e especifico, no MAXIMO 60 caracteres contando espacos (o Google corta o que passa disso). Sem travessao (—) no titulo.",
+  "descricao": "meta description de NO MAXIMO 155 caracteres contando espacos. Comece pela frase que responde a busca. NAO termine com convite generico do tipo 'analise gratis' ou 'verifique gratuitamente' — termine com este fecho exato: Antes de pagar, veja gratis se o auto tem falha.",
   "tempoLeitura": "X min",
   "imagemEmoji": "um único emoji relacionado",
   "imagemBg": "um gradiente Tailwind no formato 'from-COR-600 to-COR-800' (ex: from-blue-600 to-blue-800)",
@@ -266,6 +266,16 @@ REGRA DO CHAMADO FINAL (CTA):
     .trim();
 
   const obj = JSON.parse(texto);
+
+  // Trava de codigo do SEO. O prompt acima ja pede titulo curto e o fecho
+  // certo na descricao, mas prompt sozinho nao segura: o modelo varia entre
+  // execucoes. Aqui a normalizacao e deterministica -- foi assim que o blog
+  // acumulou 126 descricoes terminando na mesma frase generica.
+  const seo = ajustarSeoBlog(String(obj.titulo || ""), String(obj.descricao || ""), "transito");
+  obj.titulo = seo.titulo;
+  obj.descricao = seo.descricao;
+  seo.avisos.forEach((a) => console.log(`  SEO: ${a}`));
+
   return obj;
 }
 

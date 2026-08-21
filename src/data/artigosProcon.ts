@@ -190,7 +190,7 @@ No CheckMulta, é possível enviar o auto de infração do Procon para receber u
   {
     slug: "contraditorio-e-ampla-defesa-no-processo-sancionador-do-procon",
     titulo: "Contraditório e Ampla Defesa no Processo Sancionador do Procon",
-    descricao: "Entenda como o contraditório e a ampla defesa protegem sua empresa em processos do Procon. Analise seu auto de infração gratuitamente no CheckMulta.",
+    descricao: "Entenda como o contraditório e a ampla defesa protegem sua empresa em processos do Procon. Sem defesa no prazo, vale a revelia.",
     categoria: "Direitos da Empresa",
     tempoLeitura: "5 min",
     imagemEmoji: "⚖️",
@@ -241,7 +241,7 @@ A empresa autuada pode buscar uma análise detalhada do auto de infração para 
   {
     slug: "decisao-do-procon-sem-motivacao-vicio-de-nulidade",
     titulo: "Decisão do Procon sem motivação: vício de nulidade",
-    descricao: "Recebeu uma decisão do Procon sem justificativa clara? Entenda como a falta de motivação afeta a validade da multa. Envie seu auto para análise gratuita.",
+    descricao: "Recebeu uma decisão do Procon sem justificativa clara? Entenda como a falta de motivação afeta a validade da multa. Sem defesa no prazo, vale a revelia.",
     categoria: "Vícios e Nulidades",
     tempoLeitura: "4 min",
     imagemEmoji: "⚖️",
@@ -286,7 +286,7 @@ No CheckMulta, você pode encaminhar o auto de infração do Procon para anális
   {
     slug: "decisao-do-procon-sem-motivacao-como-identificar-esse-vicio",
     titulo: "Decisão do Procon sem motivação: como identificar esse vício",
-    descricao: "Recebeu uma decisão do Procon sem justificativa clara? Entenda como a falta de motivação afeta a validade da sanção. Envie seu auto para análise gratuita.",
+    descricao: "Recebeu uma decisão do Procon sem justificativa clara? Entenda como a falta de motivação afeta a validade da sanção. Sem defesa no prazo, vale a revelia.",
     categoria: "Vícios e Nulidades",
     tempoLeitura: "5 min",
     imagemEmoji: "⚖️",
@@ -329,7 +329,7 @@ Empresas interessadas podem enviar o auto de infração para uma análise técni
   {
     slug: "multa-desproporcional-do-procon-como-questionar-o-valor-excessivo",
     titulo: "Multa desproporcional do Procon: como questionar o valor excessivo",
-    descricao: "Recebeu uma multa alta do Procon? Entenda os critérios de dosimetria e como contestar valores desproporcionais. Analise seu auto gratuitamente no CheckMulta.",
+    descricao: "Recebeu uma multa alta do Procon? Entenda os critérios de dosimetria e como contestar valores desproporcionais. Sem defesa no prazo, vale a revelia.",
     categoria: "Dosimetria da Multa",
     tempoLeitura: "6 min",
     imagemEmoji: "⚖️",
@@ -379,7 +379,7 @@ Caso receba um auto de infração do Procon, a análise técnica especializada p
   {
     slug: "a-nulidade-por-ausencia-de-motivacao-em-decisoes-do-procon",
     titulo: "A nulidade por ausência de motivação em decisões do Procon",
-    descricao: "Recebeu uma decisão do Procon sem fundamentação clara? Entenda como a falta de motivação pode gerar a nulidade do processo. Analise seu auto gratuitamente.",
+    descricao: "Recebeu uma decisão do Procon sem fundamentação clara? Sem defesa no prazo, vale a revelia.",
     categoria: "Vícios e Nulidades",
     tempoLeitura: "4 min",
     imagemEmoji: "⚖️",
@@ -418,7 +418,7 @@ A análise do auto de infração pode auxiliar a identificar se a autuação apr
   {
     slug: "como-contar-o-prazo-de-defesa-apos-a-notificacao-do-procon",
     titulo: "Como contar o prazo de defesa após a notificação do Procon",
-    descricao: "Entenda as regras para a contagem do prazo de defesa em processos administrativos do Procon e evite a perda de prazos. Analise seu auto de infração agora.",
+    descricao: "Entenda as regras para a contagem do prazo de defesa em processos administrativos do Procon e evite a perda de prazos. Sem defesa no prazo, vale a revelia.",
     categoria: "Prazos e Procedimento",
     tempoLeitura: "5 min",
     imagemEmoji: "⚖️",
@@ -476,7 +476,7 @@ A análise técnica dos fatos é fundamental para uma defesa consistente. Caso p
   {
     slug: "como-ler-e-interpretar-um-auto-de-infracao-do-procon-em-2026",
     titulo: "Como ler e interpretar um auto de infração do Procon em 2026",
-    descricao: "Recebeu uma autuação e não sabe o que fazer? Aprenda a identificar os requisitos obrigatórios e os pontos de atenção em seu auto de infração. Verifique grátis.",
+    descricao: "Recebeu uma autuação e não sabe o que fazer? Sem defesa no prazo, vale a revelia.",
     categoria: "Primeiros Passos",
     tempoLeitura: "5 min",
     imagemEmoji: "📋",
@@ -577,7 +577,7 @@ Para avaliar seu auto de infração, recomenda-se a leitura atenta de todos os i
   {
     slug: "como-contar-o-prazo-de-defesa-em-um-auto-de-infracao-do-procon",
     titulo: "Como contar o prazo de defesa em um auto de infração do Procon",
-    descricao: "Entenda como realizar a contagem correta dos prazos administrativos após receber uma autuação do Procon. Evite perdas de prazo. Analise seu auto gratuitamente.",
+    descricao: "Entenda como realizar a contagem correta dos prazos administrativos após receber uma autuação do Procon. Sem defesa no prazo, vale a revelia.",
     categoria: "Prazos e Procedimento",
     tempoLeitura: "5 min",
     imagemEmoji: "⚖️",
@@ -622,7 +622,7 @@ No CheckMulta, é possível enviar o auto de infração do Procon para receber u
   {
     slug: "documentos-essenciais-para-a-defesa-administrativa-no-procon",
     titulo: "Documentos essenciais para a defesa administrativa no Procon",
-    descricao: "Recebeu um auto de infração do Procon? Saiba quais documentos reunir para construir sua defesa administrativa de forma técnica. Analise seu auto gratuitamente.",
+    descricao: "Recebeu um auto de infração do Procon? Sem defesa no prazo, vale a revelia.",
     categoria: "Primeiros Passos",
     tempoLeitura: "5 min",
     imagemEmoji: "📋",
@@ -764,7 +764,7 @@ Caso precise de apoio para analisar o seu documento, é possível buscar suporte
   {
     slug: "como-o-procon-calcula-o-valor-da-multa-aplicada-a-sua-empresa",
     titulo: "Como o Procon calcula o valor da multa aplicada a sua empresa",
-    descricao: "Entenda os critérios de dosimetria da multa no processo administrativo do Procon e como a legislação regula o cálculo. Analise seu auto no CheckMulta.",
+    descricao: "Entenda os critérios de dosimetria da multa no processo administrativo do Procon e como a legislação regula o cálculo. Sem defesa no prazo, vale a revelia.",
     categoria: "Dosimetria da Multa",
     tempoLeitura: "5 min",
     imagemEmoji: "⚖️",
@@ -853,7 +853,7 @@ No CheckMulta, você pode enviar o auto de infração do Procon para obter uma a
   {
     slug: "o-direito-da-empresa-ao-acesso-integral-ao-processo-do-procon",
     titulo: "O direito da empresa ao acesso integral ao processo do Procon",
-    descricao: "Saiba como solicitar a cópia integral do processo administrativo do Procon para assegurar o seu direito de ampla defesa. Analise seu auto de infração hoje.",
+    descricao: "Saiba como solicitar a cópia integral do processo administrativo do Procon para assegurar o seu direito de ampla defesa. Veja grátis se o auto tem vício formal.",
     categoria: "Direitos da Empresa",
     tempoLeitura: "5 min",
     imagemEmoji: "⚖️",
@@ -1084,7 +1084,7 @@ Caso deseje, é possível encaminhar o auto de infração do Procon para uma an�
   {
     slug: "como-o-procon-calcula-o-valor-da-multa-administrativa-em-2026",
     titulo: "Como o Procon calcula o valor da multa administrativa em 2026",
-    descricao: "Entenda os critérios de dosimetria da multa do Procon, desde a gravidade até o porte da empresa. Analise seu auto de infração gratuitamente no CheckMulta.",
+    descricao: "Entenda os critérios de dosimetria da multa do Procon, desde a gravidade até o porte da empresa. Sem defesa no prazo, vale a revelia.",
     categoria: "Dosimetria da Multa",
     tempoLeitura: "6 min",
     imagemEmoji: "⚖️",
@@ -1314,7 +1314,7 @@ No CheckMulta, é possível enviar o auto de infração do Procon para obter uma
   {
     slug: "contagem-de-prazo-de-defesa-em-autuacoes-do-procon-guia-pratico",
     titulo: "Contagem de prazo de defesa em autuações do Procon: Guia Prático",
-    descricao: "Recebeu uma autuação do Procon? Entenda como realizar a contagem correta do prazo para sua defesa administrativa e evite a revelia. Analise seu auto agora.",
+    descricao: "Recebeu uma autuação do Procon? Sem defesa no prazo, vale a revelia.",
     categoria: "Prazos e Procedimento",
     tempoLeitura: "5 min",
     imagemEmoji: "⚖️",
@@ -1598,7 +1598,7 @@ Aqueles que buscam suporte para analisar a autuação do Procon podem solicitar 
   {
     slug: "recebeu-uma-reclamacao-no-procon-como-agir-antes-da-autuacao",
     titulo: "Recebeu uma reclamação no Procon? Como agir antes da autuação",
-    descricao: "Entenda os procedimentos necessários ao receber uma reclamação no Procon para evitar o agravamento do processo administrativo. Analise seu caso gratuitamente.",
+    descricao: "Entenda os procedimentos necessários ao receber uma reclamação no Procon para evitar o agravamento do processo administrativo. Veja grátis se o auto tem vício formal.",
     categoria: "Primeiros Passos",
     tempoLeitura: "5 min",
     imagemEmoji: "⚖️",
@@ -1879,7 +1879,7 @@ Caso tenha interesse, é possível encaminhar o auto de infração do Procon par
   {
     slug: "como-ler-e-interpretar-um-auto-de-infracao-do-procon",
     titulo: "Como ler e interpretar um Auto de Infração do Procon",
-    descricao: "Recebeu uma autuação do Procon? Aprenda a ler seu auto de infração, entender os riscos e preparar sua defesa. Verifique seu auto gratuitamente no CheckMulta.",
+    descricao: "Recebeu uma autuação do Procon? Aprenda a ler seu auto de infração, entender os riscos e preparar sua defesa. Sem defesa no prazo, vale a revelia.",
     categoria: "Primeiros Passos",
     tempoLeitura: "5 min",
     imagemEmoji: "⚖️",

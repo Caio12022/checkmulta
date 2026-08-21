@@ -473,13 +473,13 @@ export default function BlogPost() {
       {/* BARRA DE URGÊNCIA */}
       <div className="border-b border-emerald-100 bg-emerald-50">
         <div className="mx-auto max-w-3xl px-4 py-2.5 text-center text-[13px] text-emerald-800">
-          O prazo para recorrer é curto.{" "}
+          Pagar com o desconto de 40% é declarar que você desiste do recurso.{" "}
           <Link
             to="/multa-de-transito?analisar=1"
             onClick={() => cta("barra_urgencia")}
             className="font-semibold underline"
           >
-            Analise sua multa grátis agora
+            Veja antes se a sua multa tem falha
           </Link>
         </div>
       </div>
@@ -496,7 +496,7 @@ export default function BlogPost() {
           </Link>
           <ChevronRight className="h-3 w-3" />
           <Link
-            to={`/blog/categoria/${slugifyCategoria(artigo.categoria)}`}
+            to={`/multa-de-transito/blog/categoria/${slugifyCategoria(artigo.categoria)}`}
             className="text-slate-400 hover:text-emerald-600"
           >
             {artigo.categoria}
@@ -552,10 +552,11 @@ export default function BlogPost() {
         >
           <p className="mb-3 text-sm leading-relaxed text-slate-700">
             <strong className="font-semibold text-slate-900">
-              Tem uma multa para analisar?
+              O desconto de 40% custa o seu direito de recorrer.
             </strong>{" "}
-            Nossa IA verifica grátis se há erro formal no auto de infração. Mais
-            de 400 multas já analisadas, sem cadastro.
+            Quem paga pelo SNE declara, no ato, que desiste da defesa prévia e do
+            recurso. Antes de abrir mão disso, veja de graça se o seu auto de
+            infração tem falha — a análise leva 60 segundos e não pede cadastro.
           </p>
           <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-500">
             <span className="flex items-center gap-1.5">
@@ -676,7 +677,7 @@ export default function BlogPost() {
                 return (
                   <Link
                     key={a.slug}
-                    to={`/blog/${a.slug}`}
+                    to={`/multa-de-transito/blog/${a.slug}`}
                     className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
                   >
                     {a.imagemUrl ? (

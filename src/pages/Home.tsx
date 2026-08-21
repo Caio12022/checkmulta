@@ -1493,7 +1493,7 @@ export default function App() {
             {BLOG_GUIAS.map((guia, i) => (
               <Reveal key={guia.slug} delay={(i % 3) * 0.06}>
                 <a
-                  href={`/blog/${guia.slug}`}
+                  href={`/multa-de-transito/blog/${guia.slug}`}
                   className="group flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-5 transition hover:border-blue-300 hover:shadow-md"
                 >
                   <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-50 text-blue-600 transition group-hover:bg-blue-50">

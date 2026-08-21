@@ -333,7 +333,8 @@ export default function BlogPostVigilancia() {
       {/* Barra de urgência */}
       <div className="border-b border-emerald-100 bg-emerald-50">
         <div className="mx-auto max-w-3xl px-4 py-2.5 text-center text-[13px] text-emerald-800">
-          O prazo de defesa está no seu auto de infração.{" "}
+          A lei federal fala em 15 dias, mas o prazo do seu município pode ser
+          menor.{" "}
           <Link
             to="/vigilancia-sanitaria?analisar=1"
             onClick={() => cta("barra_urgencia")}
@@ -398,10 +399,12 @@ export default function BlogPostVigilancia() {
         <div className="mb-9 rounded-xl border border-emerald-200 bg-emerald-50/60 p-5">
           <p className="mb-3 text-sm leading-relaxed text-slate-700">
             <strong className="font-semibold text-slate-900">
-              Seu estabelecimento foi autuado?
+              O prazo da vigilância não é o mesmo em todo lugar.
             </strong>{" "}
-            Envie o auto de infração e veja grátis se há falha que permite
-            recorrer.
+            O art. 22 da Lei 6.437/77 prevê 15 dias, mas a fiscalização
+            sanitária é descentralizada e cada município pode fixar prazo menor
+            — quem conta pelo prazo federal corre o risco de perder o seu. Envie
+            o auto e veja de graça se ele tem falha que permite recorrer.
           </p>
           <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-500">
             <span className="flex items-center gap-1.5">

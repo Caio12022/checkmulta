@@ -160,7 +160,7 @@ export default function Blog() {
       {!filtroAtivo && (
         <section className="mx-auto max-w-5xl px-4 pt-10">
           <Link
-            to={`/blog/${destaque.slug}`}
+            to={`/multa-de-transito/blog/${destaque.slug}`}
             className="group block overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
           >
             <div className="sm:flex">
@@ -225,7 +225,7 @@ export default function Blog() {
             return (
               <Link
                 key={artigo.slug}
-                to={`/blog/${artigo.slug}`}
+                to={`/multa-de-transito/blog/${artigo.slug}`}
                 className="group flex flex-col overflow-hidden rounded-xl border border-slate-200 bg-white transition hover:border-emerald-300 hover:shadow-md"
               >
                 {artigo.imagemUrl ? (
