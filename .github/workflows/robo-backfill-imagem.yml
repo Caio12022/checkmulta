@@ -7,7 +7,7 @@ name: Robo de Backfill de Imagem
   workflow_dispatch:
     inputs:
       quantidade:
-        description: "Quantos artigos sortear hoje (1 a 10, padrao 4)"
+        description: "Quantos artigos sortear hoje (1 a 10, padrao 6)"
         required: false
         type: string
   schedule:

@@ -214,13 +214,112 @@ o validador rebaixa para "verificar", não veio do texto plantado.
   `prompts/validador.ts` nas duas chamadas ao Gemini (geração e revisão),
   igual ao servidor já fazia. Energia e Procon falharam com 503 "high
   demand" em dias seguidos; cron de cada robô está em hora cheia diferente
-  (3h/6h/9h/12h/13h/15h UTC, IBAMA/Energia/Vigilância/Trânsito/Reddit/Procon
-  — nunca dois no mesmo horário) e cada execução faz só 2 chamadas por dia,
-  então **não é concorrência entre os robôs nem limite de cota nosso** —
-  é a capacidade do modelo no free tier ficando cheia do lado da Google,
-  independente de quem pede. Espaçar mais os horários não teria resolvido;
-  o retry resolveu (testado ao vivo: pegou o mesmo 503 e publicou depois de
-  esperar 8s).
+  (3h/6h/9h/12h/13h/15h/18h/21h UTC —
+  IBAMA/Energia/Vigilância/Trânsito/Reddit/Procon/auditor de
+  imagem/backfill de imagem, nunca dois no mesmo horário) e cada execução
+  de artigo faz só 2 chamadas por dia, então **não é concorrência entre os
+  robôs nem limite de cota nosso** — é a capacidade do modelo no free tier
+  ficando cheia do lado da Google, independente de quem pede. Espaçar mais
+  os horários não teria resolvido; o retry resolveu (testado ao vivo: pegou
+  o mesmo 503 e publicou depois de esperar 8s).
+
+## Imagem de capa gerada por IA (blog, todas as verticais)
+
+Todo artigo novo dos 5 robôs de blog sai com uma foto de capa gerada por
+IA, além do texto. Pipeline em dois passos, os dois grátis:
+
+1. **Gemini de texto** (`gerarDescricaoVisual`, `gemini-3.1-flash-lite`)
+   traduz o tema do artigo (português, abstrato) numa cena fotográfica
+   concreta em inglês (~20 palavras). Necessário porque o FLUX não é um
+   LLM — só desenha o que a descrição diz, então a fidelidade ao tema
+   depende inteiramente desse passo.
+2. **Cloudflare Workers AI** (`gerarImagemArtigoCloudflare`, FLUX.1
+   schnell) desenha a partir dessa cena. Não é o Gemini de imagem porque o
+   tier grátis do Gemini tem cota ZERO pra esse modelo (só libera com
+   faturamento habilitado no projeto inteiro, expondo todas as outras
+   chamadas a cobrança). Cloudflare tem cota diária grátis de verdade, sem
+   cartão.
+
+Cada vertical tem uma "família visual" fixa (`motivosVisuais` em
+`PERFIS_VERTICAIS`, `prompts/imagem.ts`) — cenário/objeto típico dela
+(estrada/radar no Trânsito, balcão/nota fiscal no Procon etc.), não uma
+ação fixa. Dar ação fixa (ex.: "sempre abordagem policial") já foi tentado
+e revertido — virava roteiro em vez de pano de fundo (ver histórico do PR
+que introduziu isso).
+
+**Robô auditor** (`robo-auditor/robo-auditor.ts`, 18h UTC): relê a imagem
+JÁ publicada com o Gemini de visão (grátis — cota zero do Gemini é só pra
+GERAR imagem, não pra ler) e decide se ela combina com o título e se não
+tem texto quebrado dominando a cena. Reprovou: regenera 1 vez (usa o
+título como tema) e substitui; se a nova também reprovar, remove o
+`imagemUrl` (volta pro emoji — nunca fica no ar imagem ruim). O robô de
+artigo **não é avisado** de nada disso — ele publica e segue, quem concerta
+é só o auditor, à noite. Orçamento de 3 regenerações por execução,
+compartilhado entre todas as imagens reprovadas do dia (não é 3 por
+imagem); o que sobra sem regenerar (por falta de orçamento ou de cota)
+não é marcado como auditado e volta pra fila sozinho no dia seguinte.
+Aprende com o próprio erro: toda reprovação vira uma instrução curta de
+"evite X" em `robo-auditor/licoes.json`, por vertical, que os robôs (de
+artigo e o de backfill) leem antes de montar a próxima cena — só restrição
+negativa, nunca exemplo positivo (exemplo positivo faria toda imagem da
+vertical convergir pra mesma cena).
+
+**Robô de backfill** (`robo-auditor/robo-backfill.ts`, 21h UTC): dá capa
+aos artigos antigos que não tinham imagem quando a funcionalidade nasceu.
+Sorteia N artigos **entre as 5 verticais** (não "mais recente primeiro",
+pra não avançar sempre pela mesma ponta de uma vertical só) e só publica a
+imagem se ela passar na auditoria (2 tentativas por artigo, mesma regra do
+`gerar-manual.ts` usado pro backfill manual/dirigido) — artigo já
+publicado não pode piorar. Reprovou as 2 tentativas, ou acabou a cota no
+meio do sorteio: o artigo simplesmente volta pro grupo de "sem imagem" e
+pode ser sorteado outro dia. `gerarEAuditarCapa()` em `prompts/imagem.ts`
+é a lógica compartilhada entre o backfill automático e o manual — evita
+duas cópias do mesmo loop "gera → comprime → audita → repete" envelhecendo
+separadas.
+
+### Cota do Cloudflare para imagem — não é "N imagens = N chamadas"
+
+**Cuidado ao planejar quota:** a `quantidade` configurada num robô NÃO é
+igual ao número de chamadas reais ao Cloudflare. O backfill, por exemplo,
+tenta até 2 vezes por artigo (`TENTATIVAS_POR_ARTIGO`) se a primeira
+reprovar na auditoria — 6 artigos configurados pode custar até 12
+chamadas no pior caso, não 6. Já aconteceu confundir os dois números numa
+conversa e quase dobrar a meta sem perceber esse fator.
+
+**Cota real observada (único dia medido até agora, 19/ago):** rastreei os
+runs do antigo workflow de teste (`_test-imagem-blog.yml`, já removido) e
+achei o erro literal do Cloudflare, com timestamp exato — 14 imagens
+saíram certas entre 00h06 e 00h37 UTC, a 15ª falhou às 00h38 com
+`"you have used up your daily free allocation of 10,000 neurons"`
+(código 4006). Isso é **bem menor** do que a conta teórica pelo preço
+oficial por neuron sugeria (~96 neurons/imagem → 100+/dia) — na prática o
+custo real por imagem parece ~7x maior que o da tabela de preço, motivo
+exato desconhecido (resolução padrão maior que a suposta, ou algo
+específico de conta sem cartão cadastrado). **Um dia só de dado não é
+medição confiável** — é o ponto de partida, não a palavra final.
+
+**Pior caso hoje, com a configuração atual:**
+
+| Fonte | Pior caso/dia |
+|---|---|
+| 5 robôs de artigo novo (1 tentativa cada) | 5 |
+| Auditor (regenerações) | 3 |
+| Backfill (6 artigos × até 2 tentativas) | 12 |
+| **Total** | **20** |
+
+Acima do teto observado (14) — mas de propósito: o backfill roda **por
+último** no dia (21h, depois de todo o resto) especificamente para que,
+se ele bater na cota, a consequência seja zero (artigo só volta pro
+sorteio de amanhã) — nunca rouba cota de algo prioritário, porque tudo
+prioritário já rodou antes dele. É por isso que faz sentido deixar o
+backfill mais folgado que os outros, não mais apertado.
+
+Meta do backfill hoje: **6/dia** (`QUANTIDADE_PADRAO` em
+`robo-backfill.ts`), subiu de 4 depois desse cálculo — nem os 3-4
+originais (deixava muita folga ociosa) nem os 12-13 cogitados (pior caso
+estouraria quase todo dia). **Revisar depois de alguns dias reais
+rodando** — os logs de cada execução já mostram quantas imagens saíram
+certas; se a cota real se confirmar mais alta que 14, dá pra subir mais.
 
 ## Dois defeitos que se repetem (reconhecer de longe)
 

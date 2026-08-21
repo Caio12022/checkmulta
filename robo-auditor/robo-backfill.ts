@@ -8,10 +8,12 @@
  * andaria sempre pela mesma ponta do arquivo (os mais antigos de uma só
  * vertical) e demoraria muito pra cobrir o resto.
  *
- * Meta diária: QUANTIDADE_PADRAO artigos (config abaixo). A cota real do
- * Cloudflare observada em teste ficou em torno de 14-18 imagens/dia, e os
- * 5 robôs de artigo novo consomem no máximo 5/dia - sobra folga, mas não
- * é ilimitado, por isso a meta é pequena e fixa, não "o quanto der".
+ * Meta diária: QUANTIDADE_PADRAO artigos (config abaixo). Ver CLAUDE.md,
+ * seção "Cota do Cloudflare para imagem", para a conta completa de por que
+ * o número é esse - resumo: cada artigo aqui pode custar ATÉ 2 chamadas
+ * (TENTATIVAS_POR_ARTIGO), não 1, e esse robô roda por último no dia (21h)
+ * de propósito - se ele bater na cota, não atrapalha nada prioritário, o
+ * artigo só volta pro sorteio de amanhã.
  *
  * SEGURANÇA: mesmo princípio do gerar-manual.ts - artigo já publicado não
  * pode piorar, então a imagem só vai pro ar se passar na auditoria
@@ -42,9 +44,12 @@ const JANELA_CABECALHO = 1200;
 // gerar-manual.ts: publicado precisa aprovar, não só publicar).
 const TENTATIVAS_POR_ARTIGO = 2;
 
-// Meta diária. Caio pediu "pelo menos 3 ou 4" - 4 é o piso pretendido,
-// ajustável via workflow_dispatch sem mexer no código.
-const QUANTIDADE_PADRAO = 4;
+// Meta diária. Caio pediu pra acelerar depois de ver a cota real (~14-18/dia)
+// - subiu de 4 pra 6, não mais que isso: com até 2 tentativas por artigo,
+// 6 já é até 12 chamadas no pior caso, some com o resto do dia (ver
+// CLAUDE.md) e chega perto do teto. Ajustável via workflow_dispatch sem
+// mexer no código, e para revisar depois de alguns dias de dado real.
+const QUANTIDADE_PADRAO = 6;
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GITHUB_TOKEN = process.env.GH_PAT || process.env.GITHUB_TOKEN;
