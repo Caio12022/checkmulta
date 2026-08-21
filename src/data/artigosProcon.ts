@@ -325,6 +325,7 @@ No CheckMulta, você pode encaminhar o auto de infração do Procon para anális
 
   {
     slug: "decisao-do-procon-sem-motivacao-como-identificar-esse-vicio",
+    imagemUrl: "/blog/procon/decisao-do-procon-sem-motivacao-como-identificar-esse-vicio.jpg",
     titulo: "Decisão do Procon sem motivação: como identificar esse vício",
     descricao: "Recebeu uma decisão do Procon sem justificativa clara? Entenda como a falta de motivação afeta a validade da sanção. Sem defesa no prazo, vale a revelia.",
     categoria: "Vícios e Nulidades",
