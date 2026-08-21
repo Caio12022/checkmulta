@@ -579,7 +579,7 @@ Ou seja, dependendo do seu caso, o prazo de vinte dias pode ainda não ter come�
 
 ## Confira sempre no próprio auto
 
-Cada auto traz a informação do prazo e da forma de apresentar defesa. O sistema do IBAMA também mostra o andamento do processo. Antes de assumir que o prazo acabou. Ou que ainda há muito tempo. Confirme nessas fontes.
+Cada auto traz a informação do prazo e da forma de apresentar defesa. O sistema do IBAMA também mostra o andamento do processo. Antes de assumir que o prazo acabou, ou que ainda há muito tempo, confirme nessas fontes.
 
 ## E se o prazo já passou
 

@@ -49,7 +49,7 @@ Manter o hábito de verificar seu histórico de infrações traz vantagens signi
 
 ## O que fazer se encontrar pontos indevidos?
 
-A legislação de trânsito brasileira assegura o direito à ampla defesa. Se você consultou sua pontuação e notou que existe uma autuação que não condiz com a realidade. Seja por erro de digitação, falha no equipamento de fiscalização ou porque não era você quem conduzia o veículo naquele momento. Saiba que é possível contestar.
+A legislação de trânsito brasileira assegura o direito à ampla defesa. Se você consultou sua pontuação e notou que existe uma autuação que não condiz com a realidade, seja por erro de digitação, falha no equipamento de fiscalização ou porque não era você quem conduzia o veículo naquele momento, saiba que é possível contestar.
 
 O processo administrativo de defesa exige atenção aos detalhes técnicos do auto de infração. Muitas vezes, vícios formais no documento, como erros na descrição do veículo ou falta de informações obrigatórias sobre o agente autuador, são caminhos eficazes para anular uma multa e, consequentemente, impedir que os pontos sejam somados à sua CNH.
 
@@ -1061,7 +1061,7 @@ O CheckMulta permite que você envie o auto de infração para uma análise sobr
     imagemBg: "from-emerald-600 to-emerald-800",
     conteudo: `Recorrer de uma multa de trânsito é um direito garantido a todo condutor pelo Código de Trânsito Brasileiro. O procedimento, no entanto, não é idêntico em todo o país: cada estado tem seu próprio DETRAN, com sistema eletrônico, formulários e formas de protocolo diferentes.
 
-Este guia reúne o essencial do processo. Que é comum a todos os estados. E leva você diretamente ao passo a passo do seu DETRAN.
+Este guia reúne o essencial do processo, que é comum a todos os estados, e leva você diretamente ao passo a passo do seu DETRAN.
 
 ## As três fases do recurso, válidas em todo o Brasil
 
@@ -1086,7 +1086,7 @@ Os prazos correm a partir do recebimento da notificação, não da data da infra
 
 ## O que realmente anula uma multa
 
-Recursos baseados apenas em justificativa pessoal. Pressa, desconhecimento da sinalização, emergência. Raramente prosperam. O que costuma funcionar é a **falha formal no auto de infração**.
+Recursos baseados apenas em justificativa pessoal, pressa, desconhecimento da sinalização, emergência, raramente prosperam. O que costuma funcionar é a **falha formal no auto de infração**.
 
 O Código de Trânsito Brasileiro estabelece requisitos obrigatórios para a lavratura do auto. O Manual Brasileiro de Fiscalização de Trânsito detalha como cada campo deve ser preenchido. Quando algo ali não é observado, abre-se margem concreta para anulação.
 
@@ -1564,7 +1564,7 @@ Um dígito errado na placa do veículo invalida completamente o auto. Confira le
 
 ### 3. Data ou hora incorreta
 
-Se a data ou hora registrada não corresponde à realidade. E você tem prova disso. O auto é nulo. Recibos, notas fiscais ou registros de câmera do local podem servir como prova.
+Se a data ou hora registrada não corresponde à realidade, e você tem prova disso, o auto é nulo. Recibos, notas fiscais ou registros de câmera do local podem servir como prova.
 
 ### 4. Ausência de sinalização proibindo o estacionamento
 
@@ -1764,7 +1764,7 @@ Quando lavrada por agente no local, verifique:
 
 ## O semáforo estava com defeito?
 
-Se o semáforo apresentava defeito técnico na data da infração. Como luz piscando, ausência de fase ou mau funcionamento. Você tem argumento para o recurso.
+Se o semáforo apresentava defeito técnico na data da infração, como luz piscando, ausência de fase ou mau funcionamento, você tem argumento para o recurso.
 
 **Como provar:** registros de manutenção da prefeitura, fotos ou vídeos do local, declarações de testemunhas.
 
@@ -1896,7 +1896,7 @@ Nossa IA analisa o auto de infração, identifica os vícios formais e gera a pe
     conteudo: `
 ## Calma. Respira. E lê isso antes de fazer qualquer coisa.
 
-Receber uma multa que você sente ser injusta é frustrante. Mas reagir na raiva. Discutir com o agente, ignorar o documento ou simplesmente não fazer nada. São as piores escolhas que você pode fazer.
+Receber uma multa que você sente ser injusta é frustrante. Mas reagir na raiva, discutir com o agente, ignorar o documento ou simplesmente não fazer nada, são as piores escolhas que você pode fazer.
 
 A boa notícia: **você tem direito de contestar**. E dependendo do que aconteceu, as chances de cancelar são reais.
 
@@ -2008,7 +2008,7 @@ Na defesa prévia, cite explicitamente:
 
 *"O auto de infração nº [número] não preenche o requisito do Art. 280, inciso [X] do CTB, porquanto [descreva o vício]. Nos termos do Art. 281, parágrafo único, inciso I do CTB, requer-se o arquivamento do presente auto."*
 
-Nossa IA faz exatamente essa análise. Campo por campo, baseada no Art. 280. E gera a petição completa automaticamente.
+Nossa IA faz exatamente essa análise, campo por campo, baseada no Art. 280, e gera a petição completa automaticamente.
     `
   },
   {
@@ -2340,7 +2340,7 @@ O prazo é sempre **15 dias** da notificação.
 
 Mesmo assim, vale verificar se há erro formal no auto. Se houver, a multa pode ser cancelada independentemente da infração em si.
 
-Se não houver erro formal, você pode tentar argumentar circunstâncias. Falha técnica, sinalização inadequada, emergência. Mas as chances são menores.
+Se não houver erro formal, você pode tentar argumentar circunstâncias, falha técnica, sinalização inadequada, emergência, mas as chances são menores.
     `
   },
   {
@@ -3303,7 +3303,7 @@ Se a imagem não mostra claramente a placa da sua moto, exija que o órgão apre
 
 ## Dica específica para motociclistas
 
-Muitos agentes autuam motociclistas de forma subjetiva. "Condução perigosa", "zigue-zague". Sem descrever objetivamente o comportamento observado.
+Muitos agentes autuam motociclistas de forma subjetiva, "condução perigosa", "zigue-zague", sem descrever objetivamente o comportamento observado.
 
 A descrição da infração precisa ser específica. "Conduzia de forma perigosa" sem mais detalhes é vício formal que pode anular a multa.
     `
@@ -3541,7 +3541,7 @@ Vamos aos dados reais.
 ## Taxa de sucesso por tipo de argumento
 
 **Vício formal (erro no auto de infração):** 60% a 80% de sucesso
-Quando há erro objetivo no auto. Endereço incorreto, agente não identificado, equipamento sem aferição. O argumento é técnico e difícil de rebater.
+Quando há erro objetivo no auto, endereço incorreto, agente não identificado, equipamento sem aferição, o argumento é técnico e difícil de rebater.
 
 **Equipamento sem homologação válida:** 70% a 90% de sucesso
 Aferição vencida é um dos argumentos mais sólidos. O órgão não tem como defender uma multa gerada por equipamento irregular.
@@ -4022,7 +4022,7 @@ No auto de infração, o campo "equipamento" ou "instrumento de medição" deve 
     conteudo: `
 ## Por que motoristas profissionais precisam de atenção especial
 
-Para quem dirige como profissão. Motorista de app, caminhoneiro, taxista, motorista de ônibus. A CNH é o instrumento de trabalho. Perder a habilitação significa perder a renda.
+Para quem dirige como profissão, motorista de app, caminhoneiro, taxista, motorista de ônibus, a CNH é o instrumento de trabalho. Perder a habilitação significa perder a renda.
 
 Por isso, cada multa precisa ser analisada com mais cuidado do que para condutores casuais.
 
@@ -4328,7 +4328,7 @@ Nesses casos, a multa pode ser legítima. Mesmo que o acidente não tenha sido s
 ## Quando a multa deve ser contestada
 
 **Infração que não ocorreu:**
-Se o agente registrou uma infração que você não cometeu. Seja por erro de observação ou por confusão entre os veículos envolvidos. O recurso é direto.
+Se o agente registrou uma infração que você não cometeu, seja por erro de observação ou por confusão entre os veículos envolvidos, o recurso é direto.
 
 **Descrição incorreta:**
 Se o agente descreveu incorretamente o comportamento que gerou a autuação, o auto pode ter vício formal.
@@ -5372,7 +5372,7 @@ Seguem o padrão nacional: 15 dias para defesa prévia, 30 dias para recurso à 
 
 ## Dica regional
 
-O RS tem grande volume de fiscalização em rodovias estaduais (EGR) e federais (PRF), além das urbanas. Confirme sempre qual órgão emitiu o auto. DETRAN, EGR, PRF ou EPTC. Pois cada um tem fluxo próprio de recurso.
+O RS tem grande volume de fiscalização em rodovias estaduais (EGR) e federais (PRF), além das urbanas. Confirme sempre qual órgão emitiu o auto, DETRAN, EGR, PRF ou EPTC, pois cada um tem fluxo próprio de recurso.
     `
   },
   {
@@ -5984,7 +5984,7 @@ O processo de defesa prévia e recurso segue o mesmo caminho do CTB. Não há tr
 
 ## Existe curso voluntário para melhorar comportamento no trânsito?
 
-Sim. Cursos de direção defensiva oferecidos voluntariamente por CFCs ou empresas de treinamento são excelentes para segurança, mas **não têm nenhum efeito legal sobre pontos ou multas**. São puramente educacionais e voluntários.
+Sim, cursos de direção defensiva oferecidos voluntariamente por CFCs ou empresas de treinamento são excelentes para segurança, mas **não têm nenhum efeito legal sobre pontos ou multas**, são puramente educacionais e voluntários.
     `
   },
   {
@@ -6119,7 +6119,7 @@ O DETRAN do Santa Catarina disponibiliza o portal **detran.sc.gov.br** para cons
 
 ## Peculiaridade de Florianópolis
 
-Na capital Florianópolis, a fiscalização municipal de trânsito é feita pela SETUF/PMF, separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Florianópolis, a fiscalização municipal de trânsito é feita pela SETUF/PMF, separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Santa Catarina
 
@@ -6175,7 +6175,7 @@ O DETRAN do Goiás disponibiliza o portal **detran.go.gov.br** para consulta e c
 
 ## Peculiaridade de Goiânia
 
-Na capital Goiânia, a fiscalização municipal de trânsito é feita pela SMM (Superintendência Municipal de Mobilidade), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Goiânia, a fiscalização municipal de trânsito é feita pela SMM (Superintendência Municipal de Mobilidade), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Goiás
 
@@ -6231,7 +6231,7 @@ O DETRAN do Espírito Santo disponibiliza o portal **detran.es.gov.br** para con
 
 ## Peculiaridade de Vitória
 
-Na capital Vitória, a fiscalização municipal de trânsito é feita pela Setran (Secretaria de Transportes), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Vitória, a fiscalização municipal de trânsito é feita pela Setran (Secretaria de Transportes), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Espírito Santo
 
@@ -6287,7 +6287,7 @@ O DETRAN do Pará disponibiliza o portal **detran.pa.gov.br** para consulta e co
 
 ## Peculiaridade de Belém
 
-Na capital Belém, a fiscalização municipal de trânsito é feita pela SeMOB (Superintendência de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Belém, a fiscalização municipal de trânsito é feita pela SeMOB (Superintendência de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Pará
 
@@ -6343,7 +6343,7 @@ O DETRAN do Amazonas disponibiliza o portal **detran.am.gov.br** para consulta e
 
 ## Peculiaridade de Manaus
 
-Na capital Manaus, a fiscalização municipal de trânsito é feita pela IMMU (Instituto Municipal de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Manaus, a fiscalização municipal de trânsito é feita pela IMMU (Instituto Municipal de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Amazonas
 
@@ -6399,7 +6399,7 @@ O DETRAN do Maranhão disponibiliza o portal **detran.ma.gov.br** para consulta 
 
 ## Peculiaridade de São Luís
 
-Na capital São Luís, a fiscalização municipal de trânsito é feita pela SMTT (Secretaria Municipal de Trânsito e Transportes), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital São Luís, a fiscalização municipal de trânsito é feita pela SMTT (Secretaria Municipal de Trânsito e Transportes), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Maranhão
 
@@ -6455,7 +6455,7 @@ O DETRAN do Mato Grosso disponibiliza o portal **detran.mt.gov.br** para consult
 
 ## Peculiaridade de Cuiabá
 
-Na capital Cuiabá, a fiscalização municipal de trânsito é feita pela Semob (Secretaria de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Cuiabá, a fiscalização municipal de trânsito é feita pela Semob (Secretaria de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Mato Grosso
 
@@ -6511,7 +6511,7 @@ O DETRAN do Mato Grosso do Sul disponibiliza o portal **detran.ms.gov.br** para 
 
 ## Peculiaridade de Campo Grande
 
-Na capital Campo Grande, a fiscalização municipal de trânsito é feita pela Agetran (Agência Municipal de Transporte e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Campo Grande, a fiscalização municipal de trânsito é feita pela Agetran (Agência Municipal de Transporte e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Mato Grosso do Sul
 
@@ -6567,7 +6567,7 @@ O DETRAN do Paraíba disponibiliza o portal **detran.pb.gov.br** para consulta e
 
 ## Peculiaridade de João Pessoa
 
-Na capital João Pessoa, a fiscalização municipal de trânsito é feita pela STTrans (Superintendência de Trânsito e Transporte), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital João Pessoa, a fiscalização municipal de trânsito é feita pela STTrans (Superintendência de Trânsito e Transporte), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Paraíba
 
@@ -6623,7 +6623,7 @@ O DETRAN do Rio Grande do Norte disponibiliza o portal **detran.rn.gov.br** para
 
 ## Peculiaridade de Natal
 
-Na capital Natal, a fiscalização municipal de trânsito é feita pela STTU (Secretaria de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Natal, a fiscalização municipal de trânsito é feita pela STTU (Secretaria de Mobilidade Urbana), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Rio Grande do Norte
 
@@ -6679,7 +6679,7 @@ O DETRAN do Alagoas disponibiliza o portal **detran.al.gov.br** para consulta e 
 
 ## Peculiaridade de Maceió
 
-Na capital Maceió, a fiscalização municipal de trânsito é feita pela SMTT (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Maceió, a fiscalização municipal de trânsito é feita pela SMTT (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Alagoas
 
@@ -6735,7 +6735,7 @@ O DETRAN do Piauí disponibiliza o portal **detran.pi.gov.br** para consulta e c
 
 ## Peculiaridade de Teresina
 
-Na capital Teresina, a fiscalização municipal de trânsito é feita pela Strans (Superintendência de Transporte e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Teresina, a fiscalização municipal de trânsito é feita pela Strans (Superintendência de Transporte e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Piauí
 
@@ -6791,7 +6791,7 @@ O DETRAN do Sergipe disponibiliza o portal **detran.se.gov.br** para consulta e 
 
 ## Peculiaridade de Aracaju
 
-Na capital Aracaju, a fiscalização municipal de trânsito é feita pela SMTT (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Aracaju, a fiscalização municipal de trânsito é feita pela SMTT (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Sergipe
 
@@ -6847,7 +6847,7 @@ O DETRAN do Rondônia disponibiliza o portal **detran.ro.gov.br** para consulta 
 
 ## Peculiaridade de Porto Velho
 
-Na capital Porto Velho, a fiscalização municipal de trânsito é feita pela SEMTRAN (Secretaria Municipal de Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Porto Velho, a fiscalização municipal de trânsito é feita pela SEMTRAN (Secretaria Municipal de Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Rondônia
 
@@ -6903,7 +6903,7 @@ O DETRAN do Tocantins disponibiliza o portal **detran.to.gov.br** para consulta 
 
 ## Peculiaridade de Palmas
 
-Na capital Palmas, a fiscalização municipal de trânsito é feita pela ITT64 (Instituto de Trânsito e Transporte), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Palmas, a fiscalização municipal de trânsito é feita pela ITT64 (Instituto de Trânsito e Transporte), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Tocantins
 
@@ -6959,7 +6959,7 @@ O DETRAN do Acre disponibiliza o portal **detran.ac.gov.br** para consulta e con
 
 ## Peculiaridade de Rio Branco
 
-Na capital Rio Branco, a fiscalização municipal de trânsito é feita pela RBTRANS (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Rio Branco, a fiscalização municipal de trânsito é feita pela RBTRANS (Superintendência Municipal de Transportes e Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Acre
 
@@ -7015,7 +7015,7 @@ O DETRAN do Amapá disponibiliza o portal **detran.ap.gov.br** para consulta e c
 
 ## Peculiaridade de Macapá
 
-Na capital Macapá, a fiscalização municipal de trânsito é feita pela CTMAC (Coordenadoria de Trânsito de Macapá), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Macapá, a fiscalização municipal de trânsito é feita pela CTMAC (Coordenadoria de Trânsito de Macapá), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Amapá
 
@@ -7071,7 +7071,7 @@ O DETRAN do Roraima disponibiliza o portal **detran.rr.gov.br** para consulta e 
 
 ## Peculiaridade de Boa Vista
 
-Na capital Boa Vista, a fiscalização municipal de trânsito é feita pela SMTT (Secretaria Municipal de Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação. Municipal ou estadual. Para usar o canal correto de recurso.
+Na capital Boa Vista, a fiscalização municipal de trânsito é feita pela SMTT (Secretaria Municipal de Trânsito), separada do DETRAN estadual. Por isso, verifique sempre no auto de infração qual órgão emitiu a autuação, municipal ou estadual, para usar o canal correto de recurso.
 
 ## Prazos no Roraima
 
@@ -7261,7 +7261,7 @@ O radar que aplica multa:
 
 ## Recebi multa mas achei que era radar educativo
 
-Se você recebeu uma notificação de multa em um local onde havia apenas um radar com painel educativo. Sem a sinalização regulamentar de fiscalização eletrônica. Isso é um forte argumento de defesa.
+Se você recebeu uma notificação de multa em um local onde havia apenas um radar com painel educativo, sem a sinalização regulamentar de fiscalização eletrônica, isso é um forte argumento de defesa.
 
 A **Resolução CONTRAN nº 396** exige sinalização específica antes de qualquer equipamento que aplique multa. A ausência dessa sinalização é vício formal que pode anular a autuação.
 
@@ -7309,7 +7309,7 @@ Exemplo prático: você tem 27 pontos acumulados só de infrações leves e méd
 
 ## Exceção para motoristas profissionais (EAR)
 
-Motoristas com a observação **EAR (Exerce Atividade Remunerada)** na CNH. Motoristas de aplicativo, taxistas e caminhoneiros. Mantêm o limite fixo de **40 pontos**, independentemente do número de infrações gravíssimas. A medida existe para proteger o exercício da profissão.
+Motoristas com a observação **EAR (Exerce Atividade Remunerada)** na CNH, motoristas de aplicativo, taxistas e caminhoneiros, mantêm o limite fixo de **40 pontos**, independentemente do número de infrações gravíssimas. A medida existe para proteger o exercício da profissão.
 
 Atenção: isso vale apenas para suspensão por acúmulo de pontos. As infrações autossuspensivas ainda geram suspensão normalmente.
 
@@ -7394,7 +7394,7 @@ Nossa IA analisa o seu auto de infração gratuitamente e verifica se a autuaç�
     conteudo: `
 ## A mudança de 2026: celular equiparado ao álcool
 
-Em 2026, a fiscalização passou a tratar o uso de celular ao volante com a mesma gravidade de dirigir sob efeito de álcool. A punição se manteve como infração **gravíssima**. **7 pontos** na CNH e multa de **R$ 293,47**. Mas o rigor da fiscalização aumentou drasticamente, com "tolerância zero".
+Em 2026, a fiscalização passou a tratar o uso de celular ao volante com a mesma gravidade de dirigir sob efeito de álcool. A punição se manteve como infração **gravíssima**, **7 pontos** na CNH e multa de **R$ 293,47**, mas o rigor da fiscalização aumentou drasticamente, com "tolerância zero".
 
 ## O que a nova fiscalização detecta
 
@@ -7440,7 +7440,7 @@ Como essa multa agora é detectada por sistemas automáticos, a análise técnic
     conteudo: `
 ## A nova regra dos ciclomotores em 2026
 
-A partir de **1º de janeiro de 2026**, os ciclomotores. Aquelas motos de pequeno porte com motor de até 50 cilindradas, popularmente chamadas de "cinquentinhas". Passaram a exigir **registro obrigatório no Renavam e emplacamento**.
+A partir de **1º de janeiro de 2026**, os ciclomotores, aquelas motos de pequeno porte com motor de até 50 cilindradas, popularmente chamadas de "cinquentinhas", passaram a exigir **registro obrigatório no Renavam e emplacamento**.
 
 Antes dessa regra, muitos ciclomotores circulavam sem placa e sem registro formal. Agora, isso mudou.
 

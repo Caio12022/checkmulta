@@ -17,7 +17,7 @@ import { execSync } from "child_process";
 import { tmpdir } from "os";
 import { join } from "path";
 import sharp from "sharp";
-import { validarArtigoBlog, gerarComRetry, type ViolacaoDefesa } from "../prompts/validador";
+import { validarArtigoBlog, gerarComRetry, removerTravessao, type ViolacaoDefesa } from "../prompts/validador";
 import {
   gerarDescricaoVisual,
   gerarImagemArtigoCloudflare,
@@ -491,6 +491,15 @@ async function produzirArtigo(
 
   console.log("  Revisando (checagem juridica)...");
   artigo.conteudo = await revisarArtigo(String(artigo.conteudo));
+
+  // Trava de codigo para a regra do travessao. Os dois prompts (o que
+  // ESCREVE e o que REVISA) ja proibem, mas proibicao de prompt reduz a
+  // frequencia sem eliminar - o modelo varia entre execucoes. Aqui a troca
+  // e deterministica. Vem depois da revisao de proposito: a revisao e uma
+  // nova geracao do modelo e pode reintroduzir travessao ao reescrever.
+  artigo.titulo = removerTravessao(String(artigo.titulo));
+  artigo.descricao = removerTravessao(String(artigo.descricao));
+  artigo.conteudo = removerTravessao(String(artigo.conteudo));
 
   console.log("  Auditando (segunda camada, em codigo)...");
   const violacoesLegais = validarArtigoBlog(String(artigo.conteudo), "energia", pauta.tema);

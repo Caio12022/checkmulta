@@ -14,7 +14,7 @@ import { GLOSSARIO_PROCON as glossarioProcon } from "./src/data/glossarioProcon"
 import { PROMPT_ANALYZE_TICKET, promptGenerateDefense } from "./prompts/transito";
 import { PROMPT_ANALYZE_PROCON, promptGenerateDefenseProcon } from "./prompts/procon";
 import { PROMPT_ANALYZE_VIGILANCIA, promptGenerateDefenseVigilancia } from "./prompts/vigilancia";
-import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry, comDataDeHoje, ehAvisoDeCorte, sobrecarregado, cotaDiariaEsgotada, validarDefesa, type Vertical } from "./prompts/validador";
+import { validarAnaliseJSON, validarAnaliseTransito, gerarComRetry, comDataDeHoje, ehAvisoDeCorte, sobrecarregado, cotaDiariaEsgotada, validarDefesa, removerTravessao, type Vertical } from "./prompts/validador";
 import { PROMPT_ANALYZE_ENERGIA, promptGenerateDefenseEnergia, promptRevisorEnergia } from "./prompts/energia";
 import { PROMPT_ANALYZE_IBAMA, promptGenerateDefenseIbama, promptRevisorIbama } from "./prompts/ibama";
 let aiClient: GoogleGenAI | null = null;
@@ -97,7 +97,7 @@ ${peca}`;
  * Se a correção não resolver, entregamos a versão com menos violações e
  * registramos alto — melhor do que devolver erro a quem já pagou.
  */
-async function auditarPeca(
+async function auditarPecaInterno(
   peca: string,
   vertical: Vertical,
   entrada: any,
@@ -158,6 +158,25 @@ async function auditarPeca(
     console.warn("Falha ao auditar a peça:", e);
     return peca;
   }
+}
+
+/**
+ * Ponto único por onde passa a peça de TODAS as 5 verticais antes de ir pro
+ * cliente. Depois da auditoria jurídica, tira o travessão (regra do Caio:
+ * nada de travessão no texto entregue).
+ *
+ * A limpeza vem por ÚLTIMO de propósito: o passo de correção do auditarPeca
+ * é uma nova geração do modelo, então ele mesmo pode introduzir travessão
+ * ao reescrever a frase acusada. Limpar antes deixaria essa porta aberta.
+ */
+async function auditarPeca(
+  peca: string,
+  vertical: Vertical,
+  entrada: any,
+  ai: any
+): Promise<string> {
+  const auditada = await auditarPecaInterno(peca, vertical, entrada, ai);
+  return removerTravessao(auditada);
 }
 
 const mpClient = new MercadoPagoConfig({

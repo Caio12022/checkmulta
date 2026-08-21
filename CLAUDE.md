@@ -179,24 +179,63 @@ o validador rebaixa para "verificar", não veio do texto plantado.
 
 ## Coisas já resolvidas (não repetir)
 
-- **Sem travessão (—) nos artigos de blog.** Caio pediu isso antes desta
-  sessão, mas a regra nunca tinha chegado a nenhum prompt nem a este
-  arquivo — nenhum dos 5 robôs a aplicava, e os artigos já publicados
-  estavam cheios (523 ocorrências nos 5 arquivos de dados). Duas partes:
-  1. **Conteúdo já publicado**: convertido mecanicamente — travessão vira
-     ponto final, espaço, próxima palavra maiúscula (`X — y` → `X. Y`).
-     Cobre também os poucos casos de aposto duplo (`X — a — Y` vira três
-     frases curtas) e títulos que usavam o padrão "Título — Subtítulo"
-     (viram "Título. Subtítulo" — pode ler estranho em alguns; revisar se
-     incomodar, são só 6 títulos, todos em Trânsito).
-  2. **Geração futura**: proibição adicionada nos 5 robôs, em DOIS pontos
-     de cada um — no campo `titulo` e no campo `conteudo` da chamada que
-     ESCREVE o artigo, e de novo na lista numerada da chamada que REVISA.
-     Importante: a revisão só relê `artigo.conteudo` (nunca o título), então
-     a proibição no título só funciona se estiver na geração — colocar só
-     na revisão seria proibição que existe numa camada que não alcança o
-     campo (mesma classe de defeito documentada abaixo, "Dois defeitos que
-     se repetem").
+- **Sem travessão (—) em nada que sai pro cliente ou pro blog.** Caio pediu
+  isso antes desta sessão, mas a regra nunca tinha chegado a nenhum prompt
+  nem a este arquivo — nenhum dos 5 robôs a aplicava, e os artigos já
+  publicados estavam cheios (523 ocorrências nos 5 arquivos de dados).
+
+  A troca é feita por **`removerTravessao()` em `prompts/validador.ts`**,
+  uma função só, usada em três lugares: os 5 robôs de blog (depois da
+  revisão), a peça de defesa paga (em `auditarPeca`, por onde passam as 5
+  verticais) e a conversão do conteúdo que já estava publicado. Uma função
+  em vez de três cópias — e foi ela mesma, rodada contra os artigos já
+  convertidos, que pegou dois defeitos meus (ver abaixo).
+
+  **A regra não é "sempre ponto".** Ponto em todo travessão produz texto
+  errado em quatro situações, e cada uma tem tratamento próprio:
+  1. **Aposto duplo** (`X — miolo — Y`, par de travessões dentro da mesma
+     frase) vira **vírgula**, não ponto. Com ponto o miolo vira frase sem
+     verbo principal ("Com fundamento no art. 281 do CTB.") — numa peça
+     jurídica isso lê como texto mal escrito, que é exatamente o risco que
+     este projeto mais teme. São 49 casos só no blog.
+  2. **Faixa numérica** (`20 — 40 km/h`, `R$ 100 — 300`) vira hífen.
+     "20. 40 km/h" seria absurdo. Nenhum artigo tinha esse caso, mas a peça
+     de defesa é gerada ao vivo com valor e prazo dentro.
+  3. **Travessão abrindo linha** (o modelo às vezes usa como marcador de
+     lista) vira hífen, o marcador que o resto do texto já usa.
+  4. **Caso geral**: ponto, espaço, próxima palavra em maiúscula.
+
+  Dois defeitos que só apareceram porque a função foi conferida contra
+  saída real, e que valem como aviso pra quem mexer nisso:
+  - `\w` em JavaScript é **só ASCII**, então "é", "ú", "ç" não casavam e a
+    frase começava minúscula ("punição. é contenção"). Corrigido com
+    `\p{L}\p{N}` e flag `u`. O script Python que fez a primeira conversão
+    não tinha esse defeito, porque em Python `\w` cobre acentuada — a
+    divergência entre os dois é que denunciou o bug.
+  - Detectar "mesma frase" proibindo ponto **não funciona em texto
+    jurídico**, que é cheio de ponto de abreviação (`art. 281`, `nº 396`).
+    O que bloqueia tem que ser só o ponto de FIM DE FRASE (ponto seguido de
+    espaço e maiúscula).
+
+  **Nos robôs a proibição está em prompt E em código**, nos dois pontos de
+  cada robô: campo `titulo` e campo `conteudo` da chamada que ESCREVE, e de
+  novo na chamada que REVISA. A revisão só relê `artigo.conteudo` (nunca o
+  título), então a proibição no título só funciona se estiver na geração —
+  colocar só na revisão seria proibição numa camada que não alcança o campo.
+
+  **Nos prompts jurídicos (defesa), de propósito, só código.** Dois
+  motivos: a trava de código é determinística, então já garante 100% do
+  resultado, e os prompts jurídicos são texto calibrado com bateria de
+  teste passando — mexer neles pra reforçar uma regra puramente cosmética
+  seria risco sem ganho. Vale notar que esses prompts são eles próprios
+  escritos com travessão (o de IBAMA tem 92, o validador 60): instrução
+  pedindo pra evitar um caractere que o próprio contexto usa o tempo todo
+  seria fraca de qualquer jeito.
+
+  Sobrou um ponto pra revisão humana: 6 títulos de Trânsito usavam o padrão
+  "Título — Subtítulo" e viraram "Título. Subtítulo". A maioria lê bem
+  ("Levei uma Multa Injusta. O que Fazer Agora?"), mas um ficou fraco
+  ("Modelo de Recurso de Multa de Velocidade. Radar e Lombada").
 - Sitemap e meta tags server-side (`getMetaParaRota` em `server.ts`) cobrem
   as 5 verticais, incluindo Energia e IBAMA.
 - `noindex` provisório removido da home-mãe (`Plataforma.tsx`, que assumiu a

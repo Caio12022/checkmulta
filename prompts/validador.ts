@@ -987,6 +987,88 @@ export function validarArtigoBlog(
 }
 
 // ============================================================
+// 7-B. TRAVESSÃO — trava de código, não só de prompt
+// ============================================================
+
+/**
+ * Tira travessão (—) do texto gerado, trocando por ponto final e maiúscula.
+ *
+ * Regra do Caio: nada de travessão em texto que vai pro cliente ou pro blog.
+ *
+ * Por que existe em CÓDIGO e não só no prompt: proibição de prompt reduz a
+ * frequência mas não elimina, porque o modelo varia entre execuções — o
+ * CLAUDE.md deste projeto já documenta isso como defeito recorrente ("Dois
+ * defeitos que se repetem", item 2). E aqui há um agravante concreto: os
+ * próprios prompts jurídicos são escritos com travessão (o de IBAMA tem 92,
+ * o validador 60), então o texto que o modelo recebe como contexto está
+ * cheio do caractere que a instrução manda evitar. Instrução sozinha nessa
+ * situação é fraca; a troca determinística no fim do caminho é o que
+ * garante.
+ *
+ * Duas exceções onde ponto final produziria texto ERRADO, e por isso a
+ * troca é outra:
+ *
+ *   1. Faixa numérica ("de 20 — 40 km/h", "R$ 100 — 300"): vira hífen, que
+ *      é a notação normal de intervalo. Virar "20. 40" seria absurdo.
+ *      Nenhum artigo publicado tinha esse caso (conferido nos 5 arquivos),
+ *      mas a peça de defesa é gerada ao vivo, com valor e prazo dentro, e
+ *      lá não dá pra conferir antes.
+ *   2. Travessão abrindo linha (o modelo às vezes usa como marcador de
+ *      lista): vira hífen, o marcador que o resto do texto já usa. Virar
+ *      ". Item" quebraria a lista.
+ */
+export function removerTravessao(texto: string): string {
+  if (!texto) return texto;
+
+  return (
+    texto
+      // 1. Marcador de lista no início da linha: "— item" -> "- item"
+      .replace(/^([ \t]*)—[ \t]*/gm, "$1- ")
+      // 2. Faixa numérica: "20 — 40" -> "20-40"
+      .replace(/(\d\s*)—(\s*\d)/g, (_m, antes, depois) => `${antes.trimEnd()}-${depois.trimStart()}`)
+      // 3. APOSTO DUPLO: par de travessões cercando um trecho DENTRO da
+      //    mesma frase ("apresentou defesa — com base no art. 281 — em
+      //    face do auto"). Aqui vírgula, não ponto: com ponto o miolo
+      //    vira frase solta sem verbo principal ("Com base no art. 281."),
+      //    que numa peça jurídica lê como texto mal escrito.
+      //
+      //    O miolo precisa estar na MESMA frase. Detectar isso proibindo
+      //    ponto não funciona em texto jurídico, que é cheio de ponto de
+      //    ABREVIAÇÃO ("art. 281", "inc. II", "nº 396") - foi o que a
+      //    primeira versão desta regra errou, justamente no caso mais
+      //    comum da peça. Por isso o que bloqueia é só o ponto de FIM DE
+      //    FRASE: ponto seguido de espaço e maiúscula. "art. 281" passa
+      //    (depois do ponto vem dígito), "validade. A ausência" não passa.
+      //
+      //    O ",?" no fecho cobre "— miolo —," (travessão de fechamento
+      //    colado numa vírgula, que o texto real usa): sem ele o resultado
+      //    sairia com vírgula dupla (", miolo, , na qual").
+      .replace(/\s*—\s*((?:(?![.!?]\s+\p{Lu})[^—\n])+?)\s*—,?\s*/gu, ", $1, ")
+      // 4. Caso geral: ". " + primeira letra em maiúscula.
+      //    O grupo de "envolventes" cobre aspas e marcação markdown logo
+      //    depois do travessão (**negrito**, *itálico*), pra maiúscula cair
+      //    na LETRA e não no asterisco. O ",?" cobre "—," (travessão colado
+      //    numa vírgula), que senão viraria ". ,".
+      //
+      //    \p{L}\p{N} com flag "u" em vez de \w: em JavaScript \w é só
+      //    ASCII, então "é", "ú", "ç" não casariam e a frase começaria
+      //    minúscula ("punição. é contenção"). Isso não é hipótese — foi
+      //    pego conferindo esta função contra os artigos já convertidos,
+      //    que tinham sido processados por um script Python, onde \w cobre
+      //    acentuada e o resultado saiu certo.
+      .replace(
+        /\s*—,?\s*(["'*]{0,2})([\p{L}\p{N}])?/gu,
+        (_m, envolvente: string, nucleo: string) => {
+          const letra = nucleo || "";
+          return `. ${envolvente}${letra.toUpperCase()}`;
+        }
+      )
+      // 5. Sobra de travessão isolado (fim de string, etc.)
+      .replace(/—/g, "")
+  );
+}
+
+// ============================================================
 // 8. TRÂNSITO — saída em texto, formato preservado
 // ============================================================
 

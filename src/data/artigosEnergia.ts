@@ -447,7 +447,7 @@ Vale saber que um TOI formalmente correto pode, ainda assim, ter o valor derruba
 
 ## Verifique sua cobrança gratuitamente
 
-Envie o TOI, a notificação ou a fatura e receba a análise das duas frentes. Formalidade e cálculo. Sem custo e sem cadastro.
+Envie o TOI, a notificação ou a fatura e receba a análise das duas frentes, formalidade e cálculo, sem custo e sem cadastro.
 
 *Este conteúdo tem caráter informativo e não constitui consultoria jurídica.*`,
   },
@@ -560,7 +560,7 @@ Os 36 ciclos são um teto máximo, não um padrão automático.
 
 O caso típico é este: o TOI aponta violação do medidor, a distribuidora aplica o critério de cálculo e simplesmente multiplica pelo maior período possível, sem apontar em que mês o consumo teria caído de forma expressiva, sem análise do histórico, sem justificativa técnica.
 
-Órgãos de defesa do consumidor apontam justamente essa prática. A cobrança retroativa automática de 36 ciclos sem observar os critérios do art. 596. Como uma das formas mais comuns de defeito no procedimento.
+Órgãos de defesa do consumidor apontam justamente essa prática, a cobrança retroativa automática de 36 ciclos sem observar os critérios do art. 596, como uma das formas mais comuns de defeito no procedimento.
 
 ## Um detalhe que muda tudo
 

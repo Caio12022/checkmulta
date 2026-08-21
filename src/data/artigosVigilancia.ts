@@ -1156,7 +1156,7 @@ O processo administrativo, que rege a relação entre o Estado e o estabelecimen
 
 ## A fragmentação normativa e a identificação do prazo
 
-Um ponto que gera frequentes dúvidas entre os empresários é a diversidade de normas existentes. No âmbito federal, a Lei 6.437/77 (arts. 2º, 3º, 4º e 10) estabelece as normas para infrações à legislação sanitária. No entanto, é fundamental compreender que cada ente federativo. Estados e municípios. Possui autonomia para legislar sobre suas próprias estruturas de fiscalização e prazos administrativos.
+Um ponto que gera frequentes dúvidas entre os empresários é a diversidade de normas existentes. No âmbito federal, a Lei 6.437/77 (arts. 2º, 3º, 4º e 10) estabelece as normas para infrações à legislação sanitária. No entanto, é fundamental compreender que cada ente federativo, estados e municípios, possui autonomia para legislar sobre suas próprias estruturas de fiscalização e prazos administrativos.
 
 Como o procedimento varia conforme a legislação sanitária local aplicável, não existe uma regra única de contagem que se aplique universalmente a todos os estabelecimentos do país. Por esse motivo, o primeiro passo após o recebimento de um auto de infração é a leitura minuciosa do documento recebido. O prazo para defesa é, invariavelmente, indicado pelo próprio órgão fiscalizador no momento da autuação ou em notificação subsequente.
 
@@ -1859,7 +1859,7 @@ Se você identifica que a dosimetria da multa foi aplicada de modo obscuro ou in
     palavrasChave: ["auto de infração vigilância sanitária", "falha auto infração", "identificação agente fiscalizador", "defesa processo administrativo"],
     conteudo: `## A importância da formalidade no ato administrativo
 
-O processo administrativo sanitário é regido por normas rígidas que garantem não apenas a proteção da saúde pública, mas também a segurança jurídica dos estabelecimentos fiscalizados. Quando um estabelecimento comercial. Seja um restaurante, uma farmácia ou uma clínica. Recebe um auto de infração, espera-se que o documento contenha todos os requisitos formais que permitam a perfeita compreensão do ato praticado. Uma das falhas que gera maior questionamento técnico é a ausência de identificação do agente fiscalizador no documento lavrado.
+O processo administrativo sanitário é regido por normas rígidas que garantem não apenas a proteção da saúde pública, mas também a segurança jurídica dos estabelecimentos fiscalizados. Quando um estabelecimento comercial, seja um restaurante, uma farmácia ou uma clínica, recebe um auto de infração, espera-se que o documento contenha todos os requisitos formais que permitam a perfeita compreensão do ato praticado. Uma das falhas que gera maior questionamento técnico é a ausência de identificação do agente fiscalizador no documento lavrado.
 
 ## O princípio da legalidade e a identificação do agente
 
