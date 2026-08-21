@@ -310,6 +310,7 @@ Caso tenha recebido um TOI ou notificação de recuperação de consumo, é reco
 
   {
     slug: "cobranca-sem-pericia-no-medidor-entenda-seus-direitos-e-a-norma",
+    imagemUrl: "/blog/energia/cobranca-sem-pericia-no-medidor-entenda-seus-direitos-e-a-norma.jpg",
     titulo: "Cobrança sem perícia no medidor: entenda seus direitos e a norma",
     descricao: "Recebeu uma cobrança de energia sem que seu medidor tenha sido periciado? Entenda o que a Resolução 1.000 da ANEEL diz sobre isso e analise seu documento.",
     categoria: "Perícia do Medidor",
