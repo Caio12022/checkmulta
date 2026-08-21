@@ -14,6 +14,51 @@ export interface ArtigoIbama {
 
 export const artigosIbama: ArtigoIbama[] = [
   {
+    slug: "como-acessar-o-sei-ibama-para-protocolar-sua-defesa",
+    titulo: "Como acessar o SEI IBAMA para protocolar sua defesa",
+    descricao: "Acesse o SEI IBAMA para protocolar a defesa administrativa do seu auto de infração federal. Veja grátis se o auto tem falha.",
+    categoria: "Primeiros Passos",
+    tempoLeitura: "5 min",
+    imagemEmoji: "💻",
+    imagemBg: "from-sky-50 to-blue-50",
+    palavrasChave: ["SEI IBAMA acesso", "protocolar defesa IBAMA", "prazo defesa multa ambiental"],
+    conteudo: `## Acesso ao sistema oficial do IBAMA
+
+Ao receber um auto de infração ambiental lavrado pelo IBAMA, o autuado deve estar atento à necessidade de formalizar sua manifestação exclusivamente pelos canais oficiais da autarquia. Atualmente, o envio de defesas e documentos ocorre por meio do SEI (Sistema Eletrônico de Informações) do IBAMA, que permite a tramitação digital de processos administrativos.
+
+Para acessar o sistema, é indispensável possuir uma conta no portal Gov.br com nível de segurança Prata ou Ouro. O protocolo digital é o meio técnico previsto para assegurar o exercício do contraditório e da ampla defesa, nos termos do art. 96 do Decreto nº 6.514/2008, que trata da lavratura e ciência do auto.
+
+## Passo a passo para o protocolo
+
+- Acesse o portal oficial do IBAMA na rede mundial de computadores.
+- Localize a área dedicada ao SEI - Sistema Eletrônico de Informações.
+- Realize o login por meio do portal Gov.br.
+- Identifique o processo administrativo correspondente ao seu auto de infração. Caso ainda não tenha sido cadastrado como usuário externo, será necessário realizar este cadastro prévio para obter permissão de peticionamento.
+- Ao peticionar, anexe a defesa técnica e todos os documentos comprobatórios que fundamentam suas alegações. Certifique-se de que o arquivo esteja em formato legível e não contenha rasuras ou omissões.
+
+## Pontos de atenção na defesa
+
+O prazo para apresentação da defesa administrativa é de 20 dias, contados da data da ciência da autuação, conforme determina o art. 113 do Decreto nº 6.514/2008. É fundamental verificar se houve agendamento de audiência de conciliação ambiental, pois, nos termos do art. 97-A, § 1º, do mesmo decreto, tal agendamento pode sobrestar a fluência deste prazo. Verifique sempre a notificação recebida para confirmar o prazo aplicável ao seu caso.
+
+Durante a elaboração da defesa, o autuado deve avaliar se existem vícios que possam fragilizar o procedimento. De acordo com o art. 97 do Decreto nº 6.514/2008, o auto deve preencher requisitos formais essenciais, como a identificação clara e objetiva da infração e a correta indicação dos dispositivos infringidos. Conforme o art. 100, § 2º, vício insanável no documento pode resultar na declaração de nulidade, embora a administração possa lavrar novo auto, desde que respeitado o prazo prescricional.
+
+## Conceitos fundamentais para o autuado
+
+Além dos requisitos formais, o autuado deve considerar a aplicação subsidiária da Lei nº 9.784/99, cujo art. 53 estabelece que a administração deve anular seus atos eivados de vício de legalidade. Também é necessário observar a competência do órgão fiscalizador, conforme disposto na Lei Complementar nº 140/2011, nos artigos 7º e 17. Se o ente que autuou for incompetente para a prática do ato, tal fato pode ser arguido como fundamento de nulidade.
+
+Sobre a prescrição, o art. 21 do Decreto nº 6.514/2008 define o prazo de cinco anos para a prescrição punitiva a partir da prática do ato ou da cessação da infração continuada. Existe também a prescrição intercorrente, de três anos, quando o processo fica parado sem movimentação, conforme o art. 21, § 2º, do mesmo decreto. Este conteúdo aplica-se estritamente a autos federais do IBAMA. Se a autuação for de órgão estadual ou municipal, deve-se consultar a legislação local específica, pois estes seguem normas próprias.
+
+## Importância da estratégia técnica
+
+Uma defesa administrativa eficaz exige a análise técnica dos fatos, podendo envolver a busca por circunstâncias atenuantes (art. 14 da Lei nº 9.605/98) ou a proposta de conversão de multa simples em serviços de preservação, melhoria e recuperação ambiental, conforme o art. 72, § 4º, da mesma lei. Ressalte-se que, caso exista um termo de embargo ou apreensão, a defesa administrativa não autoriza a interrupção de tais medidas, as quais devem ser estritamente respeitadas enquanto estiverem em vigor.
+
+É possível submeter o auto de infração para uma análise técnica que aponte se ele apresenta falha capaz de fundamentar a defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "diferenca-entre-auto-de-infracao-do-ibama-e-de-orgao-estadual",
     titulo: "Diferença entre auto de infração do IBAMA e de órgão estadual",
     descricao: "Entenda as distinções de competência entre o IBAMA e órgãos estaduais ao receber um auto de infração ambiental e saiba como proceder com sua defesa.",
