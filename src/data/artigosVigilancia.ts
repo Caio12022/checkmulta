@@ -14,6 +14,57 @@ export interface ArtigoVigilancia {
 
 export const artigosVigilancia: ArtigoVigilancia[] = [
   {
+    slug: "alem-da-multa-quais-as-penalidades-da-vigilancia-sanitaria",
+    titulo: "Além da multa quais as penalidades da Vigilância Sanitária",
+    descricao: "Saiba que a Vigilância Sanitária pode aplicar penalidades diversas da multa financeira, conforme a Lei Federal 6.437/77. Confira o prazo no seu auto.",
+    categoria: "Penalidades",
+    tempoLeitura: "4 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-slate-50 to-gray-100",
+    imagemUrl: "/blog/vigilancia/alem-da-multa-quais-as-penalidades-da-vigilancia-sanitaria.jpg",
+    palavrasChave: ["penalidades Vigilância Sanitária", "auto de infração interdição", "defesa administrativa vigilância sanitária", "código sanitário penalidades"],
+    conteudo: `## Compreendendo as penalidades administrativas
+
+Ao receber um auto de infração, o proprietário de um estabelecimento costuma focar imediatamente no valor pecuniário. Contudo, o sistema de fiscalização sanitária prevê um espectro de punições mais amplo, destinado a proteger a saúde coletiva quando a conformidade com as normas deixa de existir. Conforme estabelece a Lei 6.437/77, em seu artigo 2º, a fiscalização pode aplicar diversas sanções além da multa, variando conforme a gravidade da infração.
+
+## As principais penalidades além da multa
+
+O rol de penalidades previsto na legislação federal reflete o poder de polícia do Estado. É fundamental notar que essas medidas visam, primordialmente, cessar o risco sanitário. Entre elas, destacam-se:
+
+- Advertência.
+- Apreensão do produto.
+- Inutilização do produto.
+- Suspensão de venda ou fabricação de produto.
+- Cancelamento de autorização para funcionamento.
+- Interdição total ou parcial do estabelecimento.
+
+O artigo 4º da Lei 6.437/77 classifica as infrações em leves, graves ou gravíssimas. Essa gradação é o que define qual penalidade será aplicada pelo agente fiscal, sempre observando os princípios da razoabilidade e da proporcionalidade.
+
+## A natureza da interdição e medidas cautelares
+
+Um ponto que gera dúvidas recorrentes é a interdição. Esta medida, quando aplicada de forma cautelar, possui limites temporais específicos. O artigo 23, § 4º, da Lei 6.437/77 prevê que a interdição cautelar pode ter duração de no máximo 90 dias, prazo necessário para que o estabelecimento regularize as pendências apontadas.
+
+É imperativo reforçar que o estabelecimento não deve retomar as atividades antes da liberação formal do órgão competente. Caso o estabelecimento tenha sido interditado, o procedimento adequado envolve a correção integral das irregularidades apontadas, devidamente documentada por meio de registros, notas fiscais ou laudos técnicos. Esta documentação é a base para o requerimento de reinspeção junto ao órgão fiscalizador.
+
+## O processo administrativo e os princípios norteadores
+
+Independentemente da sanção aplicada, a administração pública deve obediência ao devido processo legal. A aplicação de qualquer penalidade, seja ela uma multa ou o cancelamento do alvará, deve ser rigorosamente fundamentada, conforme exige o artigo 50 da Lei 9.784/99, aplicável subsidiariamente.
+
+Princípios como o contraditório e a ampla defesa, além do previsto no artigo 2º da Lei 9.784/99, aplicável subsidiariamente, são pilares que permitem ao autuado questionar a validade do auto de infração. O artigo 13 da Lei 6.437/77 estabelece os requisitos obrigatórios para que um auto de infração seja válido. Se o documento emitido pelo fiscal não contiver os elementos exigidos, há fundamento para questionar a sua legalidade em sede de defesa administrativa.
+
+## Como proceder diante da notificação
+
+Ao receber o auto, o primeiro passo é verificar o prazo concedido pelo próprio documento para a apresentação de defesa. Lembre-se que, embora a Lei 6.437/77 mencione um prazo de 15 dias no artigo 22 para a defesa, a legislação sanitária é fragmentada. Estados e municípios possuem autonomia para estabelecer prazos em seus próprios normativos. Portanto, a leitura atenta do auto de infração é o único guia seguro sobre o tempo que você possui para organizar seus argumentos.
+
+Se o auto apresentar falhas, vícios de forma ou se a sanção aplicada desrespeitar o princípio da proporcionalidade, o ordenamento jurídico permite que você apresente defesa administrativa para buscar a revisão da penalidade imposta, havendo a possibilidade de alteração ou cancelamento da sanção a depender da análise do órgão julgador.
+
+Caso tenha dúvidas sobre o auto de infração recebido, é recomendável analisar se a autuação apresenta falhas capazes de fundamentar recurso.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "controle-de-temperatura-como-evitar-autuacoes-sanitarias",
     titulo: "Controle de temperatura: como evitar autuações sanitárias",
     descricao: "O controle de temperatura é essencial para evitar autuações. O prazo do seu municipio pode ser menor que 15 dias. Confira o prazo no seu auto.",
