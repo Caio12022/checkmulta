@@ -1,5 +1,17 @@
 {
   "transito": [
     "Avoid generating legible or pseudo-text elements on documents, papers, or legal forms to maintain visual credibility."
+  ],
+  "procon": [
+    "Avoid generating images with distorted or illegible text on documents or labels as the central focal point."
+  ],
+  "vigilancia": [
+    "Avoid generating text, signage, or official documents as the primary focus of the composition."
+  ],
+  "energia": [
+    "Avoid generating electrical meters or technical devices with visible text or labels as the central focal point."
+  ],
+  "ibama": [
+    "Avoid incorporating specific text, labels, or badges on uniforms and official insignias."
   ]
 }
