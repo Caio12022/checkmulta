@@ -14,6 +14,50 @@ export interface ArtigoEnergia {
 
 export const artigosEnergia: ArtigoEnergia[] = [
   {
+    slug: "negativacao-por-debito-de-recuperacao-em-discussao",
+    titulo: "Negativacao por Debito de Recuperacao em Discussao",
+    descricao: "Saiba como proceder se a distribuidora ameaçar negativar seu nome por cobranças de TOI em aberto. Veja grátis o que falta no TOI.",
+    categoria: "Direitos do Consumidor",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚠️",
+    imagemBg: "from-amber-50 to-orange-50",
+    imagemUrl: "/blog/energia/negativacao-por-debito-de-recuperacao-em-discussao.jpg",
+    palavrasChave: ["TOI energia", "recuperação de consumo", "negativação débito indevido", "contestação fatura energia"],
+    conteudo: `## O risco da negativação frente a um débito em discussão
+
+Receber uma notificação de recuperação de consumo, comumente originada por um Termo de Ocorrência e Inspeção, gera preocupação imediata ao consumidor. Além do valor expressivo, surge o temor quanto à interrupção do fornecimento de energia ou ao registro do nome em órgãos de proteção ao crédito. Quando o consumidor apresenta uma contestação administrativa, o débito passa a ser considerado em discussão. A questão central é entender se a distribuidora pode realizar a negativação enquanto o processo de apuração ainda está em curso.
+
+É importante esclarecer que o Código de Defesa do Consumidor protege a parte hipossuficiente na relação de consumo. Em caso de cobranças baseadas em procedimentos unilaterais, a distribuidora possui o ônus de provar a regularidade de cada etapa do processo de fiscalização e do cálculo apresentado.
+
+## A exigência de regularidade procedimental
+
+Para que uma cobrança de recuperação de consumo seja válida, a distribuidora deve seguir rigorosamente as etapas estabelecidas pela Resolução ANEEL nº 1.000/2021. De acordo com o art. 590, há providências cumulativas para a caracterização da irregularidade. Não basta apenas a lavratura do documento de inspeção. A empresa deve observar critérios procedimentais rigorosos estabelecidos pelas normas do setor.
+
+Caso o procedimento falhe em qualquer um desses pilares, a cobrança torna-se frágil. Por exemplo, o art. 591 estabelece deveres essenciais na emissão do documento, como a entrega de cópia com recibo ao consumidor e a devida informação sobre o direito de solicitar perícia metrológica. Se essas garantias são violadas, o consumidor possui elementos fundamentais para questionar a legitimidade do débito.
+
+## A perícia e o prazo de resposta
+
+Quando há a retirada do medidor para análise, os arts. 592 e 250 da Resolução 1.000/2021 asseguram direitos cruciais. O lacre deve ser preservado no ato da retirada e o consumidor tem o direito de acompanhar a perícia em laboratório. O relatório de inspeção deve ser apresentado pela distribuidora em até 30 dias contados da solicitação do consumidor. É recomendável consultar a notificação recebida para conferir o prazo específico destinado à manifestação do consumidor.
+
+## O cálculo e o erro sobre o período de cobrança
+
+Um dos pontos mais sensíveis em cobranças de recuperação de consumo é a definição do período de irregularidade. O art. 596 determina que, caso o período não seja tecnicamente identificável, a cobrança deve se limitar a 6 ciclos anteriores à constatação. O erro comum das distribuidoras é aplicar o teto máximo de 36 ciclos de forma automática, sem a devida demonstração técnica. O consumidor deve estar atento, pois o teto de 36 ciclos não é uma regra geral de cobrança, mas uma limitação temporal para casos devidamente justificados.
+
+Ademais, conforme o art. 595, a metodologia de cálculo deve respeitar critérios rigorosos estabelecidos pela regulação. Qualquer divergência nestes critérios fundamenta a impugnação do valor cobrado.
+
+## Como proceder diante de uma cobrança indevida
+
+Se o valor faturado for superior ao consumo real, o art. 323 da Resolução 1.000/2021 prevê a revisão de até 60 ciclos e a possibilidade de devolução em dobro do valor recebido indevidamente. É fundamental que o consumidor não deixe de pagar as faturas correntes de energia, pois a contestação administrativa incide exclusivamente sobre o débito retroativo referente à recuperação de consumo.
+
+Ao receber uma notificação, verifique atentamente os prazos para interposição de recurso administrativo junto à distribuidora constantes no documento. Caso a empresa insista na negativação de um débito que está sendo contestado de forma fundamentada e dentro dos trâmites administrativos, o consumidor pode buscar os órgãos de proteção ao consumidor ou o Poder Judiciário para impedir a restrição de crédito.
+
+No CheckMulta, é possível enviar o documento de notificação de recuperação de consumo para análise técnica sobre eventuais falhas que possam fundamentar uma contestação.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "cobranca-por-recuperacao-o-criterio-da-media-de-consumo",
     titulo: "Cobrança por Recuperação: O Critério da Média de Consumo",
     descricao: "Entenda como a média dos três maiores consumos deve ser aplicada na recuperação de energia. Veja grátis o que falta no TOI.",
