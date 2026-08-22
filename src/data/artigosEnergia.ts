@@ -21,7 +21,6 @@ export const artigosEnergia: ArtigoEnergia[] = [
     tempoLeitura: "5 min",
     imagemEmoji: "⚠️",
     imagemBg: "from-amber-50 to-orange-50",
-    imagemUrl: "/blog/energia/negativacao-por-debito-de-recuperacao-em-discussao.jpg",
     palavrasChave: ["TOI energia", "recuperação de consumo", "negativação débito indevido", "contestação fatura energia"],
     conteudo: `## O risco da negativação frente a um débito em discussão
 
