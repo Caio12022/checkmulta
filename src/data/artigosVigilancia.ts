@@ -21,7 +21,6 @@ export const artigosVigilancia: ArtigoVigilancia[] = [
     tempoLeitura: "4 min",
     imagemEmoji: "⚖️",
     imagemBg: "from-slate-50 to-gray-100",
-    imagemUrl: "/blog/vigilancia/alem-da-multa-quais-as-penalidades-da-vigilancia-sanitaria.jpg",
     palavrasChave: ["penalidades Vigilância Sanitária", "auto de infração interdição", "defesa administrativa vigilância sanitária", "código sanitário penalidades"],
     conteudo: `## Compreendendo as penalidades administrativas
 
