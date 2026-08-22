@@ -14,6 +14,50 @@ export interface ArtigoProcon {
 
 export const artigosProcon: ArtigoProcon[] = [
   {
+    slug: "como-obter-a-copia-integral-do-processo-no-procon",
+    titulo: "Como obter a cópia integral do processo no Procon",
+    descricao: "O direito de acesso aos autos é garantido para assegurar a ampla defesa da empresa. Sem defesa no prazo, vale a revelia. Veja grátis se há vício formal.",
+    categoria: "Direitos da Empresa",
+    tempoLeitura: "4 min",
+    imagemEmoji: "📂",
+    imagemBg: "from-sky-50 to-blue-50",
+    imagemUrl: "/blog/procon/como-obter-a-copia-integral-do-processo-no-procon.jpg",
+    palavrasChave: ["acesso autos processo Procon", "cópia processo administrativo Procon", "defesa auto de infração Procon"],
+    conteudo: `## O direito fundamental ao acesso aos autos
+
+Ao receber um auto de infração emitido pelo Procon, o representante da empresa se depara com um rito processual que, muitas vezes, desconhece. Entre os direitos essenciais garantidos ao administrado, destaca-se o acesso integral ao processo administrativo sancionador. Este direito não é apenas uma formalidade, mas uma condição indispensável para a construção de uma defesa técnica eficaz e fundamentada.
+
+A legislação prevê diretrizes para a fiscalização e a competência dos órgãos para apurar e punir, conforme o art. 5º do Decreto 2.181/97. Quando um estabelecimento é autuado, o processo administrativo instaurado possui uma sequência lógica e documental. O acesso a esses documentos permite que a empresa verifique desde a legalidade da notificação até a correção dos cálculos que levaram à sanção aplicada.
+
+## Por que a cópia integral é necessária
+
+O processo administrativo inicia-se, conforme o art. 33 do Decreto 2.181/97, com a lavratura do auto de infração. Pode haver uma fase de averiguação preliminar, prevista no art. 33-A do Decreto 2.181/97. Muitas vezes, o documento entregue à empresa é apenas o início do histórico documental do caso. Documentos de fiscalização, fotos, termos de depoimento e eventuais pareceres técnicos podem estar presentes nos autos, mas não foram entregues fisicamente no momento da autuação.
+
+Ao obter a cópia integral, a empresa pode confrontar os fatos descritos com a realidade da operação. Por exemplo, conforme o art. 35, inciso I, do Decreto 2.181/97, o auto de infração possui requisitos obrigatórios, como local, data e hora, qualificação do autuado, descrição do fato, dispositivo legal infringido, intimação, identificação, assinatura e matrícula do agente, designação do órgão julgador, assinatura do autuado e cientificação para defesa. Se a cópia integral revelar que esses requisitos não foram observados ou que houve falhas na coleta de provas, a empresa terá elementos concretos para impugnar o auto em sua peça de defesa.
+
+## A importância da transparência no rito processual
+
+O Decreto 2.181/97 estabelece critérios rigorosos para a dosimetria da penalidade, prevendo nos arts. 24 a 28 a graduação da pena, atenuantes, agravantes, reincidência e fixação da multa. Além disso, o art. 26-A reforça que as atenuantes e agravantes são taxativas, e o art. 28-A veda a valoração do mesmo elemento duas vezes na dosimetria. Sem a vista completa dos autos, é difícil verificar se o Procon respeitou essas normas ao fixar o valor de uma possível multa.
+
+Adicionalmente, se a atividade for de risco leve, o art. 38-A do referido decreto exige a fiscalização orientadora e o critério de dupla visita. Se o órgão fiscalizador ignorou esse procedimento, o § 2º do mesmo artigo prevê a nulidade do auto, sendo que o § 3º determina tratamento diferenciado a ME e EPP. O acesso ao processo permite identificar se esse rito foi descumprido, oferecendo um argumento de peso para a defesa. A inobservância de forma só gera nulidade se houver prejuízo para a defesa, nos termos do art. 48 do Decreto 2.181/97.
+
+## Como proceder para solicitar o acesso
+
+O processo administrativo é público, ressalvadas as hipóteses de sigilo legal. A empresa tem o direito de solicitar a cópia, seja presencialmente ou por meio dos sistemas digitais disponibilizados pelo órgão, quando aplicável. É prudente que essa solicitação ocorra logo após a ciência da autuação, para não comprometer o prazo de defesa.
+
+Vale ressaltar que o prazo para apresentação de defesa não é padrão em todo o território nacional. A legislação prevê o prazo indicado no auto. Portanto, a consulta ao documento recebido é fundamental para identificar o prazo exato concedido pelo seu órgão local. Após a decisão, cabe recurso em 10 dias, com efeito suspensivo em caso de multa, conforme o art. 49 do Decreto 2.181/97.
+
+## O risco da revelia
+
+É importante frisar que a solicitação de cópia dos autos não suspende automaticamente o prazo para apresentação de defesa, salvo previsão expressa em norma local. A inobservância do prazo estabelecido resulta na revelia, o que pode levar à aplicação da penalidade sem a apreciação dos argumentos da empresa. Após o encerramento da fase administrativa, conforme o art. 55 do Decreto 2.181/97, a multa não recolhida em 30 dias será inscrita em dívida ativa, gerando reflexos financeiros severos ao negócio.
+
+É possível enviar o auto de infração do Procon para obter uma análise que aponte se a autuação apresenta vício formal ou outros elementos que mereçam atenção especial na sua defesa.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "como-o-procon-calcula-o-valor-da-multa-administrativa",
     titulo: "Como o Procon calcula o valor da multa administrativa",
     descricao: "O valor da multa aplicada pelo Procon é calculado com base em critérios técnicos previstos no Decreto 2.181/97. Veja grátis se há vício formal.",
