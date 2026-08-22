@@ -14,6 +14,52 @@ export interface Artigo {
 
 export const artigos: Artigo[] = [
   {
+    slug: "margem-de-erro-dos-radares-como-funciona-e-seus-direitos",
+    titulo: "Margem de erro dos radares: como funciona e seus direitos",
+    descricao: "A margem de tolerância dos radares evita punições indevidas por erros técnicos. Entenda como ela funciona e protege o motorista. Veja grátis se tem falha.",
+    categoria: "Velocidade",
+    tempoLeitura: "4 min",
+    imagemEmoji: " speedometer",
+    imagemBg: "from-red-600 to-red-800",
+    imagemUrl: "/blog/transito/margem-de-erro-dos-radares-como-funciona-e-seus-direitos.jpg",
+    conteudo: `## A importância da margem de tolerância no trânsito
+
+Muitos motoristas se perguntam como funciona a medição da velocidade pelos equipamentos eletrônicos instalados nas vias brasileiras. Quando recebemos uma notificação de autuação, é comum surgir a dúvida sobre a precisão da medição realizada pelo radar ou a existência de algum erro técnico. Para responder a isso, a legislação estabelece o conceito de margem de tolerância.
+
+Essa margem não existe para permitir que o motorista dirija acima do limite permitido. O seu propósito técnico é compensar eventuais erros de medição dos aparelhos ou variações nos velocímetros dos veículos. Sem essa trava de segurança, muitos condutores poderiam ser autuados injustamente por oscilações mínimas que não representam risco real à segurança viária.
+
+## Como a margem é calculada na prática
+
+O Código de Trânsito Brasileiro e as resoluções do órgão máximo de trânsito definem critérios rigorosos para a aferição da velocidade. O sistema funciona com dois valores distintos:
+
+1. **Velocidade medida**: É o valor captado pelo radar no momento da passagem do veículo.
+2. **Velocidade considerada**: É o valor que permanece após a aplicação da margem de erro técnica do equipamento. É este o número que serve de base para aplicar a infração.
+
+Se o seu veículo passa por um radar em uma via sinalizada, o equipamento aplica uma redução técnica. Portanto, você só será autuado se a sua velocidade final, já descontada essa margem, ultrapassar o limite da via. Isso garante que qualquer variação instrumental seja absorvida pelo próprio sistema de fiscalização antes de gerar uma multa.
+
+## Por que a tolerância não é um convite para correr
+
+É fundamental destacar que a tolerância é um conceito técnico de metrologia e não um limite extra concedido ao condutor. O limite de velocidade indicado na placa é a velocidade máxima permitida. Basear sua condução na expectativa de que a margem de erro irá salvá-lo de uma punição é uma estratégia arriscada e perigosa.
+
+Além disso, os radares modernos passam por aferições periódicas obrigatórias realizadas pelo órgão responsável pela metrologia no Brasil. Essas vistorias garantem que o equipamento esteja operando dentro das normas. Se um radar estiver com a calibração vencida ou apresentar defeitos técnicos, a autuação pode ser considerada nula, mas isso exige uma análise criteriosa do documento de infração.
+
+## O que fazer ao receber uma notificação de velocidade
+
+Nem toda multa de radar é legítima. Existem falhas comuns que podem invalidar o auto de infração, como:
+
+* **Equipamento sem calibração atualizada**: Se o prazo de verificação técnica do radar estiver expirado, a multa perde a validade legal.
+* **Localização da sinalização**: A lei exige que o limite de velocidade esteja claramente sinalizado em locais estratégicos.
+* **Dados incorretos no auto**: Erros na descrição do veículo, data, hora ou local da infração são vícios que podem levar ao cancelamento da penalidade.
+
+Ao receber uma notificação, o primeiro passo é conferir se todos os dados batem com a realidade. Muitas vezes, o condutor aceita a punição sem saber que a falha está no próprio processo administrativo de fiscalização.
+
+## Analise sua situação sem custos
+
+Se você foi autuado e acredita que a multa pode ser indevida, é seu direito buscar a revisão do caso. No CheckMulta, você pode enviar o auto de infração e receber uma análise que aponta se há falhas capazes de anular a multa. Utilize as ferramentas disponíveis para entender se a legislação foi aplicada corretamente no seu caso específico.`,
+    palavrasChave: ["multa de radar", "excesso de velocidade", "margem de tolerância radar", "recurso de multa"],
+  },
+
+  {
     slug: "recurso-de-multa-negado-sem-explicacao-o-que-fazer-agora",
     titulo: "Recurso de multa negado sem explicacao O que fazer agora",
     descricao: "Quando um recurso de multa é indeferido sem justificativa clara, o condutor possui o direito constitucional à motivação. Veja grátis se tem falha.",
