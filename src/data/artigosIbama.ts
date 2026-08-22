@@ -14,6 +14,50 @@ export interface ArtigoIbama {
 
 export const artigosIbama: ArtigoIbama[] = [
   {
+    slug: "circunstancias-atenuantes-da-penalidade-ambiental-federal",
+    titulo: "Circunstancias Atenuantes da Penalidade Ambiental Federal",
+    descricao: "As circunstancias atenuantes podem reduzir o valor da multa ambiental do IBAMA. Entenda como funcionam e o prazo legal. Veja grátis se o auto tem falha.",
+    categoria: "Alternativas",
+    tempoLeitura: "5 min",
+    imagemEmoji: "⚖️",
+    imagemBg: "from-sky-50 to-blue-50",
+    imagemUrl: "/blog/ibama/circunstancias-atenuantes-da-penalidade-ambiental-federal.jpg",
+    palavrasChave: ["atenuantes multa ibama", "defesa auto infracao ambiental", "reducao penalidade ambiental"],
+    conteudo: `## A Importancia das Atenuantes no Processo Administrativo Federal
+
+Quando um particular ou empresa recebe um auto de infração do IBAMA, a preocupação imediata costuma recair sobre o valor pecuniário da multa. No entanto, o sistema sancionador federal prevê mecanismos que permitem a atenuação da sanção aplicada. Compreender as circunstâncias atenuantes é um passo fundamental na elaboração da defesa administrativa, pois elas visam ajustar a penalidade à realidade fática do autuado, observando critérios de razoabilidade e proporcionalidade.
+
+É essencial destacar que este guia refere-se exclusivamente aos autos lavrados pelo IBAMA. Caso a autuação tenha sido emitida por órgãos ambientais estaduais ou municipais, deve-se consultar a legislação específica daquele ente federativo, visto que a aplicação de normas federais a esferas locais é indevida. A repartição de competências é regida pelos arts. 7º e 17 da LC 140/2011.
+
+## O que a Lei prevê sobre a Atenuação
+
+A Lei 9.605/98, em seu art. 14, estabelece as circunstâncias atenuantes que podem ser consideradas pela autoridade ambiental no momento do julgamento do processo administrativo. Entre os fatores previstos, destacam-se a colaboração do autuado com os agentes de fiscalização, a comunicação prévia de perigo iminente de degradação ambiental e a adoção de medidas imediatas para mitigar ou reparar os danos causados.
+
+A aplicação dessas atenuantes depende da correta apresentação de fatos e documentos que comprovem essas condições durante a fase de defesa administrativa. A administração pública, ao analisar o processo, deve observar os princípios da legalidade e da motivação, fundamentando adequadamente a redução ou manutenção da penalidade.
+
+## A Nulidade como Ponto de Atenção
+
+Antes de focar na redução da multa, é preciso verificar se o auto de infração possui validade jurídica. O art. 97 do Decreto 6.514/2008 elenca os requisitos formais obrigatórios, como a descrição clara e objetiva da infração e a correta indicação dos dispositivos infringidos. A ausência desses elementos, ou a presença de vícios insanáveis, pode fundamentar pedidos de nulidade, conforme o art. 100, § 2º do mesmo Decreto. Nesse cenário, o art. 53 da Lei 9.784/99, aplicável subsidiariamente, reforça o dever da Administração em anular seus próprios atos eivados de vício de legalidade.
+
+Adicionalmente, deve-se observar a prescrição. O art. 21 do Decreto 6.514/2008 estipula o prazo de cinco anos para a punibilidade pela prática do ato, enquanto o art. 21, § 2º prevê a prescrição intercorrente de três anos, caso o processo permaneça sem movimentação relevante. A análise desses prazos é vital para verificar a viabilidade da manutenção da autuação.
+
+## O Prazo para a Defesa Administrativa
+
+O procedimento administrativo federal assegura o contraditório e a ampla defesa, conforme o art. 96 do Decreto 6.514/2008, que trata da lavratura e ciência do auto. O prazo para apresentação da defesa administrativa é de vinte dias contados da ciência da autuação, nos termos do art. 113 do Decreto 6.514/2008. Contudo, é fundamental verificar se houve o agendamento de audiência de conciliação ambiental, pois o art. 97-A, § 1º, prevê o sobrestamento do prazo de defesa caso a referida audiência seja agendada. A data limite deve ser conferida no próprio documento de autuação.
+
+Além da defesa técnica, a legislação permite a conversão da multa simples em serviços de preservação, melhoria e recuperação ambiental, nos moldes do art. 72, § 4º da Lei 9.605/98. Esta é uma alternativa para o autuado que busca regularizar sua situação perante o órgão ambiental e mitigar o impacto financeiro da penalidade.
+
+Vale ressaltar que a existência de embargos ou apreensões vigentes deve ser respeitada. A defesa administrativa visa discutir a validade da sanção, não autorizando o descumprimento de medidas restritivas que permanecem ativas durante a tramitação do processo.
+
+## Conclusão e Próximos Passos
+
+Identificar atenuantes e verificar possíveis nulidades formais ou prescrição exige atenção aos detalhes técnicos e aos prazos legais. A defesa administrativa deve ser pautada na legislação federal vigente e na documentação correta do caso concreto.
+
+---
+*Este conteúdo tem caráter informativo e não constitui consultoria jurídica. Para orientação sobre o seu caso concreto, consulte um advogado.*`,
+  },
+
+  {
     slug: "diferenca-entre-auto-de-infracao-do-ibama-e-de-orgao-estadual",
     titulo: "Diferença entre auto de infração do IBAMA e de órgão estadual",
     descricao: "Entenda as distinções de competência entre o IBAMA e órgãos estaduais ao receber um auto de infração ambiental e saiba como proceder com sua defesa.",
