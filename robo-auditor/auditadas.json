@@ -28,5 +28,47 @@
     "data": "2026-08-21",
     "titulo": "Cobrança por Recuperação: O Critério da Média de Consumo",
     "motivo": "A imagem retrata adequadamente um medidor de energia, contexto central do tema, e o texto presente é apenas um detalhe técnico do aparelho que não prejudica a leitura."
+  },
+  "transito/margem-de-erro-dos-radares-como-funciona-e-seus-direitos": {
+    "resultado": "aprovada",
+    "data": "2026-08-22",
+    "titulo": "Margem de erro dos radares: como funciona e seus direitos",
+    "motivo": "A imagem mostra uma lente de radar em destaque e o texto distorcido aparece apenas em placas ao fundo, fora de foco."
+  },
+  "transito/diferenca-entre-multa-e-infracao": {
+    "resultado": "aprovada",
+    "data": "2026-08-22",
+    "titulo": "Qual a Diferença Entre Multa e Infração de Trânsito?",
+    "motivo": "A imagem mostra um fiscal de trânsito com um radar, o que é contextual ao tema, e não possui textos protagonistas incorretos."
+  },
+  "procon/como-obter-a-copia-integral-do-processo-no-procon": {
+    "resultado": "substituida",
+    "data": "2026-08-22",
+    "titulo": "Como obter a cópia integral do processo no Procon",
+    "motivo": "O texto sobre o documento em primeiro plano está ilegível e distorcido, sendo o foco visual da imagem. -> A imagem mostra um profissional analisando documentos, o que é contextual ao tema, e não há texto distorcido em foco principal."
+  },
+  "procon/decisao-do-procon-sem-motivacao-como-identificar-esse-vicio": {
+    "resultado": "aprovada",
+    "data": "2026-08-22",
+    "titulo": "Decisão do Procon sem motivação: como identificar esse vício",
+    "motivo": "O carimbo em destaque está escrito corretamente e o texto confuso ao redor é secundário, servindo apenas como textura de documento."
+  },
+  "vigilancia/alem-da-multa-quais-as-penalidades-da-vigilancia-sanitaria": {
+    "resultado": "removida",
+    "data": "2026-08-22",
+    "titulo": "Além da multa quais as penalidades da Vigilância Sanitária",
+    "motivo": "O cartaz de interdição, que é o elemento central e protagonista da imagem, contém palavras desconexas e erros grosseiros de grafia. | regenerada tambem reprovou: O selo central em destaque apresenta erro ortográfico ('IISPECTOR') no texto principal da imagem."
+  },
+  "energia/negativacao-por-debito-de-recuperacao-em-discussao": {
+    "resultado": "removida",
+    "data": "2026-08-22",
+    "titulo": "Negativacao por Debito de Recuperacao em Discussao",
+    "motivo": "O medidor é o foco central e o texto em destaque nele contém palavras distorcidas e sem sentido, prejudicando o realismo da imagem. | regenerada tambem reprovou: O texto principal no equipamento e na fatura está ilegível e truncado, ocupando o foco central da imagem."
+  },
+  "energia/cobranca-sem-pericia-no-medidor-entenda-seus-direitos-e-a-norma": {
+    "resultado": "aprovada",
+    "data": "2026-08-22",
+    "titulo": "Cobrança sem perícia no medidor: entenda seus direitos e a norma",
+    "motivo": "A imagem mostra claramente a manipulação de um medidor, o que condiz com o tema, e o texto ilegível está em uma etiqueta técnica sem destaque principal."
   }
 }
